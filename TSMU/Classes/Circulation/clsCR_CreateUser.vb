@@ -106,6 +106,7 @@ Public Class ClsCR_CreateUser
                                     ,[Date] 
                                     ,[Opinion]
                                     ,[DeptHead_ID] as  [User_id]
+                                    ,[Approve] as [Check]
                                   from [CR_Other_Dept] Where [CirculationNo] = '" & CirculationNo & "'
                                     order by ID asc"
             Dim dt As New DataTable
@@ -549,7 +550,7 @@ Public Class ClsCR_CreateUser
                     H_CirculationNo = DeptSub_ & "-" & Tahun & "-" & Bulan & "-" & "0001"
                 Else
                     H_CirculationNo = dtTable.Rows(0).Item("CirculationNo")
-                    H_CirculationNo = Val(Microsoft.VisualBasic.Mid(H_CirculationNo, 13, 4)) + 1
+                    H_CirculationNo = Val(Microsoft.VisualBasic.Mid(H_CirculationNo, 15, 4)) + 1
                     If Len(H_CirculationNo) = 1 Then
                         H_CirculationNo = DeptSub_ & "-" & Tahun & "-" & Bulan & "-" & "000" & H_CirculationNo & ""
                     ElseIf Len(H_CirculationNo) = 2 Then
@@ -919,7 +920,8 @@ Public Class ClsCR_CreateUser
                     gh_Trans.Command.Transaction = Trans1
                     Try
                         Dim ls_SP As String = "UPDATE [CR_Request]
-                                       SET [Budget] = '" & H_Budget & "'
+                                       SET [Budget] = '" & H_Budget & "',
+                                           [CR_Type] = '" & H_CR_Type & "'
                                      WHERE [CirculationNo] = '" & NoSirkulasi & "'"
                         MainModul.ExecQuery(ls_SP)
 
@@ -1413,6 +1415,11 @@ Public Class ClsCR_CreateUser
                                                ,'" & H_TanggalBeritaAcara & "')"
                 MainModul.ExecQuery(ls_SP)
 
+                Dim ls_SPH As String = "UPDATE [CR_Request]
+                                       SET [Status] = 'BA'
+                                     WHERE [CirculationNo] = '" & H_CirculationNo & "'"
+                MainModul.ExecQuery(ls_SPH)
+
             ElseIf Act = 2 Then
                 Dim ls_SP As String = "UPDATE [CR_BeritaAcara]
                                        SET [NoBeritaAcara] = '" & H_NoBeritaAcara & "'
@@ -1773,6 +1780,24 @@ Public Class ClsCR_CreateUser
             Throw
         End Try
     End Function
+    Public Function RptCirculation_Temp(No As String) As DataSet
+
+        Dim query As String = "[CR_Repot_Header_Temp]"
+        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+        pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+
+        pParam(0).Value = No
+
+        'MainModul.ExecQueryByCommand_SP(query, pParam)
+
+        Dim ds As New dsLaporan
+        ds = GetDataSetByCommand_SP(query, "CirculationHead", pParam)
+        Return ds
+
+        'Mold_Number
+
+    End Function
+
     Public Function RptCirculation(No As String) As DataSet
 
         Dim query As String = "[CR_Repot_Header]"

@@ -38,8 +38,19 @@ Partial Class Frm_CR_UserCreateHeader
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Grid2 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridPurchase = New DevExpress.XtraGrid.GridControl()
+        Me.GridViewPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,8 +58,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        CType(Me.Grid2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridViewPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grid
@@ -252,7 +263,7 @@ Partial Class Frm_CR_UserCreateHeader
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Grid2)
+        Me.TabPage2.Controls.Add(Me.GridPurchase)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -261,26 +272,156 @@ Partial Class Frm_CR_UserCreateHeader
         Me.TabPage2.Text = "Input PO"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'Grid2
+        'GridPurchase
         '
-        Me.Grid2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.GridPurchase.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid2.Location = New System.Drawing.Point(6, 6)
-        Me.Grid2.MainView = Me.GridView2
-        Me.Grid2.Name = "Grid2"
-        Me.Grid2.Size = New System.Drawing.Size(796, 341)
-        Me.Grid2.TabIndex = 11
-        Me.Grid2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        Me.GridPurchase.Location = New System.Drawing.Point(6, 3)
+        Me.GridPurchase.MainView = Me.GridViewPurchase
+        Me.GridPurchase.Name = "GridPurchase"
+        Me.GridPurchase.Size = New System.Drawing.Size(888, 344)
+        Me.GridPurchase.TabIndex = 12
+        Me.GridPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPurchase})
         '
-        'GridView2
+        'GridViewPurchase
         '
-        Me.GridView2.GridControl = Me.Grid2
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.Editable = False
-        Me.GridView2.OptionsView.ColumnAutoWidth = False
-        Me.GridView2.OptionsView.ShowAutoFilterRow = True
-        Me.GridView2.OptionsView.ShowGroupPanel = False
+        Me.GridViewPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44})
+        Me.GridViewPurchase.GridControl = Me.GridPurchase
+        Me.GridViewPurchase.Name = "GridViewPurchase"
+        Me.GridViewPurchase.OptionsBehavior.Editable = False
+        Me.GridViewPurchase.OptionsView.ShowAutoFilterRow = True
+        Me.GridViewPurchase.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn34.FieldName = "Circulation No"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 0
+        Me.GridColumn34.Width = 210
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.FieldName = "Requirement Date"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 1
+        Me.GridColumn35.Width = 103
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn36.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn36.FieldName = "Dept"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 2
+        Me.GridColumn36.Width = 159
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn37.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn37.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn37.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn37.FieldName = "Status"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 3
+        Me.GridColumn37.Width = 90
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn38.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn38.FieldName = "Requester"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 4
+        Me.GridColumn38.Width = 67
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn39.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn39.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn39.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn39.FieldName = "Dept Head"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 5
+        Me.GridColumn39.Width = 64
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn40.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn40.FieldName = "Div Head"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 6
+        Me.GridColumn40.Width = 64
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn41.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn41.FieldName = "Other Dept"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 7
+        Me.GridColumn41.Width = 64
+        '
+        'GridColumn42
+        '
+        Me.GridColumn42.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn42.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn42.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn42.FieldName = "Accounting"
+        Me.GridColumn42.Name = "GridColumn42"
+        Me.GridColumn42.Visible = True
+        Me.GridColumn42.VisibleIndex = 8
+        Me.GridColumn42.Width = 64
+        '
+        'GridColumn43
+        '
+        Me.GridColumn43.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn43.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn43.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn43.FieldName = "Purch"
+        Me.GridColumn43.Name = "GridColumn43"
+        Me.GridColumn43.Visible = True
+        Me.GridColumn43.VisibleIndex = 9
+        Me.GridColumn43.Width = 64
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn44.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn44.DisplayFormat.FormatString = "{0:N2}"
+        Me.GridColumn44.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn44.FieldName = "Amount"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 10
+        Me.GridColumn44.Width = 168
         '
         'Timer1
         '
@@ -299,8 +440,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
-        CType(Me.Grid2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridPurchase, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridViewPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -322,9 +463,20 @@ Partial Class Frm_CR_UserCreateHeader
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents Grid2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents C_Submit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents GridPurchase As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridViewPurchase As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

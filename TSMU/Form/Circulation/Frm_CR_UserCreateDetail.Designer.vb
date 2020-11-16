@@ -129,12 +129,14 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Opinion = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit7 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemSpinEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemSpinEdit9 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.BPrint = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1219,7 +1221,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         'GridView5
         '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn15})
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn15, Me.GridColumn17})
         Me.GridView5.GridControl = Me.Grid5
         Me.GridView5.Name = "GridView5"
         Me.GridView5.OptionsView.ShowGroupPanel = False
@@ -1267,6 +1269,20 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn15.FieldName = "User_id"
         Me.GridColumn15.Name = "GridColumn15"
         '
+        'GridColumn17
+        '
+        Me.GridColumn17.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn17.Caption = "Check"
+        Me.GridColumn17.FieldName = "Check"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.UnboundType = DevExpress.Data.UnboundColumnType.[Boolean]
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 2
+        '
         'RepositoryItemSpinEdit7
         '
         Me.RepositoryItemSpinEdit7.AutoHeight = False
@@ -1294,11 +1310,22 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.Timer1.Interval = 700
         '
+        'BPrint
+        '
+        Me.BPrint.Location = New System.Drawing.Point(371, 3)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(75, 23)
+        Me.BPrint.TabIndex = 99
+        Me.BPrint.Text = "Print"
+        Me.BPrint.UseVisualStyleBackColor = True
+        Me.BPrint.Visible = False
+        '
         'Frm_CR_UserCreateDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(1173, 550)
+        Me.Controls.Add(Me.BPrint)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.Grid5)
         Me.Controls.Add(Me.C_Term)
@@ -1314,6 +1341,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Controls.SetChildIndex(Me.C_Term, 0)
         Me.Controls.SetChildIndex(Me.Grid5, 0)
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
+        Me.Controls.SetChildIndex(Me.BPrint, 0)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1511,4 +1539,6 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents C_SalesType As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents BPrint As Button
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

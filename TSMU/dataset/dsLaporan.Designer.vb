@@ -18412,6 +18412,8 @@ Partial Public Class dsLaporan
     Partial Public Class CCAccruedEndSettleDataTable
         Inherits Global.System.Data.TypedTableBase(Of CCAccruedEndSettleRow)
         
+        Private columnPeriod As Global.System.Data.DataColumn
+        
         Private columnTanggalTransaksi As Global.System.Data.DataColumn
         
         Private columnAccount As Global.System.Data.DataColumn
@@ -18423,6 +18425,8 @@ Partial Public Class dsLaporan
         Private columnBankName As Global.System.Data.DataColumn
         
         Private columnNoPR As Global.System.Data.DataColumn
+        
+        Private columnRemark As Global.System.Data.DataColumn
         
         Private columnNoAccrued As Global.System.Data.DataColumn
         
@@ -18485,6 +18489,14 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PeriodColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPeriod
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public ReadOnly Property TanggalTransaksiColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnTanggalTransaksi
@@ -18528,6 +18540,14 @@ Partial Public Class dsLaporan
         Public ReadOnly Property NoPRColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnNoPR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property RemarkColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRemark
             End Get
         End Property
         
@@ -18665,12 +18685,14 @@ Partial Public Class dsLaporan
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overloads Function AddCCAccruedEndSettleRow( _
-                    ByVal TanggalTransaksi As String,  _
+                    ByVal Period As Date,  _
+                    ByVal TanggalTransaksi As Date,  _
                     ByVal Account As String,  _
                     ByVal Descr As String,  _
                     ByVal AccountName As String,  _
                     ByVal BankName As String,  _
                     ByVal NoPR As String,  _
+                    ByVal Remark As String,  _
                     ByVal NoAccrued As String,  _
                     ByVal CurryID As String,  _
                     ByVal OriginalAmount As Double,  _
@@ -18684,7 +18706,7 @@ Partial Public Class dsLaporan
                     ByVal Posisi2 As String,  _
                     ByVal Nama2 As String) As CCAccruedEndSettleRow
             Dim rowCCAccruedEndSettleRow As CCAccruedEndSettleRow = CType(Me.NewRow,CCAccruedEndSettleRow)
-            Dim columnValuesArray() As Object = New Object() {TanggalTransaksi, Account, Descr, AccountName, BankName, NoPR, NoAccrued, CurryID, OriginalAmount, ExchangeRate, AccrualEstimate, Settlement, NextMonth, ExchangeGainLoss, Posisi1, Nama1, Posisi2, Nama2}
+            Dim columnValuesArray() As Object = New Object() {Period, TanggalTransaksi, Account, Descr, AccountName, BankName, NoPR, Remark, NoAccrued, CurryID, OriginalAmount, ExchangeRate, AccrualEstimate, Settlement, NextMonth, ExchangeGainLoss, Posisi1, Nama1, Posisi2, Nama2}
             rowCCAccruedEndSettleRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCCAccruedEndSettleRow)
             Return rowCCAccruedEndSettleRow
@@ -18707,12 +18729,14 @@ Partial Public Class dsLaporan
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub InitVars()
+            Me.columnPeriod = MyBase.Columns("Period")
             Me.columnTanggalTransaksi = MyBase.Columns("TanggalTransaksi")
             Me.columnAccount = MyBase.Columns("Account")
             Me.columnDescr = MyBase.Columns("Descr")
             Me.columnAccountName = MyBase.Columns("AccountName")
             Me.columnBankName = MyBase.Columns("BankName")
             Me.columnNoPR = MyBase.Columns("NoPR")
+            Me.columnRemark = MyBase.Columns("Remark")
             Me.columnNoAccrued = MyBase.Columns("NoAccrued")
             Me.columnCurryID = MyBase.Columns("CurryID")
             Me.columnOriginalAmount = MyBase.Columns("OriginalAmount")
@@ -18730,7 +18754,9 @@ Partial Public Class dsLaporan
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnTanggalTransaksi = New Global.System.Data.DataColumn("TanggalTransaksi", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnPeriod = New Global.System.Data.DataColumn("Period", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPeriod)
+            Me.columnTanggalTransaksi = New Global.System.Data.DataColumn("TanggalTransaksi", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTanggalTransaksi)
             Me.columnAccount = New Global.System.Data.DataColumn("Account", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnAccount)
@@ -18742,6 +18768,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnBankName)
             Me.columnNoPR = New Global.System.Data.DataColumn("NoPR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNoPR)
+            Me.columnRemark = New Global.System.Data.DataColumn("Remark", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRemark)
             Me.columnNoAccrued = New Global.System.Data.DataColumn("NoAccrued", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNoAccrued)
             Me.columnCurryID = New Global.System.Data.DataColumn("CurryID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -38520,10 +38548,25 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property TanggalTransaksi() As String
+        Public Property Period() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableCCAccruedEndSettle.TanggalTransaksiColumn),String)
+                    Return CType(Me(Me.tableCCAccruedEndSettle.PeriodColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Period' in table 'CCAccruedEndSettle' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCAccruedEndSettle.PeriodColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TanggalTransaksi() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCAccruedEndSettle.TanggalTransaksiColumn),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'TanggalTransaksi' in table 'CCAccruedEndSettle' is DBNull.", e)
                 End Try
@@ -38605,6 +38648,21 @@ Partial Public Class dsLaporan
             End Get
             Set
                 Me(Me.tableCCAccruedEndSettle.NoPRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Remark() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCAccruedEndSettle.RemarkColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Remark' in table 'CCAccruedEndSettle' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCAccruedEndSettle.RemarkColumn) = value
             End Set
         End Property
         
@@ -38790,6 +38848,18 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPeriodNull() As Boolean
+            Return Me.IsNull(Me.tableCCAccruedEndSettle.PeriodColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPeriodNull()
+            Me(Me.tableCCAccruedEndSettle.PeriodColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsTanggalTransaksiNull() As Boolean
             Return Me.IsNull(Me.tableCCAccruedEndSettle.TanggalTransaksiColumn)
         End Function
@@ -38858,6 +38928,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetNoPRNull()
             Me(Me.tableCCAccruedEndSettle.NoPRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsRemarkNull() As Boolean
+            Return Me.IsNull(Me.tableCCAccruedEndSettle.RemarkColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetRemarkNull()
+            Me(Me.tableCCAccruedEndSettle.RemarkColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

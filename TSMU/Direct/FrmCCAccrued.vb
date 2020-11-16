@@ -19,8 +19,6 @@ Public Class FrmCCAccrued
     Dim dtSummarySettle As New DataTable
     Dim dtSummaryPaid As New DataTable
 
-    'Dim accountName As String = String.Empty
-
     Private Sub FrmCCAccrued_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, False)
@@ -76,7 +74,36 @@ Public Class FrmCCAccrued
     Public Overrides Sub Proc_Print()
         frmCCAccrued = New FrmReportCCAccrued
         frmCCAccrued.txtTabAccrued.Text = TabPage
-        frmCCAccrued.param = ""
+        Dim param As String
+        Dim listNoTrans As New List(Of String)
+        If TabPage = "TabPageProses" Then
+            frmCCAccrued.txtPerpost.EditValue = txtPerpost.EditValue
+            If GridViewAccrued.SelectedRowsCount > 0 Then
+                For i As Integer = 0 To GridViewAccrued.SelectedRowsCount() - 1
+                    If (GridViewAccrued.GetSelectedRows()(i) >= 0) Then
+                        Dim noTrans As String = GridViewAccrued.GetRowCellValue(GridViewAccrued.GetSelectedRows()(i), "NoTransaksi")
+                        If Not listNoTrans.Contains(noTrans) Then
+                            listNoTrans.Add(noTrans)
+                        End If
+                    End If
+                Next
+            End If
+            param = String.Join(",", listNoTrans.ToArray)
+        Else
+            frmCCAccrued.txtPerpost.EditValue = txtPerpostSett.EditValue
+            If GridViewAccruedAll.SelectedRowsCount > 0 Then
+                For i As Integer = 0 To GridViewAccruedAll.SelectedRowsCount() - 1
+                    If (GridViewAccruedAll.GetSelectedRows()(i) >= 0) Then
+                        Dim noTrans As String = GridViewAccruedAll.GetRowCellValue(GridViewAccruedAll.GetSelectedRows()(i), "NoTransaksi")
+                        If Not listNoTrans.Contains(noTrans) Then
+                            listNoTrans.Add(noTrans)
+                        End If
+                    End If
+                Next
+            End If
+            param = String.Join(",", listNoTrans.ToArray)
+        End If
+        frmCCAccrued.param = param
         frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
         frmCCAccrued.Show()
     End Sub
@@ -96,6 +123,7 @@ Public Class FrmCCAccrued
             btnProses.Enabled = False
             txtCCNumber.EditValue = ""
             txtAccountName.Text = ""
+            txtPerpost.EditValue = Date.Today
             cls_Accrued.CreditCardNumber = IIf(txtCCNumber.EditValue Is Nothing, "", txtCCNumber.EditValue)
             dtGridAccrued = cls_Accrued.GetDataCostCC()
             GridAccrued.DataSource = dtGridAccrued
@@ -109,6 +137,7 @@ Public Class FrmCCAccrued
             colAccountName.VisibleIndex = 2
             colBankName.VisibleIndex = 3
             GridViewAccrued.BestFitColumns()
+            GridViewAccrued.SelectAll()
             'GroupingGrid(GridViewAccrued)
 
             dtSummaryProses = New DataTable
@@ -137,6 +166,7 @@ Public Class FrmCCAccrued
             colAccountName.Visible = False
             colCCNumber.Visible = False
             GridViewAccrued.BestFitColumns()
+            GridViewAccrued.SelectAll()
             'GroupingGrid(GridViewAccrued)
             hitungSummaryProses()
         Catch ex As Exception
@@ -148,6 +178,7 @@ Public Class FrmCCAccrued
     Private Sub LoadGridAccruedSette()
         Try
             cls_Accrued = New ClsCCAccrued
+            txtPerpostSett.EditValue = Date.Today
             dtGrid = cls_Accrued.GetDataCCSettle()
             GridAccruedAll.DataSource = dtGrid
             GridViewAccruedAll.BestFitColumns()
@@ -319,25 +350,27 @@ Public Class FrmCCAccrued
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Try
             If GridViewAccruedAll.SelectedRowsCount > 0 Then
-                Dim Rows As New ArrayList()
-                For i As Integer = 0 To GridViewAccruedAll.SelectedRowsCount() - 1
-                    If (GridViewAccruedAll.GetSelectedRows()(i) >= 0) Then
-                        Rows.Add(GridViewAccruedAll.GetDataRow(GridViewAccruedAll.GetSelectedRows()(i)))
-                    End If
-                    Dim Row As DataRow = CType(Rows(0), DataRow)
-                    If Row("Pay") = 1 Then
-                        MessageBox.Show("No Accrued " & Row("NoAccrued") & " sudah dilakukan pembayaran", "Warning",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Exclamation,
-                               MessageBoxDefaultButton.Button1)
-                        Exit Sub
-                    End If
-                Next
-                cls_Accrued.DeleteData(Rows)
-                Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
-                tsBtn_refresh.PerformClick()
+                If MsgBox("Are You Sure Cancel Data", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.Yes Then
+                    Dim Rows As New ArrayList()
+                    For i As Integer = 0 To GridViewAccruedAll.SelectedRowsCount() - 1
+                        If (GridViewAccruedAll.GetSelectedRows()(i) >= 0) Then
+                            Rows.Add(GridViewAccruedAll.GetDataRow(GridViewAccruedAll.GetSelectedRows()(i)))
+                        End If
+                        Dim Row As DataRow = CType(Rows(0), DataRow)
+                        If Row("Pay") = 1 Then
+                            MessageBox.Show("No Accrued " & Row("NoAccrued") & " sudah dilakukan pembayaran", "Warning",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Exclamation,
+                                   MessageBoxDefaultButton.Button1)
+                            Exit Sub
+                        End If
+                    Next
+                    cls_Accrued.DeleteData(Rows)
+                    Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+                    tsBtn_refresh.PerformClick()
+                End If
             Else
-                MessageBox.Show("Tidak ada data yang dipilih", "Warning",
+                    MessageBox.Show("Tidak ada data yang dipilih", "Warning",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Exclamation,
                            MessageBoxDefaultButton.Button1)
@@ -363,8 +396,8 @@ Public Class FrmCCAccrued
         lF_SearchData.ShowDialog()
 
         If lF_SearchData.Values IsNot Nothing Then
-            txtCCNumber.EditValue = lF_SearchData.Values.Item(0).ToString.Trim
-            txtAccountName.Text = lF_SearchData.Values.Item(1).ToString.Trim + " - " + lF_SearchData.Values.Item(2).ToString.Trim
+            txtCCNumber.EditValue = lF_SearchData.Values.Item(2).ToString.Trim
+            txtAccountName.Text = lF_SearchData.Values.Item(0).ToString.Trim + " - " + lF_SearchData.Values.Item(1).ToString.Trim
             LoadGridAccruedWithFilter()
         End If
 
@@ -390,6 +423,20 @@ Public Class FrmCCAccrued
 
     Private Sub GridViewAccrued_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles GridViewAccrued.SelectionChanged
         If txtCCNumber.EditValue <> "" Then
+            Dim __isChecked As Boolean = GridViewAccrued.IsRowSelected(GridViewAccrued.FocusedRowHandle)
+            If __isChecked = True Then
+                For i As Integer = 0 To GridViewAccrued.RowCount - 1
+                    If GridViewAccrued.GetRowCellValue(i, "NoTransaksi") = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "NoTransaksi") Then
+                        GridViewAccrued.SelectRow(i)
+                    End If
+                Next
+            Else
+                For i As Integer = 0 To GridViewAccrued.RowCount - 1
+                    If GridViewAccrued.GetRowCellValue(i, "NoTransaksi") = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "NoTransaksi") Then
+                        GridViewAccrued.UnselectRow(i)
+                    End If
+                Next
+            End If
             For i As Integer = 0 To GridViewAccrued.RowCount - 1
                 Dim isChecked As Boolean = GridViewAccrued.IsRowSelected(i)
                 If isChecked = False Then
@@ -407,7 +454,21 @@ Public Class FrmCCAccrued
             Next
             hitungSummaryProses()
         Else
-            GridViewAccrued.ClearSelection()
+            'GridViewAccrued.ClearSelection()
+            Dim __isChecked As Boolean = GridViewAccrued.IsRowSelected(GridViewAccrued.FocusedRowHandle)
+            If __isChecked = True Then
+                For i As Integer = 0 To GridViewAccrued.RowCount - 1
+                    If GridViewAccrued.GetRowCellValue(i, "NoTransaksi") = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "NoTransaksi") Then
+                        GridViewAccrued.SelectRow(i)
+                    End If
+                Next
+            Else
+                For i As Integer = 0 To GridViewAccrued.RowCount - 1
+                    If GridViewAccrued.GetRowCellValue(i, "NoTransaksi") = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "NoTransaksi") Then
+                        GridViewAccrued.UnselectRow(i)
+                    End If
+                Next
+            End If
         End If
     End Sub
 

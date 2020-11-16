@@ -286,6 +286,7 @@ Public Class frmForecast_PO
         frmExcel.ShowDialog()
 
         If frmExcel.tab = 0 Then
+
             strTahun = frmExcel.Tahun
             strCustomer = frmExcel.Customer
             Bulan = frmExcel.Bulan
@@ -294,13 +295,122 @@ Public Class frmForecast_PO
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
 
-                'If strCustomer.ToLower = "adm" Then
-                '    If frmExcel.DtAdm.Rows.Count > 0 Then
-                '        Dim _Service As New AdmService(frmExcel.DtAdm, strCustomer, strTahun, Bulan)
-                '        _Service.GetExcelData()
-                '    End If
-                'Else
-                If table.Rows.Count = 0 Then
+                If strCustomer.ToLower = "adm" Then
+                    If frmExcel.DtAdm.Rows.Count > 0 Then
+                        Dim _Service As New AdmService(frmExcel.DtAdm, strCustomer, strTahun, Bulan, frmExcel._Site, frmExcel.Flag)
+                        Dim Dt1 As New DataTable
+                        Dt1 = _Service.GetExcelData()
+
+                        Dim Frm As FrmForecast_PO_TempTable
+                        Frm = New FrmForecast_PO_TempTable(Dt1)
+                        Frm.StartPosition = FormStartPosition.CenterParent
+                        Frm.ShowDialog()
+
+                        ObjHeader.ObjForecastCollection.Clear()
+                        For Each row As DataRow In Dt1.Rows
+                            ObjForecast = New forecast_po_model_detail
+                            With ObjForecast
+                                .Tahun = If(row("Tahun") Is DBNull.Value, "", row("Tahun"))
+                                .CustID = If(row("CustID") Is DBNull.Value, "", row("CustID"))
+                                .Customer = If(row("CustName") Is DBNull.Value, "", row("CustName"))
+                                .InvtID = If(row("InvtID") Is DBNull.Value, "", row("InvtID"))
+                                .Description = If(row("Description") Is DBNull.Value, "", row("Description"))
+                                .PartNo = If(row("PartNo") Is DBNull.Value, "", row("PartNo"))
+                                .Model = If(row("Model") Is DBNull.Value, "", row("Model"))
+                                .OePe = If(row("Oe") Is DBNull.Value, "", row("Oe"))
+                                .INSub = If(row("InSub") Is DBNull.Value, "", row("InSub"))
+                                .Site = If(row("Site") Is DBNull.Value, "", row("Site"))
+                                .Flag = If(row("Flag") Is DBNull.Value, "N/A", row("Flag").ToString())
+                                .N = If(row("N") Is DBNull.Value, 0, Convert.ToInt32(row("N")))
+                                .N1 = If(row("N1") Is DBNull.Value, 0, Convert.ToInt32(row("N1")))
+                                .N2 = If(row("N2") Is DBNull.Value, 0, Convert.ToInt32(row("N2")))
+                                .N3 = If(row("N3") Is DBNull.Value, 0, Convert.ToInt32(row("N3")))
+                                Select Case BulanAngka
+                                    Case "01"
+                                        .BulanPO = "Jan"
+                                        .BulanFC1 = "Feb"
+                                        .BulanFC2 = "Mar"
+                                        .BulanFC3 = "Apr"
+                                    Case "02"
+                                        .BulanPO = "Feb"
+                                        .BulanFC1 = "Mar"
+                                        .BulanFC2 = "Apr"
+                                        .BulanFC3 = "Mei"
+                                    Case "03"
+                                        .BulanPO = "Mar"
+                                        .BulanFC1 = "Apr"
+                                        .BulanFC2 = "Mei"
+                                        .BulanFC3 = "Jun"
+                                    Case "04"
+                                        .BulanPO = "Apr"
+                                        .BulanFC1 = "Mei"
+                                        .BulanFC2 = "Jun"
+                                        .BulanFC3 = "Jul"
+                                    Case "05"
+                                        .BulanPO = "Mei"
+                                        .BulanFC1 = "Jun"
+                                        .BulanFC2 = "Jul"
+                                        .BulanFC3 = "Agt"
+                                    Case "06"
+                                        .BulanPO = "Jun"
+                                        .BulanFC1 = "Jul"
+                                        .BulanFC2 = "Agt"
+                                        .BulanFC3 = "Sep"
+                                    Case "07"
+                                        .BulanPO = "Jul"
+                                        .BulanFC1 = "Agt"
+                                        .BulanFC2 = "Sep"
+                                        .BulanFC3 = "Okt"
+                                    Case "08"
+                                        .BulanPO = "Agt"
+                                        .BulanFC1 = "Sep"
+                                        .BulanFC2 = "Okt"
+                                        .BulanFC3 = "Nov"
+                                    Case "09"
+                                        .BulanPO = "Sep"
+                                        .BulanFC1 = "Okt"
+                                        .BulanFC2 = "Nov"
+                                        .BulanFC3 = "Des"
+                                    Case "10"
+                                        .BulanPO = "Okt"
+                                        .BulanFC1 = "Nov"
+                                        .BulanFC2 = "Des"
+                                        .BulanFC3 = "Jan"
+                                    Case "11"
+                                        .BulanPO = "Nov"
+                                        .BulanFC1 = "Des"
+                                        .BulanFC2 = "Jan"
+                                        .BulanFC3 = "Feb"
+                                    Case "12"
+                                        .BulanPO = "Des"
+                                        .BulanFC1 = "Jan"
+                                        .BulanFC2 = "Feb"
+                                        .BulanFC3 = "Mar"
+                                End Select
+                                .created_date = Date.Today
+                                .created_by = gh_Common.Username
+                            End With
+                            ObjHeader.ObjForecastCollection.Add(ObjForecast)
+                        Next
+
+                        With ObjHeader
+                            .Tahun = strTahun
+                            .CustID = strCustomer
+                            .Bulan = Bulan
+                            .BulanAngka = BulanAngka
+                            .PO = frmExcel.PO
+                            .InsertDataAdm()
+                            SplashScreenManager.CloseForm()
+                            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                            LoadGrid()
+                        End With
+                    Else
+
+                        SplashScreenManager.CloseForm()
+                    End If
+                Else
+                    If table.Rows.Count = 0 Then
+                        SplashScreenManager.CloseForm()
                         Return
                     End If
                     Dim dv As DataView = New DataView(table)
@@ -428,7 +538,7 @@ Public Class frmForecast_PO
                         End With
                         'ObjForecast.UpdateDataByBulanNew(Bulan)
                     End If
-                'End If
+                End If
             Catch ex As Exception
                 SplashScreenManager.CloseForm()
                 Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -643,35 +753,36 @@ Public Class frmForecast_PO
         'Dim id As Object = GridView1.GetRowCellValue(e.RowHandle, "ID")
         'Dim rHandle As Integer = GridView1.LocateByValue("ID", id, Nothing)
         'If rHandle < 0 Then e.Appearance.BackColor = Color.Orange
-        Dim view As GridView = TryCast(sender, GridView)
-        If view.FocusedRowHandle >= 0 Then
-            Dim _tahun As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "Tahun")
-            Dim _custId As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "CustID")
-            Dim _invtId As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "InvtID")
-            Dim _partNo As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "PartNo")
-            Dim _flag As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "Flag")
 
-            Dim _tahun1 As String = view.GetRowCellDisplayText(e.RowHandle, "Tahun")
-            Dim _custId1 As String = view.GetRowCellDisplayText(e.RowHandle, "CustID")
-            Dim _invtId1 As String = view.GetRowCellDisplayText(e.RowHandle, "InvtID")
-            Dim _partNo1 As String = view.GetRowCellDisplayText(e.RowHandle, "PartNo")
-            Dim _flag1 As String = view.GetRowCellDisplayText(e.RowHandle, "Flag")
+        'Dim view As GridView = TryCast(sender, GridView)
+        'If view.FocusedRowHandle >= 0 Then
+        '    Dim _tahun As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "Tahun")
+        '    Dim _custId As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "CustID")
+        '    Dim _invtId As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "InvtID")
+        '    Dim _partNo As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "PartNo")
+        '    Dim _flag As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "Flag")
 
-            If _tahun = _tahun1 AndAlso _custId = _custId1 AndAlso _invtId = _invtId1 Then
-                'If _flag = "SAP TSC1" Then
-                '    e.Appearance.BackColor = Color.Salmon
-                '    e.HighPriority = True
-                'Else
-                e.Appearance.BackColor = Color.Salmon
-                e.HighPriority = True
-                'End If
-            End If
-        End If
+        '    Dim _tahun1 As String = view.GetRowCellDisplayText(e.RowHandle, "Tahun")
+        '    Dim _custId1 As String = view.GetRowCellDisplayText(e.RowHandle, "CustID")
+        '    Dim _invtId1 As String = view.GetRowCellDisplayText(e.RowHandle, "InvtID")
+        '    Dim _partNo1 As String = view.GetRowCellDisplayText(e.RowHandle, "PartNo")
+        '    Dim _flag1 As String = view.GetRowCellDisplayText(e.RowHandle, "Flag")
+
+        '    If _tahun = _tahun1 AndAlso _custId = _custId1 AndAlso _invtId = _invtId1 Then
+        '        'If _flag = "SAP TSC1" Then
+        '        '    e.Appearance.BackColor = Color.Salmon
+        '        '    e.HighPriority = True
+        '        'Else
+        '        e.Appearance.BackColor = Color.Salmon
+        '        e.HighPriority = True
+        '        'End If
+        '    End If
+        'End If
     End Sub
 
     Private Sub GridView1_FocusedRowChanged(sender As Object, e As FocusedRowChangedEventArgs) Handles GridView1.FocusedRowChanged
-        Dim view As GridView = TryCast(sender, GridView)
-        view.LayoutChanged()
+        'Dim view As GridView = TryCast(sender, GridView)
+        'view.LayoutChanged()
     End Sub
 
     Private Sub CekInventory1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CekInventory1ToolStripMenuItem.Click
@@ -738,6 +849,27 @@ Public Class frmForecast_PO
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
 
+    End Sub
+
+    Private Sub PartNoTidakAdaInventoryDiSolomonToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Click
+        Try
+            If Not isOpen("frmForecast_PO_Log") Then
+                ObjForecast = New forecast_po_model_detail
+                Dim dt As New DataTable
+                dt = ObjForecast.GetData_tForecastPrice_Log
+                Dim f = frmForecast_PO_Log
+                f = New frmForecast_PO_Log(dt, "Part No yang tidak ada Inventory nya di Solomon", 1) With {
+                    .WindowState = FormWindowState.Normal,
+                    .StartPosition = FormStartPosition.CenterScreen
+                }
+                f.Show()
+            Else
+                XtraMessageBox.Show("Form sudah terbuka !")
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 
     'Private Sub GridView1_CustomColumnDisplayText(sender As Object, e As CustomColumnDisplayTextEventArgs) Handles GridView1.CustomColumnDisplayText

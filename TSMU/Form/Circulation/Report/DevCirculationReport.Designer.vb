@@ -33,6 +33,7 @@ Partial Public Class DevCirculationReport
         Me.pageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.pageInfo2 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrSubreport4 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrTable7 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -51,6 +52,7 @@ Partial Public Class DevCirculationReport
         Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
         Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow6 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -88,8 +90,6 @@ Partial Public Class DevCirculationReport
         Me.label1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrSubreport4 = New DevExpress.XtraReports.UI.XRSubreport()
-        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrSubreport3 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrSubreport2 = New DevExpress.XtraReports.UI.XRSubreport()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,10 +195,17 @@ Partial Public Class DevCirculationReport
         Me.ReportHeader.HeightF = 704.3458!
         Me.ReportHeader.Name = "ReportHeader"
         '
+        'XrSubreport4
+        '
+        Me.XrSubreport4.LocationFloat = New DevExpress.Utils.PointFloat(165.625!, 543.611!)
+        Me.XrSubreport4.Name = "XrSubreport4"
+        Me.XrSubreport4.ReportSource = New TSMU.DevCirculationReportTotal()
+        Me.XrSubreport4.SizeF = New System.Drawing.SizeF(635.3751!, 104.7347!)
+        '
         'XrPictureBox1
         '
         Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001907349!, 0!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
         Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(101.8331!, 80.66667!)
         Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
@@ -324,7 +331,7 @@ Partial Public Class DevCirculationReport
         '
         'XrTableCell23
         '
-        Me.XrTableCell23.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[FACName]")})
+        Me.XrTableCell23.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([DivHeadName] == '','' ,[FACName] )")})
         Me.XrTableCell23.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell23.Multiline = True
         Me.XrTableCell23.Name = "XrTableCell23"
@@ -379,6 +386,16 @@ Partial Public Class DevCirculationReport
         Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell14.TextFormatString = "{0:dd-MMM-yy}"
         Me.XrTableCell14.Weight = 2.2266682457660911R
+        '
+        'XrSubreport1
+        '
+        Me.XrSubreport1.CanShrink = True
+        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(165.625!, 80.66667!)
+        Me.XrSubreport1.Name = "XrSubreport1"
+        Me.XrSubreport1.ParameterBindings.Add(New DevExpress.XtraReports.UI.ParameterBinding("CRNO", Nothing, "CirculationNo"))
+        Me.XrSubreport1.ReportSource = New TSMU.DevCirculationReportDOC()
+        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(635.375!, 462.9443!)
+        Me.XrSubreport1.SnapLineMargin = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 1, 1, 100.0!)
         '
         'XrPanel1
         '
@@ -770,23 +787,6 @@ Partial Public Class DevCirculationReport
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrSubreport3, Me.XrSubreport2})
         Me.ReportFooter.HeightF = 99.51935!
         Me.ReportFooter.Name = "ReportFooter"
-        '
-        'XrSubreport4
-        '
-        Me.XrSubreport4.LocationFloat = New DevExpress.Utils.PointFloat(165.625!, 543.611!)
-        Me.XrSubreport4.Name = "XrSubreport4"
-        Me.XrSubreport4.ReportSource = New TSMU.DevCirculationReportTotal()
-        Me.XrSubreport4.SizeF = New System.Drawing.SizeF(635.3751!, 104.7347!)
-        '
-        'XrSubreport1
-        '
-        Me.XrSubreport1.CanShrink = True
-        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(165.625!, 80.66667!)
-        Me.XrSubreport1.Name = "XrSubreport1"
-        Me.XrSubreport1.ParameterBindings.Add(New DevExpress.XtraReports.UI.ParameterBinding("CRNO", Nothing, "CirculationNo"))
-        Me.XrSubreport1.ReportSource = New TSMU.DevCirculationReportDOC()
-        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(635.375!, 462.9443!)
-        Me.XrSubreport1.SnapLineMargin = New DevExpress.XtraPrinting.PaddingInfo(1, 1, 1, 1, 100.0!)
         '
         'XrSubreport3
         '
