@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmPOYIM
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,20 +17,23 @@ Partial Class FrmPOYIM
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.Grid = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtFileLocation = New System.Windows.Forms.TextBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.Grid = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me._txtordnbr = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -49,6 +52,35 @@ Partial Class FrmPOYIM
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1460, 488)
         Me.TableLayoutPanel1.TabIndex = 39
+        '
+        'Grid
+        '
+        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Location = New System.Drawing.Point(766, 4)
+        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Name = "Grid"
+        Me.Grid.Size = New System.Drawing.Size(690, 480)
+        Me.Grid.TabIndex = 35
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
+        Me.GridView1.GridControl = Me.Grid
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsClipboard.ClipboardMode = DevExpress.Export.ClipboardMode.Formatted
+        Me.GridView1.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView1.OptionsSelection.MultiSelect = True
+        Me.GridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.ShowAutoFilterRow = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'DataGridView1
         '
@@ -91,39 +123,38 @@ Partial Class FrmPOYIM
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Grid
+        '_txtordnbr
         '
-        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Location = New System.Drawing.Point(766, 4)
-        Me.Grid.MainView = Me.GridView1
-        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(690, 480)
-        Me.Grid.TabIndex = 35
-        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me._txtordnbr.Location = New System.Drawing.Point(1162, 46)
+        Me._txtordnbr.Name = "_txtordnbr"
+        Me._txtordnbr.Size = New System.Drawing.Size(165, 23)
+        Me._txtordnbr.TabIndex = 40
         '
-        'GridView1
+        'Label2
         '
-        Me.GridView1.DetailHeight = 458
-        Me.GridView1.FixedLineWidth = 3
-        Me.GridView1.GridControl = Me.Grid
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsClipboard.ClipboardMode = DevExpress.Export.ClipboardMode.Formatted
-        Me.GridView1.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridView1.OptionsSelection.MultiSelect = True
-        Me.GridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
-        Me.GridView1.OptionsView.ShowAutoFilterRow = True
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(1026, 49)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(130, 17)
+        Me.Label2.TabIndex = 41
+        Me.Label2.Text = "Last Order Number"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(1370, 42)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 42
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'FrmPOYIM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1521, 581)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me._txtordnbr)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtFileLocation)
@@ -133,10 +164,13 @@ Partial Class FrmPOYIM
         Me.Controls.SetChildIndex(Me.txtFileLocation, 0)
         Me.Controls.SetChildIndex(Me.Label1, 0)
         Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
+        Me.Controls.SetChildIndex(Me._txtordnbr, 0)
+        Me.Controls.SetChildIndex(Me.Label2, 0)
+        Me.Controls.SetChildIndex(Me.Button1, 0)
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -150,4 +184,7 @@ Partial Class FrmPOYIM
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents _txtordnbr As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Button1 As Button
 End Class
