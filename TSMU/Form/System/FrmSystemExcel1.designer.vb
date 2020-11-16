@@ -27,17 +27,17 @@ Partial Class FrmSystemExcel1
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me._txtExcel = New DevExpress.XtraEditors.ButtonEdit()
         Me._cmbCust = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me._cmbTahun = New DevExpress.XtraEditors.ComboBoxEdit()
         Me._cmbBulan = New DevExpress.XtraEditors.LookUpEdit()
         Me._CmbSite = New DevExpress.XtraEditors.ComboBoxEdit()
         Me._CmbFlag = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.TxtPO = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutSite = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutFlag = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me._btnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
@@ -50,23 +50,23 @@ Partial Class FrmSystemExcel1
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.TxtPO = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me._cmbTahun = New DevExpress.XtraEditors.ComboBoxEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._txtExcel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._cmbCust.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._cmbTahun.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._cmbBulan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._CmbSite.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._CmbFlag.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutSite, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutFlag, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,8 +81,8 @@ Partial Class FrmSystemExcel1
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._cmbTahun.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -132,16 +132,6 @@ Partial Class FrmSystemExcel1
         Me._cmbCust.StyleController = Me.LayoutControl1
         Me._cmbCust.TabIndex = 2
         '
-        '_cmbTahun
-        '
-        Me._cmbTahun.Location = New System.Drawing.Point(70, 12)
-        Me._cmbTahun.Name = "_cmbTahun"
-        Me._cmbTahun.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me._cmbTahun.Properties.DropDownRows = 4
-        Me._cmbTahun.Size = New System.Drawing.Size(348, 22)
-        Me._cmbTahun.StyleController = Me.LayoutControl1
-        Me._cmbTahun.TabIndex = 0
-        '
         '_cmbBulan
         '
         Me._cmbBulan.Location = New System.Drawing.Point(70, 38)
@@ -173,6 +163,16 @@ Partial Class FrmSystemExcel1
         Me._CmbFlag.StyleController = Me.LayoutControl1
         Me._CmbFlag.TabIndex = 6
         '
+        'TxtPO
+        '
+        Me.TxtPO.Location = New System.Drawing.Point(70, 142)
+        Me.TxtPO.Name = "TxtPO"
+        Me.TxtPO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtPO.Properties.Items.AddRange(New Object() {"PO1", "PO2"})
+        Me.TxtPO.Size = New System.Drawing.Size(348, 22)
+        Me.TxtPO.StyleController = Me.LayoutControl1
+        Me.TxtPO.TabIndex = 7
+        '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -181,15 +181,6 @@ Partial Class FrmSystemExcel1
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(430, 213)
         Me.LayoutControlGroup1.TextVisible = False
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me._cmbTahun
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(410, 26)
-        Me.LayoutControlItem1.Text = "Tahun"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(55, 16)
         '
         'LayoutControlItem2
         '
@@ -236,6 +227,15 @@ Partial Class FrmSystemExcel1
         Me.LayoutFlag.Text = "Flag"
         Me.LayoutFlag.TextSize = New System.Drawing.Size(55, 16)
         '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.TxtPO
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 130)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(410, 26)
+        Me.LayoutControlItem7.Text = "PO"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(55, 16)
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me._btnExport)
@@ -275,7 +275,7 @@ Partial Class FrmSystemExcel1
         '
         Me.XtraTabPage2.Controls.Add(Me.LayoutControl2)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(430, 178)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(430, 213)
         Me.XtraTabPage2.Text = "Import All"
         '
         'LayoutControl2
@@ -286,7 +286,7 @@ Partial Class FrmSystemExcel1
         Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup2
-        Me.LayoutControl2.Size = New System.Drawing.Size(430, 178)
+        Me.LayoutControl2.Size = New System.Drawing.Size(430, 213)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -314,7 +314,7 @@ Partial Class FrmSystemExcel1
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.EmptySpaceItem1, Me.LayoutControlItem6})
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(430, 178)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(430, 213)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem5
@@ -331,7 +331,7 @@ Partial Class FrmSystemExcel1
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 52)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(410, 106)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(410, 141)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem6
@@ -343,24 +343,24 @@ Partial Class FrmSystemExcel1
         Me.LayoutControlItem6.Text = "File"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(36, 16)
         '
-        'LayoutControlItem7
+        'LayoutControlItem1
         '
-        Me.LayoutControlItem7.Control = Me.TxtPO
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 130)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(410, 26)
-        Me.LayoutControlItem7.Text = "PO"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(55, 16)
+        Me.LayoutControlItem1.Control = Me._cmbTahun
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(410, 26)
+        Me.LayoutControlItem1.Text = "Tahun"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(55, 16)
         '
-        'TxtPO
+        '_cmbTahun
         '
-        Me.TxtPO.Location = New System.Drawing.Point(70, 142)
-        Me.TxtPO.Name = "TxtPO"
-        Me.TxtPO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtPO.Properties.Items.AddRange(New Object() {"PO1", "PO2"})
-        Me.TxtPO.Size = New System.Drawing.Size(348, 22)
-        Me.TxtPO.StyleController = Me.LayoutControl1
-        Me.TxtPO.TabIndex = 7
+        Me._cmbTahun.Location = New System.Drawing.Point(70, 12)
+        Me._cmbTahun.Name = "_cmbTahun"
+        Me._cmbTahun.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._cmbTahun.Properties.DropDownRows = 4
+        Me._cmbTahun.Size = New System.Drawing.Size(348, 22)
+        Me._cmbTahun.StyleController = Me.LayoutControl1
+        Me._cmbTahun.TabIndex = 0
         '
         'FrmSystemExcel1
         '
@@ -379,17 +379,17 @@ Partial Class FrmSystemExcel1
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me._txtExcel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._cmbCust.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._cmbTahun.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._cmbBulan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._CmbSite.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._CmbFlag.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutSite, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutFlag, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -404,8 +404,8 @@ Partial Class FrmSystemExcel1
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._cmbTahun.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -415,8 +415,6 @@ Partial Class FrmSystemExcel1
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents _cmbCust As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents _cmbTahun As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents _txtExcel As DevExpress.XtraEditors.ButtonEdit
@@ -440,4 +438,6 @@ Partial Class FrmSystemExcel1
     Friend WithEvents LayoutFlag As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TxtPO As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents _cmbTahun As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
 End Class
