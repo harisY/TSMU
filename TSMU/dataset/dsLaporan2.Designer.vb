@@ -588,7 +588,7 @@ Partial Public Class dsLaporan2
             Me.columnAcctID_tujuan.MaxLength = 10
             Me.columnDescr_tujuan.MaxLength = 60
             Me.columnCurryID.MaxLength = 10
-            Me.columnRemark.MaxLength = 60
+            Me.columnRemark.MaxLength = 100
             Me.columnCuryID_tujuan.MaxLength = 10
         End Sub
         

@@ -500,7 +500,6 @@ Public Class FrmTravelSettleDetail
         Else PayType = IIf(GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "PaymentType") Is DBNull.Value, "", GridViewOther.GetRowCellValue(GridViewOther.FocusedRowHandle, "PaymentType"))
         End If
 
-
         If PayType = "CREDIT CARD" Then
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
@@ -517,9 +516,9 @@ Public Class FrmTravelSettleDetail
 
             If lF_SearchData.Values IsNot Nothing Then
                 CreditCardID = lF_SearchData.Values.Item(0).ToString.Trim
-                CreditCardNumber = lF_SearchData.Values.Item(1).ToString.Trim
-                AccountNameNBank = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
-                PaymentType = "CC-" + lF_SearchData.Values.Item(1).ToString.Trim
+                CreditCardNumber = lF_SearchData.Values.Item(3).ToString.Trim
+                AccountNameNBank = lF_SearchData.Values.Item(1).ToString.Trim + "-" + lF_SearchData.Values.Item(2).ToString.Trim
+                PaymentType = "CC-" + lF_SearchData.Values.Item(3).ToString.Trim
             Else
                 PaymentType = "FINANCE"
             End If

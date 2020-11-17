@@ -152,7 +152,9 @@ Public Class FrmSuspendSettleDetailDirectCC
     End Sub
 
     Private Sub TxtPaymentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TxtPaymentType.SelectedIndexChanged
+
         Try
+
             If isLoad = False Then
                 Dim ls_OldKode As String = ""
 
@@ -166,14 +168,15 @@ Public Class FrmSuspendSettleDetailDirectCC
 
                     Dim lF_SearchData As FrmSystem_LookupGrid
                     lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+                    lF_SearchData.HiddenCols = 0
                     lF_SearchData.Text = "Select Data " & ls_Judul
                     lF_SearchData.StartPosition = FormStartPosition.CenterScreen
                     lF_SearchData.ShowDialog()
 
                     If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                         creditCardID = lF_SearchData.Values.Item(0).ToString.Trim
-                        txtCCNumber.Text = lF_SearchData.Values.Item(1).ToString.Trim
-                        accountName = lF_SearchData.Values.Item(2).ToString.Trim + "-" + lF_SearchData.Values.Item(3).ToString.Trim
+                        txtCCNumber.Text = lF_SearchData.Values.Item(3).ToString.Trim
+                        accountName = lF_SearchData.Values.Item(1).ToString.Trim + "-" + lF_SearchData.Values.Item(2).ToString.Trim
                     Else
                         TxtPaymentType.Text = "FINANCE"
                         txtCCNumber.Text = ""
@@ -518,13 +521,23 @@ Public Class FrmSuspendSettleDetailDirectCC
     'End Sub
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
 
+        'GridView1.AddNewRow()
+        'GridView1.OptionsNavigation.AutoFocusNewRow = True
+        'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SettleID", "")
+        'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "ActualAmount", 0)
+        'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", "")
+        'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Account", "")
+        'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Description", "")
+        'GridView1.RefreshData()
+
         GridView1.AddNewRow()
         GridView1.OptionsNavigation.AutoFocusNewRow = True
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SettleID", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SettleID", TxtNoSettlement.Text)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "ActualAmount", 0)
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Tgl", Date.Today)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", "11690")
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Account", "")
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Description", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Description", TxtRemark.Text)
         GridView1.RefreshData()
     End Sub
     'Private Sub grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
@@ -608,4 +621,7 @@ Public Class FrmSuspendSettleDetailDirectCC
         FrmReportSettle.Show()
     End Sub
 
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
+    End Sub
 End Class

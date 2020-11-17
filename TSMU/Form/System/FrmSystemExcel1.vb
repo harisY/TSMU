@@ -98,7 +98,7 @@ Public Class FrmSystemExcel1
     End Property
     Private Sub FrmSystemExcel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FillComboTahun()
-        FillComboTahun1()
+        'FillComboTahun1()
         FillComboCustomer()
         FillComboBulan()
         lblStatus.Text = ""
@@ -111,14 +111,14 @@ Public Class FrmSystemExcel1
         XtraTabControl1.TabPages.RemoveAt(1)
     End Sub
     Private Sub FillComboTahun()
-        Dim tahun() As String = {"", DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
+        Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
         _cmbTahun.Properties.Items.Clear()
         For Each var As String In tahun
             _cmbTahun.Properties.Items.Add(var)
         Next
     End Sub
     Private Sub FillComboTahun1()
-        Dim tahun() As String = {"", DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
+        Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString}
         TxtTahun2.Properties.Items.Clear()
         For Each var As String In tahun
             TxtTahun2.Properties.Items.Add(var)

@@ -78,6 +78,10 @@ Public Class clscompare
     Public Property TaxID00 As String
     Public Property TglSuratJalan As DateTime
     Public Property UnitDescr As String
+    Public Property ordnbr As Integer
+    Public Property PO As String
+    Public Property nom As Integer
+
     '  Public Property cmbperpost() As String
     Public Sub New()
         Me._Query = "select * from Temp_Copas_sol "
@@ -94,6 +98,37 @@ Public Class clscompare
             Throw
         End Try
     End Function
+    Public Sub Updateordnbr()
+        Try
+            Dim ls_SP As String = String.Empty
+            ls_SP = "UPDATE POYIM SET ordnbr =" & QVal(ordnbr) & " WHERE PO=" & QVal(PO.TrimEnd) & ""
+
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub Updatenom()
+        Try
+            Dim ls_SP As String = String.Empty
+            ls_SP = "UPDATE POYIM SET Nom =" & QVal(nom) & " "
+
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub Updatesonbr()
+        Try
+            Dim ls_SP As String = String.Empty
+            ls_SP = "update POYIM  Set SO='REG1020-'+right('0000'+cast(right(rtrim(ordnbr),4) as varchar),4)"
+
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Function GetAllData() As DataTable
         ' Try
         'Dim ls_SP As String = "select * from Temp_Copas_sol where balance=0"
@@ -128,6 +163,17 @@ Public Class clscompare
             Return dtTable
         Catch ex As Exception
             Throw
+        End Try
+    End Function
+    Public Function GetDataGrid() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT *  FROM POYIM WHERE PO<>'' ORDER BY PO"
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
         End Try
     End Function
     Public Function GetDataImport() As DataTable
@@ -200,6 +246,46 @@ Public Class clscompare
             Throw
         End Try
     End Sub
+    Public Sub Insert2YIM()
+        Try
+            '   cmbperpost = "201811"
+            ' cmbperpost = frmCompare_Invoice1._cmbperpost.Text
+            '' g0 = Convert.ToString(g0)
+            g0 = g0.Substring(0, 3) + "-" + g0.Substring(3, 5) + "-" + g0.Substring(8, 2) + "-" + g0.Substring(10, 2) + "-" + g0.Substring(12, 2)
+            g2 = Trim(g2)
+            '   g0 = g0.Substring(1, g0.Length > 3 ? 3 g0.Length) + "-" + g0.Substring(4, 5) + "-" + g0.Substring(9, 2) + "-" + g0.Substring(11, 2) + "-" + g0.Substring(13, 2)
+            Dim ls_SP As String = "INSERT INTO POYIM (AlternateID,Descr,PO,Promdate,Quantity,Tujuan,Jam	) " &
+                                "VALUES ('" & g0 & "','" & g1 & "','" & g2 & "','" & g3 & "','" & g4 & "','" & g8 & "','" & g6 & "')"
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub Delete2YIM()
+        Try
+            Dim ls_SP As String = "DELETE FROM POYIM"
+            MainModul.ExecQuery_Solomon(ls_SP)
+
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+    Public Sub Update2YIM()
+        Try
+            ''select '#'+right('0000'+cast(right(rtrim(PO),5) as varchar),5),* FROM POYIM  where  PO <>'' and  PO not like 'J%' and  PO not like 'K%'
+
+            Dim ls_SP2 As String = "UPDATE POYIM SET POYIM.InvtID=ItemxRef.InvtID,POYIM.CustID='YIM',POYIM.SiteID='TNG-U',POYIM.PO='#'+right('0000'+cast(right(rtrim(PO),5) as varchar),5) FROM POYIM Inner Join ItemxRef on POYIM.AlternateID=ItemxRef.AlternateID inner join inventory on inventory.InvtID=ItemxRef.InvtID where TranStatusCode='AC' and itemxref.AltIDType ='C'  "
+            'Dim ls_SP2 As String = "UPDATE POYIM SET POYIM.InvtID=ItemxRef.InvtID,POYIM.CustID='YIM',POYIM.SiteID='TNG-U' FROM POYIM Inner Join ItemxRef on POYIM.AlternateID=ItemxRef.AlternateID inner join inventory on inventory.InvtID=ItemxRef.InvtID where TranStatusCode='AC' and itemxref.AltIDType ='C'  "
+            MainModul.ExecQuery_Solomon(ls_SP2)
+            Dim ls_SP1 As String = "UPDATE POYIM SET PO='' FROM POYIM where PO='#0000'"
+            MainModul.ExecQuery_Solomon(ls_SP1)
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Function autoperpost() As String
         Try
             Dim auto As String

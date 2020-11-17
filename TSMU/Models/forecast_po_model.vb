@@ -132,10 +132,11 @@ Public Class forecast_po_model
                                 Dim IsExist As Boolean = .IsDataADMExist
                                 If Not IsExist Then
                                     .InsertData()
-
+                                    .InsertForecastNY(BulanAngka)
                                     .UpdateDataByBulanNew(Bulan, BulanAngka)
                                 Else
                                     .UpdateData1()
+                                    .InsertForecastNY(BulanAngka)
                                     .UpdateDataByBulanNew(Bulan, BulanAngka)
                                 End If
 
@@ -879,48 +880,54 @@ Public Class forecast_po_model_detail
                            ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "
                            ," & QVal(created_date) & "," & QVal(created_by) & ")"
             ExecQuery(Query)
+
+
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Public Sub InsertDataNextYear(Bulan As String)
+    Public Sub InsertForecastNY(bulan As String)
         Try
-
-            Dim Query As String = String.Empty
-            Query = "INSERT INTO [tForecastPrice]([Tahun],[CustID],[Customer],[InvtID],[Description],[PartNo],[Model],[Oe/Pe],[IN/SUB],[Site],[Flag]
-                            ,[JanQty1],[JanQty2],[JanQty3],[Jan PO1],[Jan PO2]
-                            ,[FebQty1],[FebQty2],[FebQty3],[Feb PO1],[Feb PO2]
-                            ,[MarQty1],[MarQty2],[MarQty3],[Mar PO1],[Mar PO2]
-                            ,[AprQty1],[AprQty2],[AprQty3],[Apr PO1],[Apr PO2]
-                            ,[MeiQty1],[MeiQty2],[MeiQty3],[Mei PO1],[Mei PO2]
-                            ,[JunQty1],[JunQty2],[JunQty3],[Jun PO1],[Jun PO2]
-                            ,[JulQty1],[JulQty2],[JulQty3],[Jul PO1],[Jul PO2]
-                            ,[AgtQty1],[AgtQty2],[AgtQty3],[Agt PO1],[Agt PO2]
-                            ,[SepQty1],[SepQty2],[SepQty3],[Sep PO1],[Sep PO2]
-                            ,[OktQty1],[OktQty2],[OktQty3],[Okt PO1],[Okt PO2]
-                            ,[NovQty1],[NovQty2],[NovQty3],[Nov PO1],[Nov PO2]
-                            ,[DesQty1],[DesQty2],[DesQty3],[Des PO1],[Des PO2]
-                            ,[created_date],[created_by])
-                    Values(" & QVal(Tahun) & "," & QVal(CustID) & "," & QVal(Customer) & "," & QVal(InvtID) & "," & QVal(Description) & "," & QVal(PartNo) & "," & QVal(Model) & "," & QVal(OePe) & "," & QVal(INSub) & "," & QVal(Site) & "," & QVal(Flag) & "
-                           ," & QVal(JanQty1) & "," & QVal(JanQty2) & "," & QVal(JanQty3) & "," & QVal(Jan_PO1) & "," & QVal(Jan_PO2) & "
-                           ," & QVal(FebQty1) & "," & QVal(FebQty2) & "," & QVal(FebQty3) & "," & QVal(Feb_PO1) & "," & QVal(Feb_PO2) & "
-                           ," & QVal(MarQty1) & "," & QVal(MarQty2) & "," & QVal(MarQty3) & "," & QVal(Mar_PO1) & "," & QVal(Mar_PO2) & "
-                           ," & QVal(AprQty1) & "," & QVal(AprQty2) & "," & QVal(AprQty3) & "," & QVal(Apr_PO1) & "," & QVal(Apr_PO2) & "
-                           ," & QVal(MeiQty1) & "," & QVal(MeiQty2) & "," & QVal(MeiQty3) & "," & QVal(Mei_PO1) & "," & QVal(Mei_PO2) & "
-                           ," & QVal(JunQty1) & "," & QVal(JunQty2) & "," & QVal(JunQty3) & "," & QVal(Jun_PO1) & "," & QVal(Jun_PO2) & "
-                           ," & QVal(JulQty1) & "," & QVal(JulQty2) & "," & QVal(JulQty3) & "," & QVal(Jul_PO1) & "," & QVal(Jul_PO2) & "
-                           ," & QVal(AgtQty1) & "," & QVal(AgtQty2) & "," & QVal(AgtQty3) & "," & QVal(Agt_PO1) & "," & QVal(Agt_PO2) & "
-                           ," & QVal(SepQty1) & "," & QVal(SepQty2) & "," & QVal(SepQty3) & "," & QVal(Sep_PO1) & "," & QVal(Sep_PO2) & "
-                           ," & QVal(OktQty1) & "," & QVal(OktQty2) & "," & QVal(OktQty3) & "," & QVal(Okt_PO1) & "," & QVal(Okt_PO2) & "
-                           ," & QVal(NovQty1) & "," & QVal(NovQty2) & "," & QVal(NovQty3) & "," & QVal(Nov_PO1) & "," & QVal(Nov_PO2) & "
-                           ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "
-                           ," & QVal(created_date) & "," & QVal(created_by) & ")"
-            ExecQuery(Query)
+            Select Case bulan
+                Case "10"
+                    BulanFC1 = "Jan"
+                Case "11"
+                    BulanFC1 = "Jan"
+                    BulanFC2 = "Feb"
+                Case "12"
+                    BulanFC1 = "Jan"
+                    BulanFC2 = "Feb"
+                    BulanFC3 = "Mar"
+            End Select
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+            Params.Add(New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun})
+            Params.Add(New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan})
+            Params.Add(New SqlParameter() With {.ParameterName = "CustID", .Value = CustID})
+            Params.Add(New SqlParameter() With {.ParameterName = "Customer", .Value = Customer})
+            Params.Add(New SqlParameter() With {.ParameterName = "InvtID", .Value = InvtID})
+            Params.Add(New SqlParameter() With {.ParameterName = "Description", .Value = Description})
+            Params.Add(New SqlParameter() With {.ParameterName = "PartNo", .Value = PartNo})
+            Params.Add(New SqlParameter() With {.ParameterName = "Model", .Value = Model})
+            Params.Add(New SqlParameter() With {.ParameterName = "Oe", .Value = OePe})
+            Params.Add(New SqlParameter() With {.ParameterName = "IN", .Value = INSub})
+            Params.Add(New SqlParameter() With {.ParameterName = "Site", .Value = Site})
+            Params.Add(New SqlParameter() With {.ParameterName = "Flag", .Value = Flag})
+            Params.Add(New SqlParameter() With {.ParameterName = "N1", .Value = N1})
+            Params.Add(New SqlParameter() With {.ParameterName = "N2", .Value = N2})
+            Params.Add(New SqlParameter() With {.ParameterName = "N3", .Value = N3})
+            Params.Add(New SqlParameter() With {.ParameterName = "BulanFC1", .Value = BulanFC1})
+            Params.Add(New SqlParameter() With {.ParameterName = "BulanFC2", .Value = BulanFC2})
+            Params.Add(New SqlParameter() With {.ParameterName = "BulanFC3", .Value = BulanFC3})
+            Params.Add(New SqlParameter() With {.ParameterName = "Username", .Value = gh_Common.Username})
+            Dim dt As New DataTable
+            ExecQueryWithValue("tForecastPrice_insert_Next_Year", CommandType.StoredProcedure, Params, GetConnString)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+
 
     Public Sub InsertDataTempTable()
         Try

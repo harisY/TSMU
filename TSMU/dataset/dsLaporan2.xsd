@@ -33,7 +33,7 @@
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT Tgl, NoBukti, Perpost, AcctID_Asal, Descr_Asal, CheckNo, AcctID_tujuan, Descr_tujuan, CurryID, Jumlah, Remark, CuryID_tujuan, Rate_Solomon, Rate_Transaksi, Selisih_Kursi FROM dbo.banktransfer</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -131,7 +131,7 @@
               <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="60" />
+                    <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

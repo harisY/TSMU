@@ -512,7 +512,9 @@ Public Class frmForecast_PO
                                     .Okt_PO2 = If(row("Okt PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Okt PO2")))
                                     .Nov_PO2 = If(row("Nov PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Nov PO2")))
                                     .Des_PO2 = If(row("Des PO2") Is DBNull.Value, "0", Convert.ToInt32(row("Des PO2")))
-
+                                    .N1 = If(row("NY Jan") Is DBNull.Value, "0", Convert.ToInt32(row("NY Jan")))
+                                    .N2 = If(row("NY Feb") Is DBNull.Value, "0", Convert.ToInt32(row("NY Feb")))
+                                    .N3 = If(row("NY Mar") Is DBNull.Value, "0", Convert.ToInt32(row("NY Mar")))
                                     .created_date = DateTime.Today
                                     .created_by = gh_Common.Username
                                 End With
