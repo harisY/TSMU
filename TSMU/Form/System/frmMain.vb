@@ -24,16 +24,16 @@ Partial Public Class FrmMain
         InitializeComponent()
     End Sub
     Private Sub RunAutoUpdate(Site As String)
-        'add site
-        'AutoUpdater.RunUpdateAsAdmin = False
-        'AutoUpdater.Mandatory = True
-        'AutoUpdater.UpdateMode = Mode.ForcedDownload
-        'If String.IsNullOrEmpty(Site) OrElse Site = "tng" Then
-        '    AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
-        'Else
-        '    AutoUpdater.Start("http://10.10.3.6/AutoUpdate/AutoUpdaterCkr.xml")
-        'End If
-        'AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
+        'add Site
+        AutoUpdater.RunUpdateAsAdmin = False
+        AutoUpdater.Mandatory = True
+        AutoUpdater.UpdateMode = Mode.ForcedDownload
+        If String.IsNullOrEmpty(Site) OrElse Site = "tng" Then
+            AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
+        Else
+            AutoUpdater.Start("http://10.10.3.6/AutoUpdate/AutoUpdaterCkr.xml")
+        End If
+        AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
     End Sub
     Private Sub AutoUpdater_ApplicationExitEvent()
         Thread.Sleep(5000)
