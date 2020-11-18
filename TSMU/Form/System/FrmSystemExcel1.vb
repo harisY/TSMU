@@ -133,7 +133,7 @@ Public Class FrmSystemExcel1
         Next
     End Sub
     Private Sub FillComboFlag()
-        Dim tahun() As String = {"N/A", "ADMSPD", "KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3", "TD-LINK"}
+        Dim tahun() As String = {"N/A", "ADMSPD", "KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3"}
         _CmbFlag.Properties.Items.Clear()
         For Each var As String In tahun
             _CmbFlag.Properties.Items.Add(var)
