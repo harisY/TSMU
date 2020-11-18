@@ -299,7 +299,7 @@
       ,[CurryID]
       ,[Jumlah]
       ,[Remark]
-  FROM [banktransfer] "
+  FROM [banktransfer] order by Tgl Desc"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
