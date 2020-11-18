@@ -14,6 +14,9 @@ Public Class AdmService
     Dim _Bulan As String
     Dim _Site As String
     Dim _Flag As String
+    Sub New()
+
+    End Sub
     Public Sub New(ByVal Dt As DataTable, Customer As String, Tahun As String, Bulan As String, Site As String, Flag As String)
         _Dt = Dt
         _Customer = Customer
@@ -25,9 +28,10 @@ Public Class AdmService
     Public Function GetExcelData() As DataTable
         Try
             TempTable()
-            Delete_tForecast_Log()
+            'Delete_tForecast_Log()
             For Each row As DataRow In _Dt.Rows
                 Dim PartNo As String = If(String.IsNullOrEmpty(row("Part No.").ToString), "", row("Part No."))
+                'Dim PartName As String = If(String.IsNullOrEmpty(row("Part Name").ToString), "", row("Part Name"))
                 Dim UniqueNo As String = If(String.IsNullOrEmpty(row("Unique No.").ToString), "", row("Unique No."))
                 Dim N As Integer = If(String.IsNullOrEmpty(row("N").ToString), 0, row("N"))
                 Dim N1 As Integer = If(String.IsNullOrEmpty(row("N+1").ToString), 0, row("N+1"))
@@ -81,7 +85,10 @@ Public Class AdmService
                             'MsgBox(InvtID.ToString & " Kurang dari 5 digit")
                         End If
                     Else
-                        Add_tForecast_Log(PartNo, UniqueNo)
+                        Add_tForecast_Log(PartNo, UniqueNo, "")
+                    End If
+                    If dtHasil.Rows.Count > 1 Then
+                        Add_tForecast_Log(PartNo, UniqueNo, "Lebih dari 1 Inventory ID")
                     End If
                 End If
             Next
@@ -110,11 +117,12 @@ Public Class AdmService
             Throw ex
         End Try
     End Function
-    Public Sub Add_tForecast_Log(PartNo As String, UniqueNo As String)
+    Public Sub Add_tForecast_Log(PartNo As String, UniqueNo As String, Ket As String)
         Try
             Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
             Params.Add(New SqlParameter() With {.ParameterName = "PartNo", .Value = PartNo})
             Params.Add(New SqlParameter() With {.ParameterName = "UniqueNo", .Value = UniqueNo})
+            Params.Add(New SqlParameter() With {.ParameterName = "Ket", .Value = Ket})
             ExecQueryWithValue("tForecastPrice_Log_Insert", CommandType.StoredProcedure, Params, GetConnString)
         Catch ex As Exception
             Throw ex
