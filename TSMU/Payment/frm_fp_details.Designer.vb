@@ -21,20 +21,20 @@ Partial Class frm_fp_details
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_fp_details))
-        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim ConditionValidationRule5 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule1 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule2 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
         Dim ConditionValidationRule3 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim ConditionValidationRule4 As DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule = New DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule()
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.Check1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BtnScan1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.BtnPPH1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -47,10 +47,12 @@ Partial Class frm_fp_details
         Me._TxtNoBuktiPot = New DevExpress.XtraEditors.TextEdit()
         Me._DeDate = New DevExpress.XtraEditors.DateEdit()
         Me._TxtCurrency = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me._TxtJenisJasa = New DevExpress.XtraEditors.TextEdit()
+        Me._TxtJenisJasa1 = New DevExpress.XtraEditors.TextEdit()
         Me._TxtNoTrans = New DevExpress.XtraEditors.TextEdit()
         Me._TxtNPWP = New DevExpress.XtraEditors.TextEdit()
         Me._LookUpSupplier = New DevExpress.XtraEditors.ButtonEdit()
+        Me.txt_PO = New DevExpress.XtraEditors.TextEdit()
+        Me.txt_keterangan = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -64,6 +66,8 @@ Partial Class frm_fp_details
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me._GridDetailsNew = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -99,11 +103,8 @@ Partial Class frm_fp_details
         Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNBP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.txt_PO = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txt_keterangan = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me._TxtJenisJasa = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.Check1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnScan1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnPPH1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,10 +119,12 @@ Partial Class frm_fp_details
         CType(Me._DeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._DeDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._TxtJenisJasa.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtJenisJasa1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtNoTrans.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtNPWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._LookUpSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_PO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_keterangan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,6 +138,8 @@ Partial Class frm_fp_details
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me._GridDetailsNew, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,11 +150,8 @@ Partial Class frm_fp_details
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt_PO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt_keterangan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._TxtJenisJasa.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Check1
@@ -162,8 +164,8 @@ Partial Class frm_fp_details
         Me.BtnScan1.Appearance.Image = CType(resources.GetObject("BtnScan1.Appearance.Image"), System.Drawing.Image)
         Me.BtnScan1.Appearance.Options.UseImage = True
         Me.BtnScan1.AutoHeight = False
-        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-        Me.BtnScan1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions3.Image = CType(resources.GetObject("EditorButtonImageOptions3.Image"), System.Drawing.Image)
+        Me.BtnScan1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.BtnScan1.Name = "BtnScan1"
         Me.BtnScan1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
@@ -183,17 +185,18 @@ Partial Class frm_fp_details
         Me.LayoutControl1.Controls.Add(Me._TxtNoBuktiPot)
         Me.LayoutControl1.Controls.Add(Me._DeDate)
         Me.LayoutControl1.Controls.Add(Me._TxtCurrency)
-        Me.LayoutControl1.Controls.Add(Me._TxtJenisJasa)
+        Me.LayoutControl1.Controls.Add(Me._TxtJenisJasa1)
         Me.LayoutControl1.Controls.Add(Me._TxtNoTrans)
         Me.LayoutControl1.Controls.Add(Me._TxtNPWP)
         Me.LayoutControl1.Controls.Add(Me._LookUpSupplier)
         Me.LayoutControl1.Controls.Add(Me.txt_PO)
         Me.LayoutControl1.Controls.Add(Me.txt_keterangan)
+        Me.LayoutControl1.Controls.Add(Me._TxtJenisJasa)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(828, 143)
+        Me.LayoutControl1.Size = New System.Drawing.Size(828, 171)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -202,14 +205,14 @@ Partial Class frm_fp_details
         Me._TxtVendorName.Location = New System.Drawing.Point(174, 36)
         Me._TxtVendorName.Name = "_TxtVendorName"
         Me._TxtVendorName.Properties.ReadOnly = True
-        Me._TxtVendorName.Size = New System.Drawing.Size(159, 20)
+        Me._TxtVendorName.Size = New System.Drawing.Size(158, 20)
         Me._TxtVendorName.StyleController = Me.LayoutControl1
         Me._TxtVendorName.TabIndex = 11
         '
         '_TxtPPH
         '
         Me._TxtPPH.EditValue = "0"
-        Me._TxtPPH.Location = New System.Drawing.Point(670, 60)
+        Me._TxtPPH.Location = New System.Drawing.Point(629, 36)
         Me._TxtPPH.Name = "_TxtPPH"
         Me._TxtPPH.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtPPH.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -218,14 +221,14 @@ Partial Class frm_fp_details
         Me._TxtPPH.Properties.EditFormat.FormatString = "##,0"
         Me._TxtPPH.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtPPH.Properties.ReadOnly = True
-        Me._TxtPPH.Size = New System.Drawing.Size(146, 20)
+        Me._TxtPPH.Size = New System.Drawing.Size(187, 20)
         Me._TxtPPH.StyleController = Me.LayoutControl1
         Me._TxtPPH.TabIndex = 10
         '
         '_TxtTotal
         '
         Me._TxtTotal.EditValue = "0"
-        Me._TxtTotal.Location = New System.Drawing.Point(670, 36)
+        Me._TxtTotal.Location = New System.Drawing.Point(629, 12)
         Me._TxtTotal.Name = "_TxtTotal"
         Me._TxtTotal.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -234,7 +237,7 @@ Partial Class frm_fp_details
         Me._TxtTotal.Properties.EditFormat.FormatString = "##,0"
         Me._TxtTotal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtTotal.Properties.ReadOnly = True
-        Me._TxtTotal.Size = New System.Drawing.Size(146, 20)
+        Me._TxtTotal.Size = New System.Drawing.Size(187, 20)
         Me._TxtTotal.StyleController = Me.LayoutControl1
         Me._TxtTotal.TabIndex = 9
         '
@@ -250,14 +253,14 @@ Partial Class frm_fp_details
         Me._TxtPPN.Properties.EditFormat.FormatString = "##,0"
         Me._TxtPPN.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtPPN.Properties.ReadOnly = True
-        Me._TxtPPN.Size = New System.Drawing.Size(163, 20)
+        Me._TxtPPN.Size = New System.Drawing.Size(122, 20)
         Me._TxtPPN.StyleController = Me.LayoutControl1
         Me._TxtPPN.TabIndex = 7
         '
         '_TxtDppInvoice
         '
         Me._TxtDppInvoice.EditValue = "0"
-        Me._TxtDppInvoice.Location = New System.Drawing.Point(670, 12)
+        Me._TxtDppInvoice.Location = New System.Drawing.Point(420, 12)
         Me._TxtDppInvoice.Name = "_TxtDppInvoice"
         Me._TxtDppInvoice.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtDppInvoice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -266,23 +269,24 @@ Partial Class frm_fp_details
         Me._TxtDppInvoice.Properties.EditFormat.FormatString = "##,0"
         Me._TxtDppInvoice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtDppInvoice.Properties.ReadOnly = True
-        Me._TxtDppInvoice.Size = New System.Drawing.Size(146, 20)
+        Me._TxtDppInvoice.Size = New System.Drawing.Size(122, 20)
         Me._TxtDppInvoice.StyleController = Me.LayoutControl1
         Me._TxtDppInvoice.TabIndex = 8
         '
         '_TxtNoBuktiPot
         '
-        Me._TxtNoBuktiPot.Location = New System.Drawing.Point(420, 12)
+        Me._TxtNoBuktiPot.Location = New System.Drawing.Point(95, 108)
         Me._TxtNoBuktiPot.Name = "_TxtNoBuktiPot"
         Me._TxtNoBuktiPot.Properties.ReadOnly = True
-        Me._TxtNoBuktiPot.Size = New System.Drawing.Size(163, 20)
+        Me._TxtNoBuktiPot.Size = New System.Drawing.Size(721, 20)
         Me._TxtNoBuktiPot.StyleController = Me.LayoutControl1
         Me._TxtNoBuktiPot.TabIndex = 4
+        Me._TxtNoBuktiPot.Visible = False
         '
         '_DeDate
         '
         Me._DeDate.EditValue = Nothing
-        Me._DeDate.Location = New System.Drawing.Point(420, 36)
+        Me._DeDate.Location = New System.Drawing.Point(419, 36)
         Me._DeDate.Name = "_DeDate"
         Me._DeDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._DeDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -291,13 +295,13 @@ Partial Class frm_fp_details
         Me._DeDate.Properties.EditFormat.FormatString = "dd-MM-yyyy"
         Me._DeDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me._DeDate.Properties.Mask.EditMask = "dd-MM-yyyy"
-        Me._DeDate.Size = New System.Drawing.Size(163, 20)
+        Me._DeDate.Size = New System.Drawing.Size(123, 20)
         Me._DeDate.StyleController = Me.LayoutControl1
         Me._DeDate.TabIndex = 5
-        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule1.ErrorText = "Date tidak boleh kosong"
-        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
-        Me.DxValidationProvider1.SetValidationRule(Me._DeDate, ConditionValidationRule1)
+        ConditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule5.ErrorText = "Date tidak boleh kosong"
+        ConditionValidationRule5.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._DeDate, ConditionValidationRule5)
         '
         '_TxtCurrency
         '
@@ -307,22 +311,23 @@ Partial Class frm_fp_details
         Me._TxtCurrency.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtCurrency.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me._TxtCurrency.Properties.Items.AddRange(New Object() {"IDR", "USD", "JPY"})
-        Me._TxtCurrency.Size = New System.Drawing.Size(163, 20)
+        Me._TxtCurrency.Size = New System.Drawing.Size(122, 20)
         Me._TxtCurrency.StyleController = Me.LayoutControl1
         Me._TxtCurrency.TabIndex = 6
-        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule2.ErrorText = "Currenctu tidak boleh kosong"
-        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule2)
+        ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule1.ErrorText = "Currenctu tidak boleh kosong"
+        ConditionValidationRule1.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtCurrency, ConditionValidationRule1)
         '
-        '_TxtJenisJasa
+        '_TxtJenisJasa1
         '
-        Me._TxtJenisJasa.Location = New System.Drawing.Point(95, 84)
-        Me._TxtJenisJasa.Name = "_TxtJenisJasa"
-        Me._TxtJenisJasa.Properties.ReadOnly = True
-        Me._TxtJenisJasa.Size = New System.Drawing.Size(238, 20)
-        Me._TxtJenisJasa.StyleController = Me.LayoutControl1
-        Me._TxtJenisJasa.TabIndex = 3
+        Me._TxtJenisJasa1.Location = New System.Drawing.Point(95, 132)
+        Me._TxtJenisJasa1.Name = "_TxtJenisJasa1"
+        Me._TxtJenisJasa1.Properties.ReadOnly = True
+        Me._TxtJenisJasa1.Size = New System.Drawing.Size(721, 20)
+        Me._TxtJenisJasa1.StyleController = Me.LayoutControl1
+        Me._TxtJenisJasa1.TabIndex = 3
+        Me._TxtJenisJasa1.Visible = False
         '
         '_TxtNoTrans
         '
@@ -332,10 +337,10 @@ Partial Class frm_fp_details
         Me._TxtNoTrans.Size = New System.Drawing.Size(238, 20)
         Me._TxtNoTrans.StyleController = Me.LayoutControl1
         Me._TxtNoTrans.TabIndex = 0
-        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule3.ErrorText = "No. Trasaksi tidak boleh kosong"
-        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
-        Me.DxValidationProvider1.SetValidationRule(Me._TxtNoTrans, ConditionValidationRule3)
+        ConditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule2.ErrorText = "No. Trasaksi tidak boleh kosong"
+        ConditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._TxtNoTrans, ConditionValidationRule2)
         '
         '_TxtNPWP
         '
@@ -355,18 +360,34 @@ Partial Class frm_fp_details
         Me._LookUpSupplier.Size = New System.Drawing.Size(75, 20)
         Me._LookUpSupplier.StyleController = Me.LayoutControl1
         Me._LookUpSupplier.TabIndex = 1
-        ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
-        ConditionValidationRule4.ErrorText = "Supplier tidak boleh kosong"
-        ConditionValidationRule4.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
-        Me.DxValidationProvider1.SetValidationRule(Me._LookUpSupplier, ConditionValidationRule4)
+        ConditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
+        ConditionValidationRule3.ErrorText = "Supplier tidak boleh kosong"
+        ConditionValidationRule3.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Critical
+        Me.DxValidationProvider1.SetValidationRule(Me._LookUpSupplier, ConditionValidationRule3)
+        '
+        'txt_PO
+        '
+        Me.txt_PO.Location = New System.Drawing.Point(629, 60)
+        Me.txt_PO.Name = "txt_PO"
+        Me.txt_PO.Size = New System.Drawing.Size(187, 20)
+        Me.txt_PO.StyleController = Me.LayoutControl1
+        Me.txt_PO.TabIndex = 12
+        '
+        'txt_keterangan
+        '
+        Me.txt_keterangan.Location = New System.Drawing.Point(629, 84)
+        Me.txt_keterangan.Name = "txt_keterangan"
+        Me.txt_keterangan.Size = New System.Drawing.Size(187, 20)
+        Me.txt_keterangan.StyleController = Me.LayoutControl1
+        Me.txt_keterangan.TabIndex = 13
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem8, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem2, Me.LayoutControlItem9, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem10, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.EmptySpaceItem1})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem8, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem2, Me.LayoutControlItem9, Me.LayoutControlItem12, Me.LayoutControlItem10, Me.LayoutControlItem5, Me.LayoutControlItem14, Me.LayoutControlItem11, Me.LayoutControlItem13, Me.LayoutControlItem4, Me.LayoutControlItem15})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 143)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(828, 171)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -390,18 +411,18 @@ Partial Class frm_fp_details
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me._TxtDppInvoice
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(575, 0)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(325, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(233, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(209, 24)
         Me.LayoutControlItem8.Text = "DPP Invoice"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(80, 13)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me._DeDate
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(325, 24)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(324, 24)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(250, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(210, 24)
         Me.LayoutControlItem6.Text = "Date"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(80, 13)
         '
@@ -410,7 +431,7 @@ Partial Class frm_fp_details
         Me.LayoutControlItem7.Control = Me._TxtCurrency
         Me.LayoutControlItem7.Location = New System.Drawing.Point(325, 48)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(250, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(209, 24)
         Me.LayoutControlItem7.Text = "Currency"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(80, 13)
         '
@@ -428,43 +449,45 @@ Partial Class frm_fp_details
         Me.LayoutControlItem9.Control = Me._TxtPPN
         Me.LayoutControlItem9.Location = New System.Drawing.Point(325, 72)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(250, 24)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(209, 24)
         Me.LayoutControlItem9.Text = "PPN"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(80, 13)
         '
         'LayoutControlItem4
         '
-        Me.LayoutControlItem4.Control = Me._TxtJenisJasa
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 72)
+        Me.LayoutControlItem4.Control = Me._TxtJenisJasa1
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 120)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(325, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(808, 31)
         Me.LayoutControlItem4.Text = "Jenis Jasa"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me._TxtNoBuktiPot
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(325, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(250, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(808, 24)
         Me.LayoutControlItem5.Text = "No. Bukti Potong"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me._TxtTotal
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(575, 24)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(534, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(233, 24)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(274, 24)
         Me.LayoutControlItem11.Text = "Total"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(80, 13)
         '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me._TxtPPH
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(575, 48)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(534, 24)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(233, 24)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(274, 24)
         Me.LayoutControlItem12.Text = "PPH"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(80, 13)
         '
@@ -473,9 +496,27 @@ Partial Class frm_fp_details
         Me.LayoutControlItem10.Control = Me._TxtVendorName
         Me.LayoutControlItem10.Location = New System.Drawing.Point(162, 24)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(163, 24)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(162, 24)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me.txt_PO
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(534, 48)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(274, 24)
+        Me.LayoutControlItem13.Text = "PO"
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(80, 13)
+        '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me.txt_keterangan
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(534, 72)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(274, 24)
+        Me.LayoutControlItem14.Text = "Keterangan"
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(80, 13)
         '
         'TableLayoutPanel1
         '
@@ -484,22 +525,22 @@ Partial Class frm_fp_details
         Me.TableLayoutPanel1.Controls.Add(Me._GridDetailsNew, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me._GridDetails, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 170)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 198)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(828, 411)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(828, 383)
         Me.TableLayoutPanel1.TabIndex = 2
         '
         '_GridDetailsNew
         '
         Me._GridDetailsNew.Dock = System.Windows.Forms.DockStyle.Fill
-        Me._GridDetailsNew.Location = New System.Drawing.Point(3, 208)
+        Me._GridDetailsNew.Location = New System.Drawing.Point(3, 194)
         Me._GridDetailsNew.MainView = Me.GridView2
         Me._GridDetailsNew.Name = "_GridDetailsNew"
         Me._GridDetailsNew.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.Check2, Me.BtnScand2, Me.BtnPPH2})
-        Me._GridDetailsNew.Size = New System.Drawing.Size(822, 200)
+        Me._GridDetailsNew.Size = New System.Drawing.Size(822, 186)
         Me._GridDetailsNew.TabIndex = 5
         Me._GridDetailsNew.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -622,8 +663,8 @@ Partial Class frm_fp_details
         Me.BtnScand2.Appearance.Image = CType(resources.GetObject("BtnScand2.Appearance.Image"), System.Drawing.Image)
         Me.BtnScand2.Appearance.Options.UseImage = True
         Me.BtnScand2.AutoHeight = False
-        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
-        Me.BtnScand2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions4.Image = CType(resources.GetObject("EditorButtonImageOptions4.Image"), System.Drawing.Image)
+        Me.BtnScand2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions4, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, SerializableAppearanceObject14, SerializableAppearanceObject15, SerializableAppearanceObject16, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.BtnScand2.Name = "BtnScand2"
         Me.BtnScand2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
@@ -659,7 +700,7 @@ Partial Class frm_fp_details
         Me._GridDetails.MainView = Me.GridView1
         Me._GridDetails.Name = "_GridDetails"
         Me._GridDetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me._GridDetails.Size = New System.Drawing.Size(822, 199)
+        Me._GridDetails.Size = New System.Drawing.Size(822, 185)
         Me._GridDetails.TabIndex = 4
         Me._GridDetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -806,47 +847,40 @@ Partial Class frm_fp_details
         Me.ColNBP.Visible = True
         Me.ColNBP.VisibleIndex = 8
         '
-        'txt_PO
+        '_TxtJenisJasa
         '
-        Me.txt_PO.Location = New System.Drawing.Point(670, 84)
-        Me.txt_PO.Name = "txt_PO"
-        Me.txt_PO.Size = New System.Drawing.Size(146, 20)
-        Me.txt_PO.StyleController = Me.LayoutControl1
-        Me.txt_PO.TabIndex = 12
+        Me._TxtJenisJasa.Location = New System.Drawing.Point(95, 84)
+        Me._TxtJenisJasa.Name = "_TxtJenisJasa"
+        Me._TxtJenisJasa.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me._TxtJenisJasa.Properties.Items.AddRange(New Object() {"Bunga", "Bunga tidak termasuk bunga yang menjadi objek PPh Pasal 4 ayat (2)", "Deviden", "Deviden tidak termasuk deviden kepada Wajib Pajak orang pribadi dalam negeri", "Hadiah dan penghargaan", "Hadiah, penghargaan, bonus dan lainnya selain yang telah dipotong PPh Pasal 21 ay" &
+                "at (1) huruf e UU PPh", "Imbalan sehubungan dengan jasa, pekerjaan dan kegiatan", "Jasa aktuaris ", "Jasa akuntansi, pembukuan, dan atestasi laporan keuangan ", "Jasa arsitektur ", "Jasa bidang perdagangan surat-surat berharga, kecuali yang dilakukan Bursa Efek, " &
+                "Kustodian Sentral Efek Indonesia (KSEI) dan Kliring Penjaminan Efek Indonesia (K" &
+                "PEI) ", "Jasa dekorasi ", "Jasa freight forwarding ", "Jasa hukum ", resources.GetString("ComboBoxEdit1.Properties.Items"), "Jasa internet termasuk sambungannya ", "Jasa katering atau tata boga ", "Jasa kebersihan atau cleaning service ", "Jasa Konsultan", "Jasa kustodian/penyimpanan/penitipan, kecuali yang dilakukan oleh KSEI ", "Jasa laboratorium dan/atau pengujian kecuali yang dilakukan oleh lembaga atau ins" &
+                "titusi pendidikan dalam rangka penelitian akademis ", "Jasa loading dan unloading ", "Jasa logistik ", "Jasa maklon ", "Jasa Management", "Jasa mixing film ", "Jasa pelatihan dan/atau kursus ", "Jasa pelayanan pelabuhan ", "Jasa pembasmian hama ", "Jasa pembibitan dan/atau penanaman bibit ", "Jasa pembuatan dan/atau pengelolaan website ", "Jasa pembuatan sarana promosi film, iklan, poster, foto, slide, klise, banner, pa" &
+                "mphlet, baliho dan folder ", "Jasa pemeliharaan kolam ", "Jasa pemeliharaan tanaman ", "Jasa penambangan dan jasa penunjang di bidang usaha panas bumi dan penambangan mi" &
+                "nyak dan gas bumi (migas) ", "Jasa pencetakan/penerbitan ", "Jasa penebangan hutan ", "Jasa penerjemahan ", "Jasa pengangkutan melalui jalur pipa ", "Jasa pengangkutan/ekspedisi kecuali yang telah diatur dalam Pasal 15 Undang-Undan" &
+                "g Pajak Penghasilan ", "Jasa pengeboran (drilling) di bidang penambangan minyak dan gas bumi (migas) kecu" &
+                "ali yang dilakukan oleh Badan Usaha Tetap (BUT) ", "Jasa pengelolaan parkir ", "Jasa pengelolaan penitipan anak ", "Jasa pengepakan ", "Jasa pengiriman dan pengisian uang ke ATM ", "Jasa pengisian suara (dubbing) dan/atau sulih suara ", "Jasa pengolahan hasil pertanian, perkebunan, perikanan, peternakan dan/atau perhu" &
+                "tanan ", "Jasa pengolahan limbah ", "Jasa pengurusan dokumen ", "Jasa penilai (appraisal) ", "Jasa penunjang di bidang penerbangan dan bandar udara ", "Jasa penunjang di bidang usaha panas bumi dan penambangan minyak dan gas bumi (mi" &
+                "gas) ", "Jasa penyedia tenaga kerja dan/atau tenaga ahli (outsourcing services) ", "Jasa penyediaan tempat dan/atau waktu dalam media massa, media luar ruang atau me" &
+                "dia lain untuk penyampaian informasi, dan/atau jasa periklanan ", "Jasa penyelenggara kegiatan atau event organizer ", "Jasa penyelidikan dan keamanan ", "Jasa penyiapan dan/atau pengolahan lahan", "Jasa penyimpanan, pengolahan dan/atau penyaluran data, informasi, dan/atau progra" &
+                "m ", "Jasa penyondiran tanah ", "Jasa perancang (design) ", "Jasa perantara dan/atau keagenan ", "Jasa perawatan kendaraan dan/atau alat transportasi darat ", resources.GetString("ComboBoxEdit1.Properties.Items1"), "Jasa perencanaan kota dan arsitektur landscape ", "Jasa permanenan ", "Jasa sedot septic tank ", "Jasa sehubungan dengan software atau hardware atau sistem komputer, termasuk pera" &
+                "watan, pemeliharaan dan perbaikan. ", "Jasa selain jasa-jasa tersebut di atas yang pembayarannya dibebankan pada APBN (A" &
+                "nggaran Pendapatan dan Belanja Negara) atau APBD (Anggaran Pendapatan dan Belanj" &
+                "a Daerah). ", "Jasa sertifikasi ", "Jasa survey ", "Jasa Teknik", "Jasa tester ", "Keuntungan karena pembebasan utang", "Penghasilan dari penjualan atau pengalihan saham", "Penghasilan Kena Pajak BUT setelah pajak", "Penjualan / pengalihan harta di Indonesia", "Pensiun dan pembayaran berkala lainnya", "Premi asuransi / reasuransi", "Premi swap atau transaksi lindung lainnya", "Royalti 27-103-01", "Royalti 24-103-01", "Sewa dan penghasilan lain sehubungan dengan penggunaan harta", "Sewa dan penghasilan lain sehubungan dengan penggunaan harta kecuali sewa tanah d" &
+                "an bangunan yang telah dikenai PPh Pasal 4 ayat (2) UU PPh"})
+        Me._TxtJenisJasa.Size = New System.Drawing.Size(238, 20)
+        Me._TxtJenisJasa.StyleController = Me.LayoutControl1
+        Me._TxtJenisJasa.TabIndex = 14
         '
-        'LayoutControlItem13
+        'LayoutControlItem15
         '
-        Me.LayoutControlItem13.Control = Me.txt_PO
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(575, 72)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(233, 24)
-        Me.LayoutControlItem13.Text = "PO"
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'txt_keterangan
-        '
-        Me.txt_keterangan.Location = New System.Drawing.Point(670, 108)
-        Me.txt_keterangan.Name = "txt_keterangan"
-        Me.txt_keterangan.Size = New System.Drawing.Size(146, 20)
-        Me.txt_keterangan.StyleController = Me.LayoutControl1
-        Me.txt_keterangan.TabIndex = 13
-        '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.txt_keterangan
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(575, 96)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(233, 27)
-        Me.LayoutControlItem14.Text = "Keterangan"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(80, 13)
-        '
-        'EmptySpaceItem1
-        '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 96)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(575, 27)
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem15.Control = Me._TxtJenisJasa
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 72)
+        Me.LayoutControlItem15.Name = "LayoutControlItem15"
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(325, 24)
+        Me.LayoutControlItem15.Text = "Jenis Jasa"
+        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(80, 13)
         '
         'frm_fp_details
         '
@@ -872,10 +906,12 @@ Partial Class frm_fp_details
         CType(Me._DeDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._DeDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtCurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._TxtJenisJasa.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtJenisJasa1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtNoTrans.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtNPWP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._LookUpSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_PO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_keterangan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -889,6 +925,8 @@ Partial Class frm_fp_details
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me._GridDetailsNew, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -899,11 +937,8 @@ Partial Class frm_fp_details
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt_PO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt_keterangan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._TxtJenisJasa.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -929,7 +964,7 @@ Partial Class frm_fp_details
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents _TxtJenisJasa As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents _TxtJenisJasa1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents _TxtNoTrans As DevExpress.XtraEditors.TextEdit
     Friend WithEvents _TxtNPWP As DevExpress.XtraEditors.TextEdit
     Friend WithEvents _LookUpSupplier As DevExpress.XtraEditors.ButtonEdit
@@ -977,5 +1012,6 @@ Partial Class frm_fp_details
     Friend WithEvents txt_keterangan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents _TxtJenisJasa As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
 End Class

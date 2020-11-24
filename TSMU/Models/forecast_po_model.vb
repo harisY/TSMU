@@ -90,7 +90,8 @@ Public Class forecast_po_model
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-
+                        'Dim _service As New AdmService
+                        '_service.Delete_tForecast_Log()
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
                                 .InsertAdm(BulanAngka, PO)

@@ -19,12 +19,12 @@ Partial Public Class FrmMain
     Dim HasLoad As Boolean = False
 
     Public Sub New()
-        'RunAutoUpdate(My.Settings.Site.ToLower)
+        RunAutoUpdate(My.Settings.Site.ToLower)
         DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE 
         InitializeComponent()
     End Sub
     Private Sub RunAutoUpdate(Site As String)
-        'add site
+        'add Site
         AutoUpdater.RunUpdateAsAdmin = False
         AutoUpdater.Mandatory = True
         AutoUpdater.UpdateMode = Mode.ForcedDownload
