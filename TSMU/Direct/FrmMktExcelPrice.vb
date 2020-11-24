@@ -247,7 +247,7 @@ Public Class FrmMktExcelPrice
                     maxTotTrans = 0
                     If rowInvtID.Count = 0 Then
                         'Jika partno / alternateid tidak ditemukan di Master
-                        message = "" & clmPartNoExcel & " Not Found !"
+                        message = "Part No Not Found !"
                         _error += 1
                         addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
                     ElseIf rowInvtID.Count = 1 Then
@@ -375,7 +375,7 @@ Public Class FrmMktExcelPrice
                     maxTotTrans = 0
                     If rowInvtID.Count = 0 Then
                         'Jika partno / alternateid tidak ditemukan di Master
-                        message = "" & clmPartNoExcelS & " Not Found !"
+                        message = "Part No Not Found !"
                         _error += 1
                         addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
                     ElseIf rowInvtID.Count = 1 Then
