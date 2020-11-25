@@ -209,7 +209,6 @@
     End Sub
     Public Sub UpdateCheckDetailByVrnoInvcId()
         Try
-
             Dim ls_SP As String = "UPDATE Payment_Detail1 SET Cek1=0 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -218,7 +217,6 @@
     End Sub
     Public Sub UpdateCheckDetailByVrnoInvcIdDir1()
         Try
-
             Dim ls_SP As String = "UPDATE Payment_Detail1 SET Cek1=1,cek2=0,cek3=0,cek4=1 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -228,7 +226,6 @@
 
     Public Sub UpdateCheckDetailByVrnoInvcIdDir0()
         Try
-
             Dim ls_SP As String = "UPDATE Payment_Detail1 SET Cek1=0,cek2=0,cek3=0,cek4=0 WHERE vrno= " & QVal(vrno) & " AND No_Invoice = " & QVal(No_Invoice) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
