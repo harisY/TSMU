@@ -307,7 +307,7 @@ Public Class frmForecast_PO
                         Frm.ShowDialog()
 
                         ObjHeader.ObjForecastCollection.Clear()
-                        For Each row As DataRow In Dt1.Rows
+                        For Each row As DataRow In Frm.NewDt.Rows
                             ObjForecast = New forecast_po_model_detail
                             With ObjForecast
                                 .Tahun = If(row("Tahun") Is DBNull.Value, "", row("Tahun"))
