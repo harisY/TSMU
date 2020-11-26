@@ -117,42 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ToolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_TsbOk.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        rkJggg==
-</value>
-  </data>
-  <metadata name="DateTimeChartRangeControlClient1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>124, 17</value>
-  </metadata>
 </root>

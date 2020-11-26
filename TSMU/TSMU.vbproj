@@ -442,6 +442,12 @@
     <Compile Include="Direct\FrmBankPaid.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmBankPaid2.Designer.vb">
+      <DependentUpon>FrmBankPaid2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankPaid2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\FrmBankReceipt.Designer.vb">
       <DependentUpon>FrmBankReceipt.vb</DependentUpon>
     </Compile>
@@ -2921,6 +2927,9 @@
     <EmbeddedResource Include="Dashboard\Dashboard_TravelSum.resx">
       <DependentUpon>Dashboard_TravelSum.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmBankPaid2.resx">
+      <DependentUpon>FrmBankPaid2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
       <DependentUpon>FrmBankReconsal.vb</DependentUpon>
     </EmbeddedResource>
@@ -4720,6 +4729,7 @@
     <Content Include="obj\Debug\TSMU.xml" />
     <Content Include="obj\Release\Interop.Microsoft.Office.Core.dll" />
     <None Include="Resources\7Tells.ico" />
+    <None Include="Resources\hapus.png" />
     <Content Include="tsmu.ico" />
     <None Include="Resources\tsmu.ico" />
     <None Include="Resources\download-for-free-10-png-paper-icon-png-top-images-at-carlisle-paper-icon-png-816_980.png" />

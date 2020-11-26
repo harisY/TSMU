@@ -30,6 +30,8 @@ Partial Class FrmPOYIM
         Me._txtordnbr = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me._txtperiode = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -43,7 +45,7 @@ Partial Class FrmPOYIM
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TableLayoutPanel1.ColumnCount = 2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 698.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 861.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Grid, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 0, 0)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(22, 81)
@@ -59,11 +61,11 @@ Partial Class FrmPOYIM
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Location = New System.Drawing.Point(766, 4)
+        Me.Grid.Location = New System.Drawing.Point(603, 4)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(690, 480)
+        Me.Grid.Size = New System.Drawing.Size(853, 480)
         Me.Grid.TabIndex = 35
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -89,7 +91,7 @@ Partial Class FrmPOYIM
         Me.DataGridView1.Location = New System.Drawing.Point(4, 4)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(675, 480)
+        Me.DataGridView1.Size = New System.Drawing.Size(577, 480)
         Me.DataGridView1.TabIndex = 34
         '
         'Label1
@@ -125,9 +127,9 @@ Partial Class FrmPOYIM
         '
         '_txtordnbr
         '
-        Me._txtordnbr.Location = New System.Drawing.Point(1162, 46)
+        Me._txtordnbr.Location = New System.Drawing.Point(1282, 46)
         Me._txtordnbr.Name = "_txtordnbr"
-        Me._txtordnbr.Size = New System.Drawing.Size(165, 23)
+        Me._txtordnbr.Size = New System.Drawing.Size(57, 23)
         Me._txtordnbr.TabIndex = 40
         '
         'Label2
@@ -141,17 +143,35 @@ Partial Class FrmPOYIM
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(1370, 42)
+        Me.Button1.Location = New System.Drawing.Point(1345, 43)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(107, 31)
         Me.Button1.TabIndex = 42
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "Update"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        '_txtperiode
+        '
+        Me._txtperiode.Location = New System.Drawing.Point(1162, 46)
+        Me._txtperiode.Name = "_txtperiode"
+        Me._txtperiode.Size = New System.Drawing.Size(95, 23)
+        Me._txtperiode.TabIndex = 43
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(1263, 51)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(13, 17)
+        Me.Label3.TabIndex = 44
+        Me.Label3.Text = "-"
         '
         'FrmPOYIM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1521, 581)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me._txtperiode)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me._txtordnbr)
@@ -167,6 +187,8 @@ Partial Class FrmPOYIM
         Me.Controls.SetChildIndex(Me._txtordnbr, 0)
         Me.Controls.SetChildIndex(Me.Label2, 0)
         Me.Controls.SetChildIndex(Me.Button1, 0)
+        Me.Controls.SetChildIndex(Me._txtperiode, 0)
+        Me.Controls.SetChildIndex(Me.Label3, 0)
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -187,4 +209,6 @@ Partial Class FrmPOYIM
     Friend WithEvents _txtordnbr As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents _txtperiode As TextBox
+    Friend WithEvents Label3 As Label
 End Class
