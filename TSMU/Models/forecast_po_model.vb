@@ -90,7 +90,8 @@ Public Class forecast_po_model
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-
+                        'Dim _service As New AdmService
+                        '_service.Delete_tForecast_Log()
                         For i As Integer = 0 To ObjForecastCollection.Count - 1
                             With ObjForecastCollection(i)
                                 .InsertAdm(BulanAngka, PO)
@@ -2306,6 +2307,17 @@ Public Class forecast_po_model_detail
             Throw
         End Try
     End Sub
+    Public Function DeleteCustomer(CustId As String, Tahun As String) As Integer
+        Try
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+            Params.Add(New SqlParameter() With {.ParameterName = "CustId", .Value = CustId})
+            Params.Add(New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun})
+            Dim success As Integer = ExecQueryWithValue("tForecastPrice_DeleteByCustomer", CommandType.StoredProcedure, Params, GetConnString)
+            Return success
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
     Public Function ValidateUpdate() As Boolean
         Dim IsExist As Boolean = False

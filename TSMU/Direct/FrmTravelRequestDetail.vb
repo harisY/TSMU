@@ -823,7 +823,7 @@ Public Class FrmTravelRequestDetail
                 .Day = Convert.ToInt16(GridViewDetail.GetRowCellValue(i, "Day"))
                 .RateAllowanceUSD = Convert.ToDouble(GridViewDetail.GetRowCellValue(i, "RateAllowanceUSD"))
                 .RateAllowanceYEN = Convert.ToDouble(GridViewDetail.GetRowCellValue(i, "RateAllowanceYEN"))
-                .RateAllowanceIDR = 0
+                .RateAllowanceIDR = Convert.ToDouble(GridViewDetail.GetRowCellValue(i, "RateAllowanceIDR"))
             End With
             ObjTravelRequest.ObjRequestDetails.Add(ObjTravelRequestDetail)
             Next
@@ -1010,7 +1010,6 @@ Public Class FrmTravelRequestDetail
         days = 0
         If GridViewDetail.RowCount > 0 Then
             Dim arrDateBefore__ As Date = Nothing
-            Dim daysBefore__ As Integer = Nothing
 
             For i As Integer = 0 To GridViewDetail.RowCount - 1
                 Dim dt As New DataTable
@@ -1044,6 +1043,7 @@ Public Class FrmTravelRequestDetail
                 GridViewDetail.SetRowCellValue(i, "Day", days__)
                 GridViewDetail.SetRowCellValue(i, "RateAllowanceUSD", rateAllowanceUSD)
                 GridViewDetail.SetRowCellValue(i, "RateAllowanceYEN", rateAllowanceYEN)
+                GridViewDetail.SetRowCellValue(i, "RateAllowanceIDR", rateAllowanceIDR)
             Next
 
             amountIDRUSD = amountUSD * rateUSD

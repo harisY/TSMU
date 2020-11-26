@@ -678,7 +678,8 @@ Public Class TravelRequestDetailModel
                                 ArrivalDate ,
                                 Day ,
                                 RateAllowanceUSD ,
-                                RateAllowanceYEN
+                                RateAllowanceYEN ,
+                                RateAllowanceIDR
                          FROM   dbo.TravelRequestDetail
                          WHERE  NoRequest = " & QVal(NoRequest) & ""
             Dim dt As New DataTable
@@ -739,7 +740,8 @@ Public Class TravelRequestDetailModel
                     "            ,[ArrivalDate] " & vbCrLf &
                     "            ,[Day] " & vbCrLf &
                     "            ,[RateAllowanceUSD] " & vbCrLf &
-                    "            ,[RateAllowanceYEN]) " & vbCrLf &
+                    "            ,[RateAllowanceYEN] " & vbCrLf &
+                    "            ,[RateAllowanceIDR]) " & vbCrLf &
                     "      VALUES " & vbCrLf &
                     "            (" & QVal(NoRequest) & ", " & vbCrLf &
                     "            " & QVal(Seq) & ", " & vbCrLf &
@@ -751,7 +753,8 @@ Public Class TravelRequestDetailModel
                     "            " & QVal(ArrivalDate) & ", " & vbCrLf &
                     "            " & QVal(Day) & ", " & vbCrLf &
                     "            " & QVal(RateAllowanceUSD) & ", " & vbCrLf &
-                    "            " & QVal(RateAllowanceYEN) & ")"
+                    "            " & QVal(RateAllowanceYEN) & ", " & vbCrLf &
+                    "            " & QVal(RateAllowanceIDR) & ")"
             ExecQuery(ls_SP)
         Catch ex As Exception
             Throw

@@ -280,7 +280,7 @@ Public Class frmForecast_PO
         Dim strCustomer As String = ""
 
         Dim frmExcel As FrmSystemExcel1
-        frmExcel = New FrmSystemExcel1(table, 69)
+        frmExcel = New FrmSystemExcel1(table, 69, 1)
         frmExcel.Text = "Import " & ls_Judul
         frmExcel.StartPosition = FormStartPosition.CenterScreen
         frmExcel.ShowDialog()
@@ -307,7 +307,7 @@ Public Class frmForecast_PO
                         Frm.ShowDialog()
 
                         ObjHeader.ObjForecastCollection.Clear()
-                        For Each row As DataRow In Dt1.Rows
+                        For Each row As DataRow In Frm.NewDt.Rows
                             ObjForecast = New forecast_po_model_detail
                             With ObjForecast
                                 .Tahun = If(row("Tahun") Is DBNull.Value, "", row("Tahun"))
@@ -867,6 +867,29 @@ Public Class frmForecast_PO
                 f.Show()
             Else
                 XtraMessageBox.Show("Form sudah terbuka !")
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub DeleteByCustToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteByCustToolStripMenuItem.Click
+        Try
+            Dim frmExcel As FrmSystemExcel1
+            frmExcel = New FrmSystemExcel1(Nothing, 69, 2)
+            frmExcel.Text = "Pilih Parameters"
+            frmExcel.StartPosition = FormStartPosition.CenterScreen
+            frmExcel.ShowDialog()
+
+            Dim Hasil As Integer = ObjForecast.DeleteCustomer(frmExcel.Customer, frmExcel.Tahun)
+            If Hasil = -1 Then
+                Throw New Exception("Gagal Hapus data, Kontak MIS !")
+            ElseIf Hasil = 0 Then
+                ShowMessage("Tidak ada data yang di hapus, periksa kembali customer dan tahun yang anda pilih.", MessageTypeEnum.NormalMessage)
+            Else
+                ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+                LoadGrid()
             End If
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
