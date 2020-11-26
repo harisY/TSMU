@@ -93,6 +93,7 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.GRateAllowanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -591,7 +592,7 @@ Partial Class FrmTravelRequestDetail
         '
         Me.GridViewDetail.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridViewDetail.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.DestinationGrid, Me.NegaraGrid, Me.NoPasporGrid, Me.NoVisaGrid, Me.VisaGrid, Me.DepartureDateGrid, Me.ArrivalDateGrid, Me.GDetailDay, Me.GRateAllowanceUSD, Me.GRateAllowanceYEN})
+        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.DestinationGrid, Me.NegaraGrid, Me.NoPasporGrid, Me.NoVisaGrid, Me.VisaGrid, Me.DepartureDateGrid, Me.ArrivalDateGrid, Me.GDetailDay, Me.GRateAllowanceUSD, Me.GRateAllowanceYEN, Me.GRateAllowanceIDR})
         Me.GridViewDetail.GridControl = Me.GridDetail
         Me.GridViewDetail.Name = "GridViewDetail"
         Me.GridViewDetail.OptionsCustomization.AllowFilter = False
@@ -989,6 +990,14 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem14.TextVisible = False
         '
+        'GRateAllowanceIDR
+        '
+        Me.GRateAllowanceIDR.Caption = "RateAllowanceIDR"
+        Me.GRateAllowanceIDR.FieldName = "RateAllowanceIDR"
+        Me.GRateAllowanceIDR.MinWidth = 25
+        Me.GRateAllowanceIDR.Name = "GRateAllowanceIDR"
+        Me.GRateAllowanceIDR.Width = 94
+        '
         'FrmTravelRequestDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -1129,4 +1138,5 @@ Partial Class FrmTravelRequestDetail
     Friend WithEvents EmptySpaceItem7 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents btnAddDetail As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GRateAllowanceIDR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

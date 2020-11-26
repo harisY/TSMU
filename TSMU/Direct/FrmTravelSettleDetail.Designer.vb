@@ -293,6 +293,9 @@ Partial Class FrmTravelSettleDetail
         Me.PaidBalance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.AmountIDRBalance = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.TotRateAllowanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TotRateAllowanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TotRateAllowanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CAccountTicket, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -662,7 +665,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.TxtTotalAdvanceUSD.EditValue = "0"
         Me.TxtTotalAdvanceUSD.Enabled = False
-        Me.TxtTotalAdvanceUSD.Location = New System.Drawing.Point(931, 73)
+        Me.TxtTotalAdvanceUSD.Location = New System.Drawing.Point(1216, 73)
         Me.TxtTotalAdvanceUSD.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotalAdvanceUSD.Name = "TxtTotalAdvanceUSD"
         Me.TxtTotalAdvanceUSD.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -703,7 +706,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtTotalAdvanceIDR.EditValue = "0"
         Me.TxtTotalAdvanceIDR.Enabled = False
-        Me.TxtTotalAdvanceIDR.Location = New System.Drawing.Point(1169, 73)
+        Me.TxtTotalAdvanceIDR.Location = New System.Drawing.Point(1454, 73)
         Me.TxtTotalAdvanceIDR.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotalAdvanceIDR.Name = "TxtTotalAdvanceIDR"
         Me.TxtTotalAdvanceIDR.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -717,7 +720,7 @@ Partial Class FrmTravelSettleDetail
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtTotalAdvanceYEN.EditValue = "0"
         Me.TxtTotalAdvanceYEN.Enabled = False
-        Me.TxtTotalAdvanceYEN.Location = New System.Drawing.Point(1050, 73)
+        Me.TxtTotalAdvanceYEN.Location = New System.Drawing.Point(1335, 73)
         Me.TxtTotalAdvanceYEN.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTotalAdvanceYEN.Name = "TxtTotalAdvanceYEN"
         Me.TxtTotalAdvanceYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -728,7 +731,7 @@ Partial Class FrmTravelSettleDetail
         'txtRateYEN
         '
         Me.txtRateYEN.EditValue = "1"
-        Me.txtRateYEN.Location = New System.Drawing.Point(788, 73)
+        Me.txtRateYEN.Location = New System.Drawing.Point(1073, 73)
         Me.txtRateYEN.Margin = New System.Windows.Forms.Padding(4)
         Me.txtRateYEN.MaximumSize = New System.Drawing.Size(100, 0)
         Me.txtRateYEN.Name = "txtRateYEN"
@@ -744,7 +747,7 @@ Partial Class FrmTravelSettleDetail
         Me.txtPurpose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPurpose.Enabled = False
-        Me.txtPurpose.Location = New System.Drawing.Point(-192, 41)
+        Me.txtPurpose.Location = New System.Drawing.Point(93, 41)
         Me.txtPurpose.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPurpose.Name = "txtPurpose"
         Me.txtPurpose.Size = New System.Drawing.Size(792, 22)
@@ -754,7 +757,7 @@ Partial Class FrmTravelSettleDetail
         'txtRateUSD
         '
         Me.txtRateUSD.EditValue = "1"
-        Me.txtRateUSD.Location = New System.Drawing.Point(669, 73)
+        Me.txtRateUSD.Location = New System.Drawing.Point(954, 73)
         Me.txtRateUSD.Margin = New System.Windows.Forms.Padding(4)
         Me.txtRateUSD.MaximumSize = New System.Drawing.Size(100, 0)
         Me.txtRateUSD.Name = "txtRateUSD"
@@ -768,7 +771,7 @@ Partial Class FrmTravelSettleDetail
         'txtTotalDay
         '
         Me.txtTotalDay.Enabled = False
-        Me.txtTotalDay.Location = New System.Drawing.Point(228, 75)
+        Me.txtTotalDay.Location = New System.Drawing.Point(513, 75)
         Me.txtTotalDay.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTotalDay.MaximumSize = New System.Drawing.Size(60, 0)
         Me.txtTotalDay.Name = "txtTotalDay"
@@ -780,7 +783,7 @@ Partial Class FrmTravelSettleDetail
         'txtTravelType
         '
         Me.txtTravelType.Enabled = False
-        Me.txtTravelType.Location = New System.Drawing.Point(228, 7)
+        Me.txtTravelType.Location = New System.Drawing.Point(513, 7)
         Me.txtTravelType.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTravelType.MaximumSize = New System.Drawing.Size(60, 0)
         Me.txtTravelType.Name = "txtTravelType"
@@ -792,7 +795,7 @@ Partial Class FrmTravelSettleDetail
         'TxtTerm
         '
         Me.TxtTerm.Enabled = False
-        Me.TxtTerm.Location = New System.Drawing.Point(383, 75)
+        Me.TxtTerm.Location = New System.Drawing.Point(668, 75)
         Me.TxtTerm.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTerm.Name = "TxtTerm"
         Me.TxtTerm.Size = New System.Drawing.Size(217, 22)
@@ -801,7 +804,7 @@ Partial Class FrmTravelSettleDetail
         '
         'txtPRNo
         '
-        Me.txtPRNo.Location = New System.Drawing.Point(383, 7)
+        Me.txtPRNo.Location = New System.Drawing.Point(668, 7)
         Me.txtPRNo.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPRNo.MaximumSize = New System.Drawing.Size(140, 0)
         Me.txtPRNo.Name = "txtPRNo"
@@ -814,7 +817,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.TxtDepDate.EditValue = ""
         Me.TxtDepDate.Enabled = False
-        Me.TxtDepDate.Location = New System.Drawing.Point(-192, 75)
+        Me.TxtDepDate.Location = New System.Drawing.Point(93, 75)
         Me.TxtDepDate.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtDepDate.MaximumSize = New System.Drawing.Size(130, 0)
         Me.TxtDepDate.MinimumSize = New System.Drawing.Size(130, 0)
@@ -835,7 +838,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.TxtArrDate.EditValue = Nothing
         Me.TxtArrDate.Enabled = False
-        Me.TxtArrDate.Location = New System.Drawing.Point(15, 75)
+        Me.TxtArrDate.Location = New System.Drawing.Point(300, 75)
         Me.TxtArrDate.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtArrDate.MaximumSize = New System.Drawing.Size(120, 0)
         Me.TxtArrDate.MinimumSize = New System.Drawing.Size(120, 0)
@@ -856,7 +859,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.txtTravelSettID.EditValue = ""
         Me.txtTravelSettID.Enabled = False
-        Me.txtTravelSettID.Location = New System.Drawing.Point(-192, 7)
+        Me.txtTravelSettID.Location = New System.Drawing.Point(93, 7)
         Me.txtTravelSettID.MaximumSize = New System.Drawing.Size(130, 22)
         Me.txtTravelSettID.MinimumSize = New System.Drawing.Size(130, 0)
         Me.txtTravelSettID.Name = "txtTravelSettID"
@@ -868,7 +871,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.TxtTgl.EditValue = Nothing
         Me.TxtTgl.Enabled = False
-        Me.TxtTgl.Location = New System.Drawing.Point(15, 7)
+        Me.TxtTgl.Location = New System.Drawing.Point(300, 7)
         Me.TxtTgl.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtTgl.MaximumSize = New System.Drawing.Size(120, 0)
         Me.TxtTgl.MinimumSize = New System.Drawing.Size(120, 0)
@@ -890,7 +893,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.TxtNama.EditValue = ""
         Me.TxtNama.Enabled = False
-        Me.TxtNama.Location = New System.Drawing.Point(693, 7)
+        Me.TxtNama.Location = New System.Drawing.Point(978, 7)
         Me.TxtNama.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtNama.Name = "TxtNama"
         Me.TxtNama.Size = New System.Drawing.Size(550, 22)
@@ -900,7 +903,7 @@ Partial Class FrmTravelSettleDetail
         'TxtDep
         '
         Me.TxtDep.Enabled = False
-        Me.TxtDep.Location = New System.Drawing.Point(538, 7)
+        Me.TxtDep.Location = New System.Drawing.Point(823, 7)
         Me.TxtDep.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtDep.MaximumSize = New System.Drawing.Size(80, 0)
         Me.TxtDep.Name = "TxtDep"
@@ -3042,7 +3045,7 @@ Partial Class FrmTravelSettleDetail
         '
         Me.GridViewPocketAllowance.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridViewPocketAllowance.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridViewPocketAllowance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DepartureDate, Me.ArrivalDate, Me.Days, Me.AdvanceUSD, Me.SettlementUSD, Me.AdvanceYEN, Me.SettlementYEN, Me.AdvanceIDR, Me.SettlementIDR, Me.RateAllowanceUSD, Me.RateAllowanceIDR, Me.TotalAllowanceIDR})
+        Me.GridViewPocketAllowance.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoRequest, Me.Nama, Me.DepartureDate, Me.ArrivalDate, Me.Days, Me.AdvanceUSD, Me.SettlementUSD, Me.AdvanceYEN, Me.SettlementYEN, Me.AdvanceIDR, Me.SettlementIDR, Me.RateAllowanceUSD, Me.RateAllowanceIDR, Me.TotalAllowanceIDR, Me.TotRateAllowanceUSD, Me.TotRateAllowanceYEN, Me.TotRateAllowanceIDR})
         Me.GridViewPocketAllowance.GridControl = Me.GridPocketAllowance
         Me.GridViewPocketAllowance.Name = "GridViewPocketAllowance"
         Me.GridViewPocketAllowance.OptionsView.ShowFooter = True
@@ -3613,6 +3616,30 @@ Partial Class FrmTravelSettleDetail
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1282, 136)
         Me.TableLayoutPanel1.TabIndex = 33
         '
+        'TotRateAllowanceUSD
+        '
+        Me.TotRateAllowanceUSD.Caption = "TotRateAllowanceUSD"
+        Me.TotRateAllowanceUSD.FieldName = "TotRateAllowanceUSD"
+        Me.TotRateAllowanceUSD.MinWidth = 25
+        Me.TotRateAllowanceUSD.Name = "TotRateAllowanceUSD"
+        Me.TotRateAllowanceUSD.Width = 94
+        '
+        'TotRateAllowanceYEN
+        '
+        Me.TotRateAllowanceYEN.Caption = "TotRateAllowanceYEN"
+        Me.TotRateAllowanceYEN.FieldName = "TotRateAllowanceYEN"
+        Me.TotRateAllowanceYEN.MinWidth = 25
+        Me.TotRateAllowanceYEN.Name = "TotRateAllowanceYEN"
+        Me.TotRateAllowanceYEN.Width = 94
+        '
+        'TotRateAllowanceIDR
+        '
+        Me.TotRateAllowanceIDR.Caption = "TotRateAllowanceIDR"
+        Me.TotRateAllowanceIDR.FieldName = "TotRateAllowanceIDR"
+        Me.TotRateAllowanceIDR.MinWidth = 25
+        Me.TotRateAllowanceIDR.Name = "TotRateAllowanceIDR"
+        Me.TotRateAllowanceIDR.Width = 94
+        '
         'FrmTravelSettleDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -4062,4 +4089,7 @@ Partial Class FrmTravelSettleDetail
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TotRateAllowanceUSD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TotRateAllowanceYEN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TotRateAllowanceIDR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

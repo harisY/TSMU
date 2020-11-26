@@ -51,7 +51,6 @@ Public Class FrmTravelSettleDetail
     Dim CreditYEN As Double
 
     Dim frm_Entertain As FrmTravelEntertainDetail
-    'Dim frm_Entertainment As FrmEntertainSettleDetailDirect
 
     Public Sub New()
 
@@ -192,7 +191,7 @@ Public Class FrmTravelSettleDetail
             dtAllowance.Columns.Add("TotalAllowanceIDR", GetType(Double))
             For Each row_ As DataRow In dtAllowance.Rows
                 Dim total As Double = (row_("SettlementUSD") * txtRateUSD.Text) + (row_("SettlementYEN") * txtRateYEN.Text) + row_("SettlementIDR")
-                row_("RateAllowanceIDR") = row_("RateAllowanceUSD") * txtRateUSD.Text * row_("Days")
+                row_("RateAllowanceIDR") = row_("TotRateAllowanceUSD") * txtRateUSD.EditValue + row_("TotRateAllowanceYEN") * txtRateYEN.EditValue + row_("TotRateAllowanceIDR")
                 row_("TotalAllowanceIDR") = total
             Next
         Catch ex As Exception
@@ -408,7 +407,7 @@ Public Class FrmTravelSettleDetail
         End If
         For Each row_ As DataRow In dtAllowance.Rows
             Dim total As Double = (row_("SettlementUSD") * txtRateUSD.Text) + (row_("SettlementYEN") * txtRateYEN.Text) + row_("SettlementIDR")
-            row_("RateAllowanceIDR") = row_("RateAllowanceUSD") * txtRateUSD.Text * row_("Days")
+            row_("RateAllowanceIDR") = row_("TotRateAllowanceUSD") * txtRateUSD.EditValue + row_("TotRateAllowanceYEN") * txtRateYEN.EditValue + row_("TotRateAllowanceIDR")
             row_("TotalAllowanceIDR") = total
         Next
     End Sub
@@ -424,7 +423,7 @@ Public Class FrmTravelSettleDetail
         End If
         For Each row_ As DataRow In dtAllowance.Rows
             Dim total As Double = (row_("SettlementUSD") * txtRateUSD.Text) + (row_("SettlementYEN") * txtRateYEN.Text) + row_("SettlementIDR")
-            row_("RateAllowanceIDR") = row_("RateAllowanceUSD") * txtRateUSD.Text * row_("Days")
+            row_("RateAllowanceIDR") = row_("TotRateAllowanceUSD") * txtRateUSD.EditValue + row_("TotRateAllowanceYEN") * txtRateYEN.EditValue + row_("TotRateAllowanceIDR")
             row_("TotalAllowanceIDR") = total
         Next
     End Sub
@@ -582,7 +581,10 @@ Public Class FrmTravelSettleDetail
                 End If
                 .ArrivalDate = GridViewPocketAllowance.GetRowCellValue(i, "ArrivalDate")
                 .Days = GridViewPocketAllowance.GetRowCellValue(i, "Days")
-                .RateAllowanceUSD = GridViewPocketAllowance.GetRowCellValue(i, "RateAllowanceUSD")
+                '.RateAllowanceUSD = GridViewPocketAllowance.GetRowCellValue(i, "RateAllowanceUSD")
+                .TotRateAllowanceUSD = GridViewPocketAllowance.GetRowCellValue(i, "TotRateAllowanceUSD")
+                .TotRateAllowanceYEN = GridViewPocketAllowance.GetRowCellValue(i, "TotRateAllowanceYEN")
+                .TotRateAllowanceIDR = GridViewPocketAllowance.GetRowCellValue(i, "TotRateAllowanceIDR")
                 .AllowanceUSD = GridViewPocketAllowance.GetRowCellValue(i, "SettlementUSD")
                 .AllowanceYEN = GridViewPocketAllowance.GetRowCellValue(i, "SettlementYEN")
                 .AllowanceIDR = GridViewPocketAllowance.GetRowCellValue(i, "SettlementIDR")
@@ -1160,9 +1162,10 @@ Public Class FrmTravelSettleDetail
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
 
+        Dim noRequest As String = GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "NoRequest")
         Dim departureDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
         Dim arrivalDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
-        Dim rateAllowanceUSD As Double = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD") Is DBNull.Value, 0, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD"))
+        'Dim rateAllowanceUSD As Double = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD") Is DBNull.Value, 0, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD"))
 
         If departureDate > arrivalDate And arrivalDate <> Nothing Then
             MessageBox.Show("Departure Date tidak boleh lebih besar dari Arrival Date", "Warning",
@@ -1173,11 +1176,7 @@ Public Class FrmTravelSettleDetail
             departureDate = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
         End If
 
-        Dim Days As Integer = DateDiff(DateInterval.Day, departureDate, arrivalDate) + 1
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "Days", Days)
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementUSD", rateAllowanceUSD * Days)
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementYEN", 0)
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementIDR", 0)
+        HitungAllowance(noRequest, departureDate, arrivalDate)
     End Sub
 
     Private Sub CArrivalDate_EditValueChanged(sender As Object, e As EventArgs) Handles CArrivalDate.EditValueChanged
@@ -1189,9 +1188,9 @@ Public Class FrmTravelSettleDetail
         gridView.PostEditor()
         gridView.UpdateCurrentRow()
 
+        Dim noRequest As String = GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "NoRequest")
         Dim departureDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "DepartureDate"))
         Dim arrivalDate As Date = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
-        Dim rateAllowanceUSD As Double = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD") Is DBNull.Value, 0, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceUSD"))
 
         If arrivalDate < departureDate Then
             MessageBox.Show("Arrival Date tidak boleh lebih kecil dari Departure Date", "Warning",
@@ -1202,13 +1201,7 @@ Public Class FrmTravelSettleDetail
             arrivalDate = IIf(GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate") Is DBNull.Value, Nothing, GridViewPocketAllowance.GetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "ArrivalDate"))
         End If
 
-        Dim Days As Integer = DateDiff(DateInterval.Day, departureDate, arrivalDate) + 1
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "Days", Days)
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementUSD", rateAllowanceUSD * Days)
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementYEN", 0)
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementIDR", 0)
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceIDR", (rateAllowanceUSD * Days) * txtRateUSD.Text)
-        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "TotalAllowanceIDR", (rateAllowanceUSD * Days) * txtRateUSD.Text)
+        HitungAllowance(noRequest, departureDate, arrivalDate)
     End Sub
 
     Private Sub CAdvanceUSD_EditValueChanged(sender As Object, e As EventArgs) Handles CAdvanceUSD.EditValueChanged
@@ -1605,6 +1598,45 @@ Public Class FrmTravelSettleDetail
             ReturnIDR = return_
             GridViewBalance.SetRowCellValue(GridViewBalance.FocusedRowHandle, "AmountIDRBalance", balance - return_)
         End If
+    End Sub
+
+    Private Sub HitungAllowance(noRequest As String, deptDate As Date, arrDate As Date)
+        Dim dtReqDetail As New DataTable
+        cls_TravelSettDetail = New TravelSettleDetailModel
+        cls_TravelSettDetail.NoRequest = noRequest
+        cls_TravelSettDetail.DepartureDate = deptDate
+        cls_TravelSettDetail.ArrivalDate = arrDate
+        dtReqDetail = cls_TravelSettDetail.GetTravelReqDetail()
+
+        Dim arrDateBefore__ As Date = Nothing
+        Dim days__ As Integer = 0
+        Dim settleAllowanceUSD As Integer = 0
+        Dim settleAllowanceYEN As Integer = 0
+        Dim settleAllowanceIDR As Integer = 0
+        For Each rows As DataRow In dtReqDetail.Rows
+            Dim day__ As Integer
+            If arrDateBefore__ <> Nothing AndAlso rows("DepartureDate") = arrDateBefore__ Then
+                day__ = DateDiff(DateInterval.Day, rows("DepartureDate"), rows("ArrivalDate"))
+            Else
+                day__ = DateDiff(DateInterval.Day, rows("DepartureDate"), rows("ArrivalDate")) + 1
+            End If
+            arrDateBefore__ = rows("ArrivalDate")
+            days__ = days__ + day__
+            settleAllowanceUSD = settleAllowanceUSD + rows("RateAllowanceUSD") * day__
+            settleAllowanceYEN = settleAllowanceYEN + rows("RateAllowanceYEN") * day__
+            settleAllowanceIDR = settleAllowanceIDR + rows("RateAllowanceIDR") * day__
+        Next
+        Dim totalRateIDR As Double = (settleAllowanceUSD * txtRateUSD.EditValue) + (settleAllowanceYEN * txtRateYEN.EditValue) + settleAllowanceIDR
+        Dim totalSettleIDR As Double = (settleAllowanceUSD * txtRateUSD.EditValue) + (settleAllowanceYEN * txtRateYEN.EditValue) + settleAllowanceIDR
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "Days", days__)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "TotRateAllowanceUSD", settleAllowanceUSD)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "TotRateAllowanceYEN", settleAllowanceYEN)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "TotRateAllowanceIDR", settleAllowanceIDR)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementUSD", settleAllowanceUSD)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementYEN", settleAllowanceYEN)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "SettlementIDR", settleAllowanceIDR)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "RateAllowanceIDR", totalRateIDR)
+        GridViewPocketAllowance.SetRowCellValue(GridViewPocketAllowance.FocusedRowHandle, "TotalAllowanceIDR", totalSettleIDR)
     End Sub
 
 End Class
