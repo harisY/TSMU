@@ -2047,6 +2047,7 @@ Public Class ClsCR_Other_Dept
                                             "SET [Date] = '" & Date.Now & "'
                                             ,[Opinion] = '" & D_Opinion & "' 
                                             ,[Approve] = '" & D_Approve & "'
+                                            ,[DeptHead_ID] = '" & gh_Common.Username & "'
                                             WHERE [CirculationNo] = '" & CirculationNo & "' and [DeptID] = '" & D_Dept & "' "
             MainModul.ExecQuery(ls_SP)
 
