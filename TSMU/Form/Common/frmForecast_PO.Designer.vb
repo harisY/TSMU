@@ -26,8 +26,9 @@ Partial Class frmForecast_PO
         Me.CekHargaADMTSM = New System.Windows.Forms.ToolStripMenuItem()
         Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SinkronasiDataTsm = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteByCustToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,34 +50,46 @@ Partial Class frmForecast_PO
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm, Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm, Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem, Me.DeleteByCustToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(405, 152)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(405, 148)
         '
         'ExportToExcelTSM
         '
         Me.ExportToExcelTSM.Name = "ExportToExcelTSM"
-        Me.ExportToExcelTSM.Size = New System.Drawing.Size(302, 24)
+        Me.ExportToExcelTSM.Size = New System.Drawing.Size(404, 24)
         Me.ExportToExcelTSM.Text = "Export To Excel"
         '
         'CekHargaADMTSM
         '
         Me.CekHargaADMTSM.Name = "CekHargaADMTSM"
-        Me.CekHargaADMTSM.Size = New System.Drawing.Size(302, 24)
+        Me.CekHargaADMTSM.Size = New System.Drawing.Size(404, 24)
         Me.CekHargaADMTSM.Text = "Compare Solomon - Data Upload"
         '
         'CekInventory1ToolStripMenuItem
         '
         Me.CekInventory1ToolStripMenuItem.Name = "CekInventory1ToolStripMenuItem"
-        Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(302, 24)
+        Me.CekInventory1ToolStripMenuItem.Size = New System.Drawing.Size(404, 24)
         Me.CekInventory1ToolStripMenuItem.Text = "Cek Inventory > 1"
         Me.CekInventory1ToolStripMenuItem.Visible = False
         '
         'SinkronasiDataTsm
         '
         Me.SinkronasiDataTsm.Name = "SinkronasiDataTsm"
-        Me.SinkronasiDataTsm.Size = New System.Drawing.Size(302, 24)
+        Me.SinkronasiDataTsm.Size = New System.Drawing.Size(404, 24)
         Me.SinkronasiDataTsm.Text = "Sinkronasi Data"
+        '
+        'PartNoTidakAdaInventoryDiSolomonToolStripMenuItem
+        '
+        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Name = "PartNoTidakAdaInventoryDiSolomonToolStripMenuItem"
+        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Size = New System.Drawing.Size(404, 24)
+        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Text = "Adm -> PartNo tidak ada InventoryId di Solomon"
+        '
+        'DeleteByCustToolStripMenuItem
+        '
+        Me.DeleteByCustToolStripMenuItem.Name = "DeleteByCustToolStripMenuItem"
+        Me.DeleteByCustToolStripMenuItem.Size = New System.Drawing.Size(404, 24)
+        Me.DeleteByCustToolStripMenuItem.Text = "Delete By Customer"
         '
         'GridView1
         '
@@ -94,12 +107,6 @@ Partial Class frmForecast_PO
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowFooter = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'PartNoTidakAdaInventoryDiSolomonToolStripMenuItem
-        '
-        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Name = "PartNoTidakAdaInventoryDiSolomonToolStripMenuItem"
-        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Size = New System.Drawing.Size(404, 24)
-        Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Text = "Adm -> PartNo tidak ada InventoryId di Solomon"
         '
         'frmForecast_PO
         '
@@ -126,4 +133,5 @@ Partial Class frmForecast_PO
     Friend WithEvents CekInventory1ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SinkronasiDataTsm As ToolStripMenuItem
     Friend WithEvents PartNoTidakAdaInventoryDiSolomonToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteByCustToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -11,6 +11,7 @@ Public Class FrmSystemExcel1
     Dim a As Integer = 0
     Dim b As Integer = 0
     Dim _isSync As Boolean
+    Dim _Caller As Integer
 
     Public Property DtAdm As DataTable
 
@@ -23,13 +24,14 @@ Public Class FrmSystemExcel1
 
     End Sub
 
-    Public Sub New(ByRef dt As DataTable, ByVal x As Integer, Optional ByVal IsSync As Boolean = False)
+    Public Sub New(ByRef dt As DataTable, ByVal x As Integer, Caller As Integer, Optional ByVal IsSync As Boolean = False)
         ' This call is required by the Windows Form Designer.
         Me.New()
         ' Add any initialization after the InitializeComponent() call.
         GridData = dt
         a = x
         _isSync = IsSync
+        _Caller = Caller
     End Sub
     ReadOnly Property Tahun As String
         Get
@@ -97,8 +99,15 @@ Public Class FrmSystemExcel1
         End Get
     End Property
     Private Sub FrmSystemExcel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If _Caller = 1 Then
+            _cmbBulan.Enabled = True
+            _txtExcel.Enabled = True
+        Else
+            _cmbBulan.Enabled = False
+            _txtExcel.Enabled = False
+        End If
         FillComboTahun()
-        FillComboTahun1()
+        'FillComboTahun1()
         FillComboCustomer()
         FillComboBulan()
         lblStatus.Text = ""
@@ -107,18 +116,19 @@ Public Class FrmSystemExcel1
         _CmbSite.Enabled = False
         _CmbFlag.Enabled = False
         TxtPO.Enabled = False
+
         'XtraTabControl1.SelectedTabPageIndex = 0
         XtraTabControl1.TabPages.RemoveAt(1)
     End Sub
     Private Sub FillComboTahun()
-        Dim tahun() As String = {"", DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
+        Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
         _cmbTahun.Properties.Items.Clear()
         For Each var As String In tahun
             _cmbTahun.Properties.Items.Add(var)
         Next
     End Sub
     Private Sub FillComboTahun1()
-        Dim tahun() As String = {"", DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
+        Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString}
         TxtTahun2.Properties.Items.Clear()
         For Each var As String In tahun
             TxtTahun2.Properties.Items.Add(var)
@@ -214,102 +224,75 @@ Public Class FrmSystemExcel1
     Private Sub _btnExport_Click(sender As Object, e As EventArgs) Handles _btnExport.Click
         Try
             If XtraTabControl1.SelectedTabPageIndex = 0 Then
-
-                If lblStatus.Text <> "" Then
-                    Throw New Exception("Proses masih berjalan !")
-                End If
-
-                If _cmbTahun.Text = "" Then
-                    _cmbTahun.Focus()
-                    Throw New Exception("Pilih Tahun !")
-                End If
-                If _cmbBulan.Text = "" Then
-                    _cmbBulan.Focus()
-                    Throw New Exception("Pilih Bulan !")
-                End If
-                If _txtExcel.Text = "" Then
-                    _txtExcel.Focus()
-                    Throw New Exception("Pilih Excel yang  akan di upload !")
-                End If
-                If _cmbCust.Text.TrimEnd.ToLower = "adm" Then
-                    If _CmbSite.Text = "" Then
-                        _CmbSite.Focus()
-                        Throw New Exception("Pilih Site !")
-                    ElseIf _CmbFlag.Text = "" Then
-                        _CmbSite.Focus()
-                        Throw New Exception("Pilih Flag !")
-                    ElseIf TxtPO.Text = "" Then
-                        TxtPO.Focus()
-                        Throw New Exception("Pilih PO !")
+                If _Caller = 1 Then
+                    If lblStatus.Text <> "" Then
+                        Throw New Exception("Proses masih berjalan !")
+                    End If
+                    If _cmbTahun.Text = "" Then
+                        _cmbTahun.Focus()
+                        Throw New Exception("Pilih Tahun !")
+                    End If
+                    If _cmbBulan.Text = "" Then
+                        _cmbBulan.Focus()
+                        Throw New Exception("Pilih Bulan !")
+                    End If
+                    If _txtExcel.Text = "" Then
+                        _txtExcel.Focus()
+                        Throw New Exception("Pilih Excel yang  akan di upload !")
+                    End If
+                    If _cmbCust.Text.TrimEnd.ToLower = "adm" Then
+                        If _CmbSite.Text = "" Then
+                            _CmbSite.Focus()
+                            Throw New Exception("Pilih Site !")
+                        ElseIf _CmbFlag.Text = "" Then
+                            _CmbSite.Focus()
+                            Throw New Exception("Pilih Flag !")
+                        ElseIf TxtPO.Text = "" Then
+                            TxtPO.Focus()
+                            Throw New Exception("Pilih PO !")
+                        Else
+                            Dim Dt As New DataTable
+                            Dt = ExcelToDatatable(_txtExcel.Text, "Sheet1")
+                            DtAdm = Dt
+                        End If
                     Else
-                        Dim Dt As New DataTable
-                        Dt = ExcelToDatatable(_txtExcel.Text, "Sheet1")
-                        DtAdm = Dt
+                        Dim connString As String = String.Empty
+                        Dim extension As String = System.IO.Path.GetExtension(path)
+                        Select Case extension
+                            Case ".xls"
+                                'Excel 97-03
+
+                                connString = ConfigurationManager.ConnectionStrings("Excel03ConString").ConnectionString
+                                Exit Select
+                            Case ".xlsx"
+                                'Excel 07 or higher
+                                connString = ConfigurationManager.ConnectionStrings("Excel07+ConString").ConnectionString
+                                Exit Select
+
+                        End Select
+                        connString = String.Format(connString, path)
+                        Using excel_con As New OleDbConnection(connString)
+                            excel_con.Open()
+                            Dim sheet1 As String = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing).Rows(0)("TABLE_NAME").ToString()
+                            Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") & sheet1) + "]", excel_con)
+                                oda.Fill(GridData)
+                            End Using
+                            excel_con.Close()
+                        End Using
                     End If
                 Else
-                    Dim connString As String = String.Empty
-                    Dim extension As String = System.IO.Path.GetExtension(path)
-                    Select Case extension
-                        Case ".xls"
-                            'Excel 97-03
-
-                            connString = ConfigurationManager.ConnectionStrings("Excel03ConString").ConnectionString
-                            Exit Select
-                        Case ".xlsx"
-                            'Excel 07 or higher
-                            connString = ConfigurationManager.ConnectionStrings("Excel07+ConString").ConnectionString
-                            Exit Select
-
-                    End Select
-                    connString = String.Format(connString, path)
-                    Using excel_con As New OleDbConnection(connString)
-                        excel_con.Open()
-                        Dim sheet1 As String = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing).Rows(0)("TABLE_NAME").ToString()
-                        Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") & sheet1) + "]", excel_con)
-                            oda.Fill(GridData)
-                        End Using
-                        excel_con.Close()
-                    End Using
-                End If
-            Else
-                If lblStatus.Text <> "" Then
-                    Throw New Exception("Proses masih berjalan !")
+                    If _cmbTahun.Text = "" Then
+                        _cmbTahun.Focus()
+                        Throw New Exception("Pilih Tahun !")
+                    End If
+                    If _cmbCust.Text = "" Then
+                        _cmbCust.Focus()
+                        Throw New Exception("Pilih Customer !")
+                    End If
                 End If
 
-                If TxtTahun2.Text = "" Then
-                    TxtTahun2.Focus()
-                    Throw New Exception("Pilih Tahun !")
-                End If
-
-                If TxtFile2.Text = "" Then
-                    TxtFile2.Focus()
-                    Throw New Exception("Pilih Excel yang  akan di upload !")
-                End If
-                Dim connString As String = String.Empty
-                Dim extension As String = System.IO.Path.GetExtension(path2)
-                Select Case extension
-                    Case ".xls"
-                        'Excel 97-03
-
-                        connString = ConfigurationManager.ConnectionStrings("Excel03ConString").ConnectionString
-                        Exit Select
-                    Case ".xlsx"
-                        'Excel 07 or higher
-                        connString = ConfigurationManager.ConnectionStrings("Excel07+ConString").ConnectionString
-                        Exit Select
-
-                End Select
-                connString = String.Format(connString, path2)
-                Using excel_con As New OleDbConnection(connString)
-                    excel_con.Open()
-                    Dim sheet1 As String = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing).Rows(0)("TABLE_NAME").ToString()
-                    Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") & sheet1) + "]", excel_con)
-                        oda.Fill(GridData)
-                    End Using
-                    excel_con.Close()
-                End Using
             End If
-            Me.Close()
+            Close()
 
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -336,13 +319,15 @@ Public Class FrmSystemExcel1
 
     Private Sub _cmbCust_EditValueChanged(sender As Object, e As EventArgs) Handles _cmbCust.EditValueChanged
         Try
-            If String.IsNullOrEmpty(_cmbCust.Text) Then
-                Return
-            End If
-            If _cmbCust.Text.ToLower = "adm" Then
-                _CmbSite.Enabled = True
-                _CmbFlag.Enabled = True
-                TxtPO.Enabled = True
+            If _Caller = 1 Then
+                If String.IsNullOrEmpty(_cmbCust.Text) Then
+                    Return
+                End If
+                If _cmbCust.Text.ToLower = "adm" Then
+                    _CmbSite.Enabled = True
+                    _CmbFlag.Enabled = True
+                    TxtPO.Enabled = True
+                End If
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

@@ -73,12 +73,14 @@ Partial Class FrmCCAccrued
         Me.TabPageCancel = New DevExpress.XtraTab.XtraTabPage()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
+        Me.txtPerpostSett = New DevExpress.XtraEditors.DateEdit()
         Me.btnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.btnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControl4 = New DevExpress.XtraLayout.LayoutControl()
         Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
         Me.GridAccruedAll = New DevExpress.XtraGrid.GridControl()
@@ -164,8 +166,6 @@ Partial Class FrmCCAccrued
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControlGroup7 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtPerpostSett = New DevExpress.XtraEditors.DateEdit()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.GridAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewAccrued, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCreditCardNumber, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,10 +205,13 @@ Partial Class FrmCCAccrued
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl3.SuspendLayout()
+        CType(Me.txtPerpostSett.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtPerpostSett.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl4.SuspendLayout()
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -249,9 +252,6 @@ Partial Class FrmCCAccrued
         CType(Me.CCCMasterPaid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPerpostSett.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPerpostSett.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridAccrued
@@ -505,9 +505,16 @@ Partial Class FrmCCAccrued
         Me.txtPerpost.Name = "txtPerpost"
         Me.txtPerpost.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txtPerpost.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtPerpost.Properties.CalendarTimeProperties.DisplayFormat.FormatString = "MMM yyyy"
+        Me.txtPerpost.Properties.CalendarTimeProperties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txtPerpost.Properties.CalendarTimeProperties.EditFormat.FormatString = "MMM yyyy"
+        Me.txtPerpost.Properties.CalendarTimeProperties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txtPerpost.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista
         Me.txtPerpost.Properties.DisplayFormat.FormatString = "MMM yyyy"
         Me.txtPerpost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.txtPerpost.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtPerpost.Properties.VistaCalendarViewStyle = CType((DevExpress.XtraEditors.VistaCalendarViewStyle.YearView Or DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView), DevExpress.XtraEditors.VistaCalendarViewStyle)
+        Me.txtPerpost.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.[True]
         Me.txtPerpost.Size = New System.Drawing.Size(100, 22)
         Me.txtPerpost.StyleController = Me.LayoutControl1
         Me.txtPerpost.TabIndex = 8
@@ -875,6 +882,22 @@ Partial Class FrmCCAccrued
         Me.LayoutControl3.TabIndex = 0
         Me.LayoutControl3.Text = "LayoutControl3"
         '
+        'txtPerpostSett
+        '
+        Me.txtPerpostSett.EditValue = Nothing
+        Me.txtPerpostSett.Location = New System.Drawing.Point(281, 7)
+        Me.txtPerpostSett.MaximumSize = New System.Drawing.Size(100, 0)
+        Me.txtPerpostSett.Name = "txtPerpostSett"
+        Me.txtPerpostSett.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtPerpostSett.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtPerpostSett.Properties.DisplayFormat.FormatString = "MMM yyyy"
+        Me.txtPerpostSett.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txtPerpostSett.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtPerpostSett.Properties.VistaCalendarViewStyle = CType((DevExpress.XtraEditors.VistaCalendarViewStyle.YearView Or DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView), DevExpress.XtraEditors.VistaCalendarViewStyle)
+        Me.txtPerpostSett.Size = New System.Drawing.Size(100, 22)
+        Me.txtPerpostSett.StyleController = Me.LayoutControl3
+        Me.txtPerpostSett.TabIndex = 6
+        '
         'btnPrint
         '
         Me.btnPrint.Location = New System.Drawing.Point(114, 7)
@@ -933,6 +956,18 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem10.Size = New System.Drawing.Size(102, 34)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.txtPerpostSett
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(196, 0)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(177, 34)
+        Me.LayoutControlItem12.Text = "Perpost"
+        Me.LayoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(60, 20)
+        Me.LayoutControlItem12.TextToControlDistance = 5
         '
         'LayoutControl4
         '
@@ -1855,33 +1890,6 @@ Partial Class FrmCCAccrued
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
-        'txtPerpostSett
-        '
-        Me.txtPerpostSett.EditValue = Nothing
-        Me.txtPerpostSett.Location = New System.Drawing.Point(281, 7)
-        Me.txtPerpostSett.MaximumSize = New System.Drawing.Size(100, 0)
-        Me.txtPerpostSett.Name = "txtPerpostSett"
-        Me.txtPerpostSett.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtPerpostSett.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtPerpostSett.Properties.DisplayFormat.FormatString = "MMM yyyy"
-        Me.txtPerpostSett.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.txtPerpostSett.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtPerpostSett.Size = New System.Drawing.Size(100, 22)
-        Me.txtPerpostSett.StyleController = Me.LayoutControl3
-        Me.txtPerpostSett.TabIndex = 6
-        '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me.txtPerpostSett
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(196, 0)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(177, 34)
-        Me.LayoutControlItem12.Text = "Perpost"
-        Me.LayoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(60, 20)
-        Me.LayoutControlItem12.TextToControlDistance = 5
-        '
         'FrmCCAccrued
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -1928,10 +1936,13 @@ Partial Class FrmCCAccrued
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl3.ResumeLayout(False)
+        CType(Me.txtPerpostSett.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtPerpostSett.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl4.ResumeLayout(False)
         CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1972,9 +1983,6 @@ Partial Class FrmCCAccrued
         CType(Me.CCCMasterPaid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPerpostSett.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPerpostSett.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -1,16 +1,19 @@
 ﻿Imports DevExpress.Data
+Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraReports.UI
 Imports TSMU
 
 Public Class FrmCCAccrued
     Dim cls_Accrued As New ClsCCAccrued
+    Dim clsReport As New ClsReportCCAccrued
     Dim clsGlobal As New GlobalService
-    Dim frmCCAccrued As New FrmReportCCAccrued
 
     Dim dtGrid As New DataTable
     Dim dtGridAccrued As New DataTable
@@ -72,12 +75,9 @@ Public Class FrmCCAccrued
     End Sub
 
     Public Overrides Sub Proc_Print()
-        frmCCAccrued = New FrmReportCCAccrued
-        frmCCAccrued.txtTabAccrued.Text = TabPage
         Dim param As String
         Dim listNoTrans As New List(Of String)
         If TabPage = "TabPageProses" Then
-            frmCCAccrued.txtPerpost.EditValue = txtPerpost.EditValue
             If GridViewAccrued.SelectedRowsCount > 0 Then
                 For i As Integer = 0 To GridViewAccrued.SelectedRowsCount() - 1
                     If (GridViewAccrued.GetSelectedRows()(i) >= 0) Then
@@ -89,8 +89,20 @@ Public Class FrmCCAccrued
                 Next
             End If
             param = String.Join(",", listNoTrans.ToArray)
+
+            clsReport = New ClsReportCCAccrued
+            Dim lapAccrued As New DRCCAccrued
+            Dim dtAccrued As New DataTable
+
+            dtAccrued = clsReport.LoadReportAccrued(txtPerpost.EditValue, param)
+
+            lapAccrued.DataSource = dtAccrued
+            Dim PrintTool As ReportPrintTool
+
+            PrintTool = New ReportPrintTool(lapAccrued)
+            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            PrintTool.ShowPreview(UserLookAndFeel.Default)
         Else
-            frmCCAccrued.txtPerpost.EditValue = txtPerpostSett.EditValue
             If GridViewAccruedAll.SelectedRowsCount > 0 Then
                 For i As Integer = 0 To GridViewAccruedAll.SelectedRowsCount() - 1
                     If (GridViewAccruedAll.GetSelectedRows()(i) >= 0) Then
@@ -102,10 +114,20 @@ Public Class FrmCCAccrued
                 Next
             End If
             param = String.Join(",", listNoTrans.ToArray)
+
+            clsReport = New ClsReportCCAccrued
+            Dim lapAccruedSettle As New DRCCAccruedAndSettle
+            Dim dtAccruedSettle As New DataTable
+
+            dtAccruedSettle = clsReport.LoadReportAccruedAndSettle(txtPerpostSett.EditValue, param)
+
+            lapAccruedSettle.DataSource = dtAccruedSettle
+            Dim PrintTool As ReportPrintTool
+
+            PrintTool = New ReportPrintTool(lapAccruedSettle)
+            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            PrintTool.ShowPreview(UserLookAndFeel.Default)
         End If
-        frmCCAccrued.param = param
-        frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
-        frmCCAccrued.Show()
     End Sub
 
     Private Sub CreateTable()
@@ -330,11 +352,18 @@ Public Class FrmCCAccrued
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 tsBtn_refresh.PerformClick()
 
-                frmCCAccrued = New FrmReportCCAccrued
-                frmCCAccrued.txtTabAccrued.Text = ""
-                frmCCAccrued.param = noAccrued
-                frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
-                frmCCAccrued.Show()
+                clsReport = New ClsReportCCAccrued
+                Dim lapCCSettle As New DRCCSettlement
+                Dim dtCCSettle As New DataTable
+
+                dtCCSettle = clsReport.LoadReportCCSettle(noAccrued)
+
+                lapCCSettle.DataSource = dtCCSettle
+                Dim PrintTool As ReportPrintTool
+
+                PrintTool = New ReportPrintTool(lapCCSettle)
+                TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+                PrintTool.ShowPreview(UserLookAndFeel.Default)
             Else
                 MessageBox.Show("Tidak ada data yang dipilih", "Warning",
                                MessageBoxButtons.OK,
@@ -370,10 +399,10 @@ Public Class FrmCCAccrued
                     tsBtn_refresh.PerformClick()
                 End If
             Else
-                    MessageBox.Show("Tidak ada data yang dipilih", "Warning",
-                           MessageBoxButtons.OK,
-                           MessageBoxIcon.Exclamation,
-                           MessageBoxDefaultButton.Button1)
+                MessageBox.Show("Tidak ada data yang dipilih", "Warning",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Exclamation,
+                       MessageBoxDefaultButton.Button1)
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -516,11 +545,19 @@ Public Class FrmCCAccrued
         End If
 
         param = String.Join(",", listNoAccrued.ToArray)
-        frmCCAccrued = New FrmReportCCAccrued
-        frmCCAccrued.txtTabAccrued.Text = ""
-        frmCCAccrued.param = param
-        frmCCAccrued.StartPosition = FormStartPosition.CenterScreen
-        frmCCAccrued.Show()
+
+        clsReport = New ClsReportCCAccrued
+        Dim lapCCSettle As New DRCCSettlement
+        Dim dtCCSettle As New DataTable
+
+        dtCCSettle = clsReport.LoadReportCCSettle(param)
+
+        lapCCSettle.DataSource = dtCCSettle
+        Dim PrintTool As ReportPrintTool
+
+        PrintTool = New ReportPrintTool(lapCCSettle)
+        TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+        PrintTool.ShowPreview(UserLookAndFeel.Default)
     End Sub
 
 End Class
