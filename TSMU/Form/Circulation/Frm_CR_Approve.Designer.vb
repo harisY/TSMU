@@ -93,6 +93,20 @@ Partial Class Frm_CR_Approve
         Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Admin = New System.Windows.Forms.TabPage()
+        Me.GridAdmin = New DevExpress.XtraGrid.GridControl()
+        Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -112,6 +126,9 @@ Partial Class Frm_CR_Approve
         Me.Search.SuspendLayout()
         CType(Me.Grid6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Admin.SuspendLayout()
+        CType(Me.GridAdmin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView1
@@ -276,6 +293,7 @@ Partial Class Frm_CR_Approve
         Me.TabControl1.Controls.Add(Me.Purchase)
         Me.TabControl1.Controls.Add(Me.Close)
         Me.TabControl1.Controls.Add(Me.Search)
+        Me.TabControl1.Controls.Add(Me.Admin)
         Me.TabControl1.Location = New System.Drawing.Point(12, 30)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -967,6 +985,168 @@ Partial Class Frm_CR_Approve
         Me.GridColumn55.VisibleIndex = 10
         Me.GridColumn55.Width = 168
         '
+        'Admin
+        '
+        Me.Admin.Controls.Add(Me.GridAdmin)
+        Me.Admin.Location = New System.Drawing.Point(4, 22)
+        Me.Admin.Name = "Admin"
+        Me.Admin.Padding = New System.Windows.Forms.Padding(3)
+        Me.Admin.Size = New System.Drawing.Size(955, 513)
+        Me.Admin.TabIndex = 6
+        Me.Admin.Text = "Admin"
+        Me.Admin.UseVisualStyleBackColor = True
+        '
+        'GridAdmin
+        '
+        Me.GridAdmin.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridAdmin.Location = New System.Drawing.Point(3, 3)
+        Me.GridAdmin.MainView = Me.GridView7
+        Me.GridAdmin.Name = "GridAdmin"
+        Me.GridAdmin.Size = New System.Drawing.Size(943, 874)
+        Me.GridAdmin.TabIndex = 9
+        Me.GridAdmin.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView7})
+        '
+        'GridView7
+        '
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66})
+        Me.GridView7.GridControl = Me.GridAdmin
+        Me.GridView7.Name = "GridView7"
+        Me.GridView7.OptionsBehavior.Editable = False
+        Me.GridView7.OptionsView.ShowAutoFilterRow = True
+        Me.GridView7.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn56
+        '
+        Me.GridColumn56.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn56.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn56.FieldName = "Circulation No"
+        Me.GridColumn56.Name = "GridColumn56"
+        Me.GridColumn56.Visible = True
+        Me.GridColumn56.VisibleIndex = 0
+        Me.GridColumn56.Width = 201
+        '
+        'GridColumn57
+        '
+        Me.GridColumn57.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn57.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn57.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn57.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn57.FieldName = "Requirement Date"
+        Me.GridColumn57.Name = "GridColumn57"
+        Me.GridColumn57.Visible = True
+        Me.GridColumn57.VisibleIndex = 1
+        Me.GridColumn57.Width = 125
+        '
+        'GridColumn58
+        '
+        Me.GridColumn58.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn58.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn58.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn58.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn58.FieldName = "Dept"
+        Me.GridColumn58.Name = "GridColumn58"
+        Me.GridColumn58.Visible = True
+        Me.GridColumn58.VisibleIndex = 2
+        Me.GridColumn58.Width = 151
+        '
+        'GridColumn59
+        '
+        Me.GridColumn59.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn59.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn59.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn59.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn59.FieldName = "Status"
+        Me.GridColumn59.Name = "GridColumn59"
+        Me.GridColumn59.Visible = True
+        Me.GridColumn59.VisibleIndex = 3
+        Me.GridColumn59.Width = 89
+        '
+        'GridColumn60
+        '
+        Me.GridColumn60.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn60.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn60.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn60.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn60.FieldName = "Requester"
+        Me.GridColumn60.Name = "GridColumn60"
+        Me.GridColumn60.Visible = True
+        Me.GridColumn60.VisibleIndex = 4
+        Me.GridColumn60.Width = 67
+        '
+        'GridColumn61
+        '
+        Me.GridColumn61.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn61.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn61.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn61.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn61.FieldName = "Dept Head"
+        Me.GridColumn61.Name = "GridColumn61"
+        Me.GridColumn61.Visible = True
+        Me.GridColumn61.VisibleIndex = 5
+        Me.GridColumn61.Width = 63
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn62.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn62.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn62.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn62.FieldName = "Div Head"
+        Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.Visible = True
+        Me.GridColumn62.VisibleIndex = 6
+        Me.GridColumn62.Width = 63
+        '
+        'GridColumn63
+        '
+        Me.GridColumn63.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn63.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn63.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn63.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn63.FieldName = "Other Dept"
+        Me.GridColumn63.Name = "GridColumn63"
+        Me.GridColumn63.Visible = True
+        Me.GridColumn63.VisibleIndex = 7
+        Me.GridColumn63.Width = 63
+        '
+        'GridColumn64
+        '
+        Me.GridColumn64.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn64.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn64.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn64.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn64.FieldName = "Accounting"
+        Me.GridColumn64.Name = "GridColumn64"
+        Me.GridColumn64.Visible = True
+        Me.GridColumn64.VisibleIndex = 8
+        Me.GridColumn64.Width = 63
+        '
+        'GridColumn65
+        '
+        Me.GridColumn65.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn65.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn65.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn65.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn65.FieldName = "Purch"
+        Me.GridColumn65.Name = "GridColumn65"
+        Me.GridColumn65.Visible = True
+        Me.GridColumn65.VisibleIndex = 9
+        Me.GridColumn65.Width = 63
+        '
+        'GridColumn66
+        '
+        Me.GridColumn66.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn66.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn66.DisplayFormat.FormatString = "{0:N2}"
+        Me.GridColumn66.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn66.FieldName = "Amount"
+        Me.GridColumn66.Name = "GridColumn66"
+        Me.GridColumn66.Visible = True
+        Me.GridColumn66.VisibleIndex = 10
+        Me.GridColumn66.Width = 169
+        '
         'Frm_CR_Approve
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -993,6 +1173,9 @@ Partial Class Frm_CR_Approve
         Me.Search.ResumeLayout(False)
         CType(Me.Grid6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Admin.ResumeLayout(False)
+        CType(Me.GridAdmin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1072,4 +1255,18 @@ Partial Class Frm_CR_Approve
     Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Admin As TabPage
+    Friend WithEvents GridAdmin As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView7 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn58 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn64 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn65 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

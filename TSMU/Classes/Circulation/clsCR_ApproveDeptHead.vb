@@ -101,6 +101,27 @@
 
     End Function
 
+
+    Public Function Get_ApproveAdmin(DateAwal As Date, DateAkhir As Date) As DataTable
+        Try
+
+            Dim query As String = "[CR_Get_Approve_Admin]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@Date1", SqlDbType.Date)
+            pParam(1) = New SqlClient.SqlParameter("@Date2", SqlDbType.Date)
+
+            pParam(0).Value = DateAwal
+            pParam(1).Value = DateAkhir
+
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
     Public Function Get_Root_Approve(User_ As String) As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"
