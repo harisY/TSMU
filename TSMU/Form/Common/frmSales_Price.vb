@@ -144,7 +144,7 @@ Public Class frmSales_Price
         'table.Columns.Add("des_po03")
 
         Dim frmExcel As FrmSystemExcel1
-        frmExcel = New FrmSystemExcel1(table, 69)
+        frmExcel = New FrmSystemExcel1(table, 69, 1)
         frmExcel.Text = "Import " & ls_Judul
         frmExcel.StartPosition = FormStartPosition.CenterScreen
         frmExcel.ShowDialog()

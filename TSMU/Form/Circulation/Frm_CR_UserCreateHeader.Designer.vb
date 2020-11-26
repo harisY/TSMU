@@ -117,6 +117,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn3.FieldName = "Dept"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 104
         '
         'GridColumn4
@@ -129,7 +131,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
         Me.GridColumn4.Width = 105
         '
         'GridColumn5
@@ -142,7 +144,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.VisibleIndex = 4
         Me.GridColumn5.Width = 79
         '
         'GridColumn6
@@ -155,7 +157,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 5
         '
         'GridColumn23
         '
@@ -167,7 +169,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.OptionsColumn.AllowEdit = False
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 5
+        Me.GridColumn23.VisibleIndex = 6
         '
         'GridColumn24
         '
@@ -179,7 +181,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 6
+        Me.GridColumn24.VisibleIndex = 7
         '
         'GridColumn25
         '
@@ -191,7 +193,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 7
+        Me.GridColumn25.VisibleIndex = 8
         '
         'GridColumn26
         '
@@ -203,7 +205,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 8
+        Me.GridColumn26.VisibleIndex = 9
         '
         'GridColumn27
         '
@@ -215,7 +217,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.OptionsColumn.AllowEdit = False
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 9
+        Me.GridColumn27.VisibleIndex = 10
         Me.GridColumn27.Width = 173
         '
         'GridColumn7
@@ -230,7 +232,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Boolean]
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 10
+        Me.GridColumn7.VisibleIndex = 11
         '
         'C_Submit
         '
