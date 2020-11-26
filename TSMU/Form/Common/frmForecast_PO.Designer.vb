@@ -27,6 +27,7 @@ Partial Class frmForecast_PO
         Me.CekInventory1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SinkronasiDataTsm = New System.Windows.Forms.ToolStripMenuItem()
         Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteByCustToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -49,9 +50,9 @@ Partial Class frmForecast_PO
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm, Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm, Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem, Me.DeleteByCustToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(405, 152)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(405, 148)
         '
         'ExportToExcelTSM
         '
@@ -83,6 +84,12 @@ Partial Class frmForecast_PO
         Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Name = "PartNoTidakAdaInventoryDiSolomonToolStripMenuItem"
         Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Size = New System.Drawing.Size(404, 24)
         Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem.Text = "Adm -> PartNo tidak ada InventoryId di Solomon"
+        '
+        'DeleteByCustToolStripMenuItem
+        '
+        Me.DeleteByCustToolStripMenuItem.Name = "DeleteByCustToolStripMenuItem"
+        Me.DeleteByCustToolStripMenuItem.Size = New System.Drawing.Size(404, 24)
+        Me.DeleteByCustToolStripMenuItem.Text = "Delete By Customer"
         '
         'GridView1
         '
@@ -126,4 +133,5 @@ Partial Class frmForecast_PO
     Friend WithEvents CekInventory1ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SinkronasiDataTsm As ToolStripMenuItem
     Friend WithEvents PartNoTidakAdaInventoryDiSolomonToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteByCustToolStripMenuItem As ToolStripMenuItem
 End Class

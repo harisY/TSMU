@@ -145,7 +145,7 @@ Public Class frmFPrice
             Dim strCustomer As String = ""
 
             Dim frmExcel As FrmSystemExcel1
-            frmExcel = New FrmSystemExcel1(table, 69)
+            frmExcel = New FrmSystemExcel1(table, 69, 1)
             frmExcel.Text = "Import " & ls_Judul
             frmExcel.StartPosition = FormStartPosition.CenterScreen
             frmExcel.ShowDialog()
