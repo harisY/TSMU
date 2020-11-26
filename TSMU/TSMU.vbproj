@@ -940,6 +940,24 @@
       <DependentUpon>CRTravelTotalSuspenseSettRight.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\DRCCAccrued.designer.vb">
+      <DependentUpon>DRCCAccrued.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\DRCCAccrued.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\DRCCAccruedAndSettle.designer.vb">
+      <DependentUpon>DRCCAccruedAndSettle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\DRCCAccruedAndSettle.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\DRCCSettlement.designer.vb">
+      <DependentUpon>DRCCSettlement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\DRCCSettlement.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\entertain1.vb">
       <DependentUpon>entertain1.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3096,6 +3114,15 @@
     <EmbeddedResource Include="Direct\report\CRTravelTotalSuspenseSettRight.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelTotalSuspenseSettRight.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\DRCCAccrued.resx">
+      <DependentUpon>DRCCAccrued.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\DRCCAccruedAndSettle.resx">
+      <DependentUpon>DRCCAccruedAndSettle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\DRCCSettlement.resx">
+      <DependentUpon>DRCCSettlement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportCCAccrued.resx">
       <DependentUpon>FrmReportCCAccrued.vb</DependentUpon>
