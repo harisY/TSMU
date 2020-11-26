@@ -570,10 +570,12 @@ Public Class TravelSettleHeaderModel
         Try
             strQuery = "SELECT  trh.NoRequest ,
                                 trh.Nama ,
-                                trdt.DepartureDate ,
-                                trdt.ArrivalDate ,
-                                trc.Days ,
-                                SUM(tpa.Amount) AS RateAllowanceUSD ,
+                                MIN(trd.DepartureDate) AS DepartureDate ,
+                                MAX(trd.ArrivalDate) AS ArrivalDate ,
+                                SUM(trd.Days) AS [Days] ,
+                                SUM(trd.RateAllowanceUSD) AS TotRateAllowanceUSD ,
+                                SUM(trd.RateAllowanceYEN) AS TotRateAllowanceYEN ,
+                                SUM(trd.RateAllowanceIDR) AS TotRateAllowanceIDR ,
                                 SUM(trc.AdvanceUSD) AS AdvanceUSD ,
                                 SUM(trc.AdvanceUSD) AS SettlementUSD ,
                                 SUM(trc.AdvanceYEN) AS AdvanceYEN ,
@@ -583,30 +585,19 @@ Public Class TravelSettleHeaderModel
                         FROM    dbo.TravelRequestHeader AS trh
                                 INNER JOIN ( SELECT NoRequest ,
                                                     MIN(DepartureDate) AS DepartureDate ,
-                                                    MAX(ArrivalDate) AS ArrivalDate
+                                                    MAX(ArrivalDate) AS ArrivalDate ,
+                                                    SUM(Day) AS [Days] ,
+                                                    SUM(RateAllowanceUSD * Day) AS RateAllowanceUSD ,
+                                                    SUM(RateAllowanceYEN * Day) AS RateAllowanceYEN ,
+                                                    SUM(RateAllowanceIDR * Day) AS RateAllowanceIDR
                                              FROM   dbo.TravelRequestDetail
                                              GROUP BY NoRequest
-                                           ) AS trdt ON trdt.NoRequest = trh.NoRequest
-                                INNER JOIN ( SELECT DISTINCT
-                                                    a.NoRequest ,
-                                                    CASE WHEN b.NamaNegara IS NOT NULL
-                                                         THEN b.NamaNegara
-                                                         ELSE 'OTHERS'
-                                                    END AS Negara
-                                             FROM   dbo.TravelRequestDetail AS a
-                                                    LEFT JOIN dbo.TravelPocketAllowance AS b ON a.Negara = b.NamaNegara
                                            ) AS trd ON trd.NoRequest = trh.NoRequest
-                                INNER JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = trdt.NoRequest
-                                LEFT JOIN dbo.TravelPocketAllowance AS tpa ON tpa.TravelType = trh.TravelType
-                                                                              AND tpa.Golongan = trh.Golongan
-                                                                              AND tpa.NamaNegara = trd.Negara
+                                INNER JOIN dbo.TravelRequestCost AS trc ON trc.NoRequest = trh.NoRequest
                         WHERE   trc.CostType = 'C02'
-                                AND trdt.NoRequest IN ( " & _noRequest & " )
+                                AND trh.NoRequest IN ( " & _noRequest & " )
                         GROUP BY trh.NoRequest ,
-                                trh.Nama ,
-                                trdt.DepartureDate ,
-                                trdt.ArrivalDate ,
-                                trc.Days"
+                                trh.Nama"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
@@ -822,6 +813,9 @@ Public Class TravelSettleDetailModel
     Public Property ArrivalDate As Date
     Public Property Days As Integer
     Public Property RateAllowanceUSD As Double
+    Public Property TotRateAllowanceUSD As Double
+    Public Property TotRateAllowanceYEN As Double
+    Public Property TotRateAllowanceIDR As Double
     Public Property AllowanceUSD As Double
     Public Property AllowanceYEN As Double
     Public Property AllowanceIDR As Double
@@ -837,6 +831,9 @@ Public Class TravelSettleDetailModel
                                 tsd.ArrivalDate ,
                                 tsd.Days ,
                                 tsd.RateAllowanceUSD ,
+                                tsd.TotRateAllowanceUSD ,
+                                tsd.TotRateAllowanceYEN ,
+                                tsd.TotRateAllowanceIDR ,
                                 trc.AdvanceUSD AS AdvanceUSD ,
                                 tsd.AllowanceUSD AS SettlementUSD ,
                                 trc.AdvanceYEN AS AdvanceYEN ,
@@ -864,7 +861,9 @@ Public Class TravelSettleDetailModel
                                   DepartureDate ,
                                   ArrivalDate ,
                                   Days ,
-                                  RateAllowanceUSD ,
+                                  TotRateAllowanceUSD ,
+                                  TotRateAllowanceYEN ,
+                                  TotRateAllowanceIDR ,
                                   AllowanceUSD ,
                                   AllowanceYEN ,
                                   AllowanceIDR
@@ -875,7 +874,9 @@ Public Class TravelSettleDetailModel
                                   " & QVal(DepartureDate) & " , -- DepartureDate - date
                                   " & QVal(ArrivalDate) & " , -- ArrivalDate - date
                                   " & QVal(Days) & " , -- Days - int
-                                  " & QVal(RateAllowanceUSD) & " , -- RateAllowanceUSD - float
+                                  " & QVal(TotRateAllowanceUSD) & " , -- TotRateAllowanceUSD - float
+                                  " & QVal(TotRateAllowanceYEN) & " , -- TotRateAllowanceYEN - float
+                                  " & QVal(TotRateAllowanceIDR) & " , -- TotRateAllowanceIDR - float
                                   " & QVal(AllowanceUSD) & " , -- AllowanceUSD - float
                                   " & QVal(AllowanceYEN) & " , -- AllowanceYEN - float
                                   " & QVal(AllowanceIDR) & "  -- AllowanceIDR - float
@@ -918,6 +919,28 @@ Public Class TravelSettleDetailModel
             Throw
         End Try
     End Sub
+
+    Public Function GetTravelReqDetail() As DataTable
+        Try
+            Dim dt As New DataTable
+
+            Dim SP_Name As String = "Travel_Get_TravelDetailAllowance"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@NoRequest", SqlDbType.VarChar)
+            pParam(0).Value = NoRequest
+            pParam(1) = New SqlClient.SqlParameter("@DeptDate", SqlDbType.Date)
+            pParam(1).Value = DepartureDate
+            pParam(2) = New SqlClient.SqlParameter("@ArrDate", SqlDbType.Date)
+            pParam(2).Value = ArrivalDate
+
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 End Class
 
