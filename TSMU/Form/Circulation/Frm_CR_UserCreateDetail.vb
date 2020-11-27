@@ -1888,7 +1888,7 @@ Public Class Frm_CR_UserCreateDetail
         Try
 
             Dim Qty As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty"))
-            Dim Price As Single = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price"))
+            Dim Price As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price"))
             Dim Rate As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate"))
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Total Amount Currency", Qty * Price)
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Total IDR", Qty * Rate * Price)
@@ -2440,115 +2440,117 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
     Private Sub T_CRType_SelectedValueChanged(sender As Object, e As EventArgs) Handles T_CRType.SelectedValueChanged
+        If Active_Form = 1 Then
+            If T_CRType.EditValue = "Mold" Then
+                T_RequirementDate.Enabled = True
+                GroupBox1.Enabled = True
+                T_CRType.Enabled = True
+                T_Parent.Enabled = True
+                T_ParentAmount.Enabled = True
+                T_Reason.Enabled = True
+                T_Dept.Enabled = True
+                GroupBox1.Enabled = True
+                'Grid1.Enabled = True
+                GroupBox2.Enabled = True
+                C_Term.Enabled = True
+                'T_Dept.SetEditValue("")
+                C_Term.Enabled = False
+                T_NameItem.Enabled = True
+                T_Spesification.Enabled = True
+                GroupBox3.Enabled = True
+                TCustomer.Enabled = True
 
-        If T_CRType.EditValue = "Mold" Then
-            T_RequirementDate.Enabled = True
-            GroupBox1.Enabled = True
-            T_CRType.Enabled = True
-            T_Parent.Enabled = True
-            T_ParentAmount.Enabled = True
-            T_Reason.Enabled = True
-            T_Dept.Enabled = True
-            GroupBox1.Enabled = True
-            'Grid1.Enabled = True
-            GroupBox2.Enabled = True
-            C_Term.Enabled = True
-            'T_Dept.SetEditValue("")
-            C_Term.Enabled = False
-            T_NameItem.Enabled = True
-            T_Spesification.Enabled = True
-            GroupBox3.Enabled = True
-            TCustomer.Enabled = True
+                Call Edit_Grid()
+                With GridView1
 
-            Call Edit_Grid()
-            With GridView1
-
-                .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
-                .Columns("Spesification").OptionsColumn.AllowEdit = True
-                .Columns("Model").Visible = True
-                .Columns("Sales Type").Visible = True
-                .Columns("Remark").Visible = True
-                .Columns("Model").VisibleIndex = 2
-                .Columns("Sales Type").VisibleIndex = 3
-                .Columns("Remark").VisibleIndex = 4
-                .Columns("Qty").OptionsColumn.AllowEdit = True
-                .Columns("Price").OptionsColumn.AllowEdit = True
-                .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                .Columns("Curr").OptionsColumn.AllowEdit = True
-                .Columns("Category").OptionsColumn.AllowEdit = False
-                .Columns("Balance").OptionsColumn.AllowEdit = False
-                .Columns("Rate").OptionsColumn.AllowEdit = False
-                .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                .Columns("Account").OptionsColumn.AllowEdit = True
-                .Columns("Note").Visible = False
-
-
-            End With
-
-            GridView5.OptionsBehavior.Editable = True
-            BAddRows.Enabled = True
-            BMold.Enabled = True
-
-            T_Dept.SetEditValue("1FAC,1MKT")
-
-            T_Dept.Properties.Items("1MKT").Enabled = False
-
-        Else
-            T_Dept.SetEditValue("1FAC")
-            T_Dept.Properties.Items("1MKT").Enabled = True
-            TCustomer.Enabled = False
-            T_RequirementDate.Enabled = True
-            GroupBox1.Enabled = True
-            T_CRType.Enabled = True
-            T_Parent.Enabled = True
-            T_ParentAmount.Enabled = True
-            T_Reason.Enabled = True
-            T_Dept.Enabled = True
-            GroupBox1.Enabled = True
-            'Grid1.Enabled = True
-            GroupBox2.Enabled = False
-            GroupBox2.Enabled = False
-            C_Term.Enabled = True
-            'T_Dept.SetEditValue("1PUR,")
-            GroupBox2.Enabled = False
-            BMold.Enabled = False
-            C_Term.Enabled = False
-            T_NameItem.Enabled = True
-            T_Spesification.Enabled = True
-            GroupBox3.Enabled = True
-
-            GridView1.OptionsBehavior.Editable = True
-            GridView3.OptionsBehavior.Editable = False
-            GridView4.OptionsBehavior.Editable = False
-
-            With GridView1
-                .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
-                .Columns("Spesification").OptionsColumn.AllowEdit = True
-                .Columns("Model").Visible = False
-                .Columns("Sales Type").Visible = False
-                .Columns("Remark").Visible = False
-                .Columns("Qty").OptionsColumn.AllowEdit = True
-                .Columns("Price").OptionsColumn.AllowEdit = True
-                .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                .Columns("Curr").OptionsColumn.AllowEdit = True
-                .Columns("Category").OptionsColumn.AllowEdit = False
-                .Columns("Balance").OptionsColumn.AllowEdit = False
-                .Columns("Rate").OptionsColumn.AllowEdit = False
-                .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                .Columns("Account").OptionsColumn.AllowEdit = True
-                '.Columns("Check").Visible = False
-                .Columns("Note").Visible = False
+                    .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
+                    .Columns("Spesification").OptionsColumn.AllowEdit = True
+                    .Columns("Model").Visible = True
+                    .Columns("Sales Type").Visible = True
+                    .Columns("Remark").Visible = True
+                    .Columns("Model").VisibleIndex = 2
+                    .Columns("Sales Type").VisibleIndex = 3
+                    .Columns("Remark").VisibleIndex = 4
+                    .Columns("Qty").OptionsColumn.AllowEdit = True
+                    .Columns("Price").OptionsColumn.AllowEdit = True
+                    .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                    .Columns("Curr").OptionsColumn.AllowEdit = True
+                    .Columns("Category").OptionsColumn.AllowEdit = False
+                    .Columns("Balance").OptionsColumn.AllowEdit = False
+                    .Columns("Rate").OptionsColumn.AllowEdit = False
+                    .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                    .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                    .Columns("Account").OptionsColumn.AllowEdit = True
+                    .Columns("Note").Visible = False
 
 
-            End With
+                End With
 
-            GridView5.OptionsBehavior.Editable = True
-            BAddRows.Enabled = True
-            BMold.Enabled = False
+                GridView5.OptionsBehavior.Editable = True
+                BAddRows.Enabled = True
+                BMold.Enabled = True
 
+                T_Dept.SetEditValue("1FAC,1MKT")
+
+                T_Dept.Properties.Items("1MKT").Enabled = False
+
+            Else
+                T_Dept.SetEditValue("1FAC")
+                T_Dept.Properties.Items("1MKT").Enabled = True
+                TCustomer.Enabled = False
+                T_RequirementDate.Enabled = True
+                GroupBox1.Enabled = True
+                T_CRType.Enabled = True
+                T_Parent.Enabled = True
+                T_ParentAmount.Enabled = True
+                T_Reason.Enabled = True
+                T_Dept.Enabled = True
+                GroupBox1.Enabled = True
+                'Grid1.Enabled = True
+                GroupBox2.Enabled = False
+                GroupBox2.Enabled = False
+                C_Term.Enabled = True
+                'T_Dept.SetEditValue("1PUR,")
+                GroupBox2.Enabled = False
+                BMold.Enabled = False
+                C_Term.Enabled = False
+                T_NameItem.Enabled = True
+                T_Spesification.Enabled = True
+                GroupBox3.Enabled = True
+
+                GridView1.OptionsBehavior.Editable = True
+                GridView3.OptionsBehavior.Editable = False
+                GridView4.OptionsBehavior.Editable = False
+
+                With GridView1
+                    .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
+                    .Columns("Spesification").OptionsColumn.AllowEdit = True
+                    .Columns("Model").Visible = False
+                    .Columns("Sales Type").Visible = False
+                    .Columns("Remark").Visible = False
+                    .Columns("Qty").OptionsColumn.AllowEdit = True
+                    .Columns("Price").OptionsColumn.AllowEdit = True
+                    .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                    .Columns("Curr").OptionsColumn.AllowEdit = True
+                    .Columns("Category").OptionsColumn.AllowEdit = False
+                    .Columns("Balance").OptionsColumn.AllowEdit = False
+                    .Columns("Rate").OptionsColumn.AllowEdit = False
+                    .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                    .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                    .Columns("Account").OptionsColumn.AllowEdit = True
+                    '.Columns("Check").Visible = False
+                    .Columns("Note").Visible = False
+
+
+                End With
+
+                GridView5.OptionsBehavior.Editable = True
+                BAddRows.Enabled = True
+                BMold.Enabled = False
+
+            End If
         End If
+
 
     End Sub
 
