@@ -175,7 +175,7 @@ Public Class Frm_CR_UserCreateDetail
                             GridView1.OptionsBehavior.Editable = True
                             Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
                             T_CRNo.Enabled = False
-                        ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "BA" Then
+                        ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "BA" Then
                             GridView1.OptionsBehavior.Editable = True
                             Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
                             BBeritaAcara.Enabled = True
@@ -381,8 +381,9 @@ Public Class Frm_CR_UserCreateDetail
                         Call No_Edit_TextBox()
                         C_Term.Enabled = True
 
-                        If fc_Class.H_Current_Level >= 5 And fc_Class.H_Current_Level <= 6 Then
+                        If fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "Set Installment" Then
                             T_PO.Enabled = True
+                            T_PR.Enabled = True
                         End If
 
                         With GridView1
@@ -611,6 +612,7 @@ Public Class Frm_CR_UserCreateDetail
                     End If
 
                     T_PO.Text = .H_No_PO
+                    T_PR.Text = .H_PR
 
                 End With
             Else
@@ -1152,7 +1154,6 @@ Public Class Frm_CR_UserCreateDetail
                             .D_Check = 0
                         End If
 
-
                         .D_CirculationNo = NoSirkulasi
                         .D_Name_Of_Goods = Convert.ToString(GridView1.GetRowCellValue(i, "Name Of Goods"))
                         .D_Spesification = Convert.ToString(GridView1.GetRowCellValue(i, "Spesification"))
@@ -1252,15 +1253,15 @@ Public Class Frm_CR_UserCreateDetail
 
                 Next
 
-
                 fc_Class.Collection_Approve.Clear()
                 dtApprove = New DataTable
                 Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
-                If Total > 10000000 And Total <= 50000000 Then
+
+                If Total > 10000001 And Total <= 50000000 Then
                     dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
-                ElseIf Total >= 50000000 And Total <= 100000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 5)
-                ElseIf Total >= 100000000 Then
+                ElseIf Total >= 50000001 And Total <= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                ElseIf Total >= 100000001 Then
                     dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
                 End If
 
@@ -1442,11 +1443,12 @@ Public Class Frm_CR_UserCreateDetail
                 fc_Class.Collection_Approve.Clear()
                 dtApprove = New DataTable
                 Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
-                If Total > 10000000 And Total <= 50000000 Then
+
+                If Total > 10000001 And Total <= 50000000 Then
                     dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
-                ElseIf Total >= 50000000 And Total <= 100000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 5)
-                ElseIf Total >= 100000000 Then
+                ElseIf Total >= 50000001 And Total <= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                ElseIf Total >= 100000001 Then
                     dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
                 End If
 
@@ -1665,8 +1667,6 @@ Public Class Frm_CR_UserCreateDetail
         End Try
 
     End Sub
-
-
 
     Public Sub CallForm(Optional ByVal Model As String = "",
                         Optional ByVal Customer As String = "",
@@ -3403,6 +3403,8 @@ Public Class Frm_CR_UserCreateDetail
             With fc_Class
                 .H_Status = "Set Installment"
                 .H_No_PO = IIf(T_PO.Text Is DBNull.Value, "", T_PO.Text)
+                .H_No_PR = IIf(T_PR.Text Is DBNull.Value, "", T_PR.Text)
+                .H_Current_Level = Active_Form
             End With
 
             Try
@@ -3478,7 +3480,7 @@ Public Class Frm_CR_UserCreateDetail
             GridDtl.DataSource = fc_Class_Accounting.Get_Cek_Purchase
             Me.Hide()
         ElseIf Active_Form = 7 Then   ' (CR Close)
-            If fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "Set Installment" Then
+            If fc_Class.H_Status = "BA" Then
                 Dim result As DialogResult = MessageBox.Show("Are You Want to  Close CR '" & fs_Code & "'?",
                                                     "CIRCULATION",
                                                     MessageBoxButtons.OKCancel,
@@ -3811,8 +3813,6 @@ Public Class Frm_CR_UserCreateDetail
         Next
 
     End Sub
-
-
 
     Public Overrides Sub Proc_DeleteData()
 

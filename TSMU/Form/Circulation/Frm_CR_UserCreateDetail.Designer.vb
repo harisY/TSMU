@@ -137,6 +137,8 @@ Partial Class Frm_CR_UserCreateDetail
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BPrint = New System.Windows.Forms.Button()
+        Me.T_PR = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,6 +213,8 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.RepositoryItemSpinEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.T_PR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RB_Budget
@@ -240,16 +244,16 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GroupBox1.Controls.Add(Me.RB_Budget)
         Me.GroupBox1.Controls.Add(Me.RB_NonBudget)
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox1.Location = New System.Drawing.Point(345, 84)
+        Me.GroupBox1.Location = New System.Drawing.Point(427, 84)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(189, 30)
+        Me.GroupBox1.Size = New System.Drawing.Size(202, 30)
         Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         '
         'T_RequirementDate
         '
         Me.T_RequirementDate.EditValue = Nothing
-        Me.T_RequirementDate.Location = New System.Drawing.Point(87, 36)
+        Me.T_RequirementDate.Location = New System.Drawing.Point(261, 12)
         Me.T_RequirementDate.Name = "T_RequirementDate"
         Me.T_RequirementDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.T_RequirementDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -259,12 +263,13 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_RequirementDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.T_RequirementDate.Properties.Mask.EditMask = "dd-MM-yyyy"
         Me.T_RequirementDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.T_RequirementDate.Size = New System.Drawing.Size(179, 20)
+        Me.T_RequirementDate.Size = New System.Drawing.Size(87, 20)
         Me.T_RequirementDate.StyleController = Me.LayoutControl1
         Me.T_RequirementDate.TabIndex = 6
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.T_PR)
         Me.LayoutControl1.Controls.Add(Me.T_PO)
         Me.LayoutControl1.Controls.Add(Me.BBeritaAcara)
         Me.LayoutControl1.Controls.Add(Me.BMold)
@@ -293,17 +298,17 @@ Partial Class Frm_CR_UserCreateDetail
         'T_PO
         '
         Me.T_PO.Enabled = False
-        Me.T_PO.Location = New System.Drawing.Point(613, 12)
+        Me.T_PO.Location = New System.Drawing.Point(708, 12)
         Me.T_PO.Name = "T_PO"
-        Me.T_PO.Size = New System.Drawing.Size(209, 20)
+        Me.T_PO.Size = New System.Drawing.Size(169, 20)
         Me.T_PO.TabIndex = 98
         '
         'BBeritaAcara
         '
         Me.BBeritaAcara.Enabled = False
-        Me.BBeritaAcara.Location = New System.Drawing.Point(826, 84)
+        Me.BBeritaAcara.Location = New System.Drawing.Point(711, 84)
         Me.BBeritaAcara.Name = "BBeritaAcara"
-        Me.BBeritaAcara.Size = New System.Drawing.Size(104, 30)
+        Me.BBeritaAcara.Size = New System.Drawing.Size(146, 30)
         Me.BBeritaAcara.TabIndex = 97
         Me.BBeritaAcara.Text = "Berita Acara"
         Me.BBeritaAcara.UseVisualStyleBackColor = True
@@ -311,9 +316,9 @@ Partial Class Frm_CR_UserCreateDetail
         'BMold
         '
         Me.BMold.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BMold.Location = New System.Drawing.Point(934, 84)
+        Me.BMold.Location = New System.Drawing.Point(861, 84)
         Me.BMold.Name = "BMold"
-        Me.BMold.Size = New System.Drawing.Size(107, 30)
+        Me.BMold.Size = New System.Drawing.Size(133, 30)
         Me.BMold.TabIndex = 79
         Me.BMold.Text = "Mold"
         Me.BMold.UseVisualStyleBackColor = True
@@ -325,7 +330,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GroupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox3.Location = New System.Drawing.Point(87, 84)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(179, 30)
+        Me.GroupBox3.Size = New System.Drawing.Size(261, 30)
         Me.GroupBox3.TabIndex = 93
         Me.GroupBox3.TabStop = False
         '
@@ -355,26 +360,26 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.T_Spesification.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.T_Spesification.Location = New System.Drawing.Point(613, 60)
+        Me.T_Spesification.Location = New System.Drawing.Point(708, 60)
         Me.T_Spesification.Name = "T_Spesification"
-        Me.T_Spesification.Size = New System.Drawing.Size(548, 20)
+        Me.T_Spesification.Size = New System.Drawing.Size(453, 20)
         Me.T_Spesification.StyleController = Me.LayoutControl1
         Me.T_Spesification.TabIndex = 94
         '
         'T_Reason
         '
-        Me.T_Reason.Location = New System.Drawing.Point(345, 60)
+        Me.T_Reason.Location = New System.Drawing.Point(427, 60)
         Me.T_Reason.Name = "T_Reason"
-        Me.T_Reason.Size = New System.Drawing.Size(189, 20)
+        Me.T_Reason.Size = New System.Drawing.Size(202, 20)
         Me.T_Reason.StyleController = Me.LayoutControl1
         Me.T_Reason.TabIndex = 95
         '
         'BAddRows
         '
         Me.BAddRows.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BAddRows.Location = New System.Drawing.Point(1045, 84)
+        Me.BAddRows.Location = New System.Drawing.Point(998, 84)
         Me.BAddRows.Name = "BAddRows"
-        Me.BAddRows.Size = New System.Drawing.Size(116, 30)
+        Me.BAddRows.Size = New System.Drawing.Size(163, 30)
         Me.BAddRows.TabIndex = 78
         Me.BAddRows.Text = "Add Rows"
         Me.BAddRows.UseVisualStyleBackColor = True
@@ -385,24 +390,24 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_CRType.Location = New System.Drawing.Point(87, 12)
         Me.T_CRType.Name = "T_CRType"
         Me.T_CRType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.T_CRType.Size = New System.Drawing.Size(179, 20)
+        Me.T_CRType.Size = New System.Drawing.Size(95, 20)
         Me.T_CRType.StyleController = Me.LayoutControl1
         Me.T_CRType.TabIndex = 4
         '
         'T_NameItem
         '
-        Me.T_NameItem.Location = New System.Drawing.Point(345, 36)
+        Me.T_NameItem.Location = New System.Drawing.Point(87, 36)
         Me.T_NameItem.Name = "T_NameItem"
-        Me.T_NameItem.Size = New System.Drawing.Size(189, 20)
+        Me.T_NameItem.Size = New System.Drawing.Size(261, 20)
         Me.T_NameItem.StyleController = Me.LayoutControl1
         Me.T_NameItem.TabIndex = 89
         '
         'T_CRNo
         '
-        Me.T_CRNo.Location = New System.Drawing.Point(345, 12)
+        Me.T_CRNo.Location = New System.Drawing.Point(427, 12)
         Me.T_CRNo.Name = "T_CRNo"
         Me.T_CRNo.Properties.MaxLength = 49
-        Me.T_CRNo.Size = New System.Drawing.Size(189, 20)
+        Me.T_CRNo.Size = New System.Drawing.Size(202, 20)
         Me.T_CRNo.StyleController = Me.LayoutControl1
         Me.T_CRNo.TabIndex = 1
         '
@@ -412,16 +417,16 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_Dept.Location = New System.Drawing.Point(87, 60)
         Me.T_Dept.Name = "T_Dept"
         Me.T_Dept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.T_Dept.Size = New System.Drawing.Size(179, 20)
+        Me.T_Dept.Size = New System.Drawing.Size(261, 20)
         Me.T_Dept.StyleController = Me.LayoutControl1
         Me.T_Dept.TabIndex = 63
         '
         'T_Parent
         '
-        Me.T_Parent.Location = New System.Drawing.Point(613, 36)
+        Me.T_Parent.Location = New System.Drawing.Point(708, 36)
         Me.T_Parent.Name = "T_Parent"
         Me.T_Parent.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.T_Parent.Size = New System.Drawing.Size(209, 20)
+        Me.T_Parent.Size = New System.Drawing.Size(169, 20)
         Me.T_Parent.StyleController = Me.LayoutControl1
         Me.T_Parent.TabIndex = 65
         '
@@ -430,21 +435,21 @@ Partial Class Frm_CR_UserCreateDetail
         Me.T_ParentAmount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.T_ParentAmount.EditValue = "0"
-        Me.T_ParentAmount.Location = New System.Drawing.Point(901, 36)
+        Me.T_ParentAmount.Location = New System.Drawing.Point(956, 36)
         Me.T_ParentAmount.Name = "T_ParentAmount"
         Me.T_ParentAmount.Properties.DisplayFormat.FormatString = "{0:N0}"
         Me.T_ParentAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.T_ParentAmount.Size = New System.Drawing.Size(260, 20)
+        Me.T_ParentAmount.Size = New System.Drawing.Size(205, 20)
         Me.T_ParentAmount.StyleController = Me.LayoutControl1
         Me.T_ParentAmount.TabIndex = 66
         '
         'TCustomer
         '
-        Me.TCustomer.Location = New System.Drawing.Point(901, 12)
+        Me.TCustomer.Location = New System.Drawing.Point(427, 36)
         Me.TCustomer.Name = "TCustomer"
         Me.TCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.TCustomer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.TCustomer.Size = New System.Drawing.Size(260, 20)
+        Me.TCustomer.Size = New System.Drawing.Size(202, 20)
         Me.TCustomer.StyleController = Me.LayoutControl1
         Me.TCustomer.TabIndex = 99
         '
@@ -452,7 +457,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem3, Me.LayoutControlItem2, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.EmptySpaceItem1})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem2, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem9, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.EmptySpaceItem1, Me.LayoutControlItem8, Me.LayoutControlItem17, Me.LayoutControlItem3, Me.LayoutControlItem16})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(1173, 126)
         Me.Root.TextVisible = False
@@ -462,16 +467,16 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem1.Control = Me.T_CRType
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(258, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(174, 24)
         Me.LayoutControlItem1.Text = "CR Type"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.T_CRNo
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(258, 0)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(340, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(268, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(281, 24)
         Me.LayoutControlItem6.Text = "Circulation No"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(72, 13)
         '
@@ -480,34 +485,34 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem7.Control = Me.T_Dept
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(258, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(340, 24)
         Me.LayoutControlItem7.Text = "Comment"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.T_RequirementDate
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(174, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(258, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(166, 24)
         Me.LayoutControlItem3.Text = "Req Date"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.T_NameItem
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(258, 24)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(268, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(340, 24)
         Me.LayoutControlItem2.Text = "Name Of Item"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.GroupBox1
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(258, 72)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(340, 72)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(268, 34)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(281, 34)
         Me.LayoutControlItem10.Text = "Budget Type"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(72, 13)
         '
@@ -516,99 +521,99 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem11.Control = Me.GroupBox3
         Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(258, 34)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(340, 34)
         Me.LayoutControlItem11.Text = "Po Type"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.T_Parent
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(526, 24)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(621, 24)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(288, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(248, 24)
         Me.LayoutControlItem8.Text = "Parent CR"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.T_ParentAmount
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(814, 24)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(869, 24)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(339, 24)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(284, 24)
         Me.LayoutControlItem9.Text = "Parent Amount"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.T_Reason
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(258, 48)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(340, 48)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(268, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(281, 24)
         Me.LayoutControlItem4.Text = "Reason"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.T_Spesification
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(526, 48)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(621, 48)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(627, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(532, 24)
         Me.LayoutControlItem5.Text = "Spesification"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.BMold
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(922, 72)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(849, 72)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(111, 34)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(137, 34)
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem12.TextVisible = False
         '
         'LayoutControlItem13
         '
         Me.LayoutControlItem13.Control = Me.BAddRows
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(1033, 72)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(986, 72)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(120, 34)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(167, 34)
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem13.TextVisible = False
         '
         'LayoutControlItem14
         '
         Me.LayoutControlItem14.Control = Me.BBeritaAcara
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(814, 72)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(699, 72)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(108, 34)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(150, 34)
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem14.TextVisible = False
         '
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me.T_PO
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(526, 0)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(621, 0)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(288, 24)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(248, 24)
         Me.LayoutControlItem15.Text = "PO Number"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.TCustomer
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(814, 0)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(340, 24)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(339, 24)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(281, 24)
         Me.LayoutControlItem16.Text = "Customer"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(72, 13)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(526, 72)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(621, 72)
         Me.EmptySpaceItem1.MaxSize = New System.Drawing.Size(0, 7)
         Me.EmptySpaceItem1.MinSize = New System.Drawing.Size(5, 5)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(288, 34)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(78, 34)
         Me.EmptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -1320,6 +1325,24 @@ Partial Class Frm_CR_UserCreateDetail
         Me.BPrint.UseVisualStyleBackColor = True
         Me.BPrint.Visible = False
         '
+        'T_PR
+        '
+        Me.T_PR.Enabled = False
+        Me.T_PR.Location = New System.Drawing.Point(956, 12)
+        Me.T_PR.Name = "T_PR"
+        Me.T_PR.Size = New System.Drawing.Size(205, 20)
+        Me.T_PR.StyleController = Me.LayoutControl1
+        Me.T_PR.TabIndex = 100
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.T_PR
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(869, 0)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(284, 24)
+        Me.LayoutControlItem17.Text = "PR Number"
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(72, 13)
+        '
         'Frm_CR_UserCreateDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1419,6 +1442,8 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.RepositoryItemSpinEdit8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.T_PR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1541,4 +1566,6 @@ Partial Class Frm_CR_UserCreateDetail
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents BPrint As Button
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents T_PR As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
 End Class
