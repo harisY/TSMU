@@ -115,170 +115,96 @@ Public Class Frm_CR_UserCreateDetail
         Try
             If fs_Code <> "" Then
                 fc_Class.GetDataByID(fs_Code)
-                Call LoadTxtBox()
-                Call LoadGridBarang(fs_Code)
-                Call LoadGridInstallment(fs_Code)
-                Call LoadGrid_OtherDept(fs_Code)
-
-                If T_CRType.EditValue = "Mold" Then
-                    With GridView1
-                        .Columns("Model").Visible = True
-                        .Columns("Sales Type").Visible = True
-                        .Columns("Remark").Visible = True
-                    End With
+                If gh_Common.AdminStatus = True Then
+                    Call LoadTxtBox()
+                    Call LoadGridBarang(fs_Code)
+                    Call LoadGridInstallment(fs_Code)
+                    Call LoadGrid_OtherDept(fs_Code)
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+                    Call No_Edit_TextBox()
                 Else
-                    With GridView1
-                        .Columns("Model").Visible = False
-                        .Columns("Sales Type").Visible = False
-                        .Columns("Remark").Visible = False
-                    End With
 
-                End If
+                    Call LoadTxtBox()
+                    Call LoadGridBarang(fs_Code)
+                    Call LoadGridInstallment(fs_Code)
+                    Call LoadGrid_OtherDept(fs_Code)
 
-
-                If ls_Error <> "" Then
-                    Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
-                    isCancel = True
-                    Me.Hide()
-                    Exit Sub
-                Else
-                    isUpdate = True
-                End If
-                Me.Text = "CIRCULATION FORM -> " & fs_Code
-
-                'Active_Form 1 = User
-                If Active_Form = 1 Then
-
-                    BPrint.Visible = True
-
-                    With GridView1
-                        .Columns("Note").Visible = True
-                    End With
-
-                    Grid4.Enabled = False
-                    If T_CRType.Text = "Mold" Then
-                        GroupBox2.Enabled = True
+                    If T_CRType.EditValue = "Mold" Then
+                        With GridView1
+                            .Columns("Model").Visible = True
+                            .Columns("Sales Type").Visible = True
+                            .Columns("Remark").Visible = True
+                        End With
                     Else
-                        GroupBox2.Enabled = False
+                        With GridView1
+                            .Columns("Model").Visible = False
+                            .Columns("Sales Type").Visible = False
+                            .Columns("Remark").Visible = False
+                        End With
+
                     End If
-                    C_Term.Visible = False
-                    If fc_Class.H_Status = "Create" Or fc_Class.H_Status = "Submit" Or fc_Class.H_Status = "Revise" Then
-                        GridView1.OptionsBehavior.Editable = True
-                        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
-                        T_CRNo.Enabled = False
-                    ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "BA" Then
-                        GridView1.OptionsBehavior.Editable = True
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
-                        BBeritaAcara.Enabled = True
-                        BAddRows.Enabled = False
-                        T_CRNo.Enabled = False
+
+
+                    If ls_Error <> "" Then
+                        Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
+                        isCancel = True
+                        Me.Hide()
+                        Exit Sub
                     Else
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
-                        Call No_Edit_TextBox()
+                        isUpdate = True
+                    End If
+                    Me.Text = "CIRCULATION FORM -> " & fs_Code
+
+                    'Active_Form 1 = User
+                    If Active_Form = 1 Then
+
+                        BPrint.Visible = True
+
+                        With GridView1
+                            .Columns("Note").Visible = True
+                        End With
+
+                        Grid4.Enabled = False
+                        If T_CRType.Text = "Mold" Then
+                            GroupBox2.Enabled = True
+                        Else
+                            GroupBox2.Enabled = False
+                        End If
+                        C_Term.Visible = False
+                        If fc_Class.H_Status = "Create" Or fc_Class.H_Status = "Submit" Or fc_Class.H_Status = "Revise" Then
+                            GridView1.OptionsBehavior.Editable = True
+                            Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
+                            T_CRNo.Enabled = False
+                        ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "BA" Then
+                            GridView1.OptionsBehavior.Editable = True
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
+                            BBeritaAcara.Enabled = True
+                            BAddRows.Enabled = False
+                            T_CRNo.Enabled = False
+                        Else
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
+                            Call No_Edit_TextBox()
+                            BAddRows.Enabled = False
+                            BMold.Enabled = False
+                        End If
+                        'Active_Form 2 = DeptHead
+                        Grid4.Visible = False
+                        C_Term.Visible = False
+
+                    ElseIf Active_Form = 2 Then
+
+                        Grid5.Visible = True
+                        Grid4.Visible = False
+                        C_Term.Visible = False
+
+                        GridView3.OptionsBehavior.Editable = False
+                        GridView4.OptionsBehavior.Editable = False
+                        GridView1.OptionsBehavior.Editable = True
                         BAddRows.Enabled = False
                         BMold.Enabled = False
-                    End If
-                    'Active_Form 2 = DeptHead
-                    Grid4.Visible = False
-                    C_Term.Visible = False
+                        Call No_Edit_TextBox()
 
-                ElseIf Active_Form = 2 Then
-
-                    Grid5.Visible = True
-                    Grid4.Visible = False
-                    C_Term.Visible = False
-
-                    GridView3.OptionsBehavior.Editable = False
-                    GridView4.OptionsBehavior.Editable = False
-                    GridView1.OptionsBehavior.Editable = True
-                    BAddRows.Enabled = False
-                    BMold.Enabled = False
-                    Call No_Edit_TextBox()
-
-                    With GridView1
-                        .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
-                        .Columns("Spesification").OptionsColumn.AllowEdit = False
-                        .Columns("Qty").OptionsColumn.AllowEdit = False
-                        .Columns("Price").OptionsColumn.AllowEdit = False
-                        .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                        .Columns("Curr").OptionsColumn.AllowEdit = False
-                        .Columns("Category").OptionsColumn.AllowEdit = False
-                        .Columns("Balance").OptionsColumn.AllowEdit = False
-                        .Columns("Rate").OptionsColumn.AllowEdit = False
-                        .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                        .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                        .Columns("Account").OptionsColumn.AllowEdit = False
-                        '.Columns("Check").Visible = True
-                        '.Columns("Check").OptionsColumn.AllowEdit = True
-                        .Columns("Note").Visible = True
-                        .Columns("Note").OptionsColumn.AllowEdit = True
-
-                    End With
-
-                    If fc_Class.H_Status = "Submit" Or fc_Class.H_Status = "Approve 1" Or fc_Class.H_Status = "Other Dept" Then
-                        Call Proc_EnableButtons(False, False, True, False, False, False, False, False, False, False, True)
-                    Else
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
-                        GridView1.OptionsBehavior.Editable = False
-                    End If
-                    'Active_Form 3 = DIVtHead
-                ElseIf Active_Form = 3 Then
-                    Grid5.Visible = True
-                    Grid4.Visible = False
-                    C_Term.Visible = False
-                    GridView3.OptionsBehavior.Editable = False
-                    GridView4.OptionsBehavior.Editable = False
-                    GridView1.OptionsBehavior.Editable = True
-                    BAddRows.Enabled = False
-                    BMold.Enabled = False
-                    Call No_Edit_TextBox()
-
-                    With GridView1
-                        .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
-                        .Columns("Spesification").OptionsColumn.AllowEdit = False
-                        .Columns("Qty").OptionsColumn.AllowEdit = False
-                        .Columns("Price").OptionsColumn.AllowEdit = False
-                        .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                        .Columns("Curr").OptionsColumn.AllowEdit = False
-                        .Columns("Category").OptionsColumn.AllowEdit = False
-                        .Columns("Balance").OptionsColumn.AllowEdit = False
-                        .Columns("Rate").OptionsColumn.AllowEdit = False
-                        .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                        .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                        .Columns("Account").OptionsColumn.AllowEdit = False
-                        '.Columns("Check").Visible = True
-                        '.Columns("Check").OptionsColumn.AllowEdit = True
-                        .Columns("Note").Visible = True
-                        .Columns("Note").OptionsColumn.AllowEdit = True
-
-                    End With
-
-                    If fc_Class.H_Status = "Approve 1" Or fc_Class.H_Status = "Approve 2" Or fc_Class.H_Status = "Other Dept" Then
-                        Call Proc_EnableButtons(False, False, True, False, False, False, False, False, False, False, True)
-                    Else
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
-                        GridView1.OptionsBehavior.Editable = False
-                    End If
-
-
-                ElseIf Active_Form = 4 Then   'Other Dept
-
-                    Grid5.Visible = True
-                    Grid4.Visible = False
-                    C_Term.Visible = False
-                    GridView3.OptionsBehavior.Editable = False
-                    GridView4.OptionsBehavior.Editable = False
-                    GridView5.OptionsBehavior.Editable = True
-                    GridView1.OptionsBehavior.Editable = False
-                    BAddRows.Enabled = False
-                    BMold.Enabled = False
-                    Call No_Edit_TextBox()
-
-                    If gh_Common.GroupID = "1MKT" Then
-                        GridView1.OptionsBehavior.Editable = True
                         With GridView1
-                            .Columns("Sales Type").Visible = True
-                            .Columns("Sales Type").OptionsColumn.AllowEdit = True
                             .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
                             .Columns("Spesification").OptionsColumn.AllowEdit = False
                             .Columns("Qty").OptionsColumn.AllowEdit = False
@@ -291,16 +217,32 @@ Public Class Frm_CR_UserCreateDetail
                             .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
                             .Columns("Total IDR").OptionsColumn.AllowEdit = False
                             .Columns("Account").OptionsColumn.AllowEdit = False
+                            '.Columns("Check").Visible = True
+                            '.Columns("Check").OptionsColumn.AllowEdit = True
+                            .Columns("Note").Visible = True
+                            .Columns("Note").OptionsColumn.AllowEdit = True
 
                         End With
-                    ElseIf gh_Common.GroupID = "1FAC" Then
 
-                        T_CRType.Enabled = True
-                        GroupBox1.Enabled = True
+                        If fc_Class.H_Status = "Submit" Or fc_Class.H_Status = "Approve 1" Or fc_Class.H_Status = "Other Dept" Then
+                            Call Proc_EnableButtons(False, False, True, False, False, False, False, False, False, False, True)
+                        Else
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                            GridView1.OptionsBehavior.Editable = False
+                        End If
+                        'Active_Form 3 = DIVtHead
+                    ElseIf Active_Form = 3 Then
+                        Grid5.Visible = True
+                        Grid4.Visible = False
+                        C_Term.Visible = False
+                        GridView3.OptionsBehavior.Editable = False
+                        GridView4.OptionsBehavior.Editable = False
                         GridView1.OptionsBehavior.Editable = True
-                        With GridView1
+                        BAddRows.Enabled = False
+                        BMold.Enabled = False
+                        Call No_Edit_TextBox()
 
-                            .Columns("Sales Type").OptionsColumn.AllowEdit = False
+                        With GridView1
                             .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
                             .Columns("Spesification").OptionsColumn.AllowEdit = False
                             .Columns("Qty").OptionsColumn.AllowEdit = False
@@ -312,161 +254,232 @@ Public Class Frm_CR_UserCreateDetail
                             .Columns("Rate").OptionsColumn.AllowEdit = False
                             .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
                             .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                            .Columns("Account").OptionsColumn.AllowEdit = True
+                            .Columns("Account").OptionsColumn.AllowEdit = False
+                            '.Columns("Check").Visible = True
+                            '.Columns("Check").OptionsColumn.AllowEdit = True
+                            .Columns("Note").Visible = True
+                            .Columns("Note").OptionsColumn.AllowEdit = True
 
                         End With
-                    End If
 
-                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
-                ElseIf Active_Form = 5 Then  'Active_Form 5 = Accounting
-                    Grid5.Visible = False
-                    Grid4.Visible = True
-                    C_Term.Visible = True
-                    GridView3.OptionsBehavior.Editable = False
-                    GridView4.OptionsBehavior.Editable = False
-                    GridView5.OptionsBehavior.Editable = True
-                    GridView1.OptionsBehavior.Editable = False
-                    BAddRows.Enabled = False
-                    BMold.Enabled = False
-                    Call No_Edit_TextBox()
+                        If fc_Class.H_Status = "Approve 1" Or fc_Class.H_Status = "Approve 2" Or fc_Class.H_Status = "Other Dept" Then
+                            Call Proc_EnableButtons(False, False, True, False, False, False, False, False, False, False, True)
+                        Else
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                            GridView1.OptionsBehavior.Editable = False
+                        End If
 
-                    With GridView1
-                        .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
-                        .Columns("Spesification").OptionsColumn.AllowEdit = False
-                        .Columns("Qty").OptionsColumn.AllowEdit = False
-                        .Columns("Price").OptionsColumn.AllowEdit = False
-                        .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                        .Columns("Curr").OptionsColumn.AllowEdit = False
-                        .Columns("Category").OptionsColumn.AllowEdit = False
-                        .Columns("Balance").OptionsColumn.AllowEdit = False
-                        .Columns("Rate").OptionsColumn.AllowEdit = False
-                        .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                        .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                        .Columns("Account").OptionsColumn.AllowEdit = False
-                        '.Columns("Check").Visible = True
-                        .Columns("Note").Visible = True
-                    End With
 
-                    If fc_Class.H_Status = "Other Dept" Then
+                    ElseIf Active_Form = 4 Then   'Other Dept
+
+                        Grid5.Visible = True
+                        Grid4.Visible = False
+                        C_Term.Visible = False
+                        GridView3.OptionsBehavior.Editable = False
+                        GridView4.OptionsBehavior.Editable = False
+                        GridView5.OptionsBehavior.Editable = True
+                        GridView1.OptionsBehavior.Editable = False
+                        BAddRows.Enabled = False
+                        BMold.Enabled = False
+                        Call No_Edit_TextBox()
+
+                        If gh_Common.GroupID = "1MKT" Then
+                            GridView1.OptionsBehavior.Editable = True
+                            With GridView1
+                                .Columns("Sales Type").Visible = True
+                                .Columns("Sales Type").OptionsColumn.AllowEdit = True
+                                .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
+                                .Columns("Spesification").OptionsColumn.AllowEdit = False
+                                .Columns("Qty").OptionsColumn.AllowEdit = False
+                                .Columns("Price").OptionsColumn.AllowEdit = False
+                                .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                                .Columns("Curr").OptionsColumn.AllowEdit = False
+                                .Columns("Category").OptionsColumn.AllowEdit = False
+                                .Columns("Balance").OptionsColumn.AllowEdit = False
+                                .Columns("Rate").OptionsColumn.AllowEdit = False
+                                .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                                .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                                .Columns("Account").OptionsColumn.AllowEdit = False
+
+                            End With
+                        ElseIf gh_Common.GroupID = "1FAC" Then
+
+                            T_CRType.Enabled = True
+                            GroupBox1.Enabled = True
+                            GridView1.OptionsBehavior.Editable = True
+                            With GridView1
+
+                                .Columns("Sales Type").OptionsColumn.AllowEdit = False
+                                .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
+                                .Columns("Spesification").OptionsColumn.AllowEdit = False
+                                .Columns("Qty").OptionsColumn.AllowEdit = False
+                                .Columns("Price").OptionsColumn.AllowEdit = False
+                                .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                                .Columns("Curr").OptionsColumn.AllowEdit = False
+                                .Columns("Category").OptionsColumn.AllowEdit = False
+                                .Columns("Balance").OptionsColumn.AllowEdit = False
+                                .Columns("Rate").OptionsColumn.AllowEdit = False
+                                .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                                .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                                .Columns("Account").OptionsColumn.AllowEdit = True
+
+                            End With
+                        End If
+
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
-                    ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
-                        'ElseIf fc_Class.H_Status = "BA" Then
+                    ElseIf Active_Form = 5 Then  'Active_Form 5 = Accounting
+                        Grid5.Visible = False
+                        Grid4.Visible = True
+                        C_Term.Visible = True
+                        GridView3.OptionsBehavior.Editable = False
+                        GridView4.OptionsBehavior.Editable = False
+                        GridView5.OptionsBehavior.Editable = True
+                        GridView1.OptionsBehavior.Editable = False
+                        BAddRows.Enabled = False
+                        BMold.Enabled = False
+                        Call No_Edit_TextBox()
+
+                        With GridView1
+                            .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
+                            .Columns("Spesification").OptionsColumn.AllowEdit = False
+                            .Columns("Qty").OptionsColumn.AllowEdit = False
+                            .Columns("Price").OptionsColumn.AllowEdit = False
+                            .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                            .Columns("Curr").OptionsColumn.AllowEdit = False
+                            .Columns("Category").OptionsColumn.AllowEdit = False
+                            .Columns("Balance").OptionsColumn.AllowEdit = False
+                            .Columns("Rate").OptionsColumn.AllowEdit = False
+                            .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                            .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                            .Columns("Account").OptionsColumn.AllowEdit = False
+                            '.Columns("Check").Visible = True
+                            .Columns("Note").Visible = True
+                        End With
+
+                        If fc_Class.H_Status = "Other Dept" Then
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                        ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
+                            'ElseIf fc_Class.H_Status = "BA" Then
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                            BBeritaAcara.Visible = True
+                            BBeritaAcara.Text = "No Berita Acara"
+                        Else
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        End If
+
+                    ElseIf Active_Form = 6 Then  'Active_Form 6 = Purchase Monitor
+                        Grid5.Visible = False
+                        Grid4.Visible = True
+                        C_Term.Visible = True
+                        Call LoadGridInstallment(fc_Class.H_CirculationNo)
+                        GridView3.OptionsBehavior.Editable = False
+                        GridView4.OptionsBehavior.Editable = True
+                        GridView5.OptionsBehavior.Editable = True
+                        GridView1.OptionsBehavior.Editable = False
+                        BAddRows.Enabled = False
+                        BMold.Enabled = False
+                        Call No_Edit_TextBox()
+                        C_Term.Enabled = True
+
+                        If fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "Set Installment" Then
+                            T_PO.Enabled = True
+                            T_PR.Enabled = True
+                        End If
+
+                        With GridView1
+                            .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
+                            .Columns("Spesification").OptionsColumn.AllowEdit = False
+                            .Columns("Qty").OptionsColumn.AllowEdit = False
+                            .Columns("Price").OptionsColumn.AllowEdit = False
+                            .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                            .Columns("Curr").OptionsColumn.AllowEdit = False
+                            .Columns("Category").OptionsColumn.AllowEdit = False
+                            .Columns("Balance").OptionsColumn.AllowEdit = False
+                            .Columns("Rate").OptionsColumn.AllowEdit = False
+                            .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                            .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                            .Columns("Account").OptionsColumn.AllowEdit = False
+                            '.Columns("Check").Visible = True
+                            .Columns("Note").Visible = True
+                        End With
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+
+                        'Active_Form 7 = Purchase Termin
+                    ElseIf Active_Form = 7 Then
+
+                        Grid5.Visible = False
+                        Grid4.Visible = True
+                        C_Term.Visible = True
+                        GridView3.OptionsBehavior.Editable = False
+                        GridView4.OptionsBehavior.Editable = False
+                        GridView5.OptionsBehavior.Editable = True
+                        GridView1.OptionsBehavior.Editable = False
+                        BAddRows.Enabled = False
+                        BMold.Enabled = False
+
+                        Call No_Edit_TextBox()
+
+                        With GridView1
+                            .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
+                            .Columns("Spesification").OptionsColumn.AllowEdit = False
+                            .Columns("Qty").OptionsColumn.AllowEdit = False
+                            .Columns("Price").OptionsColumn.AllowEdit = False
+                            .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                            .Columns("Curr").OptionsColumn.AllowEdit = False
+                            .Columns("Category").OptionsColumn.AllowEdit = False
+                            .Columns("Balance").OptionsColumn.AllowEdit = False
+                            .Columns("Rate").OptionsColumn.AllowEdit = False
+                            .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                            .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                            .Columns("Account").OptionsColumn.AllowEdit = False
+                            '.Columns("Check").Visible = True
+                            .Columns("Note").Visible = True
+                        End With
+                        If fc_Class.H_Status = "BA" Then
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
+                            BBeritaAcara.Enabled = True
+                        Else
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+                        End If
+
+
+                    ElseIf Active_Form = 8 Then
+                        Grid5.Visible = True
+                        Grid4.Visible = False
+                        C_Term.Visible = False
+                        GridView3.OptionsBehavior.Editable = False
+                        GridView4.OptionsBehavior.Editable = False
+                        GridView5.OptionsBehavior.Editable = False
+                        GridView1.OptionsBehavior.Editable = False
+                        BAddRows.Enabled = False
+                        BMold.Enabled = False
                         BBeritaAcara.Visible = True
-                        BBeritaAcara.Text = "No Berita Acara"
-                    Else
+                        Call No_Edit_TextBox()
+
+                        With GridView1
+                            .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
+                            .Columns("Spesification").OptionsColumn.AllowEdit = False
+                            .Columns("Qty").OptionsColumn.AllowEdit = False
+                            .Columns("Price").OptionsColumn.AllowEdit = False
+                            .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                            .Columns("Curr").OptionsColumn.AllowEdit = False
+                            .Columns("Category").OptionsColumn.AllowEdit = False
+                            .Columns("Balance").OptionsColumn.AllowEdit = False
+                            .Columns("Rate").OptionsColumn.AllowEdit = False
+                            .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                            .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                            .Columns("Account").OptionsColumn.AllowEdit = False
+                            '.Columns("Check").Visible = True
+                            .Columns("Note").Visible = True
+                        End With
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                     End If
+                    Call Sub_Dept(fc_Class.H_DeptID)
 
-                ElseIf Active_Form = 6 Then  'Active_Form 6 = Purchase Monitor
-                    Grid5.Visible = False
-                    Grid4.Visible = True
-                    C_Term.Visible = True
-                    Call LoadGridInstallment(fc_Class.H_CirculationNo)
-                    GridView3.OptionsBehavior.Editable = False
-                    GridView4.OptionsBehavior.Editable = True
-                    GridView5.OptionsBehavior.Editable = True
-                    GridView1.OptionsBehavior.Editable = False
-                    BAddRows.Enabled = False
-                    BMold.Enabled = False
-                    Call No_Edit_TextBox()
-                    C_Term.Enabled = True
-
-                    If fc_Class.H_Current_Level >= 5 And fc_Class.H_Current_Level <= 6 Then
-                        T_PO.Enabled = True
-                    End If
-
-                    With GridView1
-                        .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
-                        .Columns("Spesification").OptionsColumn.AllowEdit = False
-                        .Columns("Qty").OptionsColumn.AllowEdit = False
-                        .Columns("Price").OptionsColumn.AllowEdit = False
-                        .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                        .Columns("Curr").OptionsColumn.AllowEdit = False
-                        .Columns("Category").OptionsColumn.AllowEdit = False
-                        .Columns("Balance").OptionsColumn.AllowEdit = False
-                        .Columns("Rate").OptionsColumn.AllowEdit = False
-                        .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                        .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                        .Columns("Account").OptionsColumn.AllowEdit = False
-                        '.Columns("Check").Visible = True
-                        .Columns("Note").Visible = True
-                    End With
-                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
-
-                    'Active_Form 7 = Purchase Termin
-                ElseIf Active_Form = 7 Then
-
-                    Grid5.Visible = False
-                    Grid4.Visible = True
-                    C_Term.Visible = True
-                    GridView3.OptionsBehavior.Editable = False
-                    GridView4.OptionsBehavior.Editable = False
-                    GridView5.OptionsBehavior.Editable = True
-                    GridView1.OptionsBehavior.Editable = False
-                    BAddRows.Enabled = False
-                    BMold.Enabled = False
-
-                    Call No_Edit_TextBox()
-
-                    With GridView1
-                        .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
-                        .Columns("Spesification").OptionsColumn.AllowEdit = False
-                        .Columns("Qty").OptionsColumn.AllowEdit = False
-                        .Columns("Price").OptionsColumn.AllowEdit = False
-                        .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                        .Columns("Curr").OptionsColumn.AllowEdit = False
-                        .Columns("Category").OptionsColumn.AllowEdit = False
-                        .Columns("Balance").OptionsColumn.AllowEdit = False
-                        .Columns("Rate").OptionsColumn.AllowEdit = False
-                        .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                        .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                        .Columns("Account").OptionsColumn.AllowEdit = False
-                        '.Columns("Check").Visible = True
-                        .Columns("Note").Visible = True
-                    End With
-                    If fc_Class.H_Status = "BA" Then
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
-                        BBeritaAcara.Enabled = True
-                    Else
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
-                    End If
-
-
-                ElseIf Active_Form = 8 Then
-                    Grid5.Visible = True
-                    Grid4.Visible = False
-                    C_Term.Visible = False
-                    GridView3.OptionsBehavior.Editable = False
-                    GridView4.OptionsBehavior.Editable = False
-                    GridView5.OptionsBehavior.Editable = False
-                    GridView1.OptionsBehavior.Editable = False
-                    BAddRows.Enabled = False
-                    BMold.Enabled = False
-                    BBeritaAcara.Visible = True
-                    Call No_Edit_TextBox()
-
-                    With GridView1
-                        .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
-                        .Columns("Spesification").OptionsColumn.AllowEdit = False
-                        .Columns("Qty").OptionsColumn.AllowEdit = False
-                        .Columns("Price").OptionsColumn.AllowEdit = False
-                        .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                        .Columns("Curr").OptionsColumn.AllowEdit = False
-                        .Columns("Category").OptionsColumn.AllowEdit = False
-                        .Columns("Balance").OptionsColumn.AllowEdit = False
-                        .Columns("Rate").OptionsColumn.AllowEdit = False
-                        .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                        .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                        .Columns("Account").OptionsColumn.AllowEdit = False
-                        '.Columns("Check").Visible = True
-                        .Columns("Note").Visible = True
-                    End With
-                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                 End If
-                Call Sub_Dept(fc_Class.H_DeptID)
-            Else
 
+
+            Else
 
 
                 Call No_Edit_TextBox()
@@ -599,6 +612,7 @@ Public Class Frm_CR_UserCreateDetail
                     End If
 
                     T_PO.Text = .H_No_PO
+                    T_PR.Text = .H_PR
 
                 End With
             Else
@@ -700,12 +714,22 @@ Public Class Frm_CR_UserCreateDetail
                     s = s & A.Item(b) & ","
                 Next
                 T_Dept.SetEditValue(s)
-                T_Dept.SetEditValue("1FAC")
-                T_Dept.Properties.Items("1FAC").Enabled = False
+
                 If T_CRType.EditValue = "Mold" Then
-                    T_Dept.SetEditValue("1MKT")
+
                     T_Dept.Properties.Items("1MKT").Enabled = False
+                    T_Dept.Properties.Items("1FAC").Enabled = False
+                Else
+                    T_Dept.Properties.Items("1FAC").Enabled = False
                 End If
+
+                'T_Dept.SetEditValue("1FAC")
+                'T_Dept.Properties.Items("1FAC").Enabled = False
+                'If T_CRType.EditValue = "Mold" Then
+                '    T_Dept.SetEditValue("1MKT,1FAC")
+                '    T_Dept.Properties.Items("1MKT").Enabled = False
+
+                'End If
             Else
 
                 Dim dt As New DataTable
@@ -866,6 +890,12 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
     Private Sub Frm_CR_UserCreateDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Dim itemValues As String() = New String() {"Circle", "Rectangle",
+        '    "Ellipse", "Triangle", "Square"}
+        'For Each value As String In itemValues
+        '    T_Dept.Properties.Items.Add(value, CheckState.Unchecked, True)
+        'Next value
 
         With GridView1
             .Columns("Model").Visible = False
@@ -1140,7 +1170,6 @@ Public Class Frm_CR_UserCreateDetail
                             .D_Check = 0
                         End If
 
-
                         .D_CirculationNo = NoSirkulasi
                         .D_Name_Of_Goods = Convert.ToString(GridView1.GetRowCellValue(i, "Name Of Goods"))
                         .D_Spesification = Convert.ToString(GridView1.GetRowCellValue(i, "Spesification"))
@@ -1240,15 +1269,15 @@ Public Class Frm_CR_UserCreateDetail
 
                 Next
 
-
                 fc_Class.Collection_Approve.Clear()
                 dtApprove = New DataTable
                 Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
-                If Total > 10000000 And Total <= 50000000 Then
+
+                If Total > 10000001 And Total <= 50000000 Then
                     dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
-                ElseIf Total >= 50000000 And Total <= 100000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 5)
-                ElseIf Total >= 100000000 Then
+                ElseIf Total >= 50000001 And Total <= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                ElseIf Total >= 100000001 Then
                     dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
                 End If
 
@@ -1430,11 +1459,12 @@ Public Class Frm_CR_UserCreateDetail
                 fc_Class.Collection_Approve.Clear()
                 dtApprove = New DataTable
                 Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
-                If Total > 10000000 And Total <= 50000000 Then
+
+                If Total > 10000001 And Total <= 50000000 Then
                     dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
-                ElseIf Total >= 50000000 And Total <= 100000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 5)
-                ElseIf Total >= 100000000 Then
+                ElseIf Total >= 50000001 And Total <= 100000000 Then
+                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                ElseIf Total >= 100000001 Then
                     dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
                 End If
 
@@ -1653,8 +1683,6 @@ Public Class Frm_CR_UserCreateDetail
         End Try
 
     End Sub
-
-
 
     Public Sub CallForm(Optional ByVal Model As String = "",
                         Optional ByVal Customer As String = "",
@@ -1876,7 +1904,7 @@ Public Class Frm_CR_UserCreateDetail
         Try
 
             Dim Qty As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Qty"))
-            Dim Price As Single = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price"))
+            Dim Price As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Price"))
             Dim Rate As Double = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate") Is DBNull.Value, 0, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Rate"))
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Total Amount Currency", Qty * Price)
             GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Total IDR", Qty * Rate * Price)
@@ -2428,115 +2456,114 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
     Private Sub T_CRType_SelectedValueChanged(sender As Object, e As EventArgs) Handles T_CRType.SelectedValueChanged
+        If Active_Form = 1 Then
+            If T_CRType.EditValue = "Mold" Then
+                T_RequirementDate.Enabled = True
+                GroupBox1.Enabled = True
+                T_CRType.Enabled = True
+                T_Parent.Enabled = True
+                T_ParentAmount.Enabled = True
+                T_Reason.Enabled = True
+                T_Dept.Enabled = True
+                GroupBox1.Enabled = True
+                'Grid1.Enabled = True
+                GroupBox2.Enabled = True
+                C_Term.Enabled = True
+                'T_Dept.SetEditValue("")
+                C_Term.Enabled = False
+                T_NameItem.Enabled = True
+                T_Spesification.Enabled = True
+                GroupBox3.Enabled = True
+                TCustomer.Enabled = True
 
-        If T_CRType.EditValue = "Mold" Then
-            T_RequirementDate.Enabled = True
-            GroupBox1.Enabled = True
-            T_CRType.Enabled = True
-            T_Parent.Enabled = True
-            T_ParentAmount.Enabled = True
-            T_Reason.Enabled = True
-            T_Dept.Enabled = True
-            GroupBox1.Enabled = True
-            'Grid1.Enabled = True
-            GroupBox2.Enabled = True
-            C_Term.Enabled = True
-            'T_Dept.SetEditValue("")
-            C_Term.Enabled = False
-            T_NameItem.Enabled = True
-            T_Spesification.Enabled = True
-            GroupBox3.Enabled = True
-            TCustomer.Enabled = True
+                Call Edit_Grid()
+                With GridView1
 
-            Call Edit_Grid()
-            With GridView1
+                    .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
+                    .Columns("Spesification").OptionsColumn.AllowEdit = True
+                    .Columns("Model").Visible = True
+                    .Columns("Sales Type").Visible = True
+                    .Columns("Remark").Visible = True
+                    .Columns("Model").VisibleIndex = 2
+                    .Columns("Sales Type").VisibleIndex = 3
+                    .Columns("Remark").VisibleIndex = 4
+                    .Columns("Qty").OptionsColumn.AllowEdit = True
+                    .Columns("Price").OptionsColumn.AllowEdit = True
+                    .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                    .Columns("Curr").OptionsColumn.AllowEdit = True
+                    .Columns("Category").OptionsColumn.AllowEdit = False
+                    .Columns("Balance").OptionsColumn.AllowEdit = False
+                    .Columns("Rate").OptionsColumn.AllowEdit = False
+                    .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                    .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                    .Columns("Account").OptionsColumn.AllowEdit = True
+                    .Columns("Note").Visible = False
 
-                .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
-                .Columns("Spesification").OptionsColumn.AllowEdit = True
-                .Columns("Model").Visible = True
-                .Columns("Sales Type").Visible = True
-                .Columns("Remark").Visible = True
-                .Columns("Model").VisibleIndex = 2
-                .Columns("Sales Type").VisibleIndex = 3
-                .Columns("Remark").VisibleIndex = 4
-                .Columns("Qty").OptionsColumn.AllowEdit = True
-                .Columns("Price").OptionsColumn.AllowEdit = True
-                .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                .Columns("Curr").OptionsColumn.AllowEdit = True
-                .Columns("Category").OptionsColumn.AllowEdit = False
-                .Columns("Balance").OptionsColumn.AllowEdit = False
-                .Columns("Rate").OptionsColumn.AllowEdit = False
-                .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                .Columns("Account").OptionsColumn.AllowEdit = True
-                .Columns("Note").Visible = False
+                End With
 
+                GridView5.OptionsBehavior.Editable = True
+                BAddRows.Enabled = True
+                BMold.Enabled = True
+                T_Dept.SetEditValue("1FAC,1MKT")
+                T_Dept.Properties.Items("1FAC").Enabled = False
+                T_Dept.Properties.Items("1MKT").Enabled = False
+            Else
+                T_Dept.SetEditValue("1FAC")
+                T_Dept.Properties.Items("1MKT").Enabled = True
+                TCustomer.Enabled = False
+                T_RequirementDate.Enabled = True
+                GroupBox1.Enabled = True
+                T_CRType.Enabled = True
+                T_Parent.Enabled = True
+                T_ParentAmount.Enabled = True
+                T_Reason.Enabled = True
+                T_Dept.Enabled = True
+                GroupBox1.Enabled = True
+                'Grid1.Enabled = True
+                GroupBox2.Enabled = False
+                GroupBox2.Enabled = False
+                C_Term.Enabled = True
+                'T_Dept.SetEditValue("1PUR,")
+                GroupBox2.Enabled = False
+                BMold.Enabled = False
+                C_Term.Enabled = False
+                T_NameItem.Enabled = True
+                T_Spesification.Enabled = True
+                GroupBox3.Enabled = True
 
-            End With
+                GridView1.OptionsBehavior.Editable = True
+                GridView3.OptionsBehavior.Editable = False
+                GridView4.OptionsBehavior.Editable = False
 
-            GridView5.OptionsBehavior.Editable = True
-            BAddRows.Enabled = True
-            BMold.Enabled = True
-
-            T_Dept.SetEditValue("1FAC,1MKT")
-
-            T_Dept.Properties.Items("1MKT").Enabled = False
-
-        Else
-            T_Dept.SetEditValue("1FAC")
-            T_Dept.Properties.Items("1MKT").Enabled = True
-            TCustomer.Enabled = False
-            T_RequirementDate.Enabled = True
-            GroupBox1.Enabled = True
-            T_CRType.Enabled = True
-            T_Parent.Enabled = True
-            T_ParentAmount.Enabled = True
-            T_Reason.Enabled = True
-            T_Dept.Enabled = True
-            GroupBox1.Enabled = True
-            'Grid1.Enabled = True
-            GroupBox2.Enabled = False
-            GroupBox2.Enabled = False
-            C_Term.Enabled = True
-            'T_Dept.SetEditValue("1PUR,")
-            GroupBox2.Enabled = False
-            BMold.Enabled = False
-            C_Term.Enabled = False
-            T_NameItem.Enabled = True
-            T_Spesification.Enabled = True
-            GroupBox3.Enabled = True
-
-            GridView1.OptionsBehavior.Editable = True
-            GridView3.OptionsBehavior.Editable = False
-            GridView4.OptionsBehavior.Editable = False
-
-            With GridView1
-                .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
-                .Columns("Spesification").OptionsColumn.AllowEdit = True
-                .Columns("Model").Visible = False
-                .Columns("Sales Type").Visible = False
-                .Columns("Remark").Visible = False
-                .Columns("Qty").OptionsColumn.AllowEdit = True
-                .Columns("Price").OptionsColumn.AllowEdit = True
-                .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
-                .Columns("Curr").OptionsColumn.AllowEdit = True
-                .Columns("Category").OptionsColumn.AllowEdit = False
-                .Columns("Balance").OptionsColumn.AllowEdit = False
-                .Columns("Rate").OptionsColumn.AllowEdit = False
-                .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
-                .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                .Columns("Account").OptionsColumn.AllowEdit = True
-                '.Columns("Check").Visible = False
-                .Columns("Note").Visible = False
+                With GridView1
+                    .Columns("Name Of Goods").OptionsColumn.AllowEdit = True
+                    .Columns("Spesification").OptionsColumn.AllowEdit = True
+                    .Columns("Model").Visible = False
+                    .Columns("Sales Type").Visible = False
+                    .Columns("Remark").Visible = False
+                    .Columns("Qty").OptionsColumn.AllowEdit = True
+                    .Columns("Price").OptionsColumn.AllowEdit = True
+                    .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
+                    .Columns("Curr").OptionsColumn.AllowEdit = True
+                    .Columns("Category").OptionsColumn.AllowEdit = False
+                    .Columns("Balance").OptionsColumn.AllowEdit = False
+                    .Columns("Rate").OptionsColumn.AllowEdit = False
+                    .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
+                    .Columns("Total IDR").OptionsColumn.AllowEdit = False
+                    .Columns("Account").OptionsColumn.AllowEdit = True
+                    '.Columns("Check").Visible = False
+                    .Columns("Note").Visible = False
 
 
-            End With
+                End With
 
-            GridView5.OptionsBehavior.Editable = True
-            BAddRows.Enabled = True
-            BMold.Enabled = False
+                GridView5.OptionsBehavior.Editable = True
+                BAddRows.Enabled = True
+                BMold.Enabled = False
 
+            End If
         End If
+
 
     End Sub
 
@@ -3237,8 +3264,6 @@ Public Class Frm_CR_UserCreateDetail
 
                         If gh_Common.GroupID = "1MKT" Or gh_Common.GroupID = "1FAC" Then
 
-
-
                             With fc_Class
                                 .H_CirculationNo = fs_Code
                                 If RB_Budget.Checked = True Then
@@ -3391,6 +3416,8 @@ Public Class Frm_CR_UserCreateDetail
             With fc_Class
                 .H_Status = "Set Installment"
                 .H_No_PO = IIf(T_PO.Text Is DBNull.Value, "", T_PO.Text)
+                .H_No_PR = IIf(T_PR.Text Is DBNull.Value, "", T_PR.Text)
+                .H_Current_Level = Active_Form
             End With
 
             Try
@@ -3466,7 +3493,7 @@ Public Class Frm_CR_UserCreateDetail
             GridDtl.DataSource = fc_Class_Accounting.Get_Cek_Purchase
             Me.Hide()
         ElseIf Active_Form = 7 Then   ' (CR Close)
-            If fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "Set Installment" Then
+            If fc_Class.H_Status = "BA" Then
                 Dim result As DialogResult = MessageBox.Show("Are You Want to  Close CR '" & fs_Code & "'?",
                                                     "CIRCULATION",
                                                     MessageBoxButtons.OKCancel,
@@ -3799,8 +3826,6 @@ Public Class Frm_CR_UserCreateDetail
         Next
 
     End Sub
-
-
 
     Public Overrides Sub Proc_DeleteData()
 

@@ -52,6 +52,7 @@ Public Class ClsCR_CreateUser
     Public Property H_BOD_Approve_Date As Date
     Public Property H_BOD_User As String
     Public Property H_No_PO As String
+    Public Property H_No_PR As String
 
     Public Property H_NoBeritaAcara As String
     Public Property H_TanggalBeritaAcara As Date
@@ -627,6 +628,7 @@ Public Class ClsCR_CreateUser
                     H_Spesification = Trim(.Item("Spesification") & "")
                     H_PO = Trim(.Item("PoType") & "")
                     H_No_PO = Trim(.Item("PO_No") & "")
+                    H_No_PR = Trim(.Item("PR_No") & "")
                     H_Customer = Trim(.Item("Customer") & "")
 
                     'If Trim(.Item("ChargedOfCustomer") & "") = "0" Then
@@ -1083,14 +1085,31 @@ Public Class ClsCR_CreateUser
                         Next
 
 
+
                         Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE CR_Request" & vbCrLf &
                                      "SET [Status] = '" & H_Status & "'
-                                     ,[PO_No] = '" & H_No_PO & "'  WHERE [CirculationNo] = '" & NoSirkulasi & "'"
+                                     ,[PO_No] = '" & H_No_PO & "' 
+                                     ,[PR_No] = '" & H_No_PR & "'  
+                                     ,[Current_Level] =  '" & H_Current_Level & "'  WHERE [CirculationNo] = '" & NoSirkulasi & "'"
                         MainModul.ExecQuery(ls_SP)
 
-                        Dim GS As New GlobalService
-                        GS.Approve(Model, "Approve")
+
+                        Dim dt As New DataTable
+
+                        Dim CekHistory As String = " Select * from T_ApproveHistory WHERE [NoTransaksi] = '" & NoSirkulasi & "' and LevelApproved = 6 and IsActive ='1'"
+                        dt = GetDataTableByCommand(CekHistory)
+
+                        If dt.Rows.Count = 0 Then
+
+                            Dim GS As New GlobalService
+                            GS.Approve(Model, "Approve")
+
+                        End If
+
+
+
+
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -2047,6 +2066,7 @@ Public Class ClsCR_Other_Dept
                                             "SET [Date] = '" & Date.Now & "'
                                             ,[Opinion] = '" & D_Opinion & "' 
                                             ,[Approve] = '" & D_Approve & "'
+                                            ,[DeptHead_ID] = '" & gh_Common.Username & "'
                                             WHERE [CirculationNo] = '" & CirculationNo & "' and [DeptID] = '" & D_Dept & "' "
             MainModul.ExecQuery(ls_SP)
 
