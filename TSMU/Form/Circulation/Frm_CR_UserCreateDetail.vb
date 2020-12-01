@@ -714,12 +714,22 @@ Public Class Frm_CR_UserCreateDetail
                     s = s & A.Item(b) & ","
                 Next
                 T_Dept.SetEditValue(s)
-                T_Dept.SetEditValue("1FAC")
-                T_Dept.Properties.Items("1FAC").Enabled = False
+
                 If T_CRType.EditValue = "Mold" Then
-                    T_Dept.SetEditValue("1MKT")
+
                     T_Dept.Properties.Items("1MKT").Enabled = False
+                    T_Dept.Properties.Items("1FAC").Enabled = False
+                Else
+                    T_Dept.Properties.Items("1FAC").Enabled = False
                 End If
+
+                'T_Dept.SetEditValue("1FAC")
+                'T_Dept.Properties.Items("1FAC").Enabled = False
+                'If T_CRType.EditValue = "Mold" Then
+                '    T_Dept.SetEditValue("1MKT,1FAC")
+                '    T_Dept.Properties.Items("1MKT").Enabled = False
+
+                'End If
             Else
 
                 Dim dt As New DataTable
@@ -880,6 +890,12 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
     Private Sub Frm_CR_UserCreateDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Dim itemValues As String() = New String() {"Circle", "Rectangle",
+        '    "Ellipse", "Triangle", "Square"}
+        'For Each value As String In itemValues
+        '    T_Dept.Properties.Items.Add(value, CheckState.Unchecked, True)
+        'Next value
 
         With GridView1
             .Columns("Model").Visible = False
@@ -2483,17 +2499,14 @@ Public Class Frm_CR_UserCreateDetail
                     .Columns("Account").OptionsColumn.AllowEdit = True
                     .Columns("Note").Visible = False
 
-
                 End With
 
                 GridView5.OptionsBehavior.Editable = True
                 BAddRows.Enabled = True
                 BMold.Enabled = True
-
                 T_Dept.SetEditValue("1FAC,1MKT")
-
+                T_Dept.Properties.Items("1FAC").Enabled = False
                 T_Dept.Properties.Items("1MKT").Enabled = False
-
             Else
                 T_Dept.SetEditValue("1FAC")
                 T_Dept.Properties.Items("1MKT").Enabled = True
