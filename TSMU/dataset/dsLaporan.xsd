@@ -950,6 +950,7 @@
               <xs:element name="Nama1" msprop:Generator_ColumnVarNameInTable="columnNama1" msprop:Generator_ColumnPropNameInRow="Nama1" msprop:Generator_ColumnPropNameInTable="Nama1Column" msprop:Generator_UserColumnName="Nama1" type="xs:string" minOccurs="0" />
               <xs:element name="Posisi2" msprop:Generator_ColumnVarNameInTable="columnPosisi2" msprop:Generator_ColumnPropNameInRow="Posisi2" msprop:Generator_ColumnPropNameInTable="Posisi2Column" msprop:Generator_UserColumnName="Posisi2" type="xs:string" minOccurs="0" />
               <xs:element name="Nama2" msprop:Generator_ColumnVarNameInTable="columnNama2" msprop:Generator_ColumnPropNameInRow="Nama2" msprop:Generator_ColumnPropNameInTable="Nama2Column" msprop:Generator_UserColumnName="Nama2" type="xs:string" minOccurs="0" />
+              <xs:element name="PaidDate" msprop:Generator_ColumnVarNameInTable="columnPaidDate" msprop:Generator_ColumnPropNameInRow="PaidDate" msprop:Generator_ColumnPropNameInTable="PaidDateColumn" msprop:Generator_UserColumnName="PaidDate" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

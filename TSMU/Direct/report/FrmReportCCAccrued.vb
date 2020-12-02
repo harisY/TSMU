@@ -42,7 +42,7 @@
     Sub LoadReportCCSettle()
         Dim dtAccrued As New DataTable
 
-        dtAccrued = report.LoadReportCCSettle(param)
+        dtAccrued = report.LoadReportCCSettle(txtPerpost.EditValue, param)
         lapCCSettle.SetDataSource(dtAccrued)
 
         With CrystalReportViewer1
