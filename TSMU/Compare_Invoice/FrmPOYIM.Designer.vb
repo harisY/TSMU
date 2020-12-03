@@ -32,10 +32,13 @@ Partial Class FrmPOYIM
         Me.Button1 = New System.Windows.Forms.Button()
         Me._txtperiode = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -108,12 +111,12 @@ Partial Class FrmPOYIM
         Me.txtFileLocation.Location = New System.Drawing.Point(173, 44)
         Me.txtFileLocation.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFileLocation.Name = "txtFileLocation"
-        Me.txtFileLocation.Size = New System.Drawing.Size(639, 23)
+        Me.txtFileLocation.Size = New System.Drawing.Size(526, 23)
         Me.txtFileLocation.TabIndex = 37
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(821, 44)
+        Me.Button3.Location = New System.Drawing.Point(707, 42)
         Me.Button3.Margin = New System.Windows.Forms.Padding(4)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(100, 30)
@@ -127,7 +130,7 @@ Partial Class FrmPOYIM
         '
         '_txtordnbr
         '
-        Me._txtordnbr.Location = New System.Drawing.Point(1282, 46)
+        Me._txtordnbr.Location = New System.Drawing.Point(1310, 46)
         Me._txtordnbr.Name = "_txtordnbr"
         Me._txtordnbr.Size = New System.Drawing.Size(57, 23)
         Me._txtordnbr.TabIndex = 40
@@ -135,7 +138,7 @@ Partial Class FrmPOYIM
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(1026, 49)
+        Me.Label2.Location = New System.Drawing.Point(1054, 49)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(130, 17)
         Me.Label2.TabIndex = 41
@@ -143,7 +146,7 @@ Partial Class FrmPOYIM
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(1345, 43)
+        Me.Button1.Location = New System.Drawing.Point(1373, 43)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(107, 31)
         Me.Button1.TabIndex = 42
@@ -152,7 +155,7 @@ Partial Class FrmPOYIM
         '
         '_txtperiode
         '
-        Me._txtperiode.Location = New System.Drawing.Point(1162, 46)
+        Me._txtperiode.Location = New System.Drawing.Point(1190, 46)
         Me._txtperiode.Name = "_txtperiode"
         Me._txtperiode.Size = New System.Drawing.Size(95, 23)
         Me._txtperiode.TabIndex = 43
@@ -160,16 +163,37 @@ Partial Class FrmPOYIM
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(1263, 51)
+        Me.Label3.Location = New System.Drawing.Point(1291, 51)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(13, 17)
         Me.Label3.TabIndex = 44
         Me.Label3.Text = "-"
         '
+        'ComboBoxEdit1
+        '
+        Me.ComboBoxEdit1.EditValue = "Regular"
+        Me.ComboBoxEdit1.Location = New System.Drawing.Point(886, 47)
+        Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
+        Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.ComboBoxEdit1.Properties.Items.AddRange(New Object() {"Regular", "POD"})
+        Me.ComboBoxEdit1.Size = New System.Drawing.Size(125, 22)
+        Me.ComboBoxEdit1.TabIndex = 45
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(815, 48)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(65, 17)
+        Me.Label4.TabIndex = 46
+        Me.Label4.Text = "Jenis PO"
+        '
         'FrmPOYIM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1521, 581)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.ComboBoxEdit1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me._txtperiode)
         Me.Controls.Add(Me.Button1)
@@ -189,10 +213,13 @@ Partial Class FrmPOYIM
         Me.Controls.SetChildIndex(Me.Button1, 0)
         Me.Controls.SetChildIndex(Me._txtperiode, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
+        Me.Controls.SetChildIndex(Me.ComboBoxEdit1, 0)
+        Me.Controls.SetChildIndex(Me.Label4, 0)
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -211,4 +238,6 @@ Partial Class FrmPOYIM
     Friend WithEvents Button1 As Button
     Friend WithEvents _txtperiode As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents Label4 As Label
 End Class

@@ -733,18 +733,18 @@ Public Class TravelSettleHeaderModel
         Try
             Dim dt As New DataTable
             strQuery = " SELECT  tsd.TravelSettleID ,
-                                CASE WHEN trc.AdvanceUSD <> 0
-                                     THEN 'USD ' + CAST(trc.AdvanceUSD / trc.Days AS VARCHAR(100))
-                                     ELSE ''
-                                END + CASE WHEN trc.AdvanceYEN <> 0
-                                           THEN ' | YEN '
-                                                + CAST(trc.AdvanceYEN / trc.Days AS VARCHAR(100))
-                                           ELSE ''
-                                      END + CASE WHEN trc.AdvanceIDR <> 0
-                                                 THEN ' | IDR '
-                                                      + CAST(trc.AdvanceIDR / trc.Days AS VARCHAR(100))
-                                                 ELSE ''
-                                            END AS Rate ,
+                                --CASE WHEN trc.AdvanceUSD <> 0
+                                --     THEN 'USD ' + CAST(trc.AdvanceUSD / trc.Days AS VARCHAR(100))
+                               --      ELSE ''
+                               -- END + CASE WHEN trc.AdvanceYEN <> 0
+                               --            THEN ' | YEN '
+                               --                 + CAST(trc.AdvanceYEN / trc.Days AS VARCHAR(100))
+                               --            ELSE ''
+                               --       END + CASE WHEN trc.AdvanceIDR <> 0
+                               --                  THEN ' | IDR '
+                              --                        + CAST(trc.AdvanceIDR / trc.Days AS VARCHAR(100))
+                               --                  ELSE ''
+                               --             END AS Rate ,
                                 CAST(trc.Days AS VARCHAR(2)) + ' days' AS Days ,
                                 CAST(COUNT(tsd.TravelSettleID) AS VARCHAR(2)) + ' persons' AS Persons ,
                                 SUM(trc.AdvanceUSD) AS USD ,
@@ -770,17 +770,17 @@ Public Class TravelSettleHeaderModel
         Try
             Dim dt As New DataTable
             strQuery = " SELECT TravelSettleID ,
-                                CASE WHEN AllowanceUSD <> 0
-                                     THEN 'USD ' + CAST(RateAllowanceUSD AS VARCHAR(100))
-                                     ELSE ''
-                                END + CASE WHEN AllowanceYEN <> 0
-                                           THEN ' | YEN ' + CAST(RateAllowanceUSD AS VARCHAR(100))
-                                           ELSE ''
-                                      END + CASE WHEN AllowanceIDR <> 0
-                                                 THEN ' | IDR '
-                                                      + CAST(RateAllowanceUSD AS VARCHAR(100))
-                                                 ELSE ''
-                                            END AS Rate ,
+                                --CASE WHEN AllowanceUSD <> 0
+                                --     THEN 'USD ' + CAST(RateAllowanceUSD AS VARCHAR(100))
+                                --     ELSE ''
+                                --END + CASE WHEN AllowanceYEN <> 0
+                               --            THEN ' | YEN ' + CAST(RateAllowanceUSD AS VARCHAR(100))
+                                --           ELSE ''
+                                --      END + CASE WHEN AllowanceIDR <> 0
+                                 --                THEN ' | IDR '
+                                 --                     + CAST(RateAllowanceUSD AS VARCHAR(100))
+                                 --                ELSE ''
+                                 --           END AS Rate ,
                                 CAST(Days AS VARCHAR(2)) + ' days' AS Days ,
                                 CAST(COUNT(TravelSettleID) AS VARCHAR(2)) + ' persons' AS Persons ,
                                 SUM(AllowanceUSD) AS USD ,
@@ -790,7 +790,7 @@ Public Class TravelSettleHeaderModel
                          WHERE  TravelSettleID = " & QVal(TravelSettleID) & "
                          GROUP BY TravelSettleID ,
                                 Days ,
-                                RateAllowanceUSD ,
+                                --RateAllowanceUSD ,
                                 AllowanceUSD ,
                                 AllowanceYEN ,
                                 AllowanceIDR"
@@ -830,7 +830,6 @@ Public Class TravelSettleDetailModel
                                 tsd.DepartureDate ,
                                 tsd.ArrivalDate ,
                                 tsd.Days ,
-                                tsd.RateAllowanceUSD ,
                                 tsd.TotRateAllowanceUSD ,
                                 tsd.TotRateAllowanceYEN ,
                                 tsd.TotRateAllowanceIDR ,

@@ -418,6 +418,7 @@
     <Compile Include="Direct\Class\ClsTraveller.vb" />
     <Compile Include="Direct\Class\EntertainHeaderModel.vb" />
     <Compile Include="Direct\Class\EntertainApproval.vb" />
+    <Compile Include="Direct\Class\GJHeaderModel.vb" />
     <Compile Include="Direct\Class\ReceiptModel.vb" />
     <Compile Include="Direct\Class\SettleModel.vb" />
     <Compile Include="Direct\Class\SuspendApproval.vb" />
@@ -530,6 +531,18 @@
       <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmEntertainSettleDetailDirectCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\Frmgl.Designer.vb">
+      <DependentUpon>Frmgl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\Frmgl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\Frmgl_Detail.Designer.vb">
+      <DependentUpon>Frmgl_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\Frmgl_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmMktExcelPrice.Designer.vb">
@@ -2965,6 +2978,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmEntertainSettleDetailDirectCC.resx">
       <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\Frmgl.resx">
+      <DependentUpon>Frmgl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\Frmgl_Detail.resx">
+      <DependentUpon>Frmgl_Detail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmMktExcelPrice.resx">
       <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
