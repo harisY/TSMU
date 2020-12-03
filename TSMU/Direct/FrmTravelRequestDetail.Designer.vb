@@ -69,6 +69,7 @@ Partial Class FrmTravelRequestDetail
         Me.GDetailDay = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRateAllowanceUSD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRateAllowanceYEN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRateAllowanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         Me.GridAdvance = New DevExpress.XtraGrid.GridControl()
         Me.GridViewAdvance = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -93,7 +94,6 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.GRateAllowanceIDR = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.CDepartureDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CDepartureDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CArrivalDate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -217,18 +217,18 @@ Partial Class FrmTravelRequestDetail
         Me.btnAddDetail.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddDetail.Location = New System.Drawing.Point(1165, 36)
+        Me.btnAddDetail.Location = New System.Drawing.Point(1146, 36)
         Me.btnAddDetail.MaximumSize = New System.Drawing.Size(120, 0)
         Me.btnAddDetail.Name = "btnAddDetail"
         Me.btnAddDetail.Padding = New System.Windows.Forms.Padding(3)
-        Me.btnAddDetail.Size = New System.Drawing.Size(118, 65)
+        Me.btnAddDetail.Size = New System.Drawing.Size(118, 70)
         Me.btnAddDetail.StyleController = Me.LayoutControl1
         Me.btnAddDetail.TabIndex = 35
         Me.btnAddDetail.Text = "Add Detail ++"
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(1049, 70)
+        Me.LabelControl1.Location = New System.Drawing.Point(1030, 70)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(84, 16)
         Me.LabelControl1.StyleController = Me.LayoutControl1
@@ -249,34 +249,34 @@ Partial Class FrmTravelRequestDetail
         'txtAdvanceIDR
         '
         Me.txtAdvanceIDR.EditValue = "0"
-        Me.txtAdvanceIDR.Location = New System.Drawing.Point(965, 65)
+        Me.txtAdvanceIDR.Location = New System.Drawing.Point(939, 65)
         Me.txtAdvanceIDR.MaximumSize = New System.Drawing.Size(150, 0)
         Me.txtAdvanceIDR.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceIDR.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceIDR.Properties.Name = "txtAdvanceIDR"
         Me.txtAdvanceIDR.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceIDR.Size = New System.Drawing.Size(62, 22)
+        Me.txtAdvanceIDR.Size = New System.Drawing.Size(69, 22)
         Me.txtAdvanceIDR.StyleController = Me.LayoutControl1
         Me.txtAdvanceIDR.TabIndex = 7
         '
         'txtAdvanceYEN
         '
         Me.txtAdvanceYEN.EditValue = "0"
-        Me.txtAdvanceYEN.Location = New System.Drawing.Point(820, 65)
+        Me.txtAdvanceYEN.Location = New System.Drawing.Point(799, 65)
         Me.txtAdvanceYEN.MaximumSize = New System.Drawing.Size(150, 0)
         Me.txtAdvanceYEN.Name = "txtAdvanceYEN"
         Me.txtAdvanceYEN.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceYEN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceYEN.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceYEN.Size = New System.Drawing.Size(62, 22)
+        Me.txtAdvanceYEN.Size = New System.Drawing.Size(73, 22)
         Me.txtAdvanceYEN.StyleController = Me.LayoutControl1
         Me.txtAdvanceYEN.TabIndex = 9
         '
         'txtAdvanceUSD
         '
         Me.txtAdvanceUSD.EditValue = "0"
-        Me.txtAdvanceUSD.Location = New System.Drawing.Point(675, 65)
+        Me.txtAdvanceUSD.Location = New System.Drawing.Point(659, 65)
         Me.txtAdvanceUSD.MaximumSize = New System.Drawing.Size(150, 0)
         Me.txtAdvanceUSD.Name = "txtAdvanceUSD"
         Me.txtAdvanceUSD.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
@@ -287,7 +287,7 @@ Partial Class FrmTravelRequestDetail
         Me.txtAdvanceUSD.Properties.Mask.EditMask = "n2"
         Me.txtAdvanceUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtAdvanceUSD.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.txtAdvanceUSD.Size = New System.Drawing.Size(62, 22)
+        Me.txtAdvanceUSD.Size = New System.Drawing.Size(73, 22)
         Me.txtAdvanceUSD.StyleController = Me.LayoutControl1
         Me.txtAdvanceUSD.TabIndex = 8
         '
@@ -350,7 +350,7 @@ Partial Class FrmTravelRequestDetail
         '
         Me.txtPurpose.Location = New System.Drawing.Point(663, 7)
         Me.txtPurpose.Name = "txtPurpose"
-        Me.txtPurpose.Size = New System.Drawing.Size(620, 22)
+        Me.txtPurpose.Size = New System.Drawing.Size(601, 22)
         Me.txtPurpose.StyleController = Me.LayoutControl1
         Me.txtPurpose.TabIndex = 4
         '
@@ -361,7 +361,7 @@ Partial Class FrmTravelRequestDetail
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem5, Me.EmptySpaceItem6, Me.EmptySpaceItem4, Me.LayoutControlGroup4, Me.EmptySpaceItem7, Me.LayoutControlItem15})
         Me.Root.Name = "Root"
         Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 5, 0)
-        Me.Root.Size = New System.Drawing.Size(1295, 106)
+        Me.Root.Size = New System.Drawing.Size(1276, 111)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem5
@@ -399,7 +399,7 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlItem8.Location = New System.Drawing.Point(582, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
         Me.LayoutControlItem8.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(693, 26)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(674, 26)
         Me.LayoutControlItem8.Text = "Purpose"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(68, 16)
         '
@@ -408,7 +408,7 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlItem9.Control = Me.txtNama
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 46)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(427, 55)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(427, 60)
         Me.LayoutControlItem9.Text = "Name"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(68, 16)
         '
@@ -418,7 +418,7 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlItem10.Location = New System.Drawing.Point(437, 46)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(135, 55)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(135, 60)
         Me.LayoutControlItem10.Text = "Travel Type"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(68, 16)
         '
@@ -461,7 +461,7 @@ Partial Class FrmTravelRequestDetail
         Me.EmptySpaceItem6.MaxSize = New System.Drawing.Size(10, 10)
         Me.EmptySpaceItem6.MinSize = New System.Drawing.Size(10, 10)
         Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
-        Me.EmptySpaceItem6.Size = New System.Drawing.Size(10, 101)
+        Me.EmptySpaceItem6.Size = New System.Drawing.Size(10, 106)
         Me.EmptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -472,7 +472,7 @@ Partial Class FrmTravelRequestDetail
         Me.EmptySpaceItem4.MaxSize = New System.Drawing.Size(10, 10)
         Me.EmptySpaceItem4.MinSize = New System.Drawing.Size(10, 10)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Size = New System.Drawing.Size(10, 101)
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(10, 106)
         Me.EmptySpaceItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
@@ -492,7 +492,7 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlGroup4.Location = New System.Drawing.Point(582, 26)
         Me.LayoutControlGroup4.Name = "LayoutControlGroup4"
         Me.LayoutControlGroup4.Padding = New DevExpress.XtraLayout.Utils.Padding(9, 9, 5, 2)
-        Me.LayoutControlGroup4.Size = New System.Drawing.Size(563, 75)
+        Me.LayoutControlGroup4.Size = New System.Drawing.Size(544, 80)
         Me.LayoutControlGroup4.Text = "Advance"
         '
         'LayoutControlItem2
@@ -501,68 +501,74 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(135, 38)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(130, 43)
         Me.LayoutControlItem2.Text = "USD"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(68, 16)
+        Me.LayoutControlItem2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(50, 16)
+        Me.LayoutControlItem2.TextToControlDistance = 5
         '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.txtAdvanceYEN
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(135, 0)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(130, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(145, 38)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(140, 43)
         Me.LayoutControlItem11.Text = "YEN"
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(68, 16)
+        Me.LayoutControlItem11.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(50, 16)
+        Me.LayoutControlItem11.TextToControlDistance = 5
         '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.txtAdvanceIDR
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(280, 0)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(270, 0)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(145, 38)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(136, 43)
         Me.LayoutControlItem12.Text = "IDR"
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(68, 16)
+        Me.LayoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(50, 16)
+        Me.LayoutControlItem12.TextToControlDistance = 5
         '
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.LabelControl1
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(435, 0)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(416, 0)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
         Me.LayoutControlItem16.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 7, 2)
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(104, 38)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(104, 43)
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem16.TextVisible = False
         '
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(425, 0)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(406, 0)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(10, 38)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(10, 43)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem7
         '
         Me.EmptySpaceItem7.AllowHotTrack = False
-        Me.EmptySpaceItem7.Location = New System.Drawing.Point(1145, 26)
+        Me.EmptySpaceItem7.Location = New System.Drawing.Point(1126, 26)
         Me.EmptySpaceItem7.MaxSize = New System.Drawing.Size(10, 0)
         Me.EmptySpaceItem7.MinSize = New System.Drawing.Size(10, 10)
         Me.EmptySpaceItem7.Name = "EmptySpaceItem7"
-        Me.EmptySpaceItem7.Size = New System.Drawing.Size(10, 75)
+        Me.EmptySpaceItem7.Size = New System.Drawing.Size(10, 80)
         Me.EmptySpaceItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem7.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me.btnAddDetail
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(1155, 26)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(1136, 26)
         Me.LayoutControlItem15.MaxSize = New System.Drawing.Size(120, 80)
         Me.LayoutControlItem15.MinSize = New System.Drawing.Size(120, 75)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
         Me.LayoutControlItem15.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 5, 5)
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(120, 75)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(120, 80)
         Me.LayoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem15.TextVisible = False
@@ -707,6 +713,14 @@ Partial Class FrmTravelRequestDetail
         Me.GRateAllowanceYEN.MinWidth = 25
         Me.GRateAllowanceYEN.Name = "GRateAllowanceYEN"
         Me.GRateAllowanceYEN.Width = 94
+        '
+        'GRateAllowanceIDR
+        '
+        Me.GRateAllowanceIDR.Caption = "RateAllowanceIDR"
+        Me.GRateAllowanceIDR.FieldName = "RateAllowanceIDR"
+        Me.GRateAllowanceIDR.MinWidth = 25
+        Me.GRateAllowanceIDR.Name = "GRateAllowanceIDR"
+        Me.GRateAllowanceIDR.Width = 94
         '
         'DxValidationProvider1
         '
@@ -989,14 +1003,6 @@ Partial Class FrmTravelRequestDetail
         Me.LayoutControlItem14.Size = New System.Drawing.Size(1232, 186)
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem14.TextVisible = False
-        '
-        'GRateAllowanceIDR
-        '
-        Me.GRateAllowanceIDR.Caption = "RateAllowanceIDR"
-        Me.GRateAllowanceIDR.FieldName = "RateAllowanceIDR"
-        Me.GRateAllowanceIDR.MinWidth = 25
-        Me.GRateAllowanceIDR.Name = "GRateAllowanceIDR"
-        Me.GRateAllowanceIDR.Width = 94
         '
         'FrmTravelRequestDetail
         '

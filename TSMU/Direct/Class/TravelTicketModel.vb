@@ -62,7 +62,7 @@ Public Class TravelTicketModel
                                 trh.Status ,
                                 trh.StatusTicket
                         FROM    dbo.TravelRequestHeader AS trh
-                                LEFT JOIN dbo.TravelRequestDetail AS trd ON trd.NoRequest = trh.NoRequest
+                                INNER JOIN dbo.TravelRequestDetail AS trd ON trd.NoRequest = trh.NoRequest
                                 LEFT JOIN dbo.TravelTicketDetail AS ttd ON ttd.NoRequest = trd.NoRequest
                                                                             AND ttd.Seq = trd.Seq
                         WHERE   ttd.NoRequest IS NULL

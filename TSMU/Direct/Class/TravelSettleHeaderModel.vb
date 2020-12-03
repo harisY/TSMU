@@ -732,34 +732,15 @@ Public Class TravelSettleHeaderModel
     Public Function LoadReportAllowanceAdvance() As DataTable
         Try
             Dim dt As New DataTable
-            strQuery = " SELECT  tsd.TravelSettleID ,
-                                --CASE WHEN trc.AdvanceUSD <> 0
-                                --     THEN 'USD ' + CAST(trc.AdvanceUSD / trc.Days AS VARCHAR(100))
-                               --      ELSE ''
-                               -- END + CASE WHEN trc.AdvanceYEN <> 0
-                               --            THEN ' | YEN '
-                               --                 + CAST(trc.AdvanceYEN / trc.Days AS VARCHAR(100))
-                               --            ELSE ''
-                               --       END + CASE WHEN trc.AdvanceIDR <> 0
-                               --                  THEN ' | IDR '
-                              --                        + CAST(trc.AdvanceIDR / trc.Days AS VARCHAR(100))
-                               --                  ELSE ''
-                               --             END AS Rate ,
-                                CAST(trc.Days AS VARCHAR(2)) + ' days' AS Days ,
-                                CAST(COUNT(tsd.TravelSettleID) AS VARCHAR(2)) + ' persons' AS Persons ,
-                                SUM(trc.AdvanceUSD) AS USD ,
-                                SUM(trc.AdvanceYEN) AS YEN ,
-                                SUM(trc.AdvanceIDR) AS IDR
-                        FROM    dbo.TravelSettleDetail AS tsd
-                                LEFT JOIN TravelRequestCost AS trc ON trc.NoRequest = tsd.NoRequest
-                        WHERE   CostType = 'C02'
-                                AND tsd.TravelSettleID = " & QVal(TravelSettleID) & "
-                        GROUP BY tsd.TravelSettleID ,
-                                trc.Days ,
-                                trc.AdvanceUSD ,
-                                trc.AdvanceYEN ,
-                                trc.AdvanceIDR "
-            dt = GetDataTable(strQuery)
+
+            Dim SP_Name As String = "Travel_Rpt_GetAllowanceAdvance"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
+            pParam(0).Value = TravelSettleID
+
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
+
             Return dt
         Catch ex As Exception
             Throw ex
@@ -769,32 +750,15 @@ Public Class TravelSettleHeaderModel
     Public Function LoadReportAllowanceSettle() As DataTable
         Try
             Dim dt As New DataTable
-            strQuery = " SELECT TravelSettleID ,
-                                --CASE WHEN AllowanceUSD <> 0
-                                --     THEN 'USD ' + CAST(RateAllowanceUSD AS VARCHAR(100))
-                                --     ELSE ''
-                                --END + CASE WHEN AllowanceYEN <> 0
-                               --            THEN ' | YEN ' + CAST(RateAllowanceUSD AS VARCHAR(100))
-                                --           ELSE ''
-                                --      END + CASE WHEN AllowanceIDR <> 0
-                                 --                THEN ' | IDR '
-                                 --                     + CAST(RateAllowanceUSD AS VARCHAR(100))
-                                 --                ELSE ''
-                                 --           END AS Rate ,
-                                CAST(Days AS VARCHAR(2)) + ' days' AS Days ,
-                                CAST(COUNT(TravelSettleID) AS VARCHAR(2)) + ' persons' AS Persons ,
-                                SUM(AllowanceUSD) AS USD ,
-                                SUM(AllowanceYEN) AS YEN ,
-                                SUM(AllowanceIDR) AS IDR
-                         FROM   dbo.TravelSettleDetail
-                         WHERE  TravelSettleID = " & QVal(TravelSettleID) & "
-                         GROUP BY TravelSettleID ,
-                                Days ,
-                                --RateAllowanceUSD ,
-                                AllowanceUSD ,
-                                AllowanceYEN ,
-                                AllowanceIDR"
-            dt = GetDataTable(strQuery)
+
+            Dim SP_Name As String = "Travel_Rpt_GetAllowanceSettle"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@TravelSettleID", SqlDbType.VarChar)
+            pParam(0).Value = TravelSettleID
+
+            dt = MainModul.GetDataTableByCommand_SP(SP_Name, pParam)
+
             Return dt
         Catch ex As Exception
             Throw ex

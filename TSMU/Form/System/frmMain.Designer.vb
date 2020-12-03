@@ -38,6 +38,7 @@ Partial Class FrmMain
         Me.SkinRibbonGalleryBarItem1 = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
         Me.ribbon = New DevExpress.XtraBars.Ribbon.RibbonControl()
         Me.RibbonPageCategory1 = New DevExpress.XtraBars.Ribbon.RibbonPageCategory()
+        Me.BarBtnUpdate = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.barManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.xtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,6 +183,7 @@ Partial Class FrmMain
         Me.FileRibbon.ItemLinks.Add(Me.ChngePasBar)
         Me.FileRibbon.ItemLinks.Add(Me.ExitBar)
         Me.FileRibbon.ItemLinks.Add(Me.CloseAllBar)
+        Me.FileRibbon.ItemLinks.Add(Me.BarBtnUpdate)
         Me.FileRibbon.ItemsLayout = DevExpress.XtraBars.Ribbon.RibbonPageGroupItemsLayout.ThreeRows
         Me.FileRibbon.Name = "FileRibbon"
         Me.FileRibbon.Text = "File"
@@ -243,10 +245,10 @@ Partial Class FrmMain
         'ribbon
         '
         Me.ribbon.ExpandCollapseItem.Id = 0
-        Me.ribbon.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.ribbon.ExpandCollapseItem, Me.LoginBar, Me.ExitBar, Me.SkinRibbonGalleryBarItem1, Me.ChngePasBar, Me.CloseAllBar, Me.SkinRibbonGalleryBarItem2})
+        Me.ribbon.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.ribbon.ExpandCollapseItem, Me.LoginBar, Me.ExitBar, Me.SkinRibbonGalleryBarItem1, Me.ChngePasBar, Me.CloseAllBar, Me.SkinRibbonGalleryBarItem2, Me.BarBtnUpdate})
         Me.ribbon.Location = New System.Drawing.Point(0, 48)
         Me.ribbon.Margin = New System.Windows.Forms.Padding(2)
-        Me.ribbon.MaxItemId = 12
+        Me.ribbon.MaxItemId = 13
         Me.ribbon.Name = "ribbon"
         Me.ribbon.PageCategories.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageCategory() {Me.RibbonPageCategory1})
         Me.ribbon.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.Filemenu})
@@ -257,6 +259,16 @@ Partial Class FrmMain
         '
         Me.RibbonPageCategory1.Name = "RibbonPageCategory1"
         Me.RibbonPageCategory1.Text = "RibbonPageCategory1"
+        '
+        'BarBtnUpdate
+        '
+        Me.BarBtnUpdate.Caption = "Update"
+        Me.BarBtnUpdate.Id = 12
+        Me.BarBtnUpdate.ImageOptions.Image = CType(resources.GetObject("BarButtonItem1.ImageOptions.Image"), System.Drawing.Image)
+        Me.BarBtnUpdate.ImageOptions.LargeImage = CType(resources.GetObject("BarButtonItem1.ImageOptions.LargeImage"), System.Drawing.Image)
+        Me.BarBtnUpdate.ImageOptions.SvgImage = CType(resources.GetObject("BarButtonItem1.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.BarBtnUpdate.Name = "BarBtnUpdate"
+        Me.BarBtnUpdate.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText
         '
         'FrmMain
         '
@@ -309,5 +321,6 @@ Partial Class FrmMain
     Friend WithEvents CloseAllBar As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents SkinRibbonGalleryBarItem2 As DevExpress.XtraBars.SkinRibbonGalleryBarItem
     Public WithEvents ribbon As DevExpress.XtraBars.Ribbon.RibbonControl
+    Friend WithEvents BarBtnUpdate As DevExpress.XtraBars.BarButtonItem
 End Class
 

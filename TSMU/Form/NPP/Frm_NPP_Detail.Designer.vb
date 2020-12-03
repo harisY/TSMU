@@ -503,6 +503,7 @@ Partial Class Frm_NPP_Detail
         Me.NoUrut.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.NoUrut.Name = "NoUrut"
         Me.NoUrut.OptionsFilter.AllowFilter = False
+        Me.NoUrut.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.NoUrut.Visible = True
         Me.NoUrut.VisibleIndex = 0
         Me.NoUrut.Width = 53
@@ -631,13 +632,12 @@ Partial Class Frm_NPP_Detail
         'B_AddRows
         '
         Me.B_AddRows.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_AddRows.Location = New System.Drawing.Point(1119, 440)
+        Me.B_AddRows.Location = New System.Drawing.Point(1113, 439)
         Me.B_AddRows.Name = "B_AddRows"
         Me.B_AddRows.Size = New System.Drawing.Size(64, 21)
         Me.B_AddRows.TabIndex = 8
         Me.B_AddRows.Text = "Add Detail"
         Me.B_AddRows.UseVisualStyleBackColor = True
-        Me.B_AddRows.Visible = False
         '
         'GroupBox2
         '
@@ -927,7 +927,7 @@ Partial Class Frm_NPP_Detail
         'BSetGroup
         '
         Me.BSetGroup.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BSetGroup.Location = New System.Drawing.Point(959, 439)
+        Me.BSetGroup.Location = New System.Drawing.Point(843, 439)
         Me.BSetGroup.Name = "BSetGroup"
         Me.BSetGroup.Size = New System.Drawing.Size(75, 21)
         Me.BSetGroup.TabIndex = 34
@@ -938,24 +938,22 @@ Partial Class Frm_NPP_Detail
         'B_Submit
         '
         Me.B_Submit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_Submit.Location = New System.Drawing.Point(1143, 439)
+        Me.B_Submit.Location = New System.Drawing.Point(1003, 439)
         Me.B_Submit.Name = "B_Submit"
         Me.B_Submit.Size = New System.Drawing.Size(104, 23)
         Me.B_Submit.TabIndex = 35
         Me.B_Submit.Text = "Submit To NPD"
         Me.B_Submit.UseVisualStyleBackColor = True
-        Me.B_Submit.Visible = False
         '
         'BUpload
         '
         Me.BUpload.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BUpload.Location = New System.Drawing.Point(1189, 439)
+        Me.BUpload.Location = New System.Drawing.Point(1183, 439)
         Me.BUpload.Name = "BUpload"
         Me.BUpload.Size = New System.Drawing.Size(64, 21)
         Me.BUpload.TabIndex = 36
         Me.BUpload.Text = "Upload"
         Me.BUpload.UseVisualStyleBackColor = True
-        Me.BUpload.Visible = False
         '
         'B_Reject
         '
@@ -984,13 +982,12 @@ Partial Class Frm_NPP_Detail
         'B_Revise
         '
         Me.B_Revise.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_Revise.Location = New System.Drawing.Point(1040, 438)
+        Me.B_Revise.Location = New System.Drawing.Point(924, 439)
         Me.B_Revise.Name = "B_Revise"
         Me.B_Revise.Size = New System.Drawing.Size(73, 23)
         Me.B_Revise.TabIndex = 39
         Me.B_Revise.Text = "Revision"
         Me.B_Revise.UseVisualStyleBackColor = True
-        Me.B_Revise.Visible = False
         '
         'Frm_NPP_Detail
         '

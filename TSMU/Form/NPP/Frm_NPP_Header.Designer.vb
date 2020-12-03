@@ -48,7 +48,7 @@ Partial Class Frm_NPP_Header
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1})
-        Me.Grid.Size = New System.Drawing.Size(903, 300)
+        Me.Grid.Size = New System.Drawing.Size(903, 354)
         Me.Grid.TabIndex = 9
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -201,7 +201,7 @@ Partial Class Frm_NPP_Header
         'Frm_NPP_Header
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(903, 331)
+        Me.ClientSize = New System.Drawing.Size(903, 385)
         Me.Controls.Add(Me.Grid)
         Me.Name = "Frm_NPP_Header"
         Me.Controls.SetChildIndex(Me.Grid, 0)

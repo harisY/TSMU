@@ -80,7 +80,7 @@ Public Class FrmTravelRequest
                     noRequest = GridViewRequest.GetRowCellValue(rowHandle, "NoRequest")
                     status = GridViewRequest.GetRowCellValue(rowHandle, "Status")
                     approved = GridViewRequest.GetRowCellValue(rowHandle, "Approved")
-                    statusTicket = GridViewRequest.GetRowCellValue(rowHandle, "StatusTicket")
+                    statusTicket = IIf(GridViewRequest.GetRowCellValue(rowHandle, "StatusTicket") Is DBNull.Value, "", GridViewRequest.GetRowCellValue(rowHandle, "StatusTicket"))
                 End If
             Next rowHandle
 
@@ -94,17 +94,24 @@ Public Class FrmTravelRequest
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1)
-            ElseIf status = "CLOSE" AndAlso approved <> "CANCEL" AndAlso statusTicket = "INVOICE" Then
-                MessageBox.Show("No Request " & noRequest & " sudah dilakukan proses Settlement !", "Warning",
+            ElseIf status = "CLOSE" Then
+                If statusTicket = "INVOICE" AndAlso approved <> "CANCEL" Then
+                    MessageBox.Show("No Request " & noRequest & " sudah dilakukan proses Settlement !", "Warning",
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Exclamation,
                                MessageBoxDefaultButton.Button1)
+                Else
+                    MessageBox.Show("No Request " & noRequest & " sudah close !", "Warning",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation,
+                              MessageBoxDefaultButton.Button1)
+                End If
             Else
                 Dim ObjApprove = New ApproveHistoryModel With {
-                .MenuCode = Me.Name,
-                .NoTransaksi = noRequest,
-                .IsActive = 0
-                }
+                    .MenuCode = Me.Name,
+                    .NoTransaksi = noRequest,
+                    .IsActive = 0
+                    }
                 fc_Class.NoRequest = noRequest
                 fc_Class.Delete(ObjApprove)
                 Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)

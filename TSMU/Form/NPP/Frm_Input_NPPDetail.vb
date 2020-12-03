@@ -202,6 +202,12 @@ Public Class Frm_Input_NPPDetail
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Exclamation,
                                      MessageBoxDefaultButton.Button1)
+            ElseIf IsNumeric(TNoUrut.Text) = False Then
+                MessageBox.Show("Cycle Time  Must be Number",
+                                    "Warning",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Exclamation,
+                                    MessageBoxDefaultButton.Button1)
             Else
 
                 For i As Integer = 0 To DtTabale.Rows.Count - 1
@@ -236,6 +242,7 @@ Public Class Frm_Input_NPPDetail
                 Dim MyNewRow As DataRow
                 MyNewRow = DtTabale.NewRow
                 With MyNewRow
+                    .Item("No Urut") = TNoUrut.Text.Trim
                     .Item("Part No") = TPartNo.Text.Trim
                     .Item("Part Name") = TPartName.Text.Trim
                     .Item("Machine") = TMachine.Text.Trim
@@ -426,6 +433,23 @@ Public Class Frm_Input_NPPDetail
     End Sub
 
     Private Sub TWeight_KeyPress_1(sender As Object, e As KeyPressEventArgs) Handles TWeight.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 46)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub Label12_Click(sender As Object, e As EventArgs) Handles Label12.Click
+
+    End Sub
+
+    Private Sub Label7_Click(sender As Object, e As EventArgs) Handles Label7.Click
+
+    End Sub
+
+    Private Sub TNoUrut_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TNoUrut.KeyPress
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
