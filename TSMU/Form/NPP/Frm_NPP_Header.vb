@@ -183,6 +183,8 @@ Public Class Frm_NPP_Header
             Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
         ElseIf Active_Form = 3 Then
             Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+        Else
+            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
         End If
 
     End Sub

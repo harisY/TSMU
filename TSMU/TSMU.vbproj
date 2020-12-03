@@ -1988,6 +1988,12 @@
     <Compile Include="Form\NPP\Frm_NPP_Set_Grup.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\NPP\Report\NppReport.Designer.vb">
+      <DependentUpon>NppReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Report\NppReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\NPP\Report\CRNpwo.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1998,6 +2004,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Report\NppRevisi.Designer.vb">
+      <DependentUpon>NppRevisi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Report\NppRevisi.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\NPP\Report\NPP_RevInformasi.vb">
@@ -3423,6 +3435,9 @@
     <EmbeddedResource Include="Form\NPP\Frm_NPP_Set_Grup.resx">
       <DependentUpon>Frm_NPP_Set_Grup.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Report\NppReport.resx">
+      <DependentUpon>NppReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Report\CRNpwo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRNpwo.vb</LastGenOutput>
@@ -3430,6 +3445,9 @@
     <EmbeddedResource Include="Form\NPP\Report\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Report\NppRevisi.resx">
+      <DependentUpon>NppRevisi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Report\NPP_RevInformasi.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
