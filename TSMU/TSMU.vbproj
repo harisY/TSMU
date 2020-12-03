@@ -2114,6 +2114,12 @@
     <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_Harigami1.Designer.vb">
+      <DependentUpon>frmReport_Harigami1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Harigami1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\FrmReport_Matome_New.designer.vb">
       <DependentUpon>FrmReport_Matome_New.vb</DependentUpon>
     </Compile>
@@ -2820,6 +2826,12 @@
       <DependentUpon>Rpt_Upload2.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\HarigamiReport.Designer.vb">
+      <DependentUpon>HarigamiReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\HarigamiReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\PrintKanbanInternal_new.Designer.vb">
       <DependentUpon>PrintKanbanInternal_new.vb</DependentUpon>
     </Compile>
@@ -3503,6 +3515,9 @@
     <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO.resx">
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_Harigami1.resx">
+      <DependentUpon>frmReport_Harigami1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\FrmReport_Matome_New.resx">
       <DependentUpon>FrmReport_Matome_New.vb</DependentUpon>
     </EmbeddedResource>
@@ -3835,6 +3850,9 @@
     <EmbeddedResource Include="Payment\Rpt_Upload2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_Upload2.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\HarigamiReport.resx">
+      <DependentUpon>HarigamiReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\PrintKanbanInternal_new.resx">
       <DependentUpon>PrintKanbanInternal_new.vb</DependentUpon>

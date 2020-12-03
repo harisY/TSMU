@@ -130,6 +130,65 @@ Public Class HarigamiModels
             Throw ex
         End Try
     End Sub
+
+#Region "REPORT"
+    Public Function PopulateFileNo() As DataTable
+        Try
+            Dim dtTable As New DataTable
+            Dim Query As String = "SELECT LTRIM(RTRIM(FileNo)) FileNo,
+                                        CASE 
+		                                WHEN PartNo IS NULL
+			                                THEN 'N/A'
+		                                ELSE PartNo
+		                                END AS PartNo
+                                   FROM TbHarigami
+                                   "
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                dtTable = GetDataTableByParam(Query, CommandType.Text, Nothing, GetConnString)
+            Else
+                dtTable = GetDataTableByParam(Query, CommandType.Text, Nothing, GetConnStringDbCKR)
+            End If
+            Return dtTable
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GenerateDataGrid(FileNo As String, Type As String, Dari As Date, Sampai As Date) As DataTable
+        Try
+            Dim dtTable As New DataTable
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+            Params.Add(New SqlParameter() With {.ParameterName = "FileNo", .Value = FileNo})
+            Params.Add(New SqlParameter() With {.ParameterName = "Type", .Value = Type})
+            Params.Add(New SqlParameter() With {.ParameterName = "Tgl", .Value = Dari})
+            Params.Add(New SqlParameter() With {.ParameterName = "Tgl1", .Value = Sampai})
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                dtTable = GetDataTableByParam("Harigami_Report", CommandType.StoredProcedure, Params, GetConnString)
+            Else
+                dtTable = GetDataTableByParam("Harigami_Report", CommandType.StoredProcedure, Params, GetConnStringDbCKR)
+            End If
+            Return dtTable
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function PopulatePartNo() As DataTable
+        Try
+            Dim dtTable As New DataTable
+            Dim Query As String = "SELECT DISTINCT LTRIM(RTRIM(PartNo)) PartNo
+                                   FROM TbHarigami
+                                   "
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                dtTable = GetDataTableByParam(Query, CommandType.Text, Nothing, GetConnString)
+            Else
+                dtTable = GetDataTableByParam(Query, CommandType.Text, Nothing, GetConnStringDbCKR)
+            End If
+            Return dtTable
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 End Class
 Public Class HarigamiDetailsModels
     Public Property Id() As Integer
