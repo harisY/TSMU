@@ -792,6 +792,36 @@ Public Class baseForm
         tsBtn_search.Enabled = BtnSearch
     End Sub
 
+    Public Sub Proc_VisibleButtons(
+        Optional ByVal NewData As Boolean = False _
+        , Optional ByVal Save As Boolean = True _
+        , Optional ByVal Delete As Boolean = False _
+        , Optional ByVal Refresh As Boolean = False _
+        , Optional ByVal Excel As Boolean = False _
+        , Optional ByVal Filter As Boolean = False _
+        , Optional ByVal Preview As Boolean = False _
+        , Optional ByVal Print As Boolean = False _
+        , Optional ByVal BtnPrev As Boolean = False _
+        , Optional ByVal BtnNext As Boolean = False _
+        , Optional ByVal BtnAprove As Boolean = False _
+        , Optional ByVal BtnSearch As Boolean = False
+    )
+
+
+        tsBtn_newData.Visible = NewData
+        tsBtn_save.Visible = Save
+        tsBtn_delete.Visible = Delete
+        tsBtn_refresh.Visible = Refresh
+        tsBtn_excel.Visible = Excel
+        tsBtn_filter.Visible = Filter
+        tsBtn_preview.Visible = Preview
+        tsBtn_print.Visible = Print
+        tsBtn_prev.Visible = BtnPrev
+        tsBtn_next.Visible = BtnNext
+        tsBtn_approve.Visible = BtnAprove
+        tsBtn_search.Visible = BtnSearch
+    End Sub
+
     ''' <summary>
     ''' Prosedur untuk menyimpan data
     ''' </summary>

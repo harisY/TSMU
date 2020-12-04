@@ -129,17 +129,20 @@ Partial Class FrmPaymentDirect
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit10 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit11 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.ToolStrip8 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripLabel5 = New System.Windows.Forms.ToolStripLabel()
+        Me.LblTotAmountSettTr = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripLabel6 = New System.Windows.Forms.ToolStripLabel()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GridControl6 = New DevExpress.XtraGrid.GridControl()
@@ -170,9 +173,10 @@ Partial Class FrmPaymentDirect
         Me.RepositoryItemButtonEdit9 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit7 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip7 = New System.Windows.Forms.ToolStrip()
         Me.btnaddx = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.LblTotAmountAdvTr = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -1290,7 +1294,7 @@ Partial Class FrmPaymentDirect
         '
         'GridView4
         '
-        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn35, Me.GridColumn36, Me.GridColumn38, Me.GridColumn39, Me.GridColumn66, Me.GridColumn67})
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn32, Me.GridColumn33, Me.GridColumn49, Me.GridColumn35, Me.GridColumn36, Me.GridColumn50, Me.GridColumn38, Me.GridColumn39, Me.GridColumn66, Me.GridColumn67, Me.GridColumn53})
         Me.GridView4.DetailHeight = 458
         Me.GridView4.FixedLineWidth = 3
         Me.GridView4.GridControl = Me.GridControl4
@@ -1306,24 +1310,32 @@ Partial Class FrmPaymentDirect
         Me.GridColumn32.Name = "GridColumn32"
         Me.GridColumn32.Visible = True
         Me.GridColumn32.VisibleIndex = 0
-        Me.GridColumn32.Width = 100
         '
         'GridColumn33
         '
-        Me.GridColumn33.Caption = "Settle No."
+        Me.GridColumn33.Caption = "Request No."
         Me.GridColumn33.ColumnEdit = Me.RepositoryItemButtonEdit10
         Me.GridColumn33.FieldName = "NoVoucher"
         Me.GridColumn33.MinWidth = 27
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
         Me.GridColumn33.VisibleIndex = 1
-        Me.GridColumn33.Width = 100
         '
         'RepositoryItemButtonEdit10
         '
         Me.RepositoryItemButtonEdit10.AutoHeight = False
         Me.RepositoryItemButtonEdit10.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemButtonEdit10.Name = "RepositoryItemButtonEdit10"
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "Settle No."
+        Me.GridColumn49.FieldName = "NoRequest"
+        Me.GridColumn49.MinWidth = 25
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 2
+        Me.GridColumn49.Width = 70
         '
         'GridColumn35
         '
@@ -1332,8 +1344,8 @@ Partial Class FrmPaymentDirect
         Me.GridColumn35.MinWidth = 27
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 2
-        Me.GridColumn35.Width = 100
+        Me.GridColumn35.VisibleIndex = 3
+        Me.GridColumn35.Width = 175
         '
         'GridColumn36
         '
@@ -1342,8 +1354,18 @@ Partial Class FrmPaymentDirect
         Me.GridColumn36.MinWidth = 27
         Me.GridColumn36.Name = "GridColumn36"
         Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 3
-        Me.GridColumn36.Width = 100
+        Me.GridColumn36.VisibleIndex = 4
+        Me.GridColumn36.Width = 59
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "Amount Advance"
+        Me.GridColumn50.FieldName = "AdvanceAmount"
+        Me.GridColumn50.MinWidth = 25
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 5
+        Me.GridColumn50.Width = 56
         '
         'GridColumn38
         '
@@ -1352,8 +1374,8 @@ Partial Class FrmPaymentDirect
         Me.GridColumn38.MinWidth = 27
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 4
-        Me.GridColumn38.Width = 100
+        Me.GridColumn38.VisibleIndex = 6
+        Me.GridColumn38.Width = 59
         '
         'GridColumn39
         '
@@ -1362,8 +1384,8 @@ Partial Class FrmPaymentDirect
         Me.GridColumn39.MinWidth = 27
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 5
-        Me.GridColumn39.Width = 100
+        Me.GridColumn39.VisibleIndex = 7
+        Me.GridColumn39.Width = 59
         '
         'GridColumn66
         '
@@ -1372,8 +1394,8 @@ Partial Class FrmPaymentDirect
         Me.GridColumn66.MinWidth = 27
         Me.GridColumn66.Name = "GridColumn66"
         Me.GridColumn66.Visible = True
-        Me.GridColumn66.VisibleIndex = 6
-        Me.GridColumn66.Width = 100
+        Me.GridColumn66.VisibleIndex = 8
+        Me.GridColumn66.Width = 59
         '
         'GridColumn67
         '
@@ -1383,13 +1405,21 @@ Partial Class FrmPaymentDirect
         Me.GridColumn67.MinWidth = 27
         Me.GridColumn67.Name = "GridColumn67"
         Me.GridColumn67.Visible = True
-        Me.GridColumn67.VisibleIndex = 7
-        Me.GridColumn67.Width = 100
+        Me.GridColumn67.VisibleIndex = 9
+        Me.GridColumn67.Width = 59
         '
         'RepositoryItemCheckEdit3
         '
         Me.RepositoryItemCheckEdit3.AutoHeight = False
         Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.Caption = "CostType"
+        Me.GridColumn53.FieldName = "CostType"
+        Me.GridColumn53.MinWidth = 25
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Width = 66
         '
         'RepositoryItemButtonEdit11
         '
@@ -1400,7 +1430,7 @@ Partial Class FrmPaymentDirect
         'ToolStrip8
         '
         Me.ToolStrip8.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip8.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripLabel5, Me.ToolStripLabel6})
+        Me.ToolStrip8.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.LblTotAmountSettTr, Me.ToolStripLabel6})
         Me.ToolStrip8.Location = New System.Drawing.Point(4, 4)
         Me.ToolStrip8.Name = "ToolStrip8"
         Me.ToolStrip8.Size = New System.Drawing.Size(1495, 30)
@@ -1419,14 +1449,14 @@ Partial Class FrmPaymentDirect
         Me.ToolStripButton1.Size = New System.Drawing.Size(77, 27)
         Me.ToolStripButton1.Text = ">>PAID"
         '
-        'ToolStripLabel5
+        'LblTotAmountSettTr
         '
-        Me.ToolStripLabel5.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripLabel5.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStripLabel5.ForeColor = System.Drawing.Color.Red
-        Me.ToolStripLabel5.Name = "ToolStripLabel5"
-        Me.ToolStripLabel5.Size = New System.Drawing.Size(20, 27)
-        Me.ToolStripLabel5.Text = "0"
+        Me.LblTotAmountSettTr.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.LblTotAmountSettTr.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblTotAmountSettTr.ForeColor = System.Drawing.Color.Red
+        Me.LblTotAmountSettTr.Name = "LblTotAmountSettTr"
+        Me.LblTotAmountSettTr.Size = New System.Drawing.Size(20, 27)
+        Me.LblTotAmountSettTr.Text = "0"
         '
         'ToolStripLabel6
         '
@@ -1618,7 +1648,7 @@ Partial Class FrmPaymentDirect
         '
         'GridView7
         '
-        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65})
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn52})
         Me.GridView7.DetailHeight = 458
         Me.GridView7.FixedLineWidth = 3
         Me.GridView7.GridControl = Me.GridControl7
@@ -1636,7 +1666,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn59.Name = "GridColumn59"
         Me.GridColumn59.Visible = True
         Me.GridColumn59.VisibleIndex = 0
-        Me.GridColumn59.Width = 100
+        Me.GridColumn59.Width = 102
         '
         'GridColumn60
         '
@@ -1647,7 +1677,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn60.Name = "GridColumn60"
         Me.GridColumn60.Visible = True
         Me.GridColumn60.VisibleIndex = 1
-        Me.GridColumn60.Width = 100
+        Me.GridColumn60.Width = 102
         '
         'RepositoryItemButtonEdit8
         '
@@ -1663,7 +1693,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn61.Name = "GridColumn61"
         Me.GridColumn61.Visible = True
         Me.GridColumn61.VisibleIndex = 2
-        Me.GridColumn61.Width = 100
+        Me.GridColumn61.Width = 302
         '
         'GridColumn62
         '
@@ -1673,7 +1703,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn62.Name = "GridColumn62"
         Me.GridColumn62.Visible = True
         Me.GridColumn62.VisibleIndex = 3
-        Me.GridColumn62.Width = 100
+        Me.GridColumn62.Width = 61
         '
         'GridColumn63
         '
@@ -1683,7 +1713,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn63.Name = "GridColumn63"
         Me.GridColumn63.Visible = True
         Me.GridColumn63.VisibleIndex = 4
-        Me.GridColumn63.Width = 100
+        Me.GridColumn63.Width = 61
         '
         'GridColumn64
         '
@@ -1694,7 +1724,7 @@ Partial Class FrmPaymentDirect
         Me.GridColumn64.Name = "GridColumn64"
         Me.GridColumn64.Visible = True
         Me.GridColumn64.VisibleIndex = 5
-        Me.GridColumn64.Width = 100
+        Me.GridColumn64.Width = 61
         '
         'RepositoryItemButtonEdit9
         '
@@ -1712,17 +1742,25 @@ Partial Class FrmPaymentDirect
         Me.GridColumn65.OptionsFilter.AllowAutoFilter = False
         Me.GridColumn65.Visible = True
         Me.GridColumn65.VisibleIndex = 6
-        Me.GridColumn65.Width = 100
+        Me.GridColumn65.Width = 61
         '
         'RepositoryItemCheckEdit7
         '
         Me.RepositoryItemCheckEdit7.AutoHeight = False
         Me.RepositoryItemCheckEdit7.Name = "RepositoryItemCheckEdit7"
         '
+        'GridColumn52
+        '
+        Me.GridColumn52.Caption = "CostType"
+        Me.GridColumn52.FieldName = "CostType"
+        Me.GridColumn52.MinWidth = 25
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Width = 62
+        '
         'ToolStrip7
         '
         Me.ToolStrip7.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip7.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnaddx, Me.ToolStripLabel1, Me.ToolStripLabel4})
+        Me.ToolStrip7.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnaddx, Me.LblTotAmountAdvTr, Me.ToolStripLabel4})
         Me.ToolStrip7.Location = New System.Drawing.Point(4, 4)
         Me.ToolStrip7.Name = "ToolStrip7"
         Me.ToolStrip7.Size = New System.Drawing.Size(1495, 30)
@@ -1741,15 +1779,15 @@ Partial Class FrmPaymentDirect
         Me.btnaddx.Size = New System.Drawing.Size(77, 27)
         Me.btnaddx.Text = ">>PAID"
         '
-        'ToolStripLabel1
+        'LblTotAmountAdvTr
         '
-        Me.ToolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripLabel1.BackColor = System.Drawing.Color.Transparent
-        Me.ToolStripLabel1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ToolStripLabel1.ForeColor = System.Drawing.Color.Red
-        Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(20, 27)
-        Me.ToolStripLabel1.Text = "0"
+        Me.LblTotAmountAdvTr.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.LblTotAmountAdvTr.BackColor = System.Drawing.Color.Transparent
+        Me.LblTotAmountAdvTr.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblTotAmountAdvTr.ForeColor = System.Drawing.Color.Red
+        Me.LblTotAmountAdvTr.Name = "LblTotAmountAdvTr"
+        Me.LblTotAmountAdvTr.Size = New System.Drawing.Size(20, 27)
+        Me.LblTotAmountAdvTr.Text = "0"
         '
         'ToolStripLabel4
         '
@@ -2006,7 +2044,7 @@ Partial Class FrmPaymentDirect
     Friend WithEvents RepositoryItemButtonEdit11 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents ToolStrip8 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
-    Friend WithEvents ToolStripLabel5 As ToolStripLabel
+    Friend WithEvents LblTotAmountSettTr As ToolStripLabel
     Friend WithEvents ToolStripLabel6 As ToolStripLabel
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents GridControl6 As DevExpress.XtraGrid.GridControl
@@ -2039,8 +2077,12 @@ Partial Class FrmPaymentDirect
     Friend WithEvents RepositoryItemCheckEdit7 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents ToolStrip7 As ToolStrip
     Friend WithEvents btnaddx As ToolStripButton
-    Friend WithEvents ToolStripLabel1 As ToolStripLabel
+    Friend WithEvents LblTotAmountAdvTr As ToolStripLabel
     Friend WithEvents ToolStripLabel4 As ToolStripLabel
     Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridColumn49 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn50 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

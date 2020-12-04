@@ -181,7 +181,7 @@ Public Class FrmSuspendSettleDetailDirect
                     TxtNoSettlement.Text = .SettleID
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
-                    .PRNo = TxtPrNo.Text
+                    TxtPrNo.Text = .PRNo
 
                     creditCardID = .CreditCardID.TrimEnd
 
@@ -194,7 +194,7 @@ Public Class FrmSuspendSettleDetailDirect
                 TxtDep.Text = gh_Common.GroupID
                 TxtRemark.Text = ""
                 TxtTgl.EditValue = DateTime.Today
-
+                TxtPrNo.Text = ""
                 creditCardID = ""
 
                 accountName = ""
@@ -216,6 +216,24 @@ Public Class FrmSuspendSettleDetailDirect
                 lb_Validated = True
             Else
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
+            End If
+
+            Dim IsEmpty As Boolean = False
+            For i As Integer = 0 To GridView1.RowCount - 1
+                GridView1.MoveFirst()
+                If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
+                   GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
+                   GridView1.GetRowCellValue(i, GridView1.Columns("ActualAmount")).ToString = "" OrElse
+                    GridView1.GetRowCellValue(i, GridView1.Columns("ActualAmount")).ToString = "0" Then
+                    IsEmpty = True
+                End If
+            Next
+            If String.IsNullOrEmpty(TxtRemark.Text) Then
+                Err.Raise(ErrNumber, , "Remark header tidak boleh kosong")
+            ElseIf GridView1.RowCount = 0 Then
+                Err.Raise(ErrNumber, , "Detail tidak boleh kosong")
+            ElseIf IsEmpty = True Then
+                Err.Raise(ErrNumber, , "Account/SubAccount/Amount tidak boleh kosong")
             End If
 
             If lb_Validated Then
@@ -478,14 +496,17 @@ Public Class FrmSuspendSettleDetailDirect
     '    End If
     'End Sub
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
-
+        'Dim DEP As String = ""
+        'DEP = ObjSuspendHeader.Get_Dept_Sub(TxtDep.Text)
         GridView1.AddNewRow()
         GridView1.OptionsNavigation.AutoFocusNewRow = True
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SettleID", "")
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "ActualAmount", 0)
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", ObjSuspendHeader.Get_Dept_Sub(TxtDep.Text))
+        ''  GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", "")
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Account", "")
-        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Description", "")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Tgl", Date.Today)
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Description", TxtRemark.Text)
         GridView1.RefreshData()
     End Sub
 
@@ -579,5 +600,7 @@ Public Class FrmSuspendSettleDetailDirect
         TxtTotExpense.Text = Format(Total, gs_FormatBulat)
     End Sub
 
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
+    End Sub
 End Class

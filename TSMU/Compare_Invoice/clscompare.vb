@@ -80,6 +80,7 @@ Public Class clscompare
     Public Property UnitDescr As String
     Public Property ordnbr As Integer
     Public Property PO As String
+    Public Property periode As String
     Public Property nom As Integer
 
     '  Public Property cmbperpost() As String
@@ -121,7 +122,7 @@ Public Class clscompare
     Public Sub Updatesonbr()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "update POYIM  Set SO='REG1020-'+right('0000'+cast(right(rtrim(ordnbr),4) as varchar),4)"
+            ls_SP = "update POYIM  Set SO=" & QVal(periode.TrimEnd) & "+'-'+right('0000'+cast(right(rtrim(ordnbr),4) as varchar),4)"
 
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

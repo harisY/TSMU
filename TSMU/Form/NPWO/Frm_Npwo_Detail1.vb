@@ -894,17 +894,14 @@ Public Class Frm_Npwo_Detail1
     End Sub
     Public Overrides Sub Proc_Print()
 
-
         fc_Class.GetDataByID(fs_Code)
         If fc_Class.H_Approve >= 1 Then
-
 
             Dim dtRpt As DataTable
             dtRpt = New DataTable
 
             Dim ds As New DataSet
             Dim dsRev As New DataSet
-
 
             ds = fc_Class.NpwoReport(TNpwo_No.EditValue, 0)
             dsRev = fc_Class.NPWOReportRev(TNpwo_No.EditValue)
@@ -919,8 +916,6 @@ Public Class Frm_Npwo_Detail1
 
             Dim subReportRevisi As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
             subReportRevisi.ReportSource.DataSource = dsRev.Tables("NpwoRev")
-
-
 
             PrintTool = New ReportPrintTool(Laporan)
             TryCast(PrintTool.Report, XtraReport).Tag = PrintTool

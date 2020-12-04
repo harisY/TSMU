@@ -224,7 +224,7 @@ Public Class FrmSuspendSettleDetailDirectCC
                     TxtNoSettlement.Text = .SettleID
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
-                    .PRNo = TxtPrNo.Text
+                    TxtPrNo.Text = .PRNo
                     TxtPaymentType.Text = .PaymentType.TrimEnd
                     creditCardID = .CreditCardID.TrimEnd
                     txtCCNumber.EditValue = .CreditCardNumber.TrimEnd
@@ -236,6 +236,7 @@ Public Class FrmSuspendSettleDetailDirectCC
                 TxtCurrency.Text = "IDR"
                 TxtDep.Text = gh_Common.GroupID
                 TxtRemark.Text = ""
+                TxtPrNo.Text = ""
                 TxtTgl.EditValue = DateTime.Today
                 TxtPaymentType.Text = "FINANCE"
                 creditCardID = ""
@@ -259,6 +260,23 @@ Public Class FrmSuspendSettleDetailDirectCC
                 lb_Validated = True
             Else
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
+            End If
+            Dim IsEmpty As Boolean = False
+            For i As Integer = 0 To GridView1.RowCount - 1
+                GridView1.MoveFirst()
+                If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
+                   GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
+                   GridView1.GetRowCellValue(i, GridView1.Columns("ActualAmount")).ToString = "" OrElse
+                    GridView1.GetRowCellValue(i, GridView1.Columns("ActualAmount")).ToString = "0" Then
+                    IsEmpty = True
+                End If
+            Next
+            If String.IsNullOrEmpty(TxtRemark.Text) Then
+                Err.Raise(ErrNumber, , "Remark header tidak boleh kosong")
+            ElseIf GridView1.RowCount = 0 Then
+                Err.Raise(ErrNumber, , "Detail tidak boleh kosong")
+            ElseIf IsEmpty = True Then
+                Err.Raise(ErrNumber, , "Account/SubAccount/Amount tidak boleh kosong")
             End If
 
             If lb_Validated Then

@@ -5,17 +5,17 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 
-Public Class FrmSuspend_Detail
+Public Class Frmgl_Detail
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
-    Dim fc_Class As New ClsSuspend
-    Dim ObjSuspendHeader As New SuspendHeaderModel
-    Dim ObjSuspendDetail As New SuspendDetailModel
+
+    Dim ObjGJHeader As New GJHeaderModel
+    Dim ObjGJDetail As New GJDetailModel
     Dim GridDtl As GridControl
-    Dim f As FrmSuspend_Detail2
+    '' Dim f As Frmgl_Detail2
     Dim dt As New DataTable
     Dim fs_Split As String = "'"
     Dim lg_Grid As DataGridView
@@ -23,11 +23,12 @@ Public Class FrmSuspend_Detail
     Dim dtGrid As New DataTable
     Dim DtScan As DataTable
 
-    Dim ObjSuspend As New ClsSuspend
+
     Dim ls_Judul As String = ""
     Dim dtSearch As New DataTable
     Dim ls_OldKode As String = ""
-    Dim _SuspendID As String = ""
+    Dim _GJID As String = ""
+    Dim _GJID_Revers As String = ""
     Dim _Tag As TagModel
 
     Public Sub New()
@@ -60,16 +61,17 @@ Public Class FrmSuspend_Detail
     End Sub
     Private Sub CreateTable()
         DtScan = New DataTable
-        DtScan.Columns.AddRange(New DataColumn(3) {New DataColumn("SubAccount", GetType(String)),
+        DtScan.Columns.AddRange(New DataColumn(4) {New DataColumn("SubAccount", GetType(String)),
                                                             New DataColumn("Account", GetType(String)),
                                                             New DataColumn("Description", GetType(String)),
-                                                            New DataColumn("Amount", GetType(Double))})
+                                                            New DataColumn("Debit_Amount", GetType(Double)),
+                                                             New DataColumn("Credit_Amount", GetType(Double))})
 
         Grid.DataSource = DtScan
         GridView1.OptionsView.ShowAutoFilterRow = False
 
     End Sub
-    Private Sub FrmSuspend_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Frmgl_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, False)
         '' Call Proc_EnableButtons(True, True, True, True, True, True, True, True, True, True)
         'Call CreateTable()
@@ -85,8 +87,8 @@ Public Class FrmSuspend_Detail
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ObjSuspendHeader.SuspendHeaderID = fs_Code
-                ObjSuspendHeader.GetSuspenById()
+                ObjGJHeader.GJHeaderID = fs_Code
+                ObjGJHeader.GetGJById()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -95,15 +97,15 @@ Public Class FrmSuspend_Detail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Advance " & fs_Code
+                Me.Text = "General Journal " & fs_Code
             Else
-                Me.Text = "Advance"
+                Me.Text = "General Journal"
             End If
             Call LoadTxtBox()
             LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "frmSuspend"
+            bs_MainFormName = "Frmgl"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -113,16 +115,16 @@ Public Class FrmSuspend_Detail
         Try
             If fs_Code <> "" Then
                 Dim dtGrid As New DataTable
-                ObjSuspendDetail.SuspendID = TxtNoSuspend.Text
-                dtGrid = ObjSuspendDetail.GetDataDetailByID()
+                ObjGJDetail.GJID = TxtNoGJ.Text
+                dtGrid = ObjGJDetail.GetDataDetailByID()
                 Grid.DataSource = dtGrid
                 If dtGrid.Rows.Count > 0 Then
                     GridCellFormat(GridView1)
                 End If
             Else
                 Dim dtGrid As New DataTable
-                ObjSuspendDetail.SuspendID = ""
-                dtGrid = ObjSuspendDetail.GetDataDetailByID()
+                ObjGJDetail.GJID = ""
+                dtGrid = ObjGJDetail.GetDataDetailByID()
                 Grid.DataSource = dtGrid
             End If
 
@@ -133,27 +135,36 @@ Public Class FrmSuspend_Detail
     Private Sub LoadTxtBox()
         Try
             If fs_Code <> "" Then
-                With ObjSuspendHeader
-                    TxtNoSuspend.Text = .SuspendID
+                With ObjGJHeader
+                    TxtNoGJ.Text = .GJID
+                    TxtNoRJ.Text = .GJID_Revers
                     TxtPrNo.Text = .PRNo
                     TxtCurrency.SelectedText = .Currency
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
                     TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
-                    TxtTotal.Text = Format(.Total, gs_FormatBulat)
+                    TxtTotalDb.Text = Format(.Total, gs_FormatBulat)
+                    TxtTotalCr.Text = Format(.TotalCr, gs_FormatBulat)
+                    If TxtNoRJ.Text = "" Or Microsoft.VisualBasic.Left(TxtNoRJ.Text, 2) <> "RJ" Then
+                        ChkRevers.Checked = False
+                    Else
+                        ChkRevers.Checked = True
+                    End If
                 End With
                 GridView1.AddNewRow()
                 GridView1.OptionsNavigation.AutoFocusNewRow = True
             Else
-                TxtNoSuspend.Text = ""
+                TxtNoGJ.Text = ""
+                TxtNoRJ.Text = ""
                 TxtPrNo.Text = ""
                 TxtCurrency.SelectedIndex = 0
                 TxtDep.Text = gh_Common.GroupID
                 TxtRemark.Text = ""
                 TxtStatus.Text = "Open"
                 TxtTgl.EditValue = DateTime.Today
-                TxtTotal.Text = "0"
+                TxtTotalDb.Text = "0"
+                TxtTotalCr.Text = "0"
                 TxtPrNo.Focus()
                 GridView1.AddNewRow()
                 GridView1.OptionsNavigation.AutoFocusNewRow = True
@@ -179,17 +190,20 @@ Public Class FrmSuspend_Detail
             End If
 
             If lb_Validated Then
-                With ObjSuspendHeader
+                With ObjGJHeader
                     .Currency = TxtCurrency.Text
                     .DeptID = TxtDep.Text
                     .PRNo = TxtPrNo.Text
                     .Remark = TxtRemark.Text
                     .Status = TxtStatus.Text
-                    .SuspendID = .SuspendAutoNo
-                    _SuspendID = .SuspendAutoNo
+                    .GJID = .GJAutoNo
+                    _GJID = .GJAutoNo
+                    .GJID_Revers = .RJAutoNo
+                    _GJID_Revers = .RJAutoNo
                     .Tgl = TxtTgl.EditValue
                     .Tipe = "S"
-                    .Total = TxtTotal.Text
+                    .Total = TxtTotalDb.Text
+                    .TotalCr = TxtTotalCr.Text
                     'If isUpdate = False Then
                     '    .ValidateInsert()
                     'Else
@@ -206,10 +220,10 @@ Public Class FrmSuspend_Detail
     End Function
     Public Sub CallForm(Optional ByVal ID As String = "", Optional ByVal Nama As String = "", Optional ByVal IsNew As Boolean = True)
 
-        f = New FrmSuspend_Detail2(ID, Nama, IsNew, dt, Grid)
-        f.StartPosition = FormStartPosition.CenterScreen
-        f.MaximizeBox = False
-        f.ShowDialog()
+        'f = New Frmgl_Detail2(ID, Nama, IsNew, dt, Grid)
+        'f.StartPosition = FormStartPosition.CenterScreen
+        'f.MaximizeBox = False
+        'f.ShowDialog()
 
     End Sub
     Public Overrides Sub Proc_Approve()
@@ -221,8 +235,7 @@ Public Class FrmSuspend_Detail
             For i As Integer = 0 To GridView1.RowCount - 1
                 GridView1.MoveFirst()
                 If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
-                   GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
-                   GridView1.GetRowCellValue(i, GridView1.Columns("Amount")).ToString = "" Then
+                   GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" Then
                     IsEmpty = True
                     GridView1.DeleteRow(i)
                 End If
@@ -232,46 +245,97 @@ Public Class FrmSuspend_Detail
             'End If
 
             If isUpdate = False Then
-                ObjSuspendHeader.ObjDetails.Clear()
+                ObjGJHeader.ObjDetails.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
                     If GridView1.GetRowCellValue(i, "Account") <> "" Then
-                        ObjSuspendDetail = New SuspendDetailModel
-                        With ObjSuspendDetail
-                            .SuspendID = _SuspendID
+                        ObjGJDetail = New GJDetailModel
+                        With ObjGJDetail
+                            .GJID = _GJID
+                            .GJID_Revers = _GJID_Revers
                             .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
+
+                            If GridView1.GetRowCellValue(i, "Debit_Amount") Is DBNull.Value Then
+                                .Debit_Amount = 0
+                            Else
+                                .Debit_Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Debit_Amount"))
+                            End If
+                            If GridView1.GetRowCellValue(i, "Credit_Amount") Is DBNull.Value Then
+                                .Credit_Amount = 0
+                            Else
+                                .Credit_Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Credit_Amount"))
+                            End If
+                            '.Debit_Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Debit_Amount"))
+                            '.Credit_Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Credit_Amount"))
                             .Description = GridView1.GetRowCellValue(i, "Description").ToString()
                             .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
                         End With
-                        ObjSuspendHeader.ObjDetails.Add(ObjSuspendDetail)
-                    End If
-                Next
-                ObjSuspendHeader.InsertData()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            Else
-                ObjSuspendHeader.ObjDetails.Clear()
-                For i As Integer = 0 To GridView1.RowCount - 1
-                    If GridView1.GetRowCellValue(i, "Account") <> "" Then
-                        ObjSuspendDetail = New SuspendDetailModel
-                        With ObjSuspendDetail
-                            .SuspendID = TxtNoSuspend.Text
-                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
-                            .Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Amount"))
-                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
-                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
-                        End With
-                        ObjSuspendHeader.ObjDetails.Add(ObjSuspendDetail)
+                        ObjGJHeader.ObjDetails.Add(ObjGJDetail)
                     End If
                 Next
 
-                Dim Result As Boolean = ObjSuspendHeader.IsSuspendOpen(fs_Code)
-                If Result Then
-                    Throw New Exception("Suspend ID '" & fs_Code2 & "' tidak bisa di edit !")
+                ObjGJHeader.InsertData()
+                If ChkRevers.Checked = True Then
+
+                    ObjGJHeader.InsertDataR()
                 End If
-                ObjSuspendHeader.UpdateData(TxtNoSuspend.Text)
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            Else
+                ObjGJHeader.ObjDetails.Clear()
+                For i As Integer = 0 To GridView1.RowCount - 1
+                    If GridView1.GetRowCellValue(i, "Account") <> "" Then
+                        ObjGJDetail = New GJDetailModel
+                        With ObjGJDetail
+                            .GJID = TxtNoGJ.Text
+                            .GJID_Revers = TxtNoRJ.Text
+                            .GJID_Revers2 = _GJID_Revers
+                            .AcctID = GridView1.GetRowCellValue(i, "Account").ToString().TrimEnd
+
+                            If GridView1.GetRowCellValue(i, "Debit_Amount") Is DBNull.Value Then
+                                .Debit_Amount = 0
+                            Else
+                                .Debit_Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Debit_Amount"))
+                            End If
+                            If GridView1.GetRowCellValue(i, "Credit_Amount") Is DBNull.Value Then
+                                .Credit_Amount = 0
+                            Else
+                                .Credit_Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Credit_Amount"))
+                            End If
+                            .Description = GridView1.GetRowCellValue(i, "Description").ToString()
+                            .SubAcct = GridView1.GetRowCellValue(i, "SubAccount")
+                        End With
+                        ObjGJHeader.ObjDetails.Add(ObjGJDetail)
+                    End If
+                Next
+
+                Dim Result As Boolean = ObjGJHeader.IsGJOpen(fs_Code)
+                If Result Then
+                    Throw New Exception("GJ ID '" & fs_Code2 & "' tidak bisa di edit !")
+                End If
+                ObjGJHeader.GJID = TxtNoGJ.Text
+                ObjGJHeader.GJID_Revers = TxtNoRJ.Text
+                ObjGJHeader.Deletegj()
+                ObjGJHeader.DeleteDataR(TxtNoRJ.Text)
+                ObjGJHeader.UpdateHeadercek(TxtNoGJ.Text)
+                ObjGJHeader.GJID = ObjGJHeader.GJAutoNo
+                ObjGJHeader.GJID_Revers = ObjGJHeader.RJAutoNo
+                ObjGJHeader.InsertData()
+                ObjGJDetail.GJID_Revers2 = ObjGJDetail.GJID_Revers2
+                ObjGJHeader.GJID_Revers2 = ObjGJDetail.GJID_Revers2
+                If ChkRevers.Checked = True Then
+                    'ObjGJDetail.GJID_Revers = ObjGJDetail.GJID_Revers2
+                    ObjGJHeader.InsertDataR2()
+                End If
+
+                '  ObjGJHeader.UpdateData(TxtNoGJ.Text)
+                'If ChkRevers.Checked = True Then
+                '    ObjGJHeader.UpdateDataR(TxtNoRJ.Text)
+                'Else
+                '    ObjGJHeader.DeleteDataR(TxtNoRJ.Text)
+                'End If
+
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
-            GridDtl.DataSource = ObjSuspendHeader.GetDataGrid()
+            GridDtl.DataSource = ObjGJHeader.GetDataGrid()
             IsClosed = True
             Me.Hide()
         Catch ex As Exception
@@ -287,18 +351,21 @@ Public Class FrmSuspend_Detail
 
             If e.KeyData = Keys.Delete Then
                 view.DeleteSelectedRows()
-                Dim _tot As Decimal = 0
-                _tot = GetTot()
-                TxtTotal.Text = Format(_tot, gs_FormatBulat)
+                Dim _totDb As Decimal = 0
+                _totDb = GetTotDb()
+                Dim _totCr As Decimal = 0
+                _totCr = GetTotCr()
+                TxtTotalDb.Text = Format(_totDb, gs_FormatBulat)
+                TxtTotalCr.Text = Format(_totCr, gs_FormatBulat)
                 e.Handled = True
             End If
             If e.KeyData = Keys.Enter Then
 
-                ObjSuspendDetail = New SuspendDetailModel
+                ObjGJDetail = New GJDetailModel
                 If GridView1.FocusedColumn.FieldName = "SubAccount" Then
-                    ObjSuspendDetail.SubAcct = GridView1.GetFocusedRowCellValue("SubAccount").ToString()
+                    ObjGJDetail.SubAcct = GridView1.GetFocusedRowCellValue("SubAccount").ToString()
                     Dim dt As New DataTable
-                    dt = ObjSuspendDetail.GetSubAccountbyid
+                    dt = ObjGJDetail.GetSubAccountbyid
                     If dt.Rows.Count > 0 Then
                         GridView1.FocusedColumn = GridView1.VisibleColumns(1)
                         GridView1.ShowEditor()
@@ -317,12 +384,12 @@ Public Class FrmSuspend_Detail
 
     Private Sub GAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GAccount.ButtonClick
         Try
-            ObjSuspendHeader = New SuspendHeaderModel
+            ObjGJHeader = New GJHeaderModel
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-            dtSearch = ObjSuspendHeader.GetAccount
+            dtSearch = ObjGJHeader.GetAccount
             ls_OldKode = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Account") Is DBNull.Value, "", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "Account"))
             ls_Judul = "Account"
 
@@ -347,29 +414,61 @@ Public Class FrmSuspend_Detail
     End Sub
 
     Private Function GetTot() As Decimal
+        Dim _dbtotal As Decimal = 0
+        Dim _crtotal As Decimal = 0
         Dim _total As Decimal = 0
-
         Try
             For i As Integer = 0 To GridView1.RowCount - 1
-                If Not IsDBNull(GridView1.GetRowCellValue(i, "Amount")) Then
-                    _total = _total + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Amount"))
+                If Not IsDBNull(GridView1.GetRowCellValue(i, "Debit_Amount")) Then
+                    _dbtotal = _dbtotal + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Debit_Amount"))
                 End If
+                If Not IsDBNull(GridView1.GetRowCellValue(i, "Credit_Amount")) Then
+                    _crtotal = _crtotal + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Credit_Amount"))
+                End If
+                _total = _dbtotal - _crtotal
             Next
             Return _total
         Catch ex As Exception
             Throw ex
         End Try
     End Function
+    Private Function GetTotDb() As Decimal
+        Dim _dbtotal As Decimal = 0
+        Dim _totalDb As Decimal = 0
+        Try
+            For i As Integer = 0 To GridView1.RowCount - 1
+                _dbtotal = _dbtotal + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Debit_Amount"))
+                _totalDb = _dbtotal
+            Next
+            Return _totalDb
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Private Function GetTotCr() As Decimal
+        Dim _crtotal As Decimal = 0
+        Dim _totalCr As Decimal = 0
+        Try
+            For i As Integer = 0 To GridView1.RowCount - 1
 
+                _crtotal = _crtotal + Convert.ToDecimal(GridView1.GetRowCellValue(i, "Credit_Amount"))
+
+                _totalCr = _crtotal
+            Next
+            Return _totalCr
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Private Sub GSubAccount_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles GSubAccount.ButtonClick
         Try
-            ObjSuspendHeader = New SuspendHeaderModel
+            ObjGJHeader = New GJHeaderModel
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
 
-            dtSearch = ObjSuspendHeader.GetSubAccount
+            dtSearch = ObjGJHeader.GetSubAccount
             ls_OldKode = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "SubAccount") Is DBNull.Value, "", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "SubAccount"))
             ls_Judul = "Sub Account"
 
@@ -396,12 +495,12 @@ Public Class FrmSuspend_Detail
 
     Private Sub TxtDep_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtDep.ButtonClick
         Try
-            ObjSuspendHeader = New SuspendHeaderModel
+            ObjGJHeader = New GJHeaderModel
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-            dtSearch = ObjSuspendHeader.GetDept
+            dtSearch = ObjGJHeader.GetDept
             ls_OldKode = TxtDep.Text
             ls_Judul = "Departemen"
 
@@ -440,7 +539,13 @@ Public Class FrmSuspend_Detail
         gridView.UpdateCurrentRow()
         'Grid.FocusedView.PostEditor()
     End Sub
-
+    Private Sub CRAmount_EditValueChanged(sender As Object, e As EventArgs) Handles CRAmount.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+        'Grid.FocusedView.PostEditor()
+    End Sub
     Private Sub GAccount_EditValueChanged(sender As Object, e As EventArgs) Handles GAccount.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
@@ -465,38 +570,29 @@ Public Class FrmSuspend_Detail
     End Sub
     Dim Total As Double = 0
     Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+        Dim DBTotal As Double = 0
+        Dim CRTotal As Double = 0
         Dim Total As Double = 0
+
         For i As Integer = 0 To GridView1.RowCount - 1
-            If Not GridView1.GetRowCellValue(i, "Amount") Is DBNull.Value Then
-                Total = Total + GridView1.GetRowCellValue(i, "Amount")
+            If Not GridView1.GetRowCellValue(i, "Credit_Amount") Is DBNull.Value Then
+                CRTotal = CRTotal + GridView1.GetRowCellValue(i, "Credit_Amount")
             End If
+            If Not GridView1.GetRowCellValue(i, "Debit_Amount") Is DBNull.Value Then
+                DBTotal = DBTotal + GridView1.GetRowCellValue(i, "Debit_Amount")
+            End If
+            Total = DBTotal - CRTotal
         Next
-        TxtTotal.Text = Format(Total, gs_FormatBulat)
+        TxtTotalDb.Text = Format(DBTotal, gs_FormatBulat)
+        TxtTotalCr.Text = Format(CRTotal, gs_FormatBulat)
     End Sub
 
-    Private Sub FrmSuspend_Detail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+    Private Sub Frmgl_Detail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F1 Then
             GridView1.AddNewRow()
-            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", ObjSuspendHeader.Get_Dept_Sub(TxtDep.Text))
             GridView1.OptionsNavigation.AutoFocusNewRow = True
             GridView1.FocusedColumn = GridView1.VisibleColumns(0)
         End If
-    End Sub
-
-    Private Sub ReposAmount_EditValueChanged(sender As Object, e As EventArgs) Handles ReposAmount.EditValueChanged
-        Dim baseEdit = TryCast(sender, BaseEdit)
-        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
-        'gridView.PostEditor()
-        gridView.UpdateCurrentRow()
-    End Sub
-
-    Private Sub TxtAmountReq_TextChanged(sender As Object, e As EventArgs) Handles TxtAmountReq.TextChanged
-        'If TxtTotal.Text <> "0" Then
-        '    TxtTotal.Text = TxtAmountReq.Text
-        'Else
-        '    TxtTotal.Text = (Val(TxtTotal.Text) + TxtAmountReq.Text)
-        'End If
-        TxtTotal.Text = Format(Val(TxtAmountReq.Text), gs_FormatBulat)
     End Sub
 
     Private Sub btnAddDetail_Click(sender As Object, e As EventArgs) Handles btnAddDetail.Click
@@ -505,12 +601,18 @@ Public Class FrmSuspend_Detail
         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
     End Sub
     Public Overrides Sub Proc_print()
-        FrmReportSuspend.StartPosition = FormStartPosition.CenterScreen
-        FrmReportSuspend.TxtNoSuspend.Text = TxtNoSuspend.Text
-        FrmReportSuspend.Show()
+        'FrmReportGJ.StartPosition = FormStartPosition.CenterScreen
+        'FrmReportGJ.TxtNoGJ.Text = TxtNoGJ.Text
+        'FrmReportGJ.Show()
     End Sub
 
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
+    End Sub
+
+    Private Sub GridView1_DoubleClick(sender As Object, e As EventArgs) Handles GridView1.DoubleClick
+        GridView1.AddNewRow()
+        GridView1.OptionsNavigation.AutoFocusNewRow = True
+        GridView1.FocusedColumn = GridView1.VisibleColumns(0)
     End Sub
 End Class

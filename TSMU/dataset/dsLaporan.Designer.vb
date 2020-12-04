@@ -12999,7 +12999,7 @@ Partial Public Class dsLaporan
                     ByVal Weight As String,  _
                     ByVal Qty_Mold As String,  _
                     ByVal Material_Resin As String,  _
-                    ByVal Injection As String,  _
+                    ByVal Injection As Boolean,  _
                     ByVal Painting As Boolean,  _
                     ByVal Chrome As Boolean,  _
                     ByVal Assy As Boolean,  _
@@ -13188,7 +13188,7 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnQty_Mold)
             Me.columnMaterial_Resin = New Global.System.Data.DataColumn("Material_Resin", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMaterial_Resin)
-            Me.columnInjection = New Global.System.Data.DataColumn("Injection", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnInjection = New Global.System.Data.DataColumn("Injection", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnInjection)
             Me.columnPainting = New Global.System.Data.DataColumn("Painting", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPainting)
@@ -14110,7 +14110,7 @@ Partial Public Class dsLaporan
                     ByVal Cycle_Time As Double,  _
                     ByVal Cavity As String,  _
                     ByVal Weight As String,  _
-                    ByVal Qty_Mold As Short,  _
+                    ByVal Qty_Mold As Integer,  _
                     ByVal Material_Resin As String,  _
                     ByVal Injection As Boolean,  _
                     ByVal Painting As Boolean,  _
@@ -14291,7 +14291,7 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnCavity)
             Me.columnWeight = New Global.System.Data.DataColumn("Weight", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnWeight)
-            Me.columnQty_Mold = New Global.System.Data.DataColumn("Qty_Mold", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnQty_Mold = New Global.System.Data.DataColumn("Qty_Mold", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQty_Mold)
             Me.columnMaterial_Resin = New Global.System.Data.DataColumn("Material_Resin", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMaterial_Resin)
@@ -32696,10 +32696,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Injection() As String
+        Public Property Injection() As Boolean
             Get
                 Try 
-                    Return CType(Me(Me.tableNPP.InjectionColumn),String)
+                    Return CType(Me(Me.tableNPP.InjectionColumn),Boolean)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Injection' in table 'NPP' is DBNull.", e)
                 End Try
@@ -34410,10 +34410,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Qty_Mold() As Short
+        Public Property Qty_Mold() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableNPWO.Qty_MoldColumn),Short)
+                    Return CType(Me(Me.tableNPWO.Qty_MoldColumn),Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Qty_Mold' in table 'NPWO' is DBNull.", e)
                 End Try

@@ -100,101 +100,111 @@ Partial Class FrmSuspendSettleDetail
         Me.LayoutControl1.Controls.Add(Me.TxtTgl)
         Me.LayoutControl1.Controls.Add(Me.TxtNoSuspend)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 25)
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(796, 104)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1061, 136)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'TxtNoSettlement
         '
-        Me.TxtNoSettlement.Location = New System.Drawing.Point(87, 36)
+        Me.TxtNoSettlement.Location = New System.Drawing.Point(105, 44)
+        Me.TxtNoSettlement.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtNoSettlement.Name = "TxtNoSettlement"
         Me.TxtNoSettlement.Properties.ReadOnly = True
-        Me.TxtNoSettlement.Size = New System.Drawing.Size(168, 20)
+        Me.TxtNoSettlement.Size = New System.Drawing.Size(234, 22)
         Me.TxtNoSettlement.StyleController = Me.LayoutControl1
         Me.TxtNoSettlement.TabIndex = 14
         '
         'TxtTotExpense
         '
         Me.TxtTotExpense.EditValue = "0"
-        Me.TxtTotExpense.Location = New System.Drawing.Point(595, 60)
+        Me.TxtTotExpense.Location = New System.Drawing.Point(782, 72)
+        Me.TxtTotExpense.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotExpense.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtTotExpense.Properties.ReadOnly = True
-        Me.TxtTotExpense.Size = New System.Drawing.Size(189, 20)
+        Me.TxtTotExpense.Size = New System.Drawing.Size(263, 22)
         Me.TxtTotExpense.StyleController = Me.LayoutControl1
         Me.TxtTotExpense.TabIndex = 13
         '
         'TxtStatus
         '
-        Me.TxtStatus.Location = New System.Drawing.Point(595, 36)
+        Me.TxtStatus.Location = New System.Drawing.Point(782, 44)
+        Me.TxtStatus.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtStatus.Name = "TxtStatus"
         Me.TxtStatus.Properties.ReadOnly = True
-        Me.TxtStatus.Size = New System.Drawing.Size(189, 20)
+        Me.TxtStatus.Size = New System.Drawing.Size(263, 22)
         Me.TxtStatus.StyleController = Me.LayoutControl1
         Me.TxtStatus.TabIndex = 12
         '
         'TxtTotal
         '
         Me.TxtTotal.EditValue = "0"
-        Me.TxtTotal.Location = New System.Drawing.Point(334, 60)
+        Me.TxtTotal.Location = New System.Drawing.Point(434, 72)
+        Me.TxtTotal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtTotal.Name = "TxtTotal"
         Me.TxtTotal.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TxtTotal.Properties.ReadOnly = True
-        Me.TxtTotal.Size = New System.Drawing.Size(182, 20)
+        Me.TxtTotal.Size = New System.Drawing.Size(253, 22)
         Me.TxtTotal.StyleController = Me.LayoutControl1
         Me.TxtTotal.TabIndex = 9
         '
         'TxtRemark
         '
-        Me.TxtRemark.Location = New System.Drawing.Point(595, 12)
+        Me.TxtRemark.Location = New System.Drawing.Point(782, 16)
+        Me.TxtRemark.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtRemark.Name = "TxtRemark"
         Me.TxtRemark.Properties.ReadOnly = True
-        Me.TxtRemark.Size = New System.Drawing.Size(189, 20)
+        Me.TxtRemark.Size = New System.Drawing.Size(263, 22)
         Me.TxtRemark.StyleController = Me.LayoutControl1
         Me.TxtRemark.TabIndex = 6
         '
         'TxtDep
         '
-        Me.TxtDep.Location = New System.Drawing.Point(87, 60)
+        Me.TxtDep.Location = New System.Drawing.Point(105, 72)
+        Me.TxtDep.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtDep.Name = "TxtDep"
         Me.TxtDep.Properties.ReadOnly = True
-        Me.TxtDep.Size = New System.Drawing.Size(168, 20)
+        Me.TxtDep.Size = New System.Drawing.Size(234, 22)
         Me.TxtDep.StyleController = Me.LayoutControl1
         Me.TxtDep.TabIndex = 11
         '
         'TxtCurrency
         '
-        Me.TxtCurrency.Location = New System.Drawing.Point(334, 12)
+        Me.TxtCurrency.Location = New System.Drawing.Point(434, 16)
+        Me.TxtCurrency.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtCurrency.Name = "TxtCurrency"
         Me.TxtCurrency.Properties.ReadOnly = True
-        Me.TxtCurrency.Size = New System.Drawing.Size(182, 20)
+        Me.TxtCurrency.Size = New System.Drawing.Size(253, 22)
         Me.TxtCurrency.StyleController = Me.LayoutControl1
         Me.TxtCurrency.TabIndex = 8
         '
         'TxtTgl
         '
-        Me.TxtTgl.Location = New System.Drawing.Point(334, 36)
+        Me.TxtTgl.Location = New System.Drawing.Point(434, 44)
+        Me.TxtTgl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtTgl.Name = "TxtTgl"
         Me.TxtTgl.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me.TxtTgl.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTgl.Properties.EditFormat.FormatString = "dd-MM-yyyy"
         Me.TxtTgl.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtTgl.Properties.ReadOnly = True
-        Me.TxtTgl.Size = New System.Drawing.Size(182, 20)
+        Me.TxtTgl.Size = New System.Drawing.Size(253, 22)
         Me.TxtTgl.StyleController = Me.LayoutControl1
         Me.TxtTgl.TabIndex = 7
         '
         'TxtNoSuspend
         '
-        Me.TxtNoSuspend.Location = New System.Drawing.Point(87, 12)
+        Me.TxtNoSuspend.Location = New System.Drawing.Point(105, 16)
+        Me.TxtNoSuspend.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TxtNoSuspend.Name = "TxtNoSuspend"
         Me.TxtNoSuspend.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtNoSuspend.Size = New System.Drawing.Size(168, 20)
+        Me.TxtNoSuspend.Size = New System.Drawing.Size(234, 22)
         Me.TxtNoSuspend.StyleController = Me.LayoutControl1
         Me.TxtNoSuspend.TabIndex = 4
         ConditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -208,7 +218,7 @@ Partial Class FrmSuspendSettleDetail
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem3, Me.Label10, Me.LayoutControlItem8, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.Label9})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 104)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1061, 136)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -216,89 +226,89 @@ Partial Class FrmSuspendSettleDetail
         Me.LayoutControlItem1.Control = Me.TxtNoSuspend
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(247, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(329, 28)
         Me.LayoutControlItem1.Text = "Advance No."
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(72, 13)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(85, 16)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 72)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 84)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(776, 12)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1035, 26)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TxtCurrency
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(247, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(329, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(261, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(348, 28)
         Me.LayoutControlItem5.Text = "Currency"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(72, 13)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.TxtTgl
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(247, 24)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(329, 28)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(261, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(348, 28)
         Me.LayoutControlItem4.Text = "Date"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(72, 13)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.TxtRemark
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(508, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(677, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(268, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(358, 28)
         Me.LayoutControlItem3.Text = "Remark"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(85, 16)
         '
         'Label10
         '
         Me.Label10.Control = Me.TxtStatus
-        Me.Label10.Location = New System.Drawing.Point(508, 24)
+        Me.Label10.Location = New System.Drawing.Point(677, 28)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(268, 24)
+        Me.Label10.Size = New System.Drawing.Size(358, 28)
         Me.Label10.Text = "Status"
-        Me.Label10.TextSize = New System.Drawing.Size(72, 13)
+        Me.Label10.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.TxtNoSettlement
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 28)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(247, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(329, 28)
         Me.LayoutControlItem8.Text = "Settlement No."
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(72, 13)
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.TxtTotal
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(247, 48)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(329, 56)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(261, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(348, 28)
         Me.LayoutControlItem6.Text = "Total Advance"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(72, 13)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(85, 16)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TxtTotExpense
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(508, 48)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(677, 56)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(268, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(358, 28)
         Me.LayoutControlItem7.Text = "Total Expense"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(72, 13)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(85, 16)
         '
         'Label9
         '
         Me.Label9.Control = Me.TxtDep
-        Me.Label9.Location = New System.Drawing.Point(0, 48)
+        Me.Label9.Location = New System.Drawing.Point(0, 56)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(247, 24)
+        Me.Label9.Size = New System.Drawing.Size(329, 28)
         Me.Label9.Text = "Dept"
-        Me.Label9.TextSize = New System.Drawing.Size(72, 13)
+        Me.Label9.TextSize = New System.Drawing.Size(85, 16)
         '
         'DxValidationProvider1
         '
@@ -325,6 +335,8 @@ Partial Class FrmSuspendSettleDetail
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._account, Me._subaccount, Me._description, Me.GridColumn2})
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
@@ -334,11 +346,12 @@ Partial Class FrmSuspendSettleDetail
         Me.GridColumn1.Caption = "Date"
         Me.GridColumn1.ColumnEdit = Me.ReposDate
         Me.GridColumn1.FieldName = "Tgl"
+        Me.GridColumn1.MinWidth = 27
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.FixedWidth = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 100
+        Me.GridColumn1.Width = 133
         '
         'ReposDate
         '
@@ -357,40 +370,46 @@ Partial Class FrmSuspendSettleDetail
         Me._account.Caption = "Account"
         Me._account.ColumnEdit = Me.GAccount
         Me._account.FieldName = "Account"
+        Me._account.MinWidth = 27
         Me._account.Name = "_account"
         Me._account.OptionsColumn.FixedWidth = True
         Me._account.Visible = True
         Me._account.VisibleIndex = 1
+        Me._account.Width = 100
         '
         '_subaccount
         '
         Me._subaccount.Caption = "SubAccount"
         Me._subaccount.ColumnEdit = Me.GSubAccount
         Me._subaccount.FieldName = "SubAccount"
+        Me._subaccount.MinWidth = 27
         Me._subaccount.Name = "_subaccount"
         Me._subaccount.OptionsColumn.FixedWidth = True
         Me._subaccount.Visible = True
         Me._subaccount.VisibleIndex = 2
+        Me._subaccount.Width = 100
         '
         '_description
         '
         Me._description.Caption = "Description"
         Me._description.FieldName = "Description"
+        Me._description.MinWidth = 27
         Me._description.Name = "_description"
         Me._description.Visible = True
         Me._description.VisibleIndex = 3
-        Me._description.Width = 250
+        Me._description.Width = 333
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Actual Amount"
         Me.GridColumn2.ColumnEdit = Me.ReposActual
         Me.GridColumn2.FieldName = "ActualAmount"
+        Me.GridColumn2.MinWidth = 27
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.FixedWidth = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 100
+        Me.GridColumn2.Width = 133
         '
         'ReposActual
         '
@@ -403,21 +422,24 @@ Partial Class FrmSuspendSettleDetail
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 135)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Grid.Location = New System.Drawing.Point(16, 177)
         Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual})
-        Me.Grid.Size = New System.Drawing.Size(772, 434)
+        Me.Grid.Size = New System.Drawing.Size(1029, 568)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'FrmSuspendSettleDetail
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(796, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1061, 760)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.LayoutControl1)
         Me.KeyPreview = True
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmSuspendSettleDetail"
         Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
         Me.Controls.SetChildIndex(Me.Grid, 0)
