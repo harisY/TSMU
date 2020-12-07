@@ -10,6 +10,7 @@ Imports DevExpress.XtraBars.Ribbon
 Imports DevExpress.XtraTabbedMdi
 Imports AutoUpdaterDotNET
 Imports System.Threading
+Imports System.Net
 
 Partial Public Class FrmMain
     Inherits RibbonForm
@@ -405,4 +406,38 @@ Partial Public Class FrmMain
         End Try
     End Sub
 
+    Private Sub BarBtnUpdate_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarBtnUpdate.ItemClick
+        Try
+            RunAutoUpdate(My.Settings.Site.ToLower)
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
+    Private Sub AutoUpdaterOnCheckForUpdateEvent(ByVal args As UpdateInfoEventArgs)
+        If args.IsUpdateAvailable Then
+            Dim dialogResult As DialogResult
+
+            If args.Mandatory.Value Then
+                dialogResult = MessageBox.Show($"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. This is required update. Press Ok to begin updating the application.", "Update Available", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                dialogResult = MessageBox.Show($"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. Do you want to update the application now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+            End If
+
+            If dialogResult.Equals(DialogResult.Yes) OrElse dialogResult.Equals(DialogResult.OK) Then
+
+                Try
+                    If AutoUpdater.DownloadUpdate(args) Then
+                        Application.[Exit]()
+                    End If
+
+                Catch exception As Exception
+                    MessageBox.Show(exception.Message, exception.[GetType]().ToString(), MessageBoxButtons.OK, MessageBoxIcon.[Error])
+                End Try
+            End If
+        Else
+            MessageBox.Show("There is no update available please try again later.", "No update available", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
+    End Sub
 End Class

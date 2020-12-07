@@ -25,6 +25,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.T_RequirementDate = New DevExpress.XtraEditors.DateEdit()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.T_PR = New DevExpress.XtraEditors.TextEdit()
         Me.T_PO = New System.Windows.Forms.TextBox()
         Me.BBeritaAcara = New System.Windows.Forms.Button()
         Me.BMold = New System.Windows.Forms.Button()
@@ -45,11 +46,9 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -57,8 +56,11 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -137,13 +139,12 @@ Partial Class Frm_CR_UserCreateDetail
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BPrint = New System.Windows.Forms.Button()
-        Me.T_PR = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.GroupBox1.SuspendLayout()
         CType(Me.T_RequirementDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.T_PR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         CType(Me.T_Spesification.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_Reason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,11 +159,9 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,8 +169,11 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,8 +215,6 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.RepositoryItemSpinEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.T_PR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RB_Budget
@@ -294,6 +294,15 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControl1.Size = New System.Drawing.Size(1173, 126)
         Me.LayoutControl1.TabIndex = 98
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'T_PR
+        '
+        Me.T_PR.Enabled = False
+        Me.T_PR.Location = New System.Drawing.Point(956, 12)
+        Me.T_PR.Name = "T_PR"
+        Me.T_PR.Size = New System.Drawing.Size(205, 20)
+        Me.T_PR.StyleController = Me.LayoutControl1
+        Me.T_PR.TabIndex = 100
         '
         'T_PO
         '
@@ -489,15 +498,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem7.Text = "Comment"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(72, 13)
         '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me.T_RequirementDate
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(174, 0)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(166, 24)
-        Me.LayoutControlItem3.Text = "Req Date"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 13)
-        '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.T_NameItem
@@ -524,15 +524,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem11.Size = New System.Drawing.Size(340, 34)
         Me.LayoutControlItem11.Text = "Po Type"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(72, 13)
-        '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me.T_Parent
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(621, 24)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(248, 24)
-        Me.LayoutControlItem8.Text = "Parent CR"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(72, 13)
         '
         'LayoutControlItem9
         '
@@ -597,15 +588,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.LayoutControlItem15.Text = "PO Number"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(72, 13)
         '
-        'LayoutControlItem16
-        '
-        Me.LayoutControlItem16.Control = Me.TCustomer
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(340, 24)
-        Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(281, 24)
-        Me.LayoutControlItem16.Text = "Customer"
-        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(72, 13)
-        '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
@@ -616,6 +598,42 @@ Partial Class Frm_CR_UserCreateDetail
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(78, 34)
         Me.EmptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.T_Parent
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(621, 24)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(248, 24)
+        Me.LayoutControlItem8.Text = "Parent CR"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(72, 13)
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.T_PR
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(869, 0)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(284, 24)
+        Me.LayoutControlItem17.Text = "PR Number"
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(72, 13)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me.T_RequirementDate
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(174, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(166, 24)
+        Me.LayoutControlItem3.Text = "Req Date"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 13)
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.TCustomer
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(340, 24)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(281, 24)
+        Me.LayoutControlItem16.Text = "Customer"
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(72, 13)
         '
         'Grid
         '
@@ -1325,24 +1343,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.BPrint.UseVisualStyleBackColor = True
         Me.BPrint.Visible = False
         '
-        'T_PR
-        '
-        Me.T_PR.Enabled = False
-        Me.T_PR.Location = New System.Drawing.Point(956, 12)
-        Me.T_PR.Name = "T_PR"
-        Me.T_PR.Size = New System.Drawing.Size(205, 20)
-        Me.T_PR.StyleController = Me.LayoutControl1
-        Me.T_PR.TabIndex = 100
-        '
-        'LayoutControlItem17
-        '
-        Me.LayoutControlItem17.Control = Me.T_PR
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(869, 0)
-        Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(284, 24)
-        Me.LayoutControlItem17.Text = "PR Number"
-        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(72, 13)
-        '
         'Frm_CR_UserCreateDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1371,6 +1371,7 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.T_RequirementDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.T_PR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         CType(Me.T_Spesification.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1386,11 +1387,9 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1398,8 +1397,11 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1442,8 +1444,6 @@ Partial Class Frm_CR_UserCreateDetail
         CType(Me.RepositoryItemSpinEdit8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.T_PR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

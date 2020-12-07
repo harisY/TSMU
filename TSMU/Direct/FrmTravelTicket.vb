@@ -210,6 +210,7 @@ Public Class FrmTravelTicket
         myRow = dtTempStatus.Select("NoRequest = " & QVal(noRequest) & "")
         If myRow.Count > 0 Then
             myRow(0)("StatusTicket") = statusTicket
+            myRow(0)("Status") = status
         Else
             dtTempStatus.Rows.Add(noRequest, status, statusTicket)
         End If

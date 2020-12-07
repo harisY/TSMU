@@ -5,6 +5,8 @@ Public Class cashbank_models
     Public Property Keterangan As String
     Public Property Masuk As Double
     Public Property NoBukti As String
+    Public Property CostType As String
+
     Public Property Noref As String
     Public Property Perpost As String
     Public Property Saldo As Double
@@ -22,6 +24,7 @@ Public Class cashbank_models
     Public Property cek As Boolean
     Public Property recon As Boolean
     Public Property saldo3 As Double
+    Public Property NoRequest As String
     Public Property ID() As String
         Get
             Return _id
@@ -255,7 +258,82 @@ Public Class cashbank_models
                 prs = "ProsesYEN"
             End If
 
-            Dim Query = "update TravelRequestHeader set " & prs & " =1 where NoRequest=" & QVal(SuspendID) & ""
+            Dim Query = "update TravelRequestCost set " & prs & " =1 where NoRequest=" & QVal(SuspendID) & " AND CostType=" & QVal(CostType) & ""
+            MainModul.ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
+
+    Public Sub UpdateSettleTravel2()
+        Dim prs As String = ""
+        Try
+            If curyid = "IDR" Then
+                prs = "ProsesIDR"
+            ElseIf curyid = "USD" Then
+                prs = "ProsesUSD"
+            Else
+                prs = "ProsesYEN"
+            End If
+
+            Dim Query = "update TravelRequestCost set " & prs & " =1 where NoRequest=" & QVal(SettleID) & "   AND CostType!='C03'"
+            MainModul.ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
+    Public Sub UpdateSettleTravel31()
+        Dim prs As String = ""
+        Try
+            If curyid = "IDR" Then
+                prs = "ProsesIDR"
+            ElseIf curyid = "USD" Then
+                prs = "ProsesUSD"
+            Else
+                prs = "ProsesYEN"
+            End If
+
+            Dim Query = "update TravelSettleCost set pay=1 where curryid=" & QVal(curyid) & " AND TravelSettleID=" & QVal(NoVoucher) & " "
+            MainModul.ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
+
+    Public Sub UpdateSettleTravel3()
+        Dim prs As String = ""
+        Try
+            If curyid = "IDR" Then
+                prs = "SettleIDR"
+            ElseIf curyid = "USD" Then
+                prs = "SettleUSD"
+            Else
+                prs = "SettleYEN"
+            End If
+
+            Dim Query = "update TravelRequestCost set " & prs & " =1 where NoRequest=" & QVal(SettleID) & "   AND CostType='C03'"
+            MainModul.ExecQuery(Query)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
+
+    Public Sub UpdateSettleTravel4()
+        Dim prs As String = ""
+        Try
+            If curyid = "IDR" Then
+                prs = "ProsesIDR"
+            ElseIf curyid = "USD" Then
+                prs = "ProsesUSD"
+            Else
+                prs = "ProsesYEN"
+            End If
+
+            Dim Query = "update TravelSettleDetail set " & prs & " =1 where NoRequest=" & QVal(SettleID) & ""
             MainModul.ExecQuery(Query)
         Catch ex As Exception
             Throw ex
@@ -317,7 +395,7 @@ Public Class cashbank_models
 
         Try
 
-            Dim Query = "update TravelTicket set pay=1 where NoInvoice=" & QVal(SettleID) & ""
+            Dim Query = "update TravelTicket set pay=1 where NoVoucher=" & QVal(SettleID) & ""
             MainModul.ExecQuery(Query)
         Catch ex As Exception
             Throw ex
@@ -374,7 +452,50 @@ Public Class cashbank_models
 
         End Try
     End Sub
+    Public Sub UpdateSettleTravel_hapus()
 
+        Dim prs As String = ""
+        Try
+            If curyid = "IDR" Then
+                prs = "TravelRequestCost.ProsesIDR"
+            ElseIf curyid = "USD" Then
+                prs = "TravelRequestCost.ProsesUSD"
+            Else
+                prs = "TravelRequestCost.ProsesYEN"
+            End If
+            Dim Query = "update TravelRequestCost set " & prs & "=0 from TravelRequestCost inner join TSC16Application.dbo.cashbank on TravelRequestCost.NoRequest = right(replace(TSC16Application.dbo.cashbank.noref,' ',''),15) where  TravelRequestCost.CostType!='C03' AND  TSC16Application.dbo.cashbank.NoBukti=" & QVal(Me._id) & ""
+
+            ''          Dim Query = "update TravelRequestCost set " & prs & " =1 where NoRequest=" & QVal(SettleID) & "  AND CostType!='C03'"
+            MainModul.ExecQuery(Query)
+
+            Dim Query2 = "update TravelTicket set pay=0 from TravelTicket inner join TSC16Application.dbo.cashbank on TravelTicket.NoVoucher = right(replace(TSC16Application.dbo.cashbank.noref,' ',''),15) where TSC16Application.dbo.cashbank.NoBukti=" & QVal(Me._id) & ""
+            MainModul.ExecQuery(Query2)
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
+    Public Sub UpdateAdvanceTravel_hapus()
+
+        Dim prs As String = ""
+        Try
+            If curyid = "IDR" Then
+                prs = "TravelRequestCost.ProsesIDR"
+            ElseIf curyid = "USD" Then
+                prs = "TravelRequestCost.ProsesUSD"
+            Else
+                prs = "TravelRequestCost.ProsesYEN"
+            End If
+            Dim Query = "update TravelRequestCost set " & prs & "=0 from TravelRequestCost inner join TSC16Application.dbo.cashbank on TravelRequestCost.NoRequest = right(replace(TSC16Application.dbo.cashbank.noref,' ',''),15) where  TravelRequestCost.CostType='C03' AND  TSC16Application.dbo.cashbank.NoBukti=" & QVal(Me._id) & ""
+
+            ''          Dim Query = "update TravelRequestCost set " & prs & " =1 where NoRequest=" & QVal(SettleID) & "  AND CostType!='C03'"
+            MainModul.ExecQuery(Query)
+
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
     Public Sub UpdateSettleCC_hapus()
 
         Try
@@ -506,14 +627,36 @@ Public Class cashbank_models
     Public Function GetNamaAccountbyid() As String
         Try
             Dim namaaccount As String
+
             Dim sql As String = "SELECT 
 	                                RTRIM(Descr) Descritiption
                                 FROM dbo.Account WHERE Acct = " & QVal(account) & ""
 
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
+
             namaaccount = dt.Rows(0).Item(0).ToString
+
             Return namaaccount
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+    Public Function GetcuryAccountbyid() As String
+        Try
+            Dim curyaccount As String
+
+            Dim sql As String = "SELECT 
+	                                RTRIM(CuryId) CuryId FROM dbo.Account WHERE Acct = " & QVal(account) & ""
+
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+
+            curyaccount = dt.Rows(0).Item(0).ToString
+
+            Return curyaccount
 
         Catch ex As Exception
             Throw
@@ -545,6 +688,18 @@ Public Class cashbank_models
 
             ''            Dim sql As String = "Select suspend_header.Tgl, suspend_header.SuspendID, suspend_header.remark As Description, suspend_header.total As Amount, '' as AcctID, suspend_header.Proses,suspend_header.Currency from suspend_header where suspend_header.pay=0 and suspend_header.tipe = 'S' AND suspend_header.Status='Approved' AND suspend_header.Currency=" & QVal(curyid) & ""
             Dim sql As String = "SELECT * FROM View_AdvTravel WHERE Amount>0"
+            ''  Dim sql As String = "SELECT * FROM View_settTravel WHERE SettleAmount>0"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetGridDetailTravelSETTByAccountID() As DataTable
+        Try
+
+            Dim sql As String = "SELECT * FROM View_settTravel WHERE Amount>0"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable(sql)
             Return dt
@@ -610,9 +765,26 @@ Group by #cc.NoAccrued,  #cc.Tanggal, T_CCAccrued.CCNumberMaster,#cc.CuryID, Pro
     End Function
     Public Function GetGridDetailSettleByAccountID4() As DataTable
         Try
-            Dim sql As String = "Select  TravelTicket.Tanggal as Tgl, TravelTicket.NoVoucher, TravelTicket.vendor As Description, TravelTicket.TotAmount As SettleAmount ,TravelTicket.CuryID, '' as AcctID,TravelTicket.BankID,TravelTicket.Proses from TravelTicket where TravelTicket.pay=0 "
+            '' Dim sql As String = "Select  TravelTicket.Tanggal as Tgl, TravelTicket.NoVoucher, TravelTicket.vendor As Description, TravelTicket.TotAmount As SettleAmount ,TravelTicket.CuryID, '' as AcctID,TravelTicket.BankID,isnull(TravelTicket.Proses,0) as Proses from TravelTicket where isnull(TravelTicket.pay,0)=0 UNION SELECT * FROM View_SettTravel  WHERE Settleamount>0"
+            Dim sql As String = "Select * From SETTLETRAVEL "
             Dim dt As New DataTable
             dt = MainModul.GetDataTable(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function Getsettle(NoRequest As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+                "settle2"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@NoRequest", SqlDbType.VarChar)
+            pParam(0).Value = ""
+
+
+            dt = MainModul.GetDataTableByCommand_SP(sql, pParam)
             Return dt
         Catch ex As Exception
             Throw ex

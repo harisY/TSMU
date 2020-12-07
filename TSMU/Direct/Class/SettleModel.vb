@@ -674,10 +674,11 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID, Remark, Tgl, CuryID, Status,PaymentType, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, SuspendID, DeptID,PRNo, Remark, Tgl, CuryID, Status,PaymentType, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(SuspendID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
@@ -753,10 +754,11 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             '"       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             '"       " & QVal(Total) & ")"
 
-            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark,PRNo, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
@@ -785,10 +787,11 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             '"       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             '"       " & QVal(Total) & ")"
 
-            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
+            ls_SP = "INSERT INTO settle_header (SettleID, DeptID, Remark,PRNo, Tgl, CuryID, Status, PaymentType, CreditCardID, CreditCardNumber, AccountName, Total) " & vbCrLf &
             "Values(" & QVal(SettleID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(DeptID.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Remark.TrimEnd) & ", " & vbCrLf &
+            "       " & QVal(PRNo.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &

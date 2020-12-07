@@ -275,10 +275,10 @@ Partial Class Frm_CR_Approve
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(3, 3)
+        Me.Grid.Location = New System.Drawing.Point(3, 6)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(943, 874)
+        Me.Grid.Size = New System.Drawing.Size(943, 501)
         Me.Grid.TabIndex = 8
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -327,10 +327,10 @@ Partial Class Frm_CR_Approve
         Me.Grid2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid2.Location = New System.Drawing.Point(3, 3)
+        Me.Grid2.Location = New System.Drawing.Point(3, 6)
         Me.Grid2.MainView = Me.GridView2
         Me.Grid2.Name = "Grid2"
-        Me.Grid2.Size = New System.Drawing.Size(943, 600)
+        Me.Grid2.Size = New System.Drawing.Size(943, 501)
         Me.Grid2.TabIndex = 9
         Me.Grid2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -489,10 +489,10 @@ Partial Class Frm_CR_Approve
         Me.Grid3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid3.Location = New System.Drawing.Point(3, 3)
+        Me.Grid3.Location = New System.Drawing.Point(0, 3)
         Me.Grid3.MainView = Me.GridView3
         Me.Grid3.Name = "Grid3"
-        Me.Grid3.Size = New System.Drawing.Size(943, 600)
+        Me.Grid3.Size = New System.Drawing.Size(943, 504)
         Me.Grid3.TabIndex = 10
         Me.Grid3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
@@ -520,10 +520,10 @@ Partial Class Frm_CR_Approve
         Me.Grid4.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid4.Location = New System.Drawing.Point(2, 3)
+        Me.Grid4.Location = New System.Drawing.Point(0, 3)
         Me.Grid4.MainView = Me.GridView4
         Me.Grid4.Name = "Grid4"
-        Me.Grid4.Size = New System.Drawing.Size(943, 501)
+        Me.Grid4.Size = New System.Drawing.Size(943, 504)
         Me.Grid4.TabIndex = 9
         Me.Grid4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
@@ -677,10 +677,10 @@ Partial Class Frm_CR_Approve
         Me.Grid5.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid5.Location = New System.Drawing.Point(2, 3)
+        Me.Grid5.Location = New System.Drawing.Point(0, 3)
         Me.Grid5.MainView = Me.GridView5
         Me.Grid5.Name = "Grid5"
-        Me.Grid5.Size = New System.Drawing.Size(943, 600)
+        Me.Grid5.Size = New System.Drawing.Size(943, 501)
         Me.Grid5.TabIndex = 10
         Me.Grid5.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView5})
         '
@@ -839,10 +839,10 @@ Partial Class Frm_CR_Approve
         Me.Grid6.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid6.Location = New System.Drawing.Point(2, 3)
+        Me.Grid6.Location = New System.Drawing.Point(3, 3)
         Me.Grid6.MainView = Me.GridView6
         Me.Grid6.Name = "Grid6"
-        Me.Grid6.Size = New System.Drawing.Size(943, 600)
+        Me.Grid6.Size = New System.Drawing.Size(943, 504)
         Me.Grid6.TabIndex = 11
         Me.Grid6.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView6})
         '
@@ -1001,10 +1001,10 @@ Partial Class Frm_CR_Approve
         Me.GridAdmin.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridAdmin.Location = New System.Drawing.Point(3, 3)
+        Me.GridAdmin.Location = New System.Drawing.Point(0, 3)
         Me.GridAdmin.MainView = Me.GridView7
         Me.GridAdmin.Name = "GridAdmin"
-        Me.GridAdmin.Size = New System.Drawing.Size(943, 874)
+        Me.GridAdmin.Size = New System.Drawing.Size(943, 504)
         Me.GridAdmin.TabIndex = 9
         Me.GridAdmin.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView7})
         '

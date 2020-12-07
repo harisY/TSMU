@@ -39,6 +39,7 @@ Public Class FrmCCAccrued
             Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False, True)
             LoadGridAccruedSette()
         ElseIf TabPage = "TabPagePaid" Then
+            'Tidak dipakai jadi 1 dengan settlement
             Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
             LoadGridAccruedPaid()
         End If
@@ -78,16 +79,12 @@ Public Class FrmCCAccrued
         Dim param As String
         Dim listNoTrans As New List(Of String)
         If TabPage = "TabPageProses" Then
-            If GridViewAccrued.SelectedRowsCount > 0 Then
-                For i As Integer = 0 To GridViewAccrued.SelectedRowsCount() - 1
-                    If (GridViewAccrued.GetSelectedRows()(i) >= 0) Then
-                        Dim noTrans As String = GridViewAccrued.GetRowCellValue(GridViewAccrued.GetSelectedRows()(i), "NoTransaksi")
-                        If Not listNoTrans.Contains(noTrans) Then
-                            listNoTrans.Add(noTrans)
-                        End If
-                    End If
-                Next
-            End If
+            For i As Integer = 0 To GridViewAccrued.RowCount - 1
+                Dim noTrans As String = GridViewAccrued.GetRowCellValue(i, "NoTransaksi")
+                If Not listNoTrans.Contains(noTrans) Then
+                    listNoTrans.Add(noTrans)
+                End If
+            Next
             param = String.Join(",", listNoTrans.ToArray)
 
             clsReport = New ClsReportCCAccrued
@@ -103,16 +100,20 @@ Public Class FrmCCAccrued
             TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
             PrintTool.ShowPreview(UserLookAndFeel.Default)
         Else
-            If GridViewAccruedAll.SelectedRowsCount > 0 Then
-                For i As Integer = 0 To GridViewAccruedAll.SelectedRowsCount() - 1
-                    If (GridViewAccruedAll.GetSelectedRows()(i) >= 0) Then
-                        Dim noTrans As String = GridViewAccruedAll.GetRowCellValue(GridViewAccruedAll.GetSelectedRows()(i), "NoTransaksi")
-                        If Not listNoTrans.Contains(noTrans) Then
-                            listNoTrans.Add(noTrans)
-                        End If
-                    End If
-                Next
-            End If
+            'Dim firstDay As Date = New Date(txtPerpostSett.EditValue.Year, txtPerpostSett.EditValue.Month, 1)
+            'Dim nexMonth = firstDay.AddMonths(1)
+            'Dim filter As String = "[PerpostDate] >= '" & firstDay.ToShortDateString & "' And [PerpostDate] <= '" & nexMonth.ToShortDateString & "'"
+            'GridViewAccruedAll.Columns("PerpostDate").FilterInfo = New ColumnFilterInfo(filter)
+
+            'For i As Integer = 0 To GridViewAccruedAll.RowCount - 1
+            '    Dim noTrans As String = GridViewAccruedAll.GetRowCellValue(i, "NoTransaksi")
+            '    If Not listNoTrans.Contains(noTrans) Then
+            '        listNoTrans.Add(noTrans)
+            '    End If
+            'Next
+            'GridViewAccruedAll.ClearColumnsFilter()
+            'GridViewAccruedAll.SelectAll()
+
             param = String.Join(",", listNoTrans.ToArray)
 
             clsReport = New ClsReportCCAccrued
@@ -159,7 +160,7 @@ Public Class FrmCCAccrued
             colAccountName.VisibleIndex = 2
             colBankName.VisibleIndex = 3
             GridViewAccrued.BestFitColumns()
-            GridViewAccrued.SelectAll()
+            'GridViewAccrued.SelectAll()
             'GroupingGrid(GridViewAccrued)
 
             dtSummaryProses = New DataTable
@@ -179,7 +180,7 @@ Public Class FrmCCAccrued
             cls_Accrued = New ClsCCAccrued
             btnProses.Enabled = True
             cls_Accrued.CreditCardNumber = IIf(txtCCNumber.EditValue Is Nothing, "", txtCCNumber.EditValue)
-            dtGridAccrued = cls_Accrued.GetDataCostCC()
+            dtGridAccrued = cls_Accrued.GetDataCostCCFilter()
             GridAccrued.DataSource = dtGridAccrued
             Dim colCCNumber As GridColumn = GridViewAccrued.Columns("CreditCardNumber")
             Dim colAccountName As GridColumn = GridViewAccrued.Columns("AccountName")
@@ -188,7 +189,7 @@ Public Class FrmCCAccrued
             colAccountName.Visible = False
             colCCNumber.Visible = False
             GridViewAccrued.BestFitColumns()
-            GridViewAccrued.SelectAll()
+            'GridViewAccrued.SelectAll()
             'GroupingGrid(GridViewAccrued)
             hitungSummaryProses()
         Catch ex As Exception
@@ -204,6 +205,7 @@ Public Class FrmCCAccrued
             dtGrid = cls_Accrued.GetDataCCSettle()
             GridAccruedAll.DataSource = dtGrid
             GridViewAccruedAll.BestFitColumns()
+            GridViewAccruedAll.SelectAll()
 
             dtSummarySettle = New DataTable
             cls_Accrued = New ClsCCAccrued
@@ -221,6 +223,7 @@ Public Class FrmCCAccrued
             dtGrid = cls_Accrued.GetDataCCSettleFilter(dateFrom, dateTo, status)
             GridAccruedAll.DataSource = dtGrid
             GridViewAccruedAll.BestFitColumns()
+            GridViewAccruedAll.SelectAll()
 
             dtSummarySettle = New DataTable
             cls_Accrued = New ClsCCAccrued
@@ -348,7 +351,8 @@ Public Class FrmCCAccrued
                         End If
                     End If
                 Next
-                cls_Accrued.InsertData(Me, noAccrued, txtCCNumber.EditValue, Rows)
+                cls_Accrued.InsertData(Me, txtPerpost.EditValue, noAccrued, txtCCNumber.EditValue, Rows)
+                Dim perpostDate As Date = txtPerpost.EditValue
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 tsBtn_refresh.PerformClick()
 
@@ -356,7 +360,7 @@ Public Class FrmCCAccrued
                 Dim lapCCSettle As New DRCCSettlement
                 Dim dtCCSettle As New DataTable
 
-                dtCCSettle = clsReport.LoadReportCCSettle(noAccrued)
+                dtCCSettle = clsReport.LoadReportCCSettle(perpostDate, noAccrued)
 
                 lapCCSettle.DataSource = dtCCSettle
                 Dim PrintTool As ReportPrintTool
@@ -364,6 +368,8 @@ Public Class FrmCCAccrued
                 PrintTool = New ReportPrintTool(lapCCSettle)
                 TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
                 PrintTool.ShowPreview(UserLookAndFeel.Default)
+
+
             Else
                 MessageBox.Show("Tidak ada data yang dipilih", "Warning",
                                MessageBoxButtons.OK,
@@ -483,21 +489,21 @@ Public Class FrmCCAccrued
             Next
             hitungSummaryProses()
         Else
-            'GridViewAccrued.ClearSelection()
-            Dim __isChecked As Boolean = GridViewAccrued.IsRowSelected(GridViewAccrued.FocusedRowHandle)
-            If __isChecked = True Then
-                For i As Integer = 0 To GridViewAccrued.RowCount - 1
-                    If GridViewAccrued.GetRowCellValue(i, "NoTransaksi") = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "NoTransaksi") Then
-                        GridViewAccrued.SelectRow(i)
-                    End If
-                Next
-            Else
-                For i As Integer = 0 To GridViewAccrued.RowCount - 1
-                    If GridViewAccrued.GetRowCellValue(i, "NoTransaksi") = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "NoTransaksi") Then
-                        GridViewAccrued.UnselectRow(i)
-                    End If
-                Next
-            End If
+            GridViewAccrued.ClearSelection()
+            'Dim __isChecked As Boolean = GridViewAccrued.IsRowSelected(GridViewAccrued.FocusedRowHandle)
+            'If __isChecked = True Then
+            '    For i As Integer = 0 To GridViewAccrued.RowCount - 1
+            '        If GridViewAccrued.GetRowCellValue(i, "NoTransaksi") = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "NoTransaksi") Then
+            '            GridViewAccrued.SelectRow(i)
+            '        End If
+            '    Next
+            'Else
+            '    For i As Integer = 0 To GridViewAccrued.RowCount - 1
+            '        If GridViewAccrued.GetRowCellValue(i, "NoTransaksi") = GridViewAccrued.GetRowCellValue(GridViewAccrued.FocusedRowHandle, "NoTransaksi") Then
+            '            GridViewAccrued.UnselectRow(i)
+            '        End If
+            '    Next
+            'End If
         End If
     End Sub
 
@@ -532,17 +538,19 @@ Public Class FrmCCAccrued
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
         Dim param As String
         Dim listNoAccrued As New List(Of String)
-        If GridViewAccruedAll.SelectedRowsCount > 0 Then
-            For i As Integer = 0 To GridViewAccruedAll.SelectedRowsCount() - 1
-                If (GridViewAccruedAll.GetSelectedRows()(i) >= 0) Then
-                    Dim noAccrued As String = String.Empty
-                    If noAccrued <> GridViewAccruedAll.GetRowCellValue(GridViewAccruedAll.GetSelectedRows()(i), "NoAccrued") Then
-                        noAccrued = GridViewAccruedAll.GetRowCellValue(GridViewAccruedAll.GetSelectedRows()(i), "NoAccrued")
-                        listNoAccrued.Add(noAccrued)
-                    End If
-                End If
-            Next
-        End If
+        Dim firstDay As Date = New Date(txtPerpostSett.EditValue.Year, txtPerpostSett.EditValue.Month, 1)
+        Dim nexMonth = firstDay.AddMonths(1)
+        Dim filter As String = "[PerpostDate] >= '" & firstDay.ToShortDateString & "' And [PerpostDate] <= '" & nexMonth.ToShortDateString & "'"
+        GridViewAccruedAll.Columns("PerpostDate").FilterInfo = New ColumnFilterInfo(filter)
+
+        For i As Integer = 0 To GridViewAccruedAll.RowCount - 1
+            Dim noAccrued As String = GridViewAccruedAll.GetRowCellValue(i, "NoAccrued")
+            If Not listNoAccrued.Contains(noAccrued) Then
+                listNoAccrued.Add(noAccrued)
+            End If
+        Next
+        GridViewAccruedAll.ClearColumnsFilter()
+        GridViewAccruedAll.SelectAll()
 
         param = String.Join(",", listNoAccrued.ToArray)
 
@@ -550,7 +558,7 @@ Public Class FrmCCAccrued
         Dim lapCCSettle As New DRCCSettlement
         Dim dtCCSettle As New DataTable
 
-        dtCCSettle = clsReport.LoadReportCCSettle(param)
+        dtCCSettle = clsReport.LoadReportCCSettle(txtPerpostSett.EditValue, param)
 
         lapCCSettle.DataSource = dtCCSettle
         Dim PrintTool As ReportPrintTool

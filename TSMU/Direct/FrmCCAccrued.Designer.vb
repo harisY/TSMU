@@ -107,6 +107,7 @@ Partial Class FrmCCAccrued
         Me.PaySettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TypeSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PaidDateSettle = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PerpostDateSettle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.lcSumSettle = New DevExpress.XtraLayout.LayoutControl()
@@ -622,7 +623,7 @@ Partial Class FrmCCAccrued
         Me.TabPageProses.Controls.Add(Me.TableLayoutPanel2)
         Me.TabPageProses.Name = "TabPageProses"
         Me.TabPageProses.Size = New System.Drawing.Size(1219, 544)
-        Me.TabPageProses.Text = "List"
+        Me.TabPageProses.Text = "Accrued"
         '
         'TableLayoutPanel2
         '
@@ -1004,7 +1005,7 @@ Partial Class FrmCCAccrued
         '
         Me.GridViewAccruedAll.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridViewAccruedAll.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridViewAccruedAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoAccruedSetle, Me.TanggalSettle, Me.CCNumberMasterSettle, Me.CreditCardNumberSettle, Me.AccountNameSettle, Me.BankNameSettle, Me.TanggalTransSette, Me.NoTransaksiSettle, Me.JenisTransaksiSettle, Me.CurryIDSettle, Me.Amount, Me.AccrualEstimateSettle, Me.RateSettle, Me.AmountIDRSettle, Me.IDSettle, Me.SeqSettle, Me.DescriptionSettle, Me.PaySettle, Me.TypeSettle, Me.PaidDateSettle})
+        Me.GridViewAccruedAll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.NoAccruedSetle, Me.TanggalSettle, Me.CCNumberMasterSettle, Me.CreditCardNumberSettle, Me.AccountNameSettle, Me.BankNameSettle, Me.TanggalTransSette, Me.NoTransaksiSettle, Me.JenisTransaksiSettle, Me.CurryIDSettle, Me.Amount, Me.AccrualEstimateSettle, Me.RateSettle, Me.AmountIDRSettle, Me.IDSettle, Me.SeqSettle, Me.DescriptionSettle, Me.PaySettle, Me.TypeSettle, Me.PerpostDateSettle, Me.PaidDateSettle})
         Me.GridViewAccruedAll.GridControl = Me.GridAccruedAll
         Me.GridViewAccruedAll.Name = "GridViewAccruedAll"
         Me.GridViewAccruedAll.OptionsBehavior.Editable = False
@@ -1241,8 +1242,20 @@ Partial Class FrmCCAccrued
         Me.PaidDateSettle.MinWidth = 25
         Me.PaidDateSettle.Name = "PaidDateSettle"
         Me.PaidDateSettle.Visible = True
-        Me.PaidDateSettle.VisibleIndex = 14
+        Me.PaidDateSettle.VisibleIndex = 15
         Me.PaidDateSettle.Width = 94
+        '
+        'PerpostDateSettle
+        '
+        Me.PerpostDateSettle.Caption = "Perpost Date"
+        Me.PerpostDateSettle.DisplayFormat.FormatString = "MMM yyyy"
+        Me.PerpostDateSettle.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.PerpostDateSettle.FieldName = "PerpostDate"
+        Me.PerpostDateSettle.MinWidth = 25
+        Me.PerpostDateSettle.Name = "PerpostDateSettle"
+        Me.PerpostDateSettle.Visible = True
+        Me.PerpostDateSettle.VisibleIndex = 14
+        Me.PerpostDateSettle.Width = 94
         '
         'LayoutControlGroup3
         '
@@ -2135,4 +2148,5 @@ Partial Class FrmCCAccrued
     Friend WithEvents ctrlAccountName As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtPerpostSett As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents PerpostDateSettle As DevExpress.XtraGrid.Columns.GridColumn
 End Class
