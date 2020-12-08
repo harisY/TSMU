@@ -177,6 +177,28 @@ Public Class Cls_report
         End Try
     End Function
 
+    Public Function DataGridViewTarikSoA(ByVal dateprocess As String, ByVal dateperpost As String, ByVal dateupdate1 As String, ByVal dateupdate2 As String, ByVal dateupdate3 As String) As DataTable
+        Try
+            Dim query As String = "TarikSoA"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(4) {}
+            pParam(0) = New SqlClient.SqlParameter("@dateprocess", SqlDbType.VarChar)
+            pParam(0).Value = dateprocess
+            pParam(1) = New SqlClient.SqlParameter("@dateperpost", SqlDbType.VarChar)
+            pParam(1).Value = dateperpost
+            pParam(2) = New SqlClient.SqlParameter("@dateupdate1", SqlDbType.VarChar)
+            pParam(2).Value = dateupdate1
+            pParam(3) = New SqlClient.SqlParameter("@dateupdate2", SqlDbType.VarChar)
+            pParam(3).Value = dateupdate2
+            pParam(4) = New SqlClient.SqlParameter("@dateupdate3", SqlDbType.VarChar)
+            pParam(4).Value = dateupdate3
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
 
     Public Function DataGridViewAPPaymentSign(ByVal date3 As String, ByVal date4 As String) As DataTable
         Try

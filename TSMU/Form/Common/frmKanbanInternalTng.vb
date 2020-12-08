@@ -80,6 +80,7 @@ Public Class frmKanbanInternalTng
                         .RH_LH = If(row("RH/LH") Is DBNull.Value, "", row("RH/LH").ToString())
                         .Type = If(row("Type") Is DBNull.Value, "", row("Type").ToString())
                         .VendorCode = If(row("Vendor Code") Is DBNull.Value, "", row("Vendor Code").ToString())
+                        .Item = If(row("Item") Is DBNull.Value, "", row("Item").ToString())
                         .UploadedBy = gh_Common.Username
                     End With
                     Obj.KanbanCollection.Add(ObjCollection)

@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.TSMU.FrmMain
+            Me.MainForm = Global.TSMU.Frm_Rpt_TarikSoA
         End Sub
     End Class
 End Namespace

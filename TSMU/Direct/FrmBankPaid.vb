@@ -11,6 +11,8 @@ Public Class FrmBankPaid
     Dim DtScan1 As DataTable
     Dim ff_Detail As FrmPaymentDirect
     Dim _dt As DataTable
+
+
     Sub New(NoBukti As String)
         ' This call is required by the designer.
         InitializeComponent()
@@ -30,6 +32,7 @@ Public Class FrmBankPaid
     End Sub
 
     Public ReadOnly Property Perpost() As String
+
         Get
             Return _txtperpost.Text
         End Get
@@ -38,6 +41,7 @@ Public Class FrmBankPaid
 
     Public ReadOnly Property Rekening() As String
         Get
+
             Return _txtaccount.Text
         End Get
     End Property
@@ -124,12 +128,14 @@ Public Class FrmBankPaid
                 .Tgl = tgl
 
                 .NoBukti = bukti
-                .Transaksi = "Advance"
+
                 .Keterangan = GridView2.GetRowCellValue(i, "Description").ToString().TrimEnd
                 If _transaksi.Text = "Travel" Then
+                    .Transaksi = "AdvanceTravel"
                     .Noref = GridView2.GetRowCellValue(i, "NoRequest").ToString().TrimEnd
+                    .CostType = GridView2.GetRowCellValue(i, "CostType").ToString().TrimEnd
                 Else
-
+                    .Transaksi = "Advance"
                     .Noref = GridView2.GetRowCellValue(i, "SuspendID").ToString().TrimEnd
                 End If
 
@@ -165,7 +171,13 @@ Public Class FrmBankPaid
         Dim bukti As String = ObjCashBank.autononb
         '   Dim tgl As DateTime = DateTime.Now
         Dim tgl As DateTime = TxtTgl.EditValue
-        Dim transaksi As String = "Advance"
+
+        Dim transaksi As String = ""
+        If _transaksi.Text = "Travel" Then
+            transaksi = "AdvanceTravel"
+        Else
+            transaksi = "Advance"
+        End If
         Dim suspendamount As Double = 0
         Dim ObjDetails As New cashbank_models
         For i As Integer = 0 To GridView2.RowCount - 1
@@ -265,13 +277,11 @@ Public Class FrmBankPaid
         End Try
     End Sub
 
-
-
     Private Sub _TsbOk_Click(sender As Object, e As EventArgs) Handles _TsbOk.Click
-        If _transaksi.Text = "Suspend" Or _transaksi.Text = "Travel" Then
+        If _transaksi.Text = "suspend" Or _transaksi.Text = "travel" Then
             tabu1()
             tabu2()
-        ElseIf _transaksi.Text = "SettleCC" Then
+        ElseIf _transaksi.Text = "settlecc" Then
             tab_settleCC()
             tab_settle02CC()
         Else
@@ -279,8 +289,24 @@ Public Class FrmBankPaid
             tab_settle()
             tab_settle02()
         End If
-
         Me.Close()
+
+        Try
+
+            'Dim perpost As String
+            'Dim accountid As String
+            'perpost = String.Empty
+            'accountid = String.Empty
+
+            'Perpost = _txtperpost.Text
+            'accountid = _txtaccount.Text
+
+            'Call CallFrm(Perpost, accountid)
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
     Private Sub tab_settle02CC()
         Dim bukti As String = ObjCashBank.autononb
@@ -344,7 +370,13 @@ Public Class FrmBankPaid
         Dim bukti As String = ObjCashBank.autononb
         '        Dim tgl As DateTime = DateTime.Now
         Dim tgl As DateTime = TxtTgl.EditValue
+
         Dim transaksi As String = "Settle"
+        If _transaksi.Text <> "Settle" Then
+            transaksi = "SettleTravel"
+        Else
+            transaksi = "Settle"
+        End If
         Dim suspendamount As Double = 0
         Dim totsuspend As Double = 0
         Dim settleamount As Double = 0
@@ -355,7 +387,11 @@ Public Class FrmBankPaid
         Dim ObjDetails As New cashbank_models
         For i As Integer = 0 To GridView2.RowCount - 1
 
-            totsuspend = If(GridView2.GetRowCellValue(i, "Total") Is DBNull.Value, 0, Convert.ToDouble(GridView2.GetRowCellValue(i, "Total")))
+            If _transaksi.Text <> "Settle" Then
+                totsuspend = If(GridView2.GetRowCellValue(i, "AdvanceAmount") Is DBNull.Value, 0, Convert.ToDouble(GridView2.GetRowCellValue(i, "AdvanceAmount")))
+            Else
+                totsuspend = If(GridView2.GetRowCellValue(i, "Total") Is DBNull.Value, 0, Convert.ToDouble(GridView2.GetRowCellValue(i, "Total")))
+            End If
             suspendamount = suspendamount + totsuspend
             settleamount = settleamount + GridView2.GetRowCellValue(i, "SettleAmount")
             If GridView2.GetRowCellValue(i, "SettleAmount") > totsuspend Then
@@ -410,24 +446,28 @@ Public Class FrmBankPaid
                 '.Tgl = DateTime.Parse(GridView2.GetRowCellValue(f, "Tgl").ToString())
                 .Tgl = tgl
                 .NoBukti = bukti
-                .Transaksi = "Settle"
+
                 .Keterangan = GridView2.GetRowCellValue(f, "Description").ToString().TrimEnd
                 If _transaksi.Text = "Settle" Then
-
+                    .Transaksi = "Settle"
                     .Noref = GridView2.GetRowCellValue(f, "SuspendID").ToString().TrimEnd + " / " + GridView2.GetRowCellValue(f, "SettleID").ToString().TrimEnd
                     totsuspend = If(GridView2.GetRowCellValue(f, "Total") Is DBNull.Value, 0, Convert.ToDouble(GridView2.GetRowCellValue(f, "Total")))
                     .SuspendAmount = totsuspend
                     .SettleID = GridView2.GetRowCellValue(f, "SettleID").ToString().TrimEnd
 
                 Else
-                    .Noref = GridView2.GetRowCellValue(f, "NoInvoice").ToString().TrimEnd
-                    totsuspend = 0
+                    .Transaksi = "SettleTravel"
+                    .Noref = GridView2.GetRowCellValue(f, "NoInvoice").ToString().TrimEnd + " / " + GridView2.GetRowCellValue(f, "NoRequest").ToString().TrimEnd
+                    '.Noref = GridView2.GetRowCellValue(f, "SuspendID").ToString().TrimEnd + " / " + GridView2.GetRowCellValue(f, "SettleID").ToString().TrimEnd
+
+                    '' totsuspend = 0
+                    totsuspend = If(GridView2.GetRowCellValue(f, "AdvanceAmount") Is DBNull.Value, 0, Convert.ToDouble(GridView2.GetRowCellValue(f, "AdvanceAmount")))
                     .SuspendAmount = totsuspend
-                    .SettleID = GridView2.GetRowCellValue(f, "NoInvoice").ToString().TrimEnd
+                        .SettleID = GridView2.GetRowCellValue(f, "NoInvoice").ToString().TrimEnd
 
-                End If
+                    End If
 
-                .SettleAmount = GridView2.GetRowCellValue(f, "SettleAmount")
+                    .SettleAmount = GridView2.GetRowCellValue(f, "SettleAmount")
 
                 If GridView2.GetRowCellValue(f, "SettleAmount") > totsuspend Then
                     .Keluar = GridView2.GetRowCellValue(f, "SettleAmount") - totsuspend
@@ -440,18 +480,29 @@ Public Class FrmBankPaid
                     .Masuk = 0
                 End If
 
-
+                .curyid = _txtcuryid.Text
                 .Saldo = 0
                 .Perpost = _txtperpost.Text
                 .AcctID = _txtaccount.Text
                 ' .Saldo_Awal = _txtsaldo.Text
                 ''  .SettleID = GridView2.GetRowCellValue(f, "SettleID").ToString().TrimEnd
                 .InsertToTable2()
-
                 If _transaksi.Text <> "Settle" Then
+                    .NoRequest = GridView2.GetRowCellValue(f, "NoRequest").ToString().TrimEnd
+                    .NoVoucher = GridView2.GetRowCellValue(f, "NoRequest").ToString().TrimEnd
+                    .SettleID = GridView2.GetRowCellValue(f, "NoInvoice").ToString().TrimEnd
+                    .CostType = GridView2.GetRowCellValue(f, "CostType").ToString().TrimEnd
                     .UpdateSettleTravel()
+                    .UpdateSettleTravel2()
+                    If GridView2.GetRowCellValue(f, "CostType").ToString().TrimEnd = "C02" Or GridView2.GetRowCellValue(f, "CostType").ToString().TrimEnd = "" Then
+                        .UpdateSettleTravel3()
+                    End If
+                    If GridView2.GetRowCellValue(f, "CostType").ToString().TrimEnd = "C03" Then
+                        .UpdateSettleTravel4()
+                    End If
+
                 End If
-                .UpdateSettle()
+                    .UpdateSettle()
             End With
 
 
@@ -577,4 +628,11 @@ Public Class FrmBankPaid
         End Try
     End Sub
 
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        If _txtaccount.Text = "" Then
+            _txtaccount.Text = "11110"
+            _txtcuryid.Text = "IDR"
+        End If
+        Me.Close()
+    End Sub
 End Class
