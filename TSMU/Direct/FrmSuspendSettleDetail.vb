@@ -160,7 +160,23 @@ Public Class FrmSuspendSettleDetail
             If TxtTotExpense.Text = "0" Then
                 MessageBox.Show("Silahkan Isi Amount !")
             End If
-
+            Dim IsEmpty As Boolean = False
+            For i As Integer = 0 To GridView1.RowCount - 1
+                GridView1.MoveFirst()
+                If GridView1.GetRowCellValue(i, GridView1.Columns("Account")).ToString = "" OrElse
+                   GridView1.GetRowCellValue(i, GridView1.Columns("SubAccount")).ToString = "" OrElse
+                   GridView1.GetRowCellValue(i, GridView1.Columns("ActualAmount")).ToString = "" OrElse
+                    GridView1.GetRowCellValue(i, GridView1.Columns("ActualAmount")).ToString = "0" Then
+                    IsEmpty = True
+                End If
+            Next
+            If String.IsNullOrEmpty(TxtRemark.Text) Then
+                Err.Raise(ErrNumber, , "Remark header tidak boleh kosong")
+            ElseIf GridView1.RowCount = 0 Then
+                Err.Raise(ErrNumber, , "Detail tidak boleh kosong")
+            ElseIf IsEmpty = True Then
+                Err.Raise(ErrNumber, , "Account/SubAccount/Amount tidak boleh kosong")
+            End If
             If lb_Validated Then
                 With ObjSettle
                     .CuryID = TxtCurrency.Text
@@ -483,6 +499,7 @@ Public Class FrmSuspendSettleDetail
     Private Sub FrmSuspendSettleDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F1 Then
             GridView1.AddNewRow()
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", ObjSuspendHeader.Get_Dept_Sub(TxtDep.Text))
             GridView1.OptionsNavigation.AutoFocusNewRow = True
             GridView1.FocusedColumn = GridView1.VisibleColumns(0)
         End If
@@ -511,6 +528,10 @@ Public Class FrmSuspendSettleDetail
     End Sub
 
     Private Sub TxtNoSuspend_EditValueChanged(sender As Object, e As EventArgs) Handles TxtNoSuspend.EditValueChanged
+
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
     End Sub
 End Class

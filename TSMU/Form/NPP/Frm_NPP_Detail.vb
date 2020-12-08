@@ -1,10 +1,13 @@
 ﻿Imports System.Data.OleDb
 Imports System.Globalization
+Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraReports.UI
 Public Class Frm_NPP_Detail
 
     Dim CForm As Integer = 0
@@ -47,6 +50,7 @@ Public Class Frm_NPP_Detail
     Public Property Test As String = "t"
 
     Dim ff_Detail As frmDRR_details
+    Dim PrintTool As ReportPrintTool
 
 
 
@@ -230,26 +234,61 @@ Public Class Frm_NPP_Detail
                         Call Colums_AllowEdit_True()
                         Me.CapabilityDate.Visible = False
                         Me.Commit.Visible = False
-                        BUpload.Visible = True
-                        B_AddRows.Visible = True
-                        B_Submit.Visible = False
-                    ElseIf fc_Class.H_Approve = 3 And fc_Class.H_Submit_NPD = False Then
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
-                        Call Colums_AllowEdit_False()
-                        B_Submit.Visible = True
-                        Me.CapabilityDate.OptionsColumn.AllowEdit = False
-                        Me.Commit.OptionsColumn.AllowEdit = True
-                        B_AddRows.Visible = False
-                        BUpload.Visible = False
-                    ElseIf fc_Class.H_Approve = 3 And fc_Class.H_Submit_NPD = True Then
-                        Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, False)
+                        BUpload.Enabled = True
+                        B_AddRows.Enabled = True
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = False
+
+                    ElseIf fc_Class.H_Approve = 2 Then
+                        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
                         Call Colums_AllowEdit_True()
-                        Me.PartNo.OptionsColumn.AllowEdit = False
-                        Me.PartName.OptionsColumn.AllowEdit = False
-                        Me.CapabilityDate.OptionsColumn.AllowEdit = False
-                        Me.Revisi.OptionsColumn.AllowEdit = False
-                        Me.Commit.OptionsColumn.AllowEdit = True
-                        'B_Revise.Visible = True
+                        Me.CapabilityDate.Visible = False
+                        Me.Commit.Visible = False
+                        BUpload.Enabled = True
+                        B_AddRows.Enabled = True
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = False
+
+                    ElseIf fc_Class.H_Approve = 3 And fc_Class.H_Submit_NPD = False Then
+                        'Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
+                        'Call Colums_AllowEdit_False()
+                        'B_Submit.Visible = True
+                        'Me.CapabilityDate.OptionsColumn.AllowEdit = False
+                        'Me.Commit.OptionsColumn.AllowEdit = True
+                        'B_AddRows.Visible = False
+                        'BUpload.Visible = False
+
+
+                        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                        Call Colums_AllowEdit_True()
+                        Me.CapabilityDate.Visible = False
+                        Me.Commit.Visible = False
+                        BUpload.Enabled = True
+                        B_AddRows.Enabled = True
+                        B_Submit.Enabled = True
+                        B_Revise.Enabled = False
+
+                    ElseIf fc_Class.H_Approve = 3 And fc_Class.H_Submit_NPD = True Then
+                        'Call Proc_EnableButtons(False, True, False, False, False, False, False, True, False, False, False)
+                        'Call Colums_AllowEdit_True()
+                        'Me.PartNo.OptionsColumn.AllowEdit = False
+                        'Me.PartName.OptionsColumn.AllowEdit = False
+                        'Me.CapabilityDate.OptionsColumn.AllowEdit = False
+                        'Me.Revisi.OptionsColumn.AllowEdit = False
+                        'Me.Commit.OptionsColumn.AllowEdit = True
+                        ''B_Revise.Visible = True
+
+
+                        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                        Call Colums_AllowEdit_True()
+                        Me.CapabilityDate.Visible = False
+                        Me.Commit.Visible = False
+                        BUpload.Enabled = True
+                        B_AddRows.Enabled = True
+                        B_Submit.Enabled = True
+                        B_Revise.Enabled = False
+
+
                     Else
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
                         Call Colums_AllowEdit_False()
@@ -267,18 +306,40 @@ Public Class Frm_NPP_Detail
                     If fc_Class.H_Status = "Approve Div Head" Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                         Call Colums_AllowEdit_False()
-                    ElseIf fc_Class.H_Status = "Submit To NPD" Then
+                        B_AddRows.Enabled = False
+                        BUpload.Enabled = False
+                        B_Approve.Visible = False
+                        B_Reject.Visible = False
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = False
+                    ElseIf fc_Class.H_Approve = 3 And fc_Class.H_Submit_NPD = False Then
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                         Call Colums_AllowEdit_False()
                         B_AddRows.Enabled = False
                         BUpload.Enabled = False
-                        B_Revise.Visible = True
+                        B_Approve.Visible = False
+                        B_Reject.Visible = False
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = True
+
+                    ElseIf fc_Class.H_Approve = 3 And fc_Class.H_Submit_NPD = True Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        Call Colums_AllowEdit_False()
+                        B_AddRows.Enabled = False
+                        BUpload.Enabled = False
+                        B_Approve.Visible = False
+                        B_Reject.Visible = False
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = True
+
                     Else
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
                         B_AddRows.Enabled = False
                         BUpload.Enabled = False
                         B_Approve.Visible = True
                         B_Reject.Visible = True
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = False
                     End If
                 ElseIf Active_Form = 3 Then
                     TCustomer.Enabled = False
@@ -290,14 +351,45 @@ Public Class Frm_NPP_Detail
                     Call TextBox_False()
                     Me.Cek.OptionsColumn.AllowEdit = True
                     Me.Note.OptionsColumn.AllowEdit = True
-                    If fc_Class.H_Approve_Div_Head = False Then
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
-                        B_Approve.Visible = True
-                        B_Reject.Visible = True
-                    Else
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                    If fc_Class.H_Approve <= 1 Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+                        Call Colums_AllowEdit_False()
+                        Me.CapabilityDate.Visible = False
+                        Me.Commit.Visible = False
                         B_AddRows.Enabled = False
                         BUpload.Enabled = False
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = False
+                    ElseIf fc_Class.H_Approve = 2 Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+                        Call Colums_AllowEdit_False()
+                        Me.CapabilityDate.Visible = False
+                        Me.Commit.Visible = False
+                        B_AddRows.Enabled = False
+                        BUpload.Enabled = False
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = False
+                        B_Reject.Visible = True
+                        B_Approve.Visible = True
+                    ElseIf fc_Class.H_Approve = 3 And fc_Class.H_Submit_NPD = False Then
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        Call Colums_AllowEdit_False()
+                        B_AddRows.Enabled = False
+                        BUpload.Enabled = False
+                        B_Approve.Visible = False
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = False
+                        B_Reject.Visible = True
+                        B_Approve.Visible = True
+                    Else
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+                        Call Colums_AllowEdit_False()
+                        Me.CapabilityDate.Visible = False
+                        Me.Commit.Visible = False
+                        B_AddRows.Enabled = False
+                        BUpload.Enabled = False
+                        B_Submit.Enabled = False
+                        B_Revise.Enabled = False
                     End If
                 ElseIf Active_Form = 4 Then
                     TCustomer.Enabled = False
@@ -1206,18 +1298,47 @@ Public Class Frm_NPP_Detail
         fc_Class.GetDataByID(fs_Code)
         If fc_Class.H_Approve >= 1 Then
 
-            'CForm = 3
-            'CallForm(fs_Code)
 
 
-            FrmReport = New ReportNPWO
-            FrmReport.NPP_No = TNPP_No.EditValue
-            FrmReport.REV = TRevisi.EditValue
+            '    FrmReport = New ReportNPWO
+            '    FrmReport.NPP_No = TNPP_No.EditValue
+            '    FrmReport.REV = TRevisi.EditValue
 
-            FrmReport.StartPosition = FormStartPosition.CenterScreen
-            FrmReport.WindowState = FormWindowState.Maximized
-            FrmReport.MaximizeBox = False
-            FrmReport.ShowDialog()
+            '    FrmReport.StartPosition = FormStartPosition.CenterScreen
+            '    FrmReport.WindowState = FormWindowState.Maximized
+            '    FrmReport.MaximizeBox = False
+            '    FrmReport.ShowDialog()
+
+
+
+
+
+            Dim dtRpt As DataTable
+            dtRpt = New DataTable
+
+            Dim ds As New DataSet
+            Dim dsRev As New DataSet
+
+
+            ds = fc_Class.NPPReport(TNPP_No.EditValue, 0)
+            dsRev = fc_Class.NPPReport_Revisi(TNPP_No.EditValue, "0")
+
+
+            Dim Laporan As New NppReport()
+            Dim LaporanRev As New NppRevisi()
+
+            Laporan.DataSource = ds.Tables("Npp")
+            LaporanRev.DataAdapter = dsRev.Tables("NPPRevisi")
+
+
+            Dim subReportRevisi As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
+            subReportRevisi.ReportSource.DataSource = dsRev.Tables("NPPRevisi")
+
+
+
+            PrintTool = New ReportPrintTool(Laporan)
+            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            PrintTool.ShowPreview(UserLookAndFeel.Default)
 
         Else
 
@@ -1350,6 +1471,8 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub BUpload_Click(sender As Object, e As EventArgs) Handles BUpload.Click
+
+        Dim JumlahGrid As Integer = DtGridNPWO.Rows.Count
 
         If TModel.Text = "" Then
             MessageBox.Show("Please Fill Model",
@@ -1493,7 +1616,7 @@ Public Class Frm_NPP_Detail
                                 .Item("Status") = dtExcel.Rows(i).Item("Status")
                                 .Item("Revisi") = dtExcel.Rows(i).Item("Revisi")
                                 .Item("Seq") = Seq
-                                .Item("No Urut") = i + 1
+                                .Item("No Urut") = JumlahGrid + i + 1
                                 .Item("Active") = True
                             End With
                             DtGridNPWO.Rows.Add(MyNewRow)
@@ -1862,19 +1985,15 @@ Public Class Frm_NPP_Detail
             If result = System.Windows.Forms.DialogResult.Yes Then
                 Try
 
-
-
                     fc_Class = New Cls_NPP_Detail
                     With fc_Class
-                        .H_Approve = 0
-                        .H_Approve_Dept_Head = 0
-                        .H_Approve_Div_Head = 0
+                        .H_Approve_Dept_Head = 1
+                        .H_Approve_Div_Head = 1
                         .H_Submit_NPD = 0
                         .H_RevStatus = 1
-                        .H_Status = "Revise"
 
-                        .H_Approve = 0
-                        .H_Status = "Revise"
+                        .H_Approve = 3
+                        .H_Status = "Submit To NPD"
                         .H_Note = ""
                         .H_Prepare = ""
 

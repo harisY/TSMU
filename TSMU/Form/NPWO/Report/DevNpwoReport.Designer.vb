@@ -21,9 +21,9 @@ Partial Public Class DevNpwoReport
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim QrCodeGenerator1 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DevNpwoReport))
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrSummary2 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DevNpwoReport))
         Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
         Me.Title = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailCaption1 = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -92,7 +92,6 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell47 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell48 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrBarCode1 = New DevExpress.XtraReports.UI.XRBarCode()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
@@ -116,6 +115,7 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell32 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell33 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
@@ -188,6 +188,7 @@ Partial Public Class DevNpwoReport
         Me.Cal_QtyMold = New DevExpress.XtraReports.UI.CalculatedField()
         Me.GroupHeaderBand1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.Cal_CT = New DevExpress.XtraReports.UI.CalculatedField()
         Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -262,7 +263,7 @@ Partial Public Class DevNpwoReport
         '
         'TopMargin
         '
-        Me.TopMargin.HeightF = 0!
+        Me.TopMargin.HeightF = 28.125!
         Me.TopMargin.Name = "TopMargin"
         '
         'XrTable6
@@ -271,7 +272,7 @@ Partial Public Class DevNpwoReport
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable6.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(617.7164!, 103.0417!)
+        Me.XrTable6.LocationFloat = New DevExpress.Utils.PointFloat(617.7164!, 80.66667!)
         Me.XrTable6.Name = "XrTable6"
         Me.XrTable6.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow13, Me.XrTableRow14, Me.XrTableRow15})
         Me.XrTable6.SizeF = New System.Drawing.SizeF(516.8669!, 125.0!)
@@ -350,7 +351,7 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell73
         '
-        Me.XrTableCell73.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "'Approved By   ' + [DivHeadNameDate]")})
+        Me.XrTableCell73.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "'Approved By   '")})
         Me.XrTableCell73.Multiline = True
         Me.XrTableCell73.Name = "XrTableCell73"
         Me.XrTableCell73.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -361,7 +362,7 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell74
         '
-        Me.XrTableCell74.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "'Approved By  ' + [DeptHeadNameDate]")})
+        Me.XrTableCell74.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "'Approved By  '")})
         Me.XrTableCell74.Multiline = True
         Me.XrTableCell74.Name = "XrTableCell74"
         Me.XrTableCell74.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -445,7 +446,7 @@ Partial Public Class DevNpwoReport
         'XrTable5
         '
         Me.XrTable5.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(378.7813!, 103.0417!)
+        Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(378.7813!, 80.66667!)
         Me.XrTable5.Name = "XrTable5"
         Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow8, Me.XrTableRow9, Me.XrTableRow10, Me.XrTableRow11, Me.XrTableRow12})
         Me.XrTable5.SizeF = New System.Drawing.SizeF(190.9721!, 125.0!)
@@ -586,6 +587,7 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell61.Name = "XrTableCell61"
         Me.XrTableCell61.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell61.Text = "XrTableCell48"
+        Me.XrTableCell61.TextFormatString = "{0:dd-MMM-yy}"
         Me.XrTableCell61.Weight = 1.2702752989686232R
         '
         'XrTableRow12
@@ -625,7 +627,7 @@ Partial Public Class DevNpwoReport
         'XrTable4
         '
         Me.XrTable4.Font = New System.Drawing.Font("Times New Roman", 7.0!)
-        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(101.8331!, 203.0417!)
+        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(101.8331!, 180.6667!)
         Me.XrTable4.Name = "XrTable4"
         Me.XrTable4.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow7})
         Me.XrTable4.SizeF = New System.Drawing.SizeF(261.3231!, 25.0!)
@@ -651,7 +653,7 @@ Partial Public Class DevNpwoReport
         'XrTable3
         '
         Me.XrTable3.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 103.0417!)
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 80.66667!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow3, Me.XrTableRow4, Me.XrTableRow5, Me.XrTableRow6})
         Me.XrTable3.SizeF = New System.Drawing.SizeF(363.1563!, 100.0!)
@@ -797,33 +799,25 @@ Partial Public Class DevNpwoReport
         Me.XrBarCode1.BarCodeOrientation = DevExpress.XtraPrinting.BarCode.BarCodeOrientation.RotateRight
         Me.XrBarCode1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[No_NPWO]")})
         Me.XrBarCode1.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.XrBarCode1.LocationFloat = New DevExpress.Utils.PointFloat(1033.542!, 31.00001!)
+        Me.XrBarCode1.LocationFloat = New DevExpress.Utils.PointFloat(1033.542!, 0!)
         Me.XrBarCode1.Name = "XrBarCode1"
         Me.XrBarCode1.Padding = New DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100.0!)
         Me.XrBarCode1.ShowText = False
-        Me.XrBarCode1.SizeF = New System.Drawing.SizeF(111.4583!, 70.66666!)
+        Me.XrBarCode1.SizeF = New System.Drawing.SizeF(111.4583!, 80.66667!)
         Me.XrBarCode1.StylePriority.UseFont = False
         Me.XrBarCode1.StylePriority.UseTextAlignment = False
         Me.XrBarCode1.Symbology = QrCodeGenerator1
         Me.XrBarCode1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0.00001589457!, 10.00001!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(101.8331!, 80.66667!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
-        '
         'XrLabel2
         '
         Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[No_NPWO]")})
         Me.XrLabel2.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(101.8331!, 54.00003!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(101.8331!, 23.00002!)
         Me.XrLabel2.Multiline = True
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(937.7087!, 23.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(913.7504!, 23.0!)
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.StylePriority.UseTextAlignment = False
         Me.XrLabel2.Text = "XrLabel2"
@@ -832,11 +826,11 @@ Partial Public Class DevNpwoReport
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(101.8331!, 31.00001!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(101.8331!, 0!)
         Me.XrLabel1.Multiline = True
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(937.7087!, 23.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(913.7504!, 23.0!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
         Me.XrLabel1.Text = "NEW PROJECT WORK ORDER"
@@ -1011,8 +1005,20 @@ Partial Public Class DevNpwoReport
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 19.79167!
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3})
+        Me.BottomMargin.HeightF = 29.24994!
         Me.BottomMargin.Name = "BottomMargin"
+        '
+        'XrLabel3
+        '
+        Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0.00001589457!, 0!)
+        Me.XrLabel3.Multiline = True
+        Me.XrLabel3.Name = "XrLabel3"
+        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(551.0417!, 23.0!)
+        Me.XrLabel3.StylePriority.UseFont = False
+        Me.XrLabel3.Text = "No. Form TSC-1/QR/MKT/01/002, Tgl Terbit.22/10/20, Rev. 1 Tgl Revisi : 22/10/20"
         '
         'Detail
         '
@@ -1022,7 +1028,8 @@ Partial Public Class DevNpwoReport
         '
         'XrTable1
         '
-        Me.XrTable1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
+        Me.XrTable1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable1.Font = New System.Drawing.Font("Times New Roman", 6.0!)
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
@@ -1129,7 +1136,7 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell7
         '
-        Me.XrTableCell7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Tag", "[Cal_Mold]"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([Qty_Mold]=='','-',[Qty_Mold])")})
+        Me.XrTableCell7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Tag", "[Cal_CT]"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([Qty_Mold]=='','-',[Qty_Mold])")})
         Me.XrTableCell7.Multiline = True
         Me.XrTableCell7.Name = "XrTableCell7"
         Me.XrTableCell7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -1139,7 +1146,6 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "XrTableCell7"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell7.TextFormatString = "{0:#,#}"
         Me.XrTableCell7.Weight = 0.32796100465067912R
         '
         'XrTableCell18
@@ -1264,7 +1270,7 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell30.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell30.StylePriority.UseTextAlignment = False
         Me.XrTableCell30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell30.Weight = 0.26482132664800295R
+        Me.XrTableCell30.Weight = 0.24716847867495631R
         '
         'ult
         '
@@ -1275,7 +1281,7 @@ Partial Public Class DevNpwoReport
         Me.ult.LocationFloat = New DevExpress.Utils.PointFloat(0.00006103516!, 0!)
         Me.ult.Name = "ult"
         Me.ult.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.ult.SizeF = New System.Drawing.SizeF(30.0!, 25.0!)
+        Me.ult.SizeF = New System.Drawing.SizeF(27.85425!, 25.0!)
         Me.ult.StylePriority.UseBorders = False
         Me.ult.StylePriority.UseFont = False
         Me.ult.StylePriority.UseTextAlignment = False
@@ -1289,7 +1295,7 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell29.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell29.StylePriority.UseTextAlignment = False
         Me.XrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell29.Weight = 0.2648213214249891R
+        Me.XrTableCell29.Weight = 0.28247416939803571R
         '
         'Vib
         '
@@ -1297,10 +1303,10 @@ Partial Public Class DevNpwoReport
         Me.Vib.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckState", "[Vibration]")})
         Me.Vib.Font = New System.Drawing.Font("Arial", 8.0!)
         Me.Vib.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.Vib.LocationFloat = New DevExpress.Utils.PointFloat(0.00006103516!, 0!)
+        Me.Vib.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.Vib.Name = "Vib"
         Me.Vib.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.Vib.SizeF = New System.Drawing.SizeF(29.99982!, 25.0!)
+        Me.Vib.SizeF = New System.Drawing.SizeF(31.98926!, 25.0!)
         Me.Vib.StylePriority.UseBorders = False
         Me.Vib.StylePriority.UseFont = False
         Me.Vib.StylePriority.UseTextAlignment = False
@@ -1689,6 +1695,7 @@ Partial Public Class DevNpwoReport
         '
         'Cal_QtyMold
         '
+        Me.Cal_QtyMold.Expression = "[GroupID] + '_' + [Qty_Mold]"
         Me.Cal_QtyMold.Name = "Cal_QtyMold"
         '
         'GroupHeaderBand1
@@ -1702,6 +1709,14 @@ Partial Public Class DevNpwoReport
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrBarCode1, Me.XrTable6, Me.XrTable5, Me.XrTable4, Me.XrTable3, Me.XrLabel1, Me.XrLabel2, Me.XrPictureBox1})
         Me.ReportHeader.HeightF = 251.0417!
         Me.ReportHeader.Name = "ReportHeader"
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0.00001589457!, 0!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(101.8331!, 80.66667!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
         '
         'Cal_CT
         '
@@ -1723,7 +1738,7 @@ Partial Public Class DevNpwoReport
         Me.DataSource = Me.ObjectDataSource1
         Me.Font = New System.Drawing.Font("Arial", 9.75!)
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(12, 2, 0, 20)
+        Me.Margins = New System.Drawing.Printing.Margins(12, 2, 28, 29)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -1910,4 +1925,5 @@ Partial Public Class DevNpwoReport
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents XrSubreport1 As DevExpress.XtraReports.UI.XRSubreport
     Friend WithEvents Cal_CT As DevExpress.XtraReports.UI.CalculatedField
+    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
 End Class

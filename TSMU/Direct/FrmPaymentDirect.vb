@@ -174,12 +174,14 @@ Public Class FrmPaymentDirect
             ObjCashBank.Perpost = _txtperpost.Text
             ObjCashBank.AcctID = _txtaccount.Text
             ObjCashBank.account = _txtaccount.Text
+            ObjCashBank.curyid = _txtcuryid.Text
         End If
 
 
         ''      ObjCashBank.curyid = Trim(_txtcuryid.Text)
 
         _txtaccountname.Text = ObjCashBank.GetNamaAccountbyid()
+        _txtcuryid.Text = ObjCashBank.GetcuryAccountbyid()
         Dim saldo As Double
 
         saldo = ObjCashBank.saldo2
@@ -269,6 +271,10 @@ Public Class FrmPaymentDirect
         Else
             GridCellFormat(GridView7)
         End If
+
+        Dim dtGrid7a As New DataTable
+
+
     End Sub
     Private Sub refresbank()
 
@@ -346,7 +352,9 @@ Public Class FrmPaymentDirect
     End Sub
     Private Sub DataSettlementTravel()
         Dim dtGrid4 As New DataTable
-        dtGrid4 = ObjCashBank.GetGridDetailSettleByAccountID4
+        Dim noset As String = ""
+        '' dtGrid4 = ObjCashBank.GetGridDetailSettleByAccountID4
+        dtGrid4 = ObjCashBank.Getsettle(noset)
         GridControl4.DataSource = dtGrid4
         If dtGrid4.Rows.Count > 0 Then
             GridCellFormat(GridView4)
@@ -490,6 +498,8 @@ Public Class FrmPaymentDirect
                 dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(3) = GridView7.GetRowCellValue(i, "Currency")
                 dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(4) = GridView7.GetRowCellValue(i, "Amount")
                 dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(5) = GridView7.GetRowCellValue(i, "AcctID")
+                dtTemp3.Rows(dtTemp3.Rows.Count - 1).Item(6) = GridView7.GetRowCellValue(i, "CostType")
+
             End If
         Next
 
@@ -527,6 +537,7 @@ Public Class FrmPaymentDirect
         Else
             TabControl1.Visible = True
         End If
+        '' Call Proc_VisibleButtons(False, True, False, False, False, False, False, False, False, False, False, False)
     End Sub
 
     Private Sub RepositoryItemCheckEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCheckEdit1.EditValueChanged
@@ -922,6 +933,7 @@ Public Class FrmPaymentDirect
             Next
             updatessaldo()
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            DataSettlementTravel()
             tsBtn_refresh.PerformClick()
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -1514,12 +1526,15 @@ Public Class FrmPaymentDirect
         Next
 
         ff_Detail6 = New FrmBankPaid(dtTemp2)
+        ''    ff_Detail6 = New FrmBankPaid2()
         ff_Detail6._transaksi.Text = "Settle"
         ff_Detail6.ShowDialog()
+
         _txtperpost.Text = ff_Detail6.Perpost
         _txtaccount.Text = ff_Detail6.Rekening
         tempperpost = ff_Detail6.Perpost
         tempacct = ff_Detail6.Rekening
+
         tsBtn_refresh.PerformClick()
 
     End Sub
@@ -1539,7 +1554,7 @@ Public Class FrmPaymentDirect
                 End If
             Next rowHandle
             ObjDetails.ID = ID
-
+            ObjDetails.curyid = _txtcuryid.Text
             If transaksi = "Advance" Then
                 ObjDetails.UpdateSuspend_hapus()
             ElseIf transaksi = "Settle" Then
@@ -1551,6 +1566,12 @@ Public Class FrmPaymentDirect
             ElseIf transaksi = "SettleCC" Then
                 ObjDetails.Noref = Noref
                 ObjDetails.UpdateSettleCC_hapus()
+            ElseIf transaksi = "SettleTravel" Then
+
+                ObjDetails.UpdateSettleTravel_hapus()
+            ElseIf transaksi = "AdvanceTravel" Then
+
+                ObjDetails.UpdateAdvanceTravel_hapus()
             End If
             ObjDetails.Delete()
             Call DataSuspend()
@@ -1558,6 +1579,7 @@ Public Class FrmPaymentDirect
             Call DataSettlementCC2()
             Call DataEntertaint()
             Call DataCashBank()
+            Call DataSettlementTravel()
             Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
             tsBtn_refresh.PerformClick()
             'Grid.RemoveItem(Grid.Row)
@@ -1635,24 +1657,29 @@ Public Class FrmPaymentDirect
         dtTemp2x = New DataTable
 
 
-        dtTemp2x.Columns.AddRange(New DataColumn(6) {New DataColumn("Tgl", GetType(DateTime)),
+        dtTemp2x.Columns.AddRange(New DataColumn(9) {New DataColumn("Tgl", GetType(DateTime)),
                                                    New DataColumn("NoInvoice", GetType(String)),
                                                    New DataColumn("Description", GetType(String)),
                                                    New DataColumn("CuryID", GetType(String)),
                                                    New DataColumn("SettleAmount", GetType(Decimal)),
                                                    New DataColumn("AcctID", GetType(String)),
-                                                   New DataColumn("BankID", GetType(String))})
+                                                   New DataColumn("BankID", GetType(String)),
+                                                    New DataColumn("NoRequest", GetType(String)),
+                                                    New DataColumn("AdvanceAmount", GetType(Decimal)),
+                                                     New DataColumn("CostType", GetType(String))})
+
         dtTemp2x.Clear()
     End Sub
     Dim dtTemp3 As DataTable
     Private Sub TempTable3()
         dtTemp3 = New DataTable
-        dtTemp3.Columns.AddRange(New DataColumn(5) {New DataColumn("Tgl", GetType(DateTime)),
+        dtTemp3.Columns.AddRange(New DataColumn(6) {New DataColumn("Tgl", GetType(DateTime)),
                                                    New DataColumn("NoRequest", GetType(String)),
                                                    New DataColumn("Description", GetType(String)),
                                                    New DataColumn("CuryID", GetType(String)),
                                                    New DataColumn("Amount", GetType(Decimal)),
-                                                   New DataColumn("AcctID", GetType(String))})
+                                                   New DataColumn("AcctID", GetType(String)),
+                                                      New DataColumn("CostType", GetType(String))})
         dtTemp3.Clear()
     End Sub
     Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
@@ -1905,6 +1932,9 @@ Public Class FrmPaymentDirect
                 dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(4) = GridView4.GetRowCellValue(i, "SettleAmount")
                 dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(5) = GridView4.GetRowCellValue(i, "AcctID")
                 dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(6) = GridView4.GetRowCellValue(i, "BankID")
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(7) = GridView4.GetRowCellValue(i, "NoRequest")
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(8) = GridView4.GetRowCellValue(i, "AdvanceAmount")
+                dtTemp2x.Rows(dtTemp2x.Rows.Count - 1).Item(9) = GridView4.GetRowCellValue(i, "CostType")
             End If
         Next
 
@@ -1915,6 +1945,7 @@ Public Class FrmPaymentDirect
         _txtaccount.Text = ff_Detail6.Rekening
         tempperpost = ff_Detail6.Perpost
         tempacct = ff_Detail6.Rekening
+        DataSettlementTravel()
         tsBtn_refresh.PerformClick()
 
     End Sub
@@ -1965,7 +1996,81 @@ Public Class FrmPaymentDirect
 
     End Sub
 
-    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+    Private Sub GetTotAdvTravel()
+        Dim TotAmount As Double = 0
 
+        Dim cek As Boolean
+        Try
+            For i As Integer = 0 To GridView7.RowCount - 1
+                If GridView7.GetRowCellValue(i, "Proses") = True Then
+                    TotAmount = TotAmount + CDbl(GridView7.GetRowCellValue(i, "Amount"))
+                End If
+            Next
+
+            If TotAmount = 0 Then
+                LblTotAmountAdvTr.Text = "0"
+            Else
+                LblTotAmountAdvTr.Text = Format(TotAmount, gs_FormatBulat)
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+    Private Sub GridView7_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView7.CellValueChanged
+        Try
+            If e.Column.FieldName = "Proses" Then
+                If GridView7.GetRowCellValue(GridView7.FocusedRowHandle, "Proses") = True Then
+                    GetTotAdvTravel()
+                Else
+                    GetTotAdvTravel()
+
+                End If
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub GetTotSettTravel()
+        Dim TotAmount As Double = 0
+
+        Dim cek As Boolean
+        Try
+            For i As Integer = 0 To GridView4.RowCount - 1
+                If GridView4.GetRowCellValue(i, "Proses") = True Then
+                    TotAmount = TotAmount + CDbl(GridView4.GetRowCellValue(i, "SettleAmount"))
+                End If
+            Next
+
+            If TotAmount = 0 Then
+                LblTotAmountSettTr.Text = "0"
+            Else
+                LblTotAmountSettTr.Text = Format(TotAmount, gs_FormatBulat)
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+    Private Sub GridView4_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView4.CellValueChanged
+        Try
+            If e.Column.FieldName = "Proses" Then
+                If GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Proses") = True Then
+                    GetTotSettTravel()
+                Else
+                    GetTotSettTravel()
+
+                End If
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(ex.Message)
+        End Try
     End Sub
 End Class

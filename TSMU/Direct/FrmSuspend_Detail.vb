@@ -477,6 +477,7 @@ Public Class FrmSuspend_Detail
     Private Sub FrmSuspend_Detail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.F1 Then
             GridView1.AddNewRow()
+            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "SubAccount", ObjSuspendHeader.Get_Dept_Sub(TxtDep.Text))
             GridView1.OptionsNavigation.AutoFocusNewRow = True
             GridView1.FocusedColumn = GridView1.VisibleColumns(0)
         End If
@@ -507,5 +508,9 @@ Public Class FrmSuspend_Detail
         FrmReportSuspend.StartPosition = FormStartPosition.CenterScreen
         FrmReportSuspend.TxtNoSuspend.Text = TxtNoSuspend.Text
         FrmReportSuspend.Show()
+    End Sub
+
+    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+
     End Sub
 End Class

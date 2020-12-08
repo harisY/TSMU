@@ -418,6 +418,7 @@
     <Compile Include="Direct\Class\ClsTraveller.vb" />
     <Compile Include="Direct\Class\EntertainHeaderModel.vb" />
     <Compile Include="Direct\Class\EntertainApproval.vb" />
+    <Compile Include="Direct\Class\GJHeaderModel.vb" />
     <Compile Include="Direct\Class\ReceiptModel.vb" />
     <Compile Include="Direct\Class\SettleModel.vb" />
     <Compile Include="Direct\Class\SuspendApproval.vb" />
@@ -440,6 +441,12 @@
       <DependentUpon>FrmBankPaid.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmBankPaid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmBankPaid2.Designer.vb">
+      <DependentUpon>FrmBankPaid2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmBankPaid2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmBankReceipt.Designer.vb">
@@ -524,6 +531,18 @@
       <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmEntertainSettleDetailDirectCC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\Frmgl.Designer.vb">
+      <DependentUpon>Frmgl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\Frmgl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\Frmgl_Detail.Designer.vb">
+      <DependentUpon>Frmgl_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\Frmgl_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmMktExcelPrice.Designer.vb">
@@ -1988,6 +2007,12 @@
     <Compile Include="Form\NPP\Frm_NPP_Set_Grup.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\NPP\Report\NppReport.Designer.vb">
+      <DependentUpon>NppReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Report\NppReport.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\NPP\Report\CRNpwo.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1998,6 +2023,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\NPP\Report\NppRevisi.Designer.vb">
+      <DependentUpon>NppRevisi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\NPP\Report\NppRevisi.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\NPP\Report\NPP_RevInformasi.vb">
@@ -2688,6 +2719,12 @@
     <Compile Include="Payment\ReportPayment\Form2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.Designer.vb">
+      <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_APSignature.Designer.vb">
       <DependentUpon>Frm_Rpt_APSignature.vb</DependentUpon>
     </Compile>
@@ -2951,6 +2988,9 @@
     <EmbeddedResource Include="Dashboard\Dashboard_TravelSum.resx">
       <DependentUpon>Dashboard_TravelSum.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmBankPaid2.resx">
+      <DependentUpon>FrmBankPaid2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmBankReconsal.resx">
       <DependentUpon>FrmBankReconsal.vb</DependentUpon>
     </EmbeddedResource>
@@ -2968,6 +3008,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmEntertainSettleDetailDirectCC.resx">
       <DependentUpon>FrmEntertainSettleDetailDirectCC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\Frmgl.resx">
+      <DependentUpon>Frmgl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\Frmgl_Detail.resx">
+      <DependentUpon>Frmgl_Detail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmMktExcelPrice.resx">
       <DependentUpon>FrmMktExcelPrice.vb</DependentUpon>
@@ -3435,6 +3481,9 @@
     <EmbeddedResource Include="Form\NPP\Frm_NPP_Set_Grup.resx">
       <DependentUpon>Frm_NPP_Set_Grup.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Report\NppReport.resx">
+      <DependentUpon>NppReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Report\CRNpwo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRNpwo.vb</LastGenOutput>
@@ -3442,6 +3491,9 @@
     <EmbeddedResource Include="Form\NPP\Report\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\NPP\Report\NppRevisi.resx">
+      <DependentUpon>NppRevisi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Report\NPP_RevInformasi.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3790,6 +3842,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_pph_ar2.resx">
       <DependentUpon>frm_pph_ar2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.resx">
+      <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSignature.resx">
       <DependentUpon>Frm_Rpt_APSignature.vb</DependentUpon>
@@ -4765,6 +4820,7 @@
     <Content Include="obj\Debug\TSMU.xml" />
     <Content Include="obj\Release\Interop.Microsoft.Office.Core.dll" />
     <None Include="Resources\7Tells.ico" />
+    <None Include="Resources\hapus.png" />
     <Content Include="tsmu.ico" />
     <None Include="Resources\tsmu.ico" />
     <None Include="Resources\download-for-free-10-png-paper-icon-png-top-images-at-carlisle-paper-icon-png-816_980.png" />

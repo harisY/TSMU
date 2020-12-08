@@ -20,6 +20,7 @@ Public Class ClsCCAccrued
     Public Property AccountName As String
     Public Property BankName As String
     Public Property Pay As Integer
+    Public Property PerpostDate As Date
 
     Public Property ObjCCAccrued() As New Collection(Of ClsCCAccrued)
 
@@ -29,6 +30,23 @@ Public Class ClsCCAccrued
         Try
             Dim dt As New DataTable
             Dim SP_Name As String = "Accrued_Get_CostCC"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@CreditCardNumber", SqlDbType.VarChar)
+            pParam(0).Value = CreditCardNumber
+
+            dt = GetDataTableByCommand_SP(SP_Name, pParam)
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataCostCCFilter() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "Accrued_Get_CostCCFilter"
 
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@CreditCardNumber", SqlDbType.VarChar)
@@ -81,7 +99,8 @@ Public Class ClsCCAccrued
                                 tcc.AccountName ,
                                 tcc.BankName ,
                                 Pay ,
-                                tc.DatePaid
+                                tc.DatePaid ,
+                                tc.PerpostDate
                         FROM    dbo.T_CCAccrued AS tc
                                 LEFT JOIN dbo.TravelCreditCard AS tcc ON tcc.CreditCardNumber = tc.CreditCardNumber
                         WHERE   Pay = 0
@@ -117,7 +136,8 @@ Public Class ClsCCAccrued
                                 tcc.AccountName ,
                                 tcc.BankName ,
                                 Pay ,
-                                tc.DatePaid
+                                tc.DatePaid ,
+                                tc.PerpostDate
                         FROM    dbo.T_CCAccrued AS tc
                                 LEFT JOIN dbo.TravelCreditCard AS tcc ON tcc.CreditCardNumber = tc.CreditCardNumber
                         WHERE   Pay IN (" & status & ")
@@ -227,7 +247,7 @@ Public Class ClsCCAccrued
         End Try
     End Function
 
-    Public Sub InsertData(frm As Form, noAccrued_ As String, _ccNumberMaster As String, rows As ArrayList)
+    Public Sub InsertData(frm As Form, _perpostDate As Date, noAccrued_ As String, _ccNumberMaster As String, rows As ArrayList)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -255,6 +275,7 @@ Public Class ClsCCAccrued
                             CreditCardNumber = IIf(Row("CreditCardNumber") Is DBNull.Value, "", Row("CreditCardNumber"))
                             AccountName = IIf(Row("AccountName") Is DBNull.Value, "", Row("AccountName"))
                             BankName = IIf(Row("BankName") Is DBNull.Value, "", Row("BankName"))
+                            PerpostDate = _perpostDate
                             InsertDataAccrued()
                         Next
 
@@ -313,7 +334,7 @@ Public Class ClsCCAccrued
 
             Dim SP_Name As String = "Accrued_Insert_CCAccrued"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(16) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
             pParam(0) = New SqlClient.SqlParameter("@NoAccrued", SqlDbType.VarChar)
             pParam(0).Value = NoAccrued
             pParam(1) = New SqlClient.SqlParameter("@Tanggal", SqlDbType.Date)
@@ -346,8 +367,10 @@ Public Class ClsCCAccrued
             pParam(14).Value = AccountName
             pParam(15) = New SqlClient.SqlParameter("@BankName", SqlDbType.VarChar)
             pParam(15).Value = BankName
-            pParam(16) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
-            pParam(16).Value = gh_Common.Username
+            pParam(16) = New SqlClient.SqlParameter("@PerpostDate", SqlDbType.VarChar)
+            pParam(16).Value = PerpostDate
+            pParam(17) = New SqlClient.SqlParameter("@Username", SqlDbType.VarChar)
+            pParam(17).Value = gh_Common.Username
 
             ExecQueryByCommand_SP(SP_Name, pParam)
 
@@ -435,14 +458,16 @@ Public Class ClsReportCCAccrued
         End Try
     End Function
 
-    Public Function LoadReportCCSettle(_param As String) As DataTable
+    Public Function LoadReportCCSettle(period As Date, _param As String) As DataTable
         Try
             Dim dt As New DataTable
             Dim SP_Name As String = "Accrued_Rpt_GetCCSettlement"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
-            pParam(0) = New SqlClient.SqlParameter("@Param", SqlDbType.VarChar)
-            pParam(0).Value = _param
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@Date", SqlDbType.VarChar)
+            pParam(0).Value = period
+            pParam(1) = New SqlClient.SqlParameter("@Param", SqlDbType.VarChar)
+            pParam(1).Value = _param
 
             dt = GetDataTableByCommand_SP(SP_Name, pParam)
 

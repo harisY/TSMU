@@ -12999,7 +12999,7 @@ Partial Public Class dsLaporan
                     ByVal Weight As String,  _
                     ByVal Qty_Mold As String,  _
                     ByVal Material_Resin As String,  _
-                    ByVal Injection As String,  _
+                    ByVal Injection As Boolean,  _
                     ByVal Painting As Boolean,  _
                     ByVal Chrome As Boolean,  _
                     ByVal Assy As Boolean,  _
@@ -13188,7 +13188,7 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnQty_Mold)
             Me.columnMaterial_Resin = New Global.System.Data.DataColumn("Material_Resin", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMaterial_Resin)
-            Me.columnInjection = New Global.System.Data.DataColumn("Injection", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnInjection = New Global.System.Data.DataColumn("Injection", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnInjection)
             Me.columnPainting = New Global.System.Data.DataColumn("Painting", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPainting)
@@ -14110,7 +14110,7 @@ Partial Public Class dsLaporan
                     ByVal Cycle_Time As Double,  _
                     ByVal Cavity As String,  _
                     ByVal Weight As String,  _
-                    ByVal Qty_Mold As Short,  _
+                    ByVal Qty_Mold As Integer,  _
                     ByVal Material_Resin As String,  _
                     ByVal Injection As Boolean,  _
                     ByVal Painting As Boolean,  _
@@ -14291,7 +14291,7 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnCavity)
             Me.columnWeight = New Global.System.Data.DataColumn("Weight", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnWeight)
-            Me.columnQty_Mold = New Global.System.Data.DataColumn("Qty_Mold", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnQty_Mold = New Global.System.Data.DataColumn("Qty_Mold", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQty_Mold)
             Me.columnMaterial_Resin = New Global.System.Data.DataColumn("Material_Resin", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMaterial_Resin)
@@ -18501,6 +18501,8 @@ Partial Public Class dsLaporan
         
         Private columnNama2 As Global.System.Data.DataColumn
         
+        Private columnPaidDate As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -18697,6 +18699,14 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PaidDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPaidDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -18753,9 +18763,10 @@ Partial Public Class dsLaporan
                     ByVal Posisi1 As String,  _
                     ByVal Nama1 As String,  _
                     ByVal Posisi2 As String,  _
-                    ByVal Nama2 As String) As CCAccruedEndSettleRow
+                    ByVal Nama2 As String,  _
+                    ByVal PaidDate As Date) As CCAccruedEndSettleRow
             Dim rowCCAccruedEndSettleRow As CCAccruedEndSettleRow = CType(Me.NewRow,CCAccruedEndSettleRow)
-            Dim columnValuesArray() As Object = New Object() {Period, TanggalTransaksi, Account, Descr, AccountName, BankName, NoPR, Remark, NoAccrued, CurryID, OriginalAmount, ExchangeRate, AccrualEstimate, Settlement, NextMonth, ExchangeGainLoss, Posisi1, Nama1, Posisi2, Nama2}
+            Dim columnValuesArray() As Object = New Object() {Period, TanggalTransaksi, Account, Descr, AccountName, BankName, NoPR, Remark, NoAccrued, CurryID, OriginalAmount, ExchangeRate, AccrualEstimate, Settlement, NextMonth, ExchangeGainLoss, Posisi1, Nama1, Posisi2, Nama2, PaidDate}
             rowCCAccruedEndSettleRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCCAccruedEndSettleRow)
             Return rowCCAccruedEndSettleRow
@@ -18798,6 +18809,7 @@ Partial Public Class dsLaporan
             Me.columnNama1 = MyBase.Columns("Nama1")
             Me.columnPosisi2 = MyBase.Columns("Posisi2")
             Me.columnNama2 = MyBase.Columns("Nama2")
+            Me.columnPaidDate = MyBase.Columns("PaidDate")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -18843,6 +18855,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnPosisi2)
             Me.columnNama2 = New Global.System.Data.DataColumn("Nama2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNama2)
+            Me.columnPaidDate = New Global.System.Data.DataColumn("PaidDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPaidDate)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -32682,10 +32696,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Injection() As String
+        Public Property Injection() As Boolean
             Get
                 Try 
-                    Return CType(Me(Me.tableNPP.InjectionColumn),String)
+                    Return CType(Me(Me.tableNPP.InjectionColumn),Boolean)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Injection' in table 'NPP' is DBNull.", e)
                 End Try
@@ -34396,10 +34410,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Qty_Mold() As Short
+        Public Property Qty_Mold() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableNPWO.Qty_MoldColumn),Short)
+                    Return CType(Me(Me.tableNPWO.Qty_MoldColumn),Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Qty_Mold' in table 'NPWO' is DBNull.", e)
                 End Try
@@ -39241,6 +39255,21 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PaidDate() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCAccruedEndSettle.PaidDateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PaidDate' in table 'CCAccruedEndSettle' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCAccruedEndSettle.PaidDateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsPeriodNull() As Boolean
             Return Me.IsNull(Me.tableCCAccruedEndSettle.PeriodColumn)
         End Function
@@ -39477,6 +39506,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetNama2Null()
             Me(Me.tableCCAccruedEndSettle.Nama2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPaidDateNull() As Boolean
+            Return Me.IsNull(Me.tableCCAccruedEndSettle.PaidDateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPaidDateNull()
+            Me(Me.tableCCAccruedEndSettle.PaidDateColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

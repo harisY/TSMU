@@ -7,8 +7,10 @@ Public Class FrmPOYIM
     Dim dtGrid As DataTable
     Dim tblImport As DataTable
     Private Sub FrmPOYIM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, True, False, False, False, True, True)
-        '' _cmbperpost.Text = Year(Today) & Month(Today)
+        bb_SetDisplayChangeConfirmation = False
+        Grid.DataSource = Nothing
+
+        Call baseForm.Proc_EnableButtons(False, False, False, True, True, False, False, False)
 
     End Sub
     Private Sub LoadGrid()
@@ -28,19 +30,25 @@ Public Class FrmPOYIM
         End Try
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim fName As String = ""
-        OpenFileDialog1.InitialDirectory = "D:\"
-        ' OpenFileDialog1.Filter = "CSV files(*.csv)|*.csv"
-        OpenFileDialog1.Filter = "Excel 97-2003|*.xls|Excel 2007|*.xlsx"
-        OpenFileDialog1.FilterIndex = 2
-        OpenFileDialog1.RestoreDirectory = True
-        If (OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
-            fName = OpenFileDialog1.FileName
+        If _txtordnbr.Text = "" Then
+            MsgBox("ISI LAST ORDER NUMBER DULU")
+            Return
+        Else
+
+            Dim fName As String = ""
+            OpenFileDialog1.InitialDirectory = "D:\"
+            ' OpenFileDialog1.Filter = "CSV files(*.csv)|*.csv"
+            OpenFileDialog1.Filter = "Excel 97-2003|*.xls|Excel 2007|*.xlsx"
+            OpenFileDialog1.FilterIndex = 2
+            OpenFileDialog1.RestoreDirectory = True
+            If (OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
+                fName = OpenFileDialog1.FileName
+            End If
+            Dim SheetName As String = "Sheet1$"
+            _txtFileLocation.Text = fName
+            'csv()
+            LoadExcel2Grid(_txtFileLocation.Text, SheetName)
         End If
-        Dim SheetName As String = "Sheet1$"
-        _txtFileLocation.Text = fName
-        'csv()
-        LoadExcel2Grid(_txtFileLocation.Text, SheetName)
     End Sub
 
     Sub LoadExcel2Grid(ByVal FileName As String, ByVal SheetName As String)
@@ -123,6 +131,26 @@ Public Class FrmPOYIM
         MsgBox("Data Tersimpan")
         ''   Call LoadGrid2()
     End Sub
+    Private Sub tsBtn_excel_Click(sender As Object, e As EventArgs) Handles tsBtn_excel.Click
+        Proc_Excel()
+    End Sub
+    Private Sub Proc_Excel()
+        Try
+
+            If GridView1.RowCount > 0 Then
+                SaveToExcel(Grid)
+                MsgBox("Data Sudah Berhasil Di Export.")
+            Else
+                MsgBox("Grid Kosong!")
+            End If
+
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
     Private Sub nomerorder()
         Dim nbr As String = ""
         nbr = Microsoft.VisualBasic.Right(_txtordnbr.Text, 4)
@@ -158,8 +186,9 @@ Public Class FrmPOYIM
             End With
             fc_Class.Updatenom()
         Next
+        fc_Class.periode = _txtperiode.Text
 
         fc_Class.Updatesonbr()
-
+        LoadGrid()
     End Sub
 End Class

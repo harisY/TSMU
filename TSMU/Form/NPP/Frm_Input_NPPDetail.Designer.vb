@@ -66,6 +66,8 @@ Partial Class Frm_Input_NPPDetail
         Me.BNext = New System.Windows.Forms.Button()
         Me.TID = New DevExpress.XtraEditors.TextEdit()
         Me.TWeight = New DevExpress.XtraEditors.TextEdit()
+        Me.TNoUrut = New DevExpress.XtraEditors.TextEdit()
+        Me.Label8 = New System.Windows.Forms.Label()
         CType(Me.TPartNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TPartName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TMaterial.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,12 +81,13 @@ Partial Class Frm_Input_NPPDetail
         Me.BindingNavigator1.SuspendLayout()
         CType(Me.TID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TNoUrut.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(11, 39)
+        Me.Label1.Location = New System.Drawing.Point(11, 67)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(43, 13)
         Me.Label1.TabIndex = 0
@@ -92,22 +95,22 @@ Partial Class Frm_Input_NPPDetail
         '
         'TPartNo
         '
-        Me.TPartNo.Location = New System.Drawing.Point(104, 40)
+        Me.TPartNo.Location = New System.Drawing.Point(104, 64)
         Me.TPartNo.Name = "TPartNo"
         Me.TPartNo.Size = New System.Drawing.Size(210, 20)
-        Me.TPartNo.TabIndex = 1
+        Me.TPartNo.TabIndex = 2
         '
         'TPartName
         '
-        Me.TPartName.Location = New System.Drawing.Point(104, 66)
+        Me.TPartName.Location = New System.Drawing.Point(104, 90)
         Me.TPartName.Name = "TPartName"
         Me.TPartName.Size = New System.Drawing.Size(210, 20)
-        Me.TPartName.TabIndex = 2
+        Me.TPartName.TabIndex = 3
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(11, 65)
+        Me.Label2.Location = New System.Drawing.Point(11, 92)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(57, 13)
         Me.Label2.TabIndex = 2
@@ -115,17 +118,17 @@ Partial Class Frm_Input_NPPDetail
         '
         'BAdd
         '
-        Me.BAdd.Location = New System.Drawing.Point(266, 283)
+        Me.BAdd.Location = New System.Drawing.Point(266, 307)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(75, 23)
-        Me.BAdd.TabIndex = 16
+        Me.BAdd.TabIndex = 17
         Me.BAdd.Text = "Add"
         Me.BAdd.UseVisualStyleBackColor = True
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(11, 195)
+        Me.Label5.Location = New System.Drawing.Point(11, 223)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(41, 13)
         Me.Label5.TabIndex = 11
@@ -133,15 +136,15 @@ Partial Class Frm_Input_NPPDetail
         '
         'TMaterial
         '
-        Me.TMaterial.Location = New System.Drawing.Point(104, 170)
+        Me.TMaterial.Location = New System.Drawing.Point(104, 194)
         Me.TMaterial.Name = "TMaterial"
         Me.TMaterial.Size = New System.Drawing.Size(210, 20)
-        Me.TMaterial.TabIndex = 6
+        Me.TMaterial.TabIndex = 7
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(11, 169)
+        Me.Label7.Location = New System.Drawing.Point(11, 195)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(82, 13)
         Me.Label7.TabIndex = 15
@@ -168,7 +171,7 @@ Partial Class Frm_Input_NPPDetail
         Me.CbVibration.Location = New System.Drawing.Point(13, 158)
         Me.CbVibration.Name = "CbVibration"
         Me.CbVibration.Size = New System.Drawing.Size(67, 17)
-        Me.CbVibration.TabIndex = 15
+        Me.CbVibration.TabIndex = 16
         Me.CbVibration.Text = "Vibration"
         Me.CbVibration.UseVisualStyleBackColor = True
         '
@@ -178,7 +181,7 @@ Partial Class Frm_Input_NPPDetail
         Me.CUltrasonic.Location = New System.Drawing.Point(13, 132)
         Me.CUltrasonic.Name = "CUltrasonic"
         Me.CUltrasonic.Size = New System.Drawing.Size(73, 17)
-        Me.CUltrasonic.TabIndex = 14
+        Me.CUltrasonic.TabIndex = 15
         Me.CUltrasonic.Text = "Ultrasonic"
         Me.CUltrasonic.UseVisualStyleBackColor = True
         '
@@ -188,7 +191,7 @@ Partial Class Frm_Input_NPPDetail
         Me.CAssy.Location = New System.Drawing.Point(13, 106)
         Me.CAssy.Name = "CAssy"
         Me.CAssy.Size = New System.Drawing.Size(48, 17)
-        Me.CAssy.TabIndex = 13
+        Me.CAssy.TabIndex = 14
         Me.CAssy.Text = "Assy"
         Me.CAssy.UseVisualStyleBackColor = True
         '
@@ -198,7 +201,7 @@ Partial Class Frm_Input_NPPDetail
         Me.CChrome.Location = New System.Drawing.Point(13, 80)
         Me.CChrome.Name = "CChrome"
         Me.CChrome.Size = New System.Drawing.Size(62, 17)
-        Me.CChrome.TabIndex = 12
+        Me.CChrome.TabIndex = 13
         Me.CChrome.Text = "Chrome"
         Me.CChrome.UseVisualStyleBackColor = True
         '
@@ -208,7 +211,7 @@ Partial Class Frm_Input_NPPDetail
         Me.CPainting.Location = New System.Drawing.Point(13, 52)
         Me.CPainting.Name = "CPainting"
         Me.CPainting.Size = New System.Drawing.Size(64, 17)
-        Me.CPainting.TabIndex = 11
+        Me.CPainting.TabIndex = 12
         Me.CPainting.Text = "Painting"
         Me.CPainting.UseVisualStyleBackColor = True
         '
@@ -218,14 +221,14 @@ Partial Class Frm_Input_NPPDetail
         Me.CInjection.Location = New System.Drawing.Point(13, 22)
         Me.CInjection.Name = "CInjection"
         Me.CInjection.Size = New System.Drawing.Size(66, 17)
-        Me.CInjection.TabIndex = 10
+        Me.CInjection.TabIndex = 11
         Me.CInjection.Text = "Injection"
         Me.CInjection.UseVisualStyleBackColor = True
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(11, 221)
+        Me.Label9.Location = New System.Drawing.Point(11, 255)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(63, 13)
         Me.Label9.TabIndex = 18
@@ -233,26 +236,26 @@ Partial Class Frm_Input_NPPDetail
         '
         'TStatusMold
         '
-        Me.TStatusMold.Location = New System.Drawing.Point(104, 222)
+        Me.TStatusMold.Location = New System.Drawing.Point(104, 246)
         Me.TStatusMold.Name = "TStatusMold"
         Me.TStatusMold.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TStatusMold.Properties.Items.AddRange(New Object() {"Paid", "Depre", "Trans"})
         Me.TStatusMold.Size = New System.Drawing.Size(210, 20)
-        Me.TStatusMold.TabIndex = 8
+        Me.TStatusMold.TabIndex = 9
         '
         'TOrder
         '
-        Me.TOrder.Location = New System.Drawing.Point(104, 247)
+        Me.TOrder.Location = New System.Drawing.Point(104, 271)
         Me.TOrder.Name = "TOrder"
         Me.TOrder.Properties.DisplayFormat.FormatString = "{0:N0}"
         Me.TOrder.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TOrder.Size = New System.Drawing.Size(210, 20)
-        Me.TOrder.TabIndex = 9
+        Me.TOrder.TabIndex = 10
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(11, 246)
+        Me.Label12.Location = New System.Drawing.Point(11, 279)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(80, 13)
         Me.Label12.TabIndex = 24
@@ -260,24 +263,24 @@ Partial Class Frm_Input_NPPDetail
         '
         'BFinish
         '
-        Me.BFinish.Location = New System.Drawing.Point(347, 283)
+        Me.BFinish.Location = New System.Drawing.Point(347, 307)
         Me.BFinish.Name = "BFinish"
         Me.BFinish.Size = New System.Drawing.Size(75, 23)
-        Me.BFinish.TabIndex = 17
+        Me.BFinish.TabIndex = 18
         Me.BFinish.Text = "Finish"
         Me.BFinish.UseVisualStyleBackColor = True
         '
         'TMachine
         '
-        Me.TMachine.Location = New System.Drawing.Point(104, 92)
+        Me.TMachine.Location = New System.Drawing.Point(104, 116)
         Me.TMachine.Name = "TMachine"
         Me.TMachine.Size = New System.Drawing.Size(210, 20)
-        Me.TMachine.TabIndex = 3
+        Me.TMachine.TabIndex = 4
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(11, 91)
+        Me.Label3.Location = New System.Drawing.Point(11, 116)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(48, 13)
         Me.Label3.TabIndex = 27
@@ -285,15 +288,15 @@ Partial Class Frm_Input_NPPDetail
         '
         'TCt
         '
-        Me.TCt.Location = New System.Drawing.Point(104, 118)
+        Me.TCt.Location = New System.Drawing.Point(104, 142)
         Me.TCt.Name = "TCt"
         Me.TCt.Size = New System.Drawing.Size(210, 20)
-        Me.TCt.TabIndex = 4
+        Me.TCt.TabIndex = 5
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(11, 117)
+        Me.Label4.Location = New System.Drawing.Point(11, 143)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(26, 13)
         Me.Label4.TabIndex = 29
@@ -301,15 +304,15 @@ Partial Class Frm_Input_NPPDetail
         '
         'TCav
         '
-        Me.TCav.Location = New System.Drawing.Point(104, 144)
+        Me.TCav.Location = New System.Drawing.Point(104, 168)
         Me.TCav.Name = "TCav"
         Me.TCav.Size = New System.Drawing.Size(210, 20)
-        Me.TCav.TabIndex = 5
+        Me.TCav.TabIndex = 6
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(11, 143)
+        Me.Label6.Location = New System.Drawing.Point(11, 171)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(26, 13)
         Me.Label6.TabIndex = 31
@@ -328,7 +331,7 @@ Partial Class Frm_Input_NPPDetail
         Me.BindingNavigator1.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.BindingNavigator1.Name = "BindingNavigator1"
         Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
-        Me.BindingNavigator1.Size = New System.Drawing.Size(453, 25)
+        Me.BindingNavigator1.Size = New System.Drawing.Size(460, 25)
         Me.BindingNavigator1.TabIndex = 32
         Me.BindingNavigator1.Text = "BindingNavigator1"
         '
@@ -419,7 +422,7 @@ Partial Class Frm_Input_NPPDetail
         '
         'BPrev
         '
-        Me.BPrev.Location = New System.Drawing.Point(104, 283)
+        Me.BPrev.Location = New System.Drawing.Point(104, 307)
         Me.BPrev.Name = "BPrev"
         Me.BPrev.Size = New System.Drawing.Size(75, 23)
         Me.BPrev.TabIndex = 33
@@ -428,7 +431,7 @@ Partial Class Frm_Input_NPPDetail
         '
         'BNext
         '
-        Me.BNext.Location = New System.Drawing.Point(185, 283)
+        Me.BNext.Location = New System.Drawing.Point(185, 307)
         Me.BNext.Name = "BNext"
         Me.BNext.Size = New System.Drawing.Size(75, 23)
         Me.BNext.TabIndex = 34
@@ -445,19 +448,37 @@ Partial Class Frm_Input_NPPDetail
         '
         'TWeight
         '
-        Me.TWeight.Location = New System.Drawing.Point(104, 196)
+        Me.TWeight.Location = New System.Drawing.Point(104, 220)
         Me.TWeight.Name = "TWeight"
         Me.TWeight.Properties.DisplayFormat.FormatString = "{0:N0}"
         Me.TWeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TWeight.Size = New System.Drawing.Size(210, 20)
-        Me.TWeight.TabIndex = 36
+        Me.TWeight.TabIndex = 8
+        '
+        'TNoUrut
+        '
+        Me.TNoUrut.Location = New System.Drawing.Point(104, 38)
+        Me.TNoUrut.Name = "TNoUrut"
+        Me.TNoUrut.Size = New System.Drawing.Size(210, 20)
+        Me.TNoUrut.TabIndex = 1
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(11, 37)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(44, 13)
+        Me.Label8.TabIndex = 37
+        Me.Label8.Text = "No Urut"
         '
         'Frm_Input_NPPDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(453, 315)
+        Me.ClientSize = New System.Drawing.Size(460, 346)
+        Me.Controls.Add(Me.TNoUrut)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.TWeight)
         Me.Controls.Add(Me.TID)
         Me.Controls.Add(Me.BNext)
@@ -502,6 +523,7 @@ Partial Class Frm_Input_NPPDetail
         Me.BindingNavigator1.PerformLayout()
         CType(Me.TID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TNoUrut.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -550,4 +572,6 @@ Partial Class Frm_Input_NPPDetail
     Friend WithEvents BNext As Button
     Friend WithEvents TID As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TWeight As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TNoUrut As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label8 As Label
 End Class
