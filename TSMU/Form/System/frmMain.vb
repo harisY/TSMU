@@ -26,7 +26,7 @@ Partial Public Class FrmMain
     End Sub
     Private Sub RunAutoUpdate(Site As String)
         'add Site
-        'AutoUpdater.RunUpdateAsAdmin = False
+        AutoUpdater.RunUpdateAsAdmin = False
         AutoUpdater.Mandatory = True
         AutoUpdater.UpdateMode = Mode.ForcedDownload
         If String.IsNullOrEmpty(Site) OrElse Site = "tng" Then
