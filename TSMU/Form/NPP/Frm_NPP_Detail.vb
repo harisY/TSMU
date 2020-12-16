@@ -245,7 +245,7 @@ Public Class Frm_NPP_Detail
                         Me.CapabilityDate.Visible = False
                         Me.Commit.Visible = False
                         BUpload.Enabled = True
-                        B_AddRows.Enabled = True
+                        B_AddRows.Enabled = False
                         B_Submit.Enabled = False
                         B_Revise.Enabled = False
 
@@ -286,7 +286,7 @@ Public Class Frm_NPP_Detail
                         BUpload.Enabled = True
                         B_AddRows.Enabled = True
                         B_Submit.Enabled = True
-                        B_Revise.Enabled = False
+                        B_Revise.Enabled = True
 
 
                     Else
@@ -1881,15 +1881,18 @@ Public Class Frm_NPP_Detail
             End Try
         ElseIf Active_Form = 1 Then
             Try
+
                 Dim _Active As Boolean
+                Dim _DRR As Boolean
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
                         _Active = GridView1.GetRowCellValue(rowHandle, "Active")
+                        _DRR = GridView1.GetRowCellValue(rowHandle, "DRR")
                     End If
                 Next rowHandle
 
-                If _Active = False Then
+                If _Active = False Or _DRR = True Then
                     GridView1.Columns("Part No").OptionsColumn.AllowEdit = False
                     GridView1.Columns("Part Name").OptionsColumn.AllowEdit = False
                     GridView1.Columns("Machine").OptionsColumn.AllowEdit = False
@@ -1979,7 +1982,7 @@ Public Class Frm_NPP_Detail
 
     Private Sub B_Revise_Click(sender As Object, e As EventArgs) Handles B_Revise.Click
 
-        If Active_Form = 2 Then
+        If Active_Form = 1 Then
 
             Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Revise " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
             If result = System.Windows.Forms.DialogResult.Yes Then
@@ -1987,13 +1990,13 @@ Public Class Frm_NPP_Detail
 
                     fc_Class = New Cls_NPP_Detail
                     With fc_Class
-                        .H_Approve_Dept_Head = 1
-                        .H_Approve_Div_Head = 1
-                        .H_Submit_NPD = 0
+                        .H_Approve_Dept_Head = 0
+                        .H_Approve_Div_Head = 0
+                        .H_Submit_NPD = 1
                         .H_RevStatus = 1
 
-                        .H_Approve = 3
-                        .H_Status = "Submit To NPD"
+                        .H_Approve = 0
+                        .H_Status = "Revise"
                         .H_Note = ""
                         .H_Prepare = ""
 
@@ -2001,11 +2004,11 @@ Public Class Frm_NPP_Detail
                         .TA_MenuCode = MenuCode
                         .TA_DeptID = gh_Common.GroupID
                         .TA_NoTransaksi = TNPP_No.EditValue
-                        .TA_LevelApprove = Active_Form
-                        .TA_StatusApprove = "Reject"
+                        .TA_LevelApprove = 0
+                        .TA_StatusApprove = "Revise"
                         .TA_ApproveBy = gh_Common.Username
                         .TA_ApproveDAte = Date.Now
-                        .TA_IsActive = 0
+                        .TA_IsActive = 1
                     End With
 
 

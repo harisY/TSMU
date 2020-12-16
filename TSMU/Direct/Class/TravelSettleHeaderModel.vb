@@ -577,11 +577,20 @@ Public Class TravelSettleHeaderModel
                                 SUM(trd.RateAllowanceYEN) AS TotRateAllowanceYEN ,
                                 SUM(trd.RateAllowanceIDR) AS TotRateAllowanceIDR ,
                                 SUM(trc.AdvanceUSD) AS AdvanceUSD ,
-                                SUM(trc.AdvanceUSD) AS SettlementUSD ,
+                                CASE WHEN ( SUM(trc.AdvanceUSD) + SUM(trc.AdvanceYEN)
+                                            + SUM(trc.AdvanceIDR) ) = 0 THEN SUM(trd.RateAllowanceUSD)
+                                     ELSE SUM(trc.AdvanceUSD)
+                                END AS SettlementUSD ,
                                 SUM(trc.AdvanceYEN) AS AdvanceYEN ,
-                                SUM(trc.AdvanceYEN) AS SettlementYEN ,
+                                CASE WHEN ( SUM(trc.AdvanceUSD) + SUM(trc.AdvanceYEN)
+                                            + SUM(trc.AdvanceIDR) ) = 0 THEN SUM(trd.RateAllowanceYEN)
+                                     ELSE SUM(trc.AdvanceYEN)
+                                END AS SettlementYEN ,
                                 SUM(trc.AdvanceIDR) AS AdvanceIDR ,
-                                SUM(trc.AdvanceIDR) AS SettlementIDR
+                                CASE WHEN ( SUM(trc.AdvanceUSD) + SUM(trc.AdvanceYEN)
+                                            + SUM(trc.AdvanceIDR) ) = 0 THEN SUM(trd.RateAllowanceIDR)
+                                     ELSE SUM(trc.AdvanceIDR)
+                                END AS SettlementIDR
                         FROM    dbo.TravelRequestHeader AS trh
                                 INNER JOIN ( SELECT NoRequest ,
                                                     MIN(DepartureDate) AS DepartureDate ,

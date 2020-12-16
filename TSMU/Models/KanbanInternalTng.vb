@@ -24,6 +24,7 @@ Public Class KanbanInternalTng
     Public Property UploadedBy() As String
     Public Property UploadedDate() As DateTime
     Public Property VendorCode() As String
+    Public Property Item() As String
     Public Property KanbanCollection As New Collection(Of KanbanInternalTng)
 
     Public Function GetKanbans() As DataTable
@@ -58,6 +59,7 @@ Public Class KanbanInternalTng
             P.Add(New SqlParameter() With {.ParameterName = "Type", .Value = KanbanCollection(i).Type})
             P.Add(New SqlParameter() With {.ParameterName = "UploadedBy", .Value = gh_Common.Username})
             P.Add(New SqlParameter() With {.ParameterName = "VendorCode", .Value = KanbanCollection(i).VendorCode})
+            P.Add(New SqlParameter() With {.ParameterName = "Item", .Value = KanbanCollection(i).Item})
             ExecQueryWithValue("M_KanbanInternal_Insert", CommandType.StoredProcedure, P, GetConnString)
         Catch ex As Exception
             Throw ex

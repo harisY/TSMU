@@ -100,19 +100,19 @@ Public Class FrmCCAccrued
             TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
             PrintTool.ShowPreview(UserLookAndFeel.Default)
         Else
-            Dim firstDay As Date = New Date(txtPerpostSett.EditValue.Year, txtPerpostSett.EditValue.Month, 1)
-            Dim nexMonth = firstDay.AddMonths(1)
-            Dim filter As String = "[PerpostDate] >= '" & firstDay.ToShortDateString & "' And [PerpostDate] <= '" & nexMonth.ToShortDateString & "'"
-            GridViewAccruedAll.Columns("PerpostDate").FilterInfo = New ColumnFilterInfo(filter)
+            'Dim firstDay As Date = New Date(txtPerpostSett.EditValue.Year, txtPerpostSett.EditValue.Month, 1)
+            'Dim nexMonth = firstDay.AddMonths(1)
+            'Dim filter As String = "[PerpostDate] >= '" & firstDay.ToShortDateString & "' And [PerpostDate] <= '" & nexMonth.ToShortDateString & "'"
+            'GridViewAccruedAll.Columns("PerpostDate").FilterInfo = New ColumnFilterInfo(filter)
 
-            For i As Integer = 0 To GridViewAccruedAll.RowCount - 1
-                Dim noTrans As String = GridViewAccruedAll.GetRowCellValue(i, "NoTransaksi")
-                If Not listNoTrans.Contains(noTrans) Then
-                    listNoTrans.Add(noTrans)
-                End If
-            Next
-            GridViewAccruedAll.ClearColumnsFilter()
-            GridViewAccruedAll.SelectAll()
+            'For i As Integer = 0 To GridViewAccruedAll.RowCount - 1
+            '    Dim noTrans As String = GridViewAccruedAll.GetRowCellValue(i, "NoTransaksi")
+            '    If Not listNoTrans.Contains(noTrans) Then
+            '        listNoTrans.Add(noTrans)
+            '    End If
+            'Next
+            'GridViewAccruedAll.ClearColumnsFilter()
+            'GridViewAccruedAll.SelectAll()
 
             param = String.Join(",", listNoTrans.ToArray)
 
