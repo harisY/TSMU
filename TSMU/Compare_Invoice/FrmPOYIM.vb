@@ -2,6 +2,9 @@
 Imports CsvHelper
 Imports ExcelLibrary
 Imports System.Data.OleDb
+Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid
+Imports DevExpress.Utils
 Public Class FrmPOYIM
     Dim fc_Class As New clscompare
     Dim dtGrid As DataTable
@@ -13,17 +16,44 @@ Public Class FrmPOYIM
         Call baseForm.Proc_EnableButtons(False, False, False, True, True, False, False, False)
 
     End Sub
+    Public Overrides Sub Proc_print()
+        FrmUploadSO.StartPosition = FormStartPosition.CenterScreen
+        FrmUploadSO.TxtJenisPO.Text = TxtJenisPO.Text
+        FrmUploadSO._txtFileLocation.Text = _txtFileLocation.Text
+        FrmUploadSO.Show()
+    End Sub
     Private Sub LoadGrid()
         Try
             fc_Class = New clscompare
+            fc_Class.JenisPO = TxtJenisPO.Text
+            fc_Class.txtFileLocation = _txtFileLocation.Text
             dtGrid = fc_Class.GetDataGrid()
             Grid.DataSource = dtGrid
             With GridView1
-                ''   .Columns(0).Visible = False
+                .Columns(0).Visible = False
+                .Columns(13).Visible = False
+                .Columns(14).Visible = False
+                .Columns(15).Visible = False
                 .BestFitColumns()
                 .FixedLineWidth = 2
             End With
+
             GridCellFormat(GridView1)
+            GridView1.Columns(2).AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("InvtID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("Descr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("PO").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("Quantity").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("SiteID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("Nom").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("CustID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("Jam").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("Tujuan").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("SO").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("Ordnbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("JenisPO").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("Lokasi").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -55,14 +85,19 @@ Public Class FrmPOYIM
         Dim exConn As OleDbConnection
         Dim dt As DataSet
         Dim cmd As OleDbDataAdapter
-
+        Dim POJenis As String = ""
+        If TxtJenisPO.Text = "POD" Then
+            POJenis = "[U code]='76C2'"
+        Else
+            POJenis = "[U code]<>'76C2'"
+        End If
         Dim sConn As String
         sConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" &
             FileName & ";Extended Properties=""Excel 12.0 Xml;HDR=YES"";"
 
         exConn = New System.Data.OleDb.OleDbConnection(sConn)
         cmd = New System.Data.OleDb.OleDbDataAdapter(
-          "select * from [" & SheetName & "]", exConn)
+          "select * from [" & SheetName & "] where " & POJenis & "", exConn)
         cmd.TableMappings.Add("Table", SheetName)
         dt = New System.Data.DataSet
         cmd.Fill(dt)
@@ -70,9 +105,31 @@ Public Class FrmPOYIM
         DataGridView1.DataSource = tblImport
         '  Grid.DataSource = tblImport
         exConn.Close()
-        ''     Proc_SaveData()
+        ''  Proc_SaveData()
+        fc_Class.JenisPO = TxtJenisPO.Text
+        fc_Class.txtFileLocation = _txtFileLocation.Text
+        simpen()
+
         LoadGrid()
         nomerorder()
+        ''-----
+        For i As Integer = 0 To GridView1.RowCount - 1
+
+            With fc_Class
+                .ordnbr = CStr(GridView1.GetRowCellValue(i, "Ordnbr"))
+                .PO = CStr(GridView1.GetRowCellValue(i, "PO"))
+                .nom = CStr(GridView1.GetRowCellValue(i, "Nom"))
+                .ID = CStr(GridView1.GetRowCellValue(i, "ID"))
+                .Updateordnbr()
+
+            End With
+            fc_Class.Updatenom()
+        Next
+        fc_Class.periode = _txtperiode.Text
+
+
+        fc_Class.Updatesonbr()
+        LoadGrid()
     End Sub
     Public Sub csv()
         '  Using reader = New StreamReader("C:\Users\firman\Desktop\yimvol1.csv")
@@ -90,7 +147,40 @@ Public Class FrmPOYIM
 
     End Sub
     Public Overrides Sub Proc_SaveData()
+
+        fc_Class.JenisPO = TxtJenisPO.Text
+        fc_Class.txtFileLocation = _txtFileLocation.Text
+        fc_Class.Delete2YIM()
+
+        Try
+            For i As Integer = 0 To DataGridView1.Rows.Count - 1
+                Dim ObjDetails As New clscompare
+                With ObjDetails
+                    .g0 = If(DataGridView1.Rows(i).Cells(5).Value Is DBNull.Value, "", DataGridView1.Rows(i).Cells(5).Value)
+                    .g1 = If(DataGridView1.Rows(i).Cells(9).Value Is DBNull.Value, "", DataGridView1.Rows(i).Cells(9).Value)
+                    .g2 = If(DataGridView1.Rows(i).Cells(12).Value Is DBNull.Value, "", DataGridView1.Rows(i).Cells(12).Value)
+                    .g3 = If(DataGridView1.Rows(i).Cells(13).Value Is DBNull.Value, "", DataGridView1.Rows(i).Cells(13).Value)
+                    .g4 = DataGridView1.Rows(i).Cells(16).Value
+                    .g5 = If(DataGridView1.Rows(i).Cells(7).Value Is DBNull.Value, "", Convert.ToString(DataGridView1.Rows(i).Cells(7).Value))
+                    .g7 = If(DataGridView1.Rows(i).Cells(8).Value Is DBNull.Value, "", Convert.ToString(DataGridView1.Rows(i).Cells(8).Value))
+                    .g8 = .g5 + "/" + .g7
+                    .g6 = If(DataGridView1.Rows(i).Cells(15).Value Is DBNull.Value, "LEAD TIME", Convert.ToString(DataGridView1.Rows(i).Cells(15).Value))
+
+                    .JenisPO = TxtJenisPO.Text
+                    .txtFileLocation = _txtFileLocation.Text
+                    .Insert2YIM()
+                End With
+            Next i
+            fc_Class.Update2YIM()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        MsgBox("Data Tersimpan")
+        ''   Call LoadGrid2()
+    End Sub
+    Private Sub simpen()
         fc_Class.txtFileLocation = txtFileLocation.Text
+        fc_Class.JenisPO = TxtJenisPO.Text
         fc_Class.Delete2YIM()
         '' fc_Class.Delete()
         ''   fc_Class.perpost = _cmbperpost.Text
@@ -118,17 +208,18 @@ Public Class FrmPOYIM
 
                     '.g6 = DataGridView1.Rows(i).Cells(8).Value
 
-
+                    .JenisPO = TxtJenisPO.Text
                     .txtFileLocation = _txtFileLocation.Text
                     '      fc_Class.cmbperpost = _cmbperpost.Text
                     .Insert2YIM()
                 End With
             Next i
             fc_Class.Update2YIM()
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
-        MsgBox("Data Tersimpan")
+        '      MsgBox("Data Tersimpan")
         ''   Call LoadGrid2()
     End Sub
     Private Sub tsBtn_excel_Click(sender As Object, e As EventArgs) Handles tsBtn_excel.Click
@@ -175,18 +266,42 @@ Public Class FrmPOYIM
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'For i As Integer = 0 To GridView1.RowCount - 1
+
+        '    With fc_Class
+        '        .ordnbr = CStr(GridView1.GetRowCellValue(i, "Ordnbr"))
+        '        .PO = CStr(GridView1.GetRowCellValue(i, "PO"))
+        '        .nom = CStr(GridView1.GetRowCellValue(i, "Nom"))
+        '        .Updateordnbr()
+
+        '    End With
+        '    ''fc_Class.Updatenom()
+        'Next
+        'fc_Class.periode = _txtperiode.Text
+
+        'fc_Class.Updatesonbr()
+        'LoadGrid()
+        fc_Class.JenisPO = TxtJenisPO.Text
+        fc_Class.txtFileLocation = _txtFileLocation.Text
+        simpen()
+
+        LoadGrid()
+        nomerorder()
+        ''-----
         For i As Integer = 0 To GridView1.RowCount - 1
 
             With fc_Class
                 .ordnbr = CStr(GridView1.GetRowCellValue(i, "Ordnbr"))
                 .PO = CStr(GridView1.GetRowCellValue(i, "PO"))
                 .nom = CStr(GridView1.GetRowCellValue(i, "Nom"))
+                .ID = CStr(GridView1.GetRowCellValue(i, "ID"))
                 .Updateordnbr()
 
             End With
             fc_Class.Updatenom()
         Next
         fc_Class.periode = _txtperiode.Text
+
 
         fc_Class.Updatesonbr()
         LoadGrid()
