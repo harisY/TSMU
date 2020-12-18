@@ -286,4 +286,8 @@ Public Class FrmViewShipperNonInvoice
     Private Sub _BtnCust2_EditValueChanged(sender As Object, e As EventArgs) Handles _BtnCust2.EditValueChanged
 
     End Sub
+
+    Private Sub _TxtLokasi_SelectedIndexChanged(sender As Object, e As EventArgs) Handles _TxtLokasi.SelectedIndexChanged
+
+    End Sub
 End Class

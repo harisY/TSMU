@@ -160,6 +160,7 @@ Public Class Frmgl_Detail
                 TxtPrNo.Text = ""
                 TxtCurrency.SelectedIndex = 0
                 TxtDep.Text = gh_Common.GroupID
+                TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
                 TxtRemark.Text = ""
                 TxtStatus.Text = "Open"
                 TxtTgl.EditValue = DateTime.Today
@@ -610,9 +611,9 @@ Public Class Frmgl_Detail
         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
     End Sub
     Public Overrides Sub Proc_print()
-        'FrmReportGJ.StartPosition = FormStartPosition.CenterScreen
-        'FrmReportGJ.TxtNoGJ.Text = TxtNoGJ.Text
-        'FrmReportGJ.Show()
+        FrmReportgl.StartPosition = FormStartPosition.CenterScreen
+        FrmReportgl.TxtNoGJ.Text = TxtNoGJ.Text
+        FrmReportgl.Show()
     End Sub
 
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click

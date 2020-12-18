@@ -797,6 +797,12 @@
     <Compile Include="Direct\FrmTravelSettleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmViewGJ.Designer.vb">
+      <DependentUpon>FrmViewGJ.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmViewGJ.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\report\CRCCAccrued.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -814,6 +820,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CRCCSettlement.rpt</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\CRGL.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRGL.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Direct\report\CRTravel.vb">
       <AutoGen>True</AutoGen>
@@ -1017,6 +1029,12 @@
       <DependentUpon>FrmReportEntertainmentTax.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\FrmReportEntertainmentTax.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportgl.Designer.vb">
+      <DependentUpon>FrmReportgl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportgl.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\FrmReportSettle.Designer.vb">
@@ -3076,6 +3094,9 @@
     <EmbeddedResource Include="Direct\FrmTravelTicketInvoice.resx">
       <DependentUpon>FrmTravelTicketInvoice.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmViewGJ.resx">
+      <DependentUpon>FrmViewGJ.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRCCAccrued.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRCCAccrued.vb</LastGenOutput>
@@ -3087,6 +3108,10 @@
     <EmbeddedResource Include="Direct\report\CRCCSettlement.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRCCSettlement.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRGL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRGL.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRTravel.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3203,6 +3228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportCCAccrued.resx">
       <DependentUpon>FrmReportCCAccrued.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportgl.resx">
+      <DependentUpon>FrmReportgl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportTravel.resx">
       <DependentUpon>FrmReportTravel.vb</DependentUpon>
