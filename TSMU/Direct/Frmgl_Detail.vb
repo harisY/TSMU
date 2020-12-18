@@ -163,6 +163,10 @@ Public Class Frmgl_Detail
                 TxtRemark.Text = ""
                 TxtStatus.Text = "Open"
                 TxtTgl.EditValue = DateTime.Today
+                '' TxtTgl.EditValue = Now.AddDays((Now.Day - 1) * -1).AddMonths(1)
+
+
+
                 TxtTotalDb.Text = "0"
                 TxtTotalCr.Text = "0"
                 TxtPrNo.Focus()
@@ -200,6 +204,7 @@ Public Class Frmgl_Detail
                     _GJID = .GJAutoNo
                     .GJID_Revers = .RJAutoNo
                     _GJID_Revers = .RJAutoNo
+                    ''    TxtTgl.EditValue = TxtTgl.EditValue.AddDays((TxtTgl.EditValue.Day - 1) * -1).AddMonths(1)
                     .Tgl = TxtTgl.EditValue
                     .Tipe = "S"
                     .Total = TxtTotalDb.Text
@@ -275,7 +280,9 @@ Public Class Frmgl_Detail
 
                 ObjGJHeader.InsertData()
                 If ChkRevers.Checked = True Then
-
+                    Dim tglr As Date
+                    tglr = TxtTgl.EditValue.AddDays((TxtTgl.EditValue.Day - 1) * -1).AddMonths(1)
+                    ObjGJHeader.Tgl = tglr
                     ObjGJHeader.InsertDataR()
                 End If
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -323,6 +330,8 @@ Public Class Frmgl_Detail
                 ObjGJHeader.GJID_Revers2 = ObjGJDetail.GJID_Revers2
                 If ChkRevers.Checked = True Then
                     'ObjGJDetail.GJID_Revers = ObjGJDetail.GJID_Revers2
+                    Dim tglr As Date
+                    tglr = TxtTgl.EditValue.AddDays((TxtTgl.EditValue.Day - 1) * -1).AddMonths(1)
                     ObjGJHeader.InsertDataR2()
                 End If
 

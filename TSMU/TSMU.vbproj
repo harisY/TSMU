@@ -288,6 +288,12 @@
     <Compile Include="Classes\user_info.vb" />
     <Compile Include="Compare_Invoice\clscompare.vb" />
     <Compile Include="Compare_Invoice\ClsShippernotinvoice.vb" />
+    <Compile Include="Compare_Invoice\CRUploadSO.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadSO.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Compare_Invoice\Form3.Designer.vb">
       <DependentUpon>Form3.vb</DependentUpon>
     </Compile>
@@ -310,6 +316,12 @@
       <DependentUpon>FrmPOYIM.vb</DependentUpon>
     </Compile>
     <Compile Include="Compare_Invoice\FrmPOYIM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmUploadSO.Designer.vb">
+      <DependentUpon>FrmUploadSO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compare_Invoice\FrmUploadSO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Compare_Invoice\FrmViewShipperNonInvoice.Designer.vb">
@@ -2967,6 +2979,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Compare_Invoice\CRUploadSO.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadSO.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Compare_Invoice\Form3.resx">
       <DependentUpon>Form3.vb</DependentUpon>
     </EmbeddedResource>
@@ -2975,6 +2991,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Compare_Invoice\FrmPOYIM.resx">
       <DependentUpon>FrmPOYIM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compare_Invoice\FrmUploadSO.resx">
+      <DependentUpon>FrmUploadSO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compare_Invoice\FrmViewShipperNonInvoice.resx">
       <DependentUpon>FrmViewShipperNonInvoice.vb</DependentUpon>

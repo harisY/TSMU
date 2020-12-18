@@ -748,14 +748,37 @@ Public Class cashbank_models
             ''            Dim sql As String = "select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CreditCardNumber,SUM(T_CCAccrued.AmountIDR) as AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses from T_CCAccrued  inner join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi where TSC16Application.dbo.settle_header.pay=0 group by T_CCAccrued.NoAccrued, T_CCAccrued.CreditCardNumber, T_CCAccrued.Tanggal,TSC16Application.dbo.settle_header.Proses"
             '' Dim sql As String = "Select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,SUM(T_CCAccrued.AmountIDR) As AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses from T_CCAccrued  inner join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi where TSC16Application.dbo.settle_header.pay=0 group by T_CCAccrued.NoAccrued, T_CCAccrued.CCNumberMaster, T_CCAccrued.Tanggal,TSC16Application.dbo.settle_header.Proses"
 
-            Dim sql As String = " Select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,SUM(T_CCAccrued.AmountIDR) As AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses into #cc
-From T_CCAccrued  inner Join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi 
-Where TSC16Application.dbo.settle_header.pay = 0
-Group By T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster, TSC16Application.dbo.settle_header.Proses
+            '            Dim sql As String = " Select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,SUM(T_CCAccrued.AmountIDR) As AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses into #cc
+            'From T_CCAccrued  inner Join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi 
+            'Where TSC16Application.dbo.settle_header.pay = 0
+            'Group By T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster, TSC16Application.dbo.settle_header.Proses
 
-Select #cc.NoAccrued, #cc.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,sum(T_CCAccrued.AmountIDR) as AmountIDR,#cc.CuryID,#cc.Proses 
-from #cc  inner join T_CCAccrued on T_CCAccrued.NoAccrued=#cc.NoAccrued
-Group by #cc.NoAccrued,  #cc.Tanggal, T_CCAccrued.CCNumberMaster,#cc.CuryID, Proses"
+            'Select #cc.NoAccrued, #cc.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,sum(T_CCAccrued.AmountIDR) as AmountIDR,#cc.CuryID,#cc.Proses 
+            'from #cc  inner join T_CCAccrued on T_CCAccrued.NoAccrued=#cc.NoAccrued
+            'Group by #cc.NoAccrued,  #cc.Tanggal, T_CCAccrued.CCNumberMaster,#cc.CuryID, Proses"
+
+            Dim sql As String = " CREATE TABLE #cc(
+	NoAccrued char(50),
+	Tanggal date NULL,
+	CreditCardNumber char(50),
+	AmountIDR float NULL,
+	CuryID char(4) NULL,
+Proses bit
+);
+            Select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,SUM(T_CCAccrued.AmountIDR) As AmountIDR,'IDR' AS CuryID,TSC16Application.dbo.settle_header.Proses into #ck
+From T_CCAccrued  inner Join TSC16Application.dbo.settle_header on TSC16Application.dbo.settle_header.SettleID=T_CCAccrued.NoTransaksi 
+Where  T_CCAccrued.pay = 0
+Group By T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster, TSC16Application.dbo.settle_header.Proses
+Select T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster As CreditCardNumber,SUM(T_CCAccrued.AmountIDR) As AmountIDR,'IDR' AS CuryID,TravelSettleHeader.Pay as Proses into #cz
+From T_CCAccrued  inner Join TravelSettleHeader On TravelSettleHeader.TravelSettleID=T_CCAccrued.NoTransaksi 
+Where  T_CCAccrued.pay = 0
+Group By T_CCAccrued.NoAccrued, T_CCAccrued.Tanggal, T_CCAccrued.CCNumberMaster, TravelSettleHeader.Pay
+insert into #cc (NoAccrued, Tanggal, CreditCardNumber, AmountIDR, curyid, Proses)
+Select * from #ck union Select * from #cz 
+Select * from #cc "
+
+
+
             Dim dt As New DataTable
             dt = MainModul.GetDataTable(sql)
             Return dt
