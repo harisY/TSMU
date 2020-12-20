@@ -1161,6 +1161,45 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
             Throw ex
         End Try
     End Sub
+
+    ''Add by Midi
+#Region "Ini adalah fungsi untuk update data settlement Expence"
+    Public Sub UpdateDataSettleExp(_SettleID As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        UpdateHeader(_SettleID)
+
+                        Dim ObjSettleDetail As New SettleDetail
+                        ObjSettleDetail.DeleteDetail(_SettleID)
+
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertDetails()
+                            End With
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        MainModul.gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+#End Region
+
     Public Sub UpdateDataCC(_SettleID As String)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnStringSolomon)

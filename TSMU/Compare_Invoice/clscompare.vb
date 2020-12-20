@@ -82,6 +82,8 @@ Public Class clscompare
     Public Property PO As String
     Public Property periode As String
     Public Property nom As Integer
+    Public Property ID As Integer
+    Public Property JenisPO As String
 
     '  Public Property cmbperpost() As String
     Public Sub New()
@@ -99,6 +101,26 @@ Public Class clscompare
             Throw
         End Try
     End Function
+    Public Function loadreport2() As DataSet
+        Dim query As String
+        query = "SELECT RTRIM(AlternateID) as AlternateID
+      ,RTRIM(InvtID) as InvtID
+      ,RTRIM(Descr) as Descr
+      ,RTRIM(PO) as PO
+      , CONVERT(varchar, Promdate, 101) AS Promdate
+      ,Quantity as Qty
+      ,RTRIM(SiteID) as SiteID
+      ,Nom as No
+      ,RTRIM(CustID) as CustID
+      ,RTRIM(Jam) as Jam
+      ,RTRIM(Tujuan) as Tujuan
+      ,RTRIM(SO) as SO FROM POYIM where JenisPO='" & JenisPO & "' AND Lokasi='" & txtFileLocation & "' AND PO<>'' "
+
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "SO")
+        Return ds
+
+    End Function
     Public Sub Updateordnbr()
         Try
             Dim ls_SP As String = String.Empty
@@ -112,7 +134,7 @@ Public Class clscompare
     Public Sub Updatenom()
         Try
             Dim ls_SP As String = String.Empty
-            ls_SP = "UPDATE POYIM SET Nom =" & QVal(nom) & " "
+            ls_SP = "UPDATE POYIM SET Nom =" & QVal(nom) & " WHERE ID= " & QVal(ID) & ""
 
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -170,13 +192,54 @@ Public Class clscompare
         Try
             Dim dt As New DataTable
             Dim sql As String =
-            "SELECT *  FROM POYIM WHERE PO<>'' ORDER BY PO"
+            "SELECT ID,RTRIM(AlternateID) as AlternateID
+      ,RTRIM(InvtID) as InvtID
+      ,RTRIM(Descr) as Descr
+      ,RTRIM(PO) as PO
+      , CONVERT(varchar, Promdate, 101) AS Promdate
+      ,Quantity
+      ,RTRIM(SiteID) as SiteID
+      ,Nom
+      ,RTRIM(CustID) as CustID
+      ,RTRIM(Jam) as Jam
+      ,RTRIM(Tujuan) as Tujuan
+      ,RTRIM(SO) as SO
+      ,Ordnbr
+      ,RTRIM(JenisPO) JenisPO
+      ,RTRIM(Lokasi) Lokasi FROM POYIM WHERE PO<>'' AND JenisPO='" & JenisPO & "' AND Lokasi='" & txtFileLocation & "' ORDER BY PO"
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
             Throw ex
         End Try
     End Function
+
+    Public Function GetDataGrid3() As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT ID,RTRIM(AlternateID) as AlternateID
+      ,RTRIM(InvtID) as InvtID
+      ,RTRIM(Descr) as Descr
+      ,RTRIM(PO) as PO
+      , CONVERT(varchar, Promdate, 101) AS Promdate
+      ,Quantity
+      ,RTRIM(SiteID) as SiteID
+      ,Nom
+      ,RTRIM(CustID) as CustID
+      ,RTRIM(Jam) as Jam
+      ,RTRIM(Tujuan) as Tujuan
+      ,RTRIM(SO) as SO
+      ,Ordnbr
+      ,RTRIM(JenisPO) JenisPO
+      ,RTRIM(Lokasi) Lokasi FROM POYIM WHERE PO<>'' ORDER BY PO"
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetDataImport() As DataTable
         ' Try
         'Dim ls_SP As String = "select * from Temp_Copas_sol where balance=0"
@@ -255,8 +318,8 @@ Public Class clscompare
             g0 = g0.Substring(0, 3) + "-" + g0.Substring(3, 5) + "-" + g0.Substring(8, 2) + "-" + g0.Substring(10, 2) + "-" + g0.Substring(12, 2)
             g2 = Trim(g2)
             '   g0 = g0.Substring(1, g0.Length > 3 ? 3 g0.Length) + "-" + g0.Substring(4, 5) + "-" + g0.Substring(9, 2) + "-" + g0.Substring(11, 2) + "-" + g0.Substring(13, 2)
-            Dim ls_SP As String = "INSERT INTO POYIM (AlternateID,Descr,PO,Promdate,Quantity,Tujuan,Jam	) " &
-                                "VALUES ('" & g0 & "','" & g1 & "','" & g2 & "','" & g3 & "','" & g4 & "','" & g8 & "','" & g6 & "')"
+            Dim ls_SP As String = "INSERT INTO POYIM (AlternateID,Descr,PO,Promdate,Quantity,Tujuan,Jam,JenisPO,Lokasi ) " &
+                                "VALUES ('" & g0 & "','" & g1 & "','" & g2 & "','" & g3 & "','" & g4 & "','" & g8 & "','" & g6 & "','" & JenisPO & "','" & txtFileLocation & "')"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw
@@ -264,7 +327,7 @@ Public Class clscompare
     End Sub
     Public Sub Delete2YIM()
         Try
-            Dim ls_SP As String = "DELETE FROM POYIM"
+            Dim ls_SP As String = "DELETE FROM POYIM WHERE Lokasi='" & txtFileLocation & "' and JenisPO='" & JenisPO & "'"
             MainModul.ExecQuery_Solomon(ls_SP)
 
 
@@ -275,10 +338,15 @@ Public Class clscompare
     Public Sub Update2YIM()
         Try
             ''select '#'+right('0000'+cast(right(rtrim(PO),5) as varchar),5),* FROM POYIM  where  PO <>'' and  PO not like 'J%' and  PO not like 'K%'
-
-            Dim ls_SP2 As String = "UPDATE POYIM SET POYIM.InvtID=ItemxRef.InvtID,POYIM.CustID='YIM',POYIM.SiteID='TNG-U',POYIM.PO='#'+right('0000'+cast(right(rtrim(PO),5) as varchar),5) FROM POYIM Inner Join ItemxRef on POYIM.AlternateID=ItemxRef.AlternateID inner join inventory on inventory.InvtID=ItemxRef.InvtID where TranStatusCode='AC' and itemxref.AltIDType ='C'  "
+            If JenisPO = "POD" Then
+                Dim ls_SP21 As String = "UPDATE POYIM SET POYIM.InvtID=ItemxRef.InvtID,POYIM.CustID='YIM',POYIM.SiteID='TNG-U',POYIM.PO='#'+right('0000'+cast(right(rtrim(PO),5) as varchar),5) FROM POYIM Inner Join ItemxRef on POYIM.AlternateID=ItemxRef.AlternateID inner join inventory on inventory.InvtID=ItemxRef.InvtID where TranStatusCode='AC' and itemxref.AltIDType ='C' and SUBSTRING(ItemxRef.InvtID,16,2) IN ('SN','SI','SP') AND POYIM.JenisPO='POD'"
+                MainModul.ExecQuery_Solomon(ls_SP21)
+            Else
+                Dim ls_SP2 As String = "UPDATE POYIM SET POYIM.InvtID=ItemxRef.InvtID,POYIM.CustID='YIM',POYIM.SiteID='TNG-U',POYIM.PO='#'+right('0000'+cast(right(rtrim(PO),5) as varchar),5) FROM POYIM Inner Join ItemxRef on POYIM.AlternateID=ItemxRef.AlternateID inner join inventory on inventory.InvtID=ItemxRef.InvtID where TranStatusCode='AC' and itemxref.AltIDType ='C'  and SUBSTRING(ItemxRef.InvtID,16,2) NOT IN ('SN','SI','SP','') AND POYIM.JenisPO='Regular' "
+                MainModul.ExecQuery_Solomon(ls_SP2)
+            End If
             'Dim ls_SP2 As String = "UPDATE POYIM SET POYIM.InvtID=ItemxRef.InvtID,POYIM.CustID='YIM',POYIM.SiteID='TNG-U' FROM POYIM Inner Join ItemxRef on POYIM.AlternateID=ItemxRef.AlternateID inner join inventory on inventory.InvtID=ItemxRef.InvtID where TranStatusCode='AC' and itemxref.AltIDType ='C'  "
-            MainModul.ExecQuery_Solomon(ls_SP2)
+
             Dim ls_SP1 As String = "UPDATE POYIM SET PO='' FROM POYIM where PO='#0000'"
             MainModul.ExecQuery_Solomon(ls_SP1)
 

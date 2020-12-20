@@ -40,33 +40,31 @@ Public Class Frmgl
         End Try
     End Sub
     Public Overrides Sub Proc_Search()
-        'Try
-        '    Dim Status As List(Of String) = New List(Of String)({"ALL", "Open", "Approved", "Close"})
+        Try
+            Dim Status As List(Of String) = New List(Of String)({"ALL", "Open", "Posted"})
 
-        '    Dim fSearch As New frmAdvanceSearch(Status)
-        '    With fSearch
-        '        .StartPosition = FormStartPosition.CenterScreen
-        '        .ShowDialog()
-        '        Dim _Status As String = String.Empty
-        '        Select Case .Status.ToLower
-        '            Case "all"
-        '                _Status = "ALL"
-        '            Case "Open"
-        '                _Status = "Open"
-        '            Case "Approved"
-        '                _Status = "Approved"
-        '            Case "Close"
-        '                _Status = "Close"
-        '        End Select
+            Dim fSearch As New frmAdvanceSearch(Status)
+            With fSearch
+                .StartPosition = FormStartPosition.CenterScreen
+                .ShowDialog()
+                Dim _Status As String = String.Empty
+                Select Case .Status.ToLower
+                    Case "all"
+                        _Status = "ALL"
+                    Case "Open"
+                        _Status = "Open"
+                    Case "Posted"
+                        _Status = "Posted"
+                End Select
 
-        '        Dim dt As New DataTable
-        '        _Service = New GJHeaderModel
-        '        dt = _Service.GetDataByDate(If(IsDBNull(.TgjDari), Format(Date.Today, gs_FormatSQLDate), .TgjDari), If(IsDBNull(.TgjSampai), Format(Date.Today, gs_FormatSQLDate), .TgjSampai), _Status)
-        '        Grid.DataSource = dt
-        '    End With
-        'Catch ex As Exception
-        '    ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        'End Try
+                Dim dt As New DataTable
+                _Service = New GJHeaderModel
+                dt = _Service.GetDataByDate(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai), _Status)
+                Grid.DataSource = dt
+            End With
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
     End Sub
     Private Sub LoadGrid2()
         Try

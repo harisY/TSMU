@@ -32,13 +32,13 @@ Partial Class FrmPOYIM
         Me.Button1 = New System.Windows.Forms.Button()
         Me._txtperiode = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.TxtJenisPO = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtJenisPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -169,15 +169,15 @@ Partial Class FrmPOYIM
         Me.Label3.TabIndex = 44
         Me.Label3.Text = "-"
         '
-        'ComboBoxEdit1
+        'TxtJenisPO
         '
-        Me.ComboBoxEdit1.EditValue = "Regular"
-        Me.ComboBoxEdit1.Location = New System.Drawing.Point(886, 47)
-        Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
-        Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ComboBoxEdit1.Properties.Items.AddRange(New Object() {"Regular", "POD"})
-        Me.ComboBoxEdit1.Size = New System.Drawing.Size(125, 22)
-        Me.ComboBoxEdit1.TabIndex = 45
+        Me.TxtJenisPO.EditValue = "Regular"
+        Me.TxtJenisPO.Location = New System.Drawing.Point(886, 47)
+        Me.TxtJenisPO.Name = "TxtJenisPO"
+        Me.TxtJenisPO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtJenisPO.Properties.Items.AddRange(New Object() {"Regular", "POD"})
+        Me.TxtJenisPO.Size = New System.Drawing.Size(125, 22)
+        Me.TxtJenisPO.TabIndex = 45
         '
         'Label4
         '
@@ -193,7 +193,7 @@ Partial Class FrmPOYIM
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1521, 581)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.ComboBoxEdit1)
+        Me.Controls.Add(Me.TxtJenisPO)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me._txtperiode)
         Me.Controls.Add(Me.Button1)
@@ -213,13 +213,13 @@ Partial Class FrmPOYIM
         Me.Controls.SetChildIndex(Me.Button1, 0)
         Me.Controls.SetChildIndex(Me._txtperiode, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
-        Me.Controls.SetChildIndex(Me.ComboBoxEdit1, 0)
+        Me.Controls.SetChildIndex(Me.TxtJenisPO, 0)
         Me.Controls.SetChildIndex(Me.Label4, 0)
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtJenisPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -238,6 +238,6 @@ Partial Class FrmPOYIM
     Friend WithEvents Button1 As Button
     Friend WithEvents _txtperiode As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents TxtJenisPO As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents Label4 As Label
 End Class

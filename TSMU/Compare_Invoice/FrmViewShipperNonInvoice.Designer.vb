@@ -30,6 +30,7 @@ Partial Class FrmViewShipperNonInvoice
         Me.Grid3 = New DevExpress.XtraGrid.GridControl()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me._txtamount = New DevExpress.XtraEditors.TextEdit()
         Me.lblnama = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me._TxtLokasi = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -44,7 +45,6 @@ Partial Class FrmViewShipperNonInvoice
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me._txtamount = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
@@ -59,6 +59,7 @@ Partial Class FrmViewShipperNonInvoice
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me._txtamount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TglSJTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._TglSJTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,7 +74,6 @@ Partial Class FrmViewShipperNonInvoice
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me._txtamount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -217,6 +217,15 @@ Partial Class FrmViewShipperNonInvoice
         Me.LayoutControl1.TabIndex = 20
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        '_txtamount
+        '
+        Me._txtamount.Location = New System.Drawing.Point(833, 12)
+        Me._txtamount.Name = "_txtamount"
+        Me._txtamount.Properties.ReadOnly = True
+        Me._txtamount.Size = New System.Drawing.Size(99, 22)
+        Me._txtamount.StyleController = Me.LayoutControl1
+        Me._txtamount.TabIndex = 9
+        '
         'lblnama
         '
         Me.lblnama.Location = New System.Drawing.Point(165, 12)
@@ -358,15 +367,6 @@ Partial Class FrmViewShipperNonInvoice
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
-        '_txtamount
-        '
-        Me._txtamount.Location = New System.Drawing.Point(833, 12)
-        Me._txtamount.Name = "_txtamount"
-        Me._txtamount.Properties.ReadOnly = True
-        Me._txtamount.Size = New System.Drawing.Size(99, 22)
-        Me._txtamount.StyleController = Me.LayoutControl1
-        Me._txtamount.TabIndex = 9
-        '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me._txtamount
@@ -398,6 +398,7 @@ Partial Class FrmViewShipperNonInvoice
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me._txtamount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TxtLokasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TglSJTo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._TglSJTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -412,7 +413,6 @@ Partial Class FrmViewShipperNonInvoice
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me._txtamount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

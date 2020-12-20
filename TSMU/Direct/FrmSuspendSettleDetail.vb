@@ -184,6 +184,7 @@ Public Class FrmSuspendSettleDetail
                     .Remark = TxtRemark.Text
                     .Status = TxtStatus.Text
                     .SuspendID = TxtNoSuspend.Text
+                    .PRNo = ""
                     .SettleID = .SettleAutoNo
                     _SettleID = ObjSettle.SettleAutoNo
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
@@ -269,7 +270,7 @@ Public Class FrmSuspendSettleDetail
                             ObjSettle.ObjDetails.Add(ObjSettleDetail)
                         End If
                     Next
-                    ObjSettle.UpdateData(TxtNoSettlement.Text)
+                    ObjSettle.UpdateDataSettleExp(TxtNoSettlement.Text)
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 End If
                 GridDtl.DataSource = ObjSettle.GetDataGrid()

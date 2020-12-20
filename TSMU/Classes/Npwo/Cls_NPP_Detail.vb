@@ -729,42 +729,58 @@ Public Class Cls_NPP_Detail
 
                         Try
 
-                            'Dim ls_UpdateHistory As String = " " & vbCrLf &
-                            '        "UPDATE T_ApproveHistory" & vbCrLf &
-                            '        "SET [IsActive] = 0
-                            '         WHERE [NoTransaksi] = '" & NPP_ & "' and [MenuCode] = '" & _Form & "'"
-                            'MainModul.ExecQuery(ls_UpdateHistory)
+                            Dim ls_UpdateHistory As String = " " & vbCrLf &
+                                    "UPDATE T_ApproveHistory" & vbCrLf &
+                                    "SET [IsActive] = 0
+                                     WHERE [NoTransaksi] = '" & NPP_ & "' and [MenuCode] = '" & _Form & "'"
+                            MainModul.ExecQuery(ls_UpdateHistory)
 
+
+                            'Dim ls_SP As String = " " & vbCrLf &
+                            '            "UPDATE NPP_Head" & vbCrLf &
+                            '            "SET [Approve] = '" & H_Approve & "'
+                            '                ,[Submit_NPD_Acces] = '" & H_Submit_NPD & "'
+                            '                ,[RevStatus] = '" & H_RevStatus & "'
+                            '                ,[Status] = '" & H_Status & "' WHERE [No_NPP] = '" & NPP_ & "'"
+                            'MainModul.ExecQuery(ls_SP)
 
                             Dim ls_SP As String = " " & vbCrLf &
                                         "UPDATE NPP_Head" & vbCrLf &
                                         "SET [Approve] = '" & H_Approve & "'
-                                            ,[Submit_NPD_Acces] = '" & H_Submit_NPD & "'
                                             ,[RevStatus] = '" & H_RevStatus & "'
                                             ,[Status] = '" & H_Status & "' WHERE [No_NPP] = '" & NPP_ & "'"
                             MainModul.ExecQuery(ls_SP)
 
-                            'Dim ls_Approve As String = "INSERT INTO [T_ApproveHistory]
-                            '                   ([UserName]
-                            '                   ,[MenuCode]
-                            '                   ,[DeptID]
-                            '                   ,[NoTransaksi]
-                            '                   ,[LevelApproved]
-                            '                   ,[StatusApproved]
-                            '                   ,[ApprovedBy]
-                            '                   ,[ApprovedDate]
-                            '                   ,[IsActive])
-                            '             VALUES
-                            '                   ('" & TA_Username & "'
-                            '                   ,'" & TA_MenuCode & "'
-                            '                   ,'" & TA_DeptID & "'
-                            '                   ,'" & TA_NoTransaksi & "'
-                            '                   ,'" & TA_LevelApprove & "'
-                            '                   ,'" & TA_StatusApprove & "'
-                            '                   ,'" & TA_ApproveBy & "'
-                            '                   ,'" & Date.Now & "'
-                            '                   ,'" & TA_IsActive & "')"
-                            'MainModul.ExecQuery(ls_Approve)
+
+                            Dim ls_Approve As String = "INSERT INTO [T_ApproveHistory]
+                                               ([UserName]
+                                               ,[MenuCode]
+                                               ,[DeptID]
+                                               ,[NoTransaksi]
+                                               ,[LevelApproved]
+                                               ,[StatusApproved]
+                                               ,[ApprovedBy]
+                                               ,[ApprovedDate]
+                                               ,[IsActive])
+                                         VALUES
+                                               ('" & TA_Username & "'
+                                               ,'" & TA_MenuCode & "'
+                                               ,'" & TA_DeptID & "'
+                                               ,'" & TA_NoTransaksi & "'
+                                               ,'" & TA_LevelApprove & "'
+                                               ,'" & TA_StatusApprove & "'
+                                               ,'" & TA_ApproveBy & "'
+                                               ,'" & Date.Now & "'
+                                               ,'" & TA_IsActive & "')"
+                            MainModul.ExecQuery(ls_Approve)
+
+
+
+                            'Dim ls_SP As String = " " & vbCrLf &
+                            '            "UPDATE NPP_Head" & vbCrLf &
+                            '            "SET [Approve] = '" & H_Approve & "'
+                            '                ,[RevStatus] = '" & H_RevStatus & "' WHERE [No_NPP] = '" & NPP_ & "'"
+                            'MainModul.ExecQuery(ls_SP)
 
 
                         Catch ex As Exception
