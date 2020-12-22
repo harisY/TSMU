@@ -21,6 +21,8 @@ Public Class GJHeaderModel
     Public Property ObjDetails() As New Collection(Of GJDetailModel)
     Public Property _id As String
     Public Property ceklist As String
+    Public Property bl As String
+    Public Property th As String
     Public Property ID() As String
         Get
             Return _id
@@ -216,9 +218,17 @@ Public Class GJHeaderModel
         Try
             Dim query As String
 
+            'query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+            '     "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
+            '    "set @tahun = datepart(year,getdate()) " &
+            '    "set @seq= (select right('0000'+cast(right(rtrim(max(GJID)),4)+1 as varchar),4) " &
+            '    "from gj_header " &
+            '    "where SUBSTRING(GJID,1,7) = 'GJ' + '-' + RIGHT(@tahun,4) AND SUBSTRING(GJID,9,2) = RIGHT(@bulan,2)) " &
+            '    "select 'GJ' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+
             query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
-                 "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
-                "set @tahun = datepart(year,getdate()) " &
+                 "set @bulan = " & QVal(bl) & " " &
+                "set @tahun = " & QVal(th) & " " &
                 "set @seq= (select right('0000'+cast(right(rtrim(max(GJID)),4)+1 as varchar),4) " &
                 "from gj_header " &
                 "where SUBSTRING(GJID,1,7) = 'GJ' + '-' + RIGHT(@tahun,4) AND SUBSTRING(GJID,9,2) = RIGHT(@bulan,2)) " &
@@ -241,8 +251,8 @@ Public Class GJHeaderModel
             Dim query As String
 
             query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
-                 "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
-                "set @tahun = datepart(year,getdate()) " &
+                 "set @bulan = " & QVal(bl) & " " &
+                "set @tahun = " & QVal(th) & " " &
                 "set @seq= (select right('0000'+cast(right(rtrim(max(GJID)),4)+1 as varchar),4) " &
                 "from gj_header " &
                 "where SUBSTRING(GJID,1,7) = 'RJ' + '-' + RIGHT(@tahun,4) AND SUBSTRING(GJID,9,2) = RIGHT(@bulan,2)) " &
