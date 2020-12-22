@@ -20,7 +20,7 @@ Partial Public Class FrmMain
     Dim HasLoad As Boolean = False
 
     Public Sub New()
-        RunAutoUpdate(My.Settings.Site.ToLower)
+        'RunAutoUpdate(My.Settings.Site.ToLower)
         DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE 
         InitializeComponent()
     End Sub
@@ -34,7 +34,7 @@ Partial Public Class FrmMain
         Else
             AutoUpdater.Start("http://10.10.3.6/AutoUpdate/AutoUpdaterCkr.xml")
         End If
-        AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
+        'AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
     End Sub
     Private Sub AutoUpdater_ApplicationExitEvent()
         Thread.Sleep(5000)
