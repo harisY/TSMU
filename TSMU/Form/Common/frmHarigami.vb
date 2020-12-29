@@ -43,6 +43,7 @@ Public Class frmHarigami
         If result = System.Windows.Forms.DialogResult.OK Then
             _Table = ExcelToDatatable(Dial.FileName, "Sheet1")
         End If
+
         Try
             If _Table.Rows.Count > 0 Then
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
@@ -51,10 +52,15 @@ Public Class frmHarigami
                 For Each row As DataRow In _Table.Rows
                     ObjDet = New HarigamiDetailsModels
                     With ObjDet
-                        .FileNo = If(row("File No") Is DBNull.Value, "", row("File No").ToString())
-                        .FilePath = If(row("File Path") Is DBNull.Value, "", row("File Path").ToString())
-                        .Type = If(row("Type") Is DBNull.Value, "", row("Type").ToString())
-                        .InvtId = If(row("InvtId") Is DBNull.Value, "", row("InvtId").ToString())
+                        .FileNo = row("File No").ToString().AsString()
+                        .FilePath = row("File Path").ToString().AsString()
+                        .Type = row("Type").ToString().AsString()
+                        .InvtId = row("InvtId").ToString().AsString()
+
+                        '.FileNo = If(row("File No") Is DBNull.Value, "", row("File No").ToString())
+                        '.FilePath = If(row("File Path") Is DBNull.Value, "", row("File Path").ToString())
+                        '.Type = If(row("Type") Is DBNull.Value, "", row("Type").ToString())
+                        '.InvtId = If(row("InvtId") Is DBNull.Value, "", row("InvtId").ToString())
                     End With
                     Obj.ObjDetails.Add(ObjDet)
                 Next

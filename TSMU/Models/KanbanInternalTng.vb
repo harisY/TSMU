@@ -36,6 +36,31 @@ Public Class KanbanInternalTng
             Throw
         End Try
     End Function
+    Public Function GetKanbansDelivery() As DataTable
+        Try
+
+            Dim dt As New DataTable
+            'dt = GetDataTableByCommand_HotReload("KanbanInternalTng_GetDataMonitoring", Nothing, 0, AddressOf Dep_onchange)
+            dt = GetDataTableByParam("KanbanInternalTng_GetDataMonitoring", CommandType.StoredProcedure, Nothing, GetConnString)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Private Sub Dep_onchange(ByVal sender As System.Object, ByVal e As System.Data.SqlClient.SqlNotificationEventArgs)
+        ' this event is run asynchronously so you will need to invoke to run on the UI thread(if required)
+        'If Me.InvokeRequired Then
+        '    dtTable = BeginInvoke(New MethodInvoker(AddressOf GetAllData))
+        'Else
+        If e.Type = SqlNotificationType.Change Then
+            GetKanbansDelivery()
+        End If
+
+        'End If
+        ' this will remove the event handler since the dependency is only for a single notification
+        'Dim dep As SqlDependency = DirectCast(sender, SqlDependency)
+        'RemoveHandler dep.OnChange, AddressOf dep_onchange
+    End Sub
 
     Public Sub Add(i As Integer)
         Try

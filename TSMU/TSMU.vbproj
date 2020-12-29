@@ -2157,6 +2157,12 @@
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmMonitoringDelivery.Designer.vb">
+      <DependentUpon>frmMonitoringDelivery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmMonitoringDelivery.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.designer.vb">
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
     </Compile>
@@ -2488,6 +2494,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\DragDropHelper.vb" />
+    <Compile Include="Helpers\Extensions.vb" />
     <Compile Include="Helpers\ParameterInfo.vb" />
     <Compile Include="Helpers\SqlHelper.vb" />
     <Compile Include="Menu\ActionType.vb" />
@@ -3592,6 +3599,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmMonitoringDelivery.resx">
+      <DependentUpon>frmMonitoringDelivery.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO.resx">
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>

@@ -147,7 +147,9 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(8) = Trim(dt.Rows(0).Item("Status") & "")
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(9) = Trim(dt.Rows(0).Item("Qty") & "")
                 If gh_Common.Site.ToLower = "tng" Then
-                    dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(dt.Rows(0).Item("JobNo") & "") & "-" & Date.Now.Year.ToString & "-" & CmbBulan.Text & "-" & i
+                    'dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(dt.Rows(0).Item("JobNo") & "") & "-" & cmbTahun.Text & "-" & CmbBulan.Text & "-" & i
+                    'dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = String.Format($"{Trim(dt.Rows(0).Item("JobNo"))}-{cmbTahun.Text}-{CmbBulan.Text}-{i}")
+                    dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = String.Format("{0}-{1}-{2}-{3}", Trim(dt.Rows(0).Item("JobNo")), cmbTahun.Text, CmbBulan.Text, i)
                 Else
                     dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(dt.Rows(0).Item("JobNo") & "") & "-" & CmbBulan.Text & "-" & i
                 End If
