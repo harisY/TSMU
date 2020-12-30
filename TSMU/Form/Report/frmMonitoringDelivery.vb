@@ -13,8 +13,7 @@ Public Class frmMonitoringDelivery
 
     Dim ds As DataSet
     Dim dt As DataTable
-    Dim dtTemp As DataTable
-    Dim dtTemp1 As DataTable
+    Dim dt2 As DataTable
     Private Sub frmMonitoringDelivery_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call Proc_EnableButtons(False, False, False, True, True, False, True, False, False, False, False)
@@ -24,13 +23,24 @@ Public Class frmMonitoringDelivery
         Try
             SplashScreenManager.ShowForm(GetType(FrmWait))
             dtGrid = New DataTable
-            dtGrid = Obj.GetKanbansDelivery()
+            dtGrid = Obj.GetKanbansDelivery(1)
             Grid.DataSource = dtGrid
+
+            dt = New DataTable
+            dt = Obj.GetKanbansDelivery(0)
+            Grid1.DataSource = dt
+
             With GridView1
+                .BestFitColumns()
+            End With
+            With GridView2
                 .BestFitColumns()
             End With
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
+            End If
+            If GridView2.RowCount > 0 Then
+                GridCellFormat(GridView2)
             End If
             SplashScreenManager.CloseForm()
         Catch ex As Exception
@@ -51,12 +61,12 @@ Public Class frmMonitoringDelivery
         LoadGrid()
     End Sub
 
-    Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
-        Dim view As GridView = TryCast(sender, GridView)
-        If view.GetRowCellValue(e.RowHandle, "Status") = True Then
-            e.Appearance.BackColor = Color.LightSalmon
-            e.HighPriority = True
-        End If
+    Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs)
+        'Dim view As GridView = TryCast(sender, GridView)
+        'If view.GetRowCellValue(e.RowHandle, "Status") = True Then
+        '    e.Appearance.BackColor = Color.LightSalmon
+        '    e.HighPriority = True
+        'End If
 
     End Sub
 End Class

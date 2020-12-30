@@ -36,12 +36,14 @@ Public Class KanbanInternalTng
             Throw
         End Try
     End Function
-    Public Function GetKanbansDelivery() As DataTable
+    Public Function GetKanbansDelivery(Status As Integer) As DataTable
         Try
 
             Dim dt As New DataTable
+            Dim p As List(Of SqlParameter) = New List(Of SqlParameter)()
+            p.Add(New SqlParameter() With {.ParameterName = "Status", .Value = Status})
             'dt = GetDataTableByCommand_HotReload("KanbanInternalTng_GetDataMonitoring", Nothing, 0, AddressOf Dep_onchange)
-            dt = GetDataTableByParam("KanbanInternalTng_GetDataMonitoring", CommandType.StoredProcedure, Nothing, GetConnString)
+            dt = GetDataTableByParam("KanbanInternalTng_GetDataMonitoring", CommandType.StoredProcedure, p, GetConnString)
             Return dt
         Catch ex As Exception
             Throw ex
@@ -52,9 +54,9 @@ Public Class KanbanInternalTng
         'If Me.InvokeRequired Then
         '    dtTable = BeginInvoke(New MethodInvoker(AddressOf GetAllData))
         'Else
-        If e.Type = SqlNotificationType.Change Then
-            GetKanbansDelivery()
-        End If
+        'If e.Type = SqlNotificationType.Change Then
+        '    GetKanbansDelivery()
+        'End If
 
         'End If
         ' this will remove the event handler since the dependency is only for a single notification
