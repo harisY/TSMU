@@ -1,17 +1,20 @@
-﻿Imports System.Data.SqlClient
-Imports System.Xml
-Imports System.Collections.ObjectModel
-Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.Utils
-Imports DevExpress.XtraGrid
-Imports DevExpress.XtraPrinting
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraGrid.Views.BandedGrid
-Imports System.IO
-Imports DevExpress.DataAccess.Excel
+﻿Imports System.Collections.ObjectModel
 Imports System.ComponentModel
+Imports System.Data.SqlClient
+Imports System.IO
+Imports System.Xml
+Imports DevExpress.DataAccess.Excel
+Imports DevExpress.Utils
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid
+Imports DevExpress.XtraGrid.Views.BandedGrid
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraPrinting
+
 Module MainModul
+
 #Region "--Global Enumerations--"
+
     Public Enum MessageEnum As Integer
         SimpanBerhasil = 1000
         SimpanGagal = 1001
@@ -64,14 +67,18 @@ Module MainModul
 #End Region
 
 #Region "--Global Variables--"
+
     Public MyAss As System.Reflection.Assembly = System.Reflection.Assembly.GetExecutingAssembly
+
     '# Menu Collection...
     Public MyMenus As New Collection(Of ToolStripMenuItem)
+
     '# Form Collection...
     Public MyForms As New Collection(Of Form)
 
     '# Server Instance...  Local
     Public gs_Database As String = "New_BoM"
+
     Public gs_DBServer As String = "10.10.1.10"
     Public gs_DBAuthMode As String = "mixed"
     Public gs_DBUserName As String = "sa"
@@ -113,10 +120,6 @@ Module MainModul
     '    Public gs_DBUserName2 As String = "sa"
     '    Public gs_DBPassword2 As String = "Tsc2011"
     '    Public gs_DBPasswordDefault2 As String = "Tsc2011"
-
-
-
-
 
     Public gs_TerminalUsername As String = ""
     Public gs_TerminalPassword As String = ""
@@ -178,7 +181,6 @@ Module MainModul
     Public MyMaxDate As Date = "9998-12-31 23:59:59"
     Public ErrNumber As Integer = 8888
 
-
     Public gs_Error As String = ""
     Public gs_SQL As String = ""
     Public ge_Error As Exception
@@ -206,17 +208,22 @@ Module MainModul
 
     Public gh_Common As InstanceVariables.CommonHelper
     Public gh_Trans As InstanceVariables.TransactionHelper
+
     'Public gh_SQL As InstanceVariables.SQLHelper
     Public g_FirstDayOfWeek As FirstDayOfWeek = FirstDayOfWeek.Monday
+
     Public g_FirstWeekOfYear As FirstWeekOfYear = FirstWeekOfYear.FirstFourDays
 
 #End Region
 
 #Region "Transaction Variables"
+
     'Public gSC_Command As SqlCommand = Nothing
+
 #End Region
 
 #Region "Global Functions"
+
     Public Function GetMessage(ByVal msgType As MessageEnum) As String
         Select Case msgType
             Case MessageEnum.SimpanBerhasil
@@ -337,6 +344,7 @@ Module MainModul
             Call ShowMessage("Write to Log Error !" & ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+
     Public Sub WriteSalesToErrorLog(ByVal FolderType As String, ByVal Filename As String, ByVal dt As DataTable, ByVal row As Integer, ByVal col As String, ByVal ls_user As String)
         Dim ls_Path As String = Application.StartupPath & "\LogsImportExcel\" & FolderType & "\"
         Dim ls_FileName As String = Filename & ".txt"
@@ -392,7 +400,6 @@ Module MainModul
         End Select
     End Function
 
-
     Public Function GetConnStringSolomon(Optional ByVal DBMS As String = "SQLServer") As String
         Select Case DBMS
             Case "SQLServer"
@@ -405,6 +412,7 @@ Module MainModul
                 Return ""
         End Select
     End Function
+
     Public Function GetConnStringDbCKR(Optional ByVal DBMS As String = "SQLServer") As String
         Select Case DBMS
             Case "SQLServer"
@@ -584,7 +592,6 @@ Module MainModul
         Return ""
     End Function
 
-
     Public Function Num2Word(ByVal n As Double) As String 'max 2.147.483.647
         Dim satuan() As String
         satuan = New String() {"", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"}
@@ -677,7 +684,6 @@ Module MainModul
                         writer.WriteEndDocument()
                     End Using
 
-
                 End If
 
             End If
@@ -694,6 +700,7 @@ Module MainModul
         If gs_DBPassword.Trim = "" Then gs_DBPassword = gs_DBPasswordDefault
 
     End Sub
+
     Public Sub gf_GetDatabaseVariablesSolomon()
         Dim ls_Product As String = My.Application.Info.ProductName.Trim
         Dim ls_Description As String = My.Application.Info.Description.Trim
@@ -760,7 +767,6 @@ Module MainModul
                         writer.WriteEndElement()
                         writer.WriteEndDocument()
                     End Using
-
 
                 End If
 
@@ -842,7 +848,6 @@ Module MainModul
                         writer.WriteEndElement()
                         writer.WriteEndDocument()
                     End Using
-
 
                 End If
 
@@ -933,6 +938,7 @@ Module MainModul
 #End Region
 
 #Region "SQLHelper Functions"
+
     Public Function GetDataSet(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataSet
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DataSet
@@ -957,6 +963,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDsReport(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim conn As SqlConnection = Nothing
         Dim da As SqlDataAdapter = Nothing
@@ -985,6 +992,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDsReport_Solomon(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim conn As SqlConnection = Nothing
         Dim da As SqlDataAdapter = Nothing
@@ -1042,6 +1050,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataSetByCommand_SP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
@@ -1082,6 +1091,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataSetByCommand_StoreP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan
@@ -1122,6 +1132,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataSetByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataSet
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DataSet
@@ -1253,6 +1264,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataTable_Solomon(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1277,6 +1289,7 @@ Module MainModul
             Throw ex
         End Try
     End Function
+
     Public Function GetDataTableByParam(ByVal pQuery As String, ByVal CmdType As CommandType, ByVal parameters As List(Of SqlParameter), ByVal pConnStr As String, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1317,6 +1330,63 @@ Module MainModul
             Throw ex
         End Try
     End Function
+
+    Public Function GetDataTableByParamHotReload(ByVal pQuery As String, ByVal CmdType As CommandType, ByVal parameters As List(Of SqlParameter), ByVal pConnStr As String, Optional ByVal dep_onchange As OnChangeEventHandler = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
+        Dim dta As New DataTable
+        Dim da As SqlDataAdapter = Nothing
+        Try
+            'SqlDependency.Stop(GetConnString)
+            'SqlDependency.Start(GetConnString)
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CmdType
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+
+                gh_Trans.Command.Notification = Nothing
+                Dim dep As SqlDependency = New SqlDependency(gh_Trans.Command)
+                SqlDependency.Start(GetConnString)
+                AddHandler dep.OnChange, dep_onchange
+
+                If parameters IsNot Nothing Then
+                    For Each param In parameters
+                        gh_Trans.Command.Parameters.AddWithValue("@" & param.ParameterName, param.Value)
+                    Next
+                End If
+                da = New SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dta)
+            Else
+                Using conn As New SqlConnection(pConnStr)
+                    Dim cmd As New SqlCommand With {
+                        .CommandType = CmdType,
+                        .CommandText = pQuery,
+                        .CommandTimeout = pTimeOut,
+                        .Connection = conn
+                    }
+
+                    cmd.Notification = Nothing
+
+                    Dim dep As SqlDependency = New SqlDependency(cmd)
+                    SqlDependency.Start(GetConnString)
+                    AddHandler dep.OnChange, dep_onchange
+
+                    If parameters IsNot Nothing Then
+                        For Each param In parameters
+                            cmd.Parameters.AddWithValue("@" & param.ParameterName, param.Value)
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dta)
+                End Using
+            End If
+            da = Nothing
+            Return dta
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetDataTableByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1439,6 +1509,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Async Function GetDataTableByCommand_SP_async(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As Task(Of DataTable)
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1482,6 +1553,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataTableByCommand_SP_Solomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1523,6 +1595,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Async Function GetDataTableByCommand_SP_Solomon_async(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As Task(Of DataTable)
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -1564,6 +1637,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function ExecQuery(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
@@ -1586,6 +1660,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Async Function ExecQuery_async(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As Task(Of Integer)
         Dim pRowAff As Integer = -1
         Try
@@ -1608,6 +1683,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function ExecQuery_Solomon(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
@@ -1630,6 +1706,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function ExecQueryByCommand(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
@@ -1670,6 +1747,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function ExecQueryByAddWithValue(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
@@ -1830,6 +1908,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Async Function ExecQueryByCommand_SP_async(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Task(Of Integer)
         Dim pRowAff As Integer = -1
         Try
@@ -1870,6 +1949,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function ExecQueryByCommand_SP_Solomon(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pConnStr As String = "", Optional ByVal pTimeOut As Integer = 0) As Integer
         Dim pRowAff As Integer = -1
         Try
@@ -1912,6 +1992,7 @@ Module MainModul
     End Function
 
 #Region "Koneksi ke DbCKR"
+
     Public Function GetDataSetCKR(ByVal pQuery As String, Optional ByVal pTimeOut As Integer = 0) As DataSet
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DataSet
@@ -1936,6 +2017,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDsReportCKR(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim conn As SqlConnection = Nothing
         Dim da As SqlDataAdapter = Nothing
@@ -2039,7 +2121,6 @@ Module MainModul
             Throw
         End Try
     End Function
-
 
     Public Function GetDataSetByCommandCKR(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DataSet
         Dim da As SqlDataAdapter = Nothing
@@ -2254,6 +2335,7 @@ Module MainModul
     End Function
 
 #End Region
+
     Public Function GetCheckConnString(Optional ByVal DBMS As String = "SQLServer",
                                        Optional ByVal pTimeOut As Integer = 3) As String
         Select Case DBMS
@@ -2282,7 +2364,6 @@ Module MainModul
                 pRowAff = command.ExecuteNonQuery()
                 gs_Error = ""
             End Using
-
         Catch ex As Exception
             gs_Error = "Error Connection"
         Finally
@@ -2381,8 +2462,10 @@ Module MainModul
         End With
         Grid.ClearSelection()
     End Sub
+
     Private bia_FormatPecahan() As Integer = Nothing
     Private bia_FormatBulat() As Integer = Nothing
+
     Public Sub FormatGridView(ByVal View As GridView)
         With View
             For i As Integer = 0 To .Columns.Count - 1
@@ -2423,6 +2506,7 @@ Module MainModul
 
         End With
     End Sub
+
     Public Sub FormatBandedGridView(ByVal View As BandedGridView, Optional ByVal IsIndonesianDate As Boolean = True)
         'With View
         '    For i As Integer = 0 To .Columns.Count - 1
@@ -2572,6 +2656,7 @@ Module MainModul
             'FrmMain.LblRecords.Caption = CStr(.RowCount) & " record(s)"
         End With
     End Sub
+
     Public Sub GridCellFormatDatewithTime(ByVal View As GridView)
         With View
             For Each col As DevExpress.XtraGrid.Columns.GridColumn In .Columns
@@ -2708,6 +2793,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataTableByCommand_HotReload(ByVal pQuery As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0, Optional ByVal dep_onchange As OnChangeEventHandler = Nothing) As DataTable
         Dim dta As New DataTable
         Dim da As SqlDataAdapter = Nothing
@@ -2764,6 +2850,7 @@ Module MainModul
             Throw ex
         End Try
     End Function
+
     Public Function GetDataSetByCommand_Dashboard_HotReload(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0, Optional ByVal dep_onchange As OnChangeEventHandler = Nothing) As DashboardDS
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DashboardDS
@@ -2818,6 +2905,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataSetByCommand_Dashboard_SP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DashboardDS
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DashboardDS
@@ -2858,6 +2946,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataSetByCommand_Dashboard_SP_CKR(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As DashboardDS
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New DashboardDS
@@ -2898,6 +2987,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     <System.Runtime.CompilerServices.Extension>
     Public Function ToDataTable(ByVal excelDataSource As ExcelDataSource) As DataTable
         Dim list As IList = (CType(excelDataSource, IListSource)).GetList()
@@ -2930,6 +3020,7 @@ Module MainModul
         table = ExcelDt.ToDataTable
         Return table
     End Function
+
     Public Sub PerformBulkCopy(ByVal dt As DataTable, TableName As String)
         Using Conn As SqlConnection = New SqlConnection(GetConnString)
             Conn.Open()
@@ -2941,4 +3032,5 @@ Module MainModul
             Conn.Close()
         End Using
     End Sub
+
 End Module

@@ -324,7 +324,7 @@ Public Class FrmSuspendSettleDetailDirect
                         ObjSettle.ObjDetails.Add(ObjSettleDetail)
                     End If
                 Next
-                ObjSettle.UpdateData(TxtNoSettlement.Text)
+                ObjSettle.UpdateDataSettleExp(TxtNoSettlement.Text)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
             GridDtl.DataSource = ObjSettle.GetDataGrid()

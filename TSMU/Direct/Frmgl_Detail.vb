@@ -6,6 +6,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports TSMU
 
 Public Class Frmgl_Detail
+    Private tbl As DataTable
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Public rs_ReturnCode As String = ""
@@ -83,7 +84,54 @@ Public Class Frmgl_Detail
         '    TxtAmountReq.Enabled = False
         'End If
     End Sub
+    Private Sub AddRow(ByVal data As String)
+        If data = String.Empty Then Return
+        Dim rowData As String() = data.Split(New Char() {vbCr, vbTab})
+        Dim newRow As DataRow = dtGrid.NewRow()
 
+        For i As Integer = 0 To rowData.Length - 1
+            If i >= dtGrid.Columns.Count Then Exit For
+            newRow(i) = rowData(i)
+        Next
+
+        dtGrid.Rows.Add(newRow)
+    End Sub
+    Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.F2 Then
+            Dim data As String() = ClipboardData.Split(vbLf)
+            If data.Length < 1 Then Return
+
+            For Each row As String In data
+                AddRow(row)
+            Next
+        End If
+        Dim DBTotal As Double = 0
+        Dim CRTotal As Double = 0
+        Dim Total As Double = 0
+
+        For i As Integer = 0 To GridView1.RowCount - 1
+            If Not GridView1.GetRowCellValue(i, "Credit_Amount") Is DBNull.Value Then
+                CRTotal = CRTotal + GridView1.GetRowCellValue(i, "Credit_Amount")
+            End If
+            If Not GridView1.GetRowCellValue(i, "Debit_Amount") Is DBNull.Value Then
+                DBTotal = DBTotal + GridView1.GetRowCellValue(i, "Debit_Amount")
+            End If
+            Total = DBTotal - CRTotal
+        Next
+        TxtTotalDb.Text = Format(DBTotal, gs_FormatBulat)
+        TxtTotalCr.Text = Format(CRTotal, gs_FormatBulat)
+    End Sub
+    Private Property ClipboardData As String
+        Get
+            Dim iData As IDataObject = Clipboard.GetDataObject()
+            If iData Is Nothing Then Return ""
+            If iData.GetDataPresent(DataFormats.Text) Then Return CStr(iData.GetData(DataFormats.Text))
+            Return ""
+        End Get
+        Set(ByVal value As String)
+            Clipboard.SetDataObject(value)
+        End Set
+    End Property
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
@@ -111,10 +159,11 @@ Public Class Frmgl_Detail
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    'Dim dtGrid As New DataTable
     Public Sub LoadGridDetail()
         Try
             If fs_Code <> "" Then
-                Dim dtGrid As New DataTable
+
                 ObjGJDetail.GJID = TxtNoGJ.Text
                 dtGrid = ObjGJDetail.GetDataDetailByID()
                 Grid.DataSource = dtGrid
@@ -122,7 +171,7 @@ Public Class Frmgl_Detail
                     GridCellFormat(GridView1)
                 End If
             Else
-                Dim dtGrid As New DataTable
+                'Dim dtGrid As New DataTable
                 ObjGJDetail.GJID = ""
                 dtGrid = ObjGJDetail.GetDataDetailByID()
                 Grid.DataSource = dtGrid
@@ -160,6 +209,7 @@ Public Class Frmgl_Detail
                 TxtPrNo.Text = ""
                 TxtCurrency.SelectedIndex = 0
                 TxtDep.Text = gh_Common.GroupID
+                TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
                 TxtRemark.Text = ""
                 TxtStatus.Text = "Open"
                 TxtTgl.EditValue = DateTime.Today
@@ -183,6 +233,7 @@ Public Class Frmgl_Detail
         LoadGridDetail()
         Total = 0
     End Sub
+
     Public Overrides Function ValidateSave() As Boolean
         Dim lb_Validated As Boolean = False
         Try
@@ -192,9 +243,14 @@ Public Class Frmgl_Detail
             Else
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
             End If
-
+            Dim bl As String
+            Dim th As String
+            bl = Month(TxtTgl.EditValue)
+            th = Year(TxtTgl.EditValue)
             If lb_Validated Then
                 With ObjGJHeader
+                    .bl = bl
+                    .th = th
                     .Currency = TxtCurrency.Text
                     .DeptID = TxtDep.Text
                     .PRNo = TxtPrNo.Text
@@ -281,6 +337,7 @@ Public Class Frmgl_Detail
                 ObjGJHeader.InsertData()
                 If ChkRevers.Checked = True Then
                     Dim tglr As Date
+
                     tglr = TxtTgl.EditValue.AddDays((TxtTgl.EditValue.Day - 1) * -1).AddMonths(1)
                     ObjGJHeader.Tgl = tglr
                     ObjGJHeader.InsertDataR()
@@ -332,6 +389,7 @@ Public Class Frmgl_Detail
                     'ObjGJDetail.GJID_Revers = ObjGJDetail.GJID_Revers2
                     Dim tglr As Date
                     tglr = TxtTgl.EditValue.AddDays((TxtTgl.EditValue.Day - 1) * -1).AddMonths(1)
+                    ObjGJHeader.Tgl = tglr
                     ObjGJHeader.InsertDataR2()
                 End If
 
@@ -610,9 +668,9 @@ Public Class Frmgl_Detail
         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
     End Sub
     Public Overrides Sub Proc_print()
-        'FrmReportGJ.StartPosition = FormStartPosition.CenterScreen
-        'FrmReportGJ.TxtNoGJ.Text = TxtNoGJ.Text
-        'FrmReportGJ.Show()
+        FrmReportgl.StartPosition = FormStartPosition.CenterScreen
+        FrmReportgl.TxtNoGJ.Text = TxtNoGJ.Text
+        FrmReportgl.Show()
     End Sub
 
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
@@ -624,4 +682,6 @@ Public Class Frmgl_Detail
         GridView1.OptionsNavigation.AutoFocusNewRow = True
         GridView1.FocusedColumn = GridView1.VisibleColumns(0)
     End Sub
+
+
 End Class

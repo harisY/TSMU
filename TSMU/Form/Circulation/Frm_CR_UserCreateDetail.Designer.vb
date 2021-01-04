@@ -709,7 +709,7 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.C_SalesType.AutoHeight = False
         Me.C_SalesType.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.C_SalesType.Items.AddRange(New Object() {"Paid", "Tsc Charge"})
+        Me.C_SalesType.Items.AddRange(New Object() {"SALES", "DEPRECIATION", "TSC EXPENSE", "CHARGE TO MOLD MAKER"})
         Me.C_SalesType.Name = "C_SalesType"
         '
         'GridColumn16

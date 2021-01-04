@@ -40,14 +40,14 @@ Partial Class frmBoM
         'ViewRoutingBoMToolStripMenuItem
         '
         Me.ViewRoutingBoMToolStripMenuItem.Name = "ViewRoutingBoMToolStripMenuItem"
-        Me.ViewRoutingBoMToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.ViewRoutingBoMToolStripMenuItem.Size = New System.Drawing.Size(201, 24)
         Me.ViewRoutingBoMToolStripMenuItem.Text = "View Routing BoM"
         Me.ViewRoutingBoMToolStripMenuItem.Visible = False
         '
         'ImportBomToUpdateToolStripMenuItem
         '
         Me.ImportBomToUpdateToolStripMenuItem.Name = "ImportBomToUpdateToolStripMenuItem"
-        Me.ImportBomToUpdateToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
+        Me.ImportBomToUpdateToolStripMenuItem.Size = New System.Drawing.Size(201, 24)
         Me.ImportBomToUpdateToolStripMenuItem.Text = "Delete BoM"
         '
         'Grid

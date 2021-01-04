@@ -1,16 +1,10 @@
-﻿Imports System
-Imports System.Drawing
-Imports System.Linq
-Imports System.Reflection
-Imports System.Windows.Forms
+﻿Imports System.Reflection
+Imports System.Threading
+Imports AutoUpdaterDotNET
 Imports DevExpress.Utils
 Imports DevExpress.XtraBars
-Imports DevExpress.XtraBars.Helpers
 Imports DevExpress.XtraBars.Ribbon
 Imports DevExpress.XtraTabbedMdi
-Imports AutoUpdaterDotNET
-Imports System.Threading
-Imports System.Net
 
 Partial Public Class FrmMain
     Inherits RibbonForm
@@ -21,21 +15,23 @@ Partial Public Class FrmMain
 
     Public Sub New()
         RunAutoUpdate(My.Settings.Site.ToLower)
-        DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE 
+        DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE
         InitializeComponent()
     End Sub
+
     Private Sub RunAutoUpdate(Site As String)
         'add Site
-        'AutoUpdater.RunUpdateAsAdmin = False
-        'AutoUpdater.Mandatory = True
-        'AutoUpdater.UpdateMode = Mode.ForcedDownload
-        'If String.IsNullOrEmpty(Site) OrElse Site = "tng" Then
-        '    AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
-        'Else
-        '    AutoUpdater.Start("http://10.10.3.6/AutoUpdate/AutoUpdaterCkr.xml")
-        'End If
+        AutoUpdater.RunUpdateAsAdmin = False
+        AutoUpdater.Mandatory = True
+        AutoUpdater.UpdateMode = Mode.ForcedDownload
+        If String.IsNullOrEmpty(Site) OrElse Site = "tng" Then
+            AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
+        Else
+            AutoUpdater.Start("http://10.10.3.6/AutoUpdate/AutoUpdaterCkr.xml")
+        End If
         'AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
     End Sub
+
     Private Sub AutoUpdater_ApplicationExitEvent()
         Thread.Sleep(5000)
         Application.Exit()
@@ -59,7 +55,6 @@ Partial Public Class FrmMain
                     .Alignment = RibbonPageGroupAlignment.Near
                 }
                 page.Groups.Add(ribbonPageGroup)
-
 
                 For Each mnuItem As Item In group.Items.OrderBy(Function(c) c.Index)
                     If mnuItem.FormType = 2 Then
@@ -111,7 +106,9 @@ Partial Public Class FrmMain
             Next
         Next
     End Sub
+
     Dim MenuItem As Object = Nothing
+
     Private Sub barButtonItem_ItemClick(ByVal sender As Object, ByVal e As ItemClickEventArgs)
         Dim item As Item = Nothing
         MenuItem = sender
@@ -206,7 +203,6 @@ Partial Public Class FrmMain
 
         Call gf_GetDatabaseVariables()
 
-
         '# List forms...
         Call ListAppForms()
 
@@ -223,7 +219,6 @@ Partial Public Class FrmMain
             If gs_Error <> "" Then
                 Exit Sub
             End If
-
 
             LblDatabase.Caption = "Database : " & gs_Database & " (" & gs_DBServer & ")"
             ChngePasBar.Enabled = False
@@ -277,12 +272,15 @@ Partial Public Class FrmMain
     End Sub
 
     Private Class CSharpImpl
+
         <Obsolete("Please refactor calling code to use normal Visual Basic assignment")>
         Shared Function __Assign(Of T)(ByRef target As T, value As T) As T
             target = value
             Return value
         End Function
+
     End Class
+
     Private Sub ListAppForms()
 
         '# Load default forms...
@@ -365,6 +363,7 @@ Partial Public Class FrmMain
             End
         End If
     End Sub
+
     Private Sub RemoveRibbonPageWithBarItems(ByVal ribbonPage As RibbonPage, ByVal ribbon As RibbonControl)
         Dim groups As RibbonPageGroupCollection = ribbonPage.Groups
         For Each group As RibbonPageGroup In groups
@@ -381,6 +380,7 @@ Partial Public Class FrmMain
     Private Sub CloseAllBar_ItemClick(sender As Object, e As ItemClickEventArgs) Handles CloseAllBar.ItemClick
         CloseALl()
     End Sub
+
     Private Sub CloseALl()
         For Each ChildForm As Form In Me.MdiChildren
             If ChildForm.Name <> "frmDashboard" Then
@@ -388,6 +388,7 @@ Partial Public Class FrmMain
             End If
         Next
     End Sub
+
     Private Sub FrmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
             If MsgBox("Exit Application ?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Exit ?") = MsgBoxResult.Yes Then
@@ -430,7 +431,6 @@ Partial Public Class FrmMain
                     If AutoUpdater.DownloadUpdate(args) Then
                         Application.[Exit]()
                     End If
-
                 Catch exception As Exception
                     MessageBox.Show(exception.Message, exception.[GetType]().ToString(), MessageBoxButtons.OK, MessageBoxIcon.[Error])
                 End Try
@@ -440,4 +440,5 @@ Partial Public Class FrmMain
         End If
 
     End Sub
+
 End Class
