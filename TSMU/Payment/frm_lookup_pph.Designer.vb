@@ -319,7 +319,7 @@ Partial Class frm_lookup_pph
         Me.txt_jenisdokumen.Location = New System.Drawing.Point(95, 224)
         Me.txt_jenisdokumen.Name = "txt_jenisdokumen"
         Me.txt_jenisdokumen.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txt_jenisdokumen.Properties.Items.AddRange(New Object() {"01 - Faktur Pajak", "02 - Invoice", "03 - Pengumuman", "04 - Surat Perjanjian", "05 - Biaya Pembayaran", "06 - Akta Perikatan", "07 - Akta RUPS", "08 - Surat Pernyataan"})
+        Me.txt_jenisdokumen.Properties.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08"})
         Me.txt_jenisdokumen.Size = New System.Drawing.Size(507, 20)
         Me.txt_jenisdokumen.StyleController = Me.LayoutControl1
         Me.txt_jenisdokumen.TabIndex = 19
