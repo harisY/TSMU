@@ -60,10 +60,10 @@ Partial Class frm_lookup_pph
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -106,10 +106,10 @@ Partial Class frm_lookup_pph
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,7 +181,6 @@ Partial Class frm_lookup_pph
         '
         Me._TxtTahun.Location = New System.Drawing.Point(95, 132)
         Me._TxtTahun.Name = "_TxtTahun"
-        Me._TxtTahun.Properties.ReadOnly = True
         Me._TxtTahun.Size = New System.Drawing.Size(234, 20)
         Me._TxtTahun.StyleController = Me.LayoutControl1
         Me._TxtTahun.TabIndex = 13
@@ -320,7 +319,7 @@ Partial Class frm_lookup_pph
         Me.txt_jenisdokumen.Location = New System.Drawing.Point(95, 224)
         Me.txt_jenisdokumen.Name = "txt_jenisdokumen"
         Me.txt_jenisdokumen.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txt_jenisdokumen.Properties.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08"})
+        Me.txt_jenisdokumen.Properties.Items.AddRange(New Object() {"01 - Faktur Pajak", "02 - Invoice", "03 - Pengumuman", "04 - Surat Perjanjian", "05 - Biaya Pembayaran", "06 - Akta Perikatan", "07 - Akta RUPS", "08 - Surat Pernyataan"})
         Me.txt_jenisdokumen.Size = New System.Drawing.Size(507, 20)
         Me.txt_jenisdokumen.StyleController = Me.LayoutControl1
         Me.txt_jenisdokumen.TabIndex = 19
@@ -450,16 +449,6 @@ Partial Class frm_lookup_pph
         Me.LayoutControlItem12.Text = "Cabang/Lokasi"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(80, 13)
         '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.Control = Me._TxtNoBuktiPot
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 236)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(296, 24)
-        Me.LayoutControlItem13.Text = "No. Bukti Potong"
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(80, 13)
-        Me.LayoutControlItem13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        '
         'LayoutControlItem14
         '
         Me.LayoutControlItem14.Control = Me._TxtNilaiPPh
@@ -486,6 +475,16 @@ Partial Class frm_lookup_pph
         Me.LayoutControlItem16.Size = New System.Drawing.Size(594, 24)
         Me.LayoutControlItem16.Text = "Jenis Dokumen"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(80, 13)
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me._TxtNoBuktiPot
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 236)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(296, 24)
+        Me.LayoutControlItem13.Text = "No. Bukti Potong"
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'Grid
         '
@@ -616,10 +615,10 @@ Partial Class frm_lookup_pph
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()

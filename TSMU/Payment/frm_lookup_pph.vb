@@ -162,6 +162,7 @@ Public Class frm_lookup_pph
                 Else
                     _TxtDPP.Text = Format(total_dpp, "#,#.##")
                     _TxtNilaiPPh.Text = Format(Val(_TxtDPP.Text * _TxtTarif.Text / 100), "#,#.##")
+
                 End If
                 '_TxtDPP.Text = Format(Val(IIf(total_dpp = "", "0", total_dpp)), "#,#.##")
 
