@@ -538,8 +538,13 @@ Public Class ClsCR_CreateUser
             Dim Dept As String = gh_Common.GroupID
 
             Dim ls_SP As String = "SELECT top 1[CirculationNo] FROM CR_Request
+                                    where year(RequirementDate) = '" & Tahun & "'
                                    order by Right([CirculationNo], 4) desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
+
+            'Dim ls_SP As String = "SELECT top 1[CirculationNo] FROM CR_Request
+            '                       order by Right([CirculationNo], 4) desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
+            'Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
