@@ -159,7 +159,7 @@ Public Class Frm_CR_UserCreateDetail
                     'Active_Form 1 = User
                     If Active_Form = 1 Then
 
-                        BPrint.Visible = False
+                        BPrint.Visible = True
 
                         With GridView1
                             .Columns("Note").Visible = True
