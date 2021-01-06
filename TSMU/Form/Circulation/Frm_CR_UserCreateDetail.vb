@@ -17,6 +17,7 @@ Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraReports.UI
 Imports DevExpress.XtraSplashScreen
 
+
 Public Class Frm_CR_UserCreateDetail
 
     Dim GService As GlobalService
@@ -158,7 +159,7 @@ Public Class Frm_CR_UserCreateDetail
                     'Active_Form 1 = User
                     If Active_Form = 1 Then
 
-                        BPrint.Visible = True
+                        BPrint.Visible = False
 
                         With GridView1
                             .Columns("Note").Visible = True
@@ -2180,6 +2181,7 @@ Public Class Frm_CR_UserCreateDetail
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Rate", 1)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Price", 0)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Curr", "IDR")
+        GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Remaining Budget", 0)
         GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Total Amount Currency", 0)
 
         'For r As Integer = 1 To GridView2.RowCount
@@ -2724,6 +2726,7 @@ Public Class Frm_CR_UserCreateDetail
                         Timer1.Enabled = True
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                         GridDtl.DataSource = fc_Model.Get_CRRequest(gh_Common.GroupID, pDate1, pDate2)
+
                         Me.Hide()
                     Catch ex As Exception
                         ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -3659,38 +3662,38 @@ Public Class Frm_CR_UserCreateDetail
 
     End Sub
 
-    Private Sub Send_Email_OtherDept(NoSirkulasi As String)
+    'Private Sub Send_Email_OtherDept(NoSirkulasi As String)
 
-        Try
-            Dim MyMailMessage As New MailMessage
-            Dim A As ArrayList = New ArrayList
-            Dim dtEmail As New DataTable
-            dtEmail = fc_Class.Get_Email_Dept(NoSirkulasi)
-            MyMailMessage.From = New MailAddress("miftah-mis@tsmu.co.id")
+    '    Try
+    '        Dim MyMailMessage As New MailMessage
+    '        Dim A As ArrayList = New ArrayList
+    '        Dim dtEmail As New DataTable
+    '        dtEmail = fc_Class.Get_Email_Dept(NoSirkulasi)
+    '        MyMailMessage.From = New MailAddress("miftah-mis@tsmu.co.id")
 
-            For i As Integer = 0 To dtEmail.Rows.Count - 1
+    '        For i As Integer = 0 To dtEmail.Rows.Count - 1
 
-                Dim Cek As String = dtEmail.Rows(i).Item(0).ToString
+    '            Dim Cek As String = dtEmail.Rows(i).Item(0).ToString
 
-                If Cek <> "" Then
-                    MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
-                End If
-            Next
+    '            If Cek <> "" Then
+    '                MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
+    '            End If
+    '        Next
 
-            MyMailMessage.CC.Add("log@tsmu.co.id")
-            MyMailMessage.Subject = "Test"
-            MyMailMessage.Body = "Body"
-            Dim SMTP As New SmtpClient("mail.tsmu.co.id")
-            SMTP.Port = 25
-            SMTP.EnableSsl = False
-            SMTP.Credentials = New System.Net.NetworkCredential("miftah-mis@tsmu.co.id", "W[QIWbV~$ZZQ")
-            SMTP.Send(MyMailMessage)
-            MsgBox("Mail was sent", MsgBoxStyle.Information)
-        Catch ex As Exception
+    '        MyMailMessage.CC.Add("log@tsmu.co.id")
+    '        MyMailMessage.Subject = "Test"
+    '        MyMailMessage.Body = "Body"
+    '        Dim SMTP As New SmtpClient("mail.tsmu.co.id")
+    '        SMTP.Port = 25
+    '        SMTP.EnableSsl = False
+    '        SMTP.Credentials = New System.Net.NetworkCredential("miftah-mis@tsmu.co.id", "W[QIWbV~$ZZQ")
+    '        SMTP.Send(MyMailMessage)
+    '        MsgBox("Mail was sent", MsgBoxStyle.Information)
+    '    Catch ex As Exception
 
-        End Try
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Public Overrides Sub Proc_Print()
 
