@@ -66,63 +66,7 @@ Public Class frmCompare_Invoice
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        fc_Class.txtFileLocation = txtFileLocation.Text
 
-        fc_Class.Delete()
-        fc_Class.perpost = _cmbperpost.Text
-        Try
-            For i As Integer = 0 To DataGridView1.Rows.Count - 1
-                '     Dim tglx As DateTime = Format(Date.Now(), "yyyy-MM-dd")
-                ' Using cmd As New SqlCommand("INSERT INTO cashbank (tgl,nobukti,transaksi,keterangan,keluar,noref,perpost,acctid) VALUES ('" & Trim(tglx) & "','" & bukti & "','Suspend','" & DataGridView1.Rows(i).Cells(2).Value & "','" & DataGridView1.Rows(i).Cells(3).Value & "','" & DataGridView1.Rows(i).Cells(1).Value & "','" & _perpost.Text & "','" & _acctid.Text & "')", con)
-                Dim ObjDetails As New clscompare
-                With ObjDetails
-                    .g0 = DataGridView1.Rows(i).Cells(0).Value
-                    .g1 = DataGridView1.Rows(i).Cells(1).Value
-                    .g2 = DataGridView1.Rows(i).Cells(2).Value
-                    .g3 = DataGridView1.Rows(i).Cells(3).Value
-                    .g4 = DataGridView1.Rows(i).Cells(4).Value
-                    .g5 = DataGridView1.Rows(i).Cells(5).Value
-                    .g6 = DataGridView1.Rows(i).Cells(6).Value
-                    .g7 = DataGridView1.Rows(i).Cells(7).Value
-                    .g8 = DataGridView1.Rows(i).Cells(8).Value
-                    .g9 = DataGridView1.Rows(i).Cells(9).Value
-                    .g10 = DataGridView1.Rows(i).Cells(10).Value
-                    .g11 = DataGridView1.Rows(i).Cells(11).Value
-                    .g12 = DataGridView1.Rows(i).Cells(12).Value
-                    .g13 = DataGridView1.Rows(i).Cells(13).Value
-                    .g14 = DataGridView1.Rows(i).Cells(14).Value
-                    .g15 = DataGridView1.Rows(i).Cells(15).Value
-                    .g16 = DataGridView1.Rows(i).Cells(16).Value
-                    .g17 = DataGridView1.Rows(i).Cells(17).Value
-                    .g18 = DataGridView1.Rows(i).Cells(18).Value
-                    .g19 = DataGridView1.Rows(i).Cells(19).Value
-                    .g20 = DataGridView1.Rows(i).Cells(20).Value
-                    .g21 = DataGridView1.Rows(i).Cells(21).Value
-                    .g22 = DataGridView1.Rows(i).Cells(22).Value
-                    .g23 = DataGridView1.Rows(i).Cells(23).Value
-                    .g24 = DataGridView1.Rows(i).Cells(24).Value
-                    .g25 = DataGridView1.Rows(i).Cells(25).Value
-                    .g26 = DataGridView1.Rows(i).Cells(26).Value
-                    .g27 = DataGridView1.Rows(i).Cells(27).Value
-                    .g28 = DataGridView1.Rows(i).Cells(28).Value
-                    .g29 = DataGridView1.Rows(i).Cells(29).Value
-                    .g30 = DataGridView1.Rows(i).Cells(30).Value
-                    .g31 = DataGridView1.Rows(i).Cells(31).Value
-                    .g32 = DataGridView1.Rows(i).Cells(32).Value
-                    .g33 = DataGridView1.Rows(i).Cells(33).Value
-                    .g34 = DataGridView1.Rows(i).Cells(34).Value
-                    .txtFileLocation = _txtFileLocation.Text
-                    '      fc_Class.cmbperpost = _cmbperpost.Text
-                    .Insert()
-                End With
-            Next i
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-        MsgBox("Data Tersimpan")
-        Call LoadGrid2()
-    End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim fName As String = ""
         OpenFileDialog1.InitialDirectory = "D:\TestFile"
@@ -206,5 +150,70 @@ Public Class frmCompare_Invoice
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Call LoadGrid3()
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        fc_Class.txtFileLocation = txtFileLocation.Text
+
+        fc_Class.Delete()
+        Try
+            For i As Integer = 0 To DataGridView1.Rows.Count - 1
+                '     Dim tglx As DateTime = Format(Date.Now(), "yyyy-MM-dd")
+                ' Using cmd As New SqlCommand("INSERT INTO cashbank (tgl,nobukti,transaksi,keterangan,keluar,noref,perpost,acctid) VALUES ('" & Trim(tglx) & "','" & bukti & "','Suspend','" & DataGridView1.Rows(i).Cells(2).Value & "','" & DataGridView1.Rows(i).Cells(3).Value & "','" & DataGridView1.Rows(i).Cells(1).Value & "','" & _perpost.Text & "','" & _acctid.Text & "')", con)
+                Dim ObjDetails As New clscompare
+                With ObjDetails
+                    .g0 = DataGridView1.Rows(i).Cells(0).Value
+                    .g1 = DataGridView1.Rows(i).Cells(1).Value
+                    .g2 = DataGridView1.Rows(i).Cells(2).Value
+                    .g3 = DataGridView1.Rows(i).Cells(3).Value
+                    .g4 = DataGridView1.Rows(i).Cells(4).Value
+                    .g5 = DataGridView1.Rows(i).Cells(5).Value
+                    .g6 = DataGridView1.Rows(i).Cells(6).Value
+                    .g7 = DataGridView1.Rows(i).Cells(7).Value
+                    .g8 = DataGridView1.Rows(i).Cells(8).Value
+                    .g9 = DataGridView1.Rows(i).Cells(9).Value
+                    .g10 = DataGridView1.Rows(i).Cells(10).Value
+                    .g11 = DataGridView1.Rows(i).Cells(11).Value
+                    .g12 = DataGridView1.Rows(i).Cells(12).Value
+                    .g13 = DataGridView1.Rows(i).Cells(13).Value
+                    .g14 = DataGridView1.Rows(i).Cells(14).Value
+                    .g15 = DataGridView1.Rows(i).Cells(15).Value
+                    .g16 = DataGridView1.Rows(i).Cells(16).Value
+                    .g17 = DataGridView1.Rows(i).Cells(17).Value
+                    .g18 = DataGridView1.Rows(i).Cells(18).Value
+                    .g19 = DataGridView1.Rows(i).Cells(19).Value
+                    .g20 = DataGridView1.Rows(i).Cells(20).Value
+                    .g21 = DataGridView1.Rows(i).Cells(21).Value
+                    .g22 = DataGridView1.Rows(i).Cells(22).Value
+                    .g23 = DataGridView1.Rows(i).Cells(23).Value
+                    .g24 = DataGridView1.Rows(i).Cells(24).Value
+                    .g25 = DataGridView1.Rows(i).Cells(25).Value
+                    .g26 = DataGridView1.Rows(i).Cells(26).Value
+                    .g27 = DataGridView1.Rows(i).Cells(27).Value
+                    .g28 = DataGridView1.Rows(i).Cells(28).Value
+                    .g29 = DataGridView1.Rows(i).Cells(29).Value
+                    .g30 = DataGridView1.Rows(i).Cells(30).Value
+                    .g31 = DataGridView1.Rows(i).Cells(31).Value
+                    .g32 = DataGridView1.Rows(i).Cells(32).Value
+                    .g33 = DataGridView1.Rows(i).Cells(33).Value
+                    .g34 = DataGridView1.Rows(i).Cells(34).Value
+                    .txtFileLocation = _txtFileLocation.Text
+                    .perpost = _cmbperpost.Text
+                    .Insert()
+                End With
+            Next i
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        MsgBox("Data Tersimpan")
+        Call LoadGrid2()
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        fc_Class.perpost = _cmbperpost.Text
+        Call LoadGrid()
+        Dim dtGrid As New DataTable
+        dtGrid = DataGridView1.DataSource
+        FilterData = New FrmSystem_FilterData(dtGrid)
     End Sub
 End Class
