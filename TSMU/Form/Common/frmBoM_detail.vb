@@ -79,9 +79,9 @@ Public Class frmBoM_detail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "BOM Detail"
+                Text = "BOM Detail"
             Else
-                Me.Text = "BOM Detail"
+                Text = "BOM Detail"
             End If
             Call LoadGridDetil()
             Call LoadGridDetil1()

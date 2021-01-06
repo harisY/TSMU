@@ -533,18 +533,18 @@ Public Class frmDRR_details
     Public Overrides Function ValidateSave() As Boolean
         Dim lb_Validated As Boolean = False
         Try
-
+            _service = New DRRService
             If _Level = 1 Then
                 If _Status.ToLower <> "created" OrElse _Status <> "submited" Then
                     If _Status.ToLower = "checked" Then
                         Throw New Exception("DRR sudah di cek gak bisa di ubah !")
                     ElseIf _Status.ToLower = "completed" Then
-                        Throw New Exception("DRR sudah di approve/complete gak bisa di ubah !")
+                        Throw New Exception("DRR sudah di approve/complete tidak bisa di ubah !")
                     End If
                 End If
             ElseIf _Level = 2 Then
                 If _Status.ToLower = "completed" Then
-                    Throw New Exception("DRR sudah di approve/complete gak bisa di ubah !")
+                    Throw New Exception("DRR sudah di approve/complete tidak bisa di ubah !")
                 End If
             End If
 
@@ -555,6 +555,7 @@ Public Class frmDRR_details
             End If
 
             If lb_Validated Then
+                Dim NoDoc As String = _service.GenerateDocNo(FrmParent, TxtProject.Text, TxtCustomer.Text)
                 ObjHeader = New DRRModel With {
                     .IdDRR = CInt(fs_Code),
                     .No_NPP = TxtNoNpp.EditValue,
@@ -564,7 +565,7 @@ Public Class frmDRR_details
                     .DueDateMaspro = TxtMaspro.EditValue,
                     .Tanggal = TxtDate.EditValue,
                     .Time = TimeSpan.Parse(TxtTime.Text),
-                    .NoDokumen = TxtNoDokumen.Text
+                    .NoDokumen = If(fs_Code <> "0", TxtNoDokumen.Text, NoDoc)
                     }
                 Dim _File As String = String.Empty
                 Dim _Index As Integer = -1
@@ -680,7 +681,7 @@ Public Class frmDRR_details
                 Directory.CreateDirectory(_Path)
                 AddFolderPermisson(_Path)
             End If
-            _Folder = _Path & reg.Replace(TxtNoDokumen.Text, " ") & "\"
+            _Folder = _Path & reg.Replace(If(TxtNoDokumen.Text <> "", TxtNoDokumen.Text, ObjHeader.NoDokumen), " ") & "\"
             If Not Directory.Exists(_Folder) Then
                 Directory.CreateDirectory(_Folder)
                 AddFolderPermisson(_Folder)
@@ -941,7 +942,7 @@ Public Class frmDRR_details
                 TxtCustomer.Text = _customer
                 TxtMaspro.EditValue = _masPro
             End If
-            TxtNoDokumen.Text = _service.GenerateDocNo(FrmParent, TxtProject.Text, TxtCustomer.Text)
+            'TxtNoDokumen.Text = _service.GenerateDocNo(FrmParent, TxtProject.Text, TxtCustomer.Text)
 
             lF_SearchData.Close()
         Catch ex As Exception
