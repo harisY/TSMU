@@ -119,7 +119,7 @@ Public Class frm_lookup_pph
                 End If
                 'For Each ctl As Control In Me.LayoutControl1.Controls
                 '    ctl.Enabled = False
-                'Next
+                'Next 
                 loadGridEdit()
                 _TsbOk.Enabled = False
                 '_TxtPPh.Enabled = False
