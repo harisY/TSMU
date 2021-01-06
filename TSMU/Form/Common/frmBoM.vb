@@ -257,10 +257,10 @@ Public Class frmBoM
                     Else
                         .Runner = _Table.Rows(i)("Runner").ToString
                     End If
-                    If _Table.Rows(i)("CT") Is DBNull.Value OrElse _Table.Rows(i)("CT").ToString = "" Then
+                    If _Table.Rows(i)(" CT ") Is DBNull.Value OrElse _Table.Rows(i)(" CT ").ToString = "" Then
                         .CycleTime = "0"
                     Else
-                        .CycleTime = _Table.Rows(i)("CT")
+                        .CycleTime = _Table.Rows(i)(" CT ")
                     End If
                     If _Table.Rows(i)("MC") Is DBNull.Value OrElse _Table.Rows(i)("MC").ToString = "" Then
                         .MC = ""
@@ -268,10 +268,10 @@ Public Class frmBoM
                         .MC = _Table.Rows(i)("MC").ToString
                     End If
 
-                    If _Table.Rows(i)("Cavity") Is DBNull.Value OrElse _Table.Rows(i)("Cavity").ToString = "" Then
+                    If _Table.Rows(i)(" Cavity ") Is DBNull.Value OrElse _Table.Rows(i)(" Cavity ").ToString = "" Then
                         .cavity = ""
                     Else
-                        .cavity = _Table.Rows(i)("Cavity").ToString
+                        .cavity = _Table.Rows(i)(" Cavity ").ToString
                     End If
                     If _Table.Rows(i)("WC") Is DBNull.Value OrElse _Table.Rows(i)("WC").ToString = "" Then
                         .WC = ""

@@ -4,6 +4,8 @@ Public Class GJHeaderModel
     Public Property Currency As String
     Public Property DeptID As String
     Public Property PRNo As String
+    Public Property Perpost As String
+    Public Property Batch As String
     Public Property Remark As String
     Public Property Status As String
     Public Property GJHeaderID As Integer
@@ -19,6 +21,8 @@ Public Class GJHeaderModel
     Public Property ObjDetails() As New Collection(Of GJDetailModel)
     Public Property _id As String
     Public Property ceklist As String
+    Public Property bl As String
+    Public Property th As String
     Public Property ID() As String
         Get
             Return _id
@@ -41,6 +45,34 @@ Public Class GJHeaderModel
             Throw
         End Try
     End Sub
+    Public Function GetGJPerpost(curyid As String, perpost As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+                "Proses_GJPerpost"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = perpost
+            pParam(1) = New SqlClient.SqlParameter("@curyid", SqlDbType.VarChar)
+            pParam(1).Value = curyid
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListPerpost() As DataTable
+        Try
+            Dim sql As String
+            sql = "SELECT distinct perpost FROM cashbank2 order by perpost desc"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub Deletegj()
         Try
             Dim query As String = "DELETE FROM gj_header" & vbCrLf &
@@ -69,7 +101,7 @@ Public Class GJHeaderModel
 
     Public Function GetDataByDate(Dari As String, Sampai As String, Status As String) As DataTable
         Try
-            Dim Sql As String = "ADVHeader_GetDataByDateY"
+            Dim Sql As String = "GLHeader_GetDataByDateY"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
             pParam(0) = New SqlClient.SqlParameter("@Dari", SqlDbType.VarChar)
             pParam(0).Value = Dari
@@ -92,6 +124,7 @@ Public Class GJHeaderModel
         Dim query As String
         query = "SELECT gj_header.GJHeaderID
       ,gj_header.GJID
+      ,gj_header.GJID_Revers
       ,gj_header.Tipe
       ,gj_header.Currency
       ,gj_header.DeptID
@@ -101,12 +134,6 @@ Public Class GJHeaderModel
       ,gj_header.Status
       ,gj_header.Total
       ,gj_header.TotalCr
-      ,gj_header.pay
-      ,gj_header.State
-      ,gj_header.CirculationNo
-      ,gj_header.AmountReq
-      ,gj_header.BankID
-      ,gj_header.Proses
       ,gj_detail.Description
       ,gj_detail.Debit_Amount
      ,gj_detail.Credit_Amount
@@ -115,7 +142,7 @@ Public Class GJHeaderModel
   FROM gj_header left join gj_detail on gj_detail.GJID=gj_header.GJID where gj_header.GJID='" & GJID & "'"
 
         Dim ds As New dsLaporan
-        ds = GetDsReport_Solomon(query, "gj")
+        ds = GetDsReport_Solomon(query, "GL")
         Return ds
 
     End Function
@@ -191,9 +218,17 @@ Public Class GJHeaderModel
         Try
             Dim query As String
 
+            'query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+            '     "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
+            '    "set @tahun = datepart(year,getdate()) " &
+            '    "set @seq= (select right('0000'+cast(right(rtrim(max(GJID)),4)+1 as varchar),4) " &
+            '    "from gj_header " &
+            '    "where SUBSTRING(GJID,1,7) = 'GJ' + '-' + RIGHT(@tahun,4) AND SUBSTRING(GJID,9,2) = RIGHT(@bulan,2)) " &
+            '    "select 'GJ' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+
             query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
-                 "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
-                "set @tahun = datepart(year,getdate()) " &
+                 "set @bulan = " & QVal(bl) & " " &
+                "set @tahun = " & QVal(th) & " " &
                 "set @seq= (select right('0000'+cast(right(rtrim(max(GJID)),4)+1 as varchar),4) " &
                 "from gj_header " &
                 "where SUBSTRING(GJID,1,7) = 'GJ' + '-' + RIGHT(@tahun,4) AND SUBSTRING(GJID,9,2) = RIGHT(@bulan,2)) " &
@@ -216,8 +251,8 @@ Public Class GJHeaderModel
             Dim query As String
 
             query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
-                 "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
-                "set @tahun = datepart(year,getdate()) " &
+                 "set @bulan = " & QVal(bl) & " " &
+                "set @tahun = " & QVal(th) & " " &
                 "set @seq= (select right('0000'+cast(right(rtrim(max(GJID)),4)+1 as varchar),4) " &
                 "from gj_header " &
                 "where SUBSTRING(GJID,1,7) = 'RJ' + '-' + RIGHT(@tahun,4) AND SUBSTRING(GJID,9,2) = RIGHT(@bulan,2)) " &

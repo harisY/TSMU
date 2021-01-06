@@ -175,7 +175,7 @@ Public Class clsBoMdetails
 
                         For i As Integer = 0 To Fc_classdetail.Count - 1
                             With Fc_classdetail(i)
-                                DeleteDetailExcel(i)
+                                'DeleteDetailExcel(i)
                                 InsertDetailExcel(i)
                             End With
                         Next

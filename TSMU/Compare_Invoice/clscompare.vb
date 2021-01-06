@@ -108,9 +108,9 @@ Public Class clscompare
       ,RTRIM(Descr) as Descr
       ,RTRIM(PO) as PO
       , CONVERT(varchar, Promdate, 101) AS Promdate
-      ,Quantity
+      ,Quantity as Qty
       ,RTRIM(SiteID) as SiteID
-      ,Nom
+      ,Nom as No
       ,RTRIM(CustID) as CustID
       ,RTRIM(Jam) as Jam
       ,RTRIM(Tujuan) as Tujuan

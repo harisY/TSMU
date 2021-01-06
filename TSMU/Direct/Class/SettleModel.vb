@@ -72,7 +72,7 @@ Public Class SettleHeader
                      Convert(bigint, ((Payment_Header1.Tot_DPP + Payment_Header1.Tot_PPN) - Payment_Header1.pph - Payment_Header1.CM_DM - Payment_Header1.Biaya_Transfer)) As 'Paid_Amount' ,
                      Convert(VARCHAR(6), Payment_Header1.tgl, 112) As 'Perpost'
                      From payment_header1 inner Join payment_detail1 On payment_header1.vrno = Payment_detail1.vrno  
-				     Where payment_header1.tgl >='" & Date3 & "' And Payment_Header1.tgl <='" & Date4 & "' Order By payment_header1.CuryID,payment_header1.VendorName"
+				     Where payment_header1.tgl >='" & Date3 & "' And Payment_Header1.tgl <='" & Date4 & "' Order By payment_header1.CuryID,payment_header1.Vrno"
 
             Dim ds As New dsLaporan
             ds = GetDsReport_Solomon(query, "ReportPaymentSignature")
