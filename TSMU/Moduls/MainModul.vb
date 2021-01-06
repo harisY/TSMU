@@ -2726,7 +2726,7 @@ Module MainModul
             Dim options As XlsExportOptionsEx = New XlsExportOptionsEx()
 
             options.SheetName = sheetName
-            options.ShowGridLines = False
+            options.ShowGridLines = True
             options.AllowSortingAndFiltering = DefaultBoolean.False
             If save.ShowDialog = DialogResult.OK Then
                 _Grid.ExportToXls(save.FileName, options)
@@ -2737,7 +2737,7 @@ Module MainModul
             Dim options As XlsxExportOptionsEx = New XlsxExportOptionsEx()
 
             options.SheetName = sheetName
-            options.ShowGridLines = False
+            options.ShowGridLines = True
             save.FileName = _name
             options.AllowSortingAndFiltering = DefaultBoolean.False
             options.ExportType = DevExpress.Export.ExportType.WYSIWYG
