@@ -289,7 +289,7 @@ Public Class FrmSuspend_Detail
                 view.DeleteSelectedRows()
                 Dim _tot As Decimal = 0
                 _tot = GetTot()
-                TxtTotal.Text = Format(_tot, gs_FormatBulat)
+                TxtTotal.Text = Format(_tot, gs_FormatDecimal)
                 e.Handled = True
             End If
             If e.KeyData = Keys.Enter Then
@@ -471,7 +471,7 @@ Public Class FrmSuspend_Detail
                 Total = Total + GridView1.GetRowCellValue(i, "Amount")
             End If
         Next
-        TxtTotal.Text = Format(Total, gs_FormatBulat)
+        TxtTotal.Text = Format(Total, gs_FormatDecimal)
     End Sub
 
     Private Sub FrmSuspend_Detail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
@@ -496,7 +496,7 @@ Public Class FrmSuspend_Detail
         'Else
         '    TxtTotal.Text = (Val(TxtTotal.Text) + TxtAmountReq.Text)
         'End If
-        TxtTotal.Text = Format(Val(TxtAmountReq.Text), gs_FormatBulat)
+        TxtTotal.Text = Format(Val(TxtAmountReq.Text), gs_FormatDecimal)
     End Sub
 
     Private Sub btnAddDetail_Click(sender As Object, e As EventArgs) Handles btnAddDetail.Click

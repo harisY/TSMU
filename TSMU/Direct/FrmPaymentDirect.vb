@@ -66,7 +66,7 @@ Public Class FrmPaymentDirect
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ''ObjPayment.ID = fs_Code
+                'ObjPayment.ID = fs_Code
                 ' ObjPayment.GetSettleById()
                 ObjPayment.Perpost = fs_Code
                 ObjPayment.AcctID = fs_Code2
@@ -942,17 +942,33 @@ Public Class FrmPaymentDirect
     End Sub
     Private Sub updatessaldo()
         With ObjCashBank
-
+            Dim xperpost As String = ""
             Dim panjang As Integer = Microsoft.VisualBasic.Right(_txtperpost.Text, 2)
             panjang = Convert.ToInt32(panjang) + 1
             Dim bulanp As String = CStr(panjang)
-            If panjang > 9 Then
-                .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 5) + bulanp
-            Else
-                .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 6) + bulanp
 
+            Dim panjangthn As Integer = Microsoft.VisualBasic.Left(_txtperpost.Text, 4)
+            panjangthn = Convert.ToInt32(panjangthn) + 1
+            Dim tahunp As String = CStr(panjangthn)
+
+            If panjang = 13 Then
+                xperpost = tahunp
+                bulanp = "01"
+            Else
+                xperpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 4)
+            End If
+
+            If panjang > 9 Then
+                '                .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 5) + bulanp
+                .Perpost = xperpost + "-" + bulanp
+            Else
+                ' .Perpost = Microsoft.VisualBasic.Left(_txtperpost.Text, 6) + bulanp
+                .Perpost = xperpost + "-0" + bulanp
             End If
             .account = _txtaccount.Text
+            If _txtendsaldo.Text = "" Then
+                _txtendsaldo.Text = _txtsaldo.Text
+            End If
             .saldo3 = _txtendsaldo.Text
 
             .Updatesaldo()
