@@ -1551,6 +1551,7 @@ Partial Public Class ReportDrr
         Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine9, Me.XrRichText3, Me.XrTable7, Me.XrTable8, Me.XrTable9, Me.XrRichText2, Me.XrTable4, Me.XrTable5, Me.XrTable6, Me.XrTable3, Me.XrTable2, Me.XrTable1, Me.XrRichText1})
         Me.PageFooter.HeightF = 125.1665!
         Me.PageFooter.Name = "PageFooter"
+        Me.PageFooter.PrintOn = DevExpress.XtraReports.UI.PrintOnPages.NotWithReportHeader
         '
         'XrLine9
         '
