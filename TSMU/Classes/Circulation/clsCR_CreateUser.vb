@@ -945,10 +945,10 @@ Public Class ClsCR_CreateUser
 
                         If Active_Form = 2 Then
                             dtEmail = Get_Email_Division(NoSirkulasi)
-                            MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'   Membutuhkan Approval Division Head"
+                            MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Approval Division Head"
                         ElseIf Active_Form = 3 Then
                             dtEmail = Get_Email_Dept(NoSirkulasi)
-                            MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'   Membutuhkan Opinion"
+                            MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Opini Departemen"
                         End If
 
 
@@ -973,17 +973,16 @@ Public Class ClsCR_CreateUser
 
                         MyMailMessage.CC.Add("log@tsmu.co.id")
                         MyMailMessage.Subject = "SIRKULASI BARU No ' " + NoSirkulasi + "'"
-                        'MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'   Membutuhkan Approval Division Head"
 
                         Dim SMTP As New SmtpClient("mail.tsmu.co.id")
-                        SMTP.Port = 25
+                        SMTP.Port = 587
                         SMTP.EnableSsl = False
                         SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
                         SMTP.Send(MyMailMessage)
                         'RichTextBoxBody.Text = ""
                         'MsgBox("Mail was sent", MsgBoxStyle.Information)
 
-                        'end send email
+                        '                        'end send email
 #End Region
 
 
@@ -1831,17 +1830,26 @@ Public Class ClsCR_CreateUser
 
                         MyMailMessage.CC.Add("log@tsmu.co.id")
                         MyMailMessage.Subject = "SIRKULASI BARU No ' " + _FsCode + "'"
-                        MyMailMessage.Body = "SIRKULASI NO  ' " + _FsCode + "'   Membutuhkan Approval Depthead"
+                        MyMailMessage.Body = "SIRKULASI NO  '" + _FsCode + "'   Milik Departemen  '" + H_DeptID + "' Membutuhkan Approval Depthead"
 
                         Dim SMTP As New SmtpClient("mail.tsmu.co.id")
-                        SMTP.Port = 25
+                        SMTP.Port = 587
                         SMTP.EnableSsl = False
+                        SMTP.DeliveryMethod = SmtpDeliveryMethod.Network
                         SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
-                        SMTP.Send(MyMailMessage)
-                        'RichTextBoxBody.Text = ""
-                        'MsgBox("Mail was sent", MsgBoxStyle.Information)
 
-                        'end send email
+                        'Dim smpt = New SmtpClient With {
+                        '    .Host = "mail.tsmu.co.id",
+                        '    .Port = 465,
+                        '    .EnableSsl = True,
+                        '    .UseDefaultCredentials = True,
+                        '    .DeliveryMethod = SmtpDeliveryMethod.Network,
+                        '    .Credentials = New NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV"),
+                        '    .Timeout = 20000
+                        '}
+
+                        SMTP.Send(MyMailMessage)
+
 #End Region
 
 

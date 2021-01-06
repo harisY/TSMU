@@ -305,7 +305,7 @@ Partial Class Frm_NPP_Detail
         '
         Me.RepStatusMold.AutoHeight = False
         Me.RepStatusMold.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepStatusMold.Items.AddRange(New Object() {"DEPRECIATION", "SALSES", "TRANS", "PAID BY CUST"})
+        Me.RepStatusMold.Items.AddRange(New Object() {"DEPRECIATION", "TRANS", "PAID BY CUST"})
         Me.RepStatusMold.Name = "RepStatusMold"
         '
         'OrderMonth

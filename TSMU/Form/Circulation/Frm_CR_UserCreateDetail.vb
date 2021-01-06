@@ -2682,6 +2682,8 @@ Public Class Frm_CR_UserCreateDetail
 
     Public Overrides Sub Proc_Approve()
 
+        Dim DeptEmail As String = ""
+
         GService = New GlobalService
         _level = GService.GetLevel_str("CIRCULATION")
 
@@ -2696,7 +2698,9 @@ Public Class Frm_CR_UserCreateDetail
         'Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
         If Active_Form = 1 Then
             fc_Class.GetDataByID(fs_Code)
+            DeptEmail = fc_Class.H_DeptID
             If fc_Class.H_Status = "Create" Or fc_Class.H_Status = "Revise" Then
+
                 Dim result As DialogResult = MessageBox.Show("Are You Want to Submit '" & fs_Code & "'?",
                                                         "CIRCULATION",
                                                         MessageBoxButtons.OKCancel,
@@ -2706,6 +2710,7 @@ Public Class Frm_CR_UserCreateDetail
                     Try
                         fc_Class = New ClsCR_CreateUser
                         With fc_Class
+                            .H_DeptID = DeptEmail
                             .H_UserSubmition = 1
                             .H_Status = "Submit"
                             .H_Current_Level = Active_Form
@@ -2766,6 +2771,7 @@ Public Class Frm_CR_UserCreateDetail
                 End If
 
                 fc_Class.GetDataByID(fs_Code)
+                DeptEmail = fc_Class.H_DeptID
                 If fc_Class.H_Status = "Submit" Then
                     Dim result As DialogResult = MessageBox.Show("Are You Want to  '" & _Msg & "'  '" & fs_Code & "'?",
                                                         "CIRCULATION",
@@ -2774,6 +2780,7 @@ Public Class Frm_CR_UserCreateDetail
                                                         MessageBoxDefaultButton.Button2)
                     If result = System.Windows.Forms.DialogResult.OK Then
                         Try
+                            fc_Class.H_DeptID = DeptEmail
                             If _Check1 = True Then
 
                                 fc_Class.H_Status = "Approve 1"
@@ -3012,6 +3019,7 @@ Public Class Frm_CR_UserCreateDetail
                 End If
 
                 fc_Class.GetDataByID(fs_Code)
+                DeptEmail = fc_Class.H_DeptID
                 If fc_Class.H_Status = "Approve 1" Then
                     Dim result As DialogResult = MessageBox.Show("Are You Want to  '" & _Msg & "'  '" & fs_Code & "'?",
                                                         "CIRCULATION",
@@ -3020,6 +3028,7 @@ Public Class Frm_CR_UserCreateDetail
                                                         MessageBoxDefaultButton.Button2)
                     If result = System.Windows.Forms.DialogResult.OK Then
                         Try
+                            fc_Class.H_DeptID = DeptEmail
                             If _Check1 = True Then
 
                                 fc_Class.H_Status = "Approve 2"

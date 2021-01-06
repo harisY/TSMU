@@ -239,7 +239,7 @@ Partial Class Frm_Input_NPPDetail
         Me.TStatusMold.Location = New System.Drawing.Point(104, 246)
         Me.TStatusMold.Name = "TStatusMold"
         Me.TStatusMold.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TStatusMold.Properties.Items.AddRange(New Object() {"Paid", "Depre", "Trans"})
+        Me.TStatusMold.Properties.Items.AddRange(New Object() {"DEPRECIATION", "TRANS", "PAID BY CUST"})
         Me.TStatusMold.Size = New System.Drawing.Size(210, 20)
         Me.TStatusMold.TabIndex = 9
         '
