@@ -137,6 +137,7 @@ Partial Class FrmSuspendSettleDetailDirect
         Me.TxtTotExpense.Name = "TxtTotExpense"
         Me.TxtTotExpense.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTotExpense.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TxtTotExpense.Properties.DisplayFormat.FormatString = "{0:#,##0.#0}"
         Me.TxtTotExpense.Properties.ReadOnly = True
         Me.TxtTotExpense.Size = New System.Drawing.Size(250, 22)
         Me.TxtTotExpense.StyleController = Me.LayoutControl1

@@ -519,7 +519,7 @@ Public Class FrmSuspendSettleDetail
                 Total = Total + GridView1.GetRowCellValue(i, "ActualAmount")
             End If
         Next
-        TxtTotExpense.Text = Format(Total, gs_FormatBulat)
+        TxtTotExpense.Text = Format(Total, gs_FormatDecimal)
     End Sub
 
     Public Overrides Sub Proc_print()

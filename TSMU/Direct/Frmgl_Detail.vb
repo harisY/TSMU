@@ -118,8 +118,8 @@ Public Class Frmgl_Detail
             End If
             Total = DBTotal - CRTotal
         Next
-        TxtTotalDb.Text = Format(DBTotal, gs_FormatBulat)
-        TxtTotalCr.Text = Format(CRTotal, gs_FormatBulat)
+        TxtTotalDb.Text = Format(DBTotal, gs_FormatDecimal)
+        TxtTotalCr.Text = Format(CRTotal, gs_FormatDecimal)
     End Sub
     Private Property ClipboardData As String
         Get
@@ -193,8 +193,8 @@ Public Class Frmgl_Detail
                     TxtRemark.Text = .Remark
                     TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
-                    TxtTotalDb.Text = Format(.Total, gs_FormatBulat)
-                    TxtTotalCr.Text = Format(.TotalCr, gs_FormatBulat)
+                    TxtTotalDb.Text = Format(.Total, gs_FormatDecimal)
+                    TxtTotalCr.Text = Format(.TotalCr, gs_FormatDecimal)
                     If TxtNoRJ.Text = "" Or Microsoft.VisualBasic.Left(TxtNoRJ.Text, 2) <> "RJ" Then
                         ChkRevers.Checked = False
                     Else
@@ -422,8 +422,8 @@ Public Class Frmgl_Detail
                 _totDb = GetTotDb()
                 Dim _totCr As Decimal = 0
                 _totCr = GetTotCr()
-                TxtTotalDb.Text = Format(_totDb, gs_FormatBulat)
-                TxtTotalCr.Text = Format(_totCr, gs_FormatBulat)
+                TxtTotalDb.Text = Format(_totDb, gs_FormatDecimal)
+                TxtTotalCr.Text = Format(_totCr, gs_FormatDecimal)
                 e.Handled = True
             End If
             If e.KeyData = Keys.Enter Then
@@ -650,8 +650,8 @@ Public Class Frmgl_Detail
             End If
             Total = DBTotal - CRTotal
         Next
-        TxtTotalDb.Text = Format(DBTotal, gs_FormatBulat)
-        TxtTotalCr.Text = Format(CRTotal, gs_FormatBulat)
+        TxtTotalDb.Text = Format(DBTotal, gs_FormatDecimal)
+        TxtTotalCr.Text = Format(CRTotal, gs_FormatDecimal)
     End Sub
 
     Private Sub Frmgl_Detail_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown

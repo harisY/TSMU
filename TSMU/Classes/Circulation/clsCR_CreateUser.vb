@@ -1,6 +1,8 @@
 ﻿Imports System.Collections.ObjectModel
 Imports System.Data.SqlClient
 Imports System.Globalization
+Imports System.Net
+Imports System.Net.Mail
 Public Class ClsCR_CreateUser
 
     Dim _Query As String
@@ -369,8 +371,39 @@ Public Class ClsCR_CreateUser
 
     Public Function Get_Email_Dept(Circulation_ As String) As DataTable
         Try
-            Dim query As String = "SELECT isnull([DeptHead_Email],'')
-                                    FROM [CR_Other_Dept] where CirculationNo = '" & Circulation_ & "'"
+            Dim query As String = "Select isnull([Email],'') AS EMAIL
+                                    FROM CR_Request inner join CR_Other_Dept
+	                                    inner join M_Approve on CR_Other_Dept.DeptID  = M_Approve.DeptID
+	                                    INNER JOIN S_User ON M_Approve.UserName = S_User.Username
+                                    on  CR_Request.CirculationNo = CR_Other_Dept.CirculationNo
+                                    where  CR_Other_Dept.CirculationNo = '" & Circulation_ & "'
+                                    and M_Approve.MenuCode = 'CIRCULATION' AND M_Approve.LevelApprove = 2"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function Get_Email_DeptDeptHead() As DataTable
+        Try
+            Dim query As String = "SELECT isnull([Email],'') AS EMAIL
+                                     FROM [M_Approve] inner join S_User ON M_Approve.UserName = S_User.Username
+                                     where M_Approve.MenuCode = 'CIRCULATION' AND M_Approve.DeptID = '" & gh_Common.GroupID & "' AND M_Approve.LevelApprove = '2'"
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function Get_Email_Division(NoSirkulasi As String) As DataTable
+        Try
+            Dim query As String = "Select isnull([Email],'') AS EMAIL  from CR_Request
+                                    inner join M_Division on CR_Request.div_Id = M_Division.div_Id
+                                    inner join S_User on M_Division.div_Pic = s_user.Username
+                                    where CirculationNo = '" & NoSirkulasi & "'"
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
             Return dt
@@ -538,8 +571,14 @@ Public Class ClsCR_CreateUser
             Dim Dept As String = gh_Common.GroupID
 
             Dim ls_SP As String = "SELECT top 1[CirculationNo] FROM CR_Request
-                                   order by Right([CirculationNo], 4) desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
+                                    where substring([CirculationNo], 7, 4) = '" & Tahun & "'
+                                    order by Right([CirculationNo], 4) desc"
+            'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
+
+            'Dim ls_SP As String = "SELECT top 1[CirculationNo] FROM CR_Request
+            '                       order by Right([CirculationNo], 4) desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
+            'Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
@@ -728,7 +767,6 @@ Public Class ClsCR_CreateUser
         Try
             Try
 
-
                 Dim query As String = "[CR_Delete_CR_Request]"
                 Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
                 pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
@@ -897,6 +935,57 @@ Public Class ClsCR_CreateUser
 
                         Dim GS As New GlobalService
                         GS.Approve(Model, "Approve")
+
+
+#Region "send Email"
+
+                        Dim MyMailMessage As New MailMessage
+                        Dim A As ArrayList = New ArrayList
+                        Dim dtEmail As New DataTable
+
+                        If Active_Form = 2 Then
+                            dtEmail = Get_Email_Division(NoSirkulasi)
+                            MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Approval Division Head"
+                        ElseIf Active_Form = 3 Then
+                            dtEmail = Get_Email_Dept(NoSirkulasi)
+                            MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Opini Departemen"
+                        End If
+
+
+                        MyMailMessage.From = New MailAddress("circulation@tsmu.co.id", "CIRCULATION")
+
+                        For i As Integer = 0 To dtEmail.Rows.Count - 1
+                            If dtEmail.Rows.Count > 0 Then
+                                Dim cekEmail As String = ""
+                                cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
+
+                                If cekEmail = "" Then
+                                    MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                                Else
+                                    MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
+                                End If
+
+                            Else
+                                MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                            End If
+
+                        Next
+
+                        MyMailMessage.CC.Add("log@tsmu.co.id")
+                        MyMailMessage.Subject = "SIRKULASI BARU No ' " + NoSirkulasi + "'"
+
+                        Dim SMTP As New SmtpClient("mail.tsmu.co.id")
+                        SMTP.Port = 587
+                        SMTP.EnableSsl = False
+                        SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
+                        SMTP.Send(MyMailMessage)
+                        'RichTextBoxBody.Text = ""
+                        'MsgBox("Mail was sent", MsgBoxStyle.Information)
+
+                        '                        'end send email
+#End Region
+
+
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -1712,6 +1801,56 @@ Public Class ClsCR_CreateUser
                                                ,'" & Date.Now & "'
                                                ,'" & TA_IsActive & "')"
                         MainModul.ExecQuery(ls_SP1)
+
+#Region "send Email"
+
+                        Dim MyMailMessage As New MailMessage
+                        Dim A As ArrayList = New ArrayList
+                        Dim dtEmail As New DataTable
+                        dtEmail = Get_Email_DeptDeptHead()
+
+                        MyMailMessage.From = New MailAddress("circulation@tsmu.co.id", "CIRCULATION")
+
+                        For i As Integer = 0 To dtEmail.Rows.Count - 1
+                            If dtEmail.Rows.Count > 0 Then
+                                Dim cekEmail As String = ""
+                                cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
+
+                                If cekEmail = "" Then
+                                    MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                                Else
+                                    MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
+                                End If
+
+                            Else
+                                MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                            End If
+
+                        Next
+
+                        MyMailMessage.CC.Add("log@tsmu.co.id")
+                        MyMailMessage.Subject = "SIRKULASI BARU No ' " + _FsCode + "'"
+                        MyMailMessage.Body = "SIRKULASI NO  '" + _FsCode + "'   Milik Departemen  '" + H_DeptID + "' Membutuhkan Approval Depthead"
+
+                        Dim SMTP As New SmtpClient("mail.tsmu.co.id")
+                        SMTP.Port = 587
+                        SMTP.EnableSsl = False
+                        SMTP.DeliveryMethod = SmtpDeliveryMethod.Network
+                        SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
+
+                        'Dim smpt = New SmtpClient With {
+                        '    .Host = "mail.tsmu.co.id",
+                        '    .Port = 465,
+                        '    .EnableSsl = True,
+                        '    .UseDefaultCredentials = True,
+                        '    .DeliveryMethod = SmtpDeliveryMethod.Network,
+                        '    .Credentials = New NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV"),
+                        '    .Timeout = 20000
+                        '}
+
+                        SMTP.Send(MyMailMessage)
+
+#End Region
 
 
                         Trans1.Commit()

@@ -374,7 +374,7 @@ Public Class frm_payment_details
             f.StartPosition = FormStartPosition.CenterScreen
             f.ShowDialog()
             If f.Total > 0 Then
-                _TxtCM.Text = Format(f.Total, gs_FormatBulat)
+                _TxtCM.Text = Format(f.Total, gs_FormatDecimal)
             End If
 
 
@@ -428,29 +428,29 @@ Public Class frm_payment_details
             If TotPPn = 0 Then
                 _TxtPPN.Text = "0"
             Else
-                _TxtPPN.Text = Format(TotPPn, gs_FormatBulat)
+                _TxtPPN.Text = Format(TotPPn, gs_FormatDecimal)
             End If
 
             If TotDpp = 0 Then
                 _TxtDpp.Text = "0"
             Else
-                _TxtDpp.Text = Format(TotDpp, gs_FormatBulat)
+                _TxtDpp.Text = Format(TotDpp, gs_FormatDecimal)
             End If
 
             If TotAmount = 0 Then
                 _TxtTotal.Text = "0"
             Else
 
-                _TxtTotal.Text = Format(TotAmount, gs_FormatBulat)
+                _TxtTotal.Text = Format(TotAmount, gs_FormatDecimal)
             End If
             If TotPPH = 0 Then
                 _TxtPPH.Text = "0"
             Else
 
-                _TxtPPH.Text = Format(TotPPH, gs_FormatBulat)
+                _TxtPPH.Text = Format(TotPPH, gs_FormatDecimal)
             End If
             Dim debit As Double = TotAmount - TotPPH - _TxtCM.Text - _txtCMDMmanual.Text - _TxtBiaya.Text
-            _TxtDebit.Text = Format(debit, gs_FormatBulat)
+            _TxtDebit.Text = Format(debit, gs_FormatDecimal)
         Catch ex As Exception
             Throw ex
         End Try

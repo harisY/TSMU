@@ -591,13 +591,14 @@ Public Class FrmSuspendSettleDetailDirect
     End Sub
 
     Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
-        Dim Total As Double = 0
+        Dim Total As Decimal = 0
+        '' Dim _total As Decimal = 0
         For i As Integer = 0 To GridView1.RowCount - 1
             If Not GridView1.GetRowCellValue(i, "ActualAmount") Is DBNull.Value Then
                 Total = Total + GridView1.GetRowCellValue(i, "ActualAmount")
             End If
         Next
-        TxtTotExpense.Text = Format(Total, gs_FormatBulat)
+        TxtTotExpense.Text = Format(Total, gs_FormatDecimal)
     End Sub
 
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
