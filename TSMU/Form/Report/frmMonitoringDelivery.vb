@@ -53,7 +53,16 @@ Public Class frmMonitoringDelivery
         LoadGrid()
     End Sub
     Public Overrides Sub Proc_Excel()
-
+        If GridView1.RowCount > 0 Then
+            Dim save As New SaveFileDialog
+            save.Filter = "Excel File|*.xlsx"
+            save.Title = "Save an Excel File"
+            If save.ShowDialog = DialogResult.OK Then
+                _Grid.ExportToXlsx(save.FileName)
+            End If
+        Else
+            ShowMessage("Data Kosong !", MessageTypeEnum.ErrorMessage)
+        End If
     End Sub
 
 
