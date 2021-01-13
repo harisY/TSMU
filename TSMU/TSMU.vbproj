@@ -2576,6 +2576,8 @@
     <Compile Include="Models\SoRegTemplateModel.vb" />
     <Compile Include="Models\TamScan.vb" />
     <Compile Include="Models\TMMINmodel.vb" />
+    <Compile Include="Models\TTI_Detail_Models.vb" />
+    <Compile Include="Models\TTI_Header_Models.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
     <Compile Include="Form\System\FrmSystem_FilterData.Designer.vb">
       <DependentUpon>FrmSystem_FilterData.vb</DependentUpon>
@@ -2724,6 +2726,18 @@
       <DependentUpon>Frm_ScanFP.vb</DependentUpon>
     </Compile>
     <Compile Include="Payment\Frm_ScanFP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice.Designer.vb">
+      <DependentUpon>Frm_TT_Invoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice_Detail.Designer.vb">
+      <DependentUpon>Frm_TT_Invoice_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice_Detail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment\Frm_UploadToSolomon.Designer.vb">
@@ -3899,6 +3913,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_pph_ar2.resx">
       <DependentUpon>frm_pph_ar2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_TT_Invoice.resx">
+      <DependentUpon>Frm_TT_Invoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_TT_Invoice_Detail.resx">
+      <DependentUpon>Frm_TT_Invoice_Detail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.resx">
       <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
