@@ -5,6 +5,7 @@ Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class FrmEntertainSettleCC
+    Dim frm_DetailWithAdvance As FrmEntertainSettleDetail
     Dim frm_DirectCC As FrmEntertainSettleDetailDirectCC
     Dim ObjSettle As SettleHeader
 
@@ -51,7 +52,12 @@ Public Class FrmEntertainSettleCC
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
-        CallFrmDirect()
+        Dim result As DialogResult = XtraMessageBox.Show("Settle tanpa Advance ?", "Confirmation", MessageBoxButtons.YesNoCancel)
+        If result = System.Windows.Forms.DialogResult.Yes Then
+            CallFrmDirect()
+        ElseIf result = System.Windows.Forms.DialogResult.No Then
+            CallFrm()
+        End If
     End Sub
 
     Private Sub CallFrmDirect(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
@@ -65,6 +71,19 @@ Public Class FrmEntertainSettleCC
         frm_DirectCC.MdiParent = FrmMain
         frm_DirectCC.StartPosition = FormStartPosition.CenterScreen
         frm_DirectCC.Show()
+    End Sub
+
+    Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+        If frm_DetailWithAdvance IsNot Nothing AndAlso frm_DetailWithAdvance.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DetailWithAdvance.Close()
+        End If
+        frm_DetailWithAdvance = New FrmEntertainSettleDetail(ls_Code, ls_Code2, Me, li_Row, GridSettle)
+        frm_DetailWithAdvance.MdiParent = FrmMain
+        frm_DetailWithAdvance.StartPosition = FormStartPosition.CenterScreen
+        frm_DetailWithAdvance.Show()
     End Sub
 
     Public Overrides Sub Proc_Refresh()
@@ -167,8 +186,14 @@ Public Class FrmEntertainSettleCC
                     End If
                 Next rowHandle
 
-                Call CallFrmDirect(ID, SettleID,
+                If SuspendID = "" Then
+                    Call CallFrmDirect(ID, SettleID,
                          GridViewSettle.RowCount)
+                Else
+                    Call CallFrm(ID,
+                              SettleID,
+                             GridViewSettle.RowCount)
+                End If
             End If
 
         Catch ex As Exception
@@ -201,9 +226,14 @@ Public Class FrmEntertainSettleCC
                         SuspendID = IIf(GridViewPaid.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridViewPaid.GetRowCellValue(rowHandle, "SuspendID")))
                     End If
                 Next rowHandle
-
-                Call CallFrmDirect(ID, SettleID,
+                If SuspendID = "" Then
+                    Call CallFrmDirect(ID, SettleID,
                          GridViewSettle.RowCount)
+                Else
+                    Call CallFrm(ID,
+                              SettleID,
+                             GridViewSettle.RowCount)
+                End If
             End If
 
         Catch ex As Exception
