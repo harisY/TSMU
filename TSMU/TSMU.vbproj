@@ -1511,6 +1511,12 @@
     <Compile Include="Form\Circulation\Report\DevCirculationReportBOD.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportBODTemp3.designer.vb">
+      <DependentUpon>DevCirculationReportBODTemp3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportBODTemp3.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Report\DevCirculationReportDOCTemp.Designer.vb">
       <DependentUpon>DevCirculationReportDOCTemp.vb</DependentUpon>
     </Compile>
@@ -1529,6 +1535,18 @@
     <Compile Include="Form\Circulation\Report\DevCirculationReportOther.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportOtherTemp3.designer.vb">
+      <DependentUpon>DevCirculationReportOtherTemp3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportOtherTemp3.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportOtherTemp4.designer.vb">
+      <DependentUpon>DevCirculationReportOtherTemp4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationReportOtherTemp4.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form\Circulation\Report\DevCirculationReportTotal.Designer.vb">
       <DependentUpon>DevCirculationReportTotal.vb</DependentUpon>
     </Compile>
@@ -1545,6 +1563,18 @@
       <DependentUpon>DevCirculationTemp.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Circulation\Report\DevCirculationTemp.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationTemp3.designer.vb">
+      <DependentUpon>DevCirculationTemp3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationTemp3.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationTemp4.Designer.vb">
+      <DependentUpon>DevCirculationTemp4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\Report\DevCirculationTemp4.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Form\Circulation\Report\RptCirculationTotal.vb">
@@ -3431,6 +3461,9 @@
     <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportBOD.resx">
       <DependentUpon>DevCirculationReportBOD.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportBODTemp3.resx">
+      <DependentUpon>DevCirculationReportBODTemp3.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportDOCTemp.resx">
       <DependentUpon>DevCirculationReportDOCTemp.vb</DependentUpon>
     </EmbeddedResource>
@@ -3440,6 +3473,12 @@
     <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportOther.resx">
       <DependentUpon>DevCirculationReportOther.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportOtherTemp3.resx">
+      <DependentUpon>DevCirculationReportOtherTemp3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportOtherTemp4.resx">
+      <DependentUpon>DevCirculationReportOtherTemp4.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Report\DevCirculationReportTotal.resx">
       <DependentUpon>DevCirculationReportTotal.vb</DependentUpon>
     </EmbeddedResource>
@@ -3448,6 +3487,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Report\DevCirculationTemp.resx">
       <DependentUpon>DevCirculationTemp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationTemp3.resx">
+      <DependentUpon>DevCirculationTemp3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\Report\DevCirculationTemp4.resx">
+      <DependentUpon>DevCirculationTemp4.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Report\RptCirculationTotal.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
