@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraEditors
+Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraSplashScreen
 
 Public Class FrmTMMIN_GenerateExcel
@@ -14,12 +15,23 @@ Public Class FrmTMMIN_GenerateExcel
     End Sub
     Private Sub FrmTMMIN_GenerateExcel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False)
-        TxtEtd.EditValue = DateTime.Today
+        TxtEtd.EditValue = Date.Today
 
     End Sub
 
     Public Overrides Sub Proc_Excel()
-        SaveToExcel(Grid, "TMMIN")
+        Dim save As New SaveFileDialog With {
+            .Filter = "Excel File|*.xlsx",
+            .Title = "Save an Excel File"
+        }
+        Dim options As XlsxExportOptionsEx = New XlsxExportOptionsEx With {
+            .SheetName = "SubManifestCreation",
+            .ShowGridLines = True
+        }
+        If save.ShowDialog = DialogResult.OK Then
+            _Grid.ExportToXlsx(save.FileName, options)
+        End If
+        'SaveToExcel(Grid, "SubManifestCreation")
         Try
             For i = 0 To GridView1.RowCount - 1
                 Dim tmmin = New TMMINmodel
