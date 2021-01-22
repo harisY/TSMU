@@ -242,6 +242,7 @@
     <Compile Include="Classes\ClsDashbard.vb" />
     <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
     <Compile Include="Classes\ComboBoxObj.vb" />
+    <Compile Include="Classes\EBUDGET\Cls_eBudget.vb" />
     <Compile Include="Classes\MenuManager.vb" />
     <Compile Include="Classes\Page1Interface.vb" />
     <Compile Include="Classes\Npwo\Cls_NPP_Detail.vb" />
@@ -2019,6 +2020,12 @@
     <Compile Include="Form\CustomForm\frmScanDN.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\EBudget\Frm_EBudget.Designer.vb">
+      <DependentUpon>Frm_EBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\EBudget\Frm_EBudget.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\NPP\Frm_Approve_Dept_Head.Designer.vb">
       <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
     </Compile>
@@ -3555,6 +3562,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\CustomForm\frmDRRAttach.resx">
       <DependentUpon>frmDRRAttach.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\EBudget\Frm_EBudget.resx">
+      <DependentUpon>Frm_EBudget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_Approve_Dept_Head.resx">
       <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
