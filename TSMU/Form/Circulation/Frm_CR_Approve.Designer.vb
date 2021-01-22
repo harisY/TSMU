@@ -107,6 +107,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -529,7 +530,7 @@ Partial Class Frm_CR_Approve
         '
         'GridView4
         '
-        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33})
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn67})
         Me.GridView4.GridControl = Me.Grid4
         Me.GridView4.Name = "GridView4"
         Me.GridView4.OptionsBehavior.Editable = False
@@ -544,7 +545,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 0
-        Me.GridColumn23.Width = 216
+        Me.GridColumn23.Width = 167
         '
         'GridColumn24
         '
@@ -556,7 +557,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 1
-        Me.GridColumn24.Width = 109
+        Me.GridColumn24.Width = 84
         '
         'GridColumn25
         '
@@ -568,7 +569,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 2
-        Me.GridColumn25.Width = 198
+        Me.GridColumn25.Width = 89
         '
         'GridColumn26
         '
@@ -579,8 +580,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn26.FieldName = "Status"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 3
-        Me.GridColumn26.Width = 105
+        Me.GridColumn26.VisibleIndex = 4
+        Me.GridColumn26.Width = 79
         '
         'GridColumn27
         '
@@ -591,8 +592,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn27.FieldName = "Requester"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 4
-        Me.GridColumn27.Width = 79
+        Me.GridColumn27.VisibleIndex = 5
+        Me.GridColumn27.Width = 59
         '
         'GridColumn28
         '
@@ -603,7 +604,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn28.FieldName = "Dept Head"
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 5
+        Me.GridColumn28.VisibleIndex = 6
+        Me.GridColumn28.Width = 56
         '
         'GridColumn29
         '
@@ -614,7 +616,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn29.FieldName = "Div Head"
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 6
+        Me.GridColumn29.VisibleIndex = 7
+        Me.GridColumn29.Width = 56
         '
         'GridColumn30
         '
@@ -625,7 +628,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn30.FieldName = "Other Dept"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 7
+        Me.GridColumn30.VisibleIndex = 8
+        Me.GridColumn30.Width = 56
         '
         'GridColumn31
         '
@@ -636,7 +640,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn31.FieldName = "Accounting"
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 8
+        Me.GridColumn31.VisibleIndex = 9
+        Me.GridColumn31.Width = 56
         '
         'GridColumn32
         '
@@ -647,7 +652,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn32.FieldName = "Purch"
         Me.GridColumn32.Name = "GridColumn32"
         Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 9
+        Me.GridColumn32.VisibleIndex = 10
+        Me.GridColumn32.Width = 56
         '
         'GridColumn33
         '
@@ -658,8 +664,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn33.FieldName = "Amount"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 10
-        Me.GridColumn33.Width = 173
+        Me.GridColumn33.VisibleIndex = 11
+        Me.GridColumn33.Width = 150
         '
         'Close
         '
@@ -1147,6 +1153,14 @@ Partial Class Frm_CR_Approve
         Me.GridColumn66.VisibleIndex = 10
         Me.GridColumn66.Width = 169
         '
+        'GridColumn67
+        '
+        Me.GridColumn67.FieldName = "Name Of Item"
+        Me.GridColumn67.Name = "GridColumn67"
+        Me.GridColumn67.Visible = True
+        Me.GridColumn67.VisibleIndex = 3
+        Me.GridColumn67.Width = 123
+        '
         'Frm_CR_Approve
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1269,4 +1283,5 @@ Partial Class Frm_CR_Approve
     Friend WithEvents GridColumn64 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn65 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
