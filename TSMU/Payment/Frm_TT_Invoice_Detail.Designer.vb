@@ -65,6 +65,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckedComboBoxEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtTotalAmountAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,6 +143,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me._TxtTotalAmountAP.Size = New System.Drawing.Size(171, 22)
         Me._TxtTotalAmountAP.StyleController = Me.LayoutControl1
         Me._TxtTotalAmountAP.TabIndex = 42
+        Me._TxtTotalAmountAP.Visible = False
         '
         'Button6
         '
@@ -152,6 +154,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.Button6.TabIndex = 40
         Me.Button6.Text = "Amount Invoice AP"
         Me.Button6.UseVisualStyleBackColor = True
+        Me.Button6.Visible = False
         '
         'LayoutControl2
         '
@@ -434,7 +437,7 @@ Partial Class Frm_TT_Invoice_Detail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColInvcDate, Me.ColInvcNbr, Me.Colfp, Me.ColCuryId, Me.ColDPP, Me.ColPpn, Me.ColPPH, Me.ColAmount, Me.GridColumn2, Me.ColCheck, Me.GridColumn1})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColInvcDate, Me.ColInvcNbr, Me.Colfp, Me.ColCuryId, Me.ColDPP, Me.ColPpn, Me.ColPPH, Me.ColAmount, Me.GridColumn2, Me.ColCheck, Me.GridColumn1, Me.GridColumn3})
         Me.GridView1.DetailHeight = 458
         Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.GridInvoice
@@ -485,7 +488,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.ColCuryId.Name = "ColCuryId"
         Me.ColCuryId.OptionsColumn.AllowEdit = False
         Me.ColCuryId.Visible = True
-        Me.ColCuryId.VisibleIndex = 3
+        Me.ColCuryId.VisibleIndex = 4
         Me.ColCuryId.Width = 83
         '
         'ColDPP
@@ -498,7 +501,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.ColDPP.Name = "ColDPP"
         Me.ColDPP.OptionsColumn.AllowEdit = False
         Me.ColDPP.Visible = True
-        Me.ColDPP.VisibleIndex = 4
+        Me.ColDPP.VisibleIndex = 5
         Me.ColDPP.Width = 140
         '
         'ColPpn
@@ -511,7 +514,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.ColPpn.Name = "ColPpn"
         Me.ColPpn.OptionsColumn.AllowEdit = False
         Me.ColPpn.Visible = True
-        Me.ColPpn.VisibleIndex = 5
+        Me.ColPpn.VisibleIndex = 6
         Me.ColPpn.Width = 167
         '
         'ColPPH
@@ -524,7 +527,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.ColPPH.Name = "ColPPH"
         Me.ColPPH.OptionsColumn.AllowEdit = False
         Me.ColPPH.Visible = True
-        Me.ColPPH.VisibleIndex = 6
+        Me.ColPPH.VisibleIndex = 7
         Me.ColPPH.Width = 167
         '
         'ColAmount
@@ -537,7 +540,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.ColAmount.Name = "ColAmount"
         Me.ColAmount.OptionsColumn.AllowEdit = False
         Me.ColAmount.Visible = True
-        Me.ColAmount.VisibleIndex = 7
+        Me.ColAmount.VisibleIndex = 8
         Me.ColAmount.Width = 167
         '
         'GridColumn2
@@ -550,7 +553,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.GridColumn2.MinWidth = 27
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 8
+        Me.GridColumn2.VisibleIndex = 9
         Me.GridColumn2.Width = 173
         '
         'RepositoryItemSpinEdit1
@@ -568,7 +571,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.ColCheck.Name = "ColCheck"
         Me.ColCheck.OptionsFilter.AllowAutoFilter = False
         Me.ColCheck.Visible = True
-        Me.ColCheck.VisibleIndex = 9
+        Me.ColCheck.VisibleIndex = 10
         Me.ColCheck.Width = 67
         '
         'RepositoryItemCheckEdit1
@@ -600,6 +603,16 @@ Partial Class Frm_TT_Invoice_Detail
         'DxValidationProvider1
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "NoPO"
+        Me.GridColumn3.FieldName = "NoPO"
+        Me.GridColumn3.MinWidth = 25
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 94
         '
         'Frm_TT_Invoice_Detail
         '
@@ -694,4 +707,5 @@ Partial Class Frm_TT_Invoice_Detail
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemCheckedComboBoxEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

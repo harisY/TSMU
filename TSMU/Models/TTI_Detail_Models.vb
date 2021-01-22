@@ -19,6 +19,7 @@
     Public Property tax As String
     Public Property Tgl_Invoice As DateTime
     Public Property vrno As String
+    Public Property NoPO As String
     Public Property Paid As Double
     Public Property tgl As Nullable(Of DateTime)
 
@@ -68,10 +69,15 @@
     End Function
     Public Function GetCustomer2() As DataTable
         Try
+            'Dim sql As String = "SELECT 
+            '                      customer.CustID [Customer ID],
+            '                        customer.name [Customer Name],vendor.vendid
+            '                    FROM customer inner join vendor on vendor.vendid=customer.user5"
+
             Dim sql As String = "SELECT 
  	                                customer.CustID [Customer ID],
-                                    customer.name [Customer Name],vendor.vendid
-                                FROM customer inner join vendor on vendor.vendid=customer.user5"
+                                    customer.name [Customer Name]
+                                FROM customer"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -188,7 +194,7 @@
         Try
 
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO TTI_detail (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1,cek4,Paid) " & vbCrLf &
+                                    "INSERT INTO TTI_detail (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1,cek4,NoPO,Paid) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tgl_Invoice) & ", " & vbCrLf &
@@ -200,6 +206,7 @@
                                     "       " & QVal(Me.No_Faktur) & ", " & vbCrLf &
                                     "       " & QVal(Me.cek1) & ", " & vbCrLf &
                                     "       " & QVal(Me.cek4) & ", " & vbCrLf &
+                                    "       " & QVal(Me.NoPO) & ", " & vbCrLf &
                                     "       " & QVal(Me.Paid) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

@@ -8,8 +8,13 @@ Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-Public Class Frm_TT_Invoice
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraSplashScreen
+Imports DevExpress.LookAndFeel
 
+Public Class Frm_TT_Invoice
+    Dim _Service As TTI_Header_Models
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
     Dim dtGrid3 As DataTable
@@ -17,16 +22,60 @@ Public Class Frm_TT_Invoice
     Dim table As DataTable
     Dim tableDetail As DataTable
     Dim ff_Detail As Frm_TT_Invoice_Detail
-    Dim ObjPaymentHeader As New AR2_Header_Models
+    Dim ObjPaymentHeader As New TTI_Header_Models
 
     Private Sub frm_AR2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Dim dtGrid2 As New DataTable
         dtGrid2 = GridControl1.DataSource
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
+        Call Proc_EnableButtons(True, False, True, True, False, False, False, True, False, False, False, True)
     End Sub
+    Dim PrintTool As ReportPrintTool
+    Public Overrides Sub Proc_Print()
+        Try
+            _Service = New TTI_Header_Models
+            Dim ds As DataSet = New DataSet
+            ds = _Service.PrintReport(NoVoucher)
 
+            If CustID = "DNP" Then
+                Dim Laporan As New DXReportTTI2()
+                With Laporan
+                    .DataSource = ds.Tables("TTI")
+                End With
+                PrintTool = New ReportPrintTool(Laporan)
+            ElseIf CustID = "ETI" Then
+                Dim Laporan As New DXReportTTI3()
+                With Laporan
+                    .DataSource = ds.Tables("TTI")
+
+                End With
+                PrintTool = New ReportPrintTool(Laporan)
+            ElseIf CustID = "FSI" Then
+                Dim Laporan As New DXReportTTI4()
+                With Laporan
+                    .DataSource = ds.Tables("TTI")
+                End With
+                PrintTool = New ReportPrintTool(Laporan)
+            Else
+                Dim Laporan As New DXReportTTI()
+                With Laporan
+                    .DataSource = ds.Tables("TTI")
+                End With
+                PrintTool = New ReportPrintTool(Laporan)
+            End If
+
+
+
+
+
+            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            'PrintTool.ShowPreviewDialog()
+            PrintTool.ShowPreview(UserLookAndFeel.Default)
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
     Private Sub LoadGrid()
         Try
 
@@ -144,10 +193,42 @@ Public Class Frm_TT_Invoice
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+
+    Private Sub GridView2_Click(sender As Object, e As EventArgs) Handles GridView2.Click
+        Try
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            Dim view As BaseView = GridControl1.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+                id = String.Empty
+                NoVoucher = String.Empty
+                CustID = String.Empty
+                Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        id = GridView2.GetRowCellValue(rowHandle, "id")
+                        NoVoucher = GridView2.GetRowCellValue(rowHandle, "vrno")
+                        CustID = GridView2.GetRowCellValue(rowHandle, "CustID")
+                    End If
+                Next rowHandle
+
+            End If
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
     Dim NoVoucher, id, NoBukti As String
     Dim CustID, Customer, AcctID_tujuan, Descr_tujuan, CurryID As String
 
+    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
 
+    End Sub
 
     Dim Jumlah As Double
 

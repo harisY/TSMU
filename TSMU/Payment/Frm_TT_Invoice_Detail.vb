@@ -196,6 +196,7 @@ Public Class Frm_TT_Invoice_Detail
                         .Dpp = GridView1.GetRowCellValue(i, "DPP")
                         .Pph = GridView1.GetRowCellValue(i, "PPH")
                         .No_Faktur = GridView1.GetRowCellValue(i, "fp").ToString().TrimEnd
+                        .NoPO = GridView1.GetRowCellValue(i, "NoPO").ToString().TrimEnd
                         .cek1 = True
                         .NoBukti = TextEdit1.Text
                         .Paid = GridView1.GetRowCellValue(i, "Paid")
@@ -294,7 +295,7 @@ Public Class Frm_TT_Invoice_Detail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Payment " & fs_Code
+                Me.Text = "Tanda Terima Invoice " & fs_Code
             ElseIf fs_Code <> "" And sts_screen2 = 1 Then
                 ObjPaymentHeader.id = fs_Code
                 ObjPaymentHeader.GetPaymentByVoucherNo()
@@ -306,10 +307,10 @@ Public Class Frm_TT_Invoice_Detail
                 Else
                     isUpdate = True
                 End If
-                Me.Text = "Payment " & fs_Code
+                Me.Text = "Tanda Terima Invoice " & fs_Code
                 LoadGridDetail()
             Else
-                Me.Text = "Payment New Data"
+                Me.Text = "Tanda Terima Invoice New Data"
             End If
             Call LoadTxtBox()
             ''  LoadGridDetail()
@@ -398,10 +399,10 @@ Public Class Frm_TT_Invoice_Detail
                 If sender.Name = _TxtVendorID.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
                     Value1 = lF_SearchData.Values.Item(0).ToString.Trim
                     Value2 = lF_SearchData.Values.Item(1).ToString.Trim
-                    Value3 = lF_SearchData.Values.Item(2).ToString.Trim
+                    '' Value3 = lF_SearchData.Values.Item(2).ToString.Trim
                     _TxtVendorID.Text = Value1
                     _TxtVendorName.Text = Value2
-                    TextEdit1.Text = Value3
+                    '' TextEdit1.Text = Value3
                     Dim dtGrid As New DataTable
                     ''dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(Value1.TrimEnd)
 
@@ -439,5 +440,9 @@ Public Class Frm_TT_Invoice_Detail
                 GridCellFormat(GridView1)
             End If
         End If
+    End Sub
+
+    Private Sub GridInvoice_Click(sender As Object, e As EventArgs) Handles GridInvoice.Click
+
     End Sub
 End Class

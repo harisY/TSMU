@@ -63,6 +63,20 @@ Public Class TTI_Header_Models
             Throw ex
         End Try
     End Function
+
+    Public Function PrintReport(Id As String) As DataSet
+        Try
+            Dim ds As dsLaporan2
+            Dim Sql As String = "TTI_PrintReport"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@Id", SqlDbType.VarChar)
+            pParam(0).Value = Id
+            ds = GetDataSetByCommand_SPds2(Sql, "TTI", pParam)
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetDataGrid2() As DataTable
         Try
             Dim sql As String = "SELECT [id]
@@ -372,11 +386,11 @@ Public Class TTI_Header_Models
                             End With
                         Next
 
-                        For i As Integer = 0 To Me.ObjBatch.Count - 1
-                            With Me.ObjBatch(i)
-                                .UpdateBatch(Me.vrno)
-                            End With
-                        Next
+                        'For i As Integer = 0 To Me.ObjBatch.Count - 1
+                        '    With Me.ObjBatch(i)
+                        '        .UpdateBatch(Me.vrno)
+                        '    End With
+                        'Next
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -544,10 +558,10 @@ Public Class TTI_Header_Models
             Dim query As String = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
                  "set @bulan = '" & Mid(PerPost, 6, 2) & "' " &
                 "set @tahun = '" & Mid(PerPost, 1, 4) & "' " &
-                "set @seq= (select right('0000'+cast(right(rtrim(max(vrno)),4)+1 as varchar),4) " &
+                "set @seq= (select RIGHT('0000'+cast(LEFT(rtrim(max(vrno)),4)+1 as varchar),4) " &
                 "from TTI_Header " &
-                "where SUBSTRING(vrno,4,4) = @tahun AND SUBSTRING(vrno,9,2) = @bulan) " &
-                "select 'AR' + '-' + @tahun + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+                "where SUBSTRING(vrno,16,4) = @tahun AND SUBSTRING(vrno,13,2) = @bulan) " &
+                "select coalesce(@seq, '0001') + '/FP-FIN/' + @bulan +'/' + @tahun   "
 
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(query)
@@ -712,7 +726,7 @@ Public Class TTI_Header_Models
             '    sql = sql & " WHERE cek1 ='0' AND cek2='1' AND cek3='0' AND cek4='0' ORDER BY tgl, Customername, vrno"
             'Else
             '    sql = sql & " WHERE cek1 ='0' AND cek2='1' AND cek4='0' ORDER BY tgl, Customername, vrno"
-            'End If
+            'End Ifjhn
 
             If Level = 1 Then
                 sql = sql & " WHERE cek1='0' ORDER BY tgl, Customername, vrno"

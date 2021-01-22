@@ -20,26 +20,8 @@ Partial Class FrmSuspendSettleDetailDirectCC
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.txtCCNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtPrNo = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtNoSettlement = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtTotExpense = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtRemark = New DevExpress.XtraEditors.MemoEdit()
-        Me.TxtTgl = New DevExpress.XtraEditors.DateEdit()
-        Me.TxtDep = New DevExpress.XtraEditors.ButtonEdit()
-        Me.TxtCurrency = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.TxtPaymentType = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.Label9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.TxtPaymentTypexx = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -62,7 +44,37 @@ Partial Class FrmSuspendSettleDetailDirectCC
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAmount = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.txtCCNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtPrNo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNoSettlement = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtTotExpense = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtRemark = New DevExpress.XtraEditors.MemoEdit()
+        Me.TxtTgl = New DevExpress.XtraEditors.DateEdit()
+        Me.TxtDep = New DevExpress.XtraEditors.ButtonEdit()
+        Me.TxtCurrency = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.TxtPaymentType = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Label9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.TxtPaymentTypexx = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CPayTypeTransport, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtCCNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,17 +97,223 @@ Partial Class FrmSuspendSettleDetailDirectCC
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPaymentTypexx, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CPayTypeTransport, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'DxValidationProvider1
+        '
+        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.Grid, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl1, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.41606!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.58394!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1224, 733)
+        Me.TableLayoutPanel1.TabIndex = 5
+        '
+        'Grid
+        '
+        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Location = New System.Drawing.Point(4, 146)
+        Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Name = "Grid"
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CPayTypeTransport})
+        Me.Grid.Size = New System.Drawing.Size(1216, 583)
+        Me.Grid.TabIndex = 5
+        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn6, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn2, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
+        Me.GridView1.GridControl = Me.Grid
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Date"
+        Me.GridColumn1.ColumnEdit = Me.ReposDate
+        Me.GridColumn1.FieldName = "Tgl"
+        Me.GridColumn1.MinWidth = 27
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.FixedWidth = True
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 133
+        '
+        'ReposDate
+        '
+        Me.ReposDate.AutoHeight = False
+        Me.ReposDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.ReposDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.ReposDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.ReposDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.ReposDate.EditFormat.FormatString = "dd-MM-yyyy"
+        Me.ReposDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.ReposDate.Mask.EditMask = "dd-MM-yyyy"
+        Me.ReposDate.Name = "ReposDate"
+        '
+        '_subaccount
+        '
+        Me._subaccount.Caption = "SubAccount"
+        Me._subaccount.ColumnEdit = Me.GSubAccount
+        Me._subaccount.FieldName = "SubAccount"
+        Me._subaccount.MinWidth = 27
+        Me._subaccount.Name = "_subaccount"
+        Me._subaccount.OptionsColumn.FixedWidth = True
+        Me._subaccount.Visible = True
+        Me._subaccount.VisibleIndex = 1
+        Me._subaccount.Width = 100
+        '
+        'GSubAccount
+        '
+        Me.GSubAccount.AutoHeight = False
+        Me.GSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.GSubAccount.Name = "GSubAccount"
+        '
+        '_account
+        '
+        Me._account.Caption = "Account"
+        Me._account.ColumnEdit = Me.GAccount
+        Me._account.FieldName = "Account"
+        Me._account.MinWidth = 27
+        Me._account.Name = "_account"
+        Me._account.OptionsColumn.FixedWidth = True
+        Me._account.Visible = True
+        Me._account.VisibleIndex = 2
+        Me._account.Width = 100
+        '
+        'GAccount
+        '
+        Me.GAccount.AutoHeight = False
+        Me.GAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.GAccount.Name = "GAccount"
+        '
+        '_description
+        '
+        Me._description.Caption = "Description"
+        Me._description.FieldName = "Description"
+        Me._description.MinWidth = 27
+        Me._description.Name = "_description"
+        Me._description.Visible = True
+        Me._description.VisibleIndex = 3
+        Me._description.Width = 333
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Nama"
+        Me.GridColumn6.MinWidth = 27
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Width = 100
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Tempat"
+        Me.GridColumn5.MinWidth = 27
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Width = 100
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Alamat"
+        Me.GridColumn4.MinWidth = 27
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Width = 100
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Jenis"
+        Me.GridColumn3.MinWidth = 27
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Width = 100
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Actual Amount"
+        Me.GridColumn2.ColumnEdit = Me.ReposActual
+        Me.GridColumn2.FieldName = "ActualAmount"
+        Me.GridColumn2.MinWidth = 27
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.FixedWidth = True
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.Width = 133
+        '
+        'ReposActual
+        '
+        Me.ReposActual.AutoHeight = False
+        Me.ReposActual.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.ReposActual.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ReposActual.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ReposActual.Name = "ReposActual"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "PaymentType"
+        Me.GridColumn7.ColumnEdit = Me.CPayTypeTransport
+        Me.GridColumn7.FieldName = "PaymentType"
+        Me.GridColumn7.MinWidth = 27
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Width = 100
+        '
+        'CPayTypeTransport
+        '
+        Me.CPayTypeTransport.AutoHeight = False
+        Me.CPayTypeTransport.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CPayTypeTransport.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
+        Me.CPayTypeTransport.Name = "CPayTypeTransport"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "CreditCardID"
+        Me.GridColumn8.FieldName = "CreditCardID"
+        Me.GridColumn8.MinWidth = 27
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Width = 100
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "CreditCardNumber"
+        Me.GridColumn9.FieldName = "CreditCardNumber"
+        Me.GridColumn9.MinWidth = 27
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Width = 100
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "AccountName"
+        Me.GridColumn10.FieldName = "AccountName"
+        Me.GridColumn10.MinWidth = 27
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Width = 100
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "BankName"
+        Me.GridColumn11.FieldName = "BankName"
+        Me.GridColumn11.MinWidth = 27
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Width = 100
+        '
+        'GAmount
+        '
+        Me.GAmount.AutoHeight = False
+        Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.GAmount.Name = "GAmount"
         '
         'LayoutControl1
         '
@@ -109,12 +327,12 @@ Partial Class FrmSuspendSettleDetailDirectCC
         Me.LayoutControl1.Controls.Add(Me.TxtCurrency)
         Me.LayoutControl1.Controls.Add(Me.TxtPaymentType)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
+        Me.LayoutControl1.Location = New System.Drawing.Point(4, 4)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1224, 116)
-        Me.LayoutControl1.TabIndex = 3
+        Me.LayoutControl1.Size = New System.Drawing.Size(1216, 116)
+        Me.LayoutControl1.TabIndex = 4
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'txtCCNumber
@@ -313,215 +531,24 @@ Partial Class FrmSuspendSettleDetailDirectCC
         Me.LayoutControlItem2.Text = "CC Number"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(85, 16)
         '
-        'Grid
-        '
-        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Location = New System.Drawing.Point(13, 151)
-        Me.Grid.MainView = Me.GridView1
-        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.GAmount, Me.GSubAccount, Me.GAccount, Me.ReposDate, Me.ReposActual, Me.CPayTypeTransport})
-        Me.Grid.Size = New System.Drawing.Size(1192, 587)
-        Me.Grid.TabIndex = 4
-        Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me._subaccount, Me._account, Me._description, Me.GridColumn6, Me.GridColumn5, Me.GridColumn4, Me.GridColumn3, Me.GridColumn2, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11})
-        Me.GridView1.DetailHeight = 458
-        Me.GridView1.FixedLineWidth = 3
-        Me.GridView1.GridControl = Me.Grid
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Date"
-        Me.GridColumn1.ColumnEdit = Me.ReposDate
-        Me.GridColumn1.FieldName = "Tgl"
-        Me.GridColumn1.MinWidth = 27
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.FixedWidth = True
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 133
-        '
-        'ReposDate
-        '
-        Me.ReposDate.AutoHeight = False
-        Me.ReposDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ReposDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ReposDate.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.ReposDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.ReposDate.EditFormat.FormatString = "dd-MM-yyyy"
-        Me.ReposDate.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.ReposDate.Mask.EditMask = "dd-MM-yyyy"
-        Me.ReposDate.Name = "ReposDate"
-        '
-        '_subaccount
-        '
-        Me._subaccount.Caption = "SubAccount"
-        Me._subaccount.ColumnEdit = Me.GSubAccount
-        Me._subaccount.FieldName = "SubAccount"
-        Me._subaccount.MinWidth = 27
-        Me._subaccount.Name = "_subaccount"
-        Me._subaccount.OptionsColumn.FixedWidth = True
-        Me._subaccount.Visible = True
-        Me._subaccount.VisibleIndex = 1
-        Me._subaccount.Width = 100
-        '
-        'GSubAccount
-        '
-        Me.GSubAccount.AutoHeight = False
-        Me.GSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.GSubAccount.Name = "GSubAccount"
-        '
-        '_account
-        '
-        Me._account.Caption = "Account"
-        Me._account.ColumnEdit = Me.GAccount
-        Me._account.FieldName = "Account"
-        Me._account.MinWidth = 27
-        Me._account.Name = "_account"
-        Me._account.OptionsColumn.FixedWidth = True
-        Me._account.Visible = True
-        Me._account.VisibleIndex = 2
-        Me._account.Width = 100
-        '
-        'GAccount
-        '
-        Me.GAccount.AutoHeight = False
-        Me.GAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.GAccount.Name = "GAccount"
-        '
-        '_description
-        '
-        Me._description.Caption = "Description"
-        Me._description.FieldName = "Description"
-        Me._description.MinWidth = 27
-        Me._description.Name = "_description"
-        Me._description.Visible = True
-        Me._description.VisibleIndex = 3
-        Me._description.Width = 333
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Nama"
-        Me.GridColumn6.MinWidth = 27
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Width = 100
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Tempat"
-        Me.GridColumn5.MinWidth = 27
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Width = 100
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Alamat"
-        Me.GridColumn4.MinWidth = 27
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Width = 100
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Jenis"
-        Me.GridColumn3.MinWidth = 27
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Width = 100
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Actual Amount"
-        Me.GridColumn2.ColumnEdit = Me.ReposActual
-        Me.GridColumn2.FieldName = "ActualAmount"
-        Me.GridColumn2.MinWidth = 27
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.OptionsColumn.FixedWidth = True
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 4
-        Me.GridColumn2.Width = 133
-        '
-        'ReposActual
-        '
-        Me.ReposActual.AutoHeight = False
-        Me.ReposActual.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ReposActual.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.ReposActual.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.ReposActual.Name = "ReposActual"
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "PaymentType"
-        Me.GridColumn7.ColumnEdit = Me.CPayTypeTransport
-        Me.GridColumn7.FieldName = "PaymentType"
-        Me.GridColumn7.MinWidth = 27
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Width = 100
-        '
-        'CPayTypeTransport
-        '
-        Me.CPayTypeTransport.AutoHeight = False
-        Me.CPayTypeTransport.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CPayTypeTransport.Items.AddRange(New Object() {"CASH", "CREDIT CARD"})
-        Me.CPayTypeTransport.Name = "CPayTypeTransport"
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "CreditCardID"
-        Me.GridColumn8.FieldName = "CreditCardID"
-        Me.GridColumn8.MinWidth = 27
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Width = 100
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "CreditCardNumber"
-        Me.GridColumn9.FieldName = "CreditCardNumber"
-        Me.GridColumn9.MinWidth = 27
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Width = 100
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "AccountName"
-        Me.GridColumn10.FieldName = "AccountName"
-        Me.GridColumn10.MinWidth = 27
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Width = 100
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "BankName"
-        Me.GridColumn11.FieldName = "BankName"
-        Me.GridColumn11.MinWidth = 27
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Width = 100
-        '
-        'GAmount
-        '
-        Me.GAmount.AutoHeight = False
-        Me.GAmount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.GAmount.Name = "GAmount"
-        '
-        'DxValidationProvider1
-        '
-        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
-        '
         'FrmSuspendSettleDetailDirectCC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(1224, 760)
-        Me.Controls.Add(Me.Grid)
-        Me.Controls.Add(Me.LayoutControl1)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "FrmSuspendSettleDetailDirectCC"
-        Me.Controls.SetChildIndex(Me.LayoutControl1, 0)
-        Me.Controls.SetChildIndex(Me.Grid, 0)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CPayTypeTransport, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.txtCCNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -544,21 +571,12 @@ Partial Class FrmSuspendSettleDetailDirectCC
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPaymentTypexx, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ReposDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ReposDate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GAccount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ReposActual, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CPayTypeTransport, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GAmount, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
+    Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents txtCCNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtPrNo As DevExpress.XtraEditors.TextEdit
@@ -601,5 +619,4 @@ Partial Class FrmSuspendSettleDetailDirectCC
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAmount As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
 End Class
