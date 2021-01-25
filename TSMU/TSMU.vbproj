@@ -398,6 +398,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsLaporan2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dataset\dsLaporan2.vb">
+      <DependentUpon>dsLaporan2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\mizuho.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2613,6 +2616,8 @@
     <Compile Include="Models\SoRegTemplateModel.vb" />
     <Compile Include="Models\TamScan.vb" />
     <Compile Include="Models\TMMINmodel.vb" />
+    <Compile Include="Models\TTI_Detail_Models.vb" />
+    <Compile Include="Models\TTI_Header_Models.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
     <Compile Include="Form\System\FrmSystem_FilterData.Designer.vb">
       <DependentUpon>FrmSystem_FilterData.vb</DependentUpon>
@@ -2763,6 +2768,18 @@
     <Compile Include="Payment\Frm_ScanFP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice.Designer.vb">
+      <DependentUpon>Frm_TT_Invoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice_Detail.Designer.vb">
+      <DependentUpon>Frm_TT_Invoice_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\Frm_UploadToSolomon.Designer.vb">
       <DependentUpon>Frm_UploadToSolomon.vb</DependentUpon>
     </Compile>
@@ -2780,6 +2797,30 @@
     </Compile>
     <Compile Include="Payment\PaymentReceivedDetails.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI.Designer.vb">
+      <DependentUpon>DXReportTTI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI2.Designer.vb">
+      <DependentUpon>DXReportTTI2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI2.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI3.Designer.vb">
+      <DependentUpon>DXReportTTI3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI3.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI4.Designer.vb">
+      <DependentUpon>DXReportTTI4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI4.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Payment\ReportPayment\DXReport_UploadToSolomon.Designer.vb">
       <DependentUpon>DXReport_UploadToSolomon.vb</DependentUpon>
@@ -3954,6 +3995,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_pph_ar2.resx">
       <DependentUpon>frm_pph_ar2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_TT_Invoice.resx">
+      <DependentUpon>Frm_TT_Invoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_TT_Invoice_Detail.resx">
+      <DependentUpon>Frm_TT_Invoice_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI.resx">
+      <DependentUpon>DXReportTTI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI2.resx">
+      <DependentUpon>DXReportTTI2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI3.resx">
+      <DependentUpon>DXReportTTI3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI4.resx">
+      <DependentUpon>DXReportTTI4.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.resx">
       <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>

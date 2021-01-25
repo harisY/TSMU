@@ -670,6 +670,8 @@ Public Class frmReport_BoM
         Invoke(Sub()
                    PBMultiLevel.Visible = False
                    If GridView2.RowCount > 0 Then
+                       GridView2.Columns(1).Visible = False
+                       GridView2.Columns(2).Visible = False
                        GridView2.BestFitColumns()
                    End If
                End Sub)
