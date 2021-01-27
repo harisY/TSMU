@@ -739,7 +739,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Qty.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Qty.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Qty.Visible = True
-        Me.Qty.VisibleIndex = 8
+        Me.Qty.VisibleIndex = 7
         Me.Qty.Width = 37
         '
         'C_Qty
@@ -764,7 +764,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Price.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Price.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Price.Visible = True
-        Me.Price.VisibleIndex = 10
+        Me.Price.VisibleIndex = 9
         Me.Price.Width = 108
         '
         'C_Price
@@ -787,7 +787,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotal.OptionsColumn.AllowEdit = False
         Me.PTotal.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotal.Visible = True
-        Me.PTotal.VisibleIndex = 12
+        Me.PTotal.VisibleIndex = 11
         Me.PTotal.Width = 120
         '
         'C_Amount_Barang
@@ -807,7 +807,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Curr.Name = "Curr"
         Me.Curr.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Curr.Visible = True
-        Me.Curr.VisibleIndex = 9
+        Me.Curr.VisibleIndex = 8
         Me.Curr.Width = 36
         '
         'CurrRepository
@@ -827,7 +827,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Rate.OptionsColumn.AllowEdit = False
         Me.Rate.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Rate.Visible = True
-        Me.Rate.VisibleIndex = 11
+        Me.Rate.VisibleIndex = 10
         Me.Rate.Width = 58
         '
         'Account
@@ -869,8 +869,6 @@ Partial Class Frm_CR_UserCreateDetail
         Me.Remaining.Name = "Remaining"
         Me.Remaining.OptionsColumn.AllowEdit = False
         Me.Remaining.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
-        Me.Remaining.Visible = True
-        Me.Remaining.VisibleIndex = 7
         Me.Remaining.Width = 103
         '
         'GridColumn1
@@ -909,7 +907,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.PTotalRP.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PTotalRP.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total IDR", "{0:N2}")})
         Me.PTotalRP.Visible = True
-        Me.PTotalRP.VisibleIndex = 13
+        Me.PTotalRP.VisibleIndex = 12
         Me.PTotalRP.Width = 153
         '
         'TotalIdr
@@ -926,7 +924,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn5.FieldName = "Note"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 17
+        Me.GridColumn5.VisibleIndex = 16
         Me.GridColumn5.Width = 325
         '
         'GridColumn10
@@ -945,7 +943,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.[Boolean]
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 14
+        Me.GridColumn11.VisibleIndex = 13
         '
         'Check_OK
         '
@@ -963,7 +961,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.[Boolean]
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 15
+        Me.GridColumn12.VisibleIndex = 14
         '
         'Check_Rev
         '
@@ -981,7 +979,7 @@ Partial Class Frm_CR_UserCreateDetail
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.UnboundType = DevExpress.Data.UnboundColumnType.[Boolean]
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 16
+        Me.GridColumn13.VisibleIndex = 15
         '
         'Check_Del
         '
@@ -1291,8 +1289,6 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.GridColumn15.FieldName = "User_id"
         Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 3
         '
         'GridColumn17
         '
