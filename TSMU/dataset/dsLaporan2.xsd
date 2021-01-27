@@ -148,6 +148,25 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="TTI" msprop:Generator_TableClassName="TTIDataTable" msprop:Generator_TableVarName="tableTTI" msprop:Generator_RowChangedName="TTIRowChanged" msprop:Generator_TablePropName="TTI" msprop:Generator_RowDeletingName="TTIRowDeleting" msprop:Generator_RowChangingName="TTIRowChanging" msprop:Generator_RowEvHandlerName="TTIRowChangeEventHandler" msprop:Generator_RowDeletedName="TTIRowDeleted" msprop:Generator_RowClassName="TTIRow" msprop:Generator_UserTableName="TTI" msprop:Generator_RowEvArgName="TTIRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="vrno" msprop:Generator_ColumnVarNameInTable="columnvrno" msprop:Generator_ColumnPropNameInRow="vrno" msprop:Generator_ColumnPropNameInTable="vrnoColumn" msprop:Generator_UserColumnName="vrno" type="xs:string" minOccurs="0" />
+              <xs:element name="tgl" msprop:Generator_ColumnVarNameInTable="columntgl" msprop:Generator_ColumnPropNameInRow="tgl" msprop:Generator_ColumnPropNameInTable="tglColumn" msprop:Generator_UserColumnName="tgl" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CustID" msprop:Generator_ColumnVarNameInTable="columnCustID" msprop:Generator_ColumnPropNameInRow="CustID" msprop:Generator_ColumnPropNameInTable="CustIDColumn" msprop:Generator_UserColumnName="CustID" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_UserColumnName="CustomerName" type="xs:string" minOccurs="0" />
+              <xs:element name="No_Invoice" msprop:Generator_ColumnVarNameInTable="columnNo_Invoice" msprop:Generator_ColumnPropNameInRow="No_Invoice" msprop:Generator_ColumnPropNameInTable="No_InvoiceColumn" msprop:Generator_UserColumnName="No_Invoice" type="xs:string" minOccurs="0" />
+              <xs:element name="Tgl_Invoice" msprop:Generator_ColumnVarNameInTable="columnTgl_Invoice" msprop:Generator_ColumnPropNameInRow="Tgl_Invoice" msprop:Generator_ColumnPropNameInTable="Tgl_InvoiceColumn" msprop:Generator_UserColumnName="Tgl_Invoice" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="No_Faktur" msprop:Generator_ColumnVarNameInTable="columnNo_Faktur" msprop:Generator_ColumnPropNameInRow="No_Faktur" msprop:Generator_ColumnPropNameInTable="No_FakturColumn" msprop:Generator_UserColumnName="No_Faktur" type="xs:string" minOccurs="0" />
+              <xs:element name="CuryID" msprop:Generator_ColumnVarNameInTable="columnCuryID" msprop:Generator_ColumnPropNameInRow="CuryID" msprop:Generator_ColumnPropNameInTable="CuryIDColumn" msprop:Generator_UserColumnName="CuryID" type="xs:string" minOccurs="0" />
+              <xs:element name="Jml_Invoice" msprop:Generator_ColumnVarNameInTable="columnJml_Invoice" msprop:Generator_ColumnPropNameInRow="Jml_Invoice" msprop:Generator_ColumnPropNameInTable="Jml_InvoiceColumn" msprop:Generator_UserColumnName="Jml_Invoice" type="xs:double" minOccurs="0" />
+              <xs:element name="Dpp" msprop:Generator_ColumnVarNameInTable="columnDpp" msprop:Generator_ColumnPropNameInRow="Dpp" msprop:Generator_ColumnPropNameInTable="DppColumn" msprop:Generator_UserColumnName="Dpp" type="xs:double" minOccurs="0" />
+              <xs:element name="Ppn" msprop:Generator_ColumnVarNameInTable="columnPpn" msprop:Generator_ColumnPropNameInRow="Ppn" msprop:Generator_ColumnPropNameInTable="PpnColumn" msprop:Generator_UserColumnName="Ppn" type="xs:double" minOccurs="0" />
+              <xs:element name="Pph" msprop:Generator_ColumnVarNameInTable="columnPph" msprop:Generator_ColumnPropNameInRow="Pph" msprop:Generator_ColumnPropNameInTable="PphColumn" msprop:Generator_UserColumnName="Pph" type="xs:double" minOccurs="0" />
+              <xs:element name="NoPO" msprop:Generator_ColumnVarNameInTable="columnNoPO" msprop:Generator_ColumnPropNameInRow="NoPO" msprop:Generator_ColumnPropNameInTable="NoPOColumn" msprop:Generator_UserColumnName="NoPO" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>
