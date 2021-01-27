@@ -1617,6 +1617,12 @@
       <DependentUpon>RptCirculation_OtherDept.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\TestEmail.Designer.vb">
+      <DependentUpon>TestEmail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\TestEmail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\baseForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -3564,6 +3570,9 @@
     <EmbeddedResource Include="Form\Circulation\Report\RptCirculation_OtherDept.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptCirculation_OtherDept.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\TestEmail.resx">
+      <DependentUpon>TestEmail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>

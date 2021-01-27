@@ -2137,7 +2137,7 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub Frm_NPP_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        'komentar
         Call CreateTableBarang()
         Call FillComboCustomer()
         Call FillComboCategory()

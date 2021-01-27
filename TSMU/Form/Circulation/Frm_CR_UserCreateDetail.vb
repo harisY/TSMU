@@ -4054,4 +4054,8 @@ Public Class Frm_CR_UserCreateDetail
 
 
     End Sub
+
+    Private Sub Grid5_Click(sender As Object, e As EventArgs) Handles Grid5.Click
+
+    End Sub
 End Class

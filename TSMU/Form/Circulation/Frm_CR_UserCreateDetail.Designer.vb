@@ -1291,6 +1291,8 @@ Partial Class Frm_CR_UserCreateDetail
         '
         Me.GridColumn15.FieldName = "User_id"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 3
         '
         'GridColumn17
         '
