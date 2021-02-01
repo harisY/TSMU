@@ -413,6 +413,8 @@
             MainModul.ExecQuery_Solomon(ls_SP)
             Dim ls_SP2 As String = "DELETE FROM cashbank2 WHERE Noref =" & QVal(NoBukti) & ""
             MainModul.ExecQuery_Solomon(ls_SP2)
+            Dim ls_SP3 As String = "DELETE FROM cashbank WHERE Noref =" & QVal(NoBukti) & ""
+            MainModul.ExecQuery_Solomon(ls_SP3)
         Catch ex As Exception
             Throw
         End Try
