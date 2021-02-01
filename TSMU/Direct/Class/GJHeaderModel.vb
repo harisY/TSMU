@@ -661,9 +661,6 @@ Public Class GJHeaderModel
 
                         DeleteHeaderR(_GJID_Revers)
 
-
-
-
                     Catch ex As Exception
 
                         Throw
