@@ -1092,6 +1092,48 @@ Module MainModul
         End Try
     End Function
 
+
+
+    Public Function GetDataSetByCommand_SPds2(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan2
+        Dim da As SqlDataAdapter = Nothing
+        Dim dsa As New dsLaporan2
+        Try
+            If gh_Trans IsNot Nothing AndAlso gh_Trans.Command IsNot Nothing Then
+                gh_Trans.Command.CommandType = CommandType.StoredProcedure
+                gh_Trans.Command.CommandText = pQuery
+                gh_Trans.Command.CommandTimeout = pTimeOut
+                gh_Trans.Command.Parameters.Clear()
+                If pParam IsNot Nothing Then
+                    For i As Integer = 0 To pParam.Length - 1
+                        gh_Trans.Command.Parameters.Add(pParam(i))
+                    Next
+                End If
+                da = New SqlClient.SqlDataAdapter(gh_Trans.Command)
+                da.Fill(dsa)
+            Else
+                Using conn As New SqlClient.SqlConnection
+                    conn.ConnectionString = GetConnStringSolomon()
+                    Dim cmd As New SqlCommand
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = pQuery
+                    cmd.CommandTimeout = pTimeOut
+                    cmd.Connection = conn
+                    If pParam IsNot Nothing Then
+                        For i As Integer = 0 To pParam.Length - 1
+                            cmd.Parameters.Add(pParam(i))
+                        Next
+                    End If
+                    conn.Open()
+                    da = New SqlDataAdapter(cmd)
+                    da.Fill(dsa, dtTable)
+                End Using
+            End If
+            da = Nothing
+            Return dsa
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Function GetDataSetByCommand_StoreP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan

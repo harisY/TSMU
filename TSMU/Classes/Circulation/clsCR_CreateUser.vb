@@ -338,6 +338,19 @@ Public Class ClsCR_CreateUser
             Throw
         End Try
     End Function
+
+    Public Function Email_test() As DataTable
+        Try
+            Dim query As String = "Select Email From EmailTest"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function Get_Other_DeptID() As DataTable
         Try
             Dim query As String = "[CR_Get_Other_DeptID]"
@@ -972,6 +985,7 @@ Public Class ClsCR_CreateUser
                         Next
 
                         MyMailMessage.CC.Add("log@tsmu.co.id")
+                        MyMailMessage.CC.Add("miftah-mis@tsmu.co.id")
                         MyMailMessage.Subject = "SIRKULASI BARU No ' " + NoSirkulasi + "'"
 
                         Dim SMTP As New SmtpClient("mail.tsmu.co.id")

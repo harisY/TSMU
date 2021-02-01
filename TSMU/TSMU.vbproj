@@ -242,6 +242,7 @@
     <Compile Include="Classes\ClsDashbard.vb" />
     <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
     <Compile Include="Classes\ComboBoxObj.vb" />
+    <Compile Include="Classes\EBUDGET\Cls_eBudget.vb" />
     <Compile Include="Classes\MenuManager.vb" />
     <Compile Include="Classes\Page1Interface.vb" />
     <Compile Include="Classes\Npwo\Cls_NPP_Detail.vb" />
@@ -395,6 +396,9 @@
     <Compile Include="dataset\dsLaporan2.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>dsLaporan2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dataset\dsLaporan2.vb">
       <DependentUpon>dsLaporan2.xsd</DependentUpon>
     </Compile>
     <Compile Include="dataset\mizuho.Designer.vb">
@@ -1613,6 +1617,12 @@
       <DependentUpon>RptCirculation_OtherDept.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form\Circulation\TestEmail.Designer.vb">
+      <DependentUpon>TestEmail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Circulation\TestEmail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\baseForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -2017,6 +2027,12 @@
       <DependentUpon>frmScanDN.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\CustomForm\frmScanDN.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\EBudget\Frm_EBudget.Designer.vb">
+      <DependentUpon>Frm_EBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\EBudget\Frm_EBudget.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\NPP\Frm_Approve_Dept_Head.Designer.vb">
@@ -2606,6 +2622,8 @@
     <Compile Include="Models\SoRegTemplateModel.vb" />
     <Compile Include="Models\TamScan.vb" />
     <Compile Include="Models\TMMINmodel.vb" />
+    <Compile Include="Models\TTI_Detail_Models.vb" />
+    <Compile Include="Models\TTI_Header_Models.vb" />
     <Compile Include="Moduls\ThreadHelperClass.vb" />
     <Compile Include="Form\System\FrmSystem_FilterData.Designer.vb">
       <DependentUpon>FrmSystem_FilterData.vb</DependentUpon>
@@ -2756,6 +2774,18 @@
     <Compile Include="Payment\Frm_ScanFP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice.Designer.vb">
+      <DependentUpon>Frm_TT_Invoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice_Detail.Designer.vb">
+      <DependentUpon>Frm_TT_Invoice_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\Frm_TT_Invoice_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\Frm_UploadToSolomon.Designer.vb">
       <DependentUpon>Frm_UploadToSolomon.vb</DependentUpon>
     </Compile>
@@ -2773,6 +2803,30 @@
     </Compile>
     <Compile Include="Payment\PaymentReceivedDetails.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI.Designer.vb">
+      <DependentUpon>DXReportTTI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI2.Designer.vb">
+      <DependentUpon>DXReportTTI2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI2.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI3.Designer.vb">
+      <DependentUpon>DXReportTTI3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI3.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI4.Designer.vb">
+      <DependentUpon>DXReportTTI4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\DXReportTTI4.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Payment\ReportPayment\DXReport_UploadToSolomon.Designer.vb">
       <DependentUpon>DXReport_UploadToSolomon.vb</DependentUpon>
@@ -3517,6 +3571,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptCirculation_OtherDept.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Circulation\TestEmail.resx">
+      <DependentUpon>TestEmail.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
@@ -3555,6 +3612,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\CustomForm\frmDRRAttach.resx">
       <DependentUpon>frmDRRAttach.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\EBudget\Frm_EBudget.resx">
+      <DependentUpon>Frm_EBudget.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_Approve_Dept_Head.resx">
       <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
@@ -3944,6 +4004,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\frm_pph_ar2.resx">
       <DependentUpon>frm_pph_ar2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_TT_Invoice.resx">
+      <DependentUpon>Frm_TT_Invoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\Frm_TT_Invoice_Detail.resx">
+      <DependentUpon>Frm_TT_Invoice_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI.resx">
+      <DependentUpon>DXReportTTI.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI2.resx">
+      <DependentUpon>DXReportTTI2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI3.resx">
+      <DependentUpon>DXReportTTI3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI4.resx">
+      <DependentUpon>DXReportTTI4.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.resx">
       <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
