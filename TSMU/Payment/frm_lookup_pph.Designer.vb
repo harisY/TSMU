@@ -146,7 +146,7 @@ Partial Class frm_lookup_pph
         '_TxtNilaiPPh
         '
         Me._TxtNilaiPPh.EditValue = "0"
-        Me._TxtNilaiPPh.Location = New System.Drawing.Point(95, 180)
+        Me._TxtNilaiPPh.Location = New System.Drawing.Point(95, 156)
         Me._TxtNilaiPPh.Name = "_TxtNilaiPPh"
         Me._TxtNilaiPPh.Properties.Appearance.Options.UseTextOptions = True
         Me._TxtNilaiPPh.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -161,7 +161,7 @@ Partial Class frm_lookup_pph
         '_TxtNoBuktiPot
         '
         Me._TxtNoBuktiPot.EditValue = ""
-        Me._TxtNoBuktiPot.Location = New System.Drawing.Point(95, 248)
+        Me._TxtNoBuktiPot.Location = New System.Drawing.Point(95, 224)
         Me._TxtNoBuktiPot.Name = "_TxtNoBuktiPot"
         Me._TxtNoBuktiPot.Properties.ReadOnly = True
         Me._TxtNoBuktiPot.Size = New System.Drawing.Size(209, 20)
@@ -271,7 +271,7 @@ Partial Class frm_lookup_pph
         '
         '_TxtKetDPP
         '
-        Me._TxtKetDPP.Location = New System.Drawing.Point(95, 204)
+        Me._TxtKetDPP.Location = New System.Drawing.Point(95, 180)
         Me._TxtKetDPP.Name = "_TxtKetDPP"
         Me._TxtKetDPP.Size = New System.Drawing.Size(507, 16)
         Me._TxtKetDPP.StyleController = Me.LayoutControl1
@@ -279,11 +279,12 @@ Partial Class frm_lookup_pph
         '
         '_TxtLokasi
         '
-        Me._TxtLokasi.Location = New System.Drawing.Point(95, 156)
+        Me._TxtLokasi.EditValue = "TSC-TNG"
+        Me._TxtLokasi.Location = New System.Drawing.Point(95, 248)
         Me._TxtLokasi.Name = "_TxtLokasi"
         Me._TxtLokasi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TxtLokasi.Properties.Items.AddRange(New Object() {"TSC-TNG", "TSC-CKR"})
-        Me._TxtLokasi.Size = New System.Drawing.Size(507, 20)
+        Me._TxtLokasi.Size = New System.Drawing.Size(209, 20)
         Me._TxtLokasi.StyleController = Me.LayoutControl1
         Me._TxtLokasi.TabIndex = 15
         ConditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank
@@ -316,10 +317,10 @@ Partial Class frm_lookup_pph
         '
         'txt_jenisdokumen
         '
-        Me.txt_jenisdokumen.Location = New System.Drawing.Point(95, 224)
+        Me.txt_jenisdokumen.Location = New System.Drawing.Point(95, 200)
         Me.txt_jenisdokumen.Name = "txt_jenisdokumen"
         Me.txt_jenisdokumen.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txt_jenisdokumen.Properties.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08"})
+        Me.txt_jenisdokumen.Properties.Items.AddRange(New Object() {"01 - Faktur Pajak", "02 - Invoice", "03 - Pengumuman", "04 - Surat Perjanjian", "05 - Biaya Pembayaran", "06 - Akta Perikatan", "07 - Akta RUPS", "08 - Surat Pernyataan"})
         Me.txt_jenisdokumen.Size = New System.Drawing.Size(507, 20)
         Me.txt_jenisdokumen.StyleController = Me.LayoutControl1
         Me.txt_jenisdokumen.TabIndex = 19
@@ -328,7 +329,7 @@ Partial Class frm_lookup_pph
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem13})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem13, Me.LayoutControlItem12})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(614, 280)
         Me.LayoutControlGroup1.TextVisible = False
@@ -345,9 +346,9 @@ Partial Class frm_lookup_pph
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(296, 236)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(296, 212)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(298, 24)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(298, 48)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
@@ -443,16 +444,17 @@ Partial Class frm_lookup_pph
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me._TxtLokasi
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 144)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 236)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(594, 24)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(296, 24)
         Me.LayoutControlItem12.Text = "Cabang/Lokasi"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(80, 13)
+        Me.LayoutControlItem12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem14
         '
         Me.LayoutControlItem14.Control = Me._TxtNilaiPPh
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 168)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 144)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
         Me.LayoutControlItem14.Size = New System.Drawing.Size(594, 24)
         Me.LayoutControlItem14.Text = "Nilai PPh"
@@ -461,7 +463,7 @@ Partial Class frm_lookup_pph
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me._TxtKetDPP
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 192)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
         Me.LayoutControlItem15.Size = New System.Drawing.Size(594, 20)
         Me.LayoutControlItem15.Text = "Keterangan"
@@ -470,7 +472,7 @@ Partial Class frm_lookup_pph
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.txt_jenisdokumen
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 212)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 188)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
         Me.LayoutControlItem16.Size = New System.Drawing.Size(594, 24)
         Me.LayoutControlItem16.Text = "Jenis Dokumen"
@@ -479,7 +481,7 @@ Partial Class frm_lookup_pph
         'LayoutControlItem13
         '
         Me.LayoutControlItem13.Control = Me._TxtNoBuktiPot
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 236)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 212)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
         Me.LayoutControlItem13.Size = New System.Drawing.Size(296, 24)
         Me.LayoutControlItem13.Text = "No. Bukti Potong"
