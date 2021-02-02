@@ -284,6 +284,32 @@
 
         End Try
     End Function
+    Public Function autononbx() As String
+        Try
+            Dim bl As String
+            Dim th As String
+            th = Microsoft.VisualBasic.Left(Perpost, 4)
+            bl = Microsoft.VisualBasic.Right(Perpost, 2)
+
+            Dim auto2 As String
+            Dim sql As String = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+                 "set @bulan = " & QVal(bl) &
+                "set @tahun =  " & QVal(th) &
+                "set @seq= (select right('0000'+cast(right(rtrim(max(nobukti)),4)+1 as varchar),4) " &
+                "from cashbank2 " &
+                "where SUBSTRING(nobukti,4,4) = RIGHT(@tahun,4) AND SUBSTRING(nobukti,9,2) = RIGHT(@bulan,2)) " &
+                "select 'VC' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            auto2 = dt.Rows(0).Item(0).ToString
+            Return auto2
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
     Public Function GetDataGrid() As DataTable
         Try
             Dim dt As New DataTable
