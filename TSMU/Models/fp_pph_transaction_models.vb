@@ -16,7 +16,7 @@ Public Class fp_pph_transaction_models
     Public Property Tarif As Double
     Public Property Tot_Dpp_Invoice As Double
     Public Property Tot_Pph As Double
-    Public Property JenisDokumen As Double
+    Public Property JenisDokumen As String
 
     Private ObjPPHHeader As New fp_pph_header_models
     Private ObjPPHDetail As New fp_pph_detail_models
