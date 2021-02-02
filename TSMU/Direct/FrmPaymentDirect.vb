@@ -1586,7 +1586,6 @@ Public Class FrmPaymentDirect
 
                 ObjDetails.UpdateSettleTravel_hapus()
             ElseIf transaksi = "AdvanceTravel" Then
-
                 ObjDetails.UpdateAdvanceTravel_hapus()
             End If
             ObjDetails.Delete()

@@ -534,10 +534,10 @@ Public Class frmForecast_PO
                             .BulanAngka = BulanAngka
                             .InsertData1()
 
-                            SplashScreenManager.CloseForm()
                             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                             LoadGrid()
                         End With
+                        SplashScreenManager.CloseForm()
                         'ObjForecast.UpdateDataByBulanNew(Bulan)
                     End If
                 End If

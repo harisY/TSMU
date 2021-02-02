@@ -4,6 +4,18 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports System.Configuration
+Imports System.Data.OleDb
+
+Imports System.Web.UI.WebControls
+Imports DevExpress.Utils
+
+Imports DevExpress.XtraGrid.Views.Base.ViewInfo
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+Imports DevExpress.XtraPrinting
+Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraSplashScreen
+Imports DevExpress.LookAndFeel
 Imports TSMU
 Public Class FrmBankReceipt_Detail
     Public IsClosed As Boolean = False
@@ -31,7 +43,32 @@ Public Class FrmBankReceipt_Detail
     Dim fs_kode4 As String
     Dim sts_screen2 As Byte
     Dim _Tag As TagModel
+    Dim PrintTool As ReportPrintTool
+    Dim _Service As ReceiptModel
+    Public Overrides Sub Proc_Print()
+        Try
+            _Service = New ReceiptModel
+            Dim ds As DataSet = New DataSet
+            ds = _Service.PrintReport(TxtNoBukti.Text)
 
+
+            Dim Laporan As New DxReceipt()
+            With Laporan
+                .DataSource = ds.Tables("bankreceipt")
+            End With
+                PrintTool = New ReportPrintTool(Laporan)
+
+
+
+
+
+            TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+            'PrintTool.ShowPreviewDialog()
+            PrintTool.ShowPreview(UserLookAndFeel.Default)
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
 
     Public Sub New(ByVal strCode As String,
                    ByVal strCode2 As String,
@@ -329,7 +366,8 @@ Public Class FrmBankReceipt_Detail
     End Sub
 
     Private Sub FrmBankReceipt_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, True, True)
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, True, True)
+        ''  Call Proc_EnableButtons(True, False, True, True, False, False, False, True, False, False, False, True)
         Call InitialSetForm()
     End Sub
 

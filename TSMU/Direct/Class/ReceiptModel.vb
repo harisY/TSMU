@@ -57,6 +57,19 @@
         End Try
     End Sub
 
+    Public Function PrintReport(Id As String) As DataSet
+        Try
+            Dim ds As dsLaporan2
+            Dim Sql As String = "Receipt_PrintReport"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@Id", SqlDbType.VarChar)
+            pParam(0).Value = Id
+            ds = GetDataSetByCommand_SPds2(Sql, "bankreceipt", pParam)
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub InsertToTable2()
         Try
 
@@ -264,7 +277,7 @@
         Try
             Dim ls_SP As String = "DELETE FROM [bankreceipt] WHERE NoBukti =" & QVal(NoBukti) & ""
             MainModul.ExecQuery_Solomon(ls_SP)
-            Dim ls_SP1 As String = "DELETE FROM [cashbank2] INNER JOIN cashbank ON cashbank.NoBukti=cashbank2.NoBukti WHERE cashbank.Noref =" & QVal(NoBukti) & ""
+            Dim ls_SP1 As String = "DELETE [cashbank2]  FROM [cashbank2] INNER JOIN cashbank ON cashbank.NoBukti=cashbank2.NoBukti WHERE cashbank.Noref =" & QVal(NoBukti) & ""
             MainModul.ExecQuery_Solomon(ls_SP1)
             Dim ls_SP2 As String = "DELETE FROM [cashbank] WHERE Noref =" & QVal(NoBukti) & ""
             MainModul.ExecQuery_Solomon(ls_SP2)

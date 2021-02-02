@@ -63,9 +63,9 @@ Partial Class Frm_TT_Invoice_Detail
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckedComboBoxEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtTotalAmountAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -594,16 +594,6 @@ Partial Class Frm_TT_Invoice_Detail
         Me.RepositoryItemCheckEdit2.AutoHeight = False
         Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
         '
-        'RepositoryItemCheckedComboBoxEdit1
-        '
-        Me.RepositoryItemCheckedComboBoxEdit1.AutoHeight = False
-        Me.RepositoryItemCheckedComboBoxEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemCheckedComboBoxEdit1.Name = "RepositoryItemCheckedComboBoxEdit1"
-        '
-        'DxValidationProvider1
-        '
-        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
-        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "NoPO"
@@ -613,6 +603,16 @@ Partial Class Frm_TT_Invoice_Detail
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 3
         Me.GridColumn3.Width = 94
+        '
+        'RepositoryItemCheckedComboBoxEdit1
+        '
+        Me.RepositoryItemCheckedComboBoxEdit1.AutoHeight = False
+        Me.RepositoryItemCheckedComboBoxEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemCheckedComboBoxEdit1.Name = "RepositoryItemCheckedComboBoxEdit1"
+        '
+        'DxValidationProvider1
+        '
+        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
         'Frm_TT_Invoice_Detail
         '
