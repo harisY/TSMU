@@ -275,8 +275,11 @@ Public Class FrmBankReceipt_Detail
 
 
             If isUpdate = False Then
+
                 fc_Class.Insert()
-                fc_Class.NoVouch = fc_Class.autononb()
+                fc_Class.Perpost = _TxtPerpost.Text
+                '                fc_Class.NoVouch = fc_Class.autononb()
+                fc_Class.NoVouch = fc_Class.autononbx()
                 fc_Class.InsertToTable2()
                 fc_Class.InsertToTable3()
             Else
