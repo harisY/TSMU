@@ -26,8 +26,10 @@ Public Class frmReport_Forecast_PO
             service = New clsReport
             dtGrid = New DataTable
             dtGrid = service.POForecastByMonth_report(_CmbTahun.Text, TxtBulan.Text, TxtCustomer.Text)
+            GridPO.DataSource = Nothing
+            GridView1.Columns.Clear()
+            GridPO.DataSource = dtGrid
             If dtGrid.Rows.Count > 0 Then
-                GridPO.DataSource = dtGrid
                 With GridView1
                     .BestFitColumns()
                 End With
@@ -47,7 +49,7 @@ Public Class frmReport_Forecast_PO
     Public Overrides Sub Proc_Refresh()
         Try
             If _CmbTahun.EditValue = "" Then
-                Throw New Exception("SIlahkan pilih tahun !")
+                Throw New Exception("Silahkan pilih tahun !")
             End If
             If TxtBulan.Text = "" Then
                 TxtBulan.Focus()
@@ -73,7 +75,7 @@ Public Class frmReport_Forecast_PO
 
     End Sub
 
-    Private Sub GridPO_MouseDown(sender As Object, e As MouseEventArgs) Handles GridPO.MouseDown
+    Private Sub GridPO_MouseDown(sender As Object, e As MouseEventArgs)
         'If e.Button = System.Windows.Forms.MouseButtons.Right Then
         '    ContextMenuStrip1.Show(e.Location)
         'End If
@@ -101,13 +103,16 @@ Public Class frmReport_Forecast_PO
     End Sub
 
     Private Sub TxtBulan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtBulan.KeyPress
-        'Dim tmp As System.Windows.Forms.KeyPressEventArgs = e
-        'If e.KeyChar = ChrW(Keys.Enter) Then
-        '    If TxtBulan.Text <> "" AndAlso TxtCustomer.Text <> "" Then
-        '        LoadGrid()
-        '    End If
-        'End If
         e.Handled = True
+    End Sub
+
+    Private Sub TxtCustomer_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtCustomer.KeyPress
+        'Dim tmp As System.Windows.Forms.KeyPressEventArgs = e
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            If TxtBulan.Text <> "" AndAlso TxtCustomer.Text <> "" AndAlso _CmbTahun.Text <> "" Then
+                LoadGrid()
+            End If
+        End If
     End Sub
 
 End Class
