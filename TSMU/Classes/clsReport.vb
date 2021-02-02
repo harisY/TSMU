@@ -562,7 +562,26 @@
             dt = GetDataTableByCommand_SP(query, pParam)
             Return dt
         Catch ex As Exception
-            Throw
+            Throw ex
+        End Try
+
+    End Function
+    Public Function POForecastByMonth_report(Tahun As String, Bulan As String, Customer As String) As DataTable
+        Try
+            Dim query As String = "t_forecastPrice_getReportByMonth"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Tahun
+            pParam(1) = New SqlClient.SqlParameter("@Bulan", SqlDbType.VarChar)
+            pParam(1).Value = Bulan
+            pParam(2) = New SqlClient.SqlParameter("@CustId", SqlDbType.VarChar)
+            pParam(2).Value = Customer
+
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
         End Try
 
     End Function
@@ -596,7 +615,7 @@
             ds = GetDataSetByCommand_SP(query, "SalesForecastTable", pParam)
             Return ds
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
 
     End Function

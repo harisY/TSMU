@@ -2227,6 +2227,12 @@
     <Compile Include="Form\Report\FrmReport_Matome_New.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_Forecast_PO.Designer.vb">
+      <DependentUpon>frmReport_Forecast_PO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Forecast_PO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_SalesPrice.Designer.vb">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
     </Compile>
@@ -3716,6 +3722,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\FrmReport_Matome_New.resx">
       <DependentUpon>FrmReport_Matome_New.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_Forecast_PO.resx">
+      <DependentUpon>frmReport_Forecast_PO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_SalesPrice.resx">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
