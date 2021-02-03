@@ -25,7 +25,7 @@ Public Class frmBoM
         'Dim dtGrid As New DataTable
         'dtGrid = Grid.DataSource
         'FilterData = New FrmSystem_FilterData(dtGrid)
-        Call Proc_EnableButtons(True, False, False, True, True, False, False, False, True, True, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, True, True, False, False)
     End Sub
     Private Sub LoadGrid()
         Try
@@ -323,6 +323,35 @@ Public Class frmBoM
 
         Call LoadGrid()
     End Sub
+    Public Overrides Sub Proc_DeleteData()
+        Try
+            bomid = String.Empty
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    bomid = GridView1.GetRowCellValue(rowHandle, "BOM ID")
+                End If
+            Next rowHandle
+
+            If gh_Common.Group = "NPD TANGERANG" OrElse gh_Common.Group = "NPD CIKARANG" Then
+                If bomid = "" Then
+                    Throw New Exception("Pilih BOM yang akan di hapus.")
+                End If
+                If bomid.Substring(0, 1).ToLower = "p" Then
+                    fc_ClassBoM.BoMID = bomid
+                    fc_ClassBoM.DeleteData()
+                    ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+                    LoadGrid()
+                Else
+                    Throw New Exception("BOM Regular tidak bisa di hapus")
+                End If
+            Else
+                Throw New Exception("Anda tidak punya akses untuk hapus BOM")
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
@@ -398,36 +427,36 @@ Public Class frmBoM
         End Try
     End Sub
     Private Sub ImportBomToUpdateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportBomToUpdateToolStripMenuItem.Click
-        Try
-            Dim dt As New DataTable
-            Dim Filename As String = String.Empty
-            Dim Dial As New OpenFileDialog
-            Dial.Filter = "Excel Files|*.xls;*.xlsx"
-            Dim result As DialogResult = Dial.ShowDialog()
-            If result = System.Windows.Forms.DialogResult.OK Then
-                dt = ExcelToDatatable(Dial.FileName, "BOM HEADER")
-            End If
-            SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
-            SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
-            BomHeader.BoMTempCollection.Clear()
-            For Each row As DataRow In dt.Rows
-                BoMHTempt = New BoM_Temp
-                With BoMHTempt
-                    .InvtID = row("InvID")
-                End With
-                BomHeader.BoMTempCollection.Add(BoMHTempt)
-            Next
+        'Try
+        '    Dim dt As New DataTable
+        '    Dim Filename As String = String.Empty
+        '    Dim Dial As New OpenFileDialog
+        '    Dial.Filter = "Excel Files|*.xls;*.xlsx"
+        '    Dim result As DialogResult = Dial.ShowDialog()
+        '    If result = System.Windows.Forms.DialogResult.OK Then
+        '        dt = ExcelToDatatable(Dial.FileName, "BOM HEADER")
+        '    End If
+        '    SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
+        '    SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+        '    BomHeader.BoMTempCollection.Clear()
+        '    For Each row As DataRow In dt.Rows
+        '        BoMHTempt = New BoM_Temp
+        '        With BoMHTempt
+        '            .InvtID = row("InvID")
+        '        End With
+        '        BomHeader.BoMTempCollection.Add(BoMHTempt)
+        '    Next
 
-            BomHeader.DeleteBoMOnUpload()
-            SplashScreenManager.CloseForm()
+        '    BomHeader.DeleteBoMOnUpload()
+        '    SplashScreenManager.CloseForm()
 
-            Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
-            LoadGrid()
-        Catch ex As Exception
-            SplashScreenManager.CloseForm()
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
+        '    Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+        '    LoadGrid()
+        'Catch ex As Exception
+        '    SplashScreenManager.CloseForm()
+        '    Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        'End Try
     End Sub
     Private Sub frmBoM_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Call LoadGrid()

@@ -369,4 +369,8 @@ Public Class frm_lookup_pph
     Private Sub _TxtLokasi_TextChanged(sender As Object, e As EventArgs) Handles _TxtLokasi.TextChanged
 
     End Sub
+
+    Private Sub txt_jenisdokumen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txt_jenisdokumen.SelectedIndexChanged
+
+    End Sub
 End Class

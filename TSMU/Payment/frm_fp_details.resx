@@ -151,7 +151,7 @@
         x/11LD7/ALaDK+SN9fBNAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="EditorButtonImageOptions3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="EditorButtonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
         dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAOdEVYdFRpdGxlAEJhcmNvZGU7nc/ZFgAAAjpJREFU
@@ -170,11 +170,11 @@
   <metadata name="DxValidationProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>124, 17</value>
   </metadata>
-  <data name="ComboBoxEdit1.Properties.Items" xml:space="preserve">
-    <value>Jasa instalasi/pemasangan mesin, peralatan, listrik, telepon, air, gas, AC dan/atau TV Kabel, selain yang dilakukan oleh Wajib Pajak yang ruang lingkupnya di bidang konstruksi dan mempunyai izin dan/atau sertifikasi sebagai pengusaha konstruksi </value>
+  <data name="_TxtJenisJasa.Properties.Items" xml:space="preserve">
+    <value>24-104-28 - Jasa instalasi/pemasangan mesin, peralatan, listrik, telepon, air, gas, AC dan/atau TV Kabel, selain yang dilakukan oleh Wajib Pajak yang ruang lingkupnya di bidang konstruksi dan mempunyai izin dan/atau sertifikasi sebagai pengusaha konstruksi </value>
   </data>
-  <data name="ComboBoxEdit1.Properties.Items1" xml:space="preserve">
-    <value>Jasa perawatan/perbaikan/pemeliharaan mesin, peralatan, listrik, telepon, air, gas, AC dan/atau TV kabel, selain yang dilakukan oleh Wajib Pajak yang ruang lingkupnya di bidang konstruksi dan mempunyai izin dan/atau sertifikasi sebagai pengusaha konstruksi </value>
+  <data name="_TxtJenisJasa.Properties.Items1" xml:space="preserve">
+    <value>24-104-29 - Jasa perawatan/perbaikan/pemeliharaan mesin, peralatan, listrik, telepon, air, gas, AC dan/atau TV kabel, selain yang dilakukan oleh Wajib Pajak yang ruang lingkupnya di bidang konstruksi dan mempunyai izin dan/atau sertifikasi sebagai pengusaha konstruksi </value>
   </data>
   <data name="BtnScand2.Appearance.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -209,7 +209,7 @@
         x/11LD7/ALaDK+SN9fBNAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="EditorButtonImageOptions4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="EditorButtonImageOptions2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
         dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAOdEVYdFRpdGxlAEJhcmNvZGU7nc/ZFgAAAjpJREFU

@@ -201,10 +201,11 @@ Public Class FrmBankTransfer_Detail
     Public Overrides Sub Proc_SaveData()
         Try
             If isUpdate = False Then
+                fc_Class.Perpost = _TxtPerpost.Text
                 fc_Class.Insert()
-                fc_Class.NoVouch = fc_Class.autononb()
+                fc_Class.NoVouch = fc_Class.autononbx()
                 fc_Class.InsertToTable2()
-                fc_Class.NoVouch = fc_Class.autononb()
+                fc_Class.NoVouch = fc_Class.autononbx()
                 fc_Class.InsertToTable3()
             Else
                 fc_Class.Update()

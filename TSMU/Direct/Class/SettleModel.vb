@@ -817,7 +817,7 @@ where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.I
                                     "       Tgl = " & QVal(Tgl) & ", " & vbCrLf &
                                     "       CuryID = " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
                                     "       Status = 'Close', " & vbCrLf &
-                                    "       PaymentType = " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
+                                    "       PaymentType = 'Finance', " & vbCrLf &
                                     "       CreditCardID = " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
                                     "       CreditCardNumber = " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
                                     "       AccountName = " & QVal(AccountName.TrimEnd) & ", " & vbCrLf &
@@ -1373,8 +1373,8 @@ End Class
 Public Class SettleDetail
     Public Property AcctID As String
     Public Property Alamat As String
-    Public Property SuspendAmount As Long
-    Public Property SettleAmount As Long
+    Public Property SuspendAmount As Double
+    Public Property SettleAmount As Double
     Public Property Description As String
     Public Property ID As Integer
     Public Property Jenis As String

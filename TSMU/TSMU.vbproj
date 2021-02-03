@@ -70,8 +70,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="AutoUpdater.NET, Version=1.6.3.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autoupdater.NET.Official.1.6.3\lib\net45\AutoUpdater.NET.dll</HintPath>
+    <Reference Include="AutoUpdater.NET, Version=1.6.4.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autoupdater.NET.Official.1.6.4\lib\net45\AutoUpdater.NET.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -177,9 +177,6 @@
     <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Grid.Windows, Version=18.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.Shared.Base, Version=18.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
-    <Reference Include="Syncfusion.Shared.Windows, Version=18.2460.0.44, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -1003,6 +1000,12 @@
       <DependentUpon>DRCCSettlement.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\DRCCSettlement.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\DxReceipt.Designer.vb">
+      <DependentUpon>DxReceipt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\DxReceipt.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Direct\report\entertain1.vb">
@@ -2227,6 +2230,12 @@
     <Compile Include="Form\Report\FrmReport_Matome_New.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_Forecast_PO.Designer.vb">
+      <DependentUpon>frmReport_Forecast_PO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Forecast_PO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_SalesPrice.Designer.vb">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>
     </Compile>
@@ -3317,6 +3326,9 @@
     <EmbeddedResource Include="Direct\report\DRCCSettlement.resx">
       <DependentUpon>DRCCSettlement.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\DxReceipt.resx">
+      <DependentUpon>DxReceipt.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportCCAccrued.resx">
       <DependentUpon>FrmReportCCAccrued.vb</DependentUpon>
     </EmbeddedResource>
@@ -3716,6 +3728,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\FrmReport_Matome_New.resx">
       <DependentUpon>FrmReport_Matome_New.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_Forecast_PO.resx">
+      <DependentUpon>frmReport_Forecast_PO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_SalesPrice.resx">
       <DependentUpon>frmReport_SalesPrice.vb</DependentUpon>

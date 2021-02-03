@@ -118,8 +118,9 @@ Public Class FrmBankPaid
     End Sub
     Private Sub tabu1()
         For i As Integer = 0 To GridView2.RowCount - 1
+            ObjCashBank.Perpost = _txtperpost.Text
+            Dim bukti As String = ObjCashBank.autononbx
 
-            Dim bukti As String = ObjCashBank.autononb
             ' suspen.SuspendID = suspendID
             Dim tgl As DateTime = TxtTgl.EditValue
             Dim ObjDetails As New cashbank_models
@@ -168,7 +169,9 @@ Public Class FrmBankPaid
     End Sub
 
     Private Sub tabu2()
-        Dim bukti As String = ObjCashBank.autononb
+        ObjCashBank.Perpost = _txtperpost.Text
+        Dim bukti As String = ObjCashBank.autononbx
+
         '   Dim tgl As DateTime = DateTime.Now
         Dim tgl As DateTime = TxtTgl.EditValue
 
@@ -309,7 +312,8 @@ Public Class FrmBankPaid
         End Try
     End Sub
     Private Sub tab_settle02CC()
-        Dim bukti As String = ObjCashBank.autononb
+        ObjCashBank.Perpost = _txtperpost.Text
+        Dim bukti As String = ObjCashBank.autononbx
         '        Dim tgl As DateTime = DateTime.Now
         Dim tgl As DateTime = TxtTgl.EditValue
         Dim transaksi As String = "SettleCC"
@@ -367,7 +371,8 @@ Public Class FrmBankPaid
 
     End Sub
     Private Sub tab_settle02()
-        Dim bukti As String = ObjCashBank.autononb
+        ObjCashBank.Perpost = _txtperpost.Text
+        Dim bukti As String = ObjCashBank.autononbx
         '        Dim tgl As DateTime = DateTime.Now
         Dim tgl As DateTime = TxtTgl.EditValue
 
@@ -437,8 +442,8 @@ Public Class FrmBankPaid
 
     Private Sub tab_settle()
         For f As Integer = 0 To GridView2.RowCount - 1
-
-            Dim bukti As String = ObjCashBank.autononb
+            ObjCashBank.Perpost = _txtperpost.Text
+            Dim bukti As String = ObjCashBank.autononbx
             Dim totsuspend As Double = 0
             Dim tgl As DateTime = TxtTgl.EditValue
             Dim ObjDetails As New cashbank_models
@@ -511,8 +516,8 @@ Public Class FrmBankPaid
     End Sub
     Private Sub tab_settleCC()
         For f As Integer = 0 To GridView2.RowCount - 1
-
-            Dim bukti As String = ObjCashBank.autononb
+            ObjCashBank.Perpost = _txtperpost.Text
+            Dim bukti As String = ObjCashBank.autononbx
             Dim totsuspend As Double = 0
             Dim tgl As DateTime = TxtTgl.EditValue
             Dim ObjDetails As New cashbank_models
