@@ -245,7 +245,7 @@ Public Class Frmgl_Detail
             End If
             Dim bl As String
             Dim th As String
-            bl = Month(TxtTgl.EditValue)
+            bl = Microsoft.VisualBasic.Right(TxtPerpost.Text, 2)
             th = Year(TxtTgl.EditValue)
             If lb_Validated Then
                 With ObjGJHeader
