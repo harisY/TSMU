@@ -535,11 +535,12 @@ Public Class frmForecast_PO
                             .InsertData1()
 
                             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                            SplashScreenManager.CloseForm()
                             LoadGrid()
                         End With
-                        SplashScreenManager.CloseForm()
                         'ObjForecast.UpdateDataByBulanNew(Bulan)
                     End If
+                    SplashScreenManager.CloseForm()
                 End If
             Catch ex As Exception
                 SplashScreenManager.CloseForm()

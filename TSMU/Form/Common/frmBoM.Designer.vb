@@ -35,19 +35,19 @@ Partial Class frmBoM
         Me.menuContext.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.menuContext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewRoutingBoMToolStripMenuItem, Me.ImportBomToUpdateToolStripMenuItem})
         Me.menuContext.Name = "menuContext"
-        Me.menuContext.Size = New System.Drawing.Size(202, 52)
+        Me.menuContext.Size = New System.Drawing.Size(211, 80)
         '
         'ViewRoutingBoMToolStripMenuItem
         '
         Me.ViewRoutingBoMToolStripMenuItem.Name = "ViewRoutingBoMToolStripMenuItem"
-        Me.ViewRoutingBoMToolStripMenuItem.Size = New System.Drawing.Size(201, 24)
+        Me.ViewRoutingBoMToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
         Me.ViewRoutingBoMToolStripMenuItem.Text = "View Routing BoM"
         Me.ViewRoutingBoMToolStripMenuItem.Visible = False
         '
         'ImportBomToUpdateToolStripMenuItem
         '
         Me.ImportBomToUpdateToolStripMenuItem.Name = "ImportBomToUpdateToolStripMenuItem"
-        Me.ImportBomToUpdateToolStripMenuItem.Size = New System.Drawing.Size(201, 24)
+        Me.ImportBomToUpdateToolStripMenuItem.Size = New System.Drawing.Size(210, 24)
         Me.ImportBomToUpdateToolStripMenuItem.Text = "Delete BoM"
         '
         'Grid
