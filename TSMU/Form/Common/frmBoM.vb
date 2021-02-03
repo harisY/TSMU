@@ -25,7 +25,7 @@ Public Class frmBoM
         'Dim dtGrid As New DataTable
         'dtGrid = Grid.DataSource
         'FilterData = New FrmSystem_FilterData(dtGrid)
-        Call Proc_EnableButtons(True, False, False, True, True, False, False, False, True, True, False, False)
+        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, True, True, False, False)
     End Sub
     Private Sub LoadGrid()
         Try
@@ -340,6 +340,8 @@ Public Class frmBoM
                 If bomid.Substring(0, 1).ToLower = "p" Then
                     fc_ClassBoM.BoMID = bomid
                     fc_ClassBoM.DeleteData()
+                    ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+                    LoadGrid()
                 Else
                     Throw New Exception("BOM Regular tidak bisa di hapus")
                 End If
