@@ -21,6 +21,7 @@ Public Class Frm_CR_Approve
     Dim division As Integer = 0
     Dim director As Integer = 0
     Dim _level As Integer = 0
+    Dim DeptGroup As Integer = -1
     Dim SelectTab As String
 
 
@@ -73,6 +74,7 @@ Public Class Frm_CR_Approve
 
             GService = New GlobalService
             _level = GService.GetLevel_str("CIRCULATION")
+            DeptGroup = GService.GetDept_Group(RTrim(LTrim((gh_Common.GroupID))))
 
             Dim dtRoot As DataTable
             dtRoot = fc_Class.Get_Root_Approve(gh_Common.GroupID)
@@ -86,7 +88,7 @@ Public Class Frm_CR_Approve
             Dept = gh_Common.GroupID
 
             Call LoadGrid(_level, division, director)
-            Call LoadGrid_Other(gh_Common.GroupID, gh_Common.Username)
+            Call LoadGrid_Other(RTrim(LTrim(gh_Common.GroupID)), RTrim(LTrim(gh_Common.Username)), DeptGroup.ToString())
             Call LoadGrid_Accounting()
             Call LoadGrid_Purchase()
             Call LoadGrid_CRClose()
@@ -168,7 +170,7 @@ Public Class Frm_CR_Approve
                 With fSearch
                     .StartPosition = FormStartPosition.CenterScreen
                     .ShowDialog()
-                    dtGrid = fc_Class_Other.Get_Other_Dept_Search(gh_Common.Username, If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                    dtGrid = fc_Class_Other.Get_Other_Dept_Search(gh_Common.GroupID, If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
                     Grid2.DataSource = dtGrid
                 End With
             ElseIf TabControl1.SelectedTab.Name = "Search" Then
@@ -210,10 +212,12 @@ Public Class Frm_CR_Approve
         bs_Filter = ""
         ' LoadGrid(_level, division, director)
         Call LoadGrid(_level, division, director)
-        Call LoadGrid_Other(gh_Common.GroupID, gh_Common.Username)
+        Call LoadGrid_Other(gh_Common.GroupID, gh_Common.Username, DeptGroup)
         Call LoadGrid_Accounting()
         Call LoadGrid_Purchase()
         Call LoadGrid_CRClose()
+        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True, True)
+
     End Sub
 
     Private Sub Grid2_DoubleClick(sender As Object, e As EventArgs) Handles Grid2.DoubleClick
@@ -270,12 +274,12 @@ Public Class Frm_CR_Approve
         End Try
     End Sub
 
-    Private Sub LoadGrid_Other(_Dept As String, _User As String)
+    Private Sub LoadGrid_Other(_Dept As String, _User As String, _deptGroup As String)
         Try
             Cursor.Current = Cursors.WaitCursor
 
             Dim dt As New DataTable
-            dt = fc_Class_Other.Get_Other_Dept(_Dept, _User)
+            dt = fc_Class_Other.Get_Other_Dept(_Dept, _User, _deptGroup)
             Grid2.DataSource = dt
 
 

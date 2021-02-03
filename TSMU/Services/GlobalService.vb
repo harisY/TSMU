@@ -21,6 +21,22 @@
             Throw ex
         End Try
     End Function
+
+    Public Function GetDept_Group(Dept As String) As Integer
+        Dim _result As Integer = -1
+        Try
+            Dim Sql As String = "select top 1 dept_group from M_Root_Approval where DeptID = '" + Trim(Dept) + "'"
+            Dim dt As New DataTable
+
+            dt = GetDataTable(Sql)
+            If dt.Rows.Count > 0 Then
+                _result = Convert.ToInt32(dt.Rows(0)(0))
+            End If
+            Return _result
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetLevel(Frm As Form) As Integer
         Dim _result As Integer = 0
         Try

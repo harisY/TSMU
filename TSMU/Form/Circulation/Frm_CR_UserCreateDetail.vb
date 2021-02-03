@@ -71,6 +71,7 @@ Public Class Frm_CR_UserCreateDetail
     Dim pDate2 As Date
     Dim pDate1 As Date
     Dim _level As Integer = 0
+    Dim DeptGroup As Integer
 
     Dim PrintTool As ReportPrintTool
     Dim PrintToolDOC As ReportPrintTool
@@ -546,6 +547,7 @@ Public Class Frm_CR_UserCreateDetail
         T_Spesification.Enabled = False
         GroupBox3.Enabled = False
         TCustomer.Enabled = False
+        TBudget.Enabled = False
 
     End Sub
 
@@ -585,6 +587,7 @@ Public Class Frm_CR_UserCreateDetail
                     T_NameItem.EditValue = .H_NameItem
                     T_Spesification.EditValue = .H_Spesification
                     TCustomer.EditValue = .H_Customer
+                    TBudget.EditValue = .H_Budget_text
 
 
                     If .H_PO = True Then
@@ -891,7 +894,6 @@ Public Class Frm_CR_UserCreateDetail
     End Sub
 
     Private Sub Frm_CR_UserCreateDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         'Dim itemValues As String() = New String() {"Circle", "Rectangle",
         '    "Ellipse", "Triangle", "Square"}
         'For Each value As String In itemValues
@@ -906,6 +908,7 @@ Public Class Frm_CR_UserCreateDetail
 
         GService = New GlobalService
         _level = GService.GetLevel_str("CIRCULATION")
+        DeptGroup = GService.GetDept_Group(RTrim(LTrim((gh_Common.GroupID))))
 
         Dim dtRoot As DataTable
         dtRoot = fc_Class_ApproveDeptHead.Get_Root_Approve_ByDept(gh_Common.GroupID)
@@ -1145,6 +1148,7 @@ Public Class Frm_CR_UserCreateDetail
                     .TA_ApproveDAte = Date.Now
                     .TA_IsActive = 1
                     .H_Current_Level = 0
+                    .H_Budget_text = IIf(TBudget.EditValue Is Nothing, 0, TBudget.EditValue)
 
                 End With
 
@@ -1347,6 +1351,7 @@ Public Class Frm_CR_UserCreateDetail
                     .H_InvoiceNo = ""
                     .H_InvoiceStatus = 0
                     .H_Dies = 1
+                    .H_Budget_text = IIf(TBudget.EditValue Is Nothing, 0, TBudget.EditValue)
 
                 End With
 
@@ -1540,6 +1545,15 @@ Public Class Frm_CR_UserCreateDetail
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button1)
+            ElseIf RB_Budget.Checked = True Then
+                If TBudget.Text = "" Or TBudget.Text = "0" Then
+                    MessageBox.Show("Please fill Budget", "Warning",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Exclamation,
+                       MessageBoxDefaultButton.Button1)
+                Else
+                    lb_Validated = True
+                End If
 
             ElseIf T_CRType.Text = "Mold" Then
 
@@ -3312,8 +3326,9 @@ Public Class Frm_CR_UserCreateDetail
 
                             Dim userid As String = IIf(GridView5.GetRowCellValue(I, "User_id") Is DBNull.Value, "", GridView5.GetRowCellValue(I, "User_id"))
                             Dim Dept_ID As String = IIf(GridView5.GetRowCellValue(I, "Dept") Is DBNull.Value, "", GridView5.GetRowCellValue(I, "Dept"))
+                            Dim Group As String = IIf(GridView5.GetRowCellValue(I, "Group") Is DBNull.Value, "", GridView5.GetRowCellValue(I, "Group"))
 
-                            If userid = gh_Common.Username Or Dept_ID = gh_Common.GroupID Then
+                            If userid = gh_Common.Username Or Dept_ID = gh_Common.GroupID Or Group = DeptGroup Then
                                 Other_Dept = New ClsCR_Other_Dept
                                 With Other_Dept
                                     .D_CirculationNo = fs_Code
@@ -3348,7 +3363,7 @@ Public Class Frm_CR_UserCreateDetail
                         Timer1.Enabled = True
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                         fc_Class = New ClsCR_CreateUser
-                        GridDtl.DataSource = fc_Class_ApproveDivHead.Get_Other_Dept(gh_Common.GroupID, gh_Common.Username)
+                        GridDtl.DataSource = fc_Class_ApproveDivHead.Get_Other_Dept(gh_Common.GroupID, gh_Common.Username, DeptGroup)
                         Me.Hide()
                     Catch ex As Exception
                         ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -3640,15 +3655,17 @@ Public Class Frm_CR_UserCreateDetail
         Try
             Dim Dept_ = String.Empty
             Dim User_ = String.Empty
+            Dim DeptGroupT = String.Empty
             Dim selectedRows() As Integer = GridView5.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     Dept_ = GridView5.GetRowCellValue(rowHandle, "Dept")
                     User_ = GridView5.GetRowCellValue(rowHandle, "User_id")
+                    DeptGroupT = GridView5.GetRowCellValue(rowHandle, "Group")
                 End If
             Next rowHandle
 
-            If User_ = gh_Common.Username Or Dept_ = gh_Common.GroupID Then
+            If User_ = gh_Common.Username Or Dept_ = gh_Common.GroupID Or DeptGroupT = DeptGroup Then
                 GridView5.Columns("Dept").OptionsColumn.AllowEdit = False
                 GridView5.Columns("Name").OptionsColumn.AllowEdit = False
                 GridView5.Columns("Date").OptionsColumn.AllowEdit = False
@@ -4057,5 +4074,18 @@ Public Class Frm_CR_UserCreateDetail
 
     Private Sub Grid5_Click(sender As Object, e As EventArgs) Handles Grid5.Click
 
+    End Sub
+
+    Private Sub Frm_CR_UserCreateDetail_Validated(sender As Object, e As EventArgs) Handles Me.Validated
+
+    End Sub
+
+    Private Sub RB_Budget_Click(sender As Object, e As EventArgs) Handles RB_Budget.Click
+        TBudget.Enabled = True
+    End Sub
+
+    Private Sub RB_NonBudget_Click(sender As Object, e As EventArgs) Handles RB_NonBudget.Click
+        TBudget.Enabled = False
+        TBudget.Text = 0
     End Sub
 End Class
