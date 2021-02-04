@@ -226,6 +226,9 @@ Public Class GJHeaderModel
             '    "where SUBSTRING(GJID,1,7) = 'GJ' + '-' + RIGHT(@tahun,4) AND SUBSTRING(GJID,9,2) = RIGHT(@bulan,2)) " &
             '    "select 'GJ' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
 
+
+            bl = Microsoft.VisualBasic.Right(Perpost, 2)
+            th = Microsoft.VisualBasic.Left(Perpost, 4)
             query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
                  "set @bulan = " & QVal(bl) & " " &
                 "set @tahun = " & QVal(th) & " " &

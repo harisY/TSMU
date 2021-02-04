@@ -188,11 +188,13 @@ Public Class Frmgl_Detail
                     TxtNoGJ.Text = .GJID
                     TxtNoRJ.Text = .GJID_Revers
                     TxtPrNo.Text = .PRNo
+
                     TxtCurrency.SelectedText = .Currency
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
                     TxtStatus.Text = .Status
                     TxtTgl.EditValue = .Tgl
+                    TxtPerpost.EditValue = Format(.Tgl, "yyyy-MM")
                     TxtTotalDb.Text = Format(.Total, gs_FormatDecimal)
                     TxtTotalCr.Text = Format(.TotalCr, gs_FormatDecimal)
                     If TxtNoRJ.Text = "" Or Microsoft.VisualBasic.Left(TxtNoRJ.Text, 2) <> "RJ" Then
@@ -256,6 +258,7 @@ Public Class Frmgl_Detail
                     .PRNo = TxtPrNo.Text
                     .Remark = TxtRemark.Text
                     .Status = TxtStatus.Text
+                    .Perpost = TxtPerpost.Text
                     .GJID = .GJAutoNo
                     _GJID = .GJAutoNo
                     .GJID_Revers = .RJAutoNo
