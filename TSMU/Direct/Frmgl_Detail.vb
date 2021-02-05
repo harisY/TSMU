@@ -193,6 +193,7 @@ Public Class Frmgl_Detail
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
                     TxtStatus.Text = .Status
+                    TxtBatch.Text = .Batch
                     TxtTgl.EditValue = .Tgl
                     TxtPerpost.EditValue = Format(.Tgl, "yyyy-MM")
                     TxtTotalDb.Text = Format(.Total, gs_FormatDecimal)
@@ -209,6 +210,7 @@ Public Class Frmgl_Detail
                 TxtNoGJ.Text = ""
                 TxtNoRJ.Text = ""
                 TxtPrNo.Text = ""
+                TxtBatch.Text = ""
                 TxtCurrency.SelectedIndex = 0
                 TxtDep.Text = gh_Common.GroupID
                 TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
@@ -258,6 +260,7 @@ Public Class Frmgl_Detail
                     .PRNo = TxtPrNo.Text
                     .Remark = TxtRemark.Text
                     .Status = TxtStatus.Text
+                    .Batch = TxtBatch.Text
                     .Perpost = TxtPerpost.Text
                     .GJID = .GJAutoNo
                     _GJID = .GJAutoNo
@@ -383,8 +386,8 @@ Public Class Frmgl_Detail
                 ObjGJHeader.Deletegj()
                 ObjGJHeader.DeleteDataR(TxtNoRJ.Text)
                 ObjGJHeader.UpdateHeadercek(TxtNoGJ.Text)
-                ObjGJHeader.GJID = ObjGJHeader.GJAutoNo
-                ObjGJHeader.GJID_Revers = ObjGJHeader.RJAutoNo
+                ''  ObjGJHeader.GJID = ObjGJHeader.GJAutoNo
+                ''  ObjGJHeader.GJID_Revers = ObjGJHeader.RJAutoNo
                 ObjGJHeader.InsertData()
                 ObjGJDetail.GJID_Revers2 = ObjGJDetail.GJID_Revers2
                 ObjGJHeader.GJID_Revers2 = ObjGJDetail.GJID_Revers2

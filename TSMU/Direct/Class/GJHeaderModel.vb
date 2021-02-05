@@ -273,7 +273,7 @@ Public Class GJHeaderModel
     Public Sub GetGJById()
         Try
             Dim sql As String =
-            "SELECT GJHeaderID, GJID, GJID_Revers, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total,TotalCr, ceklist
+            "SELECT GJHeaderID, GJID, GJID_Revers, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total,TotalCr, ceklist, batch
             FROM gj_header where GJHeaderID=" & QVal(GJHeaderID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
@@ -290,6 +290,7 @@ Public Class GJHeaderModel
                 TotalCr = If(IsDBNull(dt.Rows(0).Item("TotalCr")), 0, Convert.ToDouble(dt.Rows(0).Item("TotalCr")))
                 Currency = If(IsDBNull(dt.Rows(0).Item("Currency")), "", Convert.ToString(dt.Rows(0).Item("Currency")))
                 ceklist = If(IsDBNull(dt.Rows(0).Item("ceklist")), "", Trim(dt.Rows(0).Item("ceklist").ToString()))
+                Batch = If(IsDBNull(dt.Rows(0).Item("batch")), "", Trim(dt.Rows(0).Item("batch").ToString()))
             End If
         Catch ex As Exception
             Throw ex
@@ -369,7 +370,7 @@ Public Class GJHeaderModel
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO gj_header (GJID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total,TotalCr, CreatedBy, CreatedDate) " & vbCrLf &
+            "INSERT INTO gj_header (GJID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, batch, Total,TotalCr, CreatedBy, CreatedDate) " & vbCrLf &
             "Values(" & QVal(GJID) & ", " & vbCrLf &
             "       " & QVal(Tipe) & ", " & vbCrLf &
             "       " & QVal(Currency) & ", " & vbCrLf &
@@ -378,6 +379,7 @@ Public Class GJHeaderModel
             "       " & QVal(Remark) & ", " & vbCrLf &
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(Status) & ", " & vbCrLf &
+            "       " & QVal(Batch) & ", " & vbCrLf &
             "       " & QVal(Total) & ", " & vbCrLf &
             "       " & QVal(TotalCr) & ", " & vbCrLf &
             "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
