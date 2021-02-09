@@ -56,14 +56,14 @@ Public Class FrmReport_BoM_Forecast_PO
     End Sub
     Public Overrides Sub Proc_Refresh()
         If _txtTahun.Text = "" Then
-            XtraMessageBox.Show("Silahkan isi tahun !")
             _txtTahun.Focus()
+            'XtraMessageBox.Show("Silahkan isi tahun !")
         ElseIf txtInvtId.Text = "" Then
-            XtraMessageBox.Show("Inventory ID harus di isi !")
             txtInvtId.Focus()
+            'XtraMessageBox.Show("Inventory ID harus di isi !")
         ElseIf TxtPerost.Text = "" Then
-            XtraMessageBox.Show("Perpost harus di isi !")
             TxtPerost.Focus()
+            XtraMessageBox.Show("Perpost harus di isi !")
         Else
             LoadGrid(_txtTahun.Text)
         End If
