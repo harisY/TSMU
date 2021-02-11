@@ -396,7 +396,6 @@ Public Class Cls_FP
         Try
             Dim ada_invoice As String
             query = "select distinct no_invoice from fp_pph_detail where no_invoice='" & invcnbr & "' "
-
             Dim dt As DataTable = New DataTable
             dt = MainModul.GetDataTable_Solomon(query)
             If dt.Rows.Count > 0 Then
@@ -404,19 +403,16 @@ Public Class Cls_FP
             Else
                 ada_invoice = ""
             End If
-
             Return ada_invoice
-
         Catch ex As Exception
             Throw
-
         End Try
     End Function
     Public Function getalldataap_det() As DataTable
         Try
 
             ''     query = "SELECT InvcNbr,	InvcDate,		sum(Amount) as Amount,	CuryId,	sum(Ppn) as Ppn,	sum(Amount_before) as DPP,sum(Amount_before)*" & tarif / 100 & " as Pph,SUBSTRING(Replace(Replace(fp,'.',''),'-',''),4,13) as fp FROM FP_temp where VendId='" & _VendID & "'" & _
-            ''               "group by  InvcNbr,	InvcDate,	CuryId, SUBSTRING(Replace(Replace(fp,'.',''),'-',''),4,13)   order by InvcNbr"
+            ''             "group by  InvcNbr,	InvcDate,	CuryId, SUBSTRING(Replace(Replace(fp,'.',''),'-',''),4,13)   order by InvcNbr"
 
             ''           query = "Select APTran.InvtID,APTran.TranDesc,SUM(APTran.CuryTranAmt) AS Amount from APTran inner join APDoc on APDoc.BatNbr=APTran.BatNbr " & _
             ''                  "WHERE DocType='VO' and APTran.LineType='R' AND APTran.RefNbr=APDoc.RefNbr AND  APDoc.User1='" & _Fp & "' " & _

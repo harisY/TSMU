@@ -174,7 +174,8 @@ Public Class FrmBankTransfer_Detail
                     .Tgl = oDate
                     ' .Tgl = TxtTgl.Text
                     If isUpdate = False Then
-                        TxtNoBukti.Text = .TransferAutoNo()
+                        .Perpost = _TxtPerpost.Text
+                        TxtNoBukti.Text = .TransferAutoNox()
                     End If
                     .NoBukti = TxtNoBukti.Text
                     .Perpost = TxtPerpost.Text

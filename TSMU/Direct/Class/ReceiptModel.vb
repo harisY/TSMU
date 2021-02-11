@@ -253,6 +253,31 @@
 
         End Try
     End Function
+    Public Function receiptAutoNox() As String
+
+        Try
+            Dim query As String
+            Dim bl As String
+            Dim th As String
+            th = Microsoft.VisualBasic.Left(Perpost, 4)
+            bl = Microsoft.VisualBasic.Right(Perpost, 2)
+            query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+                 "set @bulan = " & QVal(bl) &
+                "set @tahun =  " & QVal(th) &
+                "set @seq= (select right('0000'+cast(right(rtrim(max(NoBukti)),4)+1 as varchar),4) " &
+                "from bankreceipt " &
+                "where SUBSTRING(NoBukti,1,7) = 'RV' + '-' + RIGHT(@tahun,4) AND SUBSTRING(NoBukti,9,2) = RIGHT(@bulan,2)) " &
+                "select 'RV' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+
+            Dim dt As DataTable = New DataTable
+            dt = GetDataTable_Solomon(query)
+            Return dt.Rows(0).Item(0).ToString
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
     Public Sub Update()
         Try
             Dim ls_SP As String = ""
