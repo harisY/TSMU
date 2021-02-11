@@ -11,6 +11,7 @@ Public Class frm_lookup_pph
     Dim ObjFP As Cls_FP = New Cls_FP()
     Dim tes As Boolean = True
     Dim total_dpp As Double = 0
+    Dim keterangan As String
     Dim IsNew As Boolean
     Dim ObjHeader As New fp_pph_header_models
     Dim ObjDetails As New fp_pph_detail_models
@@ -19,15 +20,12 @@ Public Class frm_lookup_pph
 
         ' This call is required by the designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
     Public Sub New(FP As String, Voucher As String, invcNbr As String, DPP As String, _IsNew As Boolean)
-
         ' This call is required by the designer.
         InitializeComponent()
-
         ' Add any initialization after the InitializeComponent() call.
         _FP = FP
         _Voucher = Voucher
@@ -44,33 +42,27 @@ Public Class frm_lookup_pph
 
     Private Sub loadGrid()
         Try
-
             Dim dtgrid As DataTable = New DataTable
             dtgrid = ObjFP.getalldataap_det()
             Grid.DataSource = dtgrid
-
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
     Private Sub loadGridEdit()
         Try
-
             Dim dtgrid As DataTable = New DataTable
             dtgrid = ObjDetails.GetGridPphDetails(_Voucher.TrimEnd)
             Grid.DataSource = dtgrid
-
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
     Private Sub loadGrid1()
         Try
-
             Dim dtgrid As DataTable = New DataTable
             dtgrid = ObjFP.getalldataap_det2()
             Grid.DataSource = dtgrid
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -115,7 +107,6 @@ Public Class frm_lookup_pph
                     _TxtKetDPP.Text = dt.Rows(0).Item("ket_dpp").ToString()
                     txt_jenisdokumen.Text = dt.Rows(0).Item("JenisDokumen").ToString()
                     '_TxtInvcNbr.Text = Trim(dt.Rows(0).Item("tahunpajak"))
-
                 End If
                 'For Each ctl As Control In Me.LayoutControl1.Controls
                 '    ctl.Enabled = False
@@ -152,20 +143,21 @@ Public Class frm_lookup_pph
             If e.Column.FieldName = "cek" Then
                 If GridView1.GetRowCellValue(e.RowHandle, "cek") = True Then
                     total_dpp = total_dpp + CDbl(GridView1.GetRowCellValue(e.RowHandle, "Amount"))
+                    For i As Integer = 0 To GridView1.RowCount - 1
+                        keterangan = GridView1.GetRowCellValue(i, "TranDesc").ToString().TrimEnd
+                    Next
                 Else
                     total_dpp = total_dpp - CDbl(GridView1.GetRowCellValue(e.RowHandle, "Amount"))
                 End If
-
                 If total_dpp = 0 Then
                     _TxtDPP.Text = "0"
                     _TxtNilaiPPh.Text = "0"
                 Else
                     _TxtDPP.Text = Format(total_dpp, "#,#.##")
                     _TxtNilaiPPh.Text = Format(Val(_TxtDPP.Text * _TxtTarif.Text / 100), "#,#.##")
-
+                    _TxtKetDPP.Text = keterangan
                 End If
                 '_TxtDPP.Text = Format(Val(IIf(total_dpp = "", "0", total_dpp)), "#,#.##")
-
                 'If _TxtNilaiPPh.Text = "" Or _TxtDPP.Text = "" Then
                 '    _TxtNilaiPPh.Text = "0"
                 'Else
@@ -228,7 +220,6 @@ Public Class frm_lookup_pph
                         End With
                         ObjPPHTransaction.ObjPPHDetails.Add(PPHDetails)
                     End If
-
                 Next
                 ObjPPHTransaction.InsertData()
             End If
@@ -244,7 +235,6 @@ Public Class frm_lookup_pph
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
-
 
             If sender.Name = _TxtPPh.Name Then
                 ObjFP = New Cls_FP()
@@ -364,13 +354,5 @@ Public Class frm_lookup_pph
         For i As Integer = 0 To GridView1.RowCount - 1
             _TxtDPP.Text = GridView1.GetRowCellValue(i, "Amount").ToString().TrimEnd
         Next
-    End Sub
-
-    Private Sub _TxtLokasi_TextChanged(sender As Object, e As EventArgs) Handles _TxtLokasi.TextChanged
-
-    End Sub
-
-    Private Sub txt_jenisdokumen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txt_jenisdokumen.SelectedIndexChanged
-
     End Sub
 End Class
