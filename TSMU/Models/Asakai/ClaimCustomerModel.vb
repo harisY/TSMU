@@ -81,6 +81,7 @@ Public Class ClaimCustomerModel
             Dim query As String = "SELECT [IDTransaksi]
                                   ,[Customer]
                                   ,[TanggalClaim]
+                                  ,[TanggalTerimaEmail] as [Tanggal Email]
                                   ,[InvtID] as InvtId
                                   ,[InvtName] As [Invt Name]
                                   ,[Problem]
@@ -314,6 +315,7 @@ Public Class ClaimCustomerDetailModel
     Public Property D_RESP As String
     Public Property D_Status As String
     Public Property D_TanggalClaim As DateTime
+    Public Property D_TanggalEmail As DateTime
     Public Property D_TanggalClose As DateTime
     Public Property D_Lot As String
     Public Property D_Foto As String
@@ -327,6 +329,7 @@ Public Class ClaimCustomerDetailModel
                        ([IDTransaksi]
                        ,[Customer]
                        ,[TanggalClaim]
+                       ,[TanggalTerimaEmail]
                        ,[TargetClose]
                        ,[InvtID]
                        ,[InvtName]
@@ -341,6 +344,7 @@ Public Class ClaimCustomerDetailModel
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(D_Customer) & ", " & vbCrLf &
             "       " & QVal(D_TanggalClaim) & ", " & vbCrLf &
+            "       " & QVal(D_TanggalEmail) & ", " & vbCrLf &
             "       " & QVal(D_TanggalClose) & ", " & vbCrLf &
             "       " & QVal(D_InvtID) & ", " & vbCrLf &
             "       " & QVal(D_InvtName) & ", " & vbCrLf &
