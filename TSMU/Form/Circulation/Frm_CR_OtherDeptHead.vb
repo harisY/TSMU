@@ -27,7 +27,7 @@ Public Class Frm_CR_OtherDeptHead
             Cursor.Current = Cursors.WaitCursor
 
             Dim dt As New DataTable
-            dt = fc_Class.Get_Other_Dept(_Dept, gh_Common.Username)
+            'dt = fc_Class.Get_Other_Dept(_Dept, gh_Common.Username)
             Grid.DataSource = dt
 
 

@@ -188,11 +188,14 @@ Public Class Frmgl_Detail
                     TxtNoGJ.Text = .GJID
                     TxtNoRJ.Text = .GJID_Revers
                     TxtPrNo.Text = .PRNo
+
                     TxtCurrency.SelectedText = .Currency
                     TxtDep.Text = .DeptID
                     TxtRemark.Text = .Remark
                     TxtStatus.Text = .Status
+                    TxtBatch.Text = .Batch
                     TxtTgl.EditValue = .Tgl
+                    TxtPerpost.EditValue = Format(.Tgl, "yyyy-MM")
                     TxtTotalDb.Text = Format(.Total, gs_FormatDecimal)
                     TxtTotalCr.Text = Format(.TotalCr, gs_FormatDecimal)
                     If TxtNoRJ.Text = "" Or Microsoft.VisualBasic.Left(TxtNoRJ.Text, 2) <> "RJ" Then
@@ -207,6 +210,7 @@ Public Class Frmgl_Detail
                 TxtNoGJ.Text = ""
                 TxtNoRJ.Text = ""
                 TxtPrNo.Text = ""
+                TxtBatch.Text = ""
                 TxtCurrency.SelectedIndex = 0
                 TxtDep.Text = gh_Common.GroupID
                 TxtPerpost.EditValue = Format(DateTime.Today, "yyyy-MM")
@@ -245,7 +249,7 @@ Public Class Frmgl_Detail
             End If
             Dim bl As String
             Dim th As String
-            bl = Month(TxtTgl.EditValue)
+            bl = Microsoft.VisualBasic.Right(TxtPerpost.Text, 2)
             th = Year(TxtTgl.EditValue)
             If lb_Validated Then
                 With ObjGJHeader
@@ -256,6 +260,8 @@ Public Class Frmgl_Detail
                     .PRNo = TxtPrNo.Text
                     .Remark = TxtRemark.Text
                     .Status = TxtStatus.Text
+                    .Batch = TxtBatch.Text
+                    .Perpost = TxtPerpost.Text
                     .GJID = .GJAutoNo
                     _GJID = .GJAutoNo
                     .GJID_Revers = .RJAutoNo
@@ -380,8 +386,8 @@ Public Class Frmgl_Detail
                 ObjGJHeader.Deletegj()
                 ObjGJHeader.DeleteDataR(TxtNoRJ.Text)
                 ObjGJHeader.UpdateHeadercek(TxtNoGJ.Text)
-                ObjGJHeader.GJID = ObjGJHeader.GJAutoNo
-                ObjGJHeader.GJID_Revers = ObjGJHeader.RJAutoNo
+                ''  ObjGJHeader.GJID = ObjGJHeader.GJAutoNo
+                ''  ObjGJHeader.GJID_Revers = ObjGJHeader.RJAutoNo
                 ObjGJHeader.InsertData()
                 ObjGJDetail.GJID_Revers2 = ObjGJDetail.GJID_Revers2
                 ObjGJHeader.GJID_Revers2 = ObjGJDetail.GJID_Revers2

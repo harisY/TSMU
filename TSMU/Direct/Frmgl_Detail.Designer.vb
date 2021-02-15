@@ -29,7 +29,7 @@ Partial Class Frmgl_Detail
         Me.TxtTotalCr = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNoRJ = New DevExpress.XtraEditors.TextEdit()
         Me.btnAddDetail = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtSirkulasi = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtBatch = New DevExpress.XtraEditors.TextEdit()
         Me.TxtStatus = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTotalDb = New DevExpress.XtraEditors.TextEdit()
         Me.TxtPrNo = New DevExpress.XtraEditors.TextEdit()
@@ -72,7 +72,7 @@ Partial Class Frmgl_Detail
         CType(Me.TxtPerpost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTotalCr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNoRJ.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtSirkulasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBatch.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTotalDb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPrNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,7 +133,7 @@ Partial Class Frmgl_Detail
         Me.LayoutControl1.Controls.Add(Me.TxtTotalCr)
         Me.LayoutControl1.Controls.Add(Me.TxtNoRJ)
         Me.LayoutControl1.Controls.Add(Me.btnAddDetail)
-        Me.LayoutControl1.Controls.Add(Me.TxtSirkulasi)
+        Me.LayoutControl1.Controls.Add(Me.TxtBatch)
         Me.LayoutControl1.Controls.Add(Me.TxtStatus)
         Me.LayoutControl1.Controls.Add(Me.TxtTotalDb)
         Me.LayoutControl1.Controls.Add(Me.TxtPrNo)
@@ -191,14 +191,14 @@ Partial Class Frmgl_Detail
         Me.btnAddDetail.TabIndex = 15
         Me.btnAddDetail.Text = "Add Detail (+)"
         '
-        'TxtSirkulasi
+        'TxtBatch
         '
-        Me.TxtSirkulasi.Location = New System.Drawing.Point(746, 12)
-        Me.TxtSirkulasi.Margin = New System.Windows.Forms.Padding(4)
-        Me.TxtSirkulasi.Name = "TxtSirkulasi"
-        Me.TxtSirkulasi.Size = New System.Drawing.Size(62, 22)
-        Me.TxtSirkulasi.StyleController = Me.LayoutControl1
-        Me.TxtSirkulasi.TabIndex = 13
+        Me.TxtBatch.Location = New System.Drawing.Point(746, 12)
+        Me.TxtBatch.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtBatch.Name = "TxtBatch"
+        Me.TxtBatch.Size = New System.Drawing.Size(62, 22)
+        Me.TxtBatch.StyleController = Me.LayoutControl1
+        Me.TxtBatch.TabIndex = 13
         '
         'TxtStatus
         '
@@ -398,7 +398,7 @@ Partial Class Frmgl_Detail
         '
         'LayoutControlItem7
         '
-        Me.LayoutControlItem7.Control = Me.TxtSirkulasi
+        Me.LayoutControlItem7.Control = Me.TxtBatch
         Me.LayoutControlItem7.Location = New System.Drawing.Point(640, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(160, 26)
@@ -552,7 +552,7 @@ Partial Class Frmgl_Detail
         CType(Me.TxtPerpost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTotalCr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNoRJ.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtSirkulasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBatch.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTotalDb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPrNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -589,7 +589,7 @@ Partial Class Frmgl_Detail
 
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents btnAddDetail As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TxtSirkulasi As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtBatch As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtStatus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtTotalDb As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtPrNo As DevExpress.XtraEditors.TextEdit

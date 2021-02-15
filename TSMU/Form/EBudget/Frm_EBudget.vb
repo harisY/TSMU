@@ -10,6 +10,10 @@
         TtahunCreate.Text = th.ToString()
 
         Call combotahun()
+        Call combotahunApprove()
+        Call comboAccountApprove()
+        Call comboSiteApprove()
+        Call comboDeptApprove()
         Call Status()
 
     End Sub
@@ -22,6 +26,52 @@
         For i As Integer = 0 To dt.Rows.Count - 1
             CTahunOpenBudget.Properties.Items.Add(dt.Rows(i).Item(0))
         Next
+    End Sub
+
+    Private Sub combotahunApprove()
+
+        'CTahunOpenBudget.Properties.Items.Clear()
+        dt = New DataTable
+        dt = fc_Class.GetTahun()
+        CTahunApprove.Properties.DataSource = Nothing
+        CTahunApprove.Properties.DataSource = dt
+        CTahunApprove.Properties.ValueMember = "Tahun"
+        CTahunApprove.Properties.DisplayMember = "Tahun"
+    End Sub
+
+    Private Sub comboAccountApprove()
+
+        'CTahunOpenBudget.Properties.Items.Clear()
+        dt = New DataTable
+        dt = fc_Class.GetAccountApprove()
+        C_Account_Approve.Properties.DataSource = Nothing
+        C_Account_Approve.Properties.DataSource = dt
+        C_Account_Approve.Properties.ValueMember = "AcctID"
+        C_Account_Approve.Properties.DisplayMember = "AcctName"
+
+    End Sub
+
+    Private Sub comboSiteApprove()
+
+        'CTahunOpenBudget.Properties.Items.Clear()
+        dt = New DataTable
+        dt = fc_Class.GetSiteApprove()
+        C_Site_Approve.Properties.DataSource = Nothing
+        C_Site_Approve.Properties.DataSource = dt
+        C_Site_Approve.Properties.ValueMember = "SiteID"
+        C_Site_Approve.Properties.DisplayMember = "SiteID"
+
+    End Sub
+    Private Sub comboDeptApprove()
+
+        'CTahunOpenBudget.Properties.Items.Clear()
+        dt = New DataTable
+        dt = fc_Class.GetDeptApprove()
+        C_Dept.Properties.DataSource = Nothing
+        C_Dept.Properties.DataSource = dt
+        C_Dept.Properties.ValueMember = "DeptID"
+        C_Dept.Properties.DisplayMember = "DeptID"
+
     End Sub
 
     Private Sub Status()
@@ -91,22 +141,22 @@
             Dim konfirmasi = MsgBox("Apakah Budget '" & Tahun_Create & "' akan di Create?", vbQuestion + vbYesNo, "Konfirmasi")
             If konfirmasi = vbYes Then
                 Dim a As Boolean = False
-                a = fc_Class.CopyBudget(Tahun_Copy, Tahun_Create)
+                fc_Class.CopyBudget(Tahun_Copy, Tahun_Create)
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                'If a = True Then
+                '    MessageBox.Show("Create Budget Sukses",
+                '              "Informasi",
+                '              MessageBoxButtons.OK,
+                '              MessageBoxIcon.Information,
+                '              MessageBoxDefaultButton.Button1)
 
-                If a = True Then
-                    MessageBox.Show("Create Budget Sukses",
-                              "Informasi",
-                              MessageBoxButtons.OK,
-                              MessageBoxIcon.Information,
-                              MessageBoxDefaultButton.Button1)
-
-                Else
-                    MessageBox.Show("Create Budget Gagal!",
-                              "Warning",
-                              MessageBoxButtons.OK,
-                              MessageBoxIcon.Exclamation,
-                              MessageBoxDefaultButton.Button1)
-                End If
+                'Else
+                '    MessageBox.Show("Create Budget Gagal!",
+                '              "Warning",
+                '              MessageBoxButtons.OK,
+                '              MessageBoxIcon.Exclamation,
+                '              MessageBoxDefaultButton.Button1)
+                'End If
 
             End If
 
@@ -157,27 +207,57 @@
                               MessageBoxIcon.Warning,
                               MessageBoxDefaultButton.Button1)
         Else
+            If CSemester.Text = 2 Then
+                Dim cek As Boolean = fc_Class.CekBackup(CTahunOpenBudget.Text)
 
-            Dim a As Boolean = False
-            Dim konfirmasi = MsgBox("Apakah Budget akan di Buka?", vbQuestion + vbYesNo, "Konfirmasi")
-            If konfirmasi = vbYes Then
-                a = fc_Class.Open_Budget(CTahunOpenBudget.Text, CSemester.Text, "Open")
-                If a = True Then
-                    MessageBox.Show("Budget Sukses di Buka",
-                                  "Informasi",
-                                  MessageBoxButtons.OK,
-                                  MessageBoxIcon.Information,
-                                  MessageBoxDefaultButton.Button1)
+                If cek = True Then
+                    Dim tanya = MsgBox("Backup Budget tahun '" & CTahunOpenBudget.Text & "' Semster 1 sudah ada, apakah akan di timpah", vbQuestion + vbYesNo, "Konfirmasi")
+                    If tanya = vbYes Then
+                        fc_Class.BackupSemester1(CTahunOpenBudget.Text)
+                    End If
                 Else
-                    MessageBox.Show("Budget Gagal!",
-                                  "Warning",
-                                  MessageBoxButtons.OK,
-                                  MessageBoxIcon.Warning,
-                                  MessageBoxDefaultButton.Button1)
+                    fc_Class.BackupSemester1(CTahunOpenBudget.Text)
                 End If
             End If
-            Call Status()
 
+            Dim a As Boolean = False
+                Dim konfirmasi = MsgBox("Apakah Budget akan di Buka?", vbQuestion + vbYesNo, "Konfirmasi")
+                If konfirmasi = vbYes Then
+                    a = fc_Class.Open_Budget(CTahunOpenBudget.Text, CSemester.Text, "Open")
+                    If a = True Then
+                        MessageBox.Show("Budget Sukses di Buka",
+                                      "Informasi",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Information,
+                                      MessageBoxDefaultButton.Button1)
+                    Else
+                        MessageBox.Show("Budget Gagal!",
+                                      "Warning",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Warning,
+                                      MessageBoxDefaultButton.Button1)
+                    End If
+                End If
+                Call Status()
+
+        End If
+
+    End Sub
+
+    Private Sub C_Dept_EditValueChanged(sender As Object, e As EventArgs) Handles C_Dept.EditValueChanged
+
+    End Sub
+
+    Private Sub BApprove_Click(sender As Object, e As EventArgs) Handles BApprove.Click
+
+        If CTahunApprove.EditValue = "" Or tpersen.EditValue = "" Then
+            MessageBox.Show("Periksa Tahun atau Persen ",
+                                     "Waning",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Warning,
+                                     MessageBoxDefaultButton.Button1)
+        Else
+            'fc_Class.ApproveBOD(CTahunApprove.EditValue,)
 
         End If
 

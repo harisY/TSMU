@@ -12,6 +12,38 @@
         End Try
     End Function
 
+    Public Function GetAccountApprove() As DataTable
+        Try
+            Dim query As String = "select Distinct  AcctID,AcctName from rekap_budget_dept "
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+    Public Function GetSiteApprove() As DataTable
+        Try
+            Dim query As String = "select Distinct  SiteID from rekap_budget_dept "
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetDeptApprove() As DataTable
+        Try
+            Dim query As String = "select Distinct  DeptID from rekap_budget_dept "
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function GetStatus() As DataTable
         Try
             Dim query As String = "select * from BudgetSetting Where Status ='Open'"
@@ -34,31 +66,31 @@
         End Try
     End Function
 
-    Public Function CopyBudget(Tahun_Copy As String, Tahun_Create As String) As Boolean
+    'Public Function CopyBudget(Tahun_Copy As String, Tahun_Create As String) As Boolean
 
-        Dim result As Boolean = 0
-
-
-        Try
+    '    Dim result As Boolean = 0
 
 
-            Dim query As String = "[Ebudget_CopyBudget]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
-            pParam(0) = New SqlClient.SqlParameter("@tahun_Copy", SqlDbType.VarChar)
-            pParam(1) = New SqlClient.SqlParameter("@tahun_Update", SqlDbType.VarChar)
+    '    Try
 
-            pParam(0).Value = Tahun_Copy
-            pParam(1).Value = Tahun_Create
 
-            result = MainModul.ExecQueryByCommand_SP(query, pParam)
+    '        Dim query As String = "[Ebudget_CopyBudget]"
+    '        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+    '        pParam(0) = New SqlClient.SqlParameter("@tahun_Copy", SqlDbType.VarChar)
+    '        pParam(1) = New SqlClient.SqlParameter("@tahun_Update", SqlDbType.VarChar)
 
-            Return result
+    '        pParam(0).Value = Tahun_Copy
+    '        pParam(1).Value = Tahun_Create
 
-        Catch ex As Exception
-            Throw
-        End Try
+    '        result = MainModul.ExecQueryByCommand_SP(query, pParam)
 
-    End Function
+    '        Return result
+
+    '    Catch ex As Exception
+    '        Throw
+    '    End Try
+
+    'End Function
 
 
     Public Function Close_Budget() As Boolean
@@ -101,5 +133,151 @@
         End Try
     End Function
 
+    Public Function CekBackup(tahun As String) As Boolean
+        Dim result As Boolean = False
+        Try
+            Try
+                Dim dt = New DataTable
+                Dim query As String = "select * from rekap_budget_dept_s1 where tahun = '" & tahun & "'"
+                dt = MainModul.GetDataTableByCommand(query)
+                If dt.Rows.Count > 0 Then
+                    result = True
+                Else
+                    result = False
+                End If
+            Catch ex As Exception
+                Throw
+            End Try
+            Return result
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Sub BackupSemester1(Tahun As String)
+
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Dim result As Boolean = 0
+
+                    Try
+
+                        Dim query As String = "delete from rekap_budget_dept_s1 where tahun ='" & Tahun & "' "
+                        MainModul.ExecQuery(query)
+
+                        Dim querysp As String = "[Ebudget_CopyBudget_s1]"
+                        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+                        pParam(0) = New SqlClient.SqlParameter("@tahun", SqlDbType.VarChar)
+
+                        pParam(0).Value = Tahun
+                        ExecQueryByCommand_SP(querysp, pParam)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+
+    Public Sub CopyBudget(Tahun_Copy As String, Tahun_Create As String)
+
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+
+                    Dim result As Boolean = 0
+
+
+                    Try
+
+                        Dim query As String = "[Ebudget_CopyBudget]"
+                        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+                        pParam(0) = New SqlClient.SqlParameter("@tahun_Copy", SqlDbType.VarChar)
+                        pParam(1) = New SqlClient.SqlParameter("@tahun_Update", SqlDbType.VarChar)
+
+                        pParam(0).Value = Tahun_Copy
+                        pParam(1).Value = Tahun_Create
+
+                        ExecQueryByCommand_SP(query, pParam)
+
+
+                        Dim queryBOD As String = "[Ebudget_Copy_BOD_Approve]"
+                        Dim pParamBOD() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+                        pParamBOD(0) = New SqlClient.SqlParameter("@tahun_Copy", SqlDbType.VarChar)
+                        pParamBOD(1) = New SqlClient.SqlParameter("@tahun_Create", SqlDbType.VarChar)
+
+                        pParamBOD(0).Value = Tahun_Copy
+                        pParamBOD(1).Value = Tahun_Create
+
+                        ExecQueryByCommand_SP(queryBOD, pParamBOD)
+
+
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub ApproveBOD(Tahun As String, semester As String, Dept As String, AcctiD As String)
+
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Dim result As Boolean = 0
+
+                    Try
+                        Dim querysp As String = "[Ebudget_CopyBudget_s1]"
+                        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+                        pParam(0) = New SqlClient.SqlParameter("@tahun", SqlDbType.VarChar)
+
+                        pParam(0).Value = Tahun
+                        ExecQueryByCommand_SP(querysp, pParam)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 
 End Class

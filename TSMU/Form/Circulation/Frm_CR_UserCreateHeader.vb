@@ -70,8 +70,8 @@ Public Class Frm_CR_UserCreateHeader
         Try
             Cursor.Current = Cursors.WaitCursor
 
-            pDate2 = Date.Now.AddMonths(2)
-            pDate1 = Date.Now.AddMonths(-2)
+            pDate2 = Date.Now.AddMonths(3)
+            pDate1 = Date.Now.AddMonths(-3)
 
             Dim dt As New DataTable
 

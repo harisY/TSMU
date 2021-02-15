@@ -245,7 +245,8 @@ Public Class FrmBankReceipt_Detail
                     .Tgl = oDate
                     ' .Tgl = TxtTgl.Text
                     If isUpdate = False Then
-                        TxtNoBukti.Text = .receiptAutoNo()
+                        .Perpost = _TxtPerpost.Text
+                        TxtNoBukti.Text = .receiptAutoNox()
                     End If
                     .NoBukti = TxtNoBukti.Text
                     .Perpost = TxtPerpost.Text
