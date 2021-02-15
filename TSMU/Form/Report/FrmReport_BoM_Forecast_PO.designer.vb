@@ -887,8 +887,11 @@ Partial Class FrmReport_BoM_Forecast_PO
         '
         Me.LayoutControlItem1.Control = Me._txtTahun
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.MaxSize = New System.Drawing.Size(231, 26)
+        Me.LayoutControlItem1.MinSize = New System.Drawing.Size(231, 26)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(231, 26)
+        Me.LayoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem1.Text = "Tahun"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(73, 16)
         '
