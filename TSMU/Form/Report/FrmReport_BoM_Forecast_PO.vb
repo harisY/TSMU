@@ -1,6 +1,4 @@
-﻿Imports System.Globalization
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraGrid
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.BandedGrid
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraSplashScreen
@@ -16,13 +14,16 @@ Public Class FrmReport_BoM_Forecast_PO
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
     Private Sub FrmReport_BoM_Forecast_PO_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Dim Tahun As String = String.Empty
         Tahun = Date.Today.Year().ToString
         _txtTahun.Text = Tahun
-        Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False, False)
         'LoadGrid(Tahun)
     End Sub
+
     Private Sub LoadGrid(Tahun As String)
         Try
             Cursor.Current = Cursors.WaitCursor
@@ -30,17 +31,16 @@ Public Class FrmReport_BoM_Forecast_PO
             SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
             SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
             Dim dt As New DataTable
-            dt = ObjReportMatome.Generate_Report_BoM_PO_ForecastCalculate(Tahun, txtInvtId.EditValue, TxtPerost.EditValue)
-            Grid.DataSource = dt
-            AdvBandedGridView1.BestFitColumns()
-            'If AdvBandedGridView1.RowCount > 0 Then
-            '    FormatGridBadgeView(AdvBandedGridView1)
-            'End If
-
-            Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False)
+            dt = ObjReportMatome.Generate_Report_BoM_PO_ForecastCalculate(Tahun, txtInvtId.EditValue, "")
+            If dt.Rows.Count > 0 Then
+                Grid.DataSource = dt
+                AdvBandedGridView1.BestFitColumns()
+                FormatBandedGridView(AdvBandedGridView1)
+            Else
+                ShowMessage("data tidak ditemukan", MessageTypeEnum.NormalMessage)
+            End If
             Cursor.Current = Cursors.Default
             SplashScreenManager.CloseForm()
-            'XtraMessageBox.Show("Proses selesai !")
         Catch ex As Exception
             Cursor.Current = Cursors.Default
             SplashScreenManager.CloseForm()
@@ -54,6 +54,7 @@ Public Class FrmReport_BoM_Forecast_PO
         '    .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         'End With
     End Sub
+
     Public Overrides Sub Proc_Refresh()
         If _txtTahun.Text = "" Then
             _txtTahun.Focus()
@@ -61,13 +62,14 @@ Public Class FrmReport_BoM_Forecast_PO
         ElseIf txtInvtId.Text = "" Then
             txtInvtId.Focus()
             'XtraMessageBox.Show("Inventory ID harus di isi !")
-        ElseIf TxtPerost.Text = "" Then
-            TxtPerost.Focus()
-            XtraMessageBox.Show("Perpost harus di isi !")
+            'ElseIf TxtPerost.Text = "" Then
+            '    TxtPerost.Focus()
+            '    XtraMessageBox.Show("Perpost harus di isi !")
         Else
             LoadGrid(_txtTahun.Text)
         End If
     End Sub
+
     Public Overrides Sub Proc_Excel()
         Try
             If AdvBandedGridView1.RowCount > 0 Then
@@ -99,7 +101,6 @@ Public Class FrmReport_BoM_Forecast_PO
                         Bulan = "Des " & _txtTahun.EditValue
                 End Select
                 SaveToExcel(Grid, "Actual Sales " & Bulan, "Konsumsi Actual Sales Material", False)
-
             Else
                 Throw New Exception("Tidak ada Data yg di export")
             End If
@@ -108,6 +109,7 @@ Public Class FrmReport_BoM_Forecast_PO
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Private Sub _txtTahun_KeyDown(sender As Object, e As KeyEventArgs) Handles _txtTahun.KeyDown
         If e.KeyCode = Keys.Enter Then
             tsBtn_refresh.PerformClick()
@@ -115,7 +117,9 @@ Public Class FrmReport_BoM_Forecast_PO
             e.Handled = True
         End If
     End Sub
+
     Dim ObjReport As clsReport
+
     Private Sub txtInvtId_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles txtInvtId.ButtonClick
         Try
             Dim ls_Judul As String = ""
@@ -125,8 +129,7 @@ Public Class FrmReport_BoM_Forecast_PO
             ObjReport = New clsReport
             dtSearch = ObjReport.getInvtItem
             ls_OldKode = txtInvtId.Text.Trim
-            ls_Judul = "Invetory ID"
-
+            ls_Judul = "Inventory ID"
 
             '   dtSearch.Rows.InsertAt(dtSearch.NewRow, 0)
             dtSearch.Rows(0).Item(0) = "ALL"
@@ -166,7 +169,7 @@ Public Class FrmReport_BoM_Forecast_PO
         If e.RowHandle > 0 Then
             Dim Level As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("Level"))
             'Dim array2() As String = TempSJ.ToArray
-            If Level.ToLower = "level 0" Then
+            If Level.ToLower = "0" Then
                 e.Appearance.BackColor = Color.LightBlue
                 e.Appearance.BackColor2 = Color.SeaShell
                 e.HighPriority = True
@@ -186,4 +189,5 @@ Public Class FrmReport_BoM_Forecast_PO
             End Try
         End If
     End Sub
+
 End Class

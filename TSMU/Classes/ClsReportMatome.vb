@@ -181,7 +181,8 @@
 
     Public Function Generate_Report_BoM_PO_ForecastCalculate(strYear As String, ParentId As String, Perpost As String) As DataTable
         Try
-            Dim query As String = "BoM_PO_Forecast_aktual_Calculate"
+            Dim query As String = "BoM_PO_Forecast_WithNoAktual"
+            'Dim query As String = "BoM_PO_Forecast_aktual_Calculate"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
             pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
             pParam(0).Value = Left(strYear, 4)
