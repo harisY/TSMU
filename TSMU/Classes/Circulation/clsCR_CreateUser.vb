@@ -657,6 +657,7 @@ Public Class ClsCR_CreateUser
                     ' H_Balance = Trim(.Item("Balance") & "")
                     H_InvoiceNo = Trim(.Item("InvoiceNo") & "")
                     H_Status = Trim(.Item("Status") & "")
+                    H_Current_Level = Trim(.Item("Current_Level") & "")
                     ' H_UserSubmition = Trim(.Item("UserSubmition") & "")
                     'H_DeptHead_ID = Trim(.Item("") & "")
                     'H_DeptHead_Name = Trim(.Item("") & "")

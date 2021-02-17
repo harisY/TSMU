@@ -125,11 +125,30 @@ Public Class Frm_CR_UserCreateDetail
                     Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
                     Call No_Edit_TextBox()
                 ElseIf gh_Common.GroupID = "1BOD" Then
-                    Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+
+                    If fc_Class.H_Current_Level <= 3 Then
+                        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
+                    Else
+                        Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, True)
+                    End If
+
                     Call LoadTxtBox()
                     Call LoadGridBarang(fs_Code)
                     Call LoadGridInstallment(fs_Code)
                     Call LoadGrid_OtherDept(fs_Code)
+                    Call Sub_Dept(fc_Class.H_DeptID)
+                    T_CRNo.Enabled = False
+
+                    If ls_Error <> "" Then
+                        Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
+                        isCancel = True
+                        Me.Hide()
+                        Exit Sub
+                    Else
+                        isUpdate = True
+                    End If
+                    Me.Text = "CIRCULATION FORM -> " & fs_Code
+
                 Else
 
                     Call LoadTxtBox()
