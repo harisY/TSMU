@@ -2599,6 +2599,7 @@
     <Compile Include="Models\CustomizationModels.vb" />
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
+    <Compile Include="Models\ForecastDailyModel.vb" />
     <Compile Include="Models\forecast_po_model.vb" />
     <Compile Include="Models\FormatExcelModel.vb" />
     <Compile Include="Models\ImageModel.vb" />
