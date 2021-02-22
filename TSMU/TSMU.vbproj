@@ -1648,6 +1648,12 @@
     <Compile Include="Form\Common\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmForecastDaily.Designer.vb">
+      <DependentUpon>frmForecastDaily.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmForecastDaily.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.Designer.vb">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </Compile>
@@ -2036,6 +2042,12 @@
       <DependentUpon>Frm_EBudget.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\EBudget\Frm_EBudget.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Lookup\FrmLookupForecastDaily.Designer.vb">
+      <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Lookup\FrmLookupForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\NPP\Frm_Approve_Dept_Head.Designer.vb">
@@ -3037,6 +3049,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\BudgetSerivce.vb" />
+    <Compile Include="Services\ForecastDailyService.vb" />
     <Compile Include="Services\FormatExcelService.vb" />
     <Compile Include="Services\GlobalService.vb" />
     <Compile Include="Services\MApproveService.vb" />
@@ -3590,6 +3603,9 @@
     <EmbeddedResource Include="Form\Common\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
+      <DependentUpon>frmForecastDaily.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </EmbeddedResource>
@@ -3628,6 +3644,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\EBudget\Frm_EBudget.resx">
       <DependentUpon>Frm_EBudget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Lookup\FrmLookupForecastDaily.resx">
+      <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_Approve_Dept_Head.resx">
       <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
