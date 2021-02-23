@@ -4,6 +4,8 @@ Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraReports.UI
+Imports DevExpress.LookAndFeel
 
 Public Class FrmTravelTicketDetail
     Public IsClosed As Boolean = False
@@ -58,6 +60,21 @@ Public Class FrmTravelTicketDetail
     Private Sub FrmTravelTicketDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False)
         Call InitialSetForm()
+    End Sub
+
+    Public Overrides Sub Proc_Print()
+        Dim clsReport = New TravelTicketModel
+        Dim lapTicket As New DRTravelVoucherTicket
+        Dim dtTicket As New DataTable
+
+        dtTicket = clsReport.LoadReportVoucherTicket(txtNoVoucher.Text)
+
+        lapTicket.DataSource = dtTicket
+        Dim PrintTool As ReportPrintTool
+
+        PrintTool = New ReportPrintTool(lapTicket)
+        TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+        PrintTool.ShowPreview(UserLookAndFeel.Default)
     End Sub
 
     Public Overrides Sub InitialSetForm()
@@ -139,6 +156,7 @@ Public Class FrmTravelTicketDetail
                     rowHeader("TotAmount") = .TotAmount
                     dtInvoiceHeader.Rows.Add(rowHeader)
                 End With
+                Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, False)
             Else
                 txtNoVoucher.Text = ""
                 dtTanggal.EditValue = DateTime.Today

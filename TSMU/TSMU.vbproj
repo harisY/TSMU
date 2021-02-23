@@ -1001,6 +1001,12 @@
     <Compile Include="Direct\report\DRCCSettlement.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\DRTravelVoucherTicket.designer.vb">
+      <DependentUpon>DRTravelVoucherTicket.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\DRTravelVoucherTicket.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\entertain1.vb">
       <DependentUpon>entertain1.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3262,6 +3268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\DRCCSettlement.resx">
       <DependentUpon>DRCCSettlement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\DRTravelVoucherTicket.resx">
+      <DependentUpon>DRTravelVoucherTicket.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportCCAccrued.resx">
       <DependentUpon>FrmReportCCAccrued.vb</DependentUpon>
