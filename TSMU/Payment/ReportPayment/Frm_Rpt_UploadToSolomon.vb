@@ -106,6 +106,28 @@ Public Class Frm_Rpt_UploadToSolomon
                    ProgBar.Visible = False
                End Sub)
     End Sub
+
+    Private Sub GetDataGridReportUploadSolomonNonIDR()
+        Dim date3 As String = ""
+        Dim date4 As String = ""
+        Dim date5 As String = ""
+        'Dim date1 As DateTime
+        'Dim date2 As DateTime
+        Invoke(Sub()
+                   date3 = DateEdit3.Text
+                   date4 = DateEdit4.Text
+                   date5 = DateEdit5.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = pay_class.DataGridReportUploadSolomonNonIDR(date3, date4, date5)
+        setDataSource(dt, GridControl1)
+        Invoke(Sub()
+                   ProgBar2.Visible = False
+               End Sub)
+    End Sub
+
+
+
     Friend Delegate Sub SetDataSourceDelegate(table As DataTable, _Grid As GridControl)
     Private Sub setDataSource(table As DataTable, _Grid As GridControl)
         ' Invoke method if required:
@@ -196,5 +218,30 @@ Public Class Frm_Rpt_UploadToSolomon
         '    .Refresh()
         'End With
 
+    End Sub
+
+    Private Async Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Try
+            If ProgBar2.Visible = True Then
+                Throw New Exception("Process already running, Please wait!")
+            End If
+            ProgBar2.Visible = True
+            ProgBar2.Style = ProgressBarStyle.Marquee
+            Await Task.Run(Sub() GetDataGridReportUploadSolomonNonIDR())
+        Catch ex As Exception
+            ProgBar2.Visible = False
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Try
+            Dim newform As New Frm_Rpt_APSolomonNonIDR(DateEdit3.Text, DateEdit4.Text, DateEdit5.Text)
+            newform.StartPosition = FormStartPosition.CenterScreen
+            newform.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

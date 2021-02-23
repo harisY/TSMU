@@ -367,6 +367,11 @@
     <Compile Include="dataset\DashboardDS.vb">
       <DependentUpon>DashboardDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dataset\datauploadNonIDR.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>datauploadNonIDR.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\dsCrud.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2849,6 +2854,12 @@
     <Compile Include="Payment\ReportPayment\Form2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSolomonNonIDR.Designer.vb">
+      <DependentUpon>Frm_Rpt_APSolomonNonIDR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSolomonNonIDR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.Designer.vb">
       <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
     </Compile>
@@ -2949,6 +2960,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Rpt_upload.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Rpt_UploadNonIDR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_UploadNonIDR.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Payment\ReportPayment\XtraReport1.Designer.vb">
@@ -4038,6 +4055,9 @@
     <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI4.resx">
       <DependentUpon>DXReportTTI4.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomonNonIDR.resx">
+      <DependentUpon>Frm_Rpt_APSolomonNonIDR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.resx">
       <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
     </EmbeddedResource>
@@ -4078,6 +4098,10 @@
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_upload.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_upload.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Rpt_UploadNonIDR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_UploadNonIDR.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\Rpt_Upload2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -4134,6 +4158,17 @@
     </None>
     <None Include="dataset\DashboardDS.xss">
       <DependentUpon>DashboardDS.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\datauploadNonIDR.xsc">
+      <DependentUpon>datauploadNonIDR.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\datauploadNonIDR.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>datauploadNonIDR.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dataset\datauploadNonIDR.xss">
+      <DependentUpon>datauploadNonIDR.xsd</DependentUpon>
     </None>
     <None Include="dataset\dsLaporan2.xsc">
       <DependentUpon>dsLaporan2.xsd</DependentUpon>
