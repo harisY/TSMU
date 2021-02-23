@@ -809,6 +809,12 @@
     <Compile Include="Direct\FrmViewGJ.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmViewGL.Designer.vb">
+      <DependentUpon>FrmViewGL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmViewGL.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\report\CRCCAccrued.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -989,6 +995,24 @@
       <DependentUpon>CRTravelTotalSuspenseSettRight.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\CRUploadGJ.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGJ.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRUploadGL.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGL.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRUploadGL2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGL2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\DRCCAccrued.designer.vb">
       <DependentUpon>DRCCAccrued.vb</DependentUpon>
     </Compile>
@@ -1089,6 +1113,12 @@
       <DependentUpon>FrmReportTravelSett.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\FrmReportTravelSett.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportUploadGL.Designer.vb">
+      <DependentUpon>FrmReportUploadGL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportUploadGL.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\relasi.vb">
@@ -3214,6 +3244,9 @@
     <EmbeddedResource Include="Direct\FrmViewGJ.resx">
       <DependentUpon>FrmViewGJ.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmViewGL.resx">
+      <DependentUpon>FrmViewGL.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRCCAccrued.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRCCAccrued.vb</LastGenOutput>
@@ -3334,6 +3367,18 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelTotalSuspenseSettRight.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGJ.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGJ.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGL.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGL2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGL2.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\DRCCAccrued.resx">
       <DependentUpon>DRCCAccrued.vb</DependentUpon>
     </EmbeddedResource>
@@ -3357,6 +3402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportTravelSett.resx">
       <DependentUpon>FrmReportTravelSett.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportUploadGL.resx">
+      <DependentUpon>FrmReportUploadGL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\RptBankTransfer.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
