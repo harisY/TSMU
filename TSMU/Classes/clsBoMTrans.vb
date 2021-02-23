@@ -245,28 +245,28 @@ Public Class clsBoMTrans
     End Sub
     Public Sub DeleteData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(MainModul.GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    MainModul.gh_Trans = New InstanceVariables.TransactionHelper
-                    MainModul.gh_Trans.Command.Connection = Conn1
-                    MainModul.gh_Trans.Command.Transaction = Trans1
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
                     Try
-                        fc_clsHeader.DeleteHeader(Me._bomid)
+                        fc_clsHeader.DeleteHeader(_bomid)
 
                         Dim fc_classdetail As New clsBoMdetails
-                        fc_classdetail.DeleteDetail(Me._bomid, 0)
+                        fc_classdetail.DeleteDetail(_bomid, 0)
 
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
                     Finally
-                        MainModul.gh_Trans = Nothing
+                        gh_Trans = Nothing
                     End Try
                 End Using
             End Using
         Catch ex As Exception
-            Throw
+            Throw ex
         End Try
     End Sub
 End Class

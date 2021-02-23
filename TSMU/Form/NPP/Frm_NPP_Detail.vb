@@ -230,7 +230,7 @@ Public Class Frm_NPP_Detail
                     TNPP_No.Enabled = False
                     Me.Text = "NPP FORM "
                     If fc_Class.H_Approve <= 1 Then
-                        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                        Call Proc_EnableButtons(False, True, False, True, True, False, False, True, False, False, True)
                         Call Colums_AllowEdit_True()
                         Me.CapabilityDate.Visible = False
                         Me.Commit.Visible = False
@@ -240,7 +240,7 @@ Public Class Frm_NPP_Detail
                         B_Revise.Enabled = False
 
                     ElseIf fc_Class.H_Approve = 2 Then
-                        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                        Call Proc_EnableButtons(False, True, False, True, True, False, False, True, False, False, True)
                         Call Colums_AllowEdit_True()
                         Me.CapabilityDate.Visible = False
                         Me.Commit.Visible = False
@@ -259,7 +259,7 @@ Public Class Frm_NPP_Detail
                         'BUpload.Visible = False
 
 
-                        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                        Call Proc_EnableButtons(False, True, False, True, True, False, False, True, False, False, True)
                         Call Colums_AllowEdit_True()
                         Me.CapabilityDate.Visible = False
                         Me.Commit.Visible = False
@@ -279,7 +279,7 @@ Public Class Frm_NPP_Detail
                         ''B_Revise.Visible = True
 
 
-                        Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
+                        Call Proc_EnableButtons(False, True, False, True, True, False, False, True, False, False, True)
                         Call Colums_AllowEdit_True()
                         Me.CapabilityDate.Visible = False
                         Me.Commit.Visible = False
@@ -290,7 +290,7 @@ Public Class Frm_NPP_Detail
 
 
                     Else
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
+                        Call Proc_EnableButtons(False, False, False, False, True, False, False, True, False, False, False)
                         Call Colums_AllowEdit_False()
                     End If
                 ElseIf Active_Form = 2 Then
@@ -406,6 +406,12 @@ Public Class Frm_NPP_Detail
                     Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
                     B_AddRows.Enabled = False
                     BUpload.Enabled = False
+                Else
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+                    B_AddRows.Enabled = False
+                    BUpload.Enabled = False
+                    B_Submit.Enabled = False
+                    B_Revise.Enabled = False
                 End If
             Else
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)
@@ -2137,7 +2143,7 @@ Public Class Frm_NPP_Detail
     End Sub
 
     Private Sub Frm_NPP_Detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        'komentar
         Call CreateTableBarang()
         Call FillComboCustomer()
         Call FillComboCategory()
@@ -2177,4 +2183,18 @@ Public Class Frm_NPP_Detail
         End Try
         Return _level
     End Function
+
+    Public Overrides Sub Proc_Excel()
+        Try
+            If GridView1.RowCount > 0 Then
+                SaveToExcel(Grid)
+            Else
+                MsgBox("Grid Kosong !")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
 End Class

@@ -511,17 +511,19 @@ Public Class cashbank_models
     Public Sub UpdateTransfer_hapus()
 
         Try
-            Dim query As String = "DELETE FROM cashbank2 " & vbCrLf &
-            "WHERE NoBukti = " & QVal(Me._id) & " "
+
+            'Dim query2 As String = "DELETE FROM banktransfer " & vbCrLf &
+            '"WHERE NoBukti=" & QVal(Noref.TrimEnd) & ""
+            'Dim li_Row2 = MainModul.ExecQuery_Solomon(query2)
+            Dim query2 As String = "DELETE banktransfer  FROM banktransfer inner join cashbank on  banktransfer.nobukti=right(replace(cashbank.noref,' ',''),15) " & vbCrLf &
+" WHERE cashbank.NoBukti= " & QVal(Me._id) & " "
+            Dim li_Row2 = MainModul.ExecQuery_Solomon(query2)
+            Dim query As String = "DELETE cashbank2 from cashbank2 inner join (select Noref from cashbank2 where nobukti=" & QVal(Me._id) & ") as norep on norep.noref=cashbank2.Noref "
+
             Dim li_Row = MainModul.ExecQuery_Solomon(query)
 
-            Dim query1 As String = "DELETE FROM cashbank " & vbCrLf &
-            "WHERE Noref=" & QVal(Noref.TrimEnd) & ""
+            Dim query1 As String = "DELETE cashbank  FROM cashbank inner join (select Noref from cashbank where nobukti=" & QVal(Me._id) & ")  as norep on norep.noref=cashbank.Noref "
             Dim li_Row1 = MainModul.ExecQuery_Solomon(query1)
-
-            Dim query2 As String = "DELETE FROM banktransfer " & vbCrLf &
-            "WHERE NoBukti=" & QVal(Noref.TrimEnd) & ""
-            Dim li_Row2 = MainModul.ExecQuery_Solomon(query2)
 
         Catch ex As Exception
             Throw
@@ -530,18 +532,23 @@ Public Class cashbank_models
     Public Sub UpdateReceipt_hapus()
 
         Try
-            Dim query As String = "DELETE FROM cashbank2 " & vbCrLf &
-            "WHERE NoBukti = " & QVal(Me._id) & " "
-            Dim li_Row = MainModul.ExecQuery_Solomon(query)
 
-            Dim query1 As String = "DELETE FROM cashbank " & vbCrLf &
-            "WHERE Noref=" & QVal(Noref.TrimEnd) & ""
-            Dim li_Row1 = MainModul.ExecQuery_Solomon(query1)
 
-            Dim query2 As String = "DELETE FROM bankreceipt " & vbCrLf &
-            "WHERE NoBukti=" & QVal(Noref.TrimEnd) & ""
+            Dim query2 As String = "DELETE bankreceipt  FROM bankreceipt inner join cashbank on  bankreceipt.nobukti=right(replace(cashbank.noref,' ',''),15) " & vbCrLf &
+            " WHERE cashbank.NoBukti= " & QVal(Me._id) & " "
             Dim li_Row2 = MainModul.ExecQuery_Solomon(query2)
 
+            Dim query As String = "DELETE FROM cashbank2 " & vbCrLf &
+"WHERE NoBukti = " & QVal(Me._id) & " "
+            Dim li_Row = MainModul.ExecQuery_Solomon(query)
+
+            'Dim query1 As String = "DELETE FROM cashbank " & vbCrLf &
+            '"WHERE Noref=" & QVal(Noref.TrimEnd) & ""
+            'Dim li_Row1 = MainModul.ExecQuery_Solomon(query1)
+
+            Dim query1 As String = "DELETE FROM cashbank " & vbCrLf &
+            "WHERE NoBukti = " & QVal(Me._id) & " "
+            Dim li_Row1 = MainModul.ExecQuery_Solomon(query1)
         Catch ex As Exception
             Throw
         End Try
@@ -623,7 +630,32 @@ Public Class cashbank_models
 
         End Try
     End Function
+    Public Function autononbx() As String
+        Try
+            Dim bl As String
+            Dim th As String
+            th = Microsoft.VisualBasic.Left(Perpost, 4)
+            bl = Microsoft.VisualBasic.Right(Perpost, 2)
 
+            Dim auto2 As String
+            Dim sql As String = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+                 "set @bulan = " & QVal(bl) &
+                "set @tahun =  " & QVal(th) &
+                "set @seq= (select right('0000'+cast(right(rtrim(max(nobukti)),4)+1 as varchar),4) " &
+                "from cashbank2 " &
+                "where SUBSTRING(nobukti,4,4) = RIGHT(@tahun,4) AND SUBSTRING(nobukti,9,2) = RIGHT(@bulan,2)) " &
+                "select 'VC' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            auto2 = dt.Rows(0).Item(0).ToString
+            Return auto2
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
     Public Function GetNamaAccountbyid() As String
         Try
             Dim namaaccount As String

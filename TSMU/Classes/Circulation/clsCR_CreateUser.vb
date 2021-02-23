@@ -12,6 +12,7 @@ Public Class ClsCR_CreateUser
     Public Property H_SiteID As String
     Public Property H_PR As String
     Public Property H_Budget As Integer
+    Public Property H_Budget_text As Double
     Public Property H_Account As String
     Public Property H_CR_Type As String
     Public Property H_Currency As String
@@ -107,8 +108,9 @@ Public Class ClsCR_CreateUser
                                     [DeptID] as [Dept]
                                     ,[DeptHead_Name] as [Name]
                                     ,[Date] 
-                                    ,[Opinion]
-                                    ,[DeptHead_ID] as  [User_id]
+                                    ,ISNULL([Opinion],'') as [Opinion]
+                                    ,ISNULL([DeptHead_ID],'') as  [User_id]
+                                    ,ISNULL([dept_group],'') as  [Group]
                                     ,[Approve] as [Check]
                                   from [CR_Other_Dept] Where [CirculationNo] = '" & CirculationNo & "'
                                     order by ID asc"
@@ -338,6 +340,19 @@ Public Class ClsCR_CreateUser
             Throw
         End Try
     End Function
+
+    Public Function Email_test() As DataTable
+        Try
+            Dim query As String = "Select Email From EmailTest"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function Get_Other_DeptID() As DataTable
         Try
             Dim query As String = "[CR_Get_Other_DeptID]"
@@ -615,10 +630,7 @@ Public Class ClsCR_CreateUser
             Dim query As String = "[CR_Get_Request_ByID]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@Circulation", SqlDbType.VarChar)
-
             pParam(0).Value = ID
-
-
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
 
@@ -645,6 +657,7 @@ Public Class ClsCR_CreateUser
                     ' H_Balance = Trim(.Item("Balance") & "")
                     H_InvoiceNo = Trim(.Item("InvoiceNo") & "")
                     H_Status = Trim(.Item("Status") & "")
+                    H_Current_Level = Trim(.Item("Current_Level") & "")
                     ' H_UserSubmition = Trim(.Item("UserSubmition") & "")
                     'H_DeptHead_ID = Trim(.Item("") & "")
                     'H_DeptHead_Name = Trim(.Item("") & "")
@@ -669,6 +682,7 @@ Public Class ClsCR_CreateUser
                     H_No_PO = Trim(.Item("PO_No") & "")
                     H_No_PR = Trim(.Item("PR_No") & "")
                     H_Customer = Trim(.Item("Customer") & "")
+                    H_Budget_text = IIf(.Item("NilaiBudget").ToString = "", 0, .Item("NilaiBudget"))
 
                     'If Trim(.Item("ChargedOfCustomer") & "") = "0" Then
                     '    H_ChargedOf = 0
@@ -972,6 +986,7 @@ Public Class ClsCR_CreateUser
                         Next
 
                         MyMailMessage.CC.Add("log@tsmu.co.id")
+                        MyMailMessage.CC.Add("miftah-mis@tsmu.co.id")
                         MyMailMessage.Subject = "SIRKULASI BARU No ' " + NoSirkulasi + "'"
 
                         Dim SMTP As New SmtpClient("mail.tsmu.co.id")
@@ -979,10 +994,7 @@ Public Class ClsCR_CreateUser
                         SMTP.EnableSsl = False
                         SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
                         SMTP.Send(MyMailMessage)
-                        'RichTextBoxBody.Text = ""
-                        'MsgBox("Mail was sent", MsgBoxStyle.Information)
 
-                        '                        'end send email
 #End Region
 
 
@@ -1109,7 +1121,8 @@ Public Class ClsCR_CreateUser
                                          H_NameItem,
                                          H_Spesification,
                                          H_PO,
-                                         H_Customer)
+                                         H_Customer,
+                                         H_Budget_text)
 
                         Delete_Detail(NoSirkulasi)
 
@@ -1247,7 +1260,8 @@ Public Class ClsCR_CreateUser
                                          H_Div_id,
                                          H_Director_id,
                                          H_Current_Level,
-                                         H_Customer)
+                                         H_Customer,
+                                         H_Budget_text)
 
                         For i As Integer = 0 To Collection_Description_Of_Cost.Count - 1
                             With Collection_Description_Of_Cost(i)
@@ -1337,7 +1351,8 @@ Public Class ClsCR_CreateUser
                                 div_Id As Integer,
                                 director_Id As Integer,
                                 CurrentLevel As Integer,
-                                Customer As String)
+                                Customer As String,
+                                BudgetText As Double)
 
 
         Dim result As Integer = 0
@@ -1364,7 +1379,7 @@ Public Class ClsCR_CreateUser
 
 
             Dim query As String = "[CR_Insert_CrRequest]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(22) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(23) {}
             pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@RequirementDate", SqlDbType.Date)
             pParam(2) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
@@ -1388,6 +1403,7 @@ Public Class ClsCR_CreateUser
             pParam(20) = New SqlClient.SqlParameter("@dir_Id ", SqlDbType.Int)
             pParam(21) = New SqlClient.SqlParameter("@CurrentLevel ", SqlDbType.Int)
             pParam(22) = New SqlClient.SqlParameter("@Customer ", SqlDbType.VarChar)
+            pParam(23) = New SqlClient.SqlParameter("@BudgetText ", SqlDbType.Float)
 
             pParam(0).Value = CirculationNo
             pParam(1).Value = RequirementDate
@@ -1412,6 +1428,7 @@ Public Class ClsCR_CreateUser
             pParam(20).Value = director_Id
             pParam(21).Value = CurrentLevel
             pParam(22).Value = Customer
+            pParam(23).Value = BudgetText
 
 
             'Dim dtTable As New DataTable
@@ -1667,7 +1684,8 @@ Public Class ClsCR_CreateUser
                                 NameItem As String,
                                 Spesification As String,
                                 PO As Boolean,
-                                Customer As String)
+                                Customer As String,
+                                Budgetext As Double)
 
         Dim result As Integer = 0
         Try
@@ -1692,7 +1710,7 @@ Public Class ClsCR_CreateUser
 
 
             Dim query As String = "[CR_Update_CrRequest]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(18) {}
             pParam(0) = New SqlClient.SqlParameter("@RequirementDate", SqlDbType.Date)
             pParam(1) = New SqlClient.SqlParameter("@DeptID", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@SiteID", SqlDbType.VarChar)
@@ -1711,6 +1729,7 @@ Public Class ClsCR_CreateUser
             pParam(15) = New SqlClient.SqlParameter("@Spesification ", SqlDbType.VarChar)
             pParam(16) = New SqlClient.SqlParameter("@PO ", SqlDbType.Bit)
             pParam(17) = New SqlClient.SqlParameter("@Customer ", SqlDbType.VarChar)
+            pParam(18) = New SqlClient.SqlParameter("@BudgetText ", SqlDbType.Float)
 
             pParam(0).Value = RequirementDate
             pParam(1).Value = DeptID
@@ -1730,6 +1749,7 @@ Public Class ClsCR_CreateUser
             pParam(15).Value = Spesification
             pParam(16).Value = PO
             pParam(17).Value = Customer
+            pParam(18).Value = Budgetext
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
         Catch ex As Exception
@@ -1838,15 +1858,6 @@ Public Class ClsCR_CreateUser
                         SMTP.DeliveryMethod = SmtpDeliveryMethod.Network
                         SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
 
-                        'Dim smpt = New SmtpClient With {
-                        '    .Host = "mail.tsmu.co.id",
-                        '    .Port = 465,
-                        '    .EnableSsl = True,
-                        '    .UseDefaultCredentials = True,
-                        '    .DeliveryMethod = SmtpDeliveryMethod.Network,
-                        '    .Credentials = New NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV"),
-                        '    .Timeout = 20000
-                        '}
 
                         SMTP.Send(MyMailMessage)
 
@@ -1938,6 +1949,23 @@ Public Class ClsCR_CreateUser
             Throw
         End Try
     End Function
+    Public Function RptCirculation_BOD(No As String) As DataSet
+
+        Dim query As String = "[CR_Repot_Header_BOD]"
+        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+        pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+
+        pParam(0).Value = No
+
+        'MainModul.ExecQueryByCommand_SP(query, pParam)
+
+        Dim ds As New dsLaporan
+        ds = GetDataSetByCommand_SP(query, "CirculationHead", pParam)
+        Return ds
+
+        'Mold_Number
+
+    End Function
     Public Function RptCirculation_Temp(No As String) As DataSet
 
         Dim query As String = "[CR_Repot_Header_Temp]"
@@ -1955,6 +1983,7 @@ Public Class ClsCR_CreateUser
         'Mold_Number
 
     End Function
+
 
     Public Function RptCirculation(No As String) As DataSet
 
@@ -2026,6 +2055,44 @@ Public Class ClsCR_CreateUser
 
 
     End Function
+
+    Public Function RptCirculation_OtherDept_BOD(No As String) As DataSet
+
+        Dim query As String = "[CR_Request_Other_BOD]"
+        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+        pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+
+        pParam(0).Value = No
+
+        'MainModul.ExecQueryByCommand_SP(query, pParam)
+
+        Dim ds As New dsLaporan
+        ds = GetDataSetByCommand_SP(query, "CirculationOtherDept", pParam)
+        Return ds
+
+
+
+        '   Dim query As String
+        '   query = "SELECT ROW_NUMBER() OVER (
+        'ORDER BY A.ID)[No]
+        '           ,[CirculationNo]
+        '        ,A.[DeptID]
+        '        ,A.[Date]
+        '        ,A.[Opinion]
+        '        ,A.[Approve]
+        '        ,B.[Name]
+        '       FROM [CR_Other_Dept] A inner join S_User B
+        '        on A.DeptHead_ID = B.Username 
+        '        Where[CirculationNo] = '" & No & "'
+        '           Order By ID asc"
+
+        '   Dim ds1 As New dsLaporan
+        '   ds1 = GetDsReport(query, "CirculationOtherDept")
+        '   Return ds1
+
+
+    End Function
+
 
 
     Public Function RptCirculation_Approve(No As String) As DataSet

@@ -284,6 +284,32 @@
 
         End Try
     End Function
+    Public Function autononbx() As String
+        Try
+            Dim bl As String
+            Dim th As String
+            th = Microsoft.VisualBasic.Left(Perpost, 4)
+            bl = Microsoft.VisualBasic.Right(Perpost, 2)
+
+            Dim auto2 As String
+            Dim sql As String = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+                 "set @bulan = " & QVal(bl) &
+                "set @tahun =  " & QVal(th) &
+                "set @seq= (select right('0000'+cast(right(rtrim(max(nobukti)),4)+1 as varchar),4) " &
+                "from cashbank2 " &
+                "where SUBSTRING(nobukti,4,4) = RIGHT(@tahun,4) AND SUBSTRING(nobukti,9,2) = RIGHT(@bulan,2)) " &
+                "select 'VC' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+
+            Dim dt As DataTable = New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            auto2 = dt.Rows(0).Item(0).ToString
+            Return auto2
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
     Public Function GetDataGrid() As DataTable
         Try
             Dim dt As New DataTable
@@ -314,6 +340,31 @@
             query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
                  "set @bulan = LEFT(CONVERT(CHAR(20), GETDATE(), 101), 2) " &
                 "set @tahun = datepart(year,getdate()) " &
+                "set @seq= (select right('0000'+cast(right(rtrim(max(NoBukti)),4)+1 as varchar),4) " &
+                "from banktransfer " &
+                "where SUBSTRING(NoBukti,1,7) = 'TR' + '-' + RIGHT(@tahun,4) AND SUBSTRING(NoBukti,9,2) = RIGHT(@bulan,2)) " &
+                "select 'TR' + '-' + RIGHT(@tahun,4) + '-' + @bulan + '-' + coalesce(@seq, '0001')"
+
+            Dim dt As DataTable = New DataTable
+            dt = GetDataTable_Solomon(query)
+            Return dt.Rows(0).Item(0).ToString
+
+        Catch ex As Exception
+            Throw
+
+        End Try
+    End Function
+    Public Function TransferAutoNox() As String
+
+        Try
+            Dim query As String
+            Dim bl As String
+            Dim th As String
+            th = Microsoft.VisualBasic.Left(Perpost, 4)
+            bl = Microsoft.VisualBasic.Right(Perpost, 2)
+            query = "declare  @bulan varchar(4), @tahun varchar(4),@seq varchar(4) " &
+                 "set @bulan = " & QVal(bl) &
+                "set @tahun =  " & QVal(th) &
                 "set @seq= (select right('0000'+cast(right(rtrim(max(NoBukti)),4)+1 as varchar),4) " &
                 "from banktransfer " &
                 "where SUBSTRING(NoBukti,1,7) = 'TR' + '-' + RIGHT(@tahun,4) AND SUBSTRING(NoBukti,9,2) = RIGHT(@bulan,2)) " &
@@ -413,6 +464,8 @@
             MainModul.ExecQuery_Solomon(ls_SP)
             Dim ls_SP2 As String = "DELETE FROM cashbank2 WHERE Noref =" & QVal(NoBukti) & ""
             MainModul.ExecQuery_Solomon(ls_SP2)
+            Dim ls_SP3 As String = "DELETE FROM cashbank WHERE Noref =" & QVal(NoBukti) & ""
+            MainModul.ExecQuery_Solomon(ls_SP3)
         Catch ex As Exception
             Throw
         End Try

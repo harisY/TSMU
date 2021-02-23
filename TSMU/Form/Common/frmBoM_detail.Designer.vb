@@ -56,22 +56,22 @@ Partial Class frmBoM_detail
         Me._TxtRefType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -104,22 +104,22 @@ Partial Class frmBoM_detail
         CType(Me._TxtRefType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -133,12 +133,12 @@ Partial Class frmBoM_detail
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(13, 146)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(13, 195)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1075, 598)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1075, 549)
         Me.TableLayoutPanel1.TabIndex = 2
         '
         'Panel1
@@ -149,7 +149,7 @@ Partial Class frmBoM_detail
         Me.Panel1.Location = New System.Drawing.Point(4, 4)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(529, 590)
+        Me.Panel1.Size = New System.Drawing.Size(529, 541)
         Me.Panel1.TabIndex = 0
         '
         'GridDetail
@@ -161,7 +161,7 @@ Partial Class frmBoM_detail
         Me.GridDetail.Location = New System.Drawing.Point(0, 27)
         Me.GridDetail.Margin = New System.Windows.Forms.Padding(4)
         Me.GridDetail.Name = "GridDetail"
-        Me.GridDetail.Size = New System.Drawing.Size(529, 563)
+        Me.GridDetail.Size = New System.Drawing.Size(529, 514)
         Me.GridDetail.TabIndex = 2
         '
         'ToolStrip2
@@ -217,7 +217,7 @@ Partial Class frmBoM_detail
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(530, 590)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(530, 541)
         Me.TableLayoutPanel2.TabIndex = 1
         '
         'GroupBox1
@@ -228,7 +228,7 @@ Partial Class frmBoM_detail
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Size = New System.Drawing.Size(522, 287)
+        Me.GroupBox1.Size = New System.Drawing.Size(522, 262)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Level 2"
@@ -242,7 +242,7 @@ Partial Class frmBoM_detail
         Me.Grid1.Location = New System.Drawing.Point(4, 20)
         Me.Grid1.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid1.Name = "Grid1"
-        Me.Grid1.Size = New System.Drawing.Size(514, 263)
+        Me.Grid1.Size = New System.Drawing.Size(514, 238)
         Me.Grid1.TabIndex = 3
         '
         'GroupBox2
@@ -250,11 +250,11 @@ Partial Class frmBoM_detail
         Me.GroupBox2.Controls.Add(Me.Grid3)
         Me.GroupBox2.Controls.Add(Me.Grid2)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(4, 299)
+        Me.GroupBox2.Location = New System.Drawing.Point(4, 274)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox2.Size = New System.Drawing.Size(522, 287)
+        Me.GroupBox2.Size = New System.Drawing.Size(522, 263)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Level 3"
@@ -268,7 +268,7 @@ Partial Class frmBoM_detail
         Me.Grid3.Location = New System.Drawing.Point(4, 20)
         Me.Grid3.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid3.Name = "Grid3"
-        Me.Grid3.Size = New System.Drawing.Size(514, 263)
+        Me.Grid3.Size = New System.Drawing.Size(514, 239)
         Me.Grid3.TabIndex = 4
         '
         'Grid2
@@ -280,7 +280,7 @@ Partial Class frmBoM_detail
         Me.Grid2.Location = New System.Drawing.Point(4, 20)
         Me.Grid2.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid2.Name = "Grid2"
-        Me.Grid2.Size = New System.Drawing.Size(514, 263)
+        Me.Grid2.Size = New System.Drawing.Size(514, 239)
         Me.Grid2.TabIndex = 3
         '
         'errProvider
@@ -310,104 +310,104 @@ Partial Class frmBoM_detail
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1004, 500, 812, 500)
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(834, 231, 812, 500)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1104, 100)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1104, 160)
         Me.LayoutControl1.TabIndex = 3
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'ChekRegular
         '
         Me.ChekRegular.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ChekRegular.Location = New System.Drawing.Point(1140, 12)
+        Me.ChekRegular.Location = New System.Drawing.Point(662, 90)
         Me.ChekRegular.Margin = New System.Windows.Forms.Padding(4)
         Me.ChekRegular.Name = "ChekRegular"
-        Me.ChekRegular.Size = New System.Drawing.Size(137, 25)
+        Me.ChekRegular.Size = New System.Drawing.Size(430, 25)
         Me.ChekRegular.TabIndex = 20
         Me.ChekRegular.Text = "Convert To Reg"
         Me.ChekRegular.UseVisualStyleBackColor = True
         '
         '_TxtRefNo
         '
-        Me._TxtRefNo.Location = New System.Drawing.Point(1215, 41)
+        Me._TxtRefNo.Location = New System.Drawing.Point(954, 64)
         Me._TxtRefNo.Margin = New System.Windows.Forms.Padding(4)
         Me._TxtRefNo.Name = "_TxtRefNo"
-        Me._TxtRefNo.Size = New System.Drawing.Size(62, 22)
+        Me._TxtRefNo.Size = New System.Drawing.Size(138, 22)
         Me._TxtRefNo.StyleController = Me.LayoutControl1
         Me._TxtRefNo.TabIndex = 18
         '
         '_txtAllowance
         '
-        Me._txtAllowance.Location = New System.Drawing.Point(792, 41)
+        Me._txtAllowance.Location = New System.Drawing.Point(737, 38)
         Me._txtAllowance.Margin = New System.Windows.Forms.Padding(4)
         Me._txtAllowance.Name = "_txtAllowance"
-        Me._txtAllowance.Size = New System.Drawing.Size(62, 22)
+        Me._txtAllowance.Size = New System.Drawing.Size(138, 22)
         Me._txtAllowance.StyleController = Me.LayoutControl1
         Me._txtAllowance.TabIndex = 16
         '
         '_txtCycle
         '
-        Me._txtCycle.Location = New System.Drawing.Point(792, 12)
+        Me._txtCycle.Location = New System.Drawing.Point(521, 90)
         Me._txtCycle.Margin = New System.Windows.Forms.Padding(4)
         Me._txtCycle.Name = "_txtCycle"
-        Me._txtCycle.Size = New System.Drawing.Size(62, 22)
+        Me._txtCycle.Size = New System.Drawing.Size(137, 22)
         Me._txtCycle.StyleController = Me.LayoutControl1
         Me._txtCycle.TabIndex = 14
         '
         '_TxtCavity
         '
-        Me._TxtCavity.Location = New System.Drawing.Point(651, 12)
+        Me._TxtCavity.Location = New System.Drawing.Point(305, 90)
         Me._TxtCavity.Margin = New System.Windows.Forms.Padding(4)
         Me._TxtCavity.Name = "_TxtCavity"
-        Me._TxtCavity.Size = New System.Drawing.Size(62, 22)
+        Me._TxtCavity.Size = New System.Drawing.Size(137, 22)
         Me._TxtCavity.StyleController = Me.LayoutControl1
         Me._TxtCavity.TabIndex = 12
         '
         '_txtRunner
         '
-        Me._txtRunner.Location = New System.Drawing.Point(651, 41)
+        Me._txtRunner.Location = New System.Drawing.Point(737, 12)
         Me._txtRunner.Margin = New System.Windows.Forms.Padding(4)
         Me._txtRunner.Name = "_txtRunner"
-        Me._txtRunner.Size = New System.Drawing.Size(62, 22)
+        Me._txtRunner.Size = New System.Drawing.Size(138, 22)
         Me._txtRunner.StyleController = Me.LayoutControl1
         Me._txtRunner.TabIndex = 11
         '
         '_txtMan
         '
-        Me._txtMan.Location = New System.Drawing.Point(369, 41)
+        Me._txtMan.Location = New System.Drawing.Point(737, 64)
         Me._txtMan.Margin = New System.Windows.Forms.Padding(4)
         Me._txtMan.Name = "_txtMan"
-        Me._txtMan.Size = New System.Drawing.Size(62, 22)
+        Me._txtMan.Size = New System.Drawing.Size(138, 22)
         Me._txtMan.StyleController = Me.LayoutControl1
         Me._txtMan.TabIndex = 9
         '
         '_txtDate
         '
-        Me._txtDate.Location = New System.Drawing.Point(228, 41)
+        Me._txtDate.Location = New System.Drawing.Point(87, 64)
         Me._txtDate.Margin = New System.Windows.Forms.Padding(4)
         Me._txtDate.Name = "_txtDate"
         Me._txtDate.Properties.ReadOnly = True
-        Me._txtDate.Size = New System.Drawing.Size(62, 22)
+        Me._txtDate.Size = New System.Drawing.Size(138, 22)
         Me._txtDate.StyleController = Me.LayoutControl1
         Me._txtDate.TabIndex = 8
         '
         '_txtDesc
         '
-        Me._txtDesc.Location = New System.Drawing.Point(369, 12)
+        Me._txtDesc.Location = New System.Drawing.Point(304, 38)
         Me._txtDesc.Margin = New System.Windows.Forms.Padding(4)
         Me._txtDesc.Name = "_txtDesc"
         Me._txtDesc.Properties.ReadOnly = True
-        Me._txtDesc.Size = New System.Drawing.Size(203, 22)
+        Me._txtDesc.Size = New System.Drawing.Size(354, 22)
         Me._txtDesc.StyleController = Me.LayoutControl1
         Me._txtDesc.TabIndex = 7
         '
         '_txtBoMID
         '
-        Me._txtBoMID.Location = New System.Drawing.Point(87, 41)
+        Me._txtBoMID.Location = New System.Drawing.Point(87, 38)
         Me._txtBoMID.Margin = New System.Windows.Forms.Padding(4)
         Me._txtBoMID.Name = "_txtBoMID"
         Me._txtBoMID.Properties.ReadOnly = True
-        Me._txtBoMID.Size = New System.Drawing.Size(62, 22)
+        Me._txtBoMID.Size = New System.Drawing.Size(138, 22)
         Me._txtBoMID.StyleController = Me.LayoutControl1
         Me._txtBoMID.TabIndex = 5
         '
@@ -417,77 +417,77 @@ Partial Class frmBoM_detail
         Me._cmbStatus.Margin = New System.Windows.Forms.Padding(4)
         Me._cmbStatus.Name = "_cmbStatus"
         Me._cmbStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me._cmbStatus.Size = New System.Drawing.Size(62, 22)
+        Me._cmbStatus.Size = New System.Drawing.Size(138, 22)
         Me._cmbStatus.StyleController = Me.LayoutControl1
         Me._cmbStatus.TabIndex = 4
         '
         '_txtInvID
         '
-        Me._txtInvID.Location = New System.Drawing.Point(228, 12)
+        Me._txtInvID.Location = New System.Drawing.Point(304, 12)
         Me._txtInvID.Margin = New System.Windows.Forms.Padding(4)
         Me._txtInvID.Name = "_txtInvID"
         Me._txtInvID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._txtInvID.Size = New System.Drawing.Size(62, 22)
+        Me._txtInvID.Size = New System.Drawing.Size(354, 22)
         Me._txtInvID.StyleController = Me.LayoutControl1
         Me._txtInvID.TabIndex = 6
         '
         '_cmbAktif
         '
-        Me._cmbAktif.Location = New System.Drawing.Point(933, 41)
+        Me._cmbAktif.Location = New System.Drawing.Point(954, 12)
         Me._cmbAktif.Margin = New System.Windows.Forms.Padding(4)
         Me._cmbAktif.Name = "_cmbAktif"
         Me._cmbAktif.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._cmbAktif.Properties.Items.AddRange(New Object() {"Inhouse", "Subcon", "Discontinue"})
-        Me._cmbAktif.Size = New System.Drawing.Size(62, 22)
+        Me._cmbAktif.Size = New System.Drawing.Size(138, 22)
         Me._cmbAktif.StyleController = Me.LayoutControl1
         Me._cmbAktif.TabIndex = 19
         '
         '_cmbSite
         '
-        Me._cmbSite.Location = New System.Drawing.Point(1074, 12)
+        Me._cmbSite.Location = New System.Drawing.Point(87, 90)
         Me._cmbSite.Margin = New System.Windows.Forms.Padding(4)
         Me._cmbSite.Name = "_cmbSite"
         Me._cmbSite.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._cmbSite.Properties.NullText = ""
         Me._cmbSite.Properties.PopupSizeable = False
         Me._cmbSite.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me._cmbSite.Size = New System.Drawing.Size(62, 22)
+        Me._cmbSite.Size = New System.Drawing.Size(139, 22)
         Me._cmbSite.StyleController = Me.LayoutControl1
         Me._cmbSite.TabIndex = 10
         '
         '_cmbMesin
         '
-        Me._cmbMesin.Location = New System.Drawing.Point(933, 12)
+        Me._cmbMesin.Location = New System.Drawing.Point(304, 64)
         Me._cmbMesin.Margin = New System.Windows.Forms.Padding(4)
         Me._cmbMesin.Name = "_cmbMesin"
         Me._cmbMesin.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._cmbMesin.Properties.NullText = ""
         Me._cmbMesin.Properties.PopupSizeable = False
         Me._cmbMesin.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me._cmbMesin.Size = New System.Drawing.Size(62, 22)
+        Me._cmbMesin.Size = New System.Drawing.Size(137, 22)
         Me._cmbMesin.StyleController = Me.LayoutControl1
         Me._cmbMesin.TabIndex = 15
         '
         '_CmbWC
         '
-        Me._CmbWC.Location = New System.Drawing.Point(510, 41)
+        Me._CmbWC.Location = New System.Drawing.Point(520, 64)
         Me._CmbWC.Margin = New System.Windows.Forms.Padding(4)
         Me._CmbWC.Name = "_CmbWC"
         Me._CmbWC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._CmbWC.Properties.NullText = ""
         Me._CmbWC.Properties.PopupSizeable = False
         Me._CmbWC.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me._CmbWC.Size = New System.Drawing.Size(62, 22)
+        Me._CmbWC.Size = New System.Drawing.Size(138, 22)
         Me._CmbWC.StyleController = Me.LayoutControl1
         Me._CmbWC.TabIndex = 13
         '
         '_TxtRefType
         '
-        Me._TxtRefType.Location = New System.Drawing.Point(1074, 41)
+        Me._TxtRefType.Location = New System.Drawing.Point(954, 38)
         Me._TxtRefType.Margin = New System.Windows.Forms.Padding(4)
         Me._TxtRefType.Name = "_TxtRefType"
         Me._TxtRefType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me._TxtRefType.Size = New System.Drawing.Size(62, 22)
+        Me._TxtRefType.Size = New System.Drawing.Size(138, 22)
         Me._TxtRefType.StyleController = Me.LayoutControl1
         Me._TxtRefType.TabIndex = 17
         '
@@ -495,9 +495,9 @@ Partial Class frmBoM_detail
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem7, Me.LayoutControlItem5, Me.LayoutControlItem16, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem10, Me.LayoutControlItem13, Me.LayoutControlItem2, Me.LayoutControlItem15, Me.LayoutControlItem17, Me.LayoutControlItem14})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem13, Me.LayoutControlItem9, Me.LayoutControlItem11, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.LayoutControlItem12, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem10, Me.LayoutControlItem8, Me.LayoutControlItem17, Me.LayoutControlItem16, Me.LayoutControlItem14, Me.LayoutControlItem15})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1289, 79)
+        Me.Root.Size = New System.Drawing.Size(1104, 160)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -505,153 +505,156 @@ Partial Class frmBoM_detail
         Me.LayoutControlItem1.Control = Me._cmbStatus
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(141, 29)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(217, 26)
         Me.LayoutControlItem1.Text = "Jenis"
+        Me.LayoutControlItem1.TextLocation = DevExpress.Utils.Locations.Left
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(72, 16)
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me._txtBoMID
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 29)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(141, 30)
-        Me.LayoutControlItem2.Text = "BoM ID"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(72, 16)
-        '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me._txtInvID
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(141, 0)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(141, 29)
-        Me.LayoutControlItem3.Text = "Inventory ID"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 16)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me._cmbSite
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(987, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 78)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(141, 29)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(218, 62)
         Me.LayoutControlItem7.Text = "Site"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(72, 16)
-        '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me._txtRunner
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(564, 29)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(141, 30)
-        Me.LayoutControlItem8.Text = "Runner"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(72, 16)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me._txtDate
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(141, 29)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 52)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(141, 30)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(217, 26)
         Me.LayoutControlItem5.Text = "Date"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(72, 16)
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me._cmbAktif
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(867, 0)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(217, 26)
+        Me.LayoutControlItem16.Text = "Status"
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(72, 16)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me._txtInvID
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(217, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(433, 26)
+        Me.LayoutControlItem3.Text = "Inventory ID"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 16)
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me._txtDesc
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(217, 26)
+        Me.LayoutControlItem4.MinSize = New System.Drawing.Size(141, 26)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(433, 26)
+        Me.LayoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem4.Text = "Description"
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(72, 16)
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me._txtMan
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(650, 52)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(217, 26)
+        Me.LayoutControlItem6.Text = "Man Power"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(72, 16)
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me._txtRunner
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(650, 0)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(217, 26)
+        Me.LayoutControlItem8.Text = "Runner"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(72, 16)
         '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me._TxtCavity
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(564, 0)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(218, 78)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(141, 29)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(216, 62)
         Me.LayoutControlItem9.Text = "Cavity"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(72, 16)
         '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me._txtCycle
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(705, 0)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(434, 78)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(141, 29)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(216, 62)
         Me.LayoutControlItem11.Text = "Cycle Time"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(72, 16)
         '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me._cmbMesin
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(846, 0)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(217, 52)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(141, 29)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(216, 26)
         Me.LayoutControlItem12.Text = "M/C Ton"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(72, 16)
-        '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.Control = Me._txtAllowance
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(705, 29)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(141, 30)
-        Me.LayoutControlItem13.Text = "Allowance"
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(72, 16)
-        '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me._TxtRefType
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(987, 29)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(141, 30)
-        Me.LayoutControlItem14.Text = "Ref. Type"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(72, 16)
-        '
-        'LayoutControlItem16
-        '
-        Me.LayoutControlItem16.Control = Me._cmbAktif
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(846, 29)
-        Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(141, 30)
-        Me.LayoutControlItem16.Text = "Status"
-        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(72, 16)
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me._txtMan
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(282, 29)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(141, 30)
-        Me.LayoutControlItem6.Text = "Man Power"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(72, 16)
         '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me._CmbWC
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(423, 29)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(433, 52)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(141, 30)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(217, 26)
         Me.LayoutControlItem10.Text = "Work Center"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(72, 16)
         '
-        'LayoutControlItem4
+        'LayoutControlItem13
         '
-        Me.LayoutControlItem4.Control = Me._txtDesc
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(282, 0)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(282, 29)
-        Me.LayoutControlItem4.Text = "Description"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(72, 16)
+        Me.LayoutControlItem13.Control = Me._txtAllowance
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(650, 26)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(217, 26)
+        Me.LayoutControlItem13.Text = "Allowance"
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(72, 16)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me._txtBoMID
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 26)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(217, 26)
+        Me.LayoutControlItem2.Text = "BoM ID"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(72, 16)
         '
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me._TxtRefNo
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(1128, 29)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(867, 52)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(141, 30)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(217, 26)
         Me.LayoutControlItem15.Text = "Ref. No."
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(72, 16)
         '
         'LayoutControlItem17
         '
         Me.LayoutControlItem17.Control = Me.ChekRegular
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(1128, 0)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(650, 78)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(141, 29)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(434, 62)
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem17.TextVisible = False
+        '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me._TxtRefType
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(867, 26)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(217, 26)
+        Me.LayoutControlItem14.Text = "Ref. Type"
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(72, 16)
         '
         'frmBoM_detail
         '
@@ -698,22 +701,22 @@ Partial Class frmBoM_detail
         CType(Me._TxtRefType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -52,7 +52,6 @@ Partial Class frmBoM
         '
         'Grid
         '
-        Me.Grid.ContextMenuStrip = Me.menuContext
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Location = New System.Drawing.Point(0, 27)

@@ -68,6 +68,9 @@ Partial Class FrmClaimCustomerDetail
         Me.TxtLotNo = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TxtType = New System.Windows.Forms.TextBox()
+        Me.DtTanggalEmail = New System.Windows.Forms.DateTimePicker()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TanggalEmail = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,17 +86,17 @@ Partial Class FrmClaimCustomerDetail
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 163)
+        Me.Grid.Location = New System.Drawing.Point(12, 195)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2})
-        Me.Grid.Size = New System.Drawing.Size(1091, 253)
+        Me.Grid.Size = New System.Drawing.Size(1079, 221)
         Me.Grid.TabIndex = 25
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Customer, Me.TanggalClaim, Me.InvtID, Me.InvtName, Me.Problem, Me.Qty, Me.Pic, Me.Status, Me.Dokumen, Me.TargetClose, Me.Gambar, Me.Lot, Me.Type, Me.GambarHapus, Me.PathGrid})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.Customer, Me.TanggalEmail, Me.TanggalClaim, Me.InvtID, Me.InvtName, Me.Problem, Me.Qty, Me.Pic, Me.Status, Me.Dokumen, Me.TargetClose, Me.Gambar, Me.Lot, Me.Type, Me.GambarHapus, Me.PathGrid})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -114,7 +117,7 @@ Partial Class FrmClaimCustomerDetail
         Me.TanggalClaim.FieldName = "TanggalClaim"
         Me.TanggalClaim.Name = "TanggalClaim"
         Me.TanggalClaim.Visible = True
-        Me.TanggalClaim.VisibleIndex = 1
+        Me.TanggalClaim.VisibleIndex = 2
         Me.TanggalClaim.Width = 119
         '
         'InvtID
@@ -122,7 +125,7 @@ Partial Class FrmClaimCustomerDetail
         Me.InvtID.FieldName = "InvtId"
         Me.InvtID.Name = "InvtID"
         Me.InvtID.Visible = True
-        Me.InvtID.VisibleIndex = 2
+        Me.InvtID.VisibleIndex = 3
         Me.InvtID.Width = 112
         '
         'InvtName
@@ -130,7 +133,7 @@ Partial Class FrmClaimCustomerDetail
         Me.InvtName.FieldName = "Invt Name"
         Me.InvtName.Name = "InvtName"
         Me.InvtName.Visible = True
-        Me.InvtName.VisibleIndex = 3
+        Me.InvtName.VisibleIndex = 4
         Me.InvtName.Width = 108
         '
         'Problem
@@ -138,7 +141,7 @@ Partial Class FrmClaimCustomerDetail
         Me.Problem.FieldName = "Problem"
         Me.Problem.Name = "Problem"
         Me.Problem.Visible = True
-        Me.Problem.VisibleIndex = 4
+        Me.Problem.VisibleIndex = 5
         Me.Problem.Width = 199
         '
         'Qty
@@ -150,7 +153,7 @@ Partial Class FrmClaimCustomerDetail
         Me.Qty.FieldName = "Qty"
         Me.Qty.Name = "Qty"
         Me.Qty.Visible = True
-        Me.Qty.VisibleIndex = 5
+        Me.Qty.VisibleIndex = 6
         Me.Qty.Width = 92
         '
         'Pic
@@ -162,7 +165,7 @@ Partial Class FrmClaimCustomerDetail
         Me.Pic.FieldName = "Pic"
         Me.Pic.Name = "Pic"
         Me.Pic.Visible = True
-        Me.Pic.VisibleIndex = 6
+        Me.Pic.VisibleIndex = 7
         Me.Pic.Width = 92
         '
         'Status
@@ -174,7 +177,7 @@ Partial Class FrmClaimCustomerDetail
         Me.Status.FieldName = "Status"
         Me.Status.Name = "Status"
         Me.Status.Visible = True
-        Me.Status.VisibleIndex = 8
+        Me.Status.VisibleIndex = 9
         Me.Status.Width = 114
         '
         'Dokumen
@@ -186,7 +189,7 @@ Partial Class FrmClaimCustomerDetail
         Me.Dokumen.FieldName = "Dokumen"
         Me.Dokumen.Name = "Dokumen"
         Me.Dokumen.Visible = True
-        Me.Dokumen.VisibleIndex = 7
+        Me.Dokumen.VisibleIndex = 8
         Me.Dokumen.Width = 102
         '
         'TargetClose
@@ -200,7 +203,7 @@ Partial Class FrmClaimCustomerDetail
         Me.TargetClose.FieldName = "TargetClose"
         Me.TargetClose.Name = "TargetClose"
         Me.TargetClose.Visible = True
-        Me.TargetClose.VisibleIndex = 9
+        Me.TargetClose.VisibleIndex = 10
         Me.TargetClose.Width = 118
         '
         'Gambar
@@ -212,7 +215,7 @@ Partial Class FrmClaimCustomerDetail
         Me.Gambar.FieldName = "Gambar"
         Me.Gambar.Name = "Gambar"
         Me.Gambar.Visible = True
-        Me.Gambar.VisibleIndex = 10
+        Me.Gambar.VisibleIndex = 11
         Me.Gambar.Width = 285
         '
         'Lot
@@ -224,7 +227,7 @@ Partial Class FrmClaimCustomerDetail
         Me.Lot.FieldName = "Lot"
         Me.Lot.Name = "Lot"
         Me.Lot.Visible = True
-        Me.Lot.VisibleIndex = 11
+        Me.Lot.VisibleIndex = 12
         Me.Lot.Width = 105
         '
         'Type
@@ -236,7 +239,7 @@ Partial Class FrmClaimCustomerDetail
         Me.Type.FieldName = "Type"
         Me.Type.Name = "Type"
         Me.Type.Visible = True
-        Me.Type.VisibleIndex = 12
+        Me.Type.VisibleIndex = 13
         Me.Type.Width = 105
         '
         'GambarHapus
@@ -244,7 +247,7 @@ Partial Class FrmClaimCustomerDetail
         Me.GambarHapus.FieldName = "Gambar Hapus"
         Me.GambarHapus.Name = "GambarHapus"
         Me.GambarHapus.Visible = True
-        Me.GambarHapus.VisibleIndex = 13
+        Me.GambarHapus.VisibleIndex = 14
         Me.GambarHapus.Width = 220
         '
         'PathGrid
@@ -252,7 +255,7 @@ Partial Class FrmClaimCustomerDetail
         Me.PathGrid.FieldName = "Path"
         Me.PathGrid.Name = "PathGrid"
         Me.PathGrid.Visible = True
-        Me.PathGrid.VisibleIndex = 14
+        Me.PathGrid.VisibleIndex = 15
         Me.PathGrid.Width = 183
         '
         'RepositoryItemTextEdit1
@@ -278,15 +281,15 @@ Partial Class FrmClaimCustomerDetail
         '
         Me.DtTanggalClaim.CustomFormat = "dd-MM-yyyy"
         Me.DtTanggalClaim.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtTanggalClaim.Location = New System.Drawing.Point(110, 85)
+        Me.DtTanggalClaim.Location = New System.Drawing.Point(155, 108)
         Me.DtTanggalClaim.Name = "DtTanggalClaim"
-        Me.DtTanggalClaim.Size = New System.Drawing.Size(146, 20)
+        Me.DtTanggalClaim.Size = New System.Drawing.Size(174, 20)
         Me.DtTanggalClaim.TabIndex = 3
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(12, 88)
+        Me.Label10.Location = New System.Drawing.Point(12, 108)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(93, 13)
         Me.Label10.TabIndex = 36
@@ -294,24 +297,24 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtCustomer
         '
-        Me.TxtCustomer.Location = New System.Drawing.Point(110, 42)
+        Me.TxtCustomer.Location = New System.Drawing.Point(155, 42)
         Me.TxtCustomer.Name = "TxtCustomer"
-        Me.TxtCustomer.Size = New System.Drawing.Size(146, 20)
+        Me.TxtCustomer.Size = New System.Drawing.Size(174, 20)
         Me.TxtCustomer.TabIndex = 1
         '
         'DtTanggalLaporan
         '
         Me.DtTanggalLaporan.CustomFormat = "dd-MM-yyyy"
         Me.DtTanggalLaporan.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtTanggalLaporan.Location = New System.Drawing.Point(110, 63)
+        Me.DtTanggalLaporan.Location = New System.Drawing.Point(155, 64)
         Me.DtTanggalLaporan.Name = "DtTanggalLaporan"
-        Me.DtTanggalLaporan.Size = New System.Drawing.Size(146, 20)
+        Me.DtTanggalLaporan.Size = New System.Drawing.Size(174, 20)
         Me.DtTanggalLaporan.TabIndex = 2
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 66)
+        Me.Label1.Location = New System.Drawing.Point(12, 64)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(58, 13)
         Me.Label1.TabIndex = 39
@@ -320,7 +323,7 @@ Partial Class FrmClaimCustomerDetail
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 45)
+        Me.Label2.Location = New System.Drawing.Point(12, 42)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(68, 13)
         Me.Label2.TabIndex = 41
@@ -328,7 +331,7 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtInvtID
         '
-        Me.TxtInvtID.Location = New System.Drawing.Point(345, 42)
+        Me.TxtInvtID.Location = New System.Drawing.Point(435, 42)
         Me.TxtInvtID.Name = "TxtInvtID"
         Me.TxtInvtID.Size = New System.Drawing.Size(146, 20)
         Me.TxtInvtID.TabIndex = 5
@@ -336,7 +339,7 @@ Partial Class FrmClaimCustomerDetail
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(268, 45)
+        Me.Label3.Location = New System.Drawing.Point(352, 42)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 13)
         Me.Label3.TabIndex = 43
@@ -345,7 +348,7 @@ Partial Class FrmClaimCustomerDetail
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(268, 66)
+        Me.Label4.Location = New System.Drawing.Point(352, 64)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(70, 13)
         Me.Label4.TabIndex = 45
@@ -353,7 +356,7 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtInvtName
         '
-        Me.TxtInvtName.Location = New System.Drawing.Point(345, 63)
+        Me.TxtInvtName.Location = New System.Drawing.Point(435, 64)
         Me.TxtInvtName.Name = "TxtInvtName"
         Me.TxtInvtName.Size = New System.Drawing.Size(146, 20)
         Me.TxtInvtName.TabIndex = 6
@@ -361,7 +364,7 @@ Partial Class FrmClaimCustomerDetail
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(497, 46)
+        Me.Label5.Location = New System.Drawing.Point(352, 130)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(59, 13)
         Me.Label5.TabIndex = 47
@@ -369,7 +372,7 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtProblem
         '
-        Me.TxtProblem.Location = New System.Drawing.Point(562, 43)
+        Me.TxtProblem.Location = New System.Drawing.Point(435, 130)
         Me.TxtProblem.Multiline = True
         Me.TxtProblem.Name = "TxtProblem"
         Me.TxtProblem.Size = New System.Drawing.Size(146, 40)
@@ -378,7 +381,7 @@ Partial Class FrmClaimCustomerDetail
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(268, 88)
+        Me.Label6.Location = New System.Drawing.Point(352, 88)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(29, 13)
         Me.Label6.TabIndex = 49
@@ -386,7 +389,7 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtQty
         '
-        Me.TxtQty.Location = New System.Drawing.Point(345, 85)
+        Me.TxtQty.Location = New System.Drawing.Point(435, 86)
         Me.TxtQty.Name = "TxtQty"
         Me.TxtQty.Size = New System.Drawing.Size(146, 20)
         Me.TxtQty.TabIndex = 7
@@ -395,7 +398,7 @@ Partial Class FrmClaimCustomerDetail
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(497, 88)
+        Me.Label7.Location = New System.Drawing.Point(604, 42)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(24, 13)
         Me.Label7.TabIndex = 53
@@ -403,15 +406,15 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtPIC
         '
-        Me.TxtPIC.Location = New System.Drawing.Point(562, 85)
+        Me.TxtPIC.Location = New System.Drawing.Point(669, 42)
         Me.TxtPIC.Name = "TxtPIC"
-        Me.TxtPIC.Size = New System.Drawing.Size(146, 20)
+        Me.TxtPIC.Size = New System.Drawing.Size(172, 20)
         Me.TxtPIC.TabIndex = 10
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(714, 51)
+        Me.Label12.Location = New System.Drawing.Point(599, 86)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(62, 13)
         Me.Label12.TabIndex = 57
@@ -419,15 +422,15 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtDokumen
         '
-        Me.TxtDokumen.Location = New System.Drawing.Point(784, 46)
+        Me.TxtDokumen.Location = New System.Drawing.Point(669, 86)
         Me.TxtDokumen.Name = "TxtDokumen"
-        Me.TxtDokumen.Size = New System.Drawing.Size(154, 20)
+        Me.TxtDokumen.Size = New System.Drawing.Size(172, 20)
         Me.TxtDokumen.TabIndex = 12
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(714, 74)
+        Me.Label13.Location = New System.Drawing.Point(599, 108)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(50, 13)
         Me.Label13.TabIndex = 55
@@ -435,7 +438,7 @@ Partial Class FrmClaimCustomerDetail
         '
         'BAdd
         '
-        Me.BAdd.Location = New System.Drawing.Point(12, 131)
+        Me.BAdd.Location = New System.Drawing.Point(15, 168)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(76, 21)
         Me.BAdd.TabIndex = 62
@@ -446,15 +449,15 @@ Partial Class FrmClaimCustomerDetail
         '
         Me.DtTargetClose.CustomFormat = "dd-MM-yyyy"
         Me.DtTargetClose.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DtTargetClose.Location = New System.Drawing.Point(110, 107)
+        Me.DtTargetClose.Location = New System.Drawing.Point(155, 130)
         Me.DtTargetClose.Name = "DtTargetClose"
-        Me.DtTargetClose.Size = New System.Drawing.Size(146, 20)
+        Me.DtTargetClose.Size = New System.Drawing.Size(174, 20)
         Me.DtTargetClose.TabIndex = 4
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 110)
+        Me.Label8.Location = New System.Drawing.Point(12, 130)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(89, 13)
         Me.Label8.TabIndex = 63
@@ -464,15 +467,15 @@ Partial Class FrmClaimCustomerDetail
         '
         Me.CmbStatus.FormattingEnabled = True
         Me.CmbStatus.Items.AddRange(New Object() {"OPEN", "CLOSE"})
-        Me.CmbStatus.Location = New System.Drawing.Point(784, 67)
+        Me.CmbStatus.Location = New System.Drawing.Point(669, 108)
         Me.CmbStatus.Name = "CmbStatus"
-        Me.CmbStatus.Size = New System.Drawing.Size(154, 21)
+        Me.CmbStatus.Size = New System.Drawing.Size(172, 21)
         Me.CmbStatus.TabIndex = 13
         '
         'BGambar
         '
         Me.BGambar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BGambar.Location = New System.Drawing.Point(983, 131)
+        Me.BGambar.Location = New System.Drawing.Point(967, 144)
         Me.BGambar.Name = "BGambar"
         Me.BGambar.Size = New System.Drawing.Size(95, 26)
         Me.BGambar.TabIndex = 104
@@ -483,9 +486,9 @@ Partial Class FrmClaimCustomerDetail
         '
         Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox1.Location = New System.Drawing.Point(949, 46)
+        Me.PictureBox1.Location = New System.Drawing.Point(937, 42)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(154, 77)
+        Me.PictureBox1.Size = New System.Drawing.Size(154, 85)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 103
         Me.PictureBox1.TabStop = False
@@ -493,7 +496,7 @@ Partial Class FrmClaimCustomerDetail
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(497, 114)
+        Me.Label9.Location = New System.Drawing.Point(604, 64)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(47, 13)
         Me.Label9.TabIndex = 106
@@ -501,15 +504,15 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtLotNo
         '
-        Me.TxtLotNo.Location = New System.Drawing.Point(562, 107)
+        Me.TxtLotNo.Location = New System.Drawing.Point(669, 64)
         Me.TxtLotNo.Name = "TxtLotNo"
-        Me.TxtLotNo.Size = New System.Drawing.Size(146, 20)
+        Me.TxtLotNo.Size = New System.Drawing.Size(172, 20)
         Me.TxtLotNo.TabIndex = 11
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(268, 110)
+        Me.Label11.Location = New System.Drawing.Point(352, 110)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(35, 13)
         Me.Label11.TabIndex = 108
@@ -517,15 +520,45 @@ Partial Class FrmClaimCustomerDetail
         '
         'TxtType
         '
-        Me.TxtType.Location = New System.Drawing.Point(345, 107)
+        Me.TxtType.Location = New System.Drawing.Point(435, 108)
         Me.TxtType.Name = "TxtType"
         Me.TxtType.Size = New System.Drawing.Size(146, 20)
         Me.TxtType.TabIndex = 8
+        '
+        'DtTanggalEmail
+        '
+        Me.DtTanggalEmail.CustomFormat = "dd-MM-yyyy"
+        Me.DtTanggalEmail.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DtTanggalEmail.Location = New System.Drawing.Point(155, 86)
+        Me.DtTanggalEmail.Name = "DtTanggalEmail"
+        Me.DtTanggalEmail.Size = New System.Drawing.Size(174, 20)
+        Me.DtTanggalEmail.TabIndex = 109
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(12, 86)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(137, 13)
+        Me.Label14.TabIndex = 110
+        Me.Label14.Text = "TANGGAL TERIMA EMAIL"
+        '
+        'TanggalEmail
+        '
+        Me.TanggalEmail.DisplayFormat.FormatString = "yyyy-MM-dd"
+        Me.TanggalEmail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.TanggalEmail.FieldName = "Tanggal Email"
+        Me.TanggalEmail.Name = "TanggalEmail"
+        Me.TanggalEmail.Visible = True
+        Me.TanggalEmail.VisibleIndex = 1
+        Me.TanggalEmail.Width = 102
         '
         'FrmClaimCustomerDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1115, 428)
+        Me.Controls.Add(Me.DtTanggalEmail)
+        Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.TxtType)
         Me.Controls.Add(Me.Label9)
@@ -587,6 +620,8 @@ Partial Class FrmClaimCustomerDetail
         Me.Controls.SetChildIndex(Me.Label9, 0)
         Me.Controls.SetChildIndex(Me.TxtType, 0)
         Me.Controls.SetChildIndex(Me.Label11, 0)
+        Me.Controls.SetChildIndex(Me.Label14, 0)
+        Me.Controls.SetChildIndex(Me.DtTanggalEmail, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -649,4 +684,7 @@ Partial Class FrmClaimCustomerDetail
     Friend WithEvents Type As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GambarHapus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PathGrid As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DtTanggalEmail As DateTimePicker
+    Friend WithEvents Label14 As Label
+    Friend WithEvents TanggalEmail As DevExpress.XtraGrid.Columns.GridColumn
 End Class

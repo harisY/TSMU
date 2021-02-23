@@ -174,7 +174,8 @@ Public Class FrmBankTransfer_Detail
                     .Tgl = oDate
                     ' .Tgl = TxtTgl.Text
                     If isUpdate = False Then
-                        TxtNoBukti.Text = .TransferAutoNo()
+                        .Perpost = _TxtPerpost.Text
+                        TxtNoBukti.Text = .TransferAutoNox()
                     End If
                     .NoBukti = TxtNoBukti.Text
                     .Perpost = TxtPerpost.Text
@@ -201,10 +202,11 @@ Public Class FrmBankTransfer_Detail
     Public Overrides Sub Proc_SaveData()
         Try
             If isUpdate = False Then
+                fc_Class.Perpost = _TxtPerpost.Text
                 fc_Class.Insert()
-                fc_Class.NoVouch = fc_Class.autononb()
+                fc_Class.NoVouch = fc_Class.autononbx()
                 fc_Class.InsertToTable2()
-                fc_Class.NoVouch = fc_Class.autononb()
+                fc_Class.NoVouch = fc_Class.autononbx()
                 fc_Class.InsertToTable3()
             Else
                 fc_Class.Update()

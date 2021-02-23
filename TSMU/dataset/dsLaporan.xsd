@@ -856,6 +856,7 @@
               <xs:element name="FACDate" msprop:Generator_ColumnVarNameInTable="columnFACDate" msprop:Generator_ColumnPropNameInRow="FACDate" msprop:Generator_ColumnPropNameInTable="FACDateColumn" msprop:Generator_UserColumnName="FACDate" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" type="xs:string" minOccurs="0" />
               <xs:element name="Division" msprop:Generator_ColumnVarNameInTable="columnDivision" msprop:Generator_ColumnPropNameInRow="Division" msprop:Generator_ColumnPropNameInTable="DivisionColumn" msprop:Generator_UserColumnName="Division" type="xs:string" minOccurs="0" />
+              <xs:element name="NilaiBudget" msprop:Generator_ColumnVarNameInTable="columnNilaiBudget" msprop:Generator_ColumnPropNameInRow="NilaiBudget" msprop:Generator_ColumnPropNameInTable="NilaiBudgetColumn" msprop:Generator_UserColumnName="NilaiBudget" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
