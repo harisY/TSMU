@@ -406,6 +406,12 @@ Public Class Frm_NPP_Detail
                     Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
                     B_AddRows.Enabled = False
                     BUpload.Enabled = False
+                Else
+                    Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+                    B_AddRows.Enabled = False
+                    BUpload.Enabled = False
+                    B_Submit.Enabled = False
+                    B_Revise.Enabled = False
                 End If
             Else
                 Call Proc_EnableButtons(False, True, False, True, False, False, False, True, False, False, True)

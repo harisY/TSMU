@@ -657,6 +657,7 @@ Public Class ClsCR_CreateUser
                     ' H_Balance = Trim(.Item("Balance") & "")
                     H_InvoiceNo = Trim(.Item("InvoiceNo") & "")
                     H_Status = Trim(.Item("Status") & "")
+                    H_Current_Level = Trim(.Item("Current_Level") & "")
                     ' H_UserSubmition = Trim(.Item("UserSubmition") & "")
                     'H_DeptHead_ID = Trim(.Item("") & "")
                     'H_DeptHead_Name = Trim(.Item("") & "")
@@ -1948,6 +1949,23 @@ Public Class ClsCR_CreateUser
             Throw
         End Try
     End Function
+    Public Function RptCirculation_BOD(No As String) As DataSet
+
+        Dim query As String = "[CR_Repot_Header_BOD]"
+        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+        pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+
+        pParam(0).Value = No
+
+        'MainModul.ExecQueryByCommand_SP(query, pParam)
+
+        Dim ds As New dsLaporan
+        ds = GetDataSetByCommand_SP(query, "CirculationHead", pParam)
+        Return ds
+
+        'Mold_Number
+
+    End Function
     Public Function RptCirculation_Temp(No As String) As DataSet
 
         Dim query As String = "[CR_Repot_Header_Temp]"
@@ -1965,6 +1983,7 @@ Public Class ClsCR_CreateUser
         'Mold_Number
 
     End Function
+
 
     Public Function RptCirculation(No As String) As DataSet
 
@@ -2036,6 +2055,44 @@ Public Class ClsCR_CreateUser
 
 
     End Function
+
+    Public Function RptCirculation_OtherDept_BOD(No As String) As DataSet
+
+        Dim query As String = "[CR_Request_Other_BOD]"
+        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+        pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+
+        pParam(0).Value = No
+
+        'MainModul.ExecQueryByCommand_SP(query, pParam)
+
+        Dim ds As New dsLaporan
+        ds = GetDataSetByCommand_SP(query, "CirculationOtherDept", pParam)
+        Return ds
+
+
+
+        '   Dim query As String
+        '   query = "SELECT ROW_NUMBER() OVER (
+        'ORDER BY A.ID)[No]
+        '           ,[CirculationNo]
+        '        ,A.[DeptID]
+        '        ,A.[Date]
+        '        ,A.[Opinion]
+        '        ,A.[Approve]
+        '        ,B.[Name]
+        '       FROM [CR_Other_Dept] A inner join S_User B
+        '        on A.DeptHead_ID = B.Username 
+        '        Where[CirculationNo] = '" & No & "'
+        '           Order By ID asc"
+
+        '   Dim ds1 As New dsLaporan
+        '   ds1 = GetDsReport(query, "CirculationOtherDept")
+        '   Return ds1
+
+
+    End Function
+
 
 
     Public Function RptCirculation_Approve(No As String) As DataSet

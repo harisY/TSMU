@@ -887,8 +887,11 @@ Partial Class FrmReport_BoM_Forecast_PO
         '
         Me.LayoutControlItem1.Control = Me._txtTahun
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.MaxSize = New System.Drawing.Size(231, 26)
+        Me.LayoutControlItem1.MinSize = New System.Drawing.Size(231, 26)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(231, 26)
+        Me.LayoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem1.Text = "Tahun"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(73, 16)
         '
@@ -896,8 +899,11 @@ Partial Class FrmReport_BoM_Forecast_PO
         '
         Me.LayoutControlItem2.Control = Me.txtInvtId
         Me.LayoutControlItem2.Location = New System.Drawing.Point(231, 0)
+        Me.LayoutControlItem2.MaxSize = New System.Drawing.Size(429, 26)
+        Me.LayoutControlItem2.MinSize = New System.Drawing.Size(429, 26)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(429, 26)
+        Me.LayoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem2.Text = "Invtentory ID"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(73, 16)
         '
@@ -909,6 +915,7 @@ Partial Class FrmReport_BoM_Forecast_PO
         Me.LayoutControlItem3.Size = New System.Drawing.Size(429, 26)
         Me.LayoutControlItem3.Text = "Perpost"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(73, 16)
+        Me.LayoutControlItem3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'EmptySpaceItem1
         '

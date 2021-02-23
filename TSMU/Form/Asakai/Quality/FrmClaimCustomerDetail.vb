@@ -79,6 +79,7 @@ Public Class FrmClaimCustomerDetail
 
         dt = New DataTable
         dt.Columns.Add("Customer")
+        dt.Columns.Add("Tanggal Email")
         dt.Columns.Add("TanggalClaim")
         dt.Columns.Add("InvtId")
         dt.Columns.Add("Invt Name")
@@ -254,6 +255,7 @@ Public Class FrmClaimCustomerDetail
                     With ObjClaimCustomerDetail
                         .D_IDTransaksi = KodeTrans
                         .D_TanggalClaim = Convert.ToDateTime(GridView1.GetRowCellValue(i, "TanggalClaim"))
+                        .D_TanggalEmail = Convert.ToDateTime(GridView1.GetRowCellValue(i, "Tanggal Email"))
                         .D_Customer = Convert.ToString(GridView1.GetRowCellValue(i, "Customer"))
                         .D_InvtID = Convert.ToString(GridView1.GetRowCellValue(i, "InvtId"))
                         .D_InvtName = Convert.ToString(GridView1.GetRowCellValue(i, "Invt Name"))
@@ -392,6 +394,7 @@ Public Class FrmClaimCustomerDetail
             Else
                 GridView1.AddNewRow()
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Customer, TxtCustomer.Text)
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, TanggalEmail, Format(DtTanggalEmail.Value, "yyyy-MM-dd"))
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, TanggalClaim, Format(DtTanggalClaim.Value, "yyyy-MM-dd"))
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, InvtID, TxtInvtID.Text)
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, InvtName, TxtInvtName.Text)
