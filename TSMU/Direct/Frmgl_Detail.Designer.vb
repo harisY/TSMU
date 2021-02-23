@@ -63,6 +63,7 @@ Partial Class Frmgl_Detail
         Me._debit_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._credit_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,6 +103,7 @@ Partial Class Frmgl_Detail
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GAccount
@@ -459,6 +461,7 @@ Partial Class Frmgl_Detail
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
         Me.Grid.Size = New System.Drawing.Size(1029, 543)
         Me.Grid.TabIndex = 4
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -482,7 +485,7 @@ Partial Class Frmgl_Detail
         Me._account.OptionsColumn.FixedWidth = True
         Me._account.Visible = True
         Me._account.VisibleIndex = 0
-        Me._account.Width = 133
+        Me._account.Width = 80
         '
         '_subaccount
         '
@@ -494,17 +497,18 @@ Partial Class Frmgl_Detail
         Me._subaccount.OptionsColumn.FixedWidth = True
         Me._subaccount.Visible = True
         Me._subaccount.VisibleIndex = 1
-        Me._subaccount.Width = 133
+        Me._subaccount.Width = 80
         '
         '_description
         '
         Me._description.Caption = "Description"
+        Me._description.ColumnEdit = Me.RepositoryItemTextEdit1
         Me._description.FieldName = "Description"
         Me._description.MinWidth = 27
         Me._description.Name = "_description"
         Me._description.Visible = True
         Me._description.VisibleIndex = 2
-        Me._description.Width = 639
+        Me._description.Width = 376
         '
         '_debit_amount
         '
@@ -516,7 +520,7 @@ Partial Class Frmgl_Detail
         Me._debit_amount.OptionsColumn.FixedWidth = True
         Me._debit_amount.Visible = True
         Me._debit_amount.VisibleIndex = 3
-        Me._debit_amount.Width = 133
+        Me._debit_amount.Width = 159
         '
         '_credit_amount
         '
@@ -527,11 +531,17 @@ Partial Class Frmgl_Detail
         Me._credit_amount.Name = "_credit_amount"
         Me._credit_amount.Visible = True
         Me._credit_amount.VisibleIndex = 4
-        Me._credit_amount.Width = 94
+        Me._credit_amount.Width = 117
         '
         'DxValidationProvider1
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.MaxLength = 30
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'Frmgl_Detail
         '
@@ -582,6 +592,7 @@ Partial Class Frmgl_Detail
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -630,4 +641,5 @@ Partial Class Frmgl_Detail
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents TxtPerpost As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

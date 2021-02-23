@@ -31,6 +31,36 @@ Public Class GJHeaderModel
             _id = value
         End Set
     End Property
+    Public Function PrintReport(Perpost As String, CuryID As String) As DataSet
+        Try
+            Dim ds As dsLaporan2
+            Dim Sql As String = "Proses_GJPerpost_upload2"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = Perpost
+            pParam(1) = New SqlClient.SqlParameter("@curyid", SqlDbType.VarChar)
+            pParam(1).Value = CuryID
+            ds = GetDataSetByCommand_SPds2(Sql, "GL", pParam)
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function PrintReport2(Perpost As String, CuryID As String) As DataSet
+        Try
+            Dim ds As dsLaporan2
+            Dim Sql As String = "Proses_GLPerpost_upload2"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = Perpost
+            pParam(1) = New SqlClient.SqlParameter("@curyid", SqlDbType.VarChar)
+            pParam(1).Value = CuryID
+            ds = GetDataSetByCommand_SPds2(Sql, "GJ", pParam)
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Sub Delete()
         Try
@@ -48,8 +78,9 @@ Public Class GJHeaderModel
     Public Function GetGJPerpost(curyid As String, perpost As String) As DataTable
         Try
             Dim dt As New DataTable
-            Dim sql As String =
-                "Proses_GJPerpost"
+            ''        Dim sql As String = "Proses_GJPerpost"
+            Dim sql As String = "Proses_GJPerpost_upload"
+
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
             pParam(0).Value = perpost
@@ -61,7 +92,42 @@ Public Class GJHeaderModel
             Throw ex
         End Try
     End Function
+    Public Function GetGLPerpost(curyid As String, perpost As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            ''        Dim sql As String = "Proses_GJPerpost"
+            Dim sql As String = "Proses_GLPerpost_upload"
 
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = perpost
+            pParam(1) = New SqlClient.SqlParameter("@curyid", SqlDbType.VarChar)
+            pParam(1).Value = curyid
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetGLPerpost2(acc As String, perpost As String, modul As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            ''        Dim sql As String = "Proses_GJPerpost"
+            Dim sql As String = "Proses_GLPerpost_upload_all"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = perpost
+            pParam(1) = New SqlClient.SqlParameter("@acct", SqlDbType.VarChar)
+            pParam(1).Value = acc
+            pParam(2) = New SqlClient.SqlParameter("@module", SqlDbType.VarChar)
+            pParam(2).Value = modul
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetListPerpost() As DataTable
         Try
             Dim sql As String
