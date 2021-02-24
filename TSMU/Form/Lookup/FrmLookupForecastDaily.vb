@@ -1,15 +1,15 @@
 ﻿Imports DevExpress.XtraEditors.Controls
 
 Public Class FrmLookupForecastDaily
-    Dim Dt As New DataTable
-    Public Sub New(ByRef _dt As DataTable)
+    Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
-        Dt = _dt
+
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+    Public Property DtExcel As DataTable
     Private Sub FrmLookupForecastDaily_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FillComboTahun()
         FillComboBulan()
@@ -22,7 +22,7 @@ Public Class FrmLookupForecastDaily
     ReadOnly Property Bulan As Integer
         Get
             If CmbBulan.EditValue <> 0 Then
-                Return CmbBulan.EditValue.Trim
+                Return CmbBulan.EditValue
             Else
                 Return 0
             End If
@@ -64,7 +64,8 @@ Public Class FrmLookupForecastDaily
             Dialog.Filter = "Excel Files|*.xls;*.xlsx"
             Dim result As DialogResult = Dialog.ShowDialog()
             If result = System.Windows.Forms.DialogResult.OK Then
-                TxtFile.Text = IO.File.ReadAllText(Dialog.FileName)
+                Dim Filename As String = Dialog.FileName
+                TxtFile.EditValue = Filename
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -76,11 +77,11 @@ Public Class FrmLookupForecastDaily
             If CmbTahun.Text = "" Then
                 CmbTahun.Focus()
                 Throw New Exception("Pilih Tahun !")
-            ElseIf CmbBulan.Text = 0 Then
+            ElseIf CmbBulan.EditValue = 0 Then
                 CmbBulan.Focus()
                 Throw New Exception("Pilih Bulan !")
             Else
-                Dt = ExcelToDatatable(TxtFile.Text, "Sheet1")
+                DtExcel = ExcelToDatatable(TxtFile.Text, "Table 1")
                 Close()
             End If
         Catch ex As Exception
