@@ -536,12 +536,12 @@ Partial Public Class datauploadNonIDR
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overloads Function AdddatauploadNonIDRRow( _
-                    ByVal tgl1 As String,  _
+                    ByVal tgl1 As Date,  _
                     ByVal docbal As String,  _
                     ByVal bankid As String,  _
                     ByVal refnbr1 As String,  _
                     ByVal vrno As String,  _
-                    ByVal tgl As String,  _
+                    ByVal tgl As Date,  _
                     ByVal vendid As String,  _
                     ByVal origdocamt As String,  _
                     ByVal refnbr As String,  _
@@ -550,7 +550,7 @@ Partial Public Class datauploadNonIDR
                     ByVal CuryID As String,  _
                     ByVal FromCuryId As String,  _
                     ByVal RateType As String,  _
-                    ByVal EffDate As String,  _
+                    ByVal EffDate As Date,  _
                     ByVal Rate As String,  _
                     ByVal doctype As String,  _
                     ByVal curydocbalrev As Double) As datauploadNonIDRRow
@@ -601,7 +601,7 @@ Partial Public Class datauploadNonIDR
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columntgl1 = New Global.System.Data.DataColumn("tgl1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columntgl1 = New Global.System.Data.DataColumn("tgl1", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columntgl1)
             Me.columndocbal = New Global.System.Data.DataColumn("docbal", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndocbal)
@@ -615,7 +615,7 @@ Partial Public Class datauploadNonIDR
             MyBase.Columns.Add(Me.columnrefnbr1)
             Me.columnvrno = New Global.System.Data.DataColumn("vrno", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnvrno)
-            Me.columntgl = New Global.System.Data.DataColumn("tgl", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columntgl = New Global.System.Data.DataColumn("tgl", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columntgl)
             Me.columnvendid = New Global.System.Data.DataColumn("vendid", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnvendid)
@@ -633,7 +633,7 @@ Partial Public Class datauploadNonIDR
             MyBase.Columns.Add(Me.columnFromCuryId)
             Me.columnRateType = New Global.System.Data.DataColumn("RateType", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRateType)
-            Me.columnEffDate = New Global.System.Data.DataColumn("EffDate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnEffDate = New Global.System.Data.DataColumn("EffDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnEffDate)
             Me.columnRate = New Global.System.Data.DataColumn("Rate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRate)
@@ -789,10 +789,10 @@ Partial Public Class datauploadNonIDR
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property tgl1() As String
+        Public Property tgl1() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tabledatauploadNonIDR.tgl1Column),String)
+                    Return CType(Me(Me.tabledatauploadNonIDR.tgl1Column),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'tgl1' in table 'datauploadNonIDR' is DBNull.", e)
                 End Try
@@ -864,10 +864,10 @@ Partial Public Class datauploadNonIDR
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property tgl() As String
+        Public Property tgl() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tabledatauploadNonIDR.tglColumn),String)
+                    Return CType(Me(Me.tabledatauploadNonIDR.tglColumn),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'tgl' in table 'datauploadNonIDR' is DBNull.", e)
                 End Try
@@ -999,10 +999,10 @@ Partial Public Class datauploadNonIDR
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property EffDate() As String
+        Public Property EffDate() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tabledatauploadNonIDR.EffDateColumn),String)
+                    Return CType(Me(Me.tabledatauploadNonIDR.EffDateColumn),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'EffDate' in table 'datauploadNonIDR' is DBNull.", e)
                 End Try
