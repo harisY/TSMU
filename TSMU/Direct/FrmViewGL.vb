@@ -13,7 +13,7 @@ Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-Public Class FrmViewGJ
+Public Class FrmViewGL
     Dim dtGrid As DataTable
     Dim _Service As GJHeaderModel
     Dim Objgl As GJHeaderModel
@@ -33,7 +33,7 @@ Public Class FrmViewGJ
     Dim ff_Detail1x As FrmSuspendSettleDetailDirect
     Dim ff_Detaild As FrmSuspend_Detail
     Dim TotAmount As Double
-    Private Sub FrmViewGJ_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmViewGL_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '' GridView1.OptionsBehavior.Editable = False
         ' Prevent the focused cell from being highlighted.
         GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -56,110 +56,9 @@ Public Class FrmViewGJ
             itemsCollection.EndUpdate()
         End Try
     End Sub
-    Public Overrides Sub Proc_SaveData()
-        If _TxtTransaksi.Text = "Cash Transaction" Then
-            simpan_ca()
 
 
-        ElseIf _TxtTransaksi.Text = "Cash Transfer" Then
-        ElseIf _TxtTransaksi.Text = "General Journal" Then
-            simpan_gj()
 
-
-        End If
-    End Sub
-    Private Sub simpan_ca()
-        Try
-            Dim query As String
-            Dim cek_upload As Boolean
-            Dim NoBukti2 As String
-            Dim a As Boolean
-            For i As Integer = 0 To GridView1.RowCount - 1
-                NoBukti2 = GridView1.GetRowCellValue(i, "NoBukti2")
-                a = If(GridView1.GetRowCellValue(i, "Pilih") Is DBNull.Value, False, Convert.ToDouble(GridView1.GetRowCellValue(i, "Pilih")))
-                If a = True Then
-                    a = True
-                Else
-                    a = False
-                End If
-                cek_upload = If(GridView1.GetRowCellValue(i, "Pilih") Is DBNull.Value, False, Convert.ToDouble(GridView1.GetRowCellValue(i, "Pilih")))
-                NoBukti2 = GridView1.GetRowCellValue(i, "NoBukti2")
-                query = "update cashbank2 set cek_upload='" & a & "' where NoBukti='" & NoBukti2 & "' "
-                MainModul.ExecQueryByCommandSolomon(query)
-
-            Next
-        Catch ex As Exception
-            Throw
-        End Try
-        MessageBox.Show("Data Updated.")
-        GridView1.Columns.Clear()
-        GridView1.RefreshData()
-
-        LoadDataxx()
-    End Sub
-    Private Sub simpan_gj()
-        Try
-            Dim query As String
-            Dim cek_upload As Boolean
-            Dim GJID2 As String
-            Dim a As Boolean
-            For i As Integer = 0 To GridView1.RowCount - 1
-                GJID2 = GridView1.GetRowCellValue(i, "GJID2")
-                a = If(GridView1.GetRowCellValue(i, "Pilih") Is DBNull.Value, False, Convert.ToDouble(GridView1.GetRowCellValue(i, "Pilih")))
-                If a = True Then
-                    a = True
-                Else
-                    a = False
-                End If
-                cek_upload = If(GridView1.GetRowCellValue(i, "Pilih") Is DBNull.Value, False, Convert.ToDouble(GridView1.GetRowCellValue(i, "Pilih")))
-                GJID2 = GridView1.GetRowCellValue(i, "GJID2")
-                query = "update gj_header set Proses='" & a & "' where GJID='" & GJID2 & "' "
-                MainModul.ExecQueryByCommandSolomon(query)
-
-            Next
-        Catch ex As Exception
-            Throw
-        End Try
-        MessageBox.Show("Data Updated.")
-        GridView1.Columns.Clear()
-        GridView1.RefreshData()
-
-        LoadDataGJ()
-    End Sub
-    Private Sub LoadDataxx()
-        Try
-            If _TxtPerpost.Text = "" Then
-
-                Throw New Exception("Silahkan pilih perpost!")
-            End If
-            Cursor = Cursors.WaitCursor
-            Objgl = New GJHeaderModel
-            Dim dtSearch2 As New DataTable
-            '' dtSearch2 = ObjSuspend2.GetCustomer2
-            dtSearch2 = Objgl.GetGJPerpost(IIf(_TxtCuryID.Text = "", "ALL", _TxtCuryID.Text), _TxtPerpost.Text)
-            Grid.DataSource = dtSearch2
-            GridCellFormat(GridView1)
-            GridView1.BestFitColumns()
-
-            With GridView1
-                .Columns(0).Visible = False
-            End With
-            GridCellFormat(GridView1)
-
-
-            GridView1.Columns("Perpost").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView1.Columns("NoBukti").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView1.Columns("AcctID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView1.Columns("Keterangan").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView1.Columns("CuryID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView1.Columns("Transaksi").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-
-            Cursor = Cursors.Default
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
     Private Sub LoadDataGJ()
         Try
             If _TxtPerpost.Text = "" Then
@@ -170,7 +69,7 @@ Public Class FrmViewGJ
             Objgl = New GJHeaderModel
             Dim dtSearch2 As New DataTable
             '' dtSearch2 = ObjSuspend2.GetCustomer2
-            dtSearch2 = Objgl.GetGLPerpost(IIf(_TxtCuryID.Text = "", "ALL", _TxtCuryID.Text), _TxtPerpost.Text)
+            dtSearch2 = Objgl.GetGLPerpost2(IIf(_txtaccount.Text = "", "ALL", _txtaccount.Text), _TxtPerpost.Text, IIf(_TxtModule.Text = "", "ALL", _TxtModule.Text))
             Grid.DataSource = dtSearch2
             GridCellFormat(GridView1)
             GridView1.BestFitColumns()
@@ -181,12 +80,12 @@ Public Class FrmViewGJ
             GridCellFormat(GridView1)
 
 
-            GridView1.Columns("Perpost").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView1.Columns("GJID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView1.Columns("AcctID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView1.Columns("Keterangan").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            GridView1.Columns("Currency").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
-            ''   GridView1.Columns("Transaksi").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            'GridView1.Columns("Perpost").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            'GridView1.Columns("BatNbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            'GridView1.Columns("Acc").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            'GridView1.Columns("TranDesc").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            'GridView1.Columns("InvcNbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
 
             Cursor = Cursors.Default
 
@@ -196,14 +95,8 @@ Public Class FrmViewGJ
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If _TxtTransaksi.Text = "Cash Transaction" Then
-            LoadDataxx()
 
-        ElseIf _TxtTransaksi.Text = "Cash Transfer" Then
-        ElseIf _TxtTransaksi.Text = "General Journal" Then
-            LoadDataGJ()
-
-        End If
+        LoadDataGJ()
 
     End Sub
     Private Sub tsBtn_excel_Click(sender As Object, e As EventArgs) Handles tsBtn_excel.Click
@@ -213,11 +106,11 @@ Public Class FrmViewGJ
         Try
 
             If GridView1.RowCount > 0 Then
-                    SaveToExcel(Grid)
-                    MsgBox("Data Sudah Berhasil Di Export.")
-                Else
-                    MsgBox("Grid Kosong!")
-                End If
+                SaveToExcel(Grid)
+                MsgBox("Data Sudah Berhasil Di Export.")
+            Else
+                MsgBox("Grid Kosong!")
+            End If
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -226,10 +119,10 @@ Public Class FrmViewGJ
     End Sub
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
-        save.Filter = "Excel File|*.xls"
+        save.Filter = "Excel File|*.xlsx"
         save.Title = "Save an Excel File"
         If save.ShowDialog = DialogResult.OK Then
-            _Grid.ExportToXls(save.FileName)
+            _Grid.ExportToXlsx(save.FileName)
         End If
     End Sub
     Private Sub _TxtPerpost_SelectedIndexChanged(sender As Object, e As EventArgs) Handles _TxtPerpost.SelectedIndexChanged
@@ -240,13 +133,7 @@ Public Class FrmViewGJ
         ListItemsPerpost()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        FrmReportUploadGL.StartPosition = FormStartPosition.CenterScreen
-        FrmReportUploadGL.TxtPerpost.Text = _TxtPerpost.Text
-        FrmReportUploadGL.TxtCuryID.Text = _TxtCuryID.Text
-        FrmReportUploadGL.TxtTransaksi.Text = _TxtTransaksi.Text
-        FrmReportUploadGL.Show()
-    End Sub
+
 
     Private Sub grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
 
@@ -418,7 +305,49 @@ Public Class FrmViewGJ
         ff_Detaild.Show()
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs)
+    Private Sub __txtaccount_SelectedIndexChanged(sender As Object, e As EventArgs)
 
+    End Sub
+
+    Private Sub _txtaccount_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccount.EditValueChanged
+
+    End Sub
+
+    Private Sub _txtaccount_Click(sender As Object, e As EventArgs) Handles _txtaccount.Click
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            Dim ObjSuspend As New ClsSuspend
+            If sender.Name = _txtaccount.Name Then
+                dtSearch = ObjSuspend.GetAccount
+                ls_OldKode = _txtaccount.Text.Trim
+                ls_Judul = "Account"
+            End If
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+
+                If sender.Name = _txtaccount.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                    Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                    Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+
+                    _txtaccount.Text = Value1
+
+                End If
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

@@ -367,6 +367,11 @@
     <Compile Include="dataset\DashboardDS.vb">
       <DependentUpon>DashboardDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dataset\datauploadNonIDR.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>datauploadNonIDR.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\dsCrud.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -804,6 +809,12 @@
     <Compile Include="Direct\FrmViewGJ.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmViewGL.Designer.vb">
+      <DependentUpon>FrmViewGL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmViewGL.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\report\CRCCAccrued.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -984,6 +995,24 @@
       <DependentUpon>CRTravelTotalSuspenseSettRight.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\CRUploadGJ.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGJ.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRUploadGL.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGL.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRUploadGL2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGL2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\DRCCAccrued.designer.vb">
       <DependentUpon>DRCCAccrued.vb</DependentUpon>
     </Compile>
@@ -1090,6 +1119,12 @@
       <DependentUpon>FrmReportTravelSett.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\FrmReportTravelSett.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportUploadGL.Designer.vb">
+      <DependentUpon>FrmReportUploadGL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportUploadGL.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\relasi.vb">
@@ -2909,6 +2944,12 @@
     <Compile Include="Payment\ReportPayment\Form2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSolomonNonIDR.Designer.vb">
+      <DependentUpon>Frm_Rpt_APSolomonNonIDR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSolomonNonIDR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.Designer.vb">
       <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
     </Compile>
@@ -3009,6 +3050,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Rpt_upload.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Rpt_UploadNonIDR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_UploadNonIDR.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Payment\ReportPayment\XtraReport1.Designer.vb">
@@ -3259,6 +3306,9 @@
     <EmbeddedResource Include="Direct\FrmViewGJ.resx">
       <DependentUpon>FrmViewGJ.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmViewGL.resx">
+      <DependentUpon>FrmViewGL.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRCCAccrued.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRCCAccrued.vb</LastGenOutput>
@@ -3379,6 +3429,18 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelTotalSuspenseSettRight.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGJ.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGJ.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGL.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGL2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGL2.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\DRCCAccrued.resx">
       <DependentUpon>DRCCAccrued.vb</DependentUpon>
     </EmbeddedResource>
@@ -3405,6 +3467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportTravelSett.resx">
       <DependentUpon>FrmReportTravelSett.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportUploadGL.resx">
+      <DependentUpon>FrmReportUploadGL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\RptBankTransfer.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -4127,6 +4192,9 @@
     <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI4.resx">
       <DependentUpon>DXReportTTI4.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomonNonIDR.resx">
+      <DependentUpon>Frm_Rpt_APSolomonNonIDR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.resx">
       <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
     </EmbeddedResource>
@@ -4167,6 +4235,10 @@
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_upload.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_upload.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Rpt_UploadNonIDR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_UploadNonIDR.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\Rpt_Upload2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -4223,6 +4295,17 @@
     </None>
     <None Include="dataset\DashboardDS.xss">
       <DependentUpon>DashboardDS.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\datauploadNonIDR.xsc">
+      <DependentUpon>datauploadNonIDR.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\datauploadNonIDR.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>datauploadNonIDR.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dataset\datauploadNonIDR.xss">
+      <DependentUpon>datauploadNonIDR.xsd</DependentUpon>
     </None>
     <None Include="dataset\dsLaporan2.xsc">
       <DependentUpon>dsLaporan2.xsd</DependentUpon>
