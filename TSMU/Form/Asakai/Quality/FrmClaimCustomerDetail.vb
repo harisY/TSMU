@@ -293,6 +293,7 @@ Public Class FrmClaimCustomerDetail
                     With ObjClaimCustomerDetail
                         .D_IDTransaksi = KodeTrans
                         .D_TanggalClaim = Convert.ToDateTime(GridView1.GetRowCellValue(i, "TanggalClaim"))
+                        .D_TanggalEmail = Convert.ToDateTime(GridView1.GetRowCellValue(i, "Tanggal Email"))
                         .D_Customer = Convert.ToString(GridView1.GetRowCellValue(i, "Customer"))
                         .D_InvtID = Convert.ToString(GridView1.GetRowCellValue(i, "InvtId"))
                         .D_InvtName = Convert.ToString(GridView1.GetRowCellValue(i, "Invt Name"))
