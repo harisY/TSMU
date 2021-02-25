@@ -206,6 +206,7 @@ Public Class FrmHRPADataKaryawan
 
     Private Sub btnDeleteJab_Click(sender As Object, e As EventArgs) Handles btnDeleteJab.Click
         txtJabatan.EditValue = ""
+        cbOrganisasi.EditValue = ""
     End Sub
 
     Private Sub cbPerpindahan_EditValueChanged(sender As Object, e As EventArgs) Handles cbPerpindahan.EditValueChanged
