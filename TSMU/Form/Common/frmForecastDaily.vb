@@ -102,29 +102,27 @@ Public Class frmForecastDaily
             If DtTanggal.Rows.Count > 0 Then
                 Service.ObjForecastCollection.Clear()
                 For Each row As DataRow In DtTanggal.Rows
+                    If row(5).ToString().AsInt() = 0 Then
+                        Continue For
+                    End If
                     ObjForecast = New ForecastDailyModel
                     With ObjForecast
-
-
-
+                        .Tahun = Tahun
+                        .Bulan = Bulan
+                        .PartNo = row(0).ToString().AsString()
+                        .UniqueNo = row(1).ToString().AsString()
+                        .PartName = row(2).ToString().AsString()
+                        .QtyKanban = row(3).ToString().AsInt()
+                        .Tgl = row(5).ToString().AsInt()
+                        .Qty = row(6).ToString().AsInt()
                     End With
                     Service.ObjForecastCollection.Add(ObjForecast)
                 Next
-
-                'With ObjHeader
-                '    .Tahun = Tahun
-                '    .CustID = strCustomer
-                '    .Bulan = Bulan
-                '    .BulanAngka = BulanAngka
-                '    .InsertDataAdm()
-                '    SplashScreenManager.CloseForm()
-                '    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                '    LoadGrid()
-                'End With
-            Else
-                SplashScreenManager.CloseForm()
+                Service.Insert()
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
             SplashScreenManager.CloseForm()
+            LoadGrid()
 
         Catch ex As Exception
             SplashScreenManager.CloseForm()
@@ -175,37 +173,43 @@ Public Class frmForecastDaily
     End Function
 
     Public Function UnpivotDataTable2(ByVal dt As DataTable) As DataTable
+        Try
+            Dim NewDt As DataTable = New DataTable()
+            NewDt.Columns.Add(New DataColumn("PartNo", GetType(String)))
+            NewDt.Columns.Add(New DataColumn("Unique No", GetType(String)))
+            NewDt.Columns.Add(New DataColumn("Part Name", GetType(String)))
+            NewDt.Columns.Add(New DataColumn("Qty Kbn", GetType(Integer)))
+            NewDt.Columns.Add(New DataColumn("Qty Box", GetType(Integer)))
+            NewDt.Columns.Add(New DataColumn("Tgl", GetType(Integer)))
+            NewDt.Columns.Add(New DataColumn("Qty", GetType(Integer)))
 
-        Dim newDatatable As DataTable = New DataTable()
-        newDatatable.Columns.Add(New DataColumn("PartNo", GetType(String)))
-        newDatatable.Columns.Add(New DataColumn("Unique No", GetType(String)))
-        newDatatable.Columns.Add(New DataColumn("Part Name", GetType(String)))
-        newDatatable.Columns.Add(New DataColumn("Qty Kbn", GetType(Integer)))
-        newDatatable.Columns.Add(New DataColumn("Qty Box", GetType(Integer)))
-        newDatatable.Columns.Add(New DataColumn("Tgl", GetType(Integer)))
-        newDatatable.Columns.Add(New DataColumn("Qty", GetType(Integer)))
+            'If dt.Rows.Count > 42 Then
+            '    Throw New Exception("Jumlah Kolom tidak valid !")
+            'End If
+            For Each dr As DataRow In dt.Rows
+                Dim colCount As Integer = 0
 
-        For Each dr As DataRow In dt.Rows
-            Dim colCount As Integer = 0
+                For Each dc As DataColumn In dt.Columns
 
-            For Each dc As DataColumn In dt.Columns
+                    If colCount >= 10 AndAlso dr(1).ToString().AsString() <> "" Then
+                        Dim dr2 As DataRow = NewDt.NewRow()
+                        dr2("PartNo") = dr(1).ToString().AsString()
+                        dr2("Unique No") = dr(2).ToString().AsString()
+                        dr2("Part Name") = dr(3).ToString().AsString()
+                        dr2("Qty Kbn") = dr(4).ToString().AsString()
+                        dr2("Qty Box") = dr(5).ToString().AsInt()
+                        dr2("Tgl") = dc.ColumnName.AsInt()
+                        dr2("Qty") = dr(dc).ToString().AsInt()
+                        NewDt.Rows.Add(dr2)
+                    End If
 
-                If colCount >= 10 AndAlso dr(1).ToString().AsString() <> "" Then
-                    Dim dr2 As DataRow = newDatatable.NewRow()
-                    dr2("PartNo") = dr(1).ToString().AsString()
-                    dr2("Unique No") = dr(2).ToString().AsString()
-                    dr2("Part Name") = dr(3).ToString().AsString()
-                    dr2("Qty Kbn") = dr(4).ToString().AsString()
-                    dr2("Qty Box") = dr(5).ToString().AsInt()
-                    dr2("Tgl") = dc.ColumnName.AsInt()
-                    dr2("Qty") = dr(dc).ToString().AsInt()
-                    newDatatable.Rows.Add(dr2)
-                End If
-
-                colCount += 1
+                    colCount += 1
+                Next
             Next
-        Next
-        Return newDatatable
+            Return NewDt
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
     Private Sub ExportToExcelTSM_Click(sender As Object, e As EventArgs) Handles ExportToExcelTSM.Click
         If GridView1.RowCount > 0 Then
