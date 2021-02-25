@@ -13,10 +13,11 @@
                                 pdp.NamaPanggilan ,
                                 pdp.JenisKelamin ,
                                 pdp.TglLahir ,
-                                pdk.PerpindahanKaryawan ,
+                                pp.PerpindahanDesc AS Perpindahan ,
                                 pdk.StatusKaryawan ,
                                 pdk.TipeKaryawan ,
                                 pdk.TipePosisiKaryawan ,
+                                pdk.Factory ,
                                 oo.OrgDesc AS Organisasi ,
                                 oj.OrgDesc AS Jabatan
                         FROM    dbo.M_HRPADataKaryawan AS pdk
@@ -24,9 +25,10 @@
                                 LEFT JOIN dbo.M_HROrgOrganisasi AS oo ON pdk.Organisasi = oo.OrgID
                                                                          AND oo.TglMulai <= @Now
                                                                          AND oo.TglSelesai >= @Now
-                                LEFT JOIN dbo.M_HROrgJabatan AS oj ON pdk.Organisasi = oj.OrgID
+                                LEFT JOIN dbo.M_HROrgJabatan AS oj ON pdk.Jabatan = oj.OrgID
                                                                       AND oj.TglMulai <= @Now
                                                                       AND oj.TglSelesai >= @Now
+                                LEFT JOIN dbo.S_HRPAPerpindahan AS pp ON pdk.PerpindahanKaryawan = pp.Perpindahan
                         WHERE   pdk.TglMulai <= @Now
                                 AND pdk.TglSelesai >= @Now"
             Dim dt As New DataTable
@@ -61,7 +63,7 @@
                                 LEFT JOIN dbo.M_HROrgOrganisasi AS oo ON pdk.Organisasi = oo.OrgID
                                                                          AND oo.TglMulai <= @Now
                                                                          AND oo.TglSelesai >= @Now
-                                LEFT JOIN dbo.M_HROrgJabatan AS oj ON pdk.Organisasi = oj.OrgID
+                                LEFT JOIN dbo.M_HROrgJabatan AS oj ON pdk.Jabatan = oj.OrgID
                                                                       AND oj.TglMulai <= @Now
                                                                       AND oj.TglSelesai >= @Now
                         WHERE   pdk.TglMulai <= @Now
@@ -130,16 +132,19 @@
                                 pdk.EmployeeID ,
                                 pdk.NIK ,
                                 pdk.PerpindahanKaryawan ,
+                                pp.PerpindahanDesc ,
                                 pdk.AlasanPindah ,
-                                pdk.Golongan ,
+                                ap.AlasanPindahDesc ,
+                                pdk.Golongan AS Gol ,
+                                pg.GolDesc AS Golongan ,
                                 pdk.StatusKaryawan ,
                                 pdk.TipeKaryawan ,
                                 pdk.TipePosisiKaryawan ,
                                 pdk.Factory ,
-                                pdk.Organisasi ,
-                                oo.OrgDesc ,
-                                pdk.Jabatan ,
-                                oj.OrgDesc ,
+                                pdk.Organisasi AS OrgID ,
+                                oo.OrgDesc AS Organisasi ,
+                                pdk.Jabatan AS JabID ,
+                                oj.OrgDesc AS Jabatan ,
                                 pdk.Job ,
                                 pdk.TglEfektif ,
                                 pdk.TglBerakhir ,
@@ -152,6 +157,9 @@
                         FROM    dbo.M_HRPADataKaryawan AS pdk
                                 LEFT JOIN dbo.M_HROrgOrganisasi AS oo ON oo.OrgID = pdk.Organisasi
                                 LEFT JOIN dbo.M_HROrgJabatan AS oj ON pdk.Jabatan = oj.OrgID
+                                LEFT JOIN dbo.S_HRPAGolongan AS pg ON pdk.Golongan = pg.Gol
+                                LEFT JOIN dbo.S_HRPAPerpindahan AS pp ON pdk.PerpindahanKaryawan = pp.Perpindahan
+                                LEFT JOIN dbo.S_HRPAAlasanPindah AS ap ON ap.AlasanPindah = pdk.AlasanPindah
                         WHERE   EmployeeID = " & QVal(EmpID) & ""
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
@@ -328,7 +336,6 @@
     End Sub
 
     Public Function GetStrukturOrg() As DataTable
-        Dim _result As Integer = 0
         Try
             Dim Sql As String = "HR_GetStrukturOrg"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter() {}
@@ -336,6 +343,46 @@
             Dim dt As New DataTable
 
             dt = GetDataTableByCommand_SP(Sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListPerpindahan() As DataTable
+        Try
+            strQuery = "SELECT  Perpindahan ,
+                                PerpindahanDesc
+                        FROM    dbo.S_HRPAPerpindahan"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListAlasan(perpindahan As String) As DataTable
+        Try
+            strQuery = "SELECT  AlasanPindah ,
+                                AlasanPindahDesc
+                        FROM    dbo.S_HRPAAlasanPindah
+                        WHERE   Perpindahan = " & QVal(perpindahan) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetListGolongan() As DataTable
+        Try
+            strQuery = "SELECT  Gol ,
+                                GolDesc
+                        FROM    dbo.S_HRPAGolongan"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
             Return dt
         Catch ex As Exception
             Throw ex
