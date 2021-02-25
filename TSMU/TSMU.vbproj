@@ -2133,6 +2133,12 @@
     <Compile Include="Form\HR\FrmHRPANewHire.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Lookup\FrmLookupForecastDaily.Designer.vb">
+      <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Lookup\FrmLookupForecastDaily.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\NPP\Frm_Approve_Dept_Head.Designer.vb">
       <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>
     </Compile>
