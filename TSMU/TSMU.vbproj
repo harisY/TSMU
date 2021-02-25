@@ -367,6 +367,11 @@
     <Compile Include="dataset\DashboardDS.vb">
       <DependentUpon>DashboardDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dataset\datauploadNonIDR.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>datauploadNonIDR.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dataset\dsCrud.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -804,6 +809,12 @@
     <Compile Include="Direct\FrmViewGJ.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Direct\FrmViewGL.Designer.vb">
+      <DependentUpon>FrmViewGL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmViewGL.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Direct\report\CRCCAccrued.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -984,6 +995,24 @@
       <DependentUpon>CRTravelTotalSuspenseSettRight.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\CRUploadGJ.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGJ.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRUploadGL.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGL.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\CRUploadGL2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGL2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\DRCCAccrued.designer.vb">
       <DependentUpon>DRCCAccrued.vb</DependentUpon>
     </Compile>
@@ -1006,6 +1035,12 @@
       <DependentUpon>DxReceipt.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\DxReceipt.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Direct\report\DRTravelVoucherTicket.designer.vb">
+      <DependentUpon>DRTravelVoucherTicket.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\DRTravelVoucherTicket.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Direct\report\entertain1.vb">
@@ -1084,6 +1119,12 @@
       <DependentUpon>FrmReportTravelSett.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\report\FrmReportTravelSett.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportUploadGL.Designer.vb">
+      <DependentUpon>FrmReportUploadGL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\report\FrmReportUploadGL.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\report\relasi.vb">
@@ -2044,6 +2085,48 @@
     <Compile Include="Form\EBudget\Frm_EBudget.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\HR\FrmHRAdministrasiKaryawan.Designer.vb">
+      <DependentUpon>FrmHRAdministrasiKaryawan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRAdministrasiKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRAdministrasiKaryawanDetail.Designer.vb">
+      <DependentUpon>FrmHRAdministrasiKaryawanDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRAdministrasiKaryawanDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHROrganisasi.Designer.vb">
+      <DependentUpon>FrmHROrganisasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHROrganisasi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHROrgJabatanDetail.Designer.vb">
+      <DependentUpon>FrmHROrgJabatanDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHROrgJabatanDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHROrgOrganisasiDetail.Designer.vb">
+      <DependentUpon>FrmHROrgOrganisasiDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHROrgOrganisasiDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKaryawan.designer.vb">
+      <DependentUpon>FrmHRPADataKaryawan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataPribadi.Designer.vb">
+      <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataPribadi.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Lookup\FrmLookupForecastDaily.Designer.vb">
       <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>
     </Compile>
@@ -2356,6 +2439,12 @@
     <Compile Include="Form\System\frmAdvanceApprove.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\System\frmAdvanceOption.Designer.vb">
+      <DependentUpon>FrmAdvanceOption.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\System\FrmAdvanceOption.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\System\FrmCustomization.Designer.vb">
       <DependentUpon>FrmCustomization.vb</DependentUpon>
     </Compile>
@@ -2614,6 +2703,12 @@
     <Compile Include="Models\ForecastDailyModel.vb" />
     <Compile Include="Models\forecast_po_model.vb" />
     <Compile Include="Models\FormatExcelModel.vb" />
+    <Compile Include="Models\HR\HROrgJabatanModel.vb" />
+    <Compile Include="Models\HR\HROrgOrganisasiModel.vb" />
+    <Compile Include="Models\HR\HROrgStrukturModel.vb" />
+    <Compile Include="Models\HR\HRPADataKaryawanModel.vb" />
+    <Compile Include="Models\HR\HRPADataPribadiModel.vb" />
+    <Compile Include="Models\HR\HRPAHeaderModel.vb" />
     <Compile Include="Models\ImageModel.vb" />
     <Compile Include="Models\JogresModel.vb" />
     <Compile Include="Models\KanbanInternal.vb" />
@@ -2862,6 +2957,12 @@
     <Compile Include="Payment\ReportPayment\Form2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSolomonNonIDR.Designer.vb">
+      <DependentUpon>Frm_Rpt_APSolomonNonIDR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_Rpt_APSolomonNonIDR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.Designer.vb">
       <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
     </Compile>
@@ -2964,6 +3065,12 @@
       <DependentUpon>Rpt_upload.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Rpt_UploadNonIDR.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_UploadNonIDR.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\XtraReport1.Designer.vb">
       <DependentUpon>XtraReport1.vb</DependentUpon>
     </Compile>
@@ -3052,6 +3159,8 @@
     <Compile Include="Services\ForecastDailyService.vb" />
     <Compile Include="Services\FormatExcelService.vb" />
     <Compile Include="Services\GlobalService.vb" />
+    <Compile Include="Services\HROrgService.vb" />
+    <Compile Include="Services\HRPAService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
     <Compile Include="Services\SettingService.vb" />
@@ -3211,6 +3320,9 @@
     <EmbeddedResource Include="Direct\FrmViewGJ.resx">
       <DependentUpon>FrmViewGJ.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmViewGL.resx">
+      <DependentUpon>FrmViewGL.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRCCAccrued.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRCCAccrued.vb</LastGenOutput>
@@ -3331,6 +3443,18 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRTravelTotalSuspenseSettRight.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGJ.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGJ.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGL.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGL.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGL2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGL2.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\DRCCAccrued.resx">
       <DependentUpon>DRCCAccrued.vb</DependentUpon>
     </EmbeddedResource>
@@ -3343,6 +3467,9 @@
     <EmbeddedResource Include="Direct\report\DxReceipt.resx">
       <DependentUpon>DxReceipt.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\DRTravelVoucherTicket.resx">
+      <DependentUpon>DRTravelVoucherTicket.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportCCAccrued.resx">
       <DependentUpon>FrmReportCCAccrued.vb</DependentUpon>
     </EmbeddedResource>
@@ -3354,6 +3481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\FrmReportTravelSett.resx">
       <DependentUpon>FrmReportTravelSett.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\FrmReportUploadGL.resx">
+      <DependentUpon>FrmReportUploadGL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\RptBankTransfer.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -3645,6 +3775,27 @@
     <EmbeddedResource Include="Form\EBudget\Frm_EBudget.resx">
       <DependentUpon>Frm_EBudget.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRAdministrasiKaryawan.resx">
+      <DependentUpon>FrmHRAdministrasiKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRAdministrasiKaryawanDetail.resx">
+      <DependentUpon>FrmHRAdministrasiKaryawanDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHROrganisasi.resx">
+      <DependentUpon>FrmHROrganisasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHROrgJabatanDetail.resx">
+      <DependentUpon>FrmHROrgJabatanDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHROrgOrganisasiDetail.resx">
+      <DependentUpon>FrmHROrgOrganisasiDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataKaryawan.resx">
+      <DependentUpon>FrmHRPADataKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataPribadi.resx">
+      <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Lookup\FrmLookupForecastDaily.resx">
       <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>
     </EmbeddedResource>
@@ -3769,6 +3920,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\frmAdvanceApprove.resx">
       <DependentUpon>frmAdvanceApprove.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\System\frmAdvanceOption.resx">
+      <DependentUpon>FrmAdvanceOption.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\System\FrmCustomization.resx">
       <DependentUpon>FrmCustomization.vb</DependentUpon>
@@ -4058,6 +4212,9 @@
     <EmbeddedResource Include="Payment\ReportPayment\DXReportTTI4.resx">
       <DependentUpon>DXReportTTI4.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_APSolomonNonIDR.resx">
+      <DependentUpon>Frm_Rpt_APSolomonNonIDR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_TarikSoA.resx">
       <DependentUpon>Frm_Rpt_TarikSoA.vb</DependentUpon>
     </EmbeddedResource>
@@ -4098,6 +4255,10 @@
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_upload.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_upload.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Rpt_UploadNonIDR.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_UploadNonIDR.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\Rpt_Upload2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -4154,6 +4315,17 @@
     </None>
     <None Include="dataset\DashboardDS.xss">
       <DependentUpon>DashboardDS.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\datauploadNonIDR.xsc">
+      <DependentUpon>datauploadNonIDR.xsd</DependentUpon>
+    </None>
+    <None Include="dataset\datauploadNonIDR.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>datauploadNonIDR.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="dataset\datauploadNonIDR.xss">
+      <DependentUpon>datauploadNonIDR.xsd</DependentUpon>
     </None>
     <None Include="dataset\dsLaporan2.xsc">
       <DependentUpon>dsLaporan2.xsd</DependentUpon>

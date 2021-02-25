@@ -127,7 +127,7 @@ Public Class ClsMktUploadPrice
         Try
             Dim sql As String
             sql = " SELECT  DISTINCT
-                            REPLACE(RTRIM(ixr.AlternateID), '-', '') AS AlternateID ,
+                            REPLACE(REPLACE(RTRIM(ixr.AlternateID), '-', ''), CHAR(160), '') AS AlternateID ,
                             RTRIM(inv.InvtID) AS InvtID ,
                             LEFT(RIGHT(RTRIM(inv.InvtID), 2), 1) AS PartType ,
                             price.StartDate ,

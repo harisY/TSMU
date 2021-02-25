@@ -124,6 +124,31 @@ Public Class Frm_CR_UserCreateDetail
                     Call LoadGrid_OtherDept(fs_Code)
                     Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
                     Call No_Edit_TextBox()
+                ElseIf gh_Common.GroupID = "1BOD" Then
+
+                    If fc_Class.H_Current_Level <= 3 Then
+                        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, True)
+                    Else
+                        Call Proc_EnableButtons(False, False, False, True, False, False, False, True, False, False, True)
+                    End If
+
+                    Call LoadTxtBox()
+                    Call LoadGridBarang(fs_Code)
+                    Call LoadGridInstallment(fs_Code)
+                    Call LoadGrid_OtherDept(fs_Code)
+                    Call Sub_Dept(fc_Class.H_DeptID)
+                    T_CRNo.Enabled = False
+
+                    If ls_Error <> "" Then
+                        Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
+                        isCancel = True
+                        Me.Hide()
+                        Exit Sub
+                    Else
+                        isUpdate = True
+                    End If
+                    Me.Text = "CIRCULATION FORM -> " & fs_Code
+
                 Else
 
                     Call LoadTxtBox()
@@ -1278,13 +1303,34 @@ Public Class Frm_CR_UserCreateDetail
                 dtApprove = New DataTable
                 Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
 
-                If Total > 10000001 And Total <= 50000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
-                ElseIf Total >= 50000001 And Total <= 100000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
-                ElseIf Total >= 100000001 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                'If Total > 10000001 And Total <= 50000000 Then
+                '    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
+                'ElseIf Total >= 50000001 And Total <= 100000000 Then
+                '    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                'ElseIf Total >= 100000001 Then
+                '    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                'End If
+
+                If gh_Common.GroupID = "1BOD" Then
+
+                    If Total <= 50000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 4)
+                    ElseIf Total >= 50000001 And Total <= 100000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                    ElseIf Total >= 100000001 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                    End If
+
+                Else
+                    If Total > 10000001 And Total <= 50000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
+                    ElseIf Total >= 50000001 And Total <= 100000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                    ElseIf Total >= 100000001 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                    End If
                 End If
+
 
                 For A As Integer = 0 To dtApprove.Rows.Count - 1
 
@@ -1466,13 +1512,27 @@ Public Class Frm_CR_UserCreateDetail
                 dtApprove = New DataTable
                 Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
 
-                If Total > 10000001 And Total <= 50000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
-                ElseIf Total >= 50000001 And Total <= 100000000 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
-                ElseIf Total >= 100000001 Then
-                    dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                If gh_Common.GroupID = "1BOD" Then
+
+                    If Total <= 50000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 4)
+                    ElseIf Total >= 50000001 And Total <= 100000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                    ElseIf Total >= 100000001 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                    End If
+
+                Else
+                    If Total > 10000001 And Total <= 50000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
+                    ElseIf Total >= 50000001 And Total <= 100000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                    ElseIf Total >= 100000001 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                    End If
                 End If
+
+
 
                 For A As Integer = 0 To dtApprove.Rows.Count - 1
 
@@ -2724,10 +2784,24 @@ Public Class Frm_CR_UserCreateDetail
                     Try
                         fc_Class = New ClsCR_CreateUser
                         With fc_Class
-                            .H_DeptID = DeptEmail
-                            .H_UserSubmition = 1
-                            .H_Status = "Submit"
-                            .H_Current_Level = Active_Form
+
+                            If gh_Common.GroupID = "1BOD" Then
+                                .H_DeptID = "miftah-mis@tsmu.co.id"
+                                .H_UserSubmition = 1
+                                .H_Status = "Approve 2"
+                                .H_Current_Level = 3
+                            Else
+                                .H_DeptID = DeptEmail
+                                .H_UserSubmition = 1
+                                .H_Status = "Submit"
+                                .H_Current_Level = Active_Form
+
+                            End If
+
+                            '.H_DeptID = DeptEmail
+                            '.H_UserSubmition = 1
+                            '.H_Status = "Submit"
+                            '.H_Current_Level = Active_Form
                             .TA_Username = gh_Common.Username
                             .TA_MenuCode = "CIRCULATION"
                             .TA_DeptID = gh_Common.GroupID
@@ -3730,83 +3804,27 @@ Public Class Frm_CR_UserCreateDetail
         dtRpt = fc_Class.Cek_CR_Report(T_CRNo.EditValue)
 
         If dtRpt.Rows.Count > 0 Then
-            _Status = dtRpt.Rows(0).Item("status")
-            If _Status = "Other Dept" Or _Status = "Approve BOD" Or _Status = "Set Installment" Or _Status = "Close" Or _Status = "BA" Then
 
-#Region "Backup"
-                'Dim ds As New DataSet
-                'Dim dsOtherDept As New DataSet
-                'Dim dsApprove As New DataSet
-                'Dim dsTotal As New DataSet
-
-                'ds = fc_Class.RptCirculation(T_CRNo.EditValue)
-                ''dsTotal = Report.RptCirculationTotalDOC(Circulation)
-
-                ''Laporan.SetDataSource(ds)
-
-                'dsOtherDept = fc_Class.RptCirculation_OtherDept(T_CRNo.EditValue)
-                'dsApprove = fc_Class.RptCirculation_Approve(T_CRNo.EditValue)
-                'dsTotal = fc_Class.RptCirculationTotalDOC(T_CRNo.EditValue)
-                ''dsTotal = Report.RptCirculationTotalDOC(Circulation)
-
-                ''Laporan.Subreports("RptCirculation_OtherDept.rpt").SetDataSource(dsOtherDept)
-                ''Laporan.Subreports("RptCirculationApprove.rpt").SetDataSource(dsApprove)
-                ''Laporan.Subreports("RptCirculationTotal.rpt").SetDataSource(dsTotal)
-
-                'Dim Laporan As New DevCirculationReport()
-                'Dim LaporanDOC As New DevCirculationReportDOC()
-                'Dim LaporanOther As New DevCirculationReportOther()
-                'Dim LaporanBOD As New DevCirculationReportBOD()
-                'Dim LaporanTotal As New DevCirculationReportTotal()
-
-                'Laporan.DataSource = ds.Tables("CirculationHead")
-                'LaporanDOC.DataSource = ds.Tables("CirculationHead")
-                'LaporanOther.DataSource = dsOtherDept.Tables("CirculationOtherDept")
-                'LaporanBOD.DataSource = dsApprove.Tables("CirculationApprove")
-                'LaporanTotal.DataSource = dsTotal.Tables("CirculationTotalDOC")
-
-
-                'Dim subReport As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
-                'subReport.ReportSource.DataSource = ds.Tables("CirculationHead")
-
-                'Dim subReportOther As XRSubreport = CType(Laporan.FindControl("XrSubreport2", True), XRSubreport)
-                'subReportOther.ReportSource.DataSource = dsOtherDept.Tables("CirculationOtherDept")
-
-                'Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
-                'subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
-
-                'Dim subReportTotal As XRSubreport = CType(Laporan.FindControl("XrSubreport4", True), XRSubreport)
-                'subReportTotal.ReportSource.DataSource = dsTotal.Tables("CirculationTotalDOC")
-
-
-                'PrintTool = New ReportPrintTool(Laporan)
-                'TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
-                'PrintTool.ShowPreview(UserLookAndFeel.Default)
-#End Region
+            If gh_Common.GroupID = "1BOD" Then
 
                 Dim ds As New DataSet
                 Dim dsOtherDept As New DataSet
                 Dim dsApprove As New DataSet
                 Dim dsTotal As New DataSet
 
-                ds = fc_Class.RptCirculation_Temp(T_CRNo.EditValue)
+                ds = fc_Class.RptCirculation_BOD(T_CRNo.EditValue)
 
-                dsOtherDept = fc_Class.RptCirculation_OtherDept(T_CRNo.EditValue)
+                dsOtherDept = fc_Class.RptCirculation_OtherDept_BOD(T_CRNo.EditValue)
                 dsApprove = fc_Class.RptCirculation_Approve(T_CRNo.EditValue)
-                'dsTotal = fc_Class.RptCirculationTotalDOC(T_CRNo.EditValue)
 
                 Dim Laporan As New DevCirculationTemp4()
                 Dim LaporanDOC As New DevCirculationReportDOCTemp()
 
                 Dim LaporanOther As New DevCirculationReportOther()
-                'Dim LaporanBOD As New DevCirculationReportBOD()
-                'Dim LaporanTotal As New DevCirculationReportTotal()
 
                 Laporan.DataSource = ds.Tables("CirculationHead")
                 LaporanDOC.DataSource = ds.Tables("CirculationHead")
                 LaporanOther.DataSource = dsOtherDept.Tables("CirculationOtherDept")
-                'LaporanBOD.DataSource = dsApprove.Tables("CirculationApprove")
-                'LaporanTotal.DataSource = dsTotal.Tables("CirculationTotalDOC")
 
 
                 Dim subReport As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
@@ -3818,33 +3836,121 @@ Public Class Frm_CR_UserCreateDetail
                 Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
                 subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
 
-                'Dim subReportOther As XRSubreport = CType(Laporan.FindControl("XrSubreport2", True), XRSubreport)
-                'subReportOther.ReportSource.DataSource = dsOtherDept.Tables("CirculationOtherDept")
-
-                'Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
-                'subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
-
-                'Dim subReportTotal As XRSubreport = CType(Laporan.FindControl("XrSubreport4", True), XRSubreport)
-                'subReportTotal.ReportSource.DataSource = dsTotal.Tables("CirculationTotalDOC")
 
                 PrintTool = New ReportPrintTool(Laporan)
                 TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
                 PrintTool.ShowPreview(UserLookAndFeel.Default)
 
-
-
-
-
-
-
             Else
-                MessageBox.Show("Circulation can not be printed",
+                _Status = dtRpt.Rows(0).Item("status")
+                If _Status = "Other Dept" Or _Status = "Approve BOD" Or _Status = "Set Installment" Or _Status = "Close" Or _Status = "BA" Then
+#Region "Backup"
+                    'Dim ds As New DataSet
+                    'Dim dsOtherDept As New DataSet
+                    'Dim dsApprove As New DataSet
+                    'Dim dsTotal As New DataSet
+
+                    'ds = fc_Class.RptCirculation(T_CRNo.EditValue)
+                    ''dsTotal = Report.RptCirculationTotalDOC(Circulation)
+
+                    ''Laporan.SetDataSource(ds)
+
+                    'dsOtherDept = fc_Class.RptCirculation_OtherDept(T_CRNo.EditValue)
+                    'dsApprove = fc_Class.RptCirculation_Approve(T_CRNo.EditValue)
+                    'dsTotal = fc_Class.RptCirculationTotalDOC(T_CRNo.EditValue)
+                    ''dsTotal = Report.RptCirculationTotalDOC(Circulation)
+
+                    ''Laporan.Subreports("RptCirculation_OtherDept.rpt").SetDataSource(dsOtherDept)
+                    ''Laporan.Subreports("RptCirculationApprove.rpt").SetDataSource(dsApprove)
+                    ''Laporan.Subreports("RptCirculationTotal.rpt").SetDataSource(dsTotal)
+
+                    'Dim Laporan As New DevCirculationReport()
+                    'Dim LaporanDOC As New DevCirculationReportDOC()
+                    'Dim LaporanOther As New DevCirculationReportOther()
+                    'Dim LaporanBOD As New DevCirculationReportBOD()
+                    'Dim LaporanTotal As New DevCirculationReportTotal()
+
+                    'Laporan.DataSource = ds.Tables("CirculationHead")
+                    'LaporanDOC.DataSource = ds.Tables("CirculationHead")
+                    'LaporanOther.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+                    'LaporanBOD.DataSource = dsApprove.Tables("CirculationApprove")
+                    'LaporanTotal.DataSource = dsTotal.Tables("CirculationTotalDOC")
+
+
+                    'Dim subReport As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
+                    'subReport.ReportSource.DataSource = ds.Tables("CirculationHead")
+
+                    'Dim subReportOther As XRSubreport = CType(Laporan.FindControl("XrSubreport2", True), XRSubreport)
+                    'subReportOther.ReportSource.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+
+                    'Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
+                    'subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
+
+                    'Dim subReportTotal As XRSubreport = CType(Laporan.FindControl("XrSubreport4", True), XRSubreport)
+                    'subReportTotal.ReportSource.DataSource = dsTotal.Tables("CirculationTotalDOC")
+
+
+                    'PrintTool = New ReportPrintTool(Laporan)
+                    'TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+                    'PrintTool.ShowPreview(UserLookAndFeel.Default)
+#End Region
+                    Dim ds As New DataSet
+                    Dim dsOtherDept As New DataSet
+                    Dim dsApprove As New DataSet
+                    Dim dsTotal As New DataSet
+
+                    ds = fc_Class.RptCirculation_Temp(T_CRNo.EditValue)
+
+                    dsOtherDept = fc_Class.RptCirculation_OtherDept(T_CRNo.EditValue)
+                    dsApprove = fc_Class.RptCirculation_Approve(T_CRNo.EditValue)
+                    'dsTotal = fc_Class.RptCirculationTotalDOC(T_CRNo.EditValue)
+
+                    Dim Laporan As New DevCirculationTemp4()
+                    Dim LaporanDOC As New DevCirculationReportDOCTemp()
+
+                    Dim LaporanOther As New DevCirculationReportOther()
+                    'Dim LaporanBOD As New DevCirculationReportBOD()
+                    'Dim LaporanTotal As New DevCirculationReportTotal()
+
+                    Laporan.DataSource = ds.Tables("CirculationHead")
+                    LaporanDOC.DataSource = ds.Tables("CirculationHead")
+                    LaporanOther.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+                    'LaporanBOD.DataSource = dsApprove.Tables("CirculationApprove")
+                    'LaporanTotal.DataSource = dsTotal.Tables("CirculationTotalDOC")
+
+
+                    Dim subReport As XRSubreport = CType(Laporan.FindControl("XrSubreport1", True), XRSubreport)
+                    subReport.ReportSource.DataSource = ds.Tables("CirculationHead")
+
+                    Dim subReportOther As XRSubreport = CType(Laporan.FindControl("XrSubreport2", True), XRSubreport)
+                    subReportOther.ReportSource.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+
+                    Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
+                    subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
+
+                    'Dim subReportOther As XRSubreport = CType(Laporan.FindControl("XrSubreport2", True), XRSubreport)
+                    'subReportOther.ReportSource.DataSource = dsOtherDept.Tables("CirculationOtherDept")
+
+                    'Dim subReportBOD As XRSubreport = CType(Laporan.FindControl("XrSubreport3", True), XRSubreport)
+                    'subReportBOD.ReportSource.DataSource = dsApprove.Tables("CirculationApprove")
+
+                    'Dim subReportTotal As XRSubreport = CType(Laporan.FindControl("XrSubreport4", True), XRSubreport)
+                    'subReportTotal.ReportSource.DataSource = dsTotal.Tables("CirculationTotalDOC")
+
+                    PrintTool = New ReportPrintTool(Laporan)
+                    TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+                    PrintTool.ShowPreview(UserLookAndFeel.Default)
+                Else
+                    MessageBox.Show("Circulation can not be printed",
                                    "Warning",
                                    MessageBoxButtons.OK,
                                    MessageBoxIcon.Exclamation,
                                    MessageBoxDefaultButton.Button1)
-                Me.Close()
+                    Me.Close()
+                End If
+
             End If
+
         End If
 
 

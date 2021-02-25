@@ -85,7 +85,8 @@ Public Class FrmSuspend_Detail
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                ObjSuspendHeader.SuspendHeaderID = fs_Code
+                ''ObjSuspendHeader.SuspendHeaderID = fs_Code
+                ObjSuspendHeader.SuspendID = fs_Code2
                 ObjSuspendHeader.GetSuspenById()
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)

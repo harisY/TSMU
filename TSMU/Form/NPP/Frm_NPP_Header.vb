@@ -23,7 +23,7 @@ Public Class Frm_NPP_Header
 
         Try
 
-            If Active_Form_ = 1 Then
+            If Active_Form_ <= 1 Then
                 dtGrid = fc_Class.Get_NPP()
                 'dt1 = fc_Class.Get_NPP2()
                 Grid.DataSource = dtGrid
