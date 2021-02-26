@@ -62,6 +62,7 @@ Public Class FrmViewGJ
 
 
         ElseIf _TxtTransaksi.Text = "Cash Transfer" Then
+            simpan_tr()
         ElseIf _TxtTransaksi.Text = "General Journal" Then
             simpan_gj()
 
@@ -96,6 +97,35 @@ Public Class FrmViewGJ
         GridView1.RefreshData()
 
         LoadDataxx()
+    End Sub
+    Private Sub simpan_tr()
+        Try
+            Dim query As String
+            Dim cek_upload As Boolean
+            Dim NoBukti2 As String
+            Dim a As Boolean
+            For i As Integer = 0 To GridView1.RowCount - 1
+                NoBukti2 = GridView1.GetRowCellValue(i, "NoBukti2")
+                a = If(GridView1.GetRowCellValue(i, "Pilih") Is DBNull.Value, False, Convert.ToDouble(GridView1.GetRowCellValue(i, "Pilih")))
+                If a = True Then
+                    a = True
+                Else
+                    a = False
+                End If
+                cek_upload = If(GridView1.GetRowCellValue(i, "Pilih") Is DBNull.Value, False, Convert.ToDouble(GridView1.GetRowCellValue(i, "Pilih")))
+                NoBukti2 = GridView1.GetRowCellValue(i, "NoBukti2")
+                query = "update banktransfer set Proses='" & a & "' where NoBukti='" & NoBukti2 & "' "
+                MainModul.ExecQueryByCommandSolomon(query)
+
+            Next
+        Catch ex As Exception
+            Throw
+        End Try
+        MessageBox.Show("Data Updated.")
+        GridView1.Columns.Clear()
+        GridView1.RefreshData()
+
+        LoadDataTr()
     End Sub
     Private Sub simpan_gj()
         Try
@@ -160,6 +190,41 @@ Public Class FrmViewGJ
             MsgBox(ex.Message)
         End Try
     End Sub
+
+    Private Sub LoadDataTr()
+        Try
+            If _TxtPerpost.Text = "" Then
+
+                Throw New Exception("Silahkan pilih perpost!")
+            End If
+            Cursor = Cursors.WaitCursor
+            Objgl = New GJHeaderModel
+            Dim dtSearch2 As New DataTable
+            '' dtSearch2 = ObjSuspend2.GetCustomer2
+            dtSearch2 = Objgl.GetTRPerpost(IIf(_TxtCuryID.Text = "", "ALL", _TxtCuryID.Text), _TxtPerpost.Text)
+            Grid.DataSource = dtSearch2
+            GridCellFormat(GridView1)
+            GridView1.BestFitColumns()
+
+            With GridView1
+                .Columns(0).Visible = False
+            End With
+            GridCellFormat(GridView1)
+
+
+            GridView1.Columns("Perpost").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("NoBukti").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("AcctID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("Keterangan").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("CuryID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView1.Columns("Transaksi").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
+            Cursor = Cursors.Default
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Private Sub LoadDataGJ()
         Try
             If _TxtPerpost.Text = "" Then
@@ -179,7 +244,7 @@ Public Class FrmViewGJ
                 .Columns(0).Visible = False
             End With
             GridCellFormat(GridView1)
-
+            GridView1.Columns("cek_upload").Visible = False
 
             GridView1.Columns("Perpost").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
             GridView1.Columns("GJID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
@@ -200,6 +265,7 @@ Public Class FrmViewGJ
             LoadDataxx()
 
         ElseIf _TxtTransaksi.Text = "Cash Transfer" Then
+            LoadDataTr()
         ElseIf _TxtTransaksi.Text = "General Journal" Then
             LoadDataGJ()
 
