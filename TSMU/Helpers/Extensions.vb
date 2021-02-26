@@ -8,7 +8,7 @@ Module Extensions
         Return result
     End Function
     <Extension()>
-    Function AsInt(ByVal item As Object, ByVal Optional defaultInt As Integer = Nothing) As Integer
+    Function AsInt(ByVal item As Object, ByVal Optional defaultInt As Integer = 0) As Integer
         If item Is Nothing OrElse item.Equals(DBNull.Value) Then Return defaultInt
         Dim result As Integer
         If Not Integer.TryParse(item.ToString(), result) Then Return defaultInt
@@ -23,7 +23,7 @@ Module Extensions
         Return result
     End Function
     <Extension()>
-    Function AsString(ByVal item As Object, ByVal Optional defaultString As String = Nothing) As String
+    Function AsString(ByVal item As Object, ByVal Optional defaultString As String = "") As String
         If item Is Nothing OrElse item.Equals(DBNull.Value) Then Return defaultString
         Return item.ToString().Trim()
     End Function

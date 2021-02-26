@@ -1701,6 +1701,12 @@
     <Compile Include="Form\Common\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmForecastDaily.Designer.vb">
+      <DependentUpon>frmForecastDaily.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmForecastDaily.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.Designer.vb">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </Compile>
@@ -2131,6 +2137,18 @@
       <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\HR\FrmHRPADataPribadi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPANewHire.Designer.vb">
+      <DependentUpon>FrmHRPANewHire.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPANewHire.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Lookup\FrmLookupForecastDaily.Designer.vb">
+      <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Lookup\FrmLookupForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\NPP\Frm_Approve_Dept_Head.Designer.vb">
@@ -2701,6 +2719,7 @@
     <Compile Include="Models\CustomizationModels.vb" />
     <Compile Include="Models\DRRDetail.vb" />
     <Compile Include="Models\DRRModel.vb" />
+    <Compile Include="Models\ForecastDailyModel.vb" />
     <Compile Include="Models\forecast_po_model.vb" />
     <Compile Include="Models\FormatExcelModel.vb" />
     <Compile Include="Models\HR\HROrgJabatanModel.vb" />
@@ -3156,6 +3175,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\BudgetSerivce.vb" />
+    <Compile Include="Services\ForecastDailyService.vb" />
     <Compile Include="Services\FormatExcelService.vb" />
     <Compile Include="Services\GlobalService.vb" />
     <Compile Include="Services\HROrgService.vb" />
@@ -3738,6 +3758,9 @@
     <EmbeddedResource Include="Form\Common\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
+      <DependentUpon>frmForecastDaily.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </EmbeddedResource>
@@ -3797,6 +3820,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\HR\FrmHRPADataPribadi.resx">
       <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Lookup\FrmLookupForecastDaily.resx">
+      <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\NPP\Frm_Approve_Dept_Head.resx">
       <DependentUpon>Frm_Approve_Dept_Head.vb</DependentUpon>

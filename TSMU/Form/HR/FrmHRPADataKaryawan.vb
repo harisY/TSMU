@@ -69,6 +69,8 @@ Public Class FrmHRPADataKaryawan
 
     Private Sub LoadTxtBox()
         Try
+            ListItemsPerpindahan()
+            ListItemsGolongan()
             ListItemsOrganisasi()
             Dim dtTreeOrg As New DataTable
             dtTreeOrg = srvHR.GetStrukturOrg()
@@ -78,15 +80,15 @@ Public Class FrmHRPADataKaryawan
                 dtTglMulai.EditValue = dataRow("TglMulai")
                 dtTglSelesai.EditValue = dataRow("TglSelesai")
                 txtNIK.Text = dataRow("NIK")
-                txtPerpindahan.Text = IIf(dataRow("PerpindahanKaryawan") Is DBNull.Value, "", dataRow("PerpindahanKaryawan"))
-                txtAlasan.Text = IIf(dataRow("AlasanPindah") Is DBNull.Value, "", dataRow("AlasanPindah"))
-                cbGolongan.Text = IIf(dataRow("Golongan") Is DBNull.Value, "", dataRow("Golongan"))
+                cbPerpindahan.EditValue = IIf(dataRow("PerpindahanKaryawan") Is DBNull.Value, "", dataRow("PerpindahanKaryawan"))
+                cbAlasan.EditValue = IIf(dataRow("AlasanPindah") Is DBNull.Value, "", dataRow("AlasanPindah"))
+                cbGolongan.EditValue = IIf(dataRow("Gol") Is DBNull.Value, "", dataRow("Gol"))
                 cbStatus.Text = IIf(dataRow("StatusKaryawan") Is DBNull.Value, "", dataRow("StatusKaryawan"))
                 cbTipe.Text = IIf(dataRow("TipeKaryawan") Is DBNull.Value, "", dataRow("TipeKaryawan"))
                 cbTipePosisi.Text = IIf(dataRow("TipePosisiKaryawan") Is DBNull.Value, "", dataRow("TipePosisiKaryawan"))
                 cbFactory.Text = IIf(dataRow("Factory") Is DBNull.Value, "", dataRow("Factory"))
-                cbOrganisasi.EditValue = IIf(dataRow("Organisasi") Is DBNull.Value, "", dataRow("Organisasi"))
-                txtJabatan.EditValue = IIf(dataRow("Jabatan") Is DBNull.Value, "", dataRow("Jabatan"))
+                cbOrganisasi.EditValue = IIf(dataRow("OrgID") Is DBNull.Value, "", dataRow("OrgID"))
+                txtJabatan.EditValue = IIf(dataRow("JabID") Is DBNull.Value, "", dataRow("JabID"))
                 cbJob.Text = IIf(dataRow("Job") Is DBNull.Value, "", dataRow("Job"))
                 dtTglEfektif.EditValue = IIf(dataRow("TglEfektif") Is DBNull.Value, Nothing, dataRow("TglEfektif"))
                 dtTglBerakhir.EditValue = IIf(dataRow("TglBerakhir") Is DBNull.Value, Nothing, dataRow("TglBerakhir"))
@@ -130,8 +132,8 @@ Public Class FrmHRPADataKaryawan
     Private Function CheckValidasi() As Boolean
         Dim validasi As Boolean = False
         Try
-            If txtAlasan.Text = "" Then
-                Err.Raise(ErrNumber, , "Nama Lengkap Tidak Boleh Kosong!")
+            If cbPerpindahan.Text = "" Then
+                Err.Raise(ErrNumber, , "Perpindahan Tidak Boleh Kosong!")
             Else
                 modelDataKaryawan = New HRPADataKaryawanModel
                 With modelDataKaryawan
@@ -139,16 +141,16 @@ Public Class FrmHRPADataKaryawan
                     .TglSelesai = dtTglSelesai.EditValue
                     .EmpID = EmpID
                     .NIK = txtNIK.Text
-                    .PerpindahanKaryawan = txtPerpindahan.Text
-                    .AlasanPindah = txtAlasan.Text
-                    .Golongan = cbGolongan.Text
-                    .StatusKaryawan = cbStatus.EditValue
+                    .PerpindahanKaryawan = cbPerpindahan.EditValue
+                    .AlasanPindah = cbAlasan.EditValue
+                    .Golongan = cbGolongan.EditValue
+                    .StatusKaryawan = cbStatus.Text
                     .TipeKaryawan = cbTipe.Text
                     .TipePosisiKaryawan = cbTipePosisi.Text
                     .Factory = cbFactory.Text
-                    .Organisasi = txtJabatan.EditValue
-                    .Jabatan = cbOrganisasi.Text
-                    .Job = cbJob.Text
+                    .Organisasi = cbOrganisasi.EditValue
+                    .Jabatan = txtJabatan.EditValue
+                    .Job = cbJob.EditValue
                     .TglEfektif = dtTglEfektif.EditValue
                     .TglBerakhir = dtTglBerakhir.EditValue
                     .SK = txtSK.Text
@@ -178,10 +180,54 @@ Public Class FrmHRPADataKaryawan
         End If
     End Sub
 
+    Private Sub ListItemsPerpindahan()
+        Dim dtPerpindahan = New DataTable
+        dtPerpindahan = srvHR.GetListPerpindahan()
+        cbPerpindahan.Properties.DataSource = dtPerpindahan
+    End Sub
+
+    Private Sub ListItemsAlasan(perpindahan As String)
+        Dim dtAlasan = New DataTable
+        dtAlasan = srvHR.GetListAlasan(perpindahan)
+        cbAlasan.Properties.DataSource = dtAlasan
+    End Sub
+
+    Private Sub ListItemsGolongan()
+        Dim dtGolongan = New DataTable
+        dtGolongan = srvHR.GetListGolongan()
+        cbGolongan.Properties.DataSource = dtGolongan
+    End Sub
+
     Private Sub ListItemsOrganisasi()
         Dim dtOrganisasi = New DataTable
         dtOrganisasi = srvHR.GetListOrganisasi()
         cbOrganisasi.Properties.DataSource = dtOrganisasi
+    End Sub
+
+    Private Sub btnDeleteJab_Click(sender As Object, e As EventArgs) Handles btnDeleteJab.Click
+        txtJabatan.EditValue = ""
+        cbOrganisasi.EditValue = ""
+    End Sub
+
+    Private Sub cbPerpindahan_EditValueChanged(sender As Object, e As EventArgs) Handles cbPerpindahan.EditValueChanged
+        cbAlasan.EditValue = ""
+        ListItemsAlasan(cbPerpindahan.EditValue)
+    End Sub
+
+    Private Sub tlJabatan_RowCellClick(sender As Object, e As RowCellClickEventArgs) Handles tlJabatan.RowCellClick
+        Dim orgID As String = tlJabatan.FocusedNode.GetValue("OrgID")
+        Dim orgClass As String = tlJabatan.FocusedNode.GetValue("OrgClass")
+        Dim orgParent As String = tlJabatan.FocusedNode.GetValue("ParentID")
+        Dim NIK As String = IIf(tlJabatan.FocusedNode.GetValue("NIK") Is DBNull.Value, "", tlJabatan.FocusedNode.GetValue("NIK"))
+        If orgClass = "O" Then
+            MsgBox("Silahkan Pilih Posisi !", MessageBoxIcon.Information, "Information")
+        Else
+            If NIK <> "" Then
+                MsgBox("Posisi Sudah Terisi !", MessageBoxIcon.Information, "Information")
+            Else
+                cbOrganisasi.EditValue = orgParent
+            End If
+        End If
     End Sub
 
 End Class
