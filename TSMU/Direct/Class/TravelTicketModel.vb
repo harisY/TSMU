@@ -414,6 +414,33 @@ Public Class TravelTicketModel
         End Try
     End Function
 
+    Public Function LoadReportVoucherTicket(ByVal _NoVoucher As String) As DataTable
+        Try
+            strQuery = "SELECT  tt.NoVoucher ,
+                                tt.Tanggal ,
+                                tt.Vendor ,
+                                tt.NoInvoice ,
+                                tt.DateInvoice ,
+                                tt.DueDateInvoice ,
+                                tt.CuryID ,
+                                trh.Nama ,
+                                trd.Destination ,
+                                trd.Negara ,
+                                ttd.Amount
+                        FROM    dbo.TravelTicket AS tt
+                                INNER JOIN dbo.TravelTicketDetail AS ttd ON ttd.NoVoucher = tt.NoVoucher
+                                INNER JOIN dbo.TravelRequestDetail AS trd ON trd.NoRequest = ttd.NoRequest
+                                                                             AND trd.Seq = ttd.Seq
+                                INNER JOIN dbo.TravelRequestHeader AS trh ON trh.NoRequest = trd.NoRequest
+                        WHERE   tt.NoVoucher = " & QVal(_NoVoucher) & ";"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 End Class
 
 Public Class TravelTicketDetailModel

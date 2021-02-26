@@ -1037,6 +1037,23 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="TravelVoucherTicket" msprop:Generator_TableClassName="TravelVoucherTicketDataTable" msprop:Generator_TableVarName="tableTravelVoucherTicket" msprop:Generator_TablePropName="TravelVoucherTicket" msprop:Generator_RowDeletingName="TravelVoucherTicketRowDeleting" msprop:Generator_RowChangingName="TravelVoucherTicketRowChanging" msprop:Generator_RowEvHandlerName="TravelVoucherTicketRowChangeEventHandler" msprop:Generator_RowDeletedName="TravelVoucherTicketRowDeleted" msprop:Generator_UserTableName="TravelVoucherTicket" msprop:Generator_RowChangedName="TravelVoucherTicketRowChanged" msprop:Generator_RowEvArgName="TravelVoucherTicketRowChangeEvent" msprop:Generator_RowClassName="TravelVoucherTicketRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NoVoucher" msprop:Generator_ColumnVarNameInTable="columnNoVoucher" msprop:Generator_ColumnPropNameInRow="NoVoucher" msprop:Generator_ColumnPropNameInTable="NoVoucherColumn" msprop:Generator_UserColumnName="NoVoucher" type="xs:string" minOccurs="0" />
+              <xs:element name="Tanggal" msprop:Generator_ColumnVarNameInTable="columnTanggal" msprop:Generator_ColumnPropNameInRow="Tanggal" msprop:Generator_ColumnPropNameInTable="TanggalColumn" msprop:Generator_UserColumnName="Tanggal" type="xs:string" minOccurs="0" />
+              <xs:element name="Vendor" msprop:Generator_ColumnVarNameInTable="columnVendor" msprop:Generator_ColumnPropNameInRow="Vendor" msprop:Generator_ColumnPropNameInTable="VendorColumn" msprop:Generator_UserColumnName="Vendor" type="xs:string" minOccurs="0" />
+              <xs:element name="NoInvoice" msprop:Generator_ColumnVarNameInTable="columnNoInvoice" msprop:Generator_ColumnPropNameInRow="NoInvoice" msprop:Generator_ColumnPropNameInTable="NoInvoiceColumn" msprop:Generator_UserColumnName="NoInvoice" type="xs:string" minOccurs="0" />
+              <xs:element name="DateInvoice" msprop:Generator_ColumnVarNameInTable="columnDateInvoice" msprop:Generator_ColumnPropNameInRow="DateInvoice" msprop:Generator_ColumnPropNameInTable="DateInvoiceColumn" msprop:Generator_UserColumnName="DateInvoice" type="xs:string" minOccurs="0" />
+              <xs:element name="DueDateInvoice" msprop:Generator_ColumnVarNameInTable="columnDueDateInvoice" msprop:Generator_ColumnPropNameInRow="DueDateInvoice" msprop:Generator_ColumnPropNameInTable="DueDateInvoiceColumn" msprop:Generator_UserColumnName="DueDateInvoice" type="xs:string" minOccurs="0" />
+              <xs:element name="CuryID" msprop:Generator_ColumnVarNameInTable="columnCuryID" msprop:Generator_ColumnPropNameInRow="CuryID" msprop:Generator_ColumnPropNameInTable="CuryIDColumn" msprop:Generator_UserColumnName="CuryID" type="xs:string" minOccurs="0" />
+              <xs:element name="Nama" msprop:Generator_ColumnVarNameInTable="columnNama" msprop:Generator_ColumnPropNameInRow="Nama" msprop:Generator_ColumnPropNameInTable="NamaColumn" msprop:Generator_UserColumnName="Nama" type="xs:string" minOccurs="0" />
+              <xs:element name="Destination" msprop:Generator_ColumnVarNameInTable="columnDestination" msprop:Generator_ColumnPropNameInRow="Destination" msprop:Generator_ColumnPropNameInTable="DestinationColumn" msprop:Generator_UserColumnName="Destination" type="xs:string" minOccurs="0" />
+              <xs:element name="Negara" msprop:Generator_ColumnVarNameInTable="columnNegara" msprop:Generator_ColumnPropNameInRow="Negara" msprop:Generator_ColumnPropNameInTable="NegaraColumn" msprop:Generator_UserColumnName="Negara" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

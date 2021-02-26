@@ -28,6 +28,7 @@ Public Class SettleHeader
     Public Property AccountName As String
     Public Property Date3 As Date
     Public Property Date4 As Date
+    Public Property Date5 As Date
     Dim strQuery As String
 
 
@@ -290,6 +291,31 @@ uploaded Is null and tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' order by vr
 
         Dim ds As New dsLaporan
         ds = GetDsReport_Solomon(query, "dataupload")
+        Return ds
+
+    End Function
+
+    Public Function loadreportAPSolomonNonIDR() As DataSet
+        Dim query As String
+
+        query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub, refnbr1 as 'RefNbrVoucher', 
+                 vrno, tgl, VendId, origdocamt, RefNbr, curydocbal, CuryID,FromCuryId,RateType,EffDate,Rate,doctype,
+                  CASE 
+				  WHEN 
+                  doctype='VO' 
+                  THEN 
+                  curydocbal+curydocbal-curydocbal
+                  WHEN 
+				  doctype='AD' 
+                  THEN
+                  curydocbal-curydocbal-curydocbal
+                  END AS curydocbalrev
+                 FROM datauploadNonIDR
+                 where  CuryID<>'IDR' and effdate='" & Date5 & "' and cek1=1 and prosespay=1 and uploaded='0' or uploaded is null
+                 and  tgl >='" & Date3 & "' AND tgl <='" & Date4 & "'    order by vrno,vendid"
+
+        Dim ds As New dsLaporan
+        ds = GetDsReport_Solomon(query, "datauploadNonIDR")
         Return ds
 
     End Function
