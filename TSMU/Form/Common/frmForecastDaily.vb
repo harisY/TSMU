@@ -27,7 +27,7 @@ Public Class frmForecastDaily
 
     Private Sub frmForecastDaily_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False, False)
     End Sub
 
     Private Function SummaryColumn(ColumName As String) As GridColumnSummaryItem
@@ -61,7 +61,7 @@ Public Class frmForecastDaily
 
             With GridView1
                 .BestFitColumns()
-                .Columns(0).Visible = False
+                '.Columns(0).Visible = False
             End With
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)

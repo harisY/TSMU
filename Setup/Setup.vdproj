@@ -279,6 +279,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_208800E69785446FA8BDD68236809CAD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_20A5FE165AA9BDB6AF284D74AE4FE008"
         "OwnerKey" = "8:_24F0444F62504CDF88B7F14E02FA03E1"
         "MsmSig" = "8:_UNDEFINED"
@@ -611,12 +617,6 @@
         {
         "MsmKey" = "8:_339CE9035A133A11659157A623801652"
         "OwnerKey" = "8:_24F0444F62504CDF88B7F14E02FA03E1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3680AD3325C147679EA1137EEEA02B8C"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5107,6 +5107,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_208800E69785446FA8BDD68236809CAD"
+            {
+            "SourcePath" = "8:..\\..\\..\\Logo\\48x48\\7Tells.ico"
+            "TargetName" = "8:7Tells.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_08F8EDA37ABC478CACCE501E6168EBDB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_20A5FE165AA9BDB6AF284D74AE4FE008"
             {
             "AssemblyRegister" = "3:1"
@@ -5466,26 +5486,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3680AD3325C147679EA1137EEEA02B8C"
-            {
-            "SourcePath" = "8:..\\..\\..\\Logo\\7Tells.ico"
-            "TargetName" = "8:7Tells.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_08F8EDA37ABC478CACCE501E6168EBDB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_395265BEE8F6E9E5DECDBB47B2F87952"
@@ -9387,7 +9387,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TSMU"
         "ProductCode" = "8:{264D464C-A175-42B2-9AA5-34F4E2D6B03B}"
-        "PackageCode" = "8:{97EB59D5-9373-46A1-BDE2-48D5B3B4CDDB}"
+        "PackageCode" = "8:{66697230-DBD9-4F49-BA1C-DC57E1F4648A}"
         "UpgradeCode" = "8:{3137AA8D-88C8-48E1-AB2B-353A46EA2C1D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -9404,7 +9404,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Takagi Sari Multi Utama"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_3680AD3325C147679EA1137EEEA02B8C"
+        "ARPPRODUCTICON" = "8:_208800E69785446FA8BDD68236809CAD"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -9507,7 +9507,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5922BE26A3FD4B25AB45D92719AD09D5"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0EB590A2197444F6B1985AD1AB83ACC7"
             {
             "Name" = "8:7Tells"
             "Arguments" = "8:"
@@ -9518,7 +9518,7 @@
             "Target" = "8:_24F0444F62504CDF88B7F14E02FA03E1"
             "Folder" = "8:_5E895F5FDFF641F8AF1FCAC998DAA497"
             "WorkingFolder" = "8:_08F8EDA37ABC478CACCE501E6168EBDB"
-            "Icon" = "8:"
+            "Icon" = "8:_208800E69785446FA8BDD68236809CAD"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_60C8072889EA47A4AD391E0C04995979"
@@ -9532,7 +9532,7 @@
             "Target" = "8:_24F0444F62504CDF88B7F14E02FA03E1"
             "Folder" = "8:_69A9E3AC9E914816989CC0700EE01B3D"
             "WorkingFolder" = "8:_08F8EDA37ABC478CACCE501E6168EBDB"
-            "Icon" = "8:"
+            "Icon" = "8:_208800E69785446FA8BDD68236809CAD"
             "Feature" = "8:"
             }
         }
@@ -9936,7 +9936,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_24F0444F62504CDF88B7F14E02FA03E1"
             {
-            "SourcePath" = "8:..\\TSMU\\obj\\Debug\\TSMU.exe"
+            "SourcePath" = "8:..\\TSMU\\obj\\Release\\TSMU.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_08F8EDA37ABC478CACCE501E6168EBDB"
