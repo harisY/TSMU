@@ -56,6 +56,7 @@ Public Class FrmVendorManagementDetail
         Call InitialSetForm()
 
 
+
     End Sub
 
     Public Overrides Sub InitialSetForm()
@@ -108,6 +109,12 @@ Public Class FrmVendorManagementDetail
     End Sub
     Public Sub TextBoxLoad()
 
+        If fs_Code <> "" Then
+            DtTanggalLaporan.EditValue = fc_Class.H_Tanggal
+        Else
+            DtTanggalLaporan.EditValue = Date.Now
+        End If
+
         TxtStatus.EditValue = ""
         TxtKeterangan.EditValue = ""
         TxtSubcount.EditValue = ""
@@ -125,7 +132,7 @@ Public Class FrmVendorManagementDetail
         CmbShift.EditValue = "-"
 
 
-        DtTanggalLaporan.EditValue = Date.Now
+        'DtTanggalLaporan.EditValue = Date.Now
         DtTarget.EditValue = Date.Now
     End Sub
 
@@ -428,6 +435,7 @@ Public Class FrmVendorManagementDetail
 
                     ObjVMProblemDetail = New VMProblemDetailModel
                     With ObjVMProblemDetail
+
                         .D_IDTransaksi = KodeTrans
                         .D_Tanggal = Format(DtTanggalLaporan.EditValue, "yyyy-MM-dd")
                         .D_Shift = IIf(Convert.ToString(GridView1.GetRowCellValue(i, "Shift")) Is Nothing, "", Convert.ToString(GridView1.GetRowCellValue(i, "Shift")))
