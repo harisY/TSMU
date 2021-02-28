@@ -1001,6 +1001,12 @@
       <DependentUpon>CRUploadGJ.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\CRUploadGJ_Tr.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGJ_Tr.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\CRUploadGL.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3465,6 +3471,10 @@
     <EmbeddedResource Include="Direct\report\CRUploadGJ.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRUploadGJ.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGJ_Tr.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGJ_Tr.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRUploadGL.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
