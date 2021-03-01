@@ -483,7 +483,22 @@ Public Class EntertainDetailModel
     Public Property JenisRelasi As String
     Public Property Nota As String
     Public Property NamaRelasi As String
+    Public Function Get_Dept_Sub(Departemen_Sub As String) As String
+        Try
+            Dim query As String = "[CR_Get_Sub]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
 
+            pParam(0).Value = Departemen_Sub
+
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt.Rows(0).Item(1).ToString
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
     Public Sub InsertRelasiSettleEnt()
         Try
             Dim ls_SP As String = " " & vbCrLf &
