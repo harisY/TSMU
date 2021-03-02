@@ -208,11 +208,25 @@ Public Class FrmHRAdministrasiKaryawanDetail
             GridPADetail.DataSource = Nothing
             GridPADetail.DataSource = dtGridDetail
             Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
-            Dim colOrg As GridColumn = GridViewPADetail.Columns("Organisasi")
-            Dim colJab As GridColumn = GridViewPADetail.Columns("Jabatan")
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("PerpindahanKaryawan")
+            Dim colPerpindahanDes As GridColumn = GridViewPADetail.Columns("PerpindahanDesc")
+            colPerpindahanDes.Caption = "Perpindahan"
+            Dim colAlasan As GridColumn = GridViewPADetail.Columns("AlasanPindah")
+            Dim colAlasanPindahDesc As GridColumn = GridViewPADetail.Columns("AlasanPindahDesc")
+            colAlasanPindahDesc.Caption = "Alasan Pindah"
+            Dim colStatus As GridColumn = GridViewPADetail.Columns("StatusKaryawan")
+            Dim colTipe As GridColumn = GridViewPADetail.Columns("TipeKaryawan")
+            colStatus.Caption = "Status"
+            colTipe.Caption = "Tipe"
+            Dim colGol As GridColumn = GridViewPADetail.Columns("Gol")
+            Dim colOrg As GridColumn = GridViewPADetail.Columns("OrgID")
+            Dim colJab As GridColumn = GridViewPADetail.Columns("JabID")
             Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
             Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colPerpindahan.Visible = False
+            colAlasan.Visible = False
             colEmpID.Visible = False
+            colGol.Visible = False
             colOrg.Visible = False
             colJab.Visible = False
             colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
@@ -247,6 +261,7 @@ Public Class FrmHRAdministrasiKaryawanDetail
         frm_DataKaryawan = New FrmHRPADataKaryawan(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
         frm_DataKaryawan.StartPosition = FormStartPosition.CenterScreen
         frm_DataKaryawan.ShowDialog()
+        CheckLoadGridMD()
     End Sub
 
 End Class

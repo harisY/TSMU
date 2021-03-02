@@ -79,6 +79,7 @@ Public Class FrmViewGL
             End With
             GridCellFormat(GridView1)
 
+            '     GridView1.Columns("cek_upload").Visible = False
 
             'GridView1.Columns("Perpost").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
             'GridView1.Columns("BatNbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath

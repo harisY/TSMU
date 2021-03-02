@@ -1001,6 +1001,12 @@
       <DependentUpon>CRUploadGJ.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\CRUploadGJ_Tr.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUploadGJ_Tr.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\CRUploadGL.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1467,6 +1473,18 @@
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FrmQualityProblemDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai\Vendor Management\FrmVendorManagementDetail.Designer.vb">
+      <DependentUpon>FrmVendorManagementDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai\Vendor Management\FrmVendorManagementDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai\Vendor Management\FrmVendorManagementHeader.Designer.vb">
+      <DependentUpon>FrmVendorManagementHeader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai\Vendor Management\FrmVendorManagementHeader.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Circulation\Dies Bom\Frm_CR_BOM.Designer.vb">
@@ -2127,6 +2145,12 @@
     <Compile Include="Form\HR\FrmHRPADataPribadi.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\HR\FrmHRPANewHire.Designer.vb">
+      <DependentUpon>FrmHRPANewHire.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPANewHire.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Lookup\FrmLookupForecastDaily.Designer.vb">
       <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>
     </Compile>
@@ -2691,6 +2715,7 @@
     <Compile Include="Models\Asakai\ProblemDeliveryModel.vb" />
     <Compile Include="Models\Asakai\QualityProblemModel.vb" />
     <Compile Include="Models\Asakai\ReportAbsenModel.vb" />
+    <Compile Include="Models\Asakai\VendorManagementModel.vb" />
     <Compile Include="Models\BudgetModel.vb" />
     <Compile Include="Models\Circulation\level_Model.vb" />
     <Compile Include="Models\Class ar2_detail_models.vb" />
@@ -3447,6 +3472,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRUploadGJ.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\report\CRUploadGJ_Tr.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUploadGJ_Tr.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\CRUploadGL.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CRUploadGL.vb</LastGenOutput>
@@ -3625,6 +3654,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblemDetail.resx">
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai\Vendor Management\FrmVendorManagementDetail.resx">
+      <DependentUpon>FrmVendorManagementDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai\Vendor Management\FrmVendorManagementHeader.resx">
+      <DependentUpon>FrmVendorManagementHeader.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Circulation\Dies Bom\Frm_CR_BOM.resx">
       <DependentUpon>Frm_CR_BOM.vb</DependentUpon>

@@ -2,6 +2,7 @@
 Public Class FrmReportUploadGL
     Dim laporan As New CRUploadGL2
     Dim laporan2 As New CRUploadGJ
+    Dim laporan3 As New CRUploadGJ_Tr
     Dim report As New GJHeaderModel
     Dim _Service As GJHeaderModel
 
@@ -10,6 +11,7 @@ Public Class FrmReportUploadGL
             loadreport()
 
         ElseIf TxtTransaksi.Text = "Cash Transfer" Then
+            loadreport3()
         ElseIf TxtTransaksi.Text = "General Journal" Then
             loadreport2()
 
@@ -39,6 +41,18 @@ Public Class FrmReportUploadGL
         laporan2.SetDataSource(ds)
         With CrystalReportViewer1
             .ReportSource = laporan2
+            .RefreshReport()
+        End With
+
+    End Sub
+    Sub loadreport3()
+
+        _Service = New GJHeaderModel
+        Dim ds As DataSet = New DataSet
+        ds = _Service.PrintReport3(TxtPerpost.Text, TxtCuryID.Text)
+        laporan3.SetDataSource(ds)
+        With CrystalReportViewer1
+            .ReportSource = laporan3
             .RefreshReport()
         End With
 

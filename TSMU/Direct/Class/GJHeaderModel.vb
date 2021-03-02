@@ -61,7 +61,21 @@ Public Class GJHeaderModel
             Throw ex
         End Try
     End Function
-
+    Public Function PrintReport3(Perpost As String, CuryID As String) As DataSet
+        Try
+            Dim ds As dsLaporan2
+            Dim Sql As String = "Proses_GJPerpost_upload_Tr2"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = Perpost
+            pParam(1) = New SqlClient.SqlParameter("@curyid", SqlDbType.VarChar)
+            pParam(1).Value = CuryID
+            ds = GetDataSetByCommand_SPds2(Sql, "banktransfer", pParam)
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Sub Delete()
         Try
             Dim query As String = "DELETE FROM gj_header" & vbCrLf &
@@ -80,6 +94,23 @@ Public Class GJHeaderModel
             Dim dt As New DataTable
             ''        Dim sql As String = "Proses_GJPerpost"
             Dim sql As String = "Proses_GJPerpost_upload"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = perpost
+            pParam(1) = New SqlClient.SqlParameter("@curyid", SqlDbType.VarChar)
+            pParam(1).Value = curyid
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetTRPerpost(curyid As String, perpost As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            ''        Dim sql As String = "Proses_GJPerpost"
+            Dim sql As String = "Proses_GJPerpost_upload_Tr"
 
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
             pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
