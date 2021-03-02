@@ -99,27 +99,6 @@ Module MainModul
     Public gs_DBPassword2 As String = "Tsc2011"
     Public gs_DBPasswordDefault2 As String = "Tsc2011"
 
-    '# Server Instance Server Takagi
-    '    Public gs_Database As String = "New_BoM"
-    '    Public gs_DBServer As String = "10.10.1.10"
-    '    Public gs_DBAuthMode As String = "mixed"
-    '    Public gs_DBUserName As String = "sa"
-    '    Public gs_DBPassword As String = "Tsc2011"
-    '    Public gs_DBPasswordDefault As String = "Tsc2011"
-
-    '    Public gs_Database1 As String = "Tsc16Application"
-    '    Public gs_DBServer1 As String = "10.10.1.10"
-    '    Public gs_DBAuthMode1 As String = "mixed"
-    '    Public gs_DBUserName1 As String = "sa"
-    '    Public gs_DBPassword1 As String = "Tsc2011"
-    '    Public gs_DBPasswordDefault1 As String = "Tsc2011"
-
-    '    Public gs_Database2 As String = "DbCKR"
-    '    Public gs_DBServer2 As String = "10.10.3.6"
-    '    Public gs_DBAuthMode2 As String = "mixed"
-    '    Public gs_DBUserName2 As String = "sa"
-    '    Public gs_DBPassword2 As String = "Tsc2011"
-    '    Public gs_DBPasswordDefault2 As String = "Tsc2011"
 
     Public gs_TerminalUsername As String = ""
     Public gs_TerminalPassword As String = ""
@@ -1092,8 +1071,6 @@ Module MainModul
         End Try
     End Function
 
-
-
     Public Function GetDataSetByCommand_SPds2(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan2
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan2
@@ -1134,6 +1111,7 @@ Module MainModul
             Throw
         End Try
     End Function
+
     Public Function GetDataSetByCommand_StoreP(ByVal pQuery As String, ByVal dtTable As String, Optional ByVal pParam() As SqlParameter = Nothing, Optional ByVal pTimeOut As Integer = 0) As dsLaporan
         Dim da As SqlDataAdapter = Nothing
         Dim dsa As New dsLaporan

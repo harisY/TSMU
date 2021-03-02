@@ -1,5 +1,4 @@
-﻿Imports DevExpress.Data
-Imports DevExpress.XtraEditors.Repository
+﻿Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraSplashScreen
 
@@ -25,18 +24,6 @@ Public Class frmForecastDaily
         bb_SetDisplayChangeConfirmation = False
         Call Proc_EnableButtons(False, False, If(gh_Common.AdminStatus OrElse gh_Common.GroupID.Contains("MKT"), True, False), True, If(gh_Common.AdminStatus OrElse gh_Common.GroupID.Contains("MKT"), True, False), False, False, False, False, False, False, False)
     End Sub
-
-    Private Function SummaryColumn(ColumName As String) As GridColumnSummaryItem
-        Try
-            Dim siAverage As New GridColumnSummaryItem()
-            siAverage.SummaryType = SummaryItemType.Sum
-            siAverage.FieldName = ColumName
-            siAverage.DisplayFormat = "{0:#,##0.#0}"
-            Return siAverage
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
 
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
@@ -256,29 +243,6 @@ Public Class frmForecastDaily
 
     Private Sub frmForecastDaily_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Call LoadGrid()
-    End Sub
-
-    Dim dtTemp As DataTable
-
-    Private Sub TempTable()
-        dtTemp = New DataTable
-        dtTemp.Columns.Add("Check", GetType(Boolean))
-        dtTemp.Columns.Add("Tahun", GetType(String))
-        dtTemp.Columns.Add("CustID", GetType(String))
-        dtTemp.Columns.Add("CustName", GetType(String))
-        dtTemp.Columns.Add("InvtID", GetType(String))
-        dtTemp.Columns.Add("Description", GetType(String))
-        dtTemp.Columns.Add("PartNo", GetType(String))
-        dtTemp.Columns.Add("Model", GetType(String))
-        dtTemp.Columns.Add("Oe", GetType(String))
-        dtTemp.Columns.Add("InSub", GetType(String))
-        dtTemp.Columns.Add("Site", GetType(String))
-        dtTemp.Columns.Add("Flag", GetType(String))
-        dtTemp.Columns.Add("N", GetType(Integer))
-        dtTemp.Columns.Add("N1", GetType(Integer))
-        dtTemp.Columns.Add("N2", GetType(Integer))
-        dtTemp.Columns.Add("N3", GetType(Integer))
-        dtTemp.Clear()
     End Sub
 
 End Class
