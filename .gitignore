@@ -261,7 +261,7 @@ __pycache__/
 *.pyc
 
 # Module Koneksi
-MainModul.vb
+Moduls/
 
 # Setup directory
 Setup/
