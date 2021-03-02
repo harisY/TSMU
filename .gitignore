@@ -262,3 +262,6 @@ __pycache__/
 
 # Module Koneksi
 MainModul.vb
+
+# Setup directory
+Setup/
