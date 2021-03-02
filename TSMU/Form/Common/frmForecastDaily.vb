@@ -27,7 +27,7 @@ Public Class frmForecastDaily
 
     Private Sub frmForecastDaily_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, False, If(gh_Common.AdminStatus OrElse gh_Common.GroupID.Contains("MKT"), True, False), True, If(gh_Common.AdminStatus OrElse gh_Common.GroupID.Contains("MKT"), True, False), False, False, False, False, False, False, False)
     End Sub
 
     Private Function SummaryColumn(ColumName As String) As GridColumnSummaryItem
@@ -79,6 +79,34 @@ Public Class frmForecastDaily
         bs_Filter = ""
         Call LoadGrid()
     End Sub
+    Public Overrides Sub Proc_DeleteData()
+        Try
+            If GridView1.RowCount = 0 Then
+                Throw New Exception("Data kosong")
+            End If
+            Dim Tahun As String
+            Dim Bulan As Integer
+
+            Dim frmExcel As FrmLookupForecastDaily
+            frmExcel = New FrmLookupForecastDaily("Delete") With {
+                .Text = "Pilih Tahun dan Bulan yang akan dihapus",
+                .StartPosition = FormStartPosition.CenterScreen
+            }
+            frmExcel.ShowDialog()
+
+            Tahun = frmExcel.Tahun
+            Bulan = frmExcel.Bulan
+
+            If Not frmExcel.IsCancel Then
+                Service.Delete(Tahun, Bulan)
+                ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+                LoadGrid()
+            End If
+
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
         Dim ls_Judul As String = "Forecast MDFO"
@@ -86,7 +114,7 @@ Public Class frmForecastDaily
         Dim Tahun As String = ""
         Dim DtTanggal As New DataTable
         Dim frmExcel As FrmLookupForecastDaily
-        frmExcel = New FrmLookupForecastDaily() With {
+        frmExcel = New FrmLookupForecastDaily("Insert") With {
             .Text = "Import " & ls_Judul,
             .StartPosition = FormStartPosition.CenterScreen
         }
@@ -96,9 +124,11 @@ Public Class frmForecastDaily
         Bulan = frmExcel.Bulan
         table = frmExcel.DtExcel
         Try
-            DtTanggal = UnpivotDataTable2(table)
             SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
             SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+            If table IsNot Nothing Then
+                DtTanggal = UnpivotDataTable2(table)
+            End If
             If DtTanggal.Rows.Count > 0 Then
                 Service.ObjForecastCollection.Clear()
                 For Each row As DataRow In DtTanggal.Rows
