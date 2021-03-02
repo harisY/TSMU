@@ -298,7 +298,7 @@ uploaded Is null and tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' order by vr
     Public Function loadreportAPSolomonNonIDR() As DataSet
         Dim query As String
 
-        query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub, refnbr1 as 'RefNbrVoucher', 
+        query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub, refnbr1, 
                  vrno, tgl, VendId, origdocamt, RefNbr, curydocbal, CuryID,FromCuryId,RateType,EffDate,Rate,doctype,
                   CASE 
 				  WHEN 

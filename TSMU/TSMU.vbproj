@@ -138,6 +138,7 @@
     <Reference Include="DevExpress.XtraSpellChecker.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraWizard.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="ExcelDataReader">
       <HintPath>bin\Debug\ExcelDataReader.dll</HintPath>
     </Reference>
@@ -2145,10 +2146,10 @@
     <Compile Include="Form\HR\FrmHRPADataPribadi.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\HR\FrmHRPANewHire.Designer.vb">
-      <DependentUpon>FrmHRPANewHire.vb</DependentUpon>
+    <Compile Include="Form\HR\FrmHRPANewEmployee.Designer.vb">
+      <DependentUpon>FrmHRPANewEmployee.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\HR\FrmHRPANewHire.vb">
+    <Compile Include="Form\HR\FrmHRPANewEmployee.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Lookup\FrmLookupForecastDaily.Designer.vb">
@@ -3830,6 +3831,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\HR\FrmHRPADataPribadi.resx">
       <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPANewEmployee.resx">
+      <DependentUpon>FrmHRPANewEmployee.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Lookup\FrmLookupForecastDaily.resx">
       <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>

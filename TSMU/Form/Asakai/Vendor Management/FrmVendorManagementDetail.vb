@@ -79,7 +79,7 @@ Public Class FrmVendorManagementDetail
             Call LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmQualityProblem"
+            bs_MainFormName = "FrmVendorManagementHeader"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
