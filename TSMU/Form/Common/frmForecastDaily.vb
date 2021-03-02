@@ -1,11 +1,6 @@
-﻿Imports System.Collections.ObjectModel
-Imports DevExpress.Data
-Imports DevExpress.XtraEditors
+﻿Imports DevExpress.Data
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid
-Imports DevExpress.XtraGrid.Columns
-Imports DevExpress.XtraGrid.Views.Base
-Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraSplashScreen
 
 Public Class frmForecastDaily
@@ -16,6 +11,7 @@ Public Class frmForecastDaily
     Dim Service As New ForecastDailyService
 
     Dim temp As RepositoryItemCheckedComboBoxEdit = Nothing
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -41,6 +37,7 @@ Public Class frmForecastDaily
             Throw ex
         End Try
     End Function
+
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
         save.Filter = "Excel File|*.xlsx"
@@ -49,6 +46,7 @@ Public Class frmForecastDaily
             _Grid.ExportToXlsx(save.FileName)
         End If
     End Sub
+
     Private Sub LoadGrid()
         Try
 
@@ -57,7 +55,6 @@ Public Class frmForecastDaily
             dtGrid = New DataTable
             dtGrid = Service.GetDataGrid()
             Grid.DataSource = dtGrid
-
 
             With GridView1
                 .BestFitColumns()
@@ -79,6 +76,7 @@ Public Class frmForecastDaily
         bs_Filter = ""
         Call LoadGrid()
     End Sub
+
     Public Overrides Sub Proc_DeleteData()
         Try
             If GridView1.RowCount = 0 Then
@@ -102,11 +100,11 @@ Public Class frmForecastDaily
                 ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                 LoadGrid()
             End If
-
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
         Dim ls_Judul As String = "Forecast MDFO"
@@ -153,7 +151,6 @@ Public Class frmForecastDaily
             End If
             SplashScreenManager.CloseForm()
             LoadGrid()
-
         Catch ex As Exception
             SplashScreenManager.CloseForm()
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -182,6 +179,7 @@ Public Class frmForecastDaily
 
         Return unpivoted
     End Function
+
     Public Function UnpivotDataTable(ByVal dt As DataTable) As DataTable
         Dim columnNames As String() = dt.Columns.Cast(Of DataColumn)().[Select](Function(x) x.ColumnName).ToArray()
         Dim dt2 = New DataTable("unpivot")
@@ -241,6 +239,7 @@ Public Class frmForecastDaily
             Throw ex
         End Try
     End Function
+
     Private Sub ExportToExcelTSM_Click(sender As Object, e As EventArgs) Handles ExportToExcelTSM.Click
         If GridView1.RowCount > 0 Then
             SaveToExcel(Grid)
@@ -255,11 +254,12 @@ Public Class frmForecastDaily
         'End If
     End Sub
 
-
     Private Sub frmForecastDaily_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Call LoadGrid()
     End Sub
+
     Dim dtTemp As DataTable
+
     Private Sub TempTable()
         dtTemp = New DataTable
         dtTemp.Columns.Add("Check", GetType(Boolean))

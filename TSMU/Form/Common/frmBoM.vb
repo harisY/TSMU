@@ -1,8 +1,4 @@
-﻿Imports System.Configuration
-Imports System.Data.OleDb
-Imports System.Globalization
-Imports DevExpress.DataAccess.Excel
-Imports DevExpress.XtraGrid
+﻿Imports DevExpress.DataAccess.Excel
 Imports DevExpress.XtraSplashScreen
 
 Public Class frmBoM
@@ -27,6 +23,7 @@ Public Class frmBoM
         'FilterData = New FrmSystem_FilterData(dtGrid)
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False, True, True, False, False)
     End Sub
+
     Private Sub LoadGrid()
         Try
             SplashScreenManager.ShowForm(GetType(FrmWait))
@@ -43,9 +40,11 @@ Public Class frmBoM
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Public Overrides Sub Proc_InputNewData()
         CallFrm()
     End Sub
+
     Public Overrides Sub Proc_Excel()
         Try
             'ImportBoMHeader()
@@ -55,6 +54,7 @@ Public Class frmBoM
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Private Sub ImportBoMUpdateTon()
 
         Try
@@ -81,6 +81,7 @@ Public Class frmBoM
             Throw
         End Try
     End Sub
+
     Private Sub ImportBoMUpdateCT()
 
         Try
@@ -212,6 +213,7 @@ Public Class frmBoM
         LoadGrid()
 
     End Sub
+
     Private Sub ImportBoMHeader()
 
         Dim _Table As New DataTable
@@ -300,7 +302,6 @@ Public Class frmBoM
                     End If
                 End With
                 BomHeader.BoMHeaderCollection.Add(ObjHeader)
-
             Catch ex As Exception
                 SplashScreenManager.CloseForm()
                 Console.WriteLine(ex.Message)
@@ -318,11 +319,13 @@ Public Class frmBoM
         Cursor = Cursors.Default
         LoadGrid()
     End Sub
+
     Public Overrides Sub Proc_Refresh()
         bs_Filter = ""
 
         Call LoadGrid()
     End Sub
+
     Public Overrides Sub Proc_DeleteData()
         Try
             bomid = String.Empty
@@ -352,6 +355,7 @@ Public Class frmBoM
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
@@ -364,6 +368,7 @@ Public Class frmBoM
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
     End Sub
+
     Private Sub Grid_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs)
         Try
             Dim objGrid As DataGridView = sender
@@ -377,7 +382,9 @@ Public Class frmBoM
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Dim invtID, bomid As String
+
     Private Sub frmBoM_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
             If e.KeyCode = Keys.F1 Then
@@ -403,6 +410,7 @@ Public Class frmBoM
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Private Sub Grid_DoubleClick(sender As Object, e As EventArgs) Handles Grid.DoubleClick
         Try
             invtID = String.Empty
@@ -426,6 +434,7 @@ Public Class frmBoM
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Private Sub ImportBomToUpdateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportBomToUpdateToolStripMenuItem.Click
         'Try
         '    Dim dt As New DataTable
@@ -458,7 +467,9 @@ Public Class frmBoM
         '    WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         'End Try
     End Sub
+
     Private Sub frmBoM_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Call LoadGrid()
     End Sub
+
 End Class
