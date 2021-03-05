@@ -355,21 +355,24 @@ Public Class Frm_CR_UserCreateDetail
 
                         Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
                     ElseIf Active_Form = 5 Then  'Active_Form 5 = Accounting
-                        Grid5.Visible = False
-                        Grid4.Visible = True
-                        C_Term.Visible = True
+                        Grid5.Visible = True
+                        Grid4.Visible = False
+                        C_Term.Visible = False
                         GridView3.OptionsBehavior.Editable = False
                         GridView4.OptionsBehavior.Editable = False
-                        GridView5.OptionsBehavior.Editable = True
-                        GridView1.OptionsBehavior.Editable = False
+                        GridView5.OptionsBehavior.Editable = False
+                        GridView1.OptionsBehavior.Editable = True
                         BAddRows.Enabled = False
                         BMold.Enabled = False
-                        Call No_Edit_TextBox()
+                        Call Edit_TextBox()
+                        T_Dept.Enabled = False
+                        T_CRNo.Enabled = False
+                        T_RequirementDate.Enabled=False
 
                         With GridView1
                             .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
                             .Columns("Spesification").OptionsColumn.AllowEdit = False
-                            .Columns("Qty").OptionsColumn.AllowEdit = False
+                            .Columns("Qty").OptionsColumn.AllowEdit = True
                             .Columns("Price").OptionsColumn.AllowEdit = False
                             .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
                             .Columns("Curr").OptionsColumn.AllowEdit = False
@@ -378,7 +381,7 @@ Public Class Frm_CR_UserCreateDetail
                             .Columns("Rate").OptionsColumn.AllowEdit = False
                             .Columns("Remaining Budget").OptionsColumn.AllowEdit = False
                             .Columns("Total IDR").OptionsColumn.AllowEdit = False
-                            .Columns("Account").OptionsColumn.AllowEdit = False
+                            .Columns("Account").OptionsColumn.AllowEdit = True
                             '.Columns("Check").Visible = True
                             .Columns("Note").Visible = True
                         End With
@@ -395,8 +398,8 @@ Public Class Frm_CR_UserCreateDetail
                         End If
 
                     ElseIf Active_Form = 6 Then  'Active_Form 6 = Purchase Monitor
-                        Grid5.Visible = False
-                        Grid4.Visible = True
+                        Grid5.Visible = True
+                        Grid4.Visible = False
                         C_Term.Visible = True
                         Call LoadGridInstallment(fc_Class.H_CirculationNo)
                         GridView3.OptionsBehavior.Editable = False
@@ -434,8 +437,8 @@ Public Class Frm_CR_UserCreateDetail
                         'Active_Form 7 = Purchase Termin
                     ElseIf Active_Form = 7 Then
 
-                        Grid5.Visible = False
-                        Grid4.Visible = True
+                        Grid5.Visible = True
+                        Grid4.Visible = False
                         C_Term.Visible = True
                         GridView3.OptionsBehavior.Editable = False
                         GridView4.OptionsBehavior.Editable = False
@@ -1448,8 +1451,8 @@ Public Class Frm_CR_UserCreateDetail
 
                             .D_CirculationNo = NoSirkulasi
                             .D_Dept = Trim(item).ToString
-                            .D_UserName = "UserName"
-                            .D_Name = "test"
+                            .D_UserName = ""
+                            .D_Name = ""
                         End With
                         fc_Class.Collection_Other_Dept.Add(Other_Dept)
 
@@ -2137,7 +2140,7 @@ Public Class Frm_CR_UserCreateDetail
 
     Private Sub Grid_KeyDown(sender As Object, e As KeyEventArgs) Handles Grid.KeyDown
 
-        If Active_Form = 1 Then
+        If Active_Form = 1 Or Active_Form = 5 Then
             If e.KeyData = Keys.Delete Then
                 GridView1.DeleteRow(GridView1.FocusedRowHandle)
                 GridView1.RefreshData()
@@ -2768,8 +2771,7 @@ Public Class Frm_CR_UserCreateDetail
             Division = dtRoot.Rows(0).Item("div_Id")
             Director = dtRoot.Rows(0).Item("director_Id")
         End If
-
-        'Dim oApp As New Outlook.Application, oMsg As Outlook.MailItem = oApp.CreateItem(Outlook.OlItemType.olMailItem)
+#Region "ElseIf Active_Form = 1"
         If Active_Form = 1 Then
             fc_Class.GetDataByID(fs_Code)
             DeptEmail = fc_Class.H_DeptID
@@ -2830,6 +2832,8 @@ Public Class Frm_CR_UserCreateDetail
             Else
                 XtraMessageBox.Show("Circulation Number : '" & fs_Code & "' has been Submitted  ?", "Confirmation", MessageBoxButtons.OK)
             End If
+#End Region
+
 
 #Region "ElseIf Active_Form = 2"
 
@@ -3250,7 +3254,7 @@ Public Class Frm_CR_UserCreateDetail
 
                     End If
 
-                ElseIf fc_Class.H_Status = "Approve 2" Then
+                ElseIf fc_Class.H_Status = "Approve 2" Or fc_Class.H_Status = "Other Dept" Then
                     If _Check1 = True Then
                         XtraMessageBox.Show("Circulation Number : '" & fs_Code & "' Canot Submit   ?", "Confirmation", MessageBoxButtons.OK)
                         Exit Sub
@@ -3454,19 +3458,89 @@ Public Class Frm_CR_UserCreateDetail
                 Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
                 If result = System.Windows.Forms.DialogResult.Yes Then
                     Try
+                        Dim Status As String = fc_Class.H_Status
+                        Dim BudgetType As Integer
+                        If RB_Budget.Checked = True Then
+                            BudgetType = 1
+                        ElseIf RB_NonBudget.Checked = True Then
+                            BudgetType = 0
+                        End If
+
+                        If RBPO.Checked = True Then
+                            fc_Class.H_PO = True
+                        ElseIf RBNonPO.Checked = True Then
+                            fc_Class.H_PO = False
+                        End If
+
 
                         With fc_Class
 
-                            If fc_Class.H_Status = "Other Dept" Then
+                            If Status = "Other Dept" Then
                                 .H_Status = "Approve BOD"
-                            ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
+                            ElseIf Status = "Set Installment" Or Status = "Approve BOD" Then
                                 .H_Status = "Close"
                                 Active_Form = 7
                             End If
 
                             .H_Current_Level = Active_Form
+                            .H_CirculationNo = fs_Code
+                            .H_Budget = BudgetType
+                            .H_CR_Type = T_CRType.EditValue
+                            .H_Reason = T_Reason.Text
+                            .H_Customer = TCustomer.EditValue
+                            .H_RequirementDate = Format(T_RequirementDate.EditValue, "yyyy-MM-dd")
+                            .H_Parent_Circulation = IIf(IsNothing(T_Parent.EditValue), "", T_Parent.EditValue)
+                            .H_Parent_Circulation_Amount = CDec(T_ParentAmount.EditValue)
+                            .H_Dies_Sales_Type = T_DS.EditValue
+                            .H_Dies_Customer_Name = T_CustomerName.EditValue
+                            .H_Dies_Model = T_ModelName.EditValue
+                            .H_NameItem = T_NameItem.EditValue
+                            .H_Spesification = T_Spesification.EditValue
+                            If T_Charged.EditValue = "YES" Then
+                                .H_ChargedOf = 1
+                            Else
+                                .H_ChargedOf = 0
+                            End If
+                            .H_Dies_Remark = T_Remark.EditValue
+                            .H_InvoiceNo = ""
+                            .H_InvoiceStatus = 0
+                            .H_Dies = 1
+                            .H_Budget_text = IIf(TBudget.EditValue Is Nothing, 0, TBudget.EditValue)
 
                         End With
+
+                        fc_Class.Collection_Description_Of_Cost.Clear()
+                        For i As Integer = 0 To GridView1.RowCount - 1
+
+                            Description_Of_Cost = New ClsCR_Description_of_Cost
+                            With Description_Of_Cost
+
+                                .D_CirculationNo = NoSirkulasi
+                                .D_Name_Of_Goods = Convert.ToString(GridView1.GetRowCellValue(i, "Name Of Goods"))
+                                .D_Spesification = Convert.ToString(GridView1.GetRowCellValue(i, "Spesification"))
+
+                                .D_Model = IIf(GridView1.GetRowCellValue(i, "Model") Is DBNull.Value, "", Convert.ToString(GridView1.GetRowCellValue(i, "Model")))
+                                .D_SalesType = IIf(GridView1.GetRowCellValue(i, "Sales Type") Is DBNull.Value, "", Convert.ToString(GridView1.GetRowCellValue(i, "Sales Type")))
+                                .D_Remark = IIf(GridView1.GetRowCellValue(i, "Remark") Is DBNull.Value, "", Convert.ToString(GridView1.GetRowCellValue(i, "Remark")))
+
+                                .D_Qty = Convert.ToDouble(GridView1.GetRowCellValue(i, "Qty"))
+                                .D_Price = Convert.ToDouble(GridView1.GetRowCellValue(i, "Price"))
+                                .D_Amount = Convert.ToDouble(GridView1.GetRowCellValue(i, "Total Amount Currency"))
+                                .D_Amount_IDR = Convert.ToDouble(GridView1.GetRowCellValue(i, "Total IDR"))
+                                .D_PR_No = Convert.ToString(GridView1.GetRowCellValue(i, "PR No"))
+                                .D_Currency = Convert.ToString(GridView1.GetRowCellValue(i, "Curr"))
+                                .D_Rate = Convert.ToString(GridView1.GetRowCellValue(i, "Rate"))
+                                .D_RemainingBudget = Convert.ToString(GridView1.GetRowCellValue(i, "Remaining Budget"))
+                                .D_Account = Convert.ToString(GridView1.GetRowCellValue(i, "Account"))
+                                .D_Category = Convert.ToString(GridView1.GetRowCellValue(i, "Category"))
+                                '.D_Check = Convert.ToString(GridView1.GetRowCellValue(i, "Check"))
+                                .D_Note = Convert.ToString(GridView1.GetRowCellValue(i, "Note"))
+
+                            End With
+                            fc_Class.Collection_Description_Of_Cost.Add(Description_Of_Cost)
+
+                        Next
+
 
                         fc_Model_ApproveHistoryModel = New ApproveHistoryModel
                         With fc_Model_ApproveHistoryModel
@@ -3481,13 +3555,16 @@ Public Class Frm_CR_UserCreateDetail
                             .ApprovedDate = Date.Now
                             .IsActive = 1
 
-                            If fc_Class.H_Status = "Other Dept" Then
+                            If Status = "Other Dept" Then
                                 .StatusApproved = "Approve"
-                            ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
+                            ElseIf Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
                                 .StatusApproved = "Close"
                             End If
 
                         End With
+
+
+
 
 
                         fc_Class.Update_Approve_BOD(fs_Code, fc_Model_ApproveHistoryModel)
