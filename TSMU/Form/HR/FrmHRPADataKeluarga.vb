@@ -2,7 +2,7 @@
 Imports System.IO
 Imports DevExpress.XtraGrid
 
-Public Class FrmHRPADataPribadi
+Public Class FrmHRPADataKeluarga
 
     Dim _isSave As Boolean
     Dim isAction As String
@@ -44,16 +44,16 @@ Public Class FrmHRPADataPribadi
         FrmParent = lf_FormParent
     End Sub
 
-    Private Sub FrmHRPADataPribadi_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmHRPADataKeluarga_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call InitialSetForm()
     End Sub
 
     Public Sub InitialSetForm()
         Try
             If isAction <> "Add" Then
-                Me.Text = isAction.ToUpper + " DATA PRIBADI"
+                Me.Text = isAction.ToUpper + " DATA KELUARGA"
             Else
-                Me.Text = "ADD DATA PRIBADI"
+                Me.Text = "ADD DATA KELUARGA"
             End If
             Call LoadTxtBox()
         Catch ex As Exception

@@ -29,8 +29,11 @@
                                                                       AND oj.TglMulai <= @Now
                                                                       AND oj.TglSelesai >= @Now
                                 LEFT JOIN dbo.S_HRPAPerpindahan AS pp ON pdk.PerpindahanKaryawan = pp.Perpindahan
-                        WHERE   pdk.TglMulai <= @Now
-                                AND pdk.TglSelesai >= @Now"
+                        WHERE   ( pdk.TglMulai <= @Now
+                                  AND pdk.TglSelesai >= @Now
+                                )
+                                AND pdp.TglMulai <= @Now
+                                AND pdp.TglSelesai >= @Now"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Return dt
@@ -45,13 +48,14 @@
 
                         SET @Now = GETDATE();
 
-                        SELECT  pdk.EmployeeID ,                                
+                        SELECT  pdk.EmployeeID ,
                                 pdk.NIK ,
                                 pdp.Gambar ,
                                 pdp.NamaLengkap ,
                                 pdp.NamaPanggilan ,
                                 pdp.JenisKelamin ,
                                 pdp.TglLahir ,
+                                pdk.Factory ,
                                 pdk.PerpindahanKaryawan ,
                                 pdk.StatusKaryawan ,
                                 pdk.TipeKaryawan ,
@@ -66,8 +70,13 @@
                                 LEFT JOIN dbo.M_HROrgJabatan AS oj ON pdk.Jabatan = oj.OrgID
                                                                       AND oj.TglMulai <= @Now
                                                                       AND oj.TglSelesai >= @Now
-                        WHERE   pdk.TglMulai <= @Now
-                                AND pdk.TglSelesai >= @Now"
+                        WHERE   pdk.EmployeeID = " & QVal(EmpID) & "
+                                AND ( pdk.TglMulai <= @Now
+                                      AND pdk.TglSelesai >= @Now
+                                    )
+                                AND ( pdp.TglMulai <= @Now
+                                      AND pdp.TglSelesai >= @Now
+                                    );"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
             Dim modelHeader As New HRPAHeaderModel
@@ -78,6 +87,7 @@
                     .NamaLengkap = If(IsDBNull(dt.Rows(0).Item("NamaLengkap")), "", dt.Rows(0).Item("NamaLengkap").ToString())
                     .JenisKelamin = If(IsDBNull(dt.Rows(0).Item("JenisKelamin")), "", dt.Rows(0).Item("JenisKelamin").ToString())
                     .TglLahir = If(IsDBNull(dt.Rows(0).Item("TglLahir")), Date.Today, dt.Rows(0).Item("TglLahir"))
+                    .Factory = If(IsDBNull(dt.Rows(0).Item("Factory")), "", dt.Rows(0).Item("Factory").ToString())
                     .StatusKaryawan = If(IsDBNull(dt.Rows(0).Item("StatusKaryawan")), "", dt.Rows(0).Item("StatusKaryawan").ToString())
                     .TipeKaryawan = If(IsDBNull(dt.Rows(0).Item("TipeKaryawan")), "", dt.Rows(0).Item("TipeKaryawan").ToString())
                     .Organisasi = If(IsDBNull(dt.Rows(0).Item("Organisasi")), "", dt.Rows(0).Item("Organisasi").ToString())
@@ -92,7 +102,8 @@
 
     Public Function GetDataDataPribadi(ByVal EmpID As String) As DataTable
         Try
-            strQuery = "SELECT  TglMulai ,
+            strQuery = "SELECT  ID ,
+                                TglMulai ,
                                 TglSelesai ,
                                 EmployeeID ,
                                 PINFinger ,
@@ -103,8 +114,8 @@
                                 TglLahir ,
                                 Tamatan ,
                                 Kewarganegaraan ,
-                                Suku ,
                                 Agama ,
+                                GolonganDarah ,
                                 StatusKawin ,
                                 TglKawin ,
                                 JumlahAnak ,
@@ -127,7 +138,8 @@
 
     Public Function GetDataDataKaryawan(ByVal EmpID As String) As DataTable
         Try
-            strQuery = "SELECT  pdk.TglMulai ,
+            strQuery = "SELECT  pdk.ID ,
+                                pdk.TglMulai ,
                                 pdk.TglSelesai ,
                                 pdk.EmployeeID ,
                                 pdk.NIK ,
@@ -169,7 +181,155 @@
         End Try
     End Function
 
-    Public Sub SaveDataPribadi(Data As HRPADataPribadiModel)
+    Public Function GetDataDataAlamat(ByVal EmpID As String) As DataTable
+        Try
+            strQuery = "SELECT  ID ,
+                                TglMulai ,
+                                TglSelesai ,
+                                EmployeeID ,
+                                TipeAlamat ,
+                                Seq ,
+                                Alamat ,
+                                RT ,
+                                RW ,
+                                Negara ,
+                                Provinsi ,
+                                KotaKab ,
+                                Kecamatan ,
+                                Kelurahan ,
+                                KodePos ,
+                                NoTelpon ,
+                                Ket ,
+                                TglBuat ,
+                                UserBuat ,
+                                TglUbah ,
+                                UserUbah
+                        FROM    dbo.M_HRPADataAlamat
+                        WHERE   EmployeeID = " & QVal(EmpID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataDataKeluarga(ByVal EmpID As String) As DataTable
+        Try
+            strQuery = "SELECT  ID ,
+                                TglMulai ,
+                                TglSelesai ,
+                                EmployeeID ,
+                                Hubungan ,
+                                Seq ,
+                                Nama ,
+                                JenisKelamin ,
+                                TempatLahir ,
+                                TglLahir ,
+                                TglKematian ,
+                                Agama ,
+                                Tamatan ,
+                                Alamat ,
+                                NoTelpon ,
+                                Pekerjaan ,
+                                Ket ,
+                                TglBuat ,
+                                UserBuat ,
+                                TglUbah ,
+                                UserUbah
+                        FROM    dbo.M_HRPADataKeluarga
+                        WHERE   EmployeeID = " & QVal(EmpID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataDataPendidikan(ByVal EmpID As String) As DataTable
+        Try
+            strQuery = "SELECT  ID ,
+                                TglMulai ,
+                                TglSelesai ,
+                                EmployeeID ,
+                                Seq ,
+                                TipePendidikan ,
+                                TingkatPendidikan ,
+                                NamaInstitut ,
+                                Jurusan ,
+                                Alamat ,
+                                IPK ,
+                                Nilai ,
+                                NamaPelatihan ,
+                                Ket ,
+                                TglBuat ,
+                                UserBuat ,
+                                TglUbah ,
+                                UserUbah
+                        FROM    dbo.M_HRPADataPendidikan
+                        WHERE   EmployeeID = " & QVal(EmpID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetDataDataKomunikasi(ByVal EmpID As String) As DataTable
+        Try
+            strQuery = "SELECT  ID ,
+                                TglMulai ,
+                                TglSelesai ,
+                                EmployeeID ,
+                                Seq ,
+                                TipeKomunikasi ,
+                                Deskripsi ,
+                                Ket ,
+                                TglBuat ,
+                                UserBuat ,
+                                TglUbah ,
+                                UserUbah
+                        FROM    dbo.M_HRPADataKomunikasi
+                        WHERE   EmployeeID = " & QVal(EmpID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub SaveNewEmployee(DataPribadi As HRPADataPribadiModel, DataKaryawan As HRPADataKaryawanModel, OrgStruktur As HROrgStrukturModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertDataPribadi(DataPribadi)
+                        InsertDataKaryawan(DataKaryawan)
+
+                        InsertOrgStruktur(OrgStruktur)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveNewDataPribadi(Data As HRPADataPribadiModel)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -180,6 +340,31 @@
 
                     Try
                         InsertDataPribadi(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveEditDataPribadi(Data As HRPADataPribadiModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        EditDataPribadi(Data)
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -222,10 +407,10 @@
             pParam(9).Value = Data.Tamatan
             pParam(10) = New SqlClient.SqlParameter("@Kewarganegaraan", SqlDbType.VarChar)
             pParam(10).Value = Data.Kewarganegaraan
-            pParam(11) = New SqlClient.SqlParameter("@Suku", SqlDbType.VarChar)
-            pParam(11).Value = Data.Suku
-            pParam(12) = New SqlClient.SqlParameter("@Agama", SqlDbType.VarChar)
-            pParam(12).Value = Data.Agama
+            pParam(11) = New SqlClient.SqlParameter("@Agama", SqlDbType.VarChar)
+            pParam(11).Value = Data.Agama
+            pParam(12) = New SqlClient.SqlParameter("@GolonganDarah", SqlDbType.VarChar)
+            pParam(12).Value = Data.GolonganDarah
             pParam(13) = New SqlClient.SqlParameter("@StatusKawin", SqlDbType.VarChar)
             pParam(13).Value = Data.StatusKawin
             pParam(14) = New SqlClient.SqlParameter("@TglKawin", SqlDbType.Date)
@@ -253,7 +438,68 @@
         End Try
     End Sub
 
-    Public Sub SaveDataKaryawan(Data As HRPADataKaryawanModel)
+    Public Sub EditDataPribadi(Data As HRPADataPribadiModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PAEditDataPribadi"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(23) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@PINFinger", SqlDbType.Char)
+            pParam(4).Value = Data.PINFinger
+            pParam(5) = New SqlClient.SqlParameter("@NamaLengkap", SqlDbType.VarChar)
+            pParam(5).Value = Data.NamaLengkap
+            pParam(6) = New SqlClient.SqlParameter("@NamaPanggilan", SqlDbType.VarChar)
+            pParam(6).Value = Data.NamaPanggilan
+            pParam(7) = New SqlClient.SqlParameter("@JenisKelamin", SqlDbType.VarChar)
+            pParam(7).Value = Data.JenisKelamin
+            pParam(8) = New SqlClient.SqlParameter("@TempatLahir", SqlDbType.VarChar)
+            pParam(8).Value = Data.TempatLahir
+            pParam(9) = New SqlClient.SqlParameter("@TglLahir", SqlDbType.Date)
+            pParam(9).Value = Data.TglLahir
+            pParam(10) = New SqlClient.SqlParameter("@Tamatan", SqlDbType.VarChar)
+            pParam(10).Value = Data.Tamatan
+            pParam(11) = New SqlClient.SqlParameter("@Kewarganegaraan", SqlDbType.VarChar)
+            pParam(11).Value = Data.Kewarganegaraan
+            pParam(12) = New SqlClient.SqlParameter("@Agama", SqlDbType.VarChar)
+            pParam(12).Value = Data.Agama
+            pParam(13) = New SqlClient.SqlParameter("@GolonganDarah", SqlDbType.VarChar)
+            pParam(13).Value = Data.GolonganDarah
+            pParam(14) = New SqlClient.SqlParameter("@StatusKawin", SqlDbType.VarChar)
+            pParam(14).Value = Data.StatusKawin
+            pParam(15) = New SqlClient.SqlParameter("@TglKawin", SqlDbType.Date)
+            pParam(15).Value = Data.TglKawin
+            pParam(16) = New SqlClient.SqlParameter("@JumlahAnak", SqlDbType.Int)
+            pParam(16).Value = Data.JumlahAnak
+            pParam(17) = New SqlClient.SqlParameter("@Gambar", SqlDbType.Image)
+            pParam(17).Value = Data.Gambar
+            pParam(18) = New SqlClient.SqlParameter("@Reference", SqlDbType.VarChar)
+            pParam(18).Value = Data.Reference
+            pParam(19) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(19).Value = Data.Ket
+            pParam(20) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(20).Value = Data.TglBuat
+            pParam(21) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(21).Value = Data.UserBuat
+            pParam(22) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(22).Value = Data.TglUbah
+            pParam(23) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(23).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveNewDataKaryawan(Data As HRPADataKaryawanModel)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -264,6 +510,31 @@
 
                     Try
                         InsertDataKaryawan(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveEditDataKaryawan(Data As HRPADataKaryawanModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        EditDataKaryawan(Data)
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -335,10 +606,106 @@
         End Try
     End Sub
 
-    Public Function GetStrukturOrg() As DataTable
+    Public Sub EditDataKaryawan(Data As HRPADataKaryawanModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PAEditDataKaryawan"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(22) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@NIK", SqlDbType.VarChar)
+            pParam(4).Value = Data.NIK
+            pParam(5) = New SqlClient.SqlParameter("@PerpindahanKaryawan", SqlDbType.VarChar)
+            pParam(5).Value = Data.PerpindahanKaryawan
+            pParam(6) = New SqlClient.SqlParameter("@AlasanPindah", SqlDbType.VarChar)
+            pParam(6).Value = Data.AlasanPindah
+            pParam(7) = New SqlClient.SqlParameter("@Golongan", SqlDbType.VarChar)
+            pParam(7).Value = Data.Golongan
+            pParam(8) = New SqlClient.SqlParameter("@StatusKaryawan", SqlDbType.VarChar)
+            pParam(8).Value = Data.StatusKaryawan
+            pParam(9) = New SqlClient.SqlParameter("@TipeKaryawan", SqlDbType.VarChar)
+            pParam(9).Value = Data.TipeKaryawan
+            pParam(10) = New SqlClient.SqlParameter("@TipePosisiKaryawan", SqlDbType.VarChar)
+            pParam(10).Value = Data.TipePosisiKaryawan
+            pParam(11) = New SqlClient.SqlParameter("@Factory", SqlDbType.VarChar)
+            pParam(11).Value = Data.Factory
+            pParam(12) = New SqlClient.SqlParameter("@Organisasi", SqlDbType.VarChar)
+            pParam(12).Value = Data.Organisasi
+            pParam(13) = New SqlClient.SqlParameter("@Jabatan", SqlDbType.VarChar)
+            pParam(13).Value = Data.Jabatan
+            pParam(14) = New SqlClient.SqlParameter("@Job", SqlDbType.VarChar)
+            pParam(14).Value = Data.Job
+            pParam(15) = New SqlClient.SqlParameter("@TglEfektif", SqlDbType.Date)
+            pParam(15).Value = Data.TglEfektif
+            pParam(16) = New SqlClient.SqlParameter("@TglBerakhir", SqlDbType.Date)
+            pParam(16).Value = Data.TglBerakhir
+            pParam(17) = New SqlClient.SqlParameter("@SK", SqlDbType.VarChar)
+            pParam(17).Value = Data.SK
+            pParam(18) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(18).Value = Data.Ket
+            pParam(19) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(19).Value = Data.TglBuat
+            pParam(20) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(20).Value = Data.UserBuat
+            pParam(21) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(21).Value = Data.TglUbah
+            pParam(22) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(22).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertOrgStruktur(OrgStruktur As HROrgStrukturModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_OrgInsertStruktur"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(10) {}
+            pParam(0) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(0).Value = OrgStruktur.TglMulai
+            pParam(1) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(1).Value = OrgStruktur.TglSelesai
+            pParam(2) = New SqlClient.SqlParameter("@OrgID", SqlDbType.VarChar)
+            pParam(2).Value = OrgStruktur.OrgID
+            pParam(3) = New SqlClient.SqlParameter("@OrgClass", SqlDbType.VarChar)
+            pParam(3).Value = OrgStruktur.OrgClass
+            pParam(4) = New SqlClient.SqlParameter("@RelClass", SqlDbType.VarChar)
+            pParam(4).Value = OrgStruktur.RelClass
+            pParam(5) = New SqlClient.SqlParameter("@RelOrg", SqlDbType.VarChar)
+            pParam(5).Value = OrgStruktur.RelOrg
+            pParam(6) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(6).Value = OrgStruktur.Ket
+            pParam(7) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(7).Value = OrgStruktur.TglBuat
+            pParam(8) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(8).Value = OrgStruktur.UserBuat
+            pParam(9) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(9).Value = OrgStruktur.TglUbah
+            pParam(10) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(10).Value = OrgStruktur.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Function GetStrukturOrg(TglMulai As Date) As DataTable
         Try
             Dim Sql As String = "HR_GetStrukturOrg"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter() {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(0).Value = TglMulai
 
             Dim dt As New DataTable
 
@@ -401,5 +768,109 @@
             Throw ex
         End Try
     End Function
+
+    Public Function GetAutoNumberEmpID() As String
+        Try
+            strQuery = "DECLARE @seq VARCHAR(8);
+                        SET @seq = ( SELECT RIGHT('00000000' + CAST(MAX(EmployeeID) + 1 AS VARCHAR), 8)
+                                     FROM   dbo.M_HRPADataPribadi
+                                   ); 
+                        SELECT  COALESCE(@seq, '00000001');"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows(0).Item(0).ToString
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetAutoNumberNIK() As String
+        Try
+            strQuery = "SELECT  RIGHT(Tahun, 2) + RIGHT('000000' + CAST(AvailableNo AS VARCHAR), 8)
+                        FROM    dbo.S_Numbering
+                        WHERE   MenuCode = 'FrmHRPANewEmployee'"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows(0).Item(0).ToString
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+#Region "Check apakah ada data yg jadi bagian periode ini (DATA PRIBADI)"
+    Public Function CheckRangeDatePribadi(EmpID As String, TglMulai As Date, TglSelesai As Date) As Boolean
+        Try
+            strQuery = "SELECT  COUNT(EmployeeID)
+                        FROM    dbo.M_HRPADataPribadi
+                        WHERE   EmployeeID = " & QVal(EmpID) & "
+                                AND ( TglMulai >= " & QVal(TglMulai) & "
+                                      AND TglSelesai <= " & QVal(TglSelesai) & "
+                                    )"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows(0).Item(0)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CheckRangeDateEditPribadi(ID As Integer, EmpID As String, TglMulai As Date, TglSelesai As Date) As Boolean
+        Try
+            strQuery = "SELECT  COUNT(EmployeeID)
+                        FROM    dbo.M_HRPADataPribadi
+                        WHERE   EmployeeID = " & QVal(EmpID) & "
+                                AND ( TglMulai >= " & QVal(TglMulai) & "
+                                      AND TglSelesai <= " & QVal(TglSelesai) & "
+                                    )
+                                AND ID <> " & ID & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows(0).Item(0)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
+
+#Region "Check apakah ada data yg jadi bagian periode ini (DATA KARIR)"
+    Public Function CheckRangeDateKarir(EmpID As String, TglMulai As Date, TglSelesai As Date) As Boolean
+        Try
+            strQuery = "SELECT  COUNT(EmployeeID)
+                        FROM    dbo.M_HRPADataKaryawan
+                        WHERE   EmployeeID = " & QVal(EmpID) & "
+                                AND ( TglMulai >= " & QVal(TglMulai) & "
+                                      AND TglSelesai <= " & QVal(TglSelesai) & "
+                                    )"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows(0).Item(0)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function CheckRangeDateEditKarir(ID As Integer, EmpID As String, TglMulai As Date, TglSelesai As Date) As Boolean
+        Try
+            strQuery = "SELECT  COUNT(EmployeeID)
+                        FROM    dbo.M_HRPADataKaryawan
+                        WHERE   EmployeeID = " & QVal(EmpID) & "
+                                AND ( TglMulai >= " & QVal(TglMulai) & "
+                                      AND TglSelesai <= " & QVal(TglSelesai) & "
+                                    )
+                                AND ID <> " & ID & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows(0).Item(0)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
 
 End Class

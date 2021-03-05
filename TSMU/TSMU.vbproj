@@ -2134,10 +2134,22 @@
     <Compile Include="Form\HR\FrmHROrgOrganisasiDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\HR\FrmHRPADataAlamat.designer.vb">
+      <DependentUpon>FrmHRPADataAlamat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataAlamat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\HR\FrmHRPADataKaryawan.designer.vb">
       <DependentUpon>FrmHRPADataKaryawan.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\HR\FrmHRPADataKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKeluarga.designer.vb">
+      <DependentUpon>FrmHRPADataKeluarga.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKeluarga.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\HR\FrmHRPADataPribadi.Designer.vb">
@@ -2732,7 +2744,11 @@
     <Compile Include="Models\HR\HROrgJabatanModel.vb" />
     <Compile Include="Models\HR\HROrgOrganisasiModel.vb" />
     <Compile Include="Models\HR\HROrgStrukturModel.vb" />
+    <Compile Include="Models\HR\HRPADataAlamatModel.vb" />
     <Compile Include="Models\HR\HRPADataKaryawanModel.vb" />
+    <Compile Include="Models\HR\HRPADataKeluargaModel.vb" />
+    <Compile Include="Models\HR\HRPADataKomunikasiModel.vb" />
+    <Compile Include="Models\HR\HRPADataPendidikanModel.vb" />
     <Compile Include="Models\HR\HRPADataPribadiModel.vb" />
     <Compile Include="Models\HR\HRPAHeaderModel.vb" />
     <Compile Include="Models\ImageModel.vb" />
@@ -3826,8 +3842,14 @@
     <EmbeddedResource Include="Form\HR\FrmHROrgOrganisasiDetail.resx">
       <DependentUpon>FrmHROrgOrganisasiDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataAlamat.resx">
+      <DependentUpon>FrmHRPADataAlamat.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\HR\FrmHRPADataKaryawan.resx">
       <DependentUpon>FrmHRPADataKaryawan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataKeluarga.resx">
+      <DependentUpon>FrmHRPADataKeluarga.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\HR\FrmHRPADataPribadi.resx">
       <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
