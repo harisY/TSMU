@@ -19,8 +19,8 @@ Public Class FrmVendorManagementDetail
     Dim _Tag As TagModel
 
 
-    'Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
-    Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
+    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
+    'Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
     Dim PathFoto As String = ""
     Dim NamaFile As String = ""
     Dim DirectoryFoto As String = ""
