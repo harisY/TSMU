@@ -1,13 +1,11 @@
-﻿Public Class HROrgStrukturModel
+﻿Public Class HRPADataKomunikasiModel
+    Public Property ID As Integer
     Public Property TglMulai As Date
     Public Property TglSelesai As Date
-    Public Property OrgID As String
-    Public Property OrgClass As String
-    Public Property RelDir As String
-    Public Property RelTipe As String
+    Public Property EmpID As String
     Public Property Seq As Integer
-    Public Property RelClass As String
-    Public Property RelOrg As String
+    Public Property TipeKomunikasi As String
+    Public Property Deskripsi As String
     Public Property Ket As String
     Public Property TglBuat As DateTime
     Public Property UserBuat As String

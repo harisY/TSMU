@@ -13,6 +13,7 @@ Public Class FrmHRPADataKaryawan
 
     Dim _isSave As Boolean
     Dim isAction As String
+    Dim ID As Integer
     Dim NIK As String
     Dim EmpID As String
     Dim dataRow As DataRow
@@ -20,6 +21,7 @@ Public Class FrmHRPADataKaryawan
     Dim FrmParent As Form
 
     Dim modelDataKaryawan As HRPADataKaryawanModel
+    Dim modelOrgStruktur As HROrgStrukturModel
     Dim srvHR As New HRPAService
 
     Public Sub New()
@@ -57,9 +59,9 @@ Public Class FrmHRPADataKaryawan
     Public Sub InitialSetForm()
         Try
             If isAction <> "Add" Then
-                Me.Text = "DATA KARYAWAN"
+                Me.Text = isAction.ToUpper + " DATA KARIR"
             Else
-                Me.Text = "NEW DATA KARYAWAN"
+                Me.Text = "ADD DATA KARIR"
             End If
             Call LoadTxtBox()
         Catch ex As Exception
@@ -71,12 +73,9 @@ Public Class FrmHRPADataKaryawan
         Try
             ListItemsPerpindahan()
             ListItemsGolongan()
-            ListItemsOrganisasi()
-            Dim dtTreeOrg As New DataTable
-            dtTreeOrg = srvHR.GetStrukturOrg()
-            txtJabatan.Properties.DataSource = dtTreeOrg
 
             If isAction <> "Add" Then
+                ID = dataRow("ID")
                 dtTglMulai.EditValue = dataRow("TglMulai")
                 dtTglSelesai.EditValue = dataRow("TglSelesai")
                 txtNIK.Text = dataRow("NIK")
@@ -87,7 +86,11 @@ Public Class FrmHRPADataKaryawan
                 cbTipe.Text = IIf(dataRow("TipeKaryawan") Is DBNull.Value, "", dataRow("TipeKaryawan"))
                 cbTipePosisi.Text = IIf(dataRow("TipePosisiKaryawan") Is DBNull.Value, "", dataRow("TipePosisiKaryawan"))
                 cbFactory.Text = IIf(dataRow("Factory") Is DBNull.Value, "", dataRow("Factory"))
+                ListItemsOrganisasi()
                 cbOrganisasi.EditValue = IIf(dataRow("OrgID") Is DBNull.Value, "", dataRow("OrgID"))
+                Dim dtTreeOrg As New DataTable
+                dtTreeOrg = srvHR.GetStrukturOrg(dtTglMulai.EditValue)
+                txtJabatan.Properties.DataSource = dtTreeOrg
                 txtJabatan.EditValue = IIf(dataRow("JabID") Is DBNull.Value, "", dataRow("JabID"))
                 cbJob.Text = IIf(dataRow("Job") Is DBNull.Value, "", dataRow("Job"))
                 dtTglEfektif.EditValue = IIf(dataRow("TglEfektif") Is DBNull.Value, Nothing, dataRow("TglEfektif"))
@@ -107,9 +110,34 @@ Public Class FrmHRPADataKaryawan
                 dtTglUbah.EditValue = DateTime.Now
                 txtUserUbah.Text = gh_Common.Username
             End If
+
+            If isAction = "View" Then
+                Call CondView()
+            End If
+
         Catch ex As Exception
             Throw
         End Try
+    End Sub
+
+    Private Sub CondView()
+        dtTglMulai.Enabled = False
+        dtTglSelesai.Enabled = False
+        cbPerpindahan.Enabled = False
+        cbAlasan.Enabled = False
+        cbGolongan.Enabled = False
+        cbStatus.Enabled = False
+        cbTipe.Enabled = False
+        cbTipePosisi.Enabled = False
+        cbFactory.Enabled = False
+        txtJabatan.Enabled = False
+        cbJob.Enabled = False
+        dtTglEfektif.Enabled = False
+        dtTglBerakhir.Enabled = False
+        txtSK.Enabled = False
+        txtKet.Enabled = False
+        btnDeleteJab.Enabled = False
+        btnSave.Enabled = False
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
@@ -118,12 +146,24 @@ Public Class FrmHRPADataKaryawan
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            If CheckValidasi() = False Then
-                _isSave = True
-                srvHR.SaveDataKaryawan(modelDataKaryawan)
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-                Me.Hide()
+            Dim result As DialogResult = MessageBox.Show("Apakah Yakin Ingin Save Data", "Konfirmasi",
+                         MessageBoxButtons.YesNo,
+                         MessageBoxIcon.Question)
+
+            If (result = DialogResult.Yes) Then
+                If CheckValidasi() = False Then
+                    _isSave = True
+                    If isAction <> "Edit" Then
+                        srvHR.SaveNewDataKaryawan(modelDataKaryawan)
+                    Else
+                        srvHR.SaveEditDataKaryawan(modelDataKaryawan)
+                    End If
+
+                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    Me.Hide()
+                End If
             End If
+
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -132,35 +172,77 @@ Public Class FrmHRPADataKaryawan
     Private Function CheckValidasi() As Boolean
         Dim validasi As Boolean = False
         Try
-            If cbPerpindahan.Text = "" Then
+            If dtTglMulai.EditValue = Nothing Then
+                Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Kosong!")
+            ElseIf dtTglSelesai.EditValue = Nothing Then
+                Err.Raise(ErrNumber, , "Tanggal Selesai Tidak Boleh Kosong!")
+            ElseIf cbPerpindahan.Text = "" Then
                 Err.Raise(ErrNumber, , "Perpindahan Tidak Boleh Kosong!")
+            ElseIf cbAlasan.Text = "" Then
+                Err.Raise(ErrNumber, , "Alasan Pindah Tidak Boleh Kosong!")
             Else
-                modelDataKaryawan = New HRPADataKaryawanModel
-                With modelDataKaryawan
-                    .TglMulai = dtTglMulai.EditValue
-                    .TglSelesai = dtTglSelesai.EditValue
-                    .EmpID = EmpID
-                    .NIK = txtNIK.Text
-                    .PerpindahanKaryawan = cbPerpindahan.EditValue
-                    .AlasanPindah = cbAlasan.EditValue
-                    .Golongan = cbGolongan.EditValue
-                    .StatusKaryawan = cbStatus.Text
-                    .TipeKaryawan = cbTipe.Text
-                    .TipePosisiKaryawan = cbTipePosisi.Text
-                    .Factory = cbFactory.Text
-                    .Organisasi = cbOrganisasi.EditValue
-                    .Jabatan = txtJabatan.EditValue
-                    .Job = cbJob.EditValue
-                    .TglEfektif = dtTglEfektif.EditValue
-                    .TglBerakhir = dtTglBerakhir.EditValue
-                    .SK = txtSK.Text
-                    .Ket = txtKet.Text
+                If isAction <> "Edit" Then
+                    If srvHR.CheckRangeDateKarir(EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
+                        Err.Raise(ErrNumber, , "Sudah Ada Tanggal Diperiode Ini  !")
+                    End If
+                Else
+                    If srvHR.CheckRangeDateEditKarir(ID, EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
+                        Err.Raise(ErrNumber, , "Sudah Ada Tanggal Diperiode Ini  !")
+                    End If
+                End If
+            End If
+
+            Dim Now As DateTime = DateTime.Now
+            modelDataKaryawan = New HRPADataKaryawanModel
+            With modelDataKaryawan
+                .ID = ID
+                .TglMulai = dtTglMulai.EditValue
+                .TglSelesai = dtTglSelesai.EditValue
+                .EmpID = EmpID
+                .NIK = txtNIK.Text
+                .PerpindahanKaryawan = cbPerpindahan.EditValue
+                .AlasanPindah = cbAlasan.EditValue
+                .Golongan = cbGolongan.EditValue
+                .StatusKaryawan = cbStatus.Text
+                .TipeKaryawan = cbTipe.Text
+                .TipePosisiKaryawan = cbTipePosisi.Text
+                .Factory = cbFactory.Text
+                .Organisasi = cbOrganisasi.EditValue
+                .Jabatan = txtJabatan.EditValue
+                .Job = cbJob.EditValue
+                .TglEfektif = dtTglEfektif.EditValue
+                .TglBerakhir = dtTglBerakhir.EditValue
+                .SK = txtSK.Text
+                .Ket = txtKet.Text
+                If isAction <> "Edit" Then
+                    .TglBuat = Now
+                    .UserBuat = gh_Common.Username
+                Else
                     .TglBuat = dtTglBuat.EditValue
                     .UserBuat = txtUserBuat.Text
-                    .TglUbah = DateTime.Now
-                    .UserUbah = txtUserUbah.Text
-                End With
-            End If
+                End If
+                .TglUbah = Now
+                .UserUbah = gh_Common.Username
+            End With
+
+            modelOrgStruktur = New HROrgStrukturModel
+            With modelOrgStruktur
+                .TglMulai = dtTglMulai.EditValue
+                .TglSelesai = dtTglSelesai.EditValue
+                .OrgID = txtJabatan.EditValue
+                .OrgClass = "P"
+                .RelDir = "B"
+                .RelTipe = "03"
+                .Seq = 1
+                .RelClass = "E"
+                .RelOrg = EmpID
+                .Ket = txtKet.Text
+                .TglBuat = DateTime.Now
+                .UserBuat = gh_Common.Username
+                .TglUbah = DateTime.Now
+                .UserUbah = gh_Common.Username
+            End With
+
         Catch ex As Exception
             validasi = True
             Throw ex
@@ -227,6 +309,12 @@ Public Class FrmHRPADataKaryawan
             Else
                 cbOrganisasi.EditValue = orgParent
             End If
+        End If
+    End Sub
+
+    Private Sub txtJabatan_Click(sender As Object, e As EventArgs) Handles txtJabatan.Click
+        If dtTglMulai.EditValue = Nothing Then
+            MsgBox("Tanggal Mulai Tidak Boleh Kosong !", MessageBoxIcon.Information, "Information")
         End If
     End Sub
 

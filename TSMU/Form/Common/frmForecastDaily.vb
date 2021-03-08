@@ -1,11 +1,5 @@
-﻿Imports System.Collections.ObjectModel
-Imports DevExpress.Data
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraEditors.Repository
+﻿Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid
-Imports DevExpress.XtraGrid.Columns
-Imports DevExpress.XtraGrid.Views.Base
-Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraSplashScreen
 
 Public Class frmForecastDaily
@@ -16,6 +10,7 @@ Public Class frmForecastDaily
     Dim Service As New ForecastDailyService
 
     Dim temp As RepositoryItemCheckedComboBoxEdit = Nothing
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -27,20 +22,9 @@ Public Class frmForecastDaily
 
     Private Sub frmForecastDaily_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False)
+        Call Proc_EnableButtons(False, False, If(gh_Common.AdminStatus OrElse gh_Common.GroupID.Contains("MKT"), True, False), True, If(gh_Common.AdminStatus OrElse gh_Common.GroupID.Contains("MKT"), True, False), False, False, False, False, False, False, False)
     End Sub
 
-    Private Function SummaryColumn(ColumName As String) As GridColumnSummaryItem
-        Try
-            Dim siAverage As New GridColumnSummaryItem()
-            siAverage.SummaryType = SummaryItemType.Sum
-            siAverage.FieldName = ColumName
-            siAverage.DisplayFormat = "{0:#,##0.#0}"
-            Return siAverage
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
     Private Sub SaveToExcel(_Grid As GridControl)
         Dim save As New SaveFileDialog
         save.Filter = "Excel File|*.xlsx"
@@ -49,6 +33,7 @@ Public Class frmForecastDaily
             _Grid.ExportToXlsx(save.FileName)
         End If
     End Sub
+
     Private Sub LoadGrid()
         Try
 
@@ -58,10 +43,9 @@ Public Class frmForecastDaily
             dtGrid = Service.GetDataGrid()
             Grid.DataSource = dtGrid
 
-
             With GridView1
                 .BestFitColumns()
-                .Columns(0).Visible = False
+                '.Columns(0).Visible = False
             End With
             If GridView1.RowCount > 0 Then
                 GridCellFormat(GridView1)
@@ -79,6 +63,35 @@ Public Class frmForecastDaily
         bs_Filter = ""
         Call LoadGrid()
     End Sub
+
+    Public Overrides Sub Proc_DeleteData()
+        Try
+            If GridView1.RowCount = 0 Then
+                Throw New Exception("Data kosong")
+            End If
+            Dim Tahun As String
+            Dim Bulan As Integer
+
+            Dim frmExcel As FrmLookupForecastDaily
+            frmExcel = New FrmLookupForecastDaily("Delete") With {
+                .Text = "Pilih Tahun dan Bulan yang akan dihapus",
+                .StartPosition = FormStartPosition.CenterScreen
+            }
+            frmExcel.ShowDialog()
+
+            Tahun = frmExcel.Tahun
+            Bulan = frmExcel.Bulan
+
+            If Not frmExcel.IsCancel Then
+                Service.Delete(Tahun, Bulan)
+                ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+                LoadGrid()
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
+    End Sub
+
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
         Dim ls_Judul As String = "Forecast MDFO"
@@ -86,7 +99,7 @@ Public Class frmForecastDaily
         Dim Tahun As String = ""
         Dim DtTanggal As New DataTable
         Dim frmExcel As FrmLookupForecastDaily
-        frmExcel = New FrmLookupForecastDaily() With {
+        frmExcel = New FrmLookupForecastDaily("Insert") With {
             .Text = "Import " & ls_Judul,
             .StartPosition = FormStartPosition.CenterScreen
         }
@@ -96,9 +109,11 @@ Public Class frmForecastDaily
         Bulan = frmExcel.Bulan
         table = frmExcel.DtExcel
         Try
-            DtTanggal = UnpivotDataTable2(table)
             SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
             SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+            If table IsNot Nothing Then
+                DtTanggal = UnpivotDataTable2(table)
+            End If
             If DtTanggal.Rows.Count > 0 Then
                 Service.ObjForecastCollection.Clear()
                 For Each row As DataRow In DtTanggal.Rows
@@ -123,7 +138,6 @@ Public Class frmForecastDaily
             End If
             SplashScreenManager.CloseForm()
             LoadGrid()
-
         Catch ex As Exception
             SplashScreenManager.CloseForm()
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -152,6 +166,7 @@ Public Class frmForecastDaily
 
         Return unpivoted
     End Function
+
     Public Function UnpivotDataTable(ByVal dt As DataTable) As DataTable
         Dim columnNames As String() = dt.Columns.Cast(Of DataColumn)().[Select](Function(x) x.ColumnName).ToArray()
         Dim dt2 = New DataTable("unpivot")
@@ -211,6 +226,7 @@ Public Class frmForecastDaily
             Throw ex
         End Try
     End Function
+
     Private Sub ExportToExcelTSM_Click(sender As Object, e As EventArgs) Handles ExportToExcelTSM.Click
         If GridView1.RowCount > 0 Then
             SaveToExcel(Grid)
@@ -225,30 +241,8 @@ Public Class frmForecastDaily
         'End If
     End Sub
 
-
     Private Sub frmForecastDaily_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Call LoadGrid()
-    End Sub
-    Dim dtTemp As DataTable
-    Private Sub TempTable()
-        dtTemp = New DataTable
-        dtTemp.Columns.Add("Check", GetType(Boolean))
-        dtTemp.Columns.Add("Tahun", GetType(String))
-        dtTemp.Columns.Add("CustID", GetType(String))
-        dtTemp.Columns.Add("CustName", GetType(String))
-        dtTemp.Columns.Add("InvtID", GetType(String))
-        dtTemp.Columns.Add("Description", GetType(String))
-        dtTemp.Columns.Add("PartNo", GetType(String))
-        dtTemp.Columns.Add("Model", GetType(String))
-        dtTemp.Columns.Add("Oe", GetType(String))
-        dtTemp.Columns.Add("InSub", GetType(String))
-        dtTemp.Columns.Add("Site", GetType(String))
-        dtTemp.Columns.Add("Flag", GetType(String))
-        dtTemp.Columns.Add("N", GetType(Integer))
-        dtTemp.Columns.Add("N1", GetType(Integer))
-        dtTemp.Columns.Add("N2", GetType(Integer))
-        dtTemp.Columns.Add("N3", GetType(Integer))
-        dtTemp.Clear()
     End Sub
 
 End Class

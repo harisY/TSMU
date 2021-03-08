@@ -1,4 +1,5 @@
 ﻿Public Class HRPADataKaryawanModel
+    Public Property ID As Integer
     Public Property TglMulai As Date
     Public Property TglSelesai As Date
     Public Property EmpID As String

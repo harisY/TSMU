@@ -8,6 +8,7 @@ Public Class FrmHRAdministrasiKaryawan
     Dim srvHR As New HRPAService()
     Dim dtGridKaryawan As DataTable
     Dim frm_PADetail As FrmHRAdministrasiKaryawanDetail
+    Dim frm_PANew As FrmHRPANewEmployee
 
     Private Sub FrmHRAdministrasiKaryawan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(True, False, False, True, False, False, False, False, False, False, False, False)
@@ -15,7 +16,7 @@ Public Class FrmHRAdministrasiKaryawan
     End Sub
 
     Public Overrides Sub Proc_InputNewData()
-        MyBase.Proc_InputNewData()
+        Call CallFrmNew()
     End Sub
 
     Public Overrides Sub Proc_Refresh()
@@ -70,6 +71,19 @@ Public Class FrmHRAdministrasiKaryawan
         frm_PADetail.MdiParent = FrmMain
         frm_PADetail.StartPosition = FormStartPosition.CenterScreen
         frm_PADetail.Show()
+    End Sub
+
+    Private Sub CallFrmNew(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
+        If frm_PANew IsNot Nothing AndAlso frm_PANew.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_PANew.Close()
+        End If
+        frm_PANew = New FrmHRPANewEmployee(ls_Code, ls_Code2, li_Row, Me, GridKaryawan)
+        frm_PANew.MdiParent = FrmMain
+        frm_PANew.StartPosition = FormStartPosition.CenterScreen
+        frm_PANew.Show()
     End Sub
 
 End Class
