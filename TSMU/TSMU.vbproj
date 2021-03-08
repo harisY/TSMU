@@ -2325,6 +2325,12 @@
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\PR\FrmDetailPR.Designer.vb">
+      <DependentUpon>FrmDetailPR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PR\FrmDetailPR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\PR\FrmHeaderPR.Designer.vb">
       <DependentUpon>FrmHeaderPR.vb</DependentUpon>
     </Compile>
@@ -3928,6 +3934,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PR\FrmDetailPR.resx">
+      <DependentUpon>FrmDetailPR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PR\FrmHeaderPR.resx">
       <DependentUpon>FrmHeaderPR.vb</DependentUpon>
