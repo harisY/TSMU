@@ -2033,11 +2033,15 @@ Public Class forecast_po_model_detail
 
     Public Sub SinkronisasiHarga(Bulan As String, BulanAngka As String)
         Try
+            Dim Service As New AdmService
+            Dim dt As New DataTable
             Dim salesPrice As Double = 0
-            If InvtID = "N/A" Then
-                salesPrice = GetSalesManual()
-            Else
+
+            dt = Service.GetInventory("ADM", PartNo)
+            If dt.Rows.Count > 1 Then
                 salesPrice = getSalesPrice(BulanAngka, Tahun)
+            Else
+                salesPrice = GetSalesManual()
             End If
 
             Dim _Bulan As String = String.Empty

@@ -114,37 +114,58 @@ Public Class AdmService
                 If Not String.IsNullOrEmpty(PartNo) Then
                     Dim dtHasil As New DataTable
                     dtHasil = GetInventory(_Customer, PartNo)
-                    For Each row1 As DataRow In dtHasil.Rows
-                        Dim InvtID As String = If(row1("InvtID").ToString().AsString = "", "N/A", row1("InvtID").ToString())
-                        Dim Descript As String = If(row1("Descript").ToString().AsString = "", "N/A", row1("Descript").ToString())
-                        Dim Custname As String = If(row1("Name").ToString().AsString = "", "N/A", row1("Name").ToString())
-                        Dim Model As String = String.Empty
-                        If Len(InvtID) > 7 Then
-                            Dim _Model As String = InvtID.Substring(4, 1)
-                            Select Case _Model.ToLower
-                                Case "t"
-                                    Model = "Taruna"
-                                Case "f"
-                                    Model = "Feroza"
-                                Case "g"
-                                    Model = "GCC"
-                                Case "z"
-                                    Model = "ZEBRA"
-                                Case Else
-                                    Model = InvtID.Substring(4, 3)
-                                    '    Model = ModelN.D.ToString + InvtID.Substring(4, 3)
-                            End Select
-                            'Dim Site As String = GetSite(InvtID, PartNo)
-                        End If
+                    If dtHasil.Rows.Count > 0 Then
+                        For Each row1 As DataRow In dtHasil.Rows
+                            Dim InvtID As String = row1("InvtID").ToString().AsString
+                            Dim Descript As String = row1("Descript").ToString().AsString
+                            Dim Custname As String = row1("Name").ToString().AsString
+                            Dim Model As String = String.Empty
+                            If Len(InvtID) > 7 Then
+                                Dim _Model As String = InvtID.Substring(4, 1)
+                                Select Case _Model.ToLower
+                                    Case "t"
+                                        Model = "Taruna"
+                                    Case "f"
+                                        Model = "Feroza"
+                                    Case "g"
+                                        Model = "GCC"
+                                    Case "z"
+                                        Model = "ZEBRA"
+                                    Case Else
+                                        Model = InvtID.Substring(4, 3)
+                                        '    Model = ModelN.D.ToString + InvtID.Substring(4, 3)
+                                End Select
+                                'Dim Site As String = GetSite(InvtID, PartNo)
+                            End If
+                            Dim dr As DataRow = DtTemp.NewRow()
+                            dr("Check") = True
+                            dr("Tahun") = _Tahun
+                            dr("CustID") = _Customer
+                            dr("CustName") = Custname
+                            dr("InvtID") = InvtID
+                            dr("Description") = Descript
+                            dr("PartNo") = PartNo
+                            dr("Model") = Model.AsString
+                            dr("Oe") = "OE"
+                            dr("InSub") = ""
+                            dr("Site") = _Site
+                            dr("Flag") = _Flag
+                            dr("N") = N
+                            dr("N1") = N1
+                            dr("N2") = N2
+                            dr("N3") = N3
+                            DtTemp.Rows.Add(dr)
+                        Next
+                    Else
                         Dim dr As DataRow = DtTemp.NewRow()
                         dr("Check") = True
                         dr("Tahun") = _Tahun
                         dr("CustID") = _Customer
-                        dr("CustName") = Custname
-                        dr("InvtID") = InvtID
-                        dr("Description") = Descript
+                        dr("CustName") = "N/A"
+                        dr("InvtID") = "N/A"
+                        dr("Description") = "N/A"
                         dr("PartNo") = PartNo
-                        dr("Model") = Model.AsString
+                        dr("Model") = "N/A"
                         dr("Oe") = "OE"
                         dr("InSub") = ""
                         dr("Site") = _Site
@@ -154,9 +175,6 @@ Public Class AdmService
                         dr("N2") = N2
                         dr("N3") = N3
                         DtTemp.Rows.Add(dr)
-                    Next
-                    If dtHasil.Rows.Count > 0 Then
-                    Else
                         Add_tForecast_Log(PartNo, UniqueNo, "")
                     End If
                     If dtHasil.Rows.Count > 1 Then

@@ -6,6 +6,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Public Class FrmForecast_PO_TempTable
     Dim _Dt As DataTable
     Dim columnValues As New List(Of String)()
+
     Public Sub New(ByVal Dt As DataTable)
 
         ' This call is required by the designer.
@@ -15,6 +16,7 @@ Public Class FrmForecast_PO_TempTable
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
     ReadOnly Property NewDt As DataTable
         Get
             Return DtTemp
@@ -22,31 +24,49 @@ Public Class FrmForecast_PO_TempTable
     End Property
 
     Private Sub FrmForecast_PO_TempTable_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Proc_EnableButtons(False, True, False, False, False, False, False, False, False, False, False, False)
-        GridControl1.DataSource = _Dt
-        If GridView1.RowCount > 0 Then
-            GridView1.BestFitColumns()
-            GridCellFormat(GridView1)
-            Dim values = From myRow In _Dt.AsEnumerable()
-                         Select myRow.Field(Of String)("PartNo")
-            columnValues = values.ToList()
-        End If
-        For Each col As GridColumn In GridView1.Columns
-            If col.Name.ToLower = "colcheck" OrElse col.Name.ToLower = "invtid" Then
-                col.OptionsColumn.AllowEdit = True
-            Else
-                col.OptionsColumn.AllowEdit = False
+        Try
+            Proc_EnableButtons(False, True, False, False, False, False, False, False, False, False, False, False)
+            GridControl1.DataSource = _Dt
+            If GridView1.RowCount > 0 Then
+                GridView1.BestFitColumns()
+                GridCellFormat(GridView1)
+                Dim values = From myRow In _Dt.AsEnumerable()
+                             Select myRow.Field(Of String)("PartNo")
+                columnValues = values.ToList()
             End If
-        Next
+            For Each col As GridColumn In GridView1.Columns
+                If col.Name.ToLower = "colcheck" OrElse col.Name.ToLower = "colinvtid" _
+                    OrElse col.Name.ToLower = "colcustname" _
+                    OrElse col.Name.ToLower = "coldescription" Then
+                    col.OptionsColumn.AllowEdit = True
+                Else
+                    col.OptionsColumn.AllowEdit = False
+                End If
+            Next
 
-        If GridView1.RowCount > 0 Then
-            Dim InvtId As RepositoryItemComboBox = New RepositoryItemTextEdit()
-            AddHandler InvtId.EditValueChanged, AddressOf Gridview_EditValueChanged
-            GridView1.Columns("InvtID").ColumnEdit = InvtId
-            GridControl1.RepositoryItems.Add(InvtId)
-        End If
+            If GridView1.RowCount > 0 Then
+                Dim TxtInvtId As RepositoryItemTextEdit = New RepositoryItemTextEdit()
+                Dim TxtCustName As RepositoryItemTextEdit = New RepositoryItemTextEdit()
+                Dim TxtDescr As RepositoryItemTextEdit = New RepositoryItemTextEdit()
+
+                AddHandler TxtInvtId.EditValueChanged, AddressOf Gridview_EditValueChanged
+                AddHandler TxtCustName.EditValueChanged, AddressOf Gridview_EditValueChanged
+                AddHandler TxtDescr.EditValueChanged, AddressOf Gridview_EditValueChanged
+                GridView1.Columns("CustName").ColumnEdit = TxtCustName
+                GridView1.Columns("InvtID").ColumnEdit = TxtInvtId
+                GridView1.Columns("Description").ColumnEdit = TxtDescr
+                With GridControl1.RepositoryItems
+                    .Add(TxtCustName)
+                    .Add(TxtInvtId)
+                    .Add(TxtDescr)
+                End With
+            End If
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+        End Try
         'SetEditColumnGrid()
     End Sub
+
     Private Sub SetEditColumnGrid()
         Try
             Dim cmbSite As RepositoryItemComboBox = New RepositoryItemComboBox()
@@ -70,13 +90,14 @@ Public Class FrmForecast_PO_TempTable
                 '.Add(cmbFlag)
                 .Add(cmbCheck)
             End With
-
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Dim edit As DevExpress.XtraEditors.BaseEdit = Nothing
+
     Private Sub Gridview_EditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
 
         Try
@@ -86,6 +107,7 @@ Public Class FrmForecast_PO_TempTable
             'MsgBox(ex.Message)
         End Try
     End Sub
+
     Public Overrides Sub Proc_SaveData()
         Try
             TempTable()
@@ -116,10 +138,11 @@ Public Class FrmForecast_PO_TempTable
             Throw ex
         End Try
     End Sub
+
     Private Function IsShipToUSCanada(ByVal view As GridView, ByVal row As Integer) As Boolean
         Try
             Dim val As String = Convert.ToString(view.GetRowCellValue(row, "InvtID"))
-            Return (val = "N/A" OrElse val = "")
+            Return (val = "N/A")
         Catch
             Return False
         End Try
@@ -144,7 +167,9 @@ Public Class FrmForecast_PO_TempTable
         'Dim view As GridView = TryCast(sender, GridView)
         'view.LayoutChanged()
     End Sub
+
     Dim DtTemp As DataTable
+
     Private Sub TempTable()
         DtTemp = New DataTable
         DtTemp.Columns.Add("Tahun", GetType(String))
@@ -164,4 +189,5 @@ Public Class FrmForecast_PO_TempTable
         DtTemp.Columns.Add("N3", GetType(Integer))
         DtTemp.Clear()
     End Sub
+
 End Class
