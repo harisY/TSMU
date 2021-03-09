@@ -32,12 +32,19 @@ Public Class FrmForecast_PO_TempTable
             columnValues = values.ToList()
         End If
         For Each col As GridColumn In GridView1.Columns
-            If col.Name.ToLower = "colcheck" Then
+            If col.Name.ToLower = "colcheck" OrElse col.Name.ToLower = "invtid" Then
                 col.OptionsColumn.AllowEdit = True
             Else
                 col.OptionsColumn.AllowEdit = False
             End If
         Next
+
+        If GridView1.RowCount > 0 Then
+            Dim InvtId As RepositoryItemComboBox = New RepositoryItemTextEdit()
+            AddHandler InvtId.EditValueChanged, AddressOf Gridview_EditValueChanged
+            GridView1.Columns("InvtID").ColumnEdit = InvtId
+            GridControl1.RepositoryItems.Add(InvtId)
+        End If
         'SetEditColumnGrid()
     End Sub
     Private Sub SetEditColumnGrid()
@@ -48,7 +55,7 @@ Public Class FrmForecast_PO_TempTable
 
             'AddHandler cmbSite.EditValueChanged, AddressOf ComboBox_EditValueChanged
             'AddHandler cmbFlag.EditValueChanged, AddressOf ComboBox_EditValueChanged
-            AddHandler cmbCheck.EditValueChanged, AddressOf ComboBox_EditValueChanged
+            AddHandler cmbCheck.EditValueChanged, AddressOf Gridview_EditValueChanged
 
             cmbSite.Items.AddRange(New String() {"TNG-U", "TSC3-U"})
             cmbFlag.Items.AddRange(New String() {"N/A", "ADMSPD", "KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3"})
@@ -70,7 +77,7 @@ Public Class FrmForecast_PO_TempTable
         End Try
     End Sub
     Dim edit As DevExpress.XtraEditors.BaseEdit = Nothing
-    Private Sub ComboBox_EditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub Gridview_EditValueChanged(ByVal sender As Object, ByVal e As EventArgs)
 
         Try
             GridView1.PostEditor()
@@ -109,20 +116,20 @@ Public Class FrmForecast_PO_TempTable
             Throw ex
         End Try
     End Sub
+    Private Function IsShipToUSCanada(ByVal view As GridView, ByVal row As Integer) As Boolean
+        Try
+            Dim val As String = Convert.ToString(view.GetRowCellValue(row, "InvtID"))
+            Return (val = "N/A" OrElse val = "")
+        Catch
+            Return False
+        End Try
+    End Function
 
     Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
+        If IsShipToUSCanada(GridView1, e.RowHandle) Then
+            e.Appearance.BackColor = Color.LightGreen
+        End If
 
-        'Dim view As GridView = TryCast(sender, GridView)
-
-        'If view.FocusedRowHandle >= 0 Then
-        '    Dim valueToCompare As String = view.GetRowCellDisplayText(view.FocusedRowHandle, "InvtID")
-        '    Dim rowValue As String = view.GetRowCellDisplayText(e.RowHandle, "InvtID")
-
-        '    If valueToCompare = rowValue Then
-        '        e.Appearance.BackColor = Color.Salmon
-        '        e.HighPriority = True
-        '    End If
-        'End If
         Dim val = (TryCast(sender, GridView)).GetRowCellValue(e.RowHandle, "PartNo")
         If val Is Nothing Then
             Return

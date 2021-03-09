@@ -28,6 +28,7 @@ Partial Class frmForecast_PO
         Me.SinkronasiDataTsm = New System.Windows.Forms.ToolStripMenuItem()
         Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteByCustToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InputDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
@@ -50,9 +51,9 @@ Partial Class frmForecast_PO
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm, Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem, Me.DeleteByCustToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelTSM, Me.CekHargaADMTSM, Me.CekInventory1ToolStripMenuItem, Me.SinkronasiDataTsm, Me.PartNoTidakAdaInventoryDiSolomonToolStripMenuItem, Me.DeleteByCustToolStripMenuItem, Me.InputDataToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(405, 176)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(405, 200)
         '
         'ExportToExcelTSM
         '
@@ -90,6 +91,12 @@ Partial Class frmForecast_PO
         Me.DeleteByCustToolStripMenuItem.Name = "DeleteByCustToolStripMenuItem"
         Me.DeleteByCustToolStripMenuItem.Size = New System.Drawing.Size(404, 24)
         Me.DeleteByCustToolStripMenuItem.Text = "Delete By Customer"
+        '
+        'InputDataToolStripMenuItem
+        '
+        Me.InputDataToolStripMenuItem.Name = "InputDataToolStripMenuItem"
+        Me.InputDataToolStripMenuItem.Size = New System.Drawing.Size(404, 24)
+        Me.InputDataToolStripMenuItem.Text = "Input Data"
         '
         'GridView1
         '
@@ -134,4 +141,5 @@ Partial Class frmForecast_PO
     Friend WithEvents SinkronasiDataTsm As ToolStripMenuItem
     Friend WithEvents PartNoTidakAdaInventoryDiSolomonToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteByCustToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents InputDataToolStripMenuItem As ToolStripMenuItem
 End Class

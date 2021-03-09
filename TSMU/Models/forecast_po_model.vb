@@ -853,6 +853,24 @@ Public Class forecast_po_model_detail
         End Try
     End Function
 
+    Public Function GetSalesManual() As Double
+        Dim salesPrice As Double = 0
+
+        Try
+            Dim parameters As List(Of SqlParameter) = New List(Of SqlParameter)()
+            parameters.Add(New SqlParameter() With {.ParameterName = "PartNo", .Value = PartNo})
+            Dim dt As New DataTable
+            dt = GetDataTableByParam("tForecastPrice_Temp1GetHarga", CommandType.StoredProcedure, parameters, GetConnString)
+
+            If dt.Rows.Count > 0 Then
+                salesPrice = dt.Rows(0)(0).ToString().AsDouble
+            End If
+            Return salesPrice
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub InsertData()
         Try
 
@@ -2016,7 +2034,11 @@ Public Class forecast_po_model_detail
     Public Sub SinkronisasiHarga(Bulan As String, BulanAngka As String)
         Try
             Dim salesPrice As Double = 0
-            salesPrice = getSalesPrice(BulanAngka, Tahun)
+            If InvtID = "N/A" Then
+                salesPrice = GetSalesManual()
+            Else
+                salesPrice = getSalesPrice(BulanAngka, Tahun)
+            End If
 
             Dim _Bulan As String = String.Empty
 

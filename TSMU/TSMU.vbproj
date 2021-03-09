@@ -1714,6 +1714,12 @@
     <Compile Include="Form\Common\frmForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\FrmForecastPriceTemp.Designer.vb">
+      <DependentUpon>FrmForecastPriceTemp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmForecastPriceTemp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.Designer.vb">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </Compile>
@@ -2764,6 +2770,7 @@
     <Compile Include="Models\SettingModel.vb" />
     <Compile Include="Models\SoRegTemplateModel.vb" />
     <Compile Include="Models\TamScan.vb" />
+    <Compile Include="Models\TForecastPrice_TempModel.vb" />
     <Compile Include="Models\TMMINmodel.vb" />
     <Compile Include="Models\TTI_Detail_Models.vb" />
     <Compile Include="Models\TTI_Header_Models.vb" />
@@ -3190,6 +3197,7 @@
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
     <Compile Include="Services\SettingService.vb" />
+    <Compile Include="Services\TForecastPrice_TempService.vb" />
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
     </Compile>
@@ -3771,6 +3779,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmForecastPriceTemp.resx">
+      <DependentUpon>FrmForecastPriceTemp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
