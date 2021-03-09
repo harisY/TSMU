@@ -21,12 +21,14 @@ Partial Class FrmForecastPriceTemp
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.TxtPartName = New DevExpress.XtraEditors.TextEdit()
         Me.TxtHarga = New DevExpress.XtraEditors.TextEdit()
         Me.TxtPartNo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtInventory = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCustomer = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTahun = New DevExpress.XtraEditors.TextEdit()
         Me.TxtBulan = New DevExpress.XtraEditors.LookUpEdit()
+        Me.TxtSite = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -35,19 +37,19 @@ Partial Class FrmForecastPriceTemp
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.TxtPartName = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.TxtSite = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.TxtPartName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtHarga.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPartNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtInventory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTahun.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtBulan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtSite.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,10 +58,8 @@ Partial Class FrmForecastPriceTemp
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPartName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtSite.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -74,7 +74,7 @@ Partial Class FrmForecastPriceTemp
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.03226!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.96774!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(563, 258)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(563, 362)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'LayoutControl1
@@ -91,9 +91,17 @@ Partial Class FrmForecastPriceTemp
         Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(557, 252)
+        Me.LayoutControl1.Size = New System.Drawing.Size(557, 356)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'TxtPartName
+        '
+        Me.TxtPartName.Location = New System.Drawing.Point(86, 142)
+        Me.TxtPartName.Name = "TxtPartName"
+        Me.TxtPartName.Size = New System.Drawing.Size(459, 22)
+        Me.TxtPartName.StyleController = Me.LayoutControl1
+        Me.TxtPartName.TabIndex = 10
         '
         'TxtHarga
         '
@@ -153,13 +161,23 @@ Partial Class FrmForecastPriceTemp
         Me.TxtBulan.StyleController = Me.LayoutControl1
         Me.TxtBulan.TabIndex = 5
         '
+        'TxtSite
+        '
+        Me.TxtSite.Location = New System.Drawing.Point(86, 168)
+        Me.TxtSite.Name = "TxtSite"
+        Me.TxtSite.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtSite.Properties.Items.AddRange(New Object() {"TNG-U", "TSC3-U"})
+        Me.TxtSite.Size = New System.Drawing.Size(459, 22)
+        Me.TxtSite.StyleController = Me.LayoutControl1
+        Me.TxtSite.TabIndex = 11
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(557, 252)
+        Me.Root.Size = New System.Drawing.Size(557, 356)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -176,7 +194,7 @@ Partial Class FrmForecastPriceTemp
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 208)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(537, 24)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(537, 128)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
@@ -224,14 +242,6 @@ Partial Class FrmForecastPriceTemp
         Me.LayoutControlItem6.Text = "Harga"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(71, 16)
         '
-        'TxtPartName
-        '
-        Me.TxtPartName.Location = New System.Drawing.Point(86, 142)
-        Me.TxtPartName.Name = "TxtPartName"
-        Me.TxtPartName.Size = New System.Drawing.Size(459, 22)
-        Me.TxtPartName.StyleController = Me.LayoutControl1
-        Me.TxtPartName.TabIndex = 10
-        '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TxtPartName
@@ -250,32 +260,25 @@ Partial Class FrmForecastPriceTemp
         Me.LayoutControlItem8.Text = "Site"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(71, 16)
         '
-        'TxtSite
-        '
-        Me.TxtSite.Location = New System.Drawing.Point(86, 168)
-        Me.TxtSite.Name = "TxtSite"
-        Me.TxtSite.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TxtSite.Properties.Items.AddRange(New Object() {"TNG-U", "TSC3-U"})
-        Me.TxtSite.Size = New System.Drawing.Size(459, 22)
-        Me.TxtSite.StyleController = Me.LayoutControl1
-        Me.TxtSite.TabIndex = 11
-        '
         'FrmForecastPriceTemp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(563, 285)
+        Me.ClientSize = New System.Drawing.Size(563, 389)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "FrmForecastPriceTemp"
+        Me.Text = "Input Inventory Sementara"
         Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.TxtPartName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtHarga.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPartNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtInventory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTahun.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtBulan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtSite.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -284,10 +287,8 @@ Partial Class FrmForecastPriceTemp
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPartName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtSite.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
