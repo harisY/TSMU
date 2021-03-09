@@ -55,4 +55,24 @@
 
     End Function
 
+    Public Function Get_CR_Purchase_Search(pDate1 As Date, pDate2 As Date) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[CR_Request_Get_Cek_Purchase_Search]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@pDate1", SqlDbType.DateTime)
+            pParam(1) = New SqlClient.SqlParameter("@pDate2", SqlDbType.DateTime)
+
+
+            pParam(0).Value = pDate1
+            pParam(1).Value = pDate2
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
 End Class

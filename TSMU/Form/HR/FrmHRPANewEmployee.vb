@@ -1,4 +1,9 @@
-﻿Imports DevExpress.XtraGrid
+﻿Imports System.Drawing.Imaging
+Imports System.IO
+Imports System.Web.UI.WebControls
+Imports DevExpress.XtraGrid
+Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraTreeList
 
 Public Class FrmHRPANewEmployee
     Public IsClosed As Boolean = False
@@ -8,10 +13,15 @@ Public Class FrmHRPANewEmployee
     Dim isLoad As Boolean = False
     Dim _Tag = New TagModel
 
-    Dim GridDtl As GridControl
+    Dim GridKaryawan As GridControl
+    Dim GridViewKaryawan As GridView
     Dim modelDataPribadi As HRPADataPribadiModel
     Dim modelDataKaryawan As HRPADataKaryawanModel
+    Dim modelOrgStruktur As HROrgStrukturModel
     Dim srvHR As New HRPAService
+
+    Dim EmpID As String = String.Empty
+    Dim NIK As String = String.Empty
 
     Public Sub New()
 
@@ -34,7 +44,8 @@ Public Class FrmHRPANewEmployee
             fs_Code2 = strCode2
             bi_GridParentRow = li_GridRow
         End If
-        GridDtl = _Grid
+        GridKaryawan = _Grid
+        'GridViewKaryawan = _GridView
         FrmParent = lf_FormParent
         _Tag = New TagModel
         _Tag.PageIndex = lf_FormParent.Tag.PageIndex
@@ -62,7 +73,6 @@ Public Class FrmHRPANewEmployee
                 Me.Text = "NEW KARYAWAN"
             End If
             Call LoadTxtBox()
-            'LoadGridDataPribadi()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
             bs_MainFormName = "FrmHRAdministrasiKaryawan"
@@ -75,15 +85,19 @@ Public Class FrmHRPANewEmployee
     Private Sub LoadTxtBox()
         ListItemsPerpindahan()
         ListItemsGolongan()
-        ListItemsOrganisasi()
-        Dim dtTreeOrg As New DataTable
-        dtTreeOrg = srvHR.GetStrukturOrg()
-        txtJabatan.Properties.DataSource = dtTreeOrg
+
+        txtAction.Text = "NEW-HIRE"
+        cbStatus.Text = "AKTIF"
         dtHTglMulai.EditValue = Date.Today
         dtTglMulai.EditValue = Date.Today
         dtTglSelesai.EditValue = Date.Parse("9999-12-31")
         dtDKTglMulai.EditValue = Date.Today
         dtDKTglSelesai.EditValue = Date.Parse("9999-12-31")
+
+        ListItemsOrganisasi()
+        Dim dtTreeOrg As New DataTable
+        dtTreeOrg = srvHR.GetStrukturOrg(dtTglMulai.EditValue)
+        txtJabatan.Properties.DataSource = dtTreeOrg
     End Sub
 
     Public Overrides Function ValidateSave() As Boolean
@@ -96,43 +110,102 @@ Public Class FrmHRPANewEmployee
             Else
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
             End If
-
-            'If txtNIK.Text = "" OrElse txtNama.Text = "" OrElse txtGolongan.Text = "" Then
-            '    Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
-            'ElseIf Len(txtNIK.Text) <> 9 Then
-            '    Err.Raise(ErrNumber, , "NIK harus 9 digit !")
-            'ElseIf GridViewAdvance.RowCount = 0 Then
-            '    Err.Raise(ErrNumber, , "Data detail tidak boleh kosong !")
-            'End If
+            If txtNamaLengkap.EditValue = "" Then
+                Err.Raise(ErrNumber, , "Nama Lengkap tidak boleh kosong !")
+            ElseIf cbPerpindahan.EditValue = "" Then
+                Err.Raise(ErrNumber, , "Perpindahan tidak boleh kosong !")
+            ElseIf cbAlasan.EditValue = "" Then
+                Err.Raise(ErrNumber, , "Alasan tidak boleh kosong !")
+            ElseIf cbStatus.EditValue = "" Then
+                Err.Raise(ErrNumber, , "Status tidak boleh kosong !")
+            ElseIf cbTipe.EditValue = "" Then
+                Err.Raise(ErrNumber, , "Tipe tidak boleh kosong !")
+            ElseIf cbFactory.EditValue = "" Then
+                Err.Raise(ErrNumber, , "Factory tidak boleh kosong !")
+            End If
 
             If lb_Validated Then
-                'Dim status As String = "CREATE"
-                'Dim approved As String = "CREATE"
-                'If isUpdate = False Then
-                '    clsGlobal = New GlobalService
-                '    noRequest = clsGlobal.GetAutoNumber(FrmParent)
-                '    getDataDetail()
-                '    txtNoRequest.Text = noRequest
-                'Else
-                '    noRequest = txtNoRequest.Text
-                '    getDataDetail()
-                '    If FrmParent.Name = "FrmTravelTicket" Then
-                '        approved = ObjTravelRequest.Approved
-                '        status = ObjTravelRequest.Status
-                '    End If
-                'End If
-                'With ObjTravelRequest
-                '    .NoRequest = txtNoRequest.Text
-                '    .Nama = txtNama.Text.Trim.ToUpper
-                '    .DeptID = txtDepartement.Text.Trim.ToUpper
-                '    .TravelType = txtTravelType.Text.Trim.ToUpper
-                '    .NIK = txtNIK.Text.Trim.ToUpper
-                '    .Golongan = txtGolongan.EditValue
-                '    .Purpose = txtPurpose.Text.Trim.ToUpper
-                '    .Status = status
-                '    .Approved = approved
-                '    .Comment = ""
-                'End With
+                EmpID = srvHR.GetAutoNumberEmpID()
+                NIK = srvHR.GetAutoNumberNIK()
+                txtNIK.Text = NIK
+                txtDKNIK.Text = NIK
+                Dim now As DateTime = DateTime.Now
+
+                modelDataPribadi = New HRPADataPribadiModel
+                Dim tmpData As Byte()
+                Using ms As New MemoryStream()
+                    txtFoto.Image.Save(ms, ImageFormat.Jpeg)
+                    tmpData = ms.ToArray
+                End Using
+                With modelDataPribadi
+                    .TglMulai = dtTglMulai.EditValue
+                    .TglSelesai = dtTglSelesai.EditValue
+                    .EmpID = EmpID
+                    .PINFinger = txtPINFinger.Text
+                    .NamaLengkap = txtNamaLengkap.Text
+                    .NamaPanggilan = txtNamaPanggilan.Text
+                    .JenisKelamin = cbJenisKelamin.Text
+                    .TempatLahir = txtTempatLahir.Text
+                    .TglLahir = dtTglLahir.EditValue
+                    .Tamatan = cbTamatan.Text
+                    .Kewarganegaraan = cbKewarganegaraan.Text
+                    .Agama = cbAgama.Text
+                    .GolonganDarah = ""
+                    .StatusKawin = cbStatusKawin.Text
+                    .TglKawin = dtTglKawin.EditValue
+                    .JumlahAnak = IIf(txtJumlahAnak.Text = "", 0, txtJumlahAnak.Text)
+                    .Gambar = tmpData
+                    .Reference = txtReference.Text
+                    .Ket = txtKet.Text
+                    .TglBuat = now
+                    .UserBuat = gh_Common.Username
+                    .TglUbah = now
+                    .UserUbah = gh_Common.Username
+                End With
+
+                modelDataKaryawan = New HRPADataKaryawanModel
+                With modelDataKaryawan
+                    .TglMulai = dtDKTglMulai.EditValue
+                    .TglSelesai = dtDKTglSelesai.EditValue
+                    .EmpID = EmpID
+                    .NIK = txtDKNIK.Text
+                    .PerpindahanKaryawan = cbPerpindahan.EditValue
+                    .AlasanPindah = cbAlasan.EditValue
+                    .Golongan = cbGolongan.EditValue
+                    .StatusKaryawan = cbStatus.Text
+                    .TipeKaryawan = cbTipe.Text
+                    .TipePosisiKaryawan = cbTipePosisi.Text
+                    .Factory = cbFactory.Text
+                    .Organisasi = cbOrganisasi.EditValue
+                    .Jabatan = txtJabatan.EditValue
+                    .Job = IIf(cbJob.EditValue Is Nothing, "", cbJob.EditValue)
+                    .TglEfektif = dtTglEfektif.EditValue
+                    .TglBerakhir = dtTglBerakhir.EditValue
+                    .SK = txtSK.Text
+                    .Ket = txtKet.Text
+                    .TglBuat = now
+                    .UserBuat = gh_Common.Username
+                    .TglUbah = now
+                    .UserUbah = gh_Common.Username
+                End With
+
+                modelOrgStruktur = New HROrgStrukturModel
+                With modelOrgStruktur
+                    .TglMulai = dtDKTglMulai.EditValue
+                    .TglSelesai = dtDKTglSelesai.EditValue
+                    .OrgID = txtJabatan.EditValue
+                    .OrgClass = "P"
+                    .RelDir = "B"
+                    .RelTipe = "03"
+                    .Seq = 1
+                    .RelClass = "E"
+                    .RelOrg = EmpID
+                    .Ket = txtKet.Text
+                    .TglBuat = now
+                    .UserBuat = gh_Common.Username
+                    .TglUbah = now
+                    .UserUbah = gh_Common.Username
+                End With
             End If
         Catch ex As Exception
             lb_Validated = False
@@ -144,15 +217,15 @@ Public Class FrmHRPANewEmployee
 
     Public Overrides Sub Proc_SaveData()
         Try
-            'If isUpdate = False Then
-            '    ObjTravelRequest.InsertData(FrmParent)
-            '    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
-            'Else
-            '    ObjTravelRequest.NoRequest = txtNoRequest.Text
-            '    ObjTravelRequest.UpdateData()
-            '    Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
-            'End If
+            srvHR.SaveNewEmployee(modelDataPribadi, modelDataKaryawan, modelOrgStruktur)
+            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
 
+            Dim dtGridKaryawan = New DataTable
+            dtGridKaryawan = srvHR.GetDataKaryawan()
+            GridKaryawan.DataSource = dtGridKaryawan
+            'Dim colEmpID As GridColumn = GridViewKaryawan.Columns("EmployeeID")
+            'colEmpID.Visible = False
+            'GridViewKaryawan.BestFitColumns()
             IsClosed = True
             Me.Hide()
 
@@ -166,6 +239,7 @@ Public Class FrmHRPANewEmployee
         If txtAction.Text = "FROM APPLICANT" Then
             txtApplicantID.Enabled = True
         Else
+            txtApplicantID.Text = ""
             txtApplicantID.Enabled = False
         End If
     End Sub
@@ -197,6 +271,44 @@ Public Class FrmHRPANewEmployee
         Dim dtOrganisasi = New DataTable
         dtOrganisasi = srvHR.GetListOrganisasi()
         cbOrganisasi.Properties.DataSource = dtOrganisasi
+    End Sub
+
+    Private Sub cbPerpindahan_EditValueChanged(sender As Object, e As EventArgs) Handles cbPerpindahan.EditValueChanged
+        cbAlasan.EditValue = ""
+        ListItemsAlasan(cbPerpindahan.EditValue)
+    End Sub
+
+    Private Sub tlJabatan_GetStateImage(sender As Object, e As GetStateImageEventArgs) Handles tlJabatan.GetStateImage
+        If e.Node.GetValue("OrgClass") = "O" Then
+            e.Node.StateImageIndex = 0
+        ElseIf e.Node.GetValue("OrgClass") = "P" Then
+            If IIf(e.Node.GetValue("NIK") Is DBNull.Value, "", e.Node.GetValue("NIK")) = "" Then
+                e.NodeImageIndex = 1
+            Else
+                e.NodeImageIndex = 2
+            End If
+        End If
+    End Sub
+
+    Private Sub tlJabatan_RowCellClick(sender As Object, e As RowCellClickEventArgs) Handles tlJabatan.RowCellClick
+        Dim orgID As String = tlJabatan.FocusedNode.GetValue("OrgID")
+        Dim orgClass As String = tlJabatan.FocusedNode.GetValue("OrgClass")
+        Dim orgParent As String = tlJabatan.FocusedNode.GetValue("ParentID")
+        Dim NIK As String = IIf(tlJabatan.FocusedNode.GetValue("NIK") Is DBNull.Value, "", tlJabatan.FocusedNode.GetValue("NIK"))
+        If orgClass = "O" Then
+            MsgBox("Silahkan Pilih Posisi !", MessageBoxIcon.Information, "Information")
+        Else
+            If NIK <> "" Then
+                MsgBox("Posisi Sudah Terisi !", MessageBoxIcon.Information, "Information")
+            Else
+                cbOrganisasi.EditValue = orgParent
+            End If
+        End If
+    End Sub
+
+    Private Sub btnDeleteJab_Click(sender As Object, e As EventArgs) Handles btnDeleteJab.Click
+        txtJabatan.EditValue = ""
+        cbOrganisasi.EditValue = ""
     End Sub
 
 End Class

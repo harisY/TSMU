@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmHRPADataPribadi
+Partial Class FrmHRPADataKeluarga
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -775,14 +775,14 @@ Partial Class FrmHRPADataPribadi
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem19.TextVisible = False
         '
-        'FrmHRPADataPribadi
+        'FrmHRPADataKeluarga
         '
         Me.ClientSize = New System.Drawing.Size(732, 491)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FrmHRPADataPribadi"
-        Me.Text = "Data Pribadi"
+        Me.Name = "FrmHRPADataKeluarga"
+        Me.Text = "Data Keluarga"
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)

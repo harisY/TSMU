@@ -1076,6 +1076,11 @@ Public Class ClsCR_CreateUser
                                      "SET [IsActive] = 0 WHERE [NoTransaksi] = '" & H_CirculationNo & "'"
                         MainModul.ExecQuery(ls_SP)
 
+                        Dim Q_Other As String = " " & vbCrLf &
+                                    "UPDATE CR_Other_Dept" & vbCrLf &
+                                     "SET [Approve] = 0 WHERE [CirculationNo] = '" & H_CirculationNo & "'"
+                        MainModul.ExecQuery(Q_Other)
+
                         Dim GS As New GlobalService
                         GS.Approve(Model, "Reject")
 
@@ -1494,13 +1499,34 @@ Public Class ClsCR_CreateUser
 
                     Try
 
-
                         'Try
                         Dim ls_SP As String = " " & vbCrLf &
                                     "UPDATE CR_Request" & vbCrLf &
-                                                        "SET [Status] = '" & H_Status & "',[Current_Level] = '" & H_Current_Level & "'
+                                                        "SET [CR_Type]= '" & H_CR_Type & "' 
+                                                             ,[NameItem]=  '" & H_NameItem & "' 
+                                                             ,[PoType]=  '" & H_PO & "' 
+                                                             ,Customer = '" & H_Customer & "' 
+                                                             ,[Reason]= '" & H_Reason & "'
+                                                             ,[Budget] = '" & H_Budget & "'
+                                                             ,[Spesification]=  '" & H_Spesification & "' 
+                                                             ,[Parent_Circuation]= '" & H_Parent_Circulation & "' 
+                                                             ,[Parent_Circuation_Amount]= '" & H_Parent_Circulation_Amount & "' 
+                                                             ,[UpdatedBy]= '" & gh_Common.Username & "'
+                                                             ,[UpdatedDate]= '" & Date.Now & "' 
+                                                             ,NilaiBudget =  '" & H_Budget_text & "' 
+                                                             ,[Status] = '" & H_Status & "'
+                                                             ,[Current_Level] = '" & H_Current_Level & "'
                                                         WHERE [CirculationNo] = '" & CirculationNo & "'"
                         MainModul.ExecQuery(ls_SP)
+
+                        Dim DeleteDetail As String = "DELETE FROM CR_Description_Of_Cost WHERE [CirculationNo] = '" & CirculationNo & "'"
+                        MainModul.ExecQuery(DeleteDetail)
+
+                        For i As Integer = 0 To Collection_Description_Of_Cost.Count - 1
+                            With Collection_Description_Of_Cost(i)
+                                .InsertCR_Description_Of_Cost(CirculationNo)
+                            End With
+                        Next
 
 
                         Dim GS As New GlobalService

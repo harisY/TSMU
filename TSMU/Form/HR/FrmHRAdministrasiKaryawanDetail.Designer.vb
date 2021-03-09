@@ -21,6 +21,7 @@ Partial Class FrmHRAdministrasiKaryawanDetail
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.txtFactory = New DevExpress.XtraEditors.TextEdit()
         Me.txtJabatan = New DevExpress.XtraEditors.TextEdit()
         Me.txtOrganisasi = New DevExpress.XtraEditors.TextEdit()
         Me.txtTipe = New DevExpress.XtraEditors.TextEdit()
@@ -30,12 +31,14 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.txtNIK = New DevExpress.XtraEditors.TextEdit()
         Me.PictureFoto = New DevExpress.XtraEditors.PictureEdit()
         Me.dtTglLahir = New DevExpress.XtraEditors.DateEdit()
+        Me.dtTglJoin = New DevExpress.XtraEditors.DateEdit()
+        Me.dtTglDiangkat = New DevExpress.XtraEditors.DateEdit()
+        Me.dtTglResign = New DevExpress.XtraEditors.DateEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -43,6 +46,12 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.btnCopy = New DevExpress.XtraEditors.SimpleButton()
@@ -64,6 +73,7 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.txtFactory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtJabatan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOrganisasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTipe.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,12 +84,17 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         CType(Me.PictureFoto.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtTglLahir.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtTglLahir.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtTglJoin.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtTglJoin.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtTglDiangkat.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtTglDiangkat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtTglResign.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtTglResign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +102,12 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
         CType(Me.cbMasterData.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,18 +135,20 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.TableLayoutPanel1.Controls.Add(Me.LayoutControl3, 0, 2)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 155.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(982, 526)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1340, 624)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'LayoutControl1
         '
         Me.LayoutControl1.AutoScroll = False
         Me.LayoutControl1.BackColor = System.Drawing.Color.SkyBlue
+        Me.LayoutControl1.Controls.Add(Me.txtFactory)
         Me.LayoutControl1.Controls.Add(Me.txtJabatan)
         Me.LayoutControl1.Controls.Add(Me.txtOrganisasi)
         Me.LayoutControl1.Controls.Add(Me.txtTipe)
@@ -135,90 +158,112 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.LayoutControl1.Controls.Add(Me.txtNIK)
         Me.LayoutControl1.Controls.Add(Me.PictureFoto)
         Me.LayoutControl1.Controls.Add(Me.dtTglLahir)
+        Me.LayoutControl1.Controls.Add(Me.dtTglJoin)
+        Me.LayoutControl1.Controls.Add(Me.dtTglDiangkat)
+        Me.LayoutControl1.Controls.Add(Me.dtTglResign)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(3, 3)
+        Me.LayoutControl1.Location = New System.Drawing.Point(4, 4)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(460, 468, 812, 500)
         Me.LayoutControl1.OptionsFocus.ActivateSelectedControlOnGotFocus = False
         Me.LayoutControl1.OptionsView.IsReadOnly = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(976, 149)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1332, 174)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'txtFactory
+        '
+        Me.txtFactory.Enabled = False
+        Me.txtFactory.Location = New System.Drawing.Point(347, 111)
+        Me.txtFactory.Name = "txtFactory"
+        Me.txtFactory.Properties.ReadOnly = True
+        Me.txtFactory.Size = New System.Drawing.Size(137, 28)
+        Me.txtFactory.StyleController = Me.LayoutControl1
+        Me.txtFactory.TabIndex = 13
         '
         'txtJabatan
         '
         Me.txtJabatan.Enabled = False
-        Me.txtJabatan.Location = New System.Drawing.Point(521, 91)
+        Me.txtJabatan.Location = New System.Drawing.Point(633, 111)
+        Me.txtJabatan.Margin = New System.Windows.Forms.Padding(4)
         Me.txtJabatan.Name = "txtJabatan"
         Me.txtJabatan.Properties.ReadOnly = True
-        Me.txtJabatan.Size = New System.Drawing.Size(84, 22)
+        Me.txtJabatan.Size = New System.Drawing.Size(107, 28)
         Me.txtJabatan.StyleController = Me.LayoutControl1
         Me.txtJabatan.TabIndex = 12
         '
         'txtOrganisasi
         '
         Me.txtOrganisasi.Enabled = False
-        Me.txtOrganisasi.Location = New System.Drawing.Point(521, 65)
+        Me.txtOrganisasi.Location = New System.Drawing.Point(633, 79)
+        Me.txtOrganisasi.Margin = New System.Windows.Forms.Padding(4)
         Me.txtOrganisasi.Name = "txtOrganisasi"
         Me.txtOrganisasi.Properties.ReadOnly = True
-        Me.txtOrganisasi.Size = New System.Drawing.Size(84, 22)
+        Me.txtOrganisasi.Size = New System.Drawing.Size(107, 28)
         Me.txtOrganisasi.StyleController = Me.LayoutControl1
         Me.txtOrganisasi.TabIndex = 11
         '
         'txtTipe
         '
         Me.txtTipe.Enabled = False
-        Me.txtTipe.Location = New System.Drawing.Point(521, 39)
+        Me.txtTipe.Location = New System.Drawing.Point(633, 47)
+        Me.txtTipe.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTipe.Name = "txtTipe"
         Me.txtTipe.Properties.ReadOnly = True
-        Me.txtTipe.Size = New System.Drawing.Size(84, 22)
+        Me.txtTipe.Size = New System.Drawing.Size(107, 28)
         Me.txtTipe.StyleController = Me.LayoutControl1
         Me.txtTipe.TabIndex = 10
         '
         'txtStatus
         '
         Me.txtStatus.Enabled = False
-        Me.txtStatus.Location = New System.Drawing.Point(521, 13)
+        Me.txtStatus.Location = New System.Drawing.Point(633, 15)
+        Me.txtStatus.Margin = New System.Windows.Forms.Padding(4)
         Me.txtStatus.Name = "txtStatus"
         Me.txtStatus.Properties.ReadOnly = True
-        Me.txtStatus.Size = New System.Drawing.Size(84, 22)
+        Me.txtStatus.Size = New System.Drawing.Size(107, 28)
         Me.txtStatus.StyleController = Me.LayoutControl1
         Me.txtStatus.TabIndex = 9
         '
         'txtJenisKelamin
         '
         Me.txtJenisKelamin.Enabled = False
-        Me.txtJenisKelamin.Location = New System.Drawing.Point(287, 65)
+        Me.txtJenisKelamin.Location = New System.Drawing.Point(347, 79)
+        Me.txtJenisKelamin.Margin = New System.Windows.Forms.Padding(4)
         Me.txtJenisKelamin.Name = "txtJenisKelamin"
         Me.txtJenisKelamin.Properties.ReadOnly = True
-        Me.txtJenisKelamin.Size = New System.Drawing.Size(90, 22)
+        Me.txtJenisKelamin.Size = New System.Drawing.Size(137, 28)
         Me.txtJenisKelamin.StyleController = Me.LayoutControl1
         Me.txtJenisKelamin.TabIndex = 7
         '
         'txtNamaLengkap
         '
         Me.txtNamaLengkap.Enabled = False
-        Me.txtNamaLengkap.Location = New System.Drawing.Point(287, 39)
+        Me.txtNamaLengkap.Location = New System.Drawing.Point(347, 47)
+        Me.txtNamaLengkap.Margin = New System.Windows.Forms.Padding(4)
         Me.txtNamaLengkap.Name = "txtNamaLengkap"
         Me.txtNamaLengkap.Properties.ReadOnly = True
-        Me.txtNamaLengkap.Size = New System.Drawing.Size(90, 22)
+        Me.txtNamaLengkap.Size = New System.Drawing.Size(137, 28)
         Me.txtNamaLengkap.StyleController = Me.LayoutControl1
         Me.txtNamaLengkap.TabIndex = 6
         '
         'txtNIK
         '
         Me.txtNIK.Enabled = False
-        Me.txtNIK.Location = New System.Drawing.Point(287, 13)
+        Me.txtNIK.Location = New System.Drawing.Point(347, 15)
+        Me.txtNIK.Margin = New System.Windows.Forms.Padding(4)
         Me.txtNIK.Name = "txtNIK"
         Me.txtNIK.Properties.ReadOnly = True
-        Me.txtNIK.Size = New System.Drawing.Size(90, 22)
+        Me.txtNIK.Size = New System.Drawing.Size(137, 28)
         Me.txtNIK.StyleController = Me.LayoutControl1
         Me.txtNIK.TabIndex = 5
         '
         'PictureFoto
         '
-        Me.PictureFoto.Location = New System.Drawing.Point(31, 13)
+        Me.PictureFoto.Location = New System.Drawing.Point(38, 15)
+        Me.PictureFoto.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureFoto.Name = "PictureFoto"
         Me.PictureFoto.Properties.AllowFocused = False
         Me.PictureFoto.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
@@ -226,7 +271,7 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.PictureFoto.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PictureFoto.Properties.ReadOnly = True
         Me.PictureFoto.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PictureFoto.Size = New System.Drawing.Size(128, 121)
+        Me.PictureFoto.Size = New System.Drawing.Size(160, 143)
         Me.PictureFoto.StyleController = Me.LayoutControl1
         Me.PictureFoto.TabIndex = 4
         '
@@ -234,7 +279,8 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         '
         Me.dtTglLahir.EditValue = Nothing
         Me.dtTglLahir.Enabled = False
-        Me.dtTglLahir.Location = New System.Drawing.Point(287, 91)
+        Me.dtTglLahir.Location = New System.Drawing.Point(959, 15)
+        Me.dtTglLahir.Margin = New System.Windows.Forms.Padding(4)
         Me.dtTglLahir.Name = "dtTglLahir"
         Me.dtTglLahir.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtTglLahir.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -246,28 +292,88 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.dtTglLahir.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
         Me.dtTglLahir.Properties.ReadOnly = True
         Me.dtTglLahir.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtTglLahir.Size = New System.Drawing.Size(90, 22)
+        Me.dtTglLahir.Size = New System.Drawing.Size(161, 28)
         Me.dtTglLahir.StyleController = Me.LayoutControl1
         Me.dtTglLahir.TabIndex = 8
+        '
+        'dtTglJoin
+        '
+        Me.dtTglJoin.EditValue = Nothing
+        Me.dtTglJoin.Enabled = False
+        Me.dtTglJoin.Location = New System.Drawing.Point(959, 47)
+        Me.dtTglJoin.Name = "dtTglJoin"
+        Me.dtTglJoin.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtTglJoin.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtTglJoin.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.dtTglJoin.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtTglJoin.Properties.EditFormat.FormatString = ""
+        Me.dtTglJoin.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtTglJoin.Properties.Mask.EditMask = ""
+        Me.dtTglJoin.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.dtTglJoin.Properties.ReadOnly = True
+        Me.dtTglJoin.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.dtTglJoin.Size = New System.Drawing.Size(161, 28)
+        Me.dtTglJoin.StyleController = Me.LayoutControl1
+        Me.dtTglJoin.TabIndex = 14
+        '
+        'dtTglDiangkat
+        '
+        Me.dtTglDiangkat.EditValue = Nothing
+        Me.dtTglDiangkat.Enabled = False
+        Me.dtTglDiangkat.Location = New System.Drawing.Point(959, 79)
+        Me.dtTglDiangkat.Name = "dtTglDiangkat"
+        Me.dtTglDiangkat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtTglDiangkat.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtTglDiangkat.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.dtTglDiangkat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtTglDiangkat.Properties.EditFormat.FormatString = ""
+        Me.dtTglDiangkat.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtTglDiangkat.Properties.Mask.EditMask = ""
+        Me.dtTglDiangkat.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.dtTglDiangkat.Properties.ReadOnly = True
+        Me.dtTglDiangkat.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.dtTglDiangkat.Size = New System.Drawing.Size(161, 28)
+        Me.dtTglDiangkat.StyleController = Me.LayoutControl1
+        Me.dtTglDiangkat.TabIndex = 15
+        '
+        'dtTglResign
+        '
+        Me.dtTglResign.EditValue = Nothing
+        Me.dtTglResign.Enabled = False
+        Me.dtTglResign.Location = New System.Drawing.Point(959, 111)
+        Me.dtTglResign.Name = "dtTglResign"
+        Me.dtTglResign.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtTglResign.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtTglResign.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.dtTglResign.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtTglResign.Properties.EditFormat.FormatString = ""
+        Me.dtTglResign.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtTglResign.Properties.Mask.EditMask = ""
+        Me.dtTglResign.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.dtTglResign.Properties.ReadOnly = True
+        Me.dtTglResign.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.dtTglResign.Size = New System.Drawing.Size(161, 28)
+        Me.dtTglResign.StyleController = Me.LayoutControl1
+        Me.dtTglResign.TabIndex = 16
         '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3, Me.EmptySpaceItem4, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem5})
         Me.Root.Name = "Root"
-        Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 0)
-        Me.Root.Size = New System.Drawing.Size(976, 149)
+        Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(12, 12, 12, 0)
+        Me.Root.Size = New System.Drawing.Size(1332, 174)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.PictureFoto
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.MaxSize = New System.Drawing.Size(150, 125)
-        Me.LayoutControlItem1.MinSize = New System.Drawing.Size(150, 125)
+        Me.LayoutControlItem1.MaxSize = New System.Drawing.Size(187, 147)
+        Me.LayoutControlItem1.MinSize = New System.Drawing.Size(187, 147)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Padding = New DevExpress.XtraLayout.Utils.Padding(20, 2, 2, 2)
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(150, 137)
+        Me.LayoutControlItem1.Padding = New DevExpress.XtraLayout.Utils.Padding(25, 2, 2, 2)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(187, 160)
         Me.LayoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
@@ -275,98 +381,171 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.txtNIK
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(175, 0)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(209, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(193, 26)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(264, 32)
         Me.LayoutControlItem2.Text = "NIK"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(96, 16)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(120, 19)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.txtNamaLengkap
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(175, 26)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(209, 32)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(193, 26)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(264, 32)
         Me.LayoutControlItem3.Text = "Nama Lengkap   "
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(96, 16)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(120, 19)
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.txtJenisKelamin
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(175, 52)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(209, 64)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(193, 26)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(264, 32)
         Me.LayoutControlItem4.Text = "Jenis Kelamin"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(96, 16)
-        '
-        'LayoutControlItem5
-        '
-        Me.LayoutControlItem5.Control = Me.dtTglLahir
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(175, 78)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(193, 59)
-        Me.LayoutControlItem5.Text = "Tanggal Lahir"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(96, 16)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(120, 19)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.txtStatus
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(409, 0)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(495, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(187, 26)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(234, 32)
         Me.LayoutControlItem6.Text = "Status"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(96, 16)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(120, 19)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.txtTipe
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(409, 26)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(495, 32)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(187, 26)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(234, 32)
         Me.LayoutControlItem7.Text = "Tipe"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(96, 16)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(120, 19)
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.txtOrganisasi
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(409, 52)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(495, 64)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(187, 26)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(234, 32)
         Me.LayoutControlItem8.Text = "Organisasi"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(96, 16)
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(120, 19)
         '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.txtJabatan
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(409, 78)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(495, 96)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(187, 59)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(234, 64)
         Me.LayoutControlItem9.Text = "Jabatan"
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(96, 16)
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(120, 19)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(150, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(187, 0)
+        Me.EmptySpaceItem1.MaxSize = New System.Drawing.Size(50, 0)
+        Me.EmptySpaceItem1.MinSize = New System.Drawing.Size(20, 10)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(25, 137)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(22, 160)
+        Me.EmptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(368, 0)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(473, 0)
+        Me.EmptySpaceItem2.MaxSize = New System.Drawing.Size(50, 0)
+        Me.EmptySpaceItem2.MinSize = New System.Drawing.Size(20, 10)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(41, 137)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(22, 160)
+        Me.EmptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(596, 0)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(729, 0)
+        Me.EmptySpaceItem3.MaxSize = New System.Drawing.Size(50, 0)
+        Me.EmptySpaceItem3.MinSize = New System.Drawing.Size(20, 10)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(358, 137)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(50, 160)
+        Me.EmptySpaceItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'EmptySpaceItem4
+        '
+        Me.EmptySpaceItem4.AllowHotTrack = False
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(1109, 0)
+        Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(197, 160)
+        Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.txtFactory
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(209, 96)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(264, 64)
+        Me.LayoutControlItem16.Text = "Factory"
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(120, 19)
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.dtTglJoin
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(779, 32)
+        Me.LayoutControlItem17.MaxSize = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem17.MinSize = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem17.Text = "Tanggal Join"
+        Me.LayoutControlItem17.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(160, 19)
+        Me.LayoutControlItem17.TextToControlDistance = 5
+        '
+        'LayoutControlItem18
+        '
+        Me.LayoutControlItem18.Control = Me.dtTglDiangkat
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(779, 64)
+        Me.LayoutControlItem18.MaxSize = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem18.MinSize = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem18.Name = "LayoutControlItem18"
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem18.Text = "Tanggal Diangkat"
+        Me.LayoutControlItem18.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(160, 19)
+        Me.LayoutControlItem18.TextToControlDistance = 5
+        '
+        'LayoutControlItem19
+        '
+        Me.LayoutControlItem19.Control = Me.dtTglResign
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(779, 96)
+        Me.LayoutControlItem19.MaxSize = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem19.MinSize = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem19.Name = "LayoutControlItem19"
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(330, 64)
+        Me.LayoutControlItem19.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem19.Text = "Tanggal Resign"
+        Me.LayoutControlItem19.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem19.TextSize = New System.Drawing.Size(160, 19)
+        Me.LayoutControlItem19.TextToControlDistance = 5
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.dtTglLahir
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(779, 0)
+        Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem5.MinSize = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(330, 32)
+        Me.LayoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem5.Text = "Tanggal Lahir"
+        Me.LayoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(160, 19)
+        Me.LayoutControlItem5.TextToControlDistance = 5
         '
         'LayoutControl2
         '
@@ -376,58 +555,64 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.LayoutControl2.Controls.Add(Me.btnDelete)
         Me.LayoutControl2.Controls.Add(Me.cbMasterData)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl2.Location = New System.Drawing.Point(3, 158)
+        Me.LayoutControl2.Location = New System.Drawing.Point(4, 186)
+        Me.LayoutControl2.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1048, 0, 812, 500)
         Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(976, 49)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1332, 57)
         Me.LayoutControl2.TabIndex = 1
         Me.LayoutControl2.Text = "LayoutControl2"
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(656, 12)
+        Me.btnAdd.Location = New System.Drawing.Point(932, 14)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(68, 27)
+        Me.btnAdd.Size = New System.Drawing.Size(86, 32)
         Me.btnAdd.StyleController = Me.LayoutControl2
         Me.btnAdd.TabIndex = 8
         Me.btnAdd.Text = "Add"
         '
         'btnCopy
         '
-        Me.btnCopy.Location = New System.Drawing.Point(736, 12)
+        Me.btnCopy.Location = New System.Drawing.Point(1032, 14)
+        Me.btnCopy.Margin = New System.Windows.Forms.Padding(4)
         Me.btnCopy.Name = "btnCopy"
-        Me.btnCopy.Size = New System.Drawing.Size(68, 27)
+        Me.btnCopy.Size = New System.Drawing.Size(86, 32)
         Me.btnCopy.StyleController = Me.LayoutControl2
         Me.btnCopy.TabIndex = 7
         Me.btnCopy.Text = "Copy"
         '
         'btnEdit
         '
-        Me.btnEdit.Location = New System.Drawing.Point(816, 12)
+        Me.btnEdit.Location = New System.Drawing.Point(1132, 14)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(68, 27)
+        Me.btnEdit.Size = New System.Drawing.Size(86, 32)
         Me.btnEdit.StyleController = Me.LayoutControl2
         Me.btnEdit.TabIndex = 6
         Me.btnEdit.Text = "Edit"
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(896, 12)
+        Me.btnDelete.Location = New System.Drawing.Point(1232, 14)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(68, 27)
+        Me.btnDelete.Size = New System.Drawing.Size(86, 32)
         Me.btnDelete.StyleController = Me.LayoutControl2
         Me.btnDelete.TabIndex = 5
         Me.btnDelete.Text = "Delete"
         '
         'cbMasterData
         '
-        Me.cbMasterData.Location = New System.Drawing.Point(117, 12)
+        Me.cbMasterData.Location = New System.Drawing.Point(144, 14)
+        Me.cbMasterData.Margin = New System.Windows.Forms.Padding(4)
         Me.cbMasterData.Name = "cbMasterData"
         Me.cbMasterData.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbMasterData.Properties.Items.AddRange(New Object() {"DATA PRIBADI", "DATA KARYAWAN", "DATA PAYROLL", "ADDRESS"})
+        Me.cbMasterData.Properties.Items.AddRange(New Object() {"PRIBADI", "KARIR", "ALAMAT", "KELUARGA", "PENDIDIKAN", "KOMUNIKASI", "PENGALAMAN KERJA", "RIWAYAT KESEHATAN", "ID PRIBADI", "FASILITAS", "TEGURAN/PENGHARGAAN", "BERKAS DATA", "REMINDER", "RIWAYAT PERFORMA"})
         Me.cbMasterData.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbMasterData.Size = New System.Drawing.Size(183, 22)
+        Me.cbMasterData.Size = New System.Drawing.Size(266, 28)
         Me.cbMasterData.StyleController = Me.LayoutControl2
         Me.cbMasterData.TabIndex = 4
         '
@@ -437,33 +622,33 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.EmptySpaceItem5})
         Me.LayoutControlGroup1.Name = "Root"
-        Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 0)
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(976, 49)
+        Me.LayoutControlGroup1.Padding = New DevExpress.XtraLayout.Utils.Padding(12, 12, 12, 0)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1332, 57)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.cbMasterData
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem10.MaxSize = New System.Drawing.Size(300, 26)
-        Me.LayoutControlItem10.MinSize = New System.Drawing.Size(171, 26)
+        Me.LayoutControlItem10.MaxSize = New System.Drawing.Size(400, 31)
+        Me.LayoutControlItem10.MinSize = New System.Drawing.Size(214, 31)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(292, 39)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(400, 45)
         Me.LayoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem10.Text = "MASTER DATA"
         Me.LayoutControlItem10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(100, 20)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(125, 24)
         Me.LayoutControlItem10.TextToControlDistance = 5
         '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.btnDelete
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(876, 0)
-        Me.LayoutControlItem11.MaxSize = New System.Drawing.Size(80, 31)
-        Me.LayoutControlItem11.MinSize = New System.Drawing.Size(80, 31)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(1208, 0)
+        Me.LayoutControlItem11.MaxSize = New System.Drawing.Size(100, 36)
+        Me.LayoutControlItem11.MinSize = New System.Drawing.Size(100, 36)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(80, 39)
+        Me.LayoutControlItem11.Padding = New DevExpress.XtraLayout.Utils.Padding(12, 2, 2, 2)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(100, 45)
         Me.LayoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
@@ -471,12 +656,12 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.btnEdit
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(796, 0)
-        Me.LayoutControlItem12.MaxSize = New System.Drawing.Size(80, 31)
-        Me.LayoutControlItem12.MinSize = New System.Drawing.Size(80, 31)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(1108, 0)
+        Me.LayoutControlItem12.MaxSize = New System.Drawing.Size(100, 36)
+        Me.LayoutControlItem12.MinSize = New System.Drawing.Size(100, 36)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(80, 39)
+        Me.LayoutControlItem12.Padding = New DevExpress.XtraLayout.Utils.Padding(12, 2, 2, 2)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(100, 45)
         Me.LayoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem12.TextVisible = False
@@ -484,12 +669,12 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         'LayoutControlItem13
         '
         Me.LayoutControlItem13.Control = Me.btnCopy
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(716, 0)
-        Me.LayoutControlItem13.MaxSize = New System.Drawing.Size(80, 31)
-        Me.LayoutControlItem13.MinSize = New System.Drawing.Size(80, 31)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(1008, 0)
+        Me.LayoutControlItem13.MaxSize = New System.Drawing.Size(100, 36)
+        Me.LayoutControlItem13.MinSize = New System.Drawing.Size(100, 36)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(80, 39)
+        Me.LayoutControlItem13.Padding = New DevExpress.XtraLayout.Utils.Padding(12, 2, 2, 2)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(100, 45)
         Me.LayoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem13.TextVisible = False
@@ -497,12 +682,12 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         'LayoutControlItem14
         '
         Me.LayoutControlItem14.Control = Me.btnAdd
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(636, 0)
-        Me.LayoutControlItem14.MaxSize = New System.Drawing.Size(80, 31)
-        Me.LayoutControlItem14.MinSize = New System.Drawing.Size(80, 31)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(908, 0)
+        Me.LayoutControlItem14.MaxSize = New System.Drawing.Size(100, 36)
+        Me.LayoutControlItem14.MinSize = New System.Drawing.Size(100, 36)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(80, 39)
+        Me.LayoutControlItem14.Padding = New DevExpress.XtraLayout.Utils.Padding(12, 2, 2, 2)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(100, 45)
         Me.LayoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem14.TextVisible = False
@@ -510,34 +695,38 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         'EmptySpaceItem5
         '
         Me.EmptySpaceItem5.AllowHotTrack = False
-        Me.EmptySpaceItem5.Location = New System.Drawing.Point(292, 0)
+        Me.EmptySpaceItem5.Location = New System.Drawing.Point(400, 0)
         Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(344, 39)
+        Me.EmptySpaceItem5.Size = New System.Drawing.Size(508, 45)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControl3
         '
         Me.LayoutControl3.Controls.Add(Me.GridPADetail)
         Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl3.Location = New System.Drawing.Point(3, 213)
+        Me.LayoutControl3.Location = New System.Drawing.Point(4, 251)
+        Me.LayoutControl3.Margin = New System.Windows.Forms.Padding(4)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1048, 240, 812, 500)
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(976, 310)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1332, 369)
         Me.LayoutControl3.TabIndex = 2
         Me.LayoutControl3.Text = "LayoutControl3"
         '
         'GridPADetail
         '
-        Me.GridPADetail.Location = New System.Drawing.Point(12, 2)
+        Me.GridPADetail.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
+        Me.GridPADetail.Location = New System.Drawing.Point(14, 2)
         Me.GridPADetail.MainView = Me.GridViewPADetail
+        Me.GridPADetail.Margin = New System.Windows.Forms.Padding(4)
         Me.GridPADetail.Name = "GridPADetail"
-        Me.GridPADetail.Size = New System.Drawing.Size(952, 296)
+        Me.GridPADetail.Size = New System.Drawing.Size(1304, 353)
         Me.GridPADetail.TabIndex = 4
         Me.GridPADetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPADetail})
         '
         'GridViewPADetail
         '
+        Me.GridViewPADetail.DetailHeight = 412
         Me.GridViewPADetail.GridControl = Me.GridPADetail
         Me.GridViewPADetail.Name = "GridViewPADetail"
         Me.GridViewPADetail.OptionsBehavior.Editable = False
@@ -550,8 +739,8 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem15})
         Me.LayoutControlGroup2.Name = "Root"
-        Me.LayoutControlGroup2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 10, 0, 10)
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(976, 310)
+        Me.LayoutControlGroup2.Padding = New DevExpress.XtraLayout.Utils.Padding(12, 12, 0, 12)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1332, 369)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem15
@@ -559,20 +748,22 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.LayoutControlItem15.Control = Me.GridPADetail
         Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(956, 300)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(1308, 357)
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem15.TextVisible = False
         '
         'FrmHRAdministrasiKaryawanDetail
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(982, 553)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
+        Me.ClientSize = New System.Drawing.Size(1340, 651)
         Me.Controls.Add(Me.TableLayoutPanel1)
+        Me.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.Name = "FrmHRAdministrasiKaryawanDetail"
         Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.txtFactory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtJabatan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOrganisasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTipe.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -583,12 +774,17 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         CType(Me.PictureFoto.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtTglLahir.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtTglLahir.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtTglJoin.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtTglJoin.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtTglDiangkat.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtTglDiangkat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtTglResign.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtTglResign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
@@ -596,6 +792,12 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.cbMasterData.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -659,4 +861,13 @@ Partial Class FrmHRAdministrasiKaryawanDetail
     Friend WithEvents GridPADetail As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridViewPADetail As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtFactory As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents dtTglJoin As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents dtTglDiangkat As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents dtTglResign As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem19 As DevExpress.XtraLayout.LayoutControlItem
 End Class
