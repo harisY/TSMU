@@ -392,7 +392,7 @@ Public Class frmForecast_PO
                             End With
                             ObjHeader.ObjForecastCollection.Add(ObjForecast)
                         Next
-                        Return
+                        'Return
                         With ObjHeader
                             .Tahun = strTahun
                             .CustID = strCustomer
