@@ -1,24 +1,44 @@
 ﻿Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraLayout.Utils
 
 Public Class FrmLookupForecastDaily
-    Public Sub New()
+    Dim _IsCancel As Boolean = True
+    Dim _Caller As String
+
+    Public Sub New(Caller As String)
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        _Caller = Caller
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
     Public Property DtExcel As DataTable
+
     Private Sub FrmLookupForecastDaily_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FillComboTahun()
         FillComboBulan()
+        If _Caller.ToLower() = "delete" Then
+            LblFile.Visibility = LayoutVisibility.Never
+        Else
+            LblFile.Visibility = LayoutVisibility.Always
+            DtExcel = ExcelToDatatable(TxtFile.Text, "Table 1")
+        End If
     End Sub
+
     ReadOnly Property Tahun As String
         Get
             Return CmbTahun.Text.Trim
         End Get
     End Property
+
+    ReadOnly Property IsCancel As Boolean
+        Get
+            Return _IsCancel
+        End Get
+    End Property
+
     ReadOnly Property Bulan As Integer
         Get
             If CmbBulan.EditValue <> 0 Then
@@ -28,6 +48,7 @@ Public Class FrmLookupForecastDaily
             End If
         End Get
     End Property
+
     Private Sub FillComboBulan()
         Dim items =
         {
@@ -50,6 +71,7 @@ Public Class FrmLookupForecastDaily
         CmbBulan.Properties.DisplayMember = "Text"
         CmbBulan.Properties.ValueMember = "Value"
     End Sub
+
     Private Sub FillComboTahun()
         Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
         CmbTahun.Properties.Items.Clear()
@@ -81,11 +103,16 @@ Public Class FrmLookupForecastDaily
                 CmbBulan.Focus()
                 Throw New Exception("Pilih Bulan !")
             Else
-                DtExcel = ExcelToDatatable(TxtFile.Text, "Table 1")
+                If _Caller.ToLower() = "delete" Then
+                    _IsCancel = False
+                Else
+                    DtExcel = ExcelToDatatable(TxtFile.Text, "Table 1")
+                End If
                 Close()
             End If
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+
 End Class

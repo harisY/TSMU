@@ -95,12 +95,13 @@ Public Class FrmHRAdministrasiKaryawanDetail
                     txtNIK.Text = .NIK
                     txtNamaLengkap.Text = .NamaLengkap
                     txtJenisKelamin.Text = .JenisKelamin
+                    txtFactory.Text = .Factory
                     dtTglLahir.EditValue = .TglLahir
                     txtStatus.Text = .StatusKaryawan
                     txtTipe.Text = .TipeKaryawan
                     txtOrganisasi.Text = .Organisasi
                     txtJabatan.Text = .Jabatan
-                    cbMasterData.Text = "DATA PRIBADI"
+                    cbMasterData.Text = "PRIBADI"
                 End With
             End If
         Catch ex As Exception
@@ -145,10 +146,18 @@ Public Class FrmHRAdministrasiKaryawanDetail
     End Sub
 
     Private Sub CheckLoadGridMD()
-        If cbMasterData.Text = "DATA PRIBADI" Then
+        If cbMasterData.Text = "PRIBADI" Then
             Call LoadGridDataPribadi()
-        ElseIf cbMasterData.Text = "DATA KARYAWAN" Then
+        ElseIf cbMasterData.Text = "KARIR" Then
             Call LoadGridDataKaryawan()
+        ElseIf cbMasterData.Text = "ALAMAT" Then
+            Call LoadGridDataAlamat()
+        ElseIf cbMasterData.Text = "KELUARGA" Then
+            Call LoadGridDataKeluarga()
+        ElseIf cbMasterData.Text = "PENDIDIKAN" Then
+            Call LoadGridDataPendidikan()
+        ElseIf cbMasterData.Text = "KOMUNIKASI" Then
+            Call LoadGridDataKomunikasi()
         Else
             Try
                 GridViewPADetail.Columns.Clear()
@@ -160,9 +169,9 @@ Public Class FrmHRAdministrasiKaryawanDetail
     End Sub
 
     Private Sub CheckLoadFormMD(Action As String)
-        If cbMasterData.Text = "DATA PRIBADI" Then
+        If cbMasterData.Text = "PRIBADI" Then
             Call CallFrmDataPribadi(Action, dataRow)
-        ElseIf cbMasterData.Text = "DATA KARYAWAN" Then
+        ElseIf cbMasterData.Text = "KARIR" Then
             Call CallFrmDataKaryawan(Action, dataRow)
         Else
             Try
@@ -174,6 +183,7 @@ Public Class FrmHRAdministrasiKaryawanDetail
         End If
     End Sub
 
+#Region "Grid Dynamic Master Data"
     Private Sub LoadGridDataPribadi()
         Try
             dtGridDetail = New DataTable
@@ -181,18 +191,43 @@ Public Class FrmHRAdministrasiKaryawanDetail
             GridViewPADetail.Columns.Clear()
             GridPADetail.DataSource = Nothing
             GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
             Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
-            Dim colPINFinger As GridColumn = GridViewPADetail.Columns("PINFinger")
-            Dim colGambar As GridColumn = GridViewPADetail.Columns("Gambar")
-            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
-            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
             colEmpID.Visible = False
+
+            Dim colPINFinger As GridColumn = GridViewPADetail.Columns("PINFinger")
             colPINFinger.Visible = False
+
+            Dim colTglLahir As GridColumn = GridViewPADetail.Columns("TglLahir")
+            colTglLahir.DisplayFormat.FormatType = FormatType.DateTime
+            colTglLahir.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglKawin As GridColumn = GridViewPADetail.Columns("TglKawin")
+            colTglKawin.DisplayFormat.FormatType = FormatType.DateTime
+            colTglKawin.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colGambar As GridColumn = GridViewPADetail.Columns("Gambar")
             colGambar.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
             colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
             colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
             colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
             colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
             GridViewPADetail.BestFitColumns()
         Finally
             GridPADetail.EndUpdate()
@@ -207,37 +242,223 @@ Public Class FrmHRAdministrasiKaryawanDetail
             GridViewPADetail.Columns.Clear()
             GridPADetail.DataSource = Nothing
             GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
             Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
             Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("PerpindahanKaryawan")
+            colPerpindahan.Visible = False
+
             Dim colPerpindahanDes As GridColumn = GridViewPADetail.Columns("PerpindahanDesc")
             colPerpindahanDes.Caption = "Perpindahan"
+
             Dim colAlasan As GridColumn = GridViewPADetail.Columns("AlasanPindah")
+            colAlasan.Visible = False
+
             Dim colAlasanPindahDesc As GridColumn = GridViewPADetail.Columns("AlasanPindahDesc")
             colAlasanPindahDesc.Caption = "Alasan Pindah"
+
             Dim colStatus As GridColumn = GridViewPADetail.Columns("StatusKaryawan")
-            Dim colTipe As GridColumn = GridViewPADetail.Columns("TipeKaryawan")
             colStatus.Caption = "Status"
+
+            Dim colTipe As GridColumn = GridViewPADetail.Columns("TipeKaryawan")
             colTipe.Caption = "Tipe"
+
             Dim colGol As GridColumn = GridViewPADetail.Columns("Gol")
-            Dim colOrg As GridColumn = GridViewPADetail.Columns("OrgID")
-            Dim colJab As GridColumn = GridViewPADetail.Columns("JabID")
-            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
-            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
-            colPerpindahan.Visible = False
-            colAlasan.Visible = False
-            colEmpID.Visible = False
             colGol.Visible = False
+
+            Dim colOrg As GridColumn = GridViewPADetail.Columns("OrgID")
             colOrg.Visible = False
+
+            Dim colJab As GridColumn = GridViewPADetail.Columns("JabID")
             colJab.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
             colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
             colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
             colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
             colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
             GridViewPADetail.BestFitColumns()
         Finally
             GridPADetail.EndUpdate()
         End Try
     End Sub
+
+    Private Sub LoadGridDataAlamat()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataAlamat(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub LoadGridDataKeluarga()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataKeluarga(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub LoadGridDataPendidikan()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataPendidikan(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub LoadGridDataKomunikasi()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataKomunikasi(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+#End Region
 
     Private Sub CallFrmDataPribadi(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
         If frm_DataPribadi IsNot Nothing AndAlso frm_DataPribadi.Visible Then
@@ -249,6 +470,7 @@ Public Class FrmHRAdministrasiKaryawanDetail
         frm_DataPribadi = New FrmHRPADataPribadi(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
         frm_DataPribadi.StartPosition = FormStartPosition.CenterScreen
         frm_DataPribadi.ShowDialog()
+        CheckLoadGridMD()
     End Sub
 
     Private Sub CallFrmDataKaryawan(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)

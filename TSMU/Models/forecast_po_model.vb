@@ -8,6 +8,7 @@ Public Class forecast_po_model
     Public Property BulanAngka As String
     Public Property PO As String
     Public Property ObjForecastCollection() As New Collection(Of forecast_po_model_detail)
+
     Public Sub DeleteByTahun(Tahun As String)
         Try
             Dim query As String = "DELETE FROM tForecastPrice WHERE Tahun = " & QVal(Tahun) & ""
@@ -16,6 +17,7 @@ Public Class forecast_po_model
             Throw ex
         End Try
     End Sub
+
     Public Sub DeleleByCustomerTahun()
         Try
             Dim query As String = "DELETE FROM tForecastPrice " & vbCrLf &
@@ -80,6 +82,7 @@ Public Class forecast_po_model
             Throw ex
         End Try
     End Sub
+
     Public Sub InsertDataAdm()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -108,11 +111,11 @@ Public Class forecast_po_model
                     End Try
                 End Using
             End Using
-
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
     Public Sub InsertData1()
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -141,7 +144,6 @@ Public Class forecast_po_model
                                     .UpdateDataByBulanNew(Bulan, BulanAngka)
                                 End If
 
-
                                 .MatomeInsert(Bulan, BulanAngka)
                             End With
                         Next
@@ -155,7 +157,6 @@ Public Class forecast_po_model
                     End Try
                 End Using
             End Using
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -189,13 +190,13 @@ Public Class forecast_po_model
                     End Try
                 End Using
             End Using
-
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
 End Class
+
 Public Class forecast_po_model_detail
     Public Property Agt_PO1 As Integer
     Public Property Agt_PO2 As Integer
@@ -360,6 +361,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Sub
+
     Public Sub Insert(Bulan As String, BulanAngka As String)
         Try
 
@@ -626,6 +628,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Sub
+
     Public Sub GetAllDataGridById(IsExist As Boolean)
         Try
 
@@ -790,6 +793,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Sub
+
     Public Sub DeleleByTahunCustPartInvt()
         Try
             Dim query As String = "DELETE FROM tForecastPrice " & vbCrLf &
@@ -800,7 +804,6 @@ Public Class forecast_po_model_detail
         End Try
     End Sub
 
-
     Public Sub DeleteById()
         Try
             Dim query As String = "DELETE FROM tForecastPrice WHERE id = " & QVal(Me.Id) & " "
@@ -809,6 +812,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Sub
+
     Public Sub DeleteByTahun(Tahun As String, CustID As String)
         Try
             Dim query As String = "DELETE FROM tForecastPrice WHERE Tahun = " & QVal(Tahun) & " AND RTRIM(CustID)= " & QVal(CustID.TrimEnd) & " "
@@ -848,6 +852,25 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
+
+    Public Function GetSalesManual() As Double
+        Dim salesPrice As Double = 0
+
+        Try
+            Dim parameters As List(Of SqlParameter) = New List(Of SqlParameter)()
+            parameters.Add(New SqlParameter() With {.ParameterName = "PartNo", .Value = PartNo})
+            Dim dt As New DataTable
+            dt = GetDataTableByParam("tForecastPrice_Temp1GetHarga", CommandType.StoredProcedure, parameters, GetConnString)
+
+            If dt.Rows.Count > 0 Then
+                salesPrice = dt.Rows(0)(0).ToString().AsDouble
+            End If
+            Return salesPrice
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub InsertData()
         Try
 
@@ -881,8 +904,6 @@ Public Class forecast_po_model_detail
                            ," & QVal(DesQty1) & "," & QVal(DesQty2) & "," & QVal(DesQty3) & "," & QVal(Des_PO1) & "," & QVal(Des_PO2) & "
                            ," & QVal(created_date) & "," & QVal(created_by) & ")"
             ExecQuery(Query)
-
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -903,7 +924,7 @@ Public Class forecast_po_model_detail
             End Select
             Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
             Params.Add(New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun})
-            Params.Add(New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan})
+            Params.Add(New SqlParameter() With {.ParameterName = "Bulan", .Value = bulan})
             Params.Add(New SqlParameter() With {.ParameterName = "CustID", .Value = CustID})
             Params.Add(New SqlParameter() With {.ParameterName = "Customer", .Value = Customer})
             Params.Add(New SqlParameter() With {.ParameterName = "InvtID", .Value = InvtID})
@@ -928,12 +949,10 @@ Public Class forecast_po_model_detail
         End Try
     End Sub
 
-
-
     Public Sub InsertDataTempTable()
         Try
             Dim Query As String = String.Empty
-            Query = "INSERT INTO [tForecastPrice_Temp]([Tahun],[CustID],[Customer],[InvtID],[Description],[PartNo],[Model],[Oe/Pe],[IN/SUB],[Site] 
+            Query = "INSERT INTO [tForecastPrice_Temp]([Tahun],[CustID],[Customer],[InvtID],[Description],[PartNo],[Model],[Oe/Pe],[IN/SUB],[Site]
                             ,[JanQty1],[JanQty2],[JanQty3],[Jan PO1],[Jan PO2],[JanHarga1],[JanHarga2],[JanHarga3]
                             ,[FebQty1],[FebQty2],[FebQty3],[Feb PO1],[Feb PO2],[FebHarga1],[FebHarga2],[FebHarga3]
                             ,[MarQty1],[MarQty2],[MarQty3],[Mar PO1],[Mar PO2],[MarHarga1],[MarHarga2],[MarHarga3]
@@ -966,6 +985,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Sub
+
     Public Sub UpdateDataByBulanADM(Bulan As String)
         Dim sql As String = String.Empty
         Dim Harga As Double = 0
@@ -974,10 +994,10 @@ Public Class forecast_po_model_detail
             If Bulan.ToLower = "januari" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [JanHarga1] =  " & QVal(JanHarga1) & " 
-                                    ,[JanHarga2] =  " & QVal(JanHarga2) & " 
-                                    ,[JanHarga3] =  " & QVal(JanHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [JanHarga1] =  " & QVal(JanHarga1) & "
+                                    ,[JanHarga2] =  " & QVal(JanHarga2) & "
+                                    ,[JanHarga3] =  " & QVal(JanHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -988,13 +1008,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_jan =
-	                                CASE 
-	                                        WHEN JanHarga1!=0 and JanHarga2=0  and JanHarga3=0 THEN JanHarga1  
-	                                        WHEN JanHarga1!=0 and JanHarga2!=0 and JanHarga3=0 THEN JanHarga2  
-	                                        WHEN JanHarga1!=0 and JanHarga2!=0 and JanHarga3!=0 THEN JanHarga3  
-	                                        WHEN JanHarga1=0  and JanHarga2!=0 and JanHarga3=0 THEN JanHarga2  
-	                                        WHEN JanHarga1=0 and JanHarga2=0  and JanHarga3!=0 THEN JanHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN JanHarga1!=0 and JanHarga2=0  and JanHarga3=0 THEN JanHarga1
+	                                        WHEN JanHarga1!=0 and JanHarga2!=0 and JanHarga3=0 THEN JanHarga2
+	                                        WHEN JanHarga1!=0 and JanHarga2!=0 and JanHarga3!=0 THEN JanHarga3
+	                                        WHEN JanHarga1=0  and JanHarga2!=0 and JanHarga3=0 THEN JanHarga2
+	                                        WHEN JanHarga1=0 and JanHarga2=0  and JanHarga3!=0 THEN JanHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1010,8 +1030,8 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
-                                SET [FebHarga1] =  " & QVal(Harga) & " 
+                    "UPDATE [tForecastPrice]
+                                SET [FebHarga1] =  " & QVal(Harga) & "
                                     ,[MarHarga1] =  " & QVal(Harga) & "
                                     ,[AprHarga1] =  " & QVal(Harga) & "
                                     ,[MeiHarga1] =  " & QVal(Harga) & "
@@ -1027,7 +1047,7 @@ Public Class forecast_po_model_detail
                                     ,[JanQty3] = " & QVal(JanQty3) & "
                                     ,[Jan PO1] =  " & QVal(Jan_PO1) & "
                                     ,[Jan PO2] =  " & QVal(Jan_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1039,10 +1059,10 @@ Public Class forecast_po_model_detail
             ElseIf Bulan.ToLower = "februari" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [FebHarga1] =  " & QVal(FebHarga1) & " 
-                                    ,[FebHarga2] =  " & QVal(FebHarga2) & " 
-                                    ,[FebHarga3] =  " & QVal(FebHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [FebHarga1] =  " & QVal(FebHarga1) & "
+                                    ,[FebHarga2] =  " & QVal(FebHarga2) & "
+                                    ,[FebHarga3] =  " & QVal(FebHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1053,13 +1073,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Feb =
-	                                CASE 
-	                                        WHEN FebHarga1!=0 and FebHarga2=0  and FebHarga3=0 THEN FebHarga1  
-	                                        WHEN FebHarga1!=0 and FebHarga2!=0 and FebHarga3=0 THEN FebHarga2  
-	                                        WHEN FebHarga1!=0 and FebHarga2!=0 and FebHarga3!=0 THEN FebHarga3  
-	                                        WHEN FebHarga1=0  and FebHarga2!=0 and FebHarga3=0 THEN FebHarga2  
-	                                        WHEN FebHarga1=0 and FebHarga2=0  and FebHarga3!=0 THEN FebHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN FebHarga1!=0 and FebHarga2=0  and FebHarga3=0 THEN FebHarga1
+	                                        WHEN FebHarga1!=0 and FebHarga2!=0 and FebHarga3=0 THEN FebHarga2
+	                                        WHEN FebHarga1!=0 and FebHarga2!=0 and FebHarga3!=0 THEN FebHarga3
+	                                        WHEN FebHarga1=0  and FebHarga2!=0 and FebHarga3=0 THEN FebHarga2
+	                                        WHEN FebHarga1=0 and FebHarga2=0  and FebHarga3!=0 THEN FebHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1075,7 +1095,7 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [MarHarga1] =  " & QVal(Harga) & "
                                     ,[AprHarga1] =  " & QVal(Harga) & "
                                     ,[MeiHarga1] =  " & QVal(Harga) & "
@@ -1091,7 +1111,7 @@ Public Class forecast_po_model_detail
                                     ,[FebQty3] = " & QVal(FebQty3) & "
                                     ,[Feb PO1] =  " & QVal(Feb_PO1) & "
                                     ,[Feb PO2] =  " & QVal(Feb_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1102,10 +1122,10 @@ Public Class forecast_po_model_detail
                 '===========MARET===============
             ElseIf Bulan.ToLower = "maret" Then
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [MarHarga1] =  " & QVal(MarHarga1) & " 
-                                    ,[MarHarga2] =  " & QVal(MarHarga2) & " 
-                                    ,[MarHarga3] =  " & QVal(MarHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [MarHarga1] =  " & QVal(MarHarga1) & "
+                                    ,[MarHarga2] =  " & QVal(MarHarga2) & "
+                                    ,[MarHarga3] =  " & QVal(MarHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1116,13 +1136,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Mar =
-	                                CASE 
-	                                        WHEN MarHarga1!=0 and MarHarga2=0  and MarHarga3=0 THEN MarHarga1  
-	                                        WHEN MarHarga1!=0 and MarHarga2!=0 and MarHarga3=0 THEN MarHarga2  
-	                                        WHEN MarHarga1!=0 and MarHarga2!=0 and MarHarga3!=0 THEN MarHarga3  
-	                                        WHEN MarHarga1=0  and MarHarga2!=0 and MarHarga3=0 THEN MarHarga2  
-	                                        WHEN MarHarga1=0 and MarHarga2=0  and MarHarga3!=0 THEN MarHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN MarHarga1!=0 and MarHarga2=0  and MarHarga3=0 THEN MarHarga1
+	                                        WHEN MarHarga1!=0 and MarHarga2!=0 and MarHarga3=0 THEN MarHarga2
+	                                        WHEN MarHarga1!=0 and MarHarga2!=0 and MarHarga3!=0 THEN MarHarga3
+	                                        WHEN MarHarga1=0  and MarHarga2!=0 and MarHarga3=0 THEN MarHarga2
+	                                        WHEN MarHarga1=0 and MarHarga2=0  and MarHarga3!=0 THEN MarHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1138,7 +1158,7 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [AprHarga1] =  " & QVal(Harga) & "
                                     ,[MeiHarga1] =  " & QVal(Harga) & "
                                     ,[JunHarga1] =  " & QVal(Harga) & "
@@ -1153,7 +1173,7 @@ Public Class forecast_po_model_detail
                                     ,[MarQty3] = " & QVal(MarQty3) & "
                                     ,[Mar PO1] =  " & QVal(Mar_PO1) & "
                                     ,[Mar PO2] =  " & QVal(Mar_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1165,10 +1185,10 @@ Public Class forecast_po_model_detail
             ElseIf Bulan.ToLower = "april" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [AprHarga1] =  " & QVal(AprHarga1) & " 
-                                    ,[AprHarga2] =  " & QVal(AprHarga2) & " 
-                                    ,[AprHarga3] =  " & QVal(AprHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [AprHarga1] =  " & QVal(AprHarga1) & "
+                                    ,[AprHarga2] =  " & QVal(AprHarga2) & "
+                                    ,[AprHarga3] =  " & QVal(AprHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1179,13 +1199,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Apr =
-	                                CASE 
-	                                        WHEN AprHarga1!=0 and AprHarga2=0  and AprHarga3=0 THEN AprHarga1  
-	                                        WHEN AprHarga1!=0 and AprHarga2!=0 and AprHarga3=0 THEN AprHarga2  
-	                                        WHEN AprHarga1!=0 and AprHarga2!=0 and AprHarga3!=0 THEN AprHarga3  
-	                                        WHEN AprHarga1=0  and AprHarga2!=0 and AprHarga3=0 THEN AprHarga2  
-	                                        WHEN AprHarga1=0 and AprHarga2=0  and AprHarga3!=0 THEN AprHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN AprHarga1!=0 and AprHarga2=0  and AprHarga3=0 THEN AprHarga1
+	                                        WHEN AprHarga1!=0 and AprHarga2!=0 and AprHarga3=0 THEN AprHarga2
+	                                        WHEN AprHarga1!=0 and AprHarga2!=0 and AprHarga3!=0 THEN AprHarga3
+	                                        WHEN AprHarga1=0  and AprHarga2!=0 and AprHarga3=0 THEN AprHarga2
+	                                        WHEN AprHarga1=0 and AprHarga2=0  and AprHarga3!=0 THEN AprHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1201,7 +1221,7 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [MeiHarga1] =  " & QVal(Harga) & "
                                     ,[JunHarga1] =  " & QVal(Harga) & "
                                     ,[JulHarga1] =  " & QVal(Harga) & "
@@ -1215,7 +1235,7 @@ Public Class forecast_po_model_detail
                                     ,[AprQty3] = " & QVal(AprQty3) & "
                                     ,[Apr PO1] =  " & QVal(Apr_PO1) & "
                                     ,[Apr PO2] =  " & QVal(Apr_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1227,10 +1247,10 @@ Public Class forecast_po_model_detail
             ElseIf Bulan.ToLower = "mei" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [MeiHarga1] =  " & QVal(MeiHarga1) & " 
-                                    ,[MeiHarga2] =  " & QVal(MeiHarga2) & " 
-                                    ,[MeiHarga3] =  " & QVal(MeiHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [MeiHarga1] =  " & QVal(MeiHarga1) & "
+                                    ,[MeiHarga2] =  " & QVal(MeiHarga2) & "
+                                    ,[MeiHarga3] =  " & QVal(MeiHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1241,13 +1261,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Apr =
-	                                CASE 
-	                                        WHEN MeiHarga1!=0 and MeiHarga2=0  and MeiHarga3=0 THEN MeiHarga1  
-	                                        WHEN MeiHarga1!=0 and MeiHarga2!=0 and MeiHarga3=0 THEN MeiHarga2  
-	                                        WHEN MeiHarga1!=0 and MeiHarga2!=0 and MeiHarga3!=0 THEN MeiHarga3  
-	                                        WHEN MeiHarga1=0  and MeiHarga2!=0 and MeiHarga3=0 THEN MeiHarga2  
-	                                        WHEN MeiHarga1=0 and MeiHarga2=0  and MeiHarga3!=0 THEN MeiHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN MeiHarga1!=0 and MeiHarga2=0  and MeiHarga3=0 THEN MeiHarga1
+	                                        WHEN MeiHarga1!=0 and MeiHarga2!=0 and MeiHarga3=0 THEN MeiHarga2
+	                                        WHEN MeiHarga1!=0 and MeiHarga2!=0 and MeiHarga3!=0 THEN MeiHarga3
+	                                        WHEN MeiHarga1=0  and MeiHarga2!=0 and MeiHarga3=0 THEN MeiHarga2
+	                                        WHEN MeiHarga1=0 and MeiHarga2=0  and MeiHarga3!=0 THEN MeiHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1263,7 +1283,7 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [JunHarga1] =  " & QVal(Harga) & "
                                     ,[JulHarga1] =  " & QVal(Harga) & "
                                     ,[AgtHarga1] =  " & QVal(Harga) & "
@@ -1276,7 +1296,7 @@ Public Class forecast_po_model_detail
                                     ,[MeiQty3] = " & QVal(MeiQty3) & "
                                     ,[Mei PO1] =  " & QVal(Mei_PO1) & "
                                     ,[Mei PO2] =  " & QVal(Mei_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1288,10 +1308,10 @@ Public Class forecast_po_model_detail
             ElseIf Bulan.ToLower = "juni" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [JunHarga1] =  " & QVal(JunHarga1) & " 
-                                    ,[JunHarga2] =  " & QVal(JunHarga2) & " 
-                                    ,[JunHarga3] =  " & QVal(JunHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [JunHarga1] =  " & QVal(JunHarga1) & "
+                                    ,[JunHarga2] =  " & QVal(JunHarga2) & "
+                                    ,[JunHarga3] =  " & QVal(JunHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1302,13 +1322,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Apr =
-	                                CASE 
-	                                        WHEN JunHarga1!=0 and JunHarga2=0  and JunHarga3=0 THEN JunHarga1  
-	                                        WHEN JunHarga1!=0 and JunHarga2!=0 and JunHarga3=0 THEN JunHarga2  
-	                                        WHEN JunHarga1!=0 and JunHarga2!=0 and JunHarga3!=0 THEN JunHarga3  
-	                                        WHEN JunHarga1=0  and JunHarga2!=0 and JunHarga3=0 THEN JunHarga2  
-	                                        WHEN JunHarga1=0 and JunHarga2=0  and JunHarga3!=0 THEN JunHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN JunHarga1!=0 and JunHarga2=0  and JunHarga3=0 THEN JunHarga1
+	                                        WHEN JunHarga1!=0 and JunHarga2!=0 and JunHarga3=0 THEN JunHarga2
+	                                        WHEN JunHarga1!=0 and JunHarga2!=0 and JunHarga3!=0 THEN JunHarga3
+	                                        WHEN JunHarga1=0  and JunHarga2!=0 and JunHarga3=0 THEN JunHarga2
+	                                        WHEN JunHarga1=0 and JunHarga2=0  and JunHarga3!=0 THEN JunHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1324,7 +1344,7 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [JulHarga1] =  " & QVal(Harga) & "
                                     ,[AgtHarga1] =  " & QVal(Harga) & "
                                     ,[SepHarga1] =  " & QVal(Harga) & "
@@ -1336,7 +1356,7 @@ Public Class forecast_po_model_detail
                                     ,[JunQty3] = " & QVal(JunQty3) & "
                                     ,[Jun PO1] =  " & QVal(Jun_PO1) & "
                                     ,[Jun PO2] =  " & QVal(Jun_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1348,10 +1368,10 @@ Public Class forecast_po_model_detail
             ElseIf Bulan.ToLower = "juli" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [JulHarga1] =  " & QVal(JulHarga1) & " 
-                                    ,[JulHarga2] =  " & QVal(JulHarga2) & " 
-                                    ,[JulHarga3] =  " & QVal(JulHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [JulHarga1] =  " & QVal(JulHarga1) & "
+                                    ,[JulHarga2] =  " & QVal(JulHarga2) & "
+                                    ,[JulHarga3] =  " & QVal(JulHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1362,13 +1382,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Apr =
-	                                CASE 
-	                                        WHEN JulHarga1!=0 and JulHarga2=0  and JulHarga3=0 THEN JulHarga1  
-	                                        WHEN JulHarga1!=0 and JulHarga2!=0 and JulHarga3=0 THEN JulHarga2  
-	                                        WHEN JulHarga1!=0 and JulHarga2!=0 and JulHarga3!=0 THEN JulHarga3  
-	                                        WHEN JulHarga1=0  and JulHarga2!=0 and JulHarga3=0 THEN JulHarga2  
-	                                        WHEN JulHarga1=0 and JulHarga2=0  and JulHarga3!=0 THEN JulHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN JulHarga1!=0 and JulHarga2=0  and JulHarga3=0 THEN JulHarga1
+	                                        WHEN JulHarga1!=0 and JulHarga2!=0 and JulHarga3=0 THEN JulHarga2
+	                                        WHEN JulHarga1!=0 and JulHarga2!=0 and JulHarga3!=0 THEN JulHarga3
+	                                        WHEN JulHarga1=0  and JulHarga2!=0 and JulHarga3=0 THEN JulHarga2
+	                                        WHEN JulHarga1=0 and JulHarga2=0  and JulHarga3!=0 THEN JulHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1384,7 +1404,7 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [AgtHarga1] =  " & QVal(Harga) & "
                                     ,[SepHarga1] =  " & QVal(Harga) & "
                                     ,[OktHarga1] =  " & QVal(Harga) & "
@@ -1395,7 +1415,7 @@ Public Class forecast_po_model_detail
                                     ,[JulQty3] = " & QVal(JulQty3) & "
                                     ,[Jul PO1] =  " & QVal(Jul_PO1) & "
                                     ,[Jul PO2] =  " & QVal(Jul_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1407,10 +1427,10 @@ Public Class forecast_po_model_detail
             ElseIf Bulan.ToLower = "agustus" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [AgtHarga1] =  " & QVal(AgtHarga1) & " 
-                                    ,[AgtHarga2] =  " & QVal(AgtHarga2) & " 
-                                    ,[AgtHarga3] =  " & QVal(AgtHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [AgtHarga1] =  " & QVal(AgtHarga1) & "
+                                    ,[AgtHarga2] =  " & QVal(AgtHarga2) & "
+                                    ,[AgtHarga3] =  " & QVal(AgtHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1421,13 +1441,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Apr =
-	                                CASE 
-	                                        WHEN AgtHarga1!=0 and AgtHarga2=0  and AgtHarga3=0 THEN AgtHarga1  
-	                                        WHEN AgtHarga1!=0 and AgtHarga2!=0 and AgtHarga3=0 THEN AgtHarga2  
-	                                        WHEN AgtHarga1!=0 and AgtHarga2!=0 and AgtHarga3!=0 THEN AgtHarga3  
-	                                        WHEN AgtHarga1=0  and AgtHarga2!=0 and AgtHarga3=0 THEN AgtHarga2  
-	                                        WHEN AgtHarga1=0 and AgtHarga2=0  and AgtHarga3!=0 THEN AgtHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN AgtHarga1!=0 and AgtHarga2=0  and AgtHarga3=0 THEN AgtHarga1
+	                                        WHEN AgtHarga1!=0 and AgtHarga2!=0 and AgtHarga3=0 THEN AgtHarga2
+	                                        WHEN AgtHarga1!=0 and AgtHarga2!=0 and AgtHarga3!=0 THEN AgtHarga3
+	                                        WHEN AgtHarga1=0  and AgtHarga2!=0 and AgtHarga3=0 THEN AgtHarga2
+	                                        WHEN AgtHarga1=0 and AgtHarga2=0  and AgtHarga3!=0 THEN AgtHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1443,7 +1463,7 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [SepHarga1] =  " & QVal(Harga) & "
                                     ,[OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
@@ -1453,7 +1473,7 @@ Public Class forecast_po_model_detail
                                     ,[AgtQty3] = " & QVal(AgtQty3) & "
                                     ,[Agt PO1] =  " & QVal(Agt_PO1) & "
                                     ,[Agt PO2] =  " & QVal(Agt_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1465,10 +1485,10 @@ Public Class forecast_po_model_detail
             ElseIf Bulan.ToLower = "september" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [SepHarga1] =  " & QVal(SepHarga1) & " 
-                                    ,[SepHarga2] =  " & QVal(SepHarga2) & " 
-                                    ,[SepHarga3] =  " & QVal(SepHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [SepHarga1] =  " & QVal(SepHarga1) & "
+                                    ,[SepHarga2] =  " & QVal(SepHarga2) & "
+                                    ,[SepHarga3] =  " & QVal(SepHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1479,13 +1499,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Apr =
-	                                CASE 
-	                                        WHEN SepHarga1!=0 and SepHarga2=0  and SepHarga3=0 THEN SepHarga1  
-	                                        WHEN SepHarga1!=0 and SepHarga2!=0 and SepHarga3=0 THEN SepHarga2  
-	                                        WHEN SepHarga1!=0 and SepHarga2!=0 and SepHarga3!=0 THEN SepHarga3  
-	                                        WHEN SepHarga1=0  and SepHarga2!=0 and SepHarga3=0 THEN SepHarga2  
-	                                        WHEN SepHarga1=0 and SepHarga2=0  and SepHarga3!=0 THEN SepHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN SepHarga1!=0 and SepHarga2=0  and SepHarga3=0 THEN SepHarga1
+	                                        WHEN SepHarga1!=0 and SepHarga2!=0 and SepHarga3=0 THEN SepHarga2
+	                                        WHEN SepHarga1!=0 and SepHarga2!=0 and SepHarga3!=0 THEN SepHarga3
+	                                        WHEN SepHarga1=0  and SepHarga2!=0 and SepHarga3=0 THEN SepHarga2
+	                                        WHEN SepHarga1=0 and SepHarga2=0  and SepHarga3!=0 THEN SepHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1501,7 +1521,7 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [OktHarga1] =  " & QVal(Harga) & "
                                     ,[NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
@@ -1510,7 +1530,7 @@ Public Class forecast_po_model_detail
                                     ,[SepQty3] = " & QVal(SepQty3) & "
                                     ,[Sep PO1] =  " & QVal(Sep_PO1) & "
                                     ,[Sep PO2] =  " & QVal(Sep_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1522,10 +1542,10 @@ Public Class forecast_po_model_detail
             ElseIf Bulan.ToLower = "oktober" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [OktHarga1] =  " & QVal(OktHarga1) & " 
-                                    ,[OktHarga2] =  " & QVal(OktHarga2) & " 
-                                    ,[OktHarga3] =  " & QVal(OktHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [OktHarga1] =  " & QVal(OktHarga1) & "
+                                    ,[OktHarga2] =  " & QVal(OktHarga2) & "
+                                    ,[OktHarga3] =  " & QVal(OktHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1536,13 +1556,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Apr =
-	                                CASE 
-	                                        WHEN OktHarga1!=0 and OktHarga2=0  and OktHarga3=0 THEN OktHarga1  
-	                                        WHEN OktHarga1!=0 and OktHarga2!=0 and OktHarga3=0 THEN OktHarga2  
-	                                        WHEN OktHarga1!=0 and OktHarga2!=0 and OktHarga3!=0 THEN OktHarga3  
-	                                        WHEN OktHarga1=0  and OktHarga2!=0 and OktHarga3=0 THEN OktHarga2  
-	                                        WHEN OktHarga1=0 and OktHarga2=0  and OktHarga3!=0 THEN OktHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN OktHarga1!=0 and OktHarga2=0  and OktHarga3=0 THEN OktHarga1
+	                                        WHEN OktHarga1!=0 and OktHarga2!=0 and OktHarga3=0 THEN OktHarga2
+	                                        WHEN OktHarga1!=0 and OktHarga2!=0 and OktHarga3!=0 THEN OktHarga3
+	                                        WHEN OktHarga1=0  and OktHarga2!=0 and OktHarga3=0 THEN OktHarga2
+	                                        WHEN OktHarga1=0 and OktHarga2=0  and OktHarga3!=0 THEN OktHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1558,7 +1578,7 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [NovHarga1] =  " & QVal(Harga) & "
                                     ,[DesHarga1] =  " & QVal(Harga) & "
                                     ,[OktQty1] = " & QVal(OktQty1) & "
@@ -1566,7 +1586,7 @@ Public Class forecast_po_model_detail
                                     ,[OktQty3] = " & QVal(OktQty3) & "
                                     ,[Okt PO1] =  " & QVal(Okt_PO1) & "
                                     ,[Okt PO2] =  " & QVal(Okt_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1578,10 +1598,10 @@ Public Class forecast_po_model_detail
             ElseIf Bulan.ToLower = "november" Then
 
                 Dim query2 As String =
-                    "UPDATE [tForecastPrice] SET [NovHarga1] =  " & QVal(NovHarga1) & " 
-                                    ,[NovHarga2] =  " & QVal(NovHarga2) & " 
-                                    ,[NovHarga3] =  " & QVal(NovHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [NovHarga1] =  " & QVal(NovHarga1) & "
+                                    ,[NovHarga2] =  " & QVal(NovHarga2) & "
+                                    ,[NovHarga3] =  " & QVal(NovHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1592,13 +1612,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Apr =
-	                                CASE 
-	                                        WHEN NovHarga1!=0 and NovHarga2=0  and NovHarga3=0 THEN NovHarga1  
-	                                        WHEN NovHarga1!=0 and NovHarga2!=0 and NovHarga3=0 THEN NovHarga2  
-	                                        WHEN NovHarga1!=0 and NovHarga2!=0 and NovHarga3!=0 THEN NovHarga3  
-	                                        WHEN NovHarga1=0  and NovHarga2!=0 and NovHarga3=0 THEN NovHarga2  
-	                                        WHEN NovHarga1=0 and NovHarga2=0  and NovHarga3!=0 THEN NovHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN NovHarga1!=0 and NovHarga2=0  and NovHarga3=0 THEN NovHarga1
+	                                        WHEN NovHarga1!=0 and NovHarga2!=0 and NovHarga3=0 THEN NovHarga2
+	                                        WHEN NovHarga1!=0 and NovHarga2!=0 and NovHarga3!=0 THEN NovHarga3
+	                                        WHEN NovHarga1=0  and NovHarga2!=0 and NovHarga3=0 THEN NovHarga2
+	                                        WHEN NovHarga1=0 and NovHarga2=0  and NovHarga3!=0 THEN NovHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1614,21 +1634,20 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [DesHarga1] =  " & QVal(Harga) & "
                                     ,[NovQty1] = " & QVal(NovQty1) & "
                                     ,[NovQty2] = " & QVal(NovQty2) & "
                                     ,[NovQty3] = " & QVal(NovQty3) & "
                                     ,[Nov PO1] =  " & QVal(Nov_PO1) & "
                                     ,[Nov PO2] =  " & QVal(Nov_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
                                     Flag = " & QVal(Flag) & " AND
                                     CustID = " & QVal(CustID) & ""
                 ExecQuery(Query1)
-
 
                 '===========DESEMBER===============
             ElseIf Bulan.ToLower = "desember" Then
@@ -1645,10 +1664,10 @@ Public Class forecast_po_model_detail
                 '       ," & QVal(DesHarga1) & "," & QVal(DesHarga2) & "," & QVal(DesHarga3) & "," & QVal(created_date) & "," & QVal(created_by) & " )"
                 'ExecQuery(Query)
                 Dim query3 As String =
-                    "UPDATE [tForecastPrice] SET [DesHarga1] =  " & QVal(DesHarga1) & " 
-                                    ,[DesHarga2] =  " & QVal(DesHarga2) & " 
-                                    ,[DesHarga3] =  " & QVal(DesHarga3) & " 
-                                WHERE 
+                    "UPDATE [tForecastPrice] SET [DesHarga1] =  " & QVal(DesHarga1) & "
+                                    ,[DesHarga2] =  " & QVal(DesHarga2) & "
+                                    ,[DesHarga3] =  " & QVal(DesHarga3) & "
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1659,13 +1678,13 @@ Public Class forecast_po_model_detail
                 sql =
                     "SELECT
                                     Harga_Des =
-	                                CASE 
-	                                        WHEN DesHarga1!=0 and DesHarga2=0  and DesHarga3=0 THEN DesHarga1  
-	                                        WHEN DesHarga1!=0 and DesHarga2!=0 and DesHarga3=0 THEN DesHarga2  
-	                                        WHEN DesHarga1!=0 and DesHarga2!=0 and DesHarga3!=0 THEN DesHarga3  
-	                                        WHEN DesHarga1=0  and DesHarga2!=0 and DesHarga3=0 THEN DesHarga2  
-	                                        WHEN DesHarga1=0 and DesHarga2=0  and DesHarga3!=0 THEN DesHarga3 
-                                            ELSE 0 
+	                                CASE
+	                                        WHEN DesHarga1!=0 and DesHarga2=0  and DesHarga3=0 THEN DesHarga1
+	                                        WHEN DesHarga1!=0 and DesHarga2!=0 and DesHarga3=0 THEN DesHarga2
+	                                        WHEN DesHarga1!=0 and DesHarga2!=0 and DesHarga3!=0 THEN DesHarga3
+	                                        WHEN DesHarga1=0  and DesHarga2!=0 and DesHarga3=0 THEN DesHarga2
+	                                        WHEN DesHarga1=0 and DesHarga2=0  and DesHarga3!=0 THEN DesHarga3
+                                            ELSE 0
 	                                END
                                 FROM tForecastPrice
                                 WHERE
@@ -1681,9 +1700,9 @@ Public Class forecast_po_model_detail
                 End If
 
                 Query1 =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [JanHarga1] =  " & QVal(Harga) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(t.ToString()) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1692,13 +1711,13 @@ Public Class forecast_po_model_detail
                 ExecQuery(Query1)
 
                 Dim Query2 As String =
-                    "UPDATE [tForecastPrice] 
+                    "UPDATE [tForecastPrice]
                                 SET [DesQty1] = " & QVal(DesQty1) & "
                                     ,[DesQty2] = " & QVal(DesQty2) & "
                                     ,[DesQty3] = " & QVal(DesQty3) & "
                                     ,[Des PO1] =  " & QVal(Des_PO1) & "
                                     ,[Des PO2] =  " & QVal(Des_PO2) & "
-                                WHERE 
+                                WHERE
                                     Tahun =  " & QVal(Tahun) & " AND
                                     PartNo = " & QVal(PartNo) & " AND
                                     InvtID = " & QVal(InvtID) & " AND
@@ -1753,6 +1772,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Sub
+
     Public Function GetQty(bulan As String, _Tahun As String) As Double
         Dim Qty As Double = 0
 
@@ -1781,6 +1801,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
+
     Public Function GetHarga(bulan As String) As Double
         Dim Harga As Double = 0
 
@@ -1809,6 +1830,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
+
     Public Function GetPO(bulan As String) As Double
         Dim PO As Double = 0
 
@@ -1837,6 +1859,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
+
     Public Function GetPORev(bulan As String) As Double
         Dim PORev As Double = 0
 
@@ -1865,6 +1888,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
+
     Public Function GetHargaPrev(bulan As String) As Double
         Dim Harga As Double = 0
 
@@ -1893,6 +1917,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
+
     Public Sub MatomeInsert(Bulan As String, bulanAngka As String)
         Try
             Dim _Bulan As String = String.Empty
@@ -1909,7 +1934,6 @@ Public Class forecast_po_model_detail
             Dim Qty3 As Double = 0
             Dim Qty2 As Double = 0
             Dim Qty1 As Double = 0
-
 
             Dim _PO As Double = 0
             Dim _PORev As Double = 0
@@ -2006,10 +2030,19 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Sub
+
     Public Sub SinkronisasiHarga(Bulan As String, BulanAngka As String)
         Try
+            Dim Service As New AdmService
+            Dim dt As New DataTable
             Dim salesPrice As Double = 0
-            salesPrice = getSalesPrice(BulanAngka, Tahun)
+
+            dt = Service.GetInventory("ADM", PartNo)
+            If dt.Rows.Count > 1 Then
+                salesPrice = getSalesPrice(BulanAngka, Tahun)
+            Else
+                salesPrice = GetSalesManual()
+            End If
 
             Dim _Bulan As String = String.Empty
 
@@ -2156,7 +2189,7 @@ Public Class forecast_po_model_detail
                         ,[DesHarga2] = " & QVal(DesHarga2) & "
                         ,[DesHarga3] = " & QVal(DesHarga3) & "
                         ,[update_date] = " & QVal(update_date) & "
-                        ,[updated_by] = " & QVal(updated_by) & " 
+                        ,[updated_by] = " & QVal(updated_by) & "
                     WHERE Id = " & QVal(Id) & ""
             ExecQuery(Query)
         Catch ex As Exception
@@ -2238,11 +2271,11 @@ Public Class forecast_po_model_detail
                         ,[DesQty2] = " & QVal(DesQty2) & "
                         ,[DesQty3] = " & QVal(DesQty3) & "
                         ,[Des PO1] = " & QVal(Des_PO1) & "
-                        ,[Des PO2] = " & QVal(Des_PO2) & "WHERE 
-                Tahun =  " & QVal(Tahun) & " AND 
-                PartNo = " & QVal(PartNo) & " AND 
-                InvtID = " & QVal(InvtID) & " AND 
-                Flag = " & QVal(Flag) & " AND 
+                        ,[Des PO2] = " & QVal(Des_PO2) & "WHERE
+                Tahun =  " & QVal(Tahun) & " AND
+                PartNo = " & QVal(PartNo) & " AND
+                InvtID = " & QVal(InvtID) & " AND
+                Flag = " & QVal(Flag) & " AND
                 CustID = " & QVal(CustID) & ""
             ExecQuery(Query)
         Catch ex As Exception
@@ -2254,7 +2287,7 @@ Public Class forecast_po_model_detail
         Try
             Dim Query As String = String.Empty
             Query = "UPDATE [tForecastPrice]
-                    SET 
+                    SET
                         [JanHarga1] = " & QVal(JanHarga1) & "
                         ,[JanHarga2] = " & QVal(JanHarga2) & "
                         ,[JanHarga3] = " & QVal(JanHarga3) & "
@@ -2292,13 +2325,14 @@ Public Class forecast_po_model_detail
                         ,[DesHarga2] = " & QVal(DesHarga2) & "
                         ,[DesHarga3] = " & QVal(DesHarga3) & "
                         ,[update_date] = GETDATE()
-                        ,[updated_by] = " & QVal(gh_Common.Username) & " 
+                        ,[updated_by] = " & QVal(gh_Common.Username) & "
                     WHERE Id = " & QVal(Id) & ""
             ExecQuery(Query)
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
     Public Sub Delete()
         Try
             Dim query As String = "DELETE FROM tForecastPrice WHERE id = " & QVal(Id) & " "
@@ -2307,6 +2341,7 @@ Public Class forecast_po_model_detail
             Throw
         End Try
     End Sub
+
     Public Function DeleteCustomer(CustId As String, Tahun As String) As Integer
         Try
             Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
@@ -2343,10 +2378,10 @@ Public Class forecast_po_model_detail
         Dim hasil As Boolean = False
         Try
             Dim query As String =
-                "SELECT InvtID FROM [tForecastPrice] WHERE 
-                Tahun =  " & QVal(Tahun) & " AND 
-                PartNo = " & QVal(PartNo) & " AND 
-                InvtID = " & QVal(InvtID) & " AND 
+                "SELECT InvtID FROM [tForecastPrice] WHERE
+                Tahun =  " & QVal(Tahun) & " AND
+                PartNo = " & QVal(PartNo) & " AND
+                InvtID = " & QVal(InvtID) & " AND
                 CustID = " & QVal(CustID) & ""
             Dim dt As New DataTable
             dt = GetDataTable(query)
@@ -2363,11 +2398,11 @@ Public Class forecast_po_model_detail
         Dim hasil As Boolean = False
         Try
             Dim query As String =
-                "SELECT InvtID FROM [tForecastPrice] WITH(NOLOCK) WHERE 
-                Tahun =  " & QVal(Tahun) & " AND 
-                PartNo = " & QVal(PartNo) & " AND 
-                InvtID = " & QVal(InvtID) & " AND 
-                Flag = " & QVal(Flag) & " AND 
+                "SELECT InvtID FROM [tForecastPrice] WITH(NOLOCK) WHERE
+                Tahun =  " & QVal(Tahun) & " AND
+                PartNo = " & QVal(PartNo) & " AND
+                InvtID = " & QVal(InvtID) & " AND
+                Flag = " & QVal(Flag) & " AND
                 CustID = " & QVal(CustID) & ""
             Dim dt As New DataTable
             dt = GetDataTable(query)
@@ -2379,6 +2414,7 @@ Public Class forecast_po_model_detail
             Throw
         End Try
     End Function
+
     Public Sub ValidateInsert()
         If Tahun = "" OrElse PartNo = "" OrElse InvtID = "" OrElse CustID = "" Then
             Err.Raise(ErrNumber, , GetMessage(MessageEnum.PropertyKosong))
@@ -2425,6 +2461,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
+
     Public Function GetDoubleInvtID() As DataTable
         Try
             Dim sql As String = "Bom_GetDoubleInvtID"
@@ -2447,6 +2484,7 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
+
     Public Function GetListInveortoryDetails(InvtID As String) As DataTable
         Try
             Dim sql As String = "tForecast_GetListInveortoryDetails"
@@ -2480,4 +2518,5 @@ Public Class forecast_po_model_detail
             Throw ex
         End Try
     End Function
+
 End Class

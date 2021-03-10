@@ -23,6 +23,13 @@ Module Extensions
         Return result
     End Function
     <Extension()>
+    Function AsFloat(ByVal item As Object, ByVal Optional defaultFloat As Double = 0) As Double
+        If item Is Nothing OrElse item.Equals(DBNull.Value) Then Return defaultFloat
+        Dim result As Double
+        If Not Single.TryParse(item.ToString(), result) Then Return defaultFloat
+        Return result
+    End Function
+    <Extension()>
     Function AsString(ByVal item As Object, ByVal Optional defaultString As String = "") As String
         If item Is Nothing OrElse item.Equals(DBNull.Value) Then Return defaultString
         Return item.ToString().Trim()

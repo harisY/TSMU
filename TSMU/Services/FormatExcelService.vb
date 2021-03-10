@@ -116,12 +116,12 @@ Public Class AdmService
                     dtHasil = GetInventory(_Customer, PartNo)
                     If dtHasil.Rows.Count > 0 Then
                         For Each row1 As DataRow In dtHasil.Rows
-                            Dim InvtID As String = row1("InvtID").ToString()
-                            Dim Descript As String = row1("Descript").ToString()
-                            Dim Custname As String = row1("Name").ToString()
+                            Dim InvtID As String = row1("InvtID").ToString().AsString
+                            Dim Descript As String = row1("Descript").ToString().AsString
+                            Dim Custname As String = row1("Name").ToString().AsString
+                            Dim Model As String = String.Empty
                             If Len(InvtID) > 7 Then
                                 Dim _Model As String = InvtID.Substring(4, 1)
-                                Dim Model As String = String.Empty
                                 Select Case _Model.ToLower
                                     Case "t"
                                         Model = "Taruna"
@@ -136,28 +136,45 @@ Public Class AdmService
                                         '    Model = ModelN.D.ToString + InvtID.Substring(4, 3)
                                 End Select
                                 'Dim Site As String = GetSite(InvtID, PartNo)
-                                Dim dr As DataRow = DtTemp.NewRow()
-                                dr("Check") = True
-                                dr("Tahun") = _Tahun
-                                dr("CustID") = _Customer
-                                dr("CustName") = Custname
-                                dr("InvtID") = InvtID
-                                dr("Description") = Descript
-                                dr("PartNo") = PartNo
-                                dr("Model") = Model
-                                dr("Oe") = "OE"
-                                dr("InSub") = ""
-                                dr("Site") = _Site
-                                dr("Flag") = _Flag
-                                dr("N") = N
-                                dr("N1") = N1
-                                dr("N2") = N2
-                                dr("N3") = N3
-                                DtTemp.Rows.Add(dr)
                             End If
+                            Dim dr As DataRow = DtTemp.NewRow()
+                            dr("Check") = True
+                            dr("Tahun") = _Tahun
+                            dr("CustID") = _Customer
+                            dr("CustName") = Custname
+                            dr("InvtID") = InvtID
+                            dr("Description") = Descript
+                            dr("PartNo") = PartNo
+                            dr("Model") = Model.AsString
+                            dr("Oe") = "OE"
+                            dr("InSub") = ""
+                            dr("Site") = _Site
+                            dr("Flag") = _Flag
+                            dr("N") = N
+                            dr("N1") = N1
+                            dr("N2") = N2
+                            dr("N3") = N3
+                            DtTemp.Rows.Add(dr)
                         Next
-
                     Else
+                        Dim dr As DataRow = DtTemp.NewRow()
+                        dr("Check") = True
+                        dr("Tahun") = _Tahun
+                        dr("CustID") = _Customer
+                        dr("CustName") = "N/A"
+                        dr("InvtID") = "N/A"
+                        dr("Description") = "N/A"
+                        dr("PartNo") = PartNo
+                        dr("Model") = "N/A"
+                        dr("Oe") = "OE"
+                        dr("InSub") = ""
+                        dr("Site") = _Site
+                        dr("Flag") = _Flag
+                        dr("N") = N
+                        dr("N1") = N1
+                        dr("N2") = N2
+                        dr("N3") = N3
+                        DtTemp.Rows.Add(dr)
                         Add_tForecast_Log(PartNo, UniqueNo, "")
                     End If
                     If dtHasil.Rows.Count > 1 Then

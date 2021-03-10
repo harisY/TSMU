@@ -138,6 +138,7 @@
     <Reference Include="DevExpress.XtraSpellChecker.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraWizard.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="ExcelDataReader">
       <HintPath>bin\Debug\ExcelDataReader.dll</HintPath>
     </Reference>
@@ -1713,6 +1714,12 @@
     <Compile Include="Form\Common\frmForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\FrmForecastPriceTemp.Designer.vb">
+      <DependentUpon>FrmForecastPriceTemp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmForecastPriceTemp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.Designer.vb">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </Compile>
@@ -2133,10 +2140,22 @@
     <Compile Include="Form\HR\FrmHROrgOrganisasiDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\HR\FrmHRPADataAlamat.designer.vb">
+      <DependentUpon>FrmHRPADataAlamat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataAlamat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\HR\FrmHRPADataKaryawan.designer.vb">
       <DependentUpon>FrmHRPADataKaryawan.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\HR\FrmHRPADataKaryawan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKeluarga.designer.vb">
+      <DependentUpon>FrmHRPADataKeluarga.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKeluarga.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\HR\FrmHRPADataPribadi.Designer.vb">
@@ -2145,10 +2164,10 @@
     <Compile Include="Form\HR\FrmHRPADataPribadi.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\HR\FrmHRPANewHire.Designer.vb">
-      <DependentUpon>FrmHRPANewHire.vb</DependentUpon>
+    <Compile Include="Form\HR\FrmHRPANewEmployee.Designer.vb">
+      <DependentUpon>FrmHRPANewEmployee.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\HR\FrmHRPANewHire.vb">
+    <Compile Include="Form\HR\FrmHRPANewEmployee.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Lookup\FrmLookupForecastDaily.Designer.vb">
@@ -2323,6 +2342,18 @@
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PR\FrmDetailPR.Designer.vb">
+      <DependentUpon>FrmDetailPR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PR\FrmDetailPR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PR\FrmHeaderPR.Designer.vb">
+      <DependentUpon>FrmHeaderPR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PR\FrmHeaderPR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Report\frmMonitoringDelivery.Designer.vb">
@@ -2731,7 +2762,11 @@
     <Compile Include="Models\HR\HROrgJabatanModel.vb" />
     <Compile Include="Models\HR\HROrgOrganisasiModel.vb" />
     <Compile Include="Models\HR\HROrgStrukturModel.vb" />
+    <Compile Include="Models\HR\HRPADataAlamatModel.vb" />
     <Compile Include="Models\HR\HRPADataKaryawanModel.vb" />
+    <Compile Include="Models\HR\HRPADataKeluargaModel.vb" />
+    <Compile Include="Models\HR\HRPADataKomunikasiModel.vb" />
+    <Compile Include="Models\HR\HRPADataPendidikanModel.vb" />
     <Compile Include="Models\HR\HRPADataPribadiModel.vb" />
     <Compile Include="Models\HR\HRPAHeaderModel.vb" />
     <Compile Include="Models\ImageModel.vb" />
@@ -2763,6 +2798,7 @@
     <Compile Include="Models\SettingModel.vb" />
     <Compile Include="Models\SoRegTemplateModel.vb" />
     <Compile Include="Models\TamScan.vb" />
+    <Compile Include="Models\TForecastPrice_TempModel.vb" />
     <Compile Include="Models\TMMINmodel.vb" />
     <Compile Include="Models\TTI_Detail_Models.vb" />
     <Compile Include="Models\TTI_Header_Models.vb" />
@@ -3189,6 +3225,7 @@
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
     <Compile Include="Services\SettingService.vb" />
+    <Compile Include="Services\TForecastPrice_TempService.vb" />
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
     </Compile>
@@ -3771,6 +3808,9 @@
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmForecastPriceTemp.resx">
+      <DependentUpon>FrmForecastPriceTemp.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </EmbeddedResource>
@@ -3825,11 +3865,20 @@
     <EmbeddedResource Include="Form\HR\FrmHROrgOrganisasiDetail.resx">
       <DependentUpon>FrmHROrgOrganisasiDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataAlamat.resx">
+      <DependentUpon>FrmHRPADataAlamat.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\HR\FrmHRPADataKaryawan.resx">
       <DependentUpon>FrmHRPADataKaryawan.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataKeluarga.resx">
+      <DependentUpon>FrmHRPADataKeluarga.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\HR\FrmHRPADataPribadi.resx">
       <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPANewEmployee.resx">
+      <DependentUpon>FrmHRPANewEmployee.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Lookup\FrmLookupForecastDaily.resx">
       <DependentUpon>FrmLookupForecastDaily.vb</DependentUpon>
@@ -3922,6 +3971,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PR\FrmDetailPR.resx">
+      <DependentUpon>FrmDetailPR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PR\FrmHeaderPR.resx">
+      <DependentUpon>FrmHeaderPR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmMonitoringDelivery.resx">
       <DependentUpon>frmMonitoringDelivery.vb</DependentUpon>
