@@ -1,5 +1,6 @@
 ﻿Public Class ForecastDailyModel
     Public Property Bulan() As Integer
+    Public Property CustId() As String
     Public Property Id() As Integer
     Public Property PartNo() As String
     Public Property PartName() As String
