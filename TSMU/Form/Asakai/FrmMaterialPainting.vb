@@ -420,7 +420,7 @@ Public Class FrmMaterialPainting
                                                                         ,F16 as Pemakaian
                                                                         ,F17 as Harga
                                                                         ,F18 as Amount
-                                                                         FROM [Pemakaian$A11:Z345] where F1 <> '' ", cn) '
+                                                                         FROM [Pemakaian$A11:Z500] where F1 <> '' ", cn) '
                         Dim dt As New DataTable
                         dt.Load(cmd.ExecuteReader)
 

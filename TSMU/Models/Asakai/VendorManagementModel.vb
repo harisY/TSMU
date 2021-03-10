@@ -289,6 +289,7 @@ Public Class VMProblemDetailModel
     Public Property D_Type As String
     Public Property D_Qty As Integer
     Public Property D_Gambar As String
+    Public Property D_Gambar2 As String
     Public Property D_Problem As String
     Public Property D_Lot As String
     Public Property D_Analisis As String
@@ -327,7 +328,8 @@ Public Class VMProblemDetailModel
                    ,[PREVENTIVE ACTION]
                    ,[Pic]
                    ,[Target]
-                   ,[status]) " & vbCrLf &
+                   ,[status]
+                   ,[Foto2]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(D_Tanggal) & ", " & vbCrLf &
             "       " & QVal(D_Shift) & ", " & vbCrLf &
@@ -345,7 +347,9 @@ Public Class VMProblemDetailModel
             "       " & QVal(D_PREVENTIVE_ACTION) & ", " & vbCrLf &
             "       " & QVal(D_Pic) & ", " & vbCrLf &
             "       " & QVal(D_Target) & ", " & vbCrLf &
-            "       " & QVal(D_Status) & ")"
+            "       " & QVal(D_Status) & ", " & vbCrLf &
+            "       " & QVal(D_Gambar2) & ")"
+
             'ExecQuery(ls_SP)
             ExecQuery(ls_SP)
 

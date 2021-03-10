@@ -43,7 +43,7 @@ Public Class Frm_CR_UserCreateHeader
 
         'Call Sub_Dept(gh_Common.GroupID)
         Dim dtGrid As New DataTable
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, True, True)
+        Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, True)
     End Sub
     Private Sub Sub_Dept(Dept_Sub As String)
         Try
@@ -96,7 +96,7 @@ Public Class Frm_CR_UserCreateHeader
             Dim dt As New DataTable
             dt = fc_Class_PC.Get_Cek_Purchase()
             GridPurchase.DataSource = dt
-            Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
+            'Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             'Call Grid_Properties()
 
         Catch ex As Exception
@@ -250,22 +250,30 @@ Public Class Frm_CR_UserCreateHeader
     Public Overrides Sub Proc_Search()
 
         Try
-            Dim Status As List(Of String) = New List(Of String)({"ALL", "Create", "Submit", "Revise", "Approve Dept Head", "Approve Div Head", "Submit To NPD"})
-
+            'Dim Status As List(Of String) = New List(Of String)({"ALL", "Create", "Submit", "Revise", "Approve Dept Head", "Approve Div Head", "Submit To NPD"})
             Dim fSearch As New frmSearch()
-            With fSearch
-                .StartPosition = FormStartPosition.CenterScreen
-                .ShowDialog()
 
-                dtGrid = fc_Class.Get_CRRequest(Dept, If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
-                Grid.DataSource = dtGrid
+            If TabControl1.SelectedTab.Name = "TabPage1" Then
+                With fSearch
+                    .StartPosition = FormStartPosition.CenterScreen
+                    .ShowDialog()
+
+                    dtGrid = fc_Class.Get_CRRequest(Dept, If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                    Grid.DataSource = dtGrid
+
+                End With
+            ElseIf TabControl1.SelectedTab.Name = "TabPage2" Then
+                With fSearch
+                    .StartPosition = FormStartPosition.CenterScreen
+                    .ShowDialog()
+
+                    dtGrid = fc_Class.Get_CR_Purchase_Search(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                    GridPurchase.DataSource = dtGrid
+
+                End With
+            End If
 
 
-                'dt = fc_Class.Get_CRRequest(Dept, pDate1, pDate2)
-                'Grid.DataSource = dt
-
-
-            End With
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try

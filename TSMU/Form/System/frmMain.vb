@@ -22,15 +22,15 @@ Partial Public Class FrmMain
 
     Private Sub RunAutoUpdate(Site As String)
         ''add Site
-        'AutoUpdater.RunUpdateAsAdmin = False
-        'AutoUpdater.Mandatory = True
-        'AutoUpdater.UpdateMode = Mode.ForcedDownload
-        'If String.IsNullOrEmpty(Site) OrElse Site = "tng" Then
-        '    AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
-        'Else
-        '    AutoUpdater.Start("http://10.10.3.6/AutoUpdate/AutoUpdaterCkr.xml")
-        'End If
-        AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
+        AutoUpdater.RunUpdateAsAdmin = False
+        AutoUpdater.Mandatory = True
+        AutoUpdater.UpdateMode = Mode.ForcedDownload
+        If String.IsNullOrEmpty(Site) OrElse Site = "tng" Then
+            AutoUpdater.Start("http://10.10.1.12/updates/AutoUpdaterTest.xml")
+        Else
+            AutoUpdater.Start("http://10.10.3.6/AutoUpdate/AutoUpdaterCkr.xml")
+        End If
+        'AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
     End Sub
 
     Private Sub AutoUpdater_ApplicationExitEvent()
@@ -435,7 +435,7 @@ Partial Public Class FrmMain
                     dialogResult = MessageBox.Show($"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. Do you want to update the application now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 End If
 
-                If dialogResult.Equals(DialogResult.Yes) OrElse dialogResult.Equals(DialogResult.OK) Then
+                If dialogResult.Equals(dialogResult.Yes) OrElse dialogResult.Equals(dialogResult.OK) Then
 
                     Try
 

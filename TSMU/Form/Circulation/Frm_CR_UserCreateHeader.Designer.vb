@@ -45,6 +45,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -264,7 +266,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.TabControl1.Location = New System.Drawing.Point(12, 30)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(908, 379)
+        Me.TabControl1.Size = New System.Drawing.Size(960, 379)
         Me.TabControl1.TabIndex = 11
         '
         'TabPage1
@@ -273,7 +275,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(900, 353)
+        Me.TabPage1.Size = New System.Drawing.Size(952, 353)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Circulation"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -284,7 +286,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(900, 353)
+        Me.TabPage2.Size = New System.Drawing.Size(952, 353)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Input PO"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -297,13 +299,13 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridPurchase.Location = New System.Drawing.Point(6, 3)
         Me.GridPurchase.MainView = Me.GridViewPurchase
         Me.GridPurchase.Name = "GridPurchase"
-        Me.GridPurchase.Size = New System.Drawing.Size(888, 344)
+        Me.GridPurchase.Size = New System.Drawing.Size(940, 344)
         Me.GridPurchase.TabIndex = 12
         Me.GridPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridViewPurchase})
         '
         'GridViewPurchase
         '
-        Me.GridViewPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn8})
+        Me.GridViewPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn11, Me.GridColumn10, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn8})
         Me.GridViewPurchase.GridControl = Me.GridPurchase
         Me.GridViewPurchase.Name = "GridViewPurchase"
         Me.GridViewPurchase.OptionsBehavior.Editable = False
@@ -318,7 +320,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn34.Name = "GridColumn34"
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 0
-        Me.GridColumn34.Width = 147
+        Me.GridColumn34.Width = 118
         '
         'GridColumn35
         '
@@ -330,7 +332,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True
         Me.GridColumn35.VisibleIndex = 1
-        Me.GridColumn35.Width = 104
+        Me.GridColumn35.Width = 90
         '
         'GridColumn36
         '
@@ -342,7 +344,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn36.Name = "GridColumn36"
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 2
-        Me.GridColumn36.Width = 101
+        Me.GridColumn36.Width = 88
         '
         'GridColumn37
         '
@@ -354,7 +356,27 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 4
-        Me.GridColumn37.Width = 73
+        Me.GridColumn37.Width = 76
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn11.FieldName = "PR"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 5
+        Me.GridColumn11.Width = 71
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn10.FieldName = "PO"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 6
+        Me.GridColumn10.Width = 59
         '
         'GridColumn38
         '
@@ -365,8 +387,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn38.FieldName = "Requester"
         Me.GridColumn38.Name = "GridColumn38"
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 5
-        Me.GridColumn38.Width = 54
+        Me.GridColumn38.VisibleIndex = 7
+        Me.GridColumn38.Width = 65
         '
         'GridColumn39
         '
@@ -377,8 +399,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn39.FieldName = "Dept Head"
         Me.GridColumn39.Name = "GridColumn39"
         Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 6
-        Me.GridColumn39.Width = 52
+        Me.GridColumn39.VisibleIndex = 8
+        Me.GridColumn39.Width = 46
         '
         'GridColumn40
         '
@@ -389,8 +411,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn40.FieldName = "Div Head"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 7
-        Me.GridColumn40.Width = 52
+        Me.GridColumn40.VisibleIndex = 9
+        Me.GridColumn40.Width = 66
         '
         'GridColumn41
         '
@@ -401,7 +423,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn41.FieldName = "Other Dept"
         Me.GridColumn41.Name = "GridColumn41"
         Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 8
+        Me.GridColumn41.VisibleIndex = 10
         Me.GridColumn41.Width = 52
         '
         'GridColumn42
@@ -413,8 +435,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn42.FieldName = "Accounting"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.Visible = True
-        Me.GridColumn42.VisibleIndex = 9
-        Me.GridColumn42.Width = 52
+        Me.GridColumn42.VisibleIndex = 11
+        Me.GridColumn42.Width = 47
         '
         'GridColumn43
         '
@@ -425,8 +447,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn43.FieldName = "Purch"
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 10
-        Me.GridColumn43.Width = 52
+        Me.GridColumn43.VisibleIndex = 12
+        Me.GridColumn43.Width = 43
         '
         'GridColumn44
         '
@@ -437,8 +459,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn44.FieldName = "Amount"
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 11
-        Me.GridColumn44.Width = 163
+        Me.GridColumn44.VisibleIndex = 13
+        Me.GridColumn44.Width = 97
         '
         'GridColumn8
         '
@@ -446,7 +468,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 3
-        Me.GridColumn8.Width = 129
+        Me.GridColumn8.Width = 113
         '
         'Timer1
         '
@@ -455,7 +477,7 @@ Partial Class Frm_CR_UserCreateHeader
         'Frm_CR_UserCreateHeader
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(920, 421)
+        Me.ClientSize = New System.Drawing.Size(972, 421)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Frm_CR_UserCreateHeader"
         Me.Controls.SetChildIndex(Me.TabControl1, 0)
@@ -506,4 +528,6 @@ Partial Class Frm_CR_UserCreateHeader
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
