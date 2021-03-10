@@ -81,10 +81,12 @@ Public Class FrmHRPADataPribadi
                 cbStatusKawin.Text = IIf(dataRow("StatusKawin") Is DBNull.Value, "", dataRow("StatusKawin"))
                 dtTglKawin.EditValue = IIf(dataRow("TglKawin") Is DBNull.Value, Nothing, dataRow("TglKawin"))
                 txtJumlahAnak.Text = IIf(dataRow("JumlahAnak") Is DBNull.Value, 0, dataRow("JumlahAnak"))
-                Dim tmpData As Byte()
-                tmpData = CType(dataRow("Gambar"), Byte())
-                Dim ms As New MemoryStream(tmpData)
-                txtFoto.Image = Image.FromStream(ms)
+                If dataRow("Gambar") IsNot DBNull.Value Then
+                    Dim tmpData As Byte()
+                    tmpData = CType(dataRow("Gambar"), Byte())
+                    Dim ms As New MemoryStream(tmpData)
+                    txtGambar.Image = Image.FromStream(ms)
+                End If
                 txtReference.Text = IIf(dataRow("Reference") Is DBNull.Value, "", dataRow("Reference"))
                 txtKet.Text = IIf(dataRow("Ket") Is DBNull.Value, "", dataRow("Ket"))
                 dtTglBuat.EditValue = dataRow("TglBuat")
@@ -184,7 +186,7 @@ Public Class FrmHRPADataPribadi
             modelDataPribadi = New HRPADataPribadiModel
             Dim tmpData As Byte()
             Using ms As New MemoryStream()
-                txtFoto.Image.Save(ms, ImageFormat.Jpeg)
+                txtGambar.Image.Save(ms, ImageFormat.Jpeg)
                 tmpData = ms.ToArray
             End Using
 

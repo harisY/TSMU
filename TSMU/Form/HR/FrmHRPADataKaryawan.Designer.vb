@@ -50,7 +50,6 @@ Partial Class FrmHRPADataKaryawan
         Me.cbStatus = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cbTipe = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cbOrganisasi = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cbGolongan = New DevExpress.XtraEditors.LookUpEdit()
         Me.cbPerpindahan = New DevExpress.XtraEditors.LookUpEdit()
         Me.cbAlasan = New DevExpress.XtraEditors.LookUpEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -87,6 +86,7 @@ Partial Class FrmHRPADataKaryawan
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.cbGolongan = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -116,7 +116,6 @@ Partial Class FrmHRPADataKaryawan
         CType(Me.cbStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbTipe.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbOrganisasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbPerpindahan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbAlasan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,6 +151,7 @@ Partial Class FrmHRPADataKaryawan
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -191,9 +191,9 @@ Partial Class FrmHRPADataKaryawan
         Me.LayoutControl1.Controls.Add(Me.cbStatus)
         Me.LayoutControl1.Controls.Add(Me.cbTipe)
         Me.LayoutControl1.Controls.Add(Me.cbOrganisasi)
-        Me.LayoutControl1.Controls.Add(Me.cbGolongan)
         Me.LayoutControl1.Controls.Add(Me.cbPerpindahan)
         Me.LayoutControl1.Controls.Add(Me.cbAlasan)
+        Me.LayoutControl1.Controls.Add(Me.cbGolongan)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(10, 3)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(10, 3, 10, 3)
@@ -398,7 +398,7 @@ Partial Class FrmHRPADataKaryawan
         Me.cbTipePosisi.Location = New System.Drawing.Point(135, 268)
         Me.cbTipePosisi.Name = "cbTipePosisi"
         Me.cbTipePosisi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbTipePosisi.Properties.Items.AddRange(New Object() {"DIRECTOR", "ASST. DIRECTOR", "MANAGER", "EXPATRIATE", "STAFF", "LEADER"})
+        Me.cbTipePosisi.Properties.Items.AddRange(New Object() {"DIRECTOR", "ASST.DIRECTOR", "CHIEF SECURITY", "DEPARTEMENT HEAD", "DIVISION HEAD", "DRIVER", "DV/ASST", "EXPERT 1", "EXPERT 2", "EXPERT 3", "GROUP LEADER", "OB", "OFFICE BOY", "OPERATOR", "SECTION HEAD", "SECURITY", "STAFF", "TEAM LEADER"})
         Me.cbTipePosisi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cbTipePosisi.Size = New System.Drawing.Size(153, 28)
         Me.cbTipePosisi.StyleController = Me.LayoutControl1
@@ -409,7 +409,7 @@ Partial Class FrmHRPADataKaryawan
         Me.cbFactory.Location = New System.Drawing.Point(135, 300)
         Me.cbFactory.Name = "cbFactory"
         Me.cbFactory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbFactory.Properties.Items.AddRange(New Object() {"TANGERANG", "CIKARANG"})
+        Me.cbFactory.Properties.Items.AddRange(New Object() {"CIKARANG", "TANGERANG"})
         Me.cbFactory.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cbFactory.Size = New System.Drawing.Size(153, 28)
         Me.cbFactory.StyleController = Me.LayoutControl1
@@ -502,7 +502,7 @@ Partial Class FrmHRPADataKaryawan
         Me.cbStatus.Location = New System.Drawing.Point(135, 204)
         Me.cbStatus.Name = "cbStatus"
         Me.cbStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbStatus.Properties.Items.AddRange(New Object() {"AKTIF", "TIDAK AKTIF", "RESIGN"})
+        Me.cbStatus.Properties.Items.AddRange(New Object() {"ACTIVE", "INACTIVE", "RESIGN"})
         Me.cbStatus.Size = New System.Drawing.Size(153, 28)
         Me.cbStatus.StyleController = Me.LayoutControl1
         Me.cbStatus.TabIndex = 11
@@ -516,7 +516,7 @@ Partial Class FrmHRPADataKaryawan
         Me.cbTipe.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.cbTipe.Properties.EditFormat.FormatString = "dd/MM/yyyy"
         Me.cbTipe.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.cbTipe.Properties.Items.AddRange(New Object() {"KONTRAK", "MAGANG", "OUTSOURCING", "TETAP"})
+        Me.cbTipe.Properties.Items.AddRange(New Object() {"CONTRACT", "MAGANG", "OUTSOURCING", "PERMANENT"})
         Me.cbTipe.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cbTipe.Size = New System.Drawing.Size(153, 28)
         Me.cbTipe.StyleController = Me.LayoutControl1
@@ -534,24 +534,6 @@ Partial Class FrmHRPADataKaryawan
         Me.cbOrganisasi.Size = New System.Drawing.Size(153, 28)
         Me.cbOrganisasi.StyleController = Me.LayoutControl1
         Me.cbOrganisasi.TabIndex = 30
-        '
-        'cbGolongan
-        '
-        Me.cbGolongan.Location = New System.Drawing.Point(135, 172)
-        Me.cbGolongan.Name = "cbGolongan"
-        Me.cbGolongan.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
-        Me.cbGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbGolongan.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("GolDesc", "")})
-        Me.cbGolongan.Properties.DisplayMember = "GolDesc"
-        Me.cbGolongan.Properties.NullText = ""
-        Me.cbGolongan.Properties.PopupSizeable = False
-        Me.cbGolongan.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth
-        Me.cbGolongan.Properties.ShowFooter = False
-        Me.cbGolongan.Properties.ShowHeader = False
-        Me.cbGolongan.Properties.ValueMember = "Gol"
-        Me.cbGolongan.Size = New System.Drawing.Size(153, 28)
-        Me.cbGolongan.StyleController = Me.LayoutControl1
-        Me.cbGolongan.TabIndex = 10
         '
         'cbPerpindahan
         '
@@ -901,6 +883,17 @@ Partial Class FrmHRPADataKaryawan
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem19.TextVisible = False
         '
+        'cbGolongan
+        '
+        Me.cbGolongan.Location = New System.Drawing.Point(135, 172)
+        Me.cbGolongan.Name = "cbGolongan"
+        Me.cbGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cbGolongan.Properties.Items.AddRange(New Object() {"NONE", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "TKA", "BOD"})
+        Me.cbGolongan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cbGolongan.Size = New System.Drawing.Size(153, 28)
+        Me.cbGolongan.StyleController = Me.LayoutControl1
+        Me.cbGolongan.TabIndex = 10
+        '
         'FrmHRPADataKaryawan
         '
         Me.ClientSize = New System.Drawing.Size(732, 403)
@@ -938,7 +931,6 @@ Partial Class FrmHRPADataKaryawan
         CType(Me.cbStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbTipe.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbOrganisasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbPerpindahan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbAlasan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
@@ -974,6 +966,7 @@ Partial Class FrmHRPADataKaryawan
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1041,7 +1034,7 @@ Partial Class FrmHRPADataKaryawan
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem5 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents cbGolongan As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents cbPerpindahan As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents cbAlasan As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents cbGolongan As DevExpress.XtraEditors.ComboBoxEdit
 End Class

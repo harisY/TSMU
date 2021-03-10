@@ -83,7 +83,7 @@
             If dt.Rows.Count > 0 Then
                 With modelHeader
                     .NIK = If(IsDBNull(dt.Rows(0).Item("NIK")), "", dt.Rows(0).Item("NIK").ToString())
-                    .Gambar = If(IsDBNull(dt.Rows(0).Item("Gambar")), "", dt.Rows(0).Item("Gambar"))
+                    .Gambar = If(IsDBNull(dt.Rows(0).Item("Gambar")), Nothing, dt.Rows(0).Item("Gambar"))
                     .NamaLengkap = If(IsDBNull(dt.Rows(0).Item("NamaLengkap")), "", dt.Rows(0).Item("NamaLengkap").ToString())
                     .JenisKelamin = If(IsDBNull(dt.Rows(0).Item("JenisKelamin")), "", dt.Rows(0).Item("JenisKelamin").ToString())
                     .TglLahir = If(IsDBNull(dt.Rows(0).Item("TglLahir")), Date.Today, dt.Rows(0).Item("TglLahir"))
@@ -148,7 +148,7 @@
                                 pdk.AlasanPindah ,
                                 ap.AlasanPindahDesc ,
                                 pdk.Golongan AS Gol ,
-                                pg.GolDesc AS Golongan ,
+                                --pg.GolDesc AS Golongan ,
                                 pdk.StatusKaryawan ,
                                 pdk.TipeKaryawan ,
                                 pdk.TipePosisiKaryawan ,
@@ -169,7 +169,7 @@
                         FROM    dbo.M_HRPADataKaryawan AS pdk
                                 LEFT JOIN dbo.M_HROrgOrganisasi AS oo ON oo.OrgID = pdk.Organisasi
                                 LEFT JOIN dbo.M_HROrgJabatan AS oj ON pdk.Jabatan = oj.OrgID
-                                LEFT JOIN dbo.S_HRPAGolongan AS pg ON pdk.Golongan = pg.Gol
+                                --LEFT JOIN dbo.S_HRPAGolongan AS pg ON pdk.Golongan = pg.Gol
                                 LEFT JOIN dbo.S_HRPAPerpindahan AS pp ON pdk.PerpindahanKaryawan = pp.Perpindahan
                                 LEFT JOIN dbo.S_HRPAAlasanPindah AS ap ON ap.AlasanPindah = pdk.AlasanPindah
                         WHERE   EmployeeID = " & QVal(EmpID) & ""

@@ -72,7 +72,7 @@ Public Class FrmHRPADataKaryawan
     Private Sub LoadTxtBox()
         Try
             ListItemsPerpindahan()
-            ListItemsGolongan()
+            'ListItemsGolongan()
 
             If isAction <> "Add" Then
                 ID = dataRow("ID")
@@ -180,6 +180,8 @@ Public Class FrmHRPADataKaryawan
                 Err.Raise(ErrNumber, , "Perpindahan Tidak Boleh Kosong!")
             ElseIf cbAlasan.Text = "" Then
                 Err.Raise(ErrNumber, , "Alasan Pindah Tidak Boleh Kosong!")
+            ElseIf cbTipe.Text <> "PERMANENT" And dtTglBerakhir.EditValue = Nothing Then
+                Err.Raise(ErrNumber, , "Tanggal Berakhir Tidak Boleh Kosong!")
             Else
                 If isAction <> "Edit" Then
                     If srvHR.CheckRangeDateKarir(EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
@@ -274,11 +276,11 @@ Public Class FrmHRPADataKaryawan
         cbAlasan.Properties.DataSource = dtAlasan
     End Sub
 
-    Private Sub ListItemsGolongan()
-        Dim dtGolongan = New DataTable
-        dtGolongan = srvHR.GetListGolongan()
-        cbGolongan.Properties.DataSource = dtGolongan
-    End Sub
+    'Private Sub ListItemsGolongan()
+    '    Dim dtGolongan = New DataTable
+    '    dtGolongan = srvHR.GetListGolongan()
+    '    cbGolongan.Properties.DataSource = dtGolongan
+    'End Sub
 
     Private Sub ListItemsOrganisasi()
         Dim dtOrganisasi = New DataTable
@@ -315,6 +317,15 @@ Public Class FrmHRPADataKaryawan
     Private Sub txtJabatan_Click(sender As Object, e As EventArgs) Handles txtJabatan.Click
         If dtTglMulai.EditValue = Nothing Then
             MsgBox("Tanggal Mulai Tidak Boleh Kosong !", MessageBoxIcon.Information, "Information")
+        End If
+    End Sub
+
+    Private Sub cbTipe_EditValueChanged(sender As Object, e As EventArgs) Handles cbTipe.EditValueChanged
+        If cbTipe.Text = "PERMANENT" Then
+            dtTglBerakhir.Enabled = False
+            dtTglBerakhir.EditValue = Nothing
+        Else
+            dtTglBerakhir.Enabled = True
         End If
     End Sub
 

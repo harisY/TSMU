@@ -22,6 +22,8 @@ Public Class FrmHRAdministrasiKaryawanDetail
 
     Dim frm_DataPribadi As FrmHRPADataPribadi
     Dim frm_DataKaryawan As FrmHRPADataKaryawan
+    Dim frm_DataAlamat As FrmHRPADataAlamat
+    Dim frm_DataKeluarga As FrmHRPADataKeluarga
 
     Public Sub New()
 
@@ -88,10 +90,13 @@ Public Class FrmHRAdministrasiKaryawanDetail
         Try
             If fs_Code <> "" Then
                 With modelHeader
-                    Dim tmpData As Byte()
-                    tmpData = CType(.Gambar, Byte())
-                    Dim ms As New MemoryStream(tmpData)
-                    PictureFoto.Image = Image.FromStream(ms)
+                    'If .Gambar IsNot Nothing Then
+                    '    Dim tmpData As Byte()
+                    '    tmpData = CType(.Gambar, Byte())
+                    '    Dim ms As New MemoryStream(tmpData)
+                    '    PictureFoto.Image = Image.FromStream(ms)
+                    'End If
+                    pictureFoto.Image = Image.FromFile("D:\Project\Takagi\Desain\HR\Foto\Agung.jpg")
                     txtNIK.Text = .NIK
                     txtNamaLengkap.Text = .NamaLengkap
                     txtJenisKelamin.Text = .JenisKelamin
@@ -169,18 +174,20 @@ Public Class FrmHRAdministrasiKaryawanDetail
     End Sub
 
     Private Sub CheckLoadFormMD(Action As String)
-        If cbMasterData.Text = "PRIBADI" Then
-            Call CallFrmDataPribadi(Action, dataRow)
-        ElseIf cbMasterData.Text = "KARIR" Then
-            Call CallFrmDataKaryawan(Action, dataRow)
+        If Action <> "Add" And dataRow Is Nothing Then
+            MsgBox("Tidak Ada Data Yang Dipilih !", MessageBoxIcon.Information, "Information")
         Else
-            Try
-                GridViewPADetail.Columns.Clear()
-                GridPADetail.DataSource = Nothing
-            Finally
-                GridPADetail.EndUpdate()
-            End Try
+            If cbMasterData.Text = "PRIBADI" Then
+                Call CallFrmDataPribadi(Action, dataRow)
+            ElseIf cbMasterData.Text = "KARIR" Then
+                Call CallFrmDataKaryawan(Action, dataRow)
+            ElseIf cbMasterData.Text = "ALAMAT" Then
+                Call CallFrmDataAlamat(Action, dataRow)
+            ElseIf cbMasterData.Text = "KELUARGA" Then
+                Call CallFrmDataKeluarga(Action, dataRow)
+            End If
         End If
+
     End Sub
 
 #Region "Grid Dynamic Master Data"
@@ -275,8 +282,8 @@ Public Class FrmHRAdministrasiKaryawanDetail
             Dim colTipe As GridColumn = GridViewPADetail.Columns("TipeKaryawan")
             colTipe.Caption = "Tipe"
 
-            Dim colGol As GridColumn = GridViewPADetail.Columns("Gol")
-            colGol.Visible = False
+            'Dim colGol As GridColumn = GridViewPADetail.Columns("Gol")
+            'colGol.Visible = False
 
             Dim colOrg As GridColumn = GridViewPADetail.Columns("OrgID")
             colOrg.Visible = False
@@ -483,6 +490,32 @@ Public Class FrmHRAdministrasiKaryawanDetail
         frm_DataKaryawan = New FrmHRPADataKaryawan(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
         frm_DataKaryawan.StartPosition = FormStartPosition.CenterScreen
         frm_DataKaryawan.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataAlamat(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataAlamat IsNot Nothing AndAlso frm_DataAlamat.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataAlamat.Close()
+        End If
+        frm_DataAlamat = New FrmHRPADataAlamat(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataAlamat.StartPosition = FormStartPosition.CenterScreen
+        frm_DataAlamat.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataKeluarga(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataKeluarga IsNot Nothing AndAlso frm_DataKeluarga.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataKeluarga.Close()
+        End If
+        frm_DataKeluarga = New FrmHRPADataKeluarga(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataKeluarga.StartPosition = FormStartPosition.CenterScreen
+        frm_DataKeluarga.ShowDialog()
         CheckLoadGridMD()
     End Sub
 
