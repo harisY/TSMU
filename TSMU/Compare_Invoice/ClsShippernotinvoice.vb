@@ -71,6 +71,27 @@ FROM #ShipNotInv AS ShipNotInv  LEFT JOIN poadm ON poadm.DN=ShipNotInv.CustOrdNb
             Throw ex
         End Try
     End Function
+    Public Function GetShipperNotInv_NotIssue(cust As String, tgl1 As String, tgl2 As String, lokasi As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+                "Proses_ShipperNotInv_NotIsssue"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(0).Value = cust
+            pParam(1) = New SqlClient.SqlParameter("@tgl1", SqlDbType.VarChar)
+            pParam(1).Value = tgl1
+            pParam(2) = New SqlClient.SqlParameter("@tgl2", SqlDbType.VarChar)
+            pParam(2).Value = tgl2
+            pParam(3) = New SqlClient.SqlParameter("@lokasi", SqlDbType.VarChar)
+            pParam(3).Value = lokasi
+
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetShipperInvCM(cust As String, tgl1 As String, tgl2 As String, lokasi As String) As DataTable
         Try
             Dim dt As New DataTable
