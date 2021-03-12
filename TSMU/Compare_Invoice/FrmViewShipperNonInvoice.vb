@@ -276,9 +276,16 @@ Public Class FrmViewShipperNonInvoice
                 Else
                     MsgBox("Grid Kosong!")
                 End If
-            Else
+            ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
                 If GridView3.RowCount > 0 Then
                     SaveToExcel(Grid3)
+                    MsgBox("Data Sudah Berhasil Di Export.")
+                Else
+                    MsgBox("Grid Kosong!")
+                End If
+            Else
+                If GridView4.RowCount > 0 Then
+                    SaveToExcel(GridControl1)
                     MsgBox("Data Sudah Berhasil Di Export.")
                 Else
                     MsgBox("Grid Kosong!")
