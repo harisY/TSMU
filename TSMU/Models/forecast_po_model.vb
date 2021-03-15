@@ -853,11 +853,14 @@ Public Class forecast_po_model_detail
         End Try
     End Function
 
-    Public Function GetSalesManual() As Double
+    Public Function GetSalesManual(Bulan As String, Tahun As String) As Double
         Dim salesPrice As Double = 0
 
         Try
             Dim parameters As List(Of SqlParameter) = New List(Of SqlParameter)()
+            parameters.Add(New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun})
+            parameters.Add(New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan})
+            parameters.Add(New SqlParameter() With {.ParameterName = "CustID", .Value = CustID})
             parameters.Add(New SqlParameter() With {.ParameterName = "PartNo", .Value = PartNo})
             Dim dt As New DataTable
             dt = GetDataTableByParam("tForecastPrice_Temp1GetHarga", CommandType.StoredProcedure, parameters, GetConnString)
@@ -2041,7 +2044,7 @@ Public Class forecast_po_model_detail
             If dt.Rows.Count > 1 Then
                 salesPrice = getSalesPrice(BulanAngka, Tahun)
             Else
-                salesPrice = GetSalesManual()
+                salesPrice = GetSalesManual(BulanAngka, Tahun)
             End If
 
             Dim _Bulan As String = String.Empty
