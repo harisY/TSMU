@@ -2342,11 +2342,15 @@ Public Class forecast_po_model_detail
         End Try
     End Sub
 
-    Public Function DeleteCustomer(CustId As String, Tahun As String) As Integer
+    Public Function DeleteCustomer(CustId As String, Tahun As String, Bulan As String, ColumnName As String, Flag As String, Site As String) As Integer
         Try
             Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
             Params.Add(New SqlParameter() With {.ParameterName = "CustId", .Value = CustId})
             Params.Add(New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun})
+            Params.Add(New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan})
+            Params.Add(New SqlParameter() With {.ParameterName = "Site", .Value = Site})
+            Params.Add(New SqlParameter() With {.ParameterName = "Flag", .Value = Flag})
+            Params.Add(New SqlParameter() With {.ParameterName = "ColumName", .Value = ColumnName})
             Dim success As Integer = ExecQueryWithValue("tForecastPrice_DeleteByCustomer", CommandType.StoredProcedure, Params, GetConnString)
             Return success
         Catch ex As Exception

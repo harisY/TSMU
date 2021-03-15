@@ -19,6 +19,8 @@ Public Class FrmLookupForecastDaily
     Private Sub FrmLookupForecastDaily_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FillComboTahun()
         FillComboBulan()
+        FillComboCustomer()
+
         If _Caller.ToLower() = "delete" Then
             LblFile.Visibility = LayoutVisibility.Never
         Else
@@ -27,6 +29,11 @@ Public Class FrmLookupForecastDaily
         End If
     End Sub
 
+    ReadOnly Property Customer As String
+        Get
+            Return TxtCutomer.Text.Trim
+        End Get
+    End Property
     ReadOnly Property Tahun As String
         Get
             Return CmbTahun.Text.Trim
@@ -80,6 +87,19 @@ Public Class FrmLookupForecastDaily
         Next
     End Sub
 
+    Private Sub FillComboCustomer()
+        Dim fc_class As New clsSales_Budget
+        Dim dtTabel As New DataTable
+        dtTabel = fc_class.getCusstID_Solomon
+        Dim dr As DataRow = dtTabel.NewRow
+        dr("CustId") = ""
+        dtTabel.Rows.InsertAt(dr, 0)
+        TxtCutomer.Properties.Items.Clear()
+        For i As Integer = 0 To dtTabel.Rows.Count - 1
+            TxtCutomer.Properties.Items.Add(dtTabel.Rows(i)("CustId"))
+        Next
+    End Sub
+
     Private Sub TxtFile_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles TxtFile.ButtonClick
         Try
             Dim Dialog As New OpenFileDialog
@@ -96,7 +116,10 @@ Public Class FrmLookupForecastDaily
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         Try
-            If CmbTahun.Text = "" Then
+            If TxtCutomer.Text = "" Then
+                TxtCutomer.Focus()
+                Throw New Exception("Pilih Customer !")
+            ElseIf CmbTahun.Text = "" Then
                 CmbTahun.Focus()
                 Throw New Exception("Pilih Tahun !")
             ElseIf CmbBulan.EditValue = 0 Then
