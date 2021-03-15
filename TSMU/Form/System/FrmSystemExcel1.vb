@@ -125,9 +125,9 @@ Public Class FrmSystemExcel1
         lblStatus.Text = ""
         FillComboSite()
         FillComboFlag()
-        _CmbSite.Enabled = False
-        _CmbFlag.Enabled = False
-        TxtPO.Enabled = False
+        '_CmbSite.Enabled = False
+        '_CmbFlag.Enabled = False
+        'TxtPO.Enabled = False
 
         'XtraTabControl1.SelectedTabPageIndex = 0
         XtraTabControl1.TabPages.RemoveAt(1)
@@ -263,7 +263,7 @@ Public Class FrmSystemExcel1
                             _CmbSite.Focus()
                             Throw New Exception("Pilih Site !")
                         ElseIf _CmbFlag.Text = "" Then
-                            _CmbSite.Focus()
+                            _CmbFlag.Focus()
                             Throw New Exception("Pilih Flag !")
                         ElseIf TxtPO.Text = "" Then
                             TxtPO.Focus()
@@ -316,7 +316,7 @@ Public Class FrmSystemExcel1
                         Throw New Exception("Pilih Site !")
                     End If
                     If _CmbFlag.Text = "" Then
-                        _CmbSite.Focus()
+                        _CmbFlag.Focus()
                         Throw New Exception("Pilih Flag !")
                     End If
                     _IsCancel = False
@@ -346,21 +346,21 @@ Public Class FrmSystemExcel1
         End Try
     End Sub
 
-    Private Sub _cmbCust_EditValueChanged(sender As Object, e As EventArgs) Handles _cmbCust.EditValueChanged
-        Try
-            If _Caller = 1 Then
-                If String.IsNullOrEmpty(_cmbCust.Text) Then
-                    Return
-                End If
-                If _cmbCust.Text.ToLower = "adm" Then
-                    _CmbSite.Enabled = True
-                    _CmbFlag.Enabled = True
-                    TxtPO.Enabled = True
-                End If
-            End If
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        End Try
-    End Sub
+    'Private Sub _cmbCust_EditValueChanged(sender As Object, e As EventArgs) Handles _cmbCust.EditValueChanged
+    '    Try
+    '        If _Caller = 1 Then
+    '            If String.IsNullOrEmpty(_cmbCust.Text) Then
+    '                Return
+    '            End If
+    '            If _cmbCust.Text.ToLower = "adm" Then
+    '                _CmbSite.Enabled = True
+    '                _CmbFlag.Enabled = True
+    '                TxtPO.Enabled = True
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+    '        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+    '    End Try
+    'End Sub
 
 End Class
