@@ -1,7 +1,5 @@
-﻿Imports System.Data.OleDb
-Imports System.Data.SqlClient
-Imports System.Configuration
-Imports System.IO
+﻿Imports System.Configuration
+Imports System.Data.OleDb
 Imports DevExpress.XtraEditors.Controls
 
 Public Class FrmSystemExcel1
@@ -33,31 +31,37 @@ Public Class FrmSystemExcel1
         _isSync = IsSync
         _Caller = Caller
     End Sub
+
     ReadOnly Property IsCancel As Boolean
         Get
             Return _IsCancel
         End Get
     End Property
+
     ReadOnly Property Tahun As String
         Get
             Return _cmbTahun.Text.Trim
         End Get
     End Property
+
     ReadOnly Property Tahun1 As String
         Get
             Return TxtTahun2.Text.Trim
         End Get
     End Property
+
     ReadOnly Property Customer As String
         Get
             Return _cmbCust.Text.Trim
         End Get
     End Property
+
     ReadOnly Property _Site As String
         Get
             Return _CmbSite.Text.Trim
         End Get
     End Property
+
     ReadOnly Property Flag As String
         Get
             Return _CmbFlag.Text.Trim
@@ -79,6 +83,7 @@ Public Class FrmSystemExcel1
             End If
         End Get
     End Property
+
     ReadOnly Property BulanAngka As String
         Get
             If _cmbBulan.EditValue <> "" Then
@@ -88,6 +93,7 @@ Public Class FrmSystemExcel1
             End If
         End Get
     End Property
+
     ReadOnly Property PO As String
         Get
             If TxtPO.EditValue <> "" Then
@@ -103,14 +109,15 @@ Public Class FrmSystemExcel1
             Return XtraTabControl1.SelectedTabPageIndex
         End Get
     End Property
+
     Private Sub FrmSystemExcel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If _Caller = 1 Then
-            _cmbBulan.Enabled = True
-            _txtExcel.Enabled = True
-        Else
-            _cmbBulan.Enabled = False
-            _txtExcel.Enabled = False
-        End If
+        'If _Caller = 1 Then
+        '    _cmbBulan.Enabled = True
+        '    _txtExcel.Enabled = True
+        'Else
+        '    _cmbBulan.Enabled = False
+        '    _txtExcel.Enabled = False
+        'End If
         FillComboTahun()
         'FillComboTahun1()
         FillComboCustomer()
@@ -125,6 +132,7 @@ Public Class FrmSystemExcel1
         'XtraTabControl1.SelectedTabPageIndex = 0
         XtraTabControl1.TabPages.RemoveAt(1)
     End Sub
+
     Private Sub FillComboTahun()
         Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
         _cmbTahun.Properties.Items.Clear()
@@ -132,6 +140,7 @@ Public Class FrmSystemExcel1
             _cmbTahun.Properties.Items.Add(var)
         Next
     End Sub
+
     Private Sub FillComboTahun1()
         Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString}
         TxtTahun2.Properties.Items.Clear()
@@ -147,6 +156,7 @@ Public Class FrmSystemExcel1
             _CmbSite.Properties.Items.Add(var)
         Next
     End Sub
+
     Private Sub FillComboFlag()
         Dim tahun() As String = {"N/A", "ADMSPD", "KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3"}
         _CmbFlag.Properties.Items.Clear()
@@ -182,6 +192,7 @@ Public Class FrmSystemExcel1
         _cmbBulan.Properties.DisplayMember = "Text"
         _cmbBulan.Properties.ValueMember = "Value"
     End Sub
+
     Private Sub FillComboCustomer()
         Dim dtTabel As New DataTable
         dtTabel = fc_class.getCusstID_Solomon
@@ -193,6 +204,7 @@ Public Class FrmSystemExcel1
             _cmbCust.Properties.Items.Add(dtTabel.Rows(i)("CustId"))
         Next
     End Sub
+
     Dim path As String
     Dim path2 As String
 
@@ -311,7 +323,6 @@ Public Class FrmSystemExcel1
                 End If
             End If
             Close()
-
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -351,4 +362,5 @@ Public Class FrmSystemExcel1
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
+
 End Class
