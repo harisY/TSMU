@@ -12,7 +12,7 @@ Public Class FrmSystemExcel1
     Dim b As Integer = 0
     Dim _isSync As Boolean
     Dim _Caller As Integer
-
+    Dim _IsCancel As Boolean = True
     Public Property DtAdm As DataTable
 
     Public Sub New()
@@ -33,6 +33,11 @@ Public Class FrmSystemExcel1
         _isSync = IsSync
         _Caller = Caller
     End Sub
+    ReadOnly Property IsCancel As Boolean
+        Get
+            Return _IsCancel
+        End Get
+    End Property
     ReadOnly Property Tahun As String
         Get
             Return _cmbTahun.Text.Trim
@@ -224,6 +229,7 @@ Public Class FrmSystemExcel1
     Private Sub _btnExport_Click(sender As Object, e As EventArgs) Handles _btnExport.Click
         Try
             If XtraTabControl1.SelectedTabPageIndex = 0 Then
+
                 If _Caller = 1 Then
                     If lblStatus.Text <> "" Then
                         Throw New Exception("Proses masih berjalan !")
@@ -285,12 +291,24 @@ Public Class FrmSystemExcel1
                         _cmbTahun.Focus()
                         Throw New Exception("Pilih Tahun !")
                     End If
+                    If _cmbBulan.Text = "" Then
+                        _cmbBulan.Focus()
+                        Throw New Exception("Pilih Bulan !")
+                    End If
                     If _cmbCust.Text = "" Then
                         _cmbCust.Focus()
                         Throw New Exception("Pilih Customer !")
                     End If
+                    If _CmbSite.Text = "" Then
+                        _CmbSite.Focus()
+                        Throw New Exception("Pilih Site !")
+                    End If
+                    If _CmbFlag.Text = "" Then
+                        _CmbSite.Focus()
+                        Throw New Exception("Pilih Flag !")
+                    End If
+                    _IsCancel = False
                 End If
-
             End If
             Close()
 

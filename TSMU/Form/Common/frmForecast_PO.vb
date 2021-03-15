@@ -883,15 +883,18 @@ Public Class frmForecast_PO
             frmExcel.StartPosition = FormStartPosition.CenterScreen
             frmExcel.ShowDialog()
 
-            Dim Hasil As Integer = ObjForecast.DeleteCustomer(frmExcel.Customer, frmExcel.Tahun)
-            If Hasil = -1 Then
-                Throw New Exception("Gagal Hapus data, Kontak MIS !")
-            ElseIf Hasil = 0 Then
-                ShowMessage("Tidak ada data yang di hapus, periksa kembali customer dan tahun yang anda pilih.", MessageTypeEnum.NormalMessage)
-            Else
-                ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
-                LoadGrid()
+            If Not frmExcel.IsCancel Then
+                Dim Hasil As Integer = ObjForecast.DeleteCustomer(frmExcel.Customer, frmExcel.Tahun, frmExcel.BulanAngka, frmExcel.Bulan, frmExcel.Flag, frmExcel._Site)
+                If Hasil = -1 Then
+                    Throw New Exception("Gagal Hapus data, Kontak MIS !")
+                ElseIf Hasil = 0 Then
+                    ShowMessage("Tidak ada data yang di hapus, periksa kembali customer dan tahun yang anda pilih.", MessageTypeEnum.NormalMessage)
+                Else
+                    ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+                    LoadGrid()
+                End If
             End If
+
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
