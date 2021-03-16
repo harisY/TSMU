@@ -2039,9 +2039,10 @@ Public Class forecast_po_model_detail
             Dim Service As New AdmService
             Dim dt As New DataTable
             Dim salesPrice As Double = 0
+            'salesPrice = getSalesPrice(BulanAngka, Tahun)
 
-            dt = Service.GetInventory("ADM", PartNo)
-            If dt.Rows.Count > 1 Then
+            dt = Service.GetInventory(CustID, PartNo)
+            If dt.Rows.Count > 0 Then
                 salesPrice = getSalesPrice(BulanAngka, Tahun)
             Else
                 salesPrice = GetSalesManual(BulanAngka, Tahun)
