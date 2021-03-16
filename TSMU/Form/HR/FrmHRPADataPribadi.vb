@@ -13,8 +13,11 @@ Public Class FrmHRPADataPribadi
     Dim GridDtl As GridControl
     Dim FrmParent As Form
 
+    Dim openFDialog As OpenFileDialog
+
     Dim modelDataPribadi As HRPADataPribadiModel
     Dim srvHR As New HRPAService
+    Dim FileName As String = ""
 
     Public Sub New()
 
@@ -81,11 +84,19 @@ Public Class FrmHRPADataPribadi
                 cbStatusKawin.Text = IIf(dataRow("StatusKawin") Is DBNull.Value, "", dataRow("StatusKawin"))
                 dtTglKawin.EditValue = IIf(dataRow("TglKawin") Is DBNull.Value, Nothing, dataRow("TglKawin"))
                 txtJumlahAnak.Text = IIf(dataRow("JumlahAnak") Is DBNull.Value, 0, dataRow("JumlahAnak"))
-                If dataRow("Gambar") IsNot DBNull.Value Then
-                    Dim tmpData As Byte()
-                    tmpData = CType(dataRow("Gambar"), Byte())
-                    Dim ms As New MemoryStream(tmpData)
-                    txtGambar.Image = Image.FromStream(ms)
+                Dim PathSave As String = String.Empty
+                PathSave = srvHR.GetGeneralParam("PathFoto")
+                FileName = dataRow("Foto")
+                'Dim filePath = "path to your image file"
+                'Dim contentBytes = File.ReadAllBytes(filePath)
+                'Dim memoryStream As New MemoryStream(contentBytes)
+                'Dim image = image.FromStream(memoryStream)
+                'YourPictureBox.Image = image
+                If dataRow("Foto") IsNot DBNull.Value Then
+                    Using ms As New IO.MemoryStream(IO.File.ReadAllBytes(PathSave + FileName))
+                        pictureFoto.Image = Image.FromStream(ms)
+                    End Using
+                    'pictureFoto.Image = Image.FromFile(PathSave + FileName)
                 End If
                 txtReference.Text = IIf(dataRow("Reference") Is DBNull.Value, "", dataRow("Reference"))
                 txtKet.Text = IIf(dataRow("Ket") Is DBNull.Value, "", dataRow("Ket"))
@@ -145,11 +156,33 @@ Public Class FrmHRPADataPribadi
             If (result = DialogResult.Yes) Then
                 If CheckValidasi() = False Then
                     _isSave = True
+
+                    Dim PathFoto As String = ""
+                    Dim extension As String = ""
+                    Dim PathSave As String = String.Empty
+                    PathSave = srvHR.GetGeneralParam("PathFoto")
+
                     If isAction <> "Edit" Then
                         srvHR.SaveNewDataPribadi(modelDataPribadi)
+                        ID = srvHR.GetMaxIDDataPribadi(EmpID)
                     Else
+                        If openFDialog IsNot Nothing Then
+                            PathFoto = openFDialog.FileName
+                            extension = IO.Path.GetExtension(PathFoto)
+                            FileName = "Foto_" + NIK + "_" + ID.ToString() + extension
+                            modelDataPribadi.Foto = FileName
+                            Dim image As Image = New Bitmap(pictureFoto.Image)
+                            Dim fileSavePath As String = ""
+                            PathSave = srvHR.GetGeneralParam("PathFoto")
+                            fileSavePath = IO.Path.Combine(PathSave, FileName)
+                            If File.Exists(fileSavePath) Then
+                                File.Delete(fileSavePath)
+                            End If
+                            image.Save(PathSave & FileName, System.Drawing.Imaging.ImageFormat.Jpeg)
+                        End If
                         srvHR.SaveEditDataPribadi(modelDataPribadi)
                     End If
+
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     Me.Hide()
                 End If
@@ -183,14 +216,8 @@ Public Class FrmHRPADataPribadi
                 End If
             End If
 
-            modelDataPribadi = New HRPADataPribadiModel
-            Dim tmpData As Byte()
-            Using ms As New MemoryStream()
-                txtGambar.Image.Save(ms, ImageFormat.Jpeg)
-                tmpData = ms.ToArray
-            End Using
-
             Dim Now As DateTime = DateTime.Now
+            modelDataPribadi = New HRPADataPribadiModel
             With modelDataPribadi
                 .ID = ID
                 .TglMulai = dtTglMulai.EditValue
@@ -209,7 +236,7 @@ Public Class FrmHRPADataPribadi
                 .StatusKawin = cbStatusKawin.Text
                 .TglKawin = dtTglKawin.EditValue
                 .JumlahAnak = txtJumlahAnak.Text
-                .Gambar = tmpData
+                .Foto = FileName
                 .Reference = txtReference.Text
                 .Ket = txtKet.Text
                 If isAction <> "Edit" Then
@@ -230,13 +257,28 @@ Public Class FrmHRPADataPribadi
     End Function
 
     Private Sub txtJumlahAnak_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtJumlahAnak.KeyPress
-
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
         If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
             e.Handled = True
         End If
+    End Sub
+
+    Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
+        openFDialog = New OpenFileDialog
+        openFDialog.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
+
+        If openFDialog.ShowDialog = DialogResult.OK Then
+            pictureFoto.Image = Image.FromFile(openFDialog.FileName)
+        End If
+    End Sub
+
+    Private Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
+        'Dim pic As Image
+        'pic = pictureFoto.Image
+        'SaveFileDialog1.ShowDialog()
+        'pic.Save(SaveFileDialog1.FileName)
     End Sub
 
 End Class

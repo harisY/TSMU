@@ -43,7 +43,6 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -53,6 +52,7 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.btnCopy = New DevExpress.XtraEditors.SimpleButton()
@@ -100,7 +100,6 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,6 +109,7 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
         CType(Me.cbMasterData.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,7 +179,8 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         '
         Me.pictureFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pictureFoto.Location = New System.Drawing.Point(35, 15)
-        Me.pictureFoto.MaximumSize = New System.Drawing.Size(160, 0)
+        Me.pictureFoto.MaximumSize = New System.Drawing.Size(160, 148)
+        Me.pictureFoto.MinimumSize = New System.Drawing.Size(160, 148)
         Me.pictureFoto.Name = "pictureFoto"
         Me.pictureFoto.Size = New System.Drawing.Size(160, 148)
         Me.pictureFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -437,17 +438,6 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.EmptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(496, 0)
-        Me.EmptySpaceItem2.MaxSize = New System.Drawing.Size(50, 0)
-        Me.EmptySpaceItem2.MinSize = New System.Drawing.Size(20, 10)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(20, 160)
-        Me.EmptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
-        '
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
@@ -552,6 +542,17 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.EmptySpaceItem6.Size = New System.Drawing.Size(20, 160)
         Me.EmptySpaceItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(496, 0)
+        Me.EmptySpaceItem2.MaxSize = New System.Drawing.Size(50, 0)
+        Me.EmptySpaceItem2.MinSize = New System.Drawing.Size(20, 10)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(20, 160)
+        Me.EmptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControl2
         '
@@ -795,7 +796,6 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
@@ -805,6 +805,7 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.cbMasterData.Properties, System.ComponentModel.ISupportInitialize).EndInit()

@@ -1,5 +1,5 @@
 ﻿Public Class HRPAHeaderModel
-    Public Property Gambar As Byte()
+    Public Property Foto As String
     Public Property NIK As String
     Public Property NamaLengkap As String
     Public Property JenisKelamin As String

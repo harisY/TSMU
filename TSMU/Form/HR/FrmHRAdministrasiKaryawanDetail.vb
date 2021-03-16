@@ -90,13 +90,11 @@ Public Class FrmHRAdministrasiKaryawanDetail
         Try
             If fs_Code <> "" Then
                 With modelHeader
-                    'If .Gambar IsNot Nothing Then
-                    '    Dim tmpData As Byte()
-                    '    tmpData = CType(.Gambar, Byte())
-                    '    Dim ms As New MemoryStream(tmpData)
-                    '    PictureFoto.Image = Image.FromStream(ms)
-                    'End If
-                    pictureFoto.Image = Image.FromFile("D:\Project\Takagi\Desain\HR\Foto\Agung.jpg")
+                    Dim PathSave As String = String.Empty
+                    PathSave = srvHR.GetGeneralParam("PathFoto")
+                    If .Foto <> "" Then
+                        pictureFoto.Image = Image.FromFile(PathSave + .Foto)
+                    End If
                     txtNIK.Text = .NIK
                     txtNamaLengkap.Text = .NamaLengkap
                     txtJenisKelamin.Text = .JenisKelamin
@@ -224,8 +222,8 @@ Public Class FrmHRAdministrasiKaryawanDetail
             colTglKawin.DisplayFormat.FormatType = FormatType.DateTime
             colTglKawin.DisplayFormat.FormatString = "dd/MM/yyyy"
 
-            Dim colGambar As GridColumn = GridViewPADetail.Columns("Gambar")
-            colGambar.Visible = False
+            Dim colFoto As GridColumn = GridViewPADetail.Columns("Foto")
+            colFoto.Visible = False
 
             Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
             colTglBuat.DisplayFormat.FormatType = FormatType.DateTime

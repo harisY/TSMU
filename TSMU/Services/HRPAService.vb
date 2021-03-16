@@ -50,7 +50,7 @@
 
                         SELECT  pdk.EmployeeID ,
                                 pdk.NIK ,
-                                pdp.Gambar ,
+                                pdp.Foto ,
                                 pdp.NamaLengkap ,
                                 pdp.NamaPanggilan ,
                                 pdp.JenisKelamin ,
@@ -83,7 +83,7 @@
             If dt.Rows.Count > 0 Then
                 With modelHeader
                     .NIK = If(IsDBNull(dt.Rows(0).Item("NIK")), "", dt.Rows(0).Item("NIK").ToString())
-                    .Gambar = If(IsDBNull(dt.Rows(0).Item("Gambar")), Nothing, dt.Rows(0).Item("Gambar"))
+                    .Foto = If(IsDBNull(dt.Rows(0).Item("Foto")), Nothing, dt.Rows(0).Item("Foto"))
                     .NamaLengkap = If(IsDBNull(dt.Rows(0).Item("NamaLengkap")), "", dt.Rows(0).Item("NamaLengkap").ToString())
                     .JenisKelamin = If(IsDBNull(dt.Rows(0).Item("JenisKelamin")), "", dt.Rows(0).Item("JenisKelamin").ToString())
                     .TglLahir = If(IsDBNull(dt.Rows(0).Item("TglLahir")), Date.Today, dt.Rows(0).Item("TglLahir"))
@@ -120,7 +120,7 @@
                                 TglKawin ,
                                 JumlahAnak ,
                                 Reference ,
-                                Gambar ,
+                                Foto ,
                                 Ket ,
                                 TglBuat ,
                                 UserBuat ,
@@ -417,8 +417,8 @@
             pParam(14).Value = Data.TglKawin
             pParam(15) = New SqlClient.SqlParameter("@JumlahAnak", SqlDbType.Int)
             pParam(15).Value = Data.JumlahAnak
-            pParam(16) = New SqlClient.SqlParameter("@Gambar", SqlDbType.Image)
-            pParam(16).Value = Data.Gambar
+            pParam(16) = New SqlClient.SqlParameter("@Foto", SqlDbType.VarChar)
+            pParam(16).Value = Data.Foto
             pParam(17) = New SqlClient.SqlParameter("@Reference", SqlDbType.VarChar)
             pParam(17).Value = Data.Reference
             pParam(18) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
@@ -478,8 +478,8 @@
             pParam(15).Value = Data.TglKawin
             pParam(16) = New SqlClient.SqlParameter("@JumlahAnak", SqlDbType.Int)
             pParam(16).Value = Data.JumlahAnak
-            pParam(17) = New SqlClient.SqlParameter("@Gambar", SqlDbType.Image)
-            pParam(17).Value = Data.Gambar
+            pParam(17) = New SqlClient.SqlParameter("@Foto", SqlDbType.VarChar)
+            pParam(17).Value = Data.Foto
             pParam(18) = New SqlClient.SqlParameter("@Reference", SqlDbType.VarChar)
             pParam(18).Value = Data.Reference
             pParam(19) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
@@ -794,6 +794,40 @@
             dt = GetDataTable(strQuery)
 
             Return dt.Rows(0).Item(0).ToString
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetMaxIDDataPribadi(EmpID As String) As Integer
+        Try
+            Dim value As Integer
+            strQuery = "SELECT  MAX(ID)
+                        FROM    dbo.M_HRPADataPribadi
+                        WHERE   EmployeeID = " & QVal(EmpID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            If dt.Rows.Count() > 0 Then
+                value = dt.Rows(0).Item(0)
+            End If
+            Return value
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetGeneralParam(Param As String) As String
+        Try
+            Dim value As String = String.Empty
+            strQuery = "SELECT  Value1
+                        FROM    dbo.S_GeneralParam
+                        WHERE   Param = " & QVal(Param) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            If dt.Rows.Count() > 0 Then
+                value = dt.Rows(0).Item(0).ToString
+            End If
+            Return value
         Catch ex As Exception
             Throw ex
         End Try
