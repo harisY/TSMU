@@ -154,7 +154,7 @@ Public Class FrmHRPANewEmployee
                     .StatusKawin = cbStatusKawin.Text
                     .TglKawin = dtTglKawin.EditValue
                     .JumlahAnak = IIf(txtJumlahAnak.Text = "", 0, txtJumlahAnak.Text)
-                    .Gambar = tmpData
+                    .Foto = ""
                     .Reference = txtReference.Text
                     .Ket = txtKet.Text
                     .TglBuat = now

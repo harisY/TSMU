@@ -13,7 +13,7 @@ Public Class FrmHRPADataAlamat
     Dim GridDtl As GridControl
     Dim FrmParent As Form
 
-    Dim modelDataPribadi As HRPADataPribadiModel
+    Dim modelDataAlamat As HRPADataAlamatModel
     Dim srvHR As New HRPAService
 
     Public Sub New()
@@ -68,24 +68,17 @@ Public Class FrmHRPADataAlamat
                 dtTglMulai.EditValue = dataRow("TglMulai")
                 dtTglSelesai.EditValue = dataRow("TglSelesai")
                 txtNIK.Text = NIK
-                txtPINFinger.Text = IIf(dataRow("PINFinger") Is DBNull.Value, "", dataRow("PINFinger"))
-                txtNamaLengkap.Text = dataRow("NamaLengkap")
-                txtNamaPanggilan.Text = IIf(dataRow("NamaPanggilan") Is DBNull.Value, Nothing, dataRow("NamaPanggilan"))
-                cbJenisKelamin.Text = IIf(dataRow("JenisKelamin") Is DBNull.Value, "", dataRow("JenisKelamin"))
-                txtGolonganDarah.Text = IIf(dataRow("GolonganDarah") Is DBNull.Value, "", dataRow("GolonganDarah"))
-                txtTempatLahir.Text = IIf(dataRow("TempatLahir") Is DBNull.Value, "", dataRow("TempatLahir"))
-                dtTglLahir.EditValue = IIf(dataRow("TglLahir") Is DBNull.Value, Nothing, dataRow("TglLahir"))
-                cbTamatan.Text = IIf(dataRow("Tamatan") Is DBNull.Value, "", dataRow("Tamatan"))
-                cbKewarganegaraan.Text = IIf(dataRow("Kewarganegaraan") Is DBNull.Value, "", dataRow("Kewarganegaraan"))
-                cbAgama.Text = IIf(dataRow("Agama") Is DBNull.Value, "", dataRow("Agama"))
-                cbStatusKawin.Text = IIf(dataRow("StatusKawin") Is DBNull.Value, "", dataRow("StatusKawin"))
-                dtTglKawin.EditValue = IIf(dataRow("TglKawin") Is DBNull.Value, Nothing, dataRow("TglKawin"))
-                txtJumlahAnak.Text = IIf(dataRow("JumlahAnak") Is DBNull.Value, 0, dataRow("JumlahAnak"))
-                Dim tmpData As Byte()
-                tmpData = CType(dataRow("Gambar"), Byte())
-                Dim ms As New MemoryStream(tmpData)
-                txtFoto.Image = Image.FromStream(ms)
-                txtReference.Text = IIf(dataRow("Reference") Is DBNull.Value, "", dataRow("Reference"))
+                cbTipeAlamat.Text = IIf(dataRow("TipeAlamat") Is DBNull.Value, "", dataRow("TipeAlamat"))
+                txtAlamat.Text = IIf(dataRow("Alamat") Is DBNull.Value, "", dataRow("Alamat"))
+                txtRT.Text = IIf(dataRow("RT") Is DBNull.Value, Nothing, dataRow("RT"))
+                txtRW.Text = IIf(dataRow("RW") Is DBNull.Value, "", dataRow("RW"))
+                cbNegara.Text = IIf(dataRow("Negara") Is DBNull.Value, "", dataRow("Negara"))
+                cbProvinsi.Text = IIf(dataRow("Provinsi") Is DBNull.Value, "", dataRow("Provinsi"))
+                txtKota.Text = IIf(dataRow("KotaKab") Is DBNull.Value, "", dataRow("KotaKab"))
+                cbKecamatan.Text = IIf(dataRow("Kecamatan") Is DBNull.Value, "", dataRow("Kecamatan"))
+                txtKelurahan.Text = IIf(dataRow("Kelurahan") Is DBNull.Value, 0, dataRow("Kelurahan"))
+                txtKodepos.Text = IIf(dataRow("KodePos") Is DBNull.Value, "", dataRow("KodePos"))
+                txtNoTelp.Text = IIf(dataRow("NoTelpon") Is DBNull.Value, "", dataRow("NoTelpon"))
                 txtKet.Text = IIf(dataRow("Ket") Is DBNull.Value, "", dataRow("Ket"))
                 dtTglBuat.EditValue = dataRow("TglBuat")
                 txtUserBuat.Text = dataRow("UserBuat")
@@ -95,7 +88,6 @@ Public Class FrmHRPADataAlamat
                 dtTglMulai.EditValue = Date.Today
                 dtTglSelesai.EditValue = Date.Parse("9999-12-31")
                 txtNIK.Text = NIK
-                txtGolonganDarah.Text = "NONE"
                 dtTglBuat.EditValue = DateTime.Now
                 txtUserBuat.Text = gh_Common.Username
                 dtTglUbah.EditValue = DateTime.Now
@@ -113,20 +105,17 @@ Public Class FrmHRPADataAlamat
     Private Sub CondView()
         dtTglMulai.Enabled = False
         dtTglSelesai.Enabled = False
-        txtPINFinger.Enabled = False
-        txtNamaLengkap.Enabled = False
-        txtNamaPanggilan.Enabled = False
-        cbJenisKelamin.Enabled = False
-        txtTempatLahir.Enabled = False
-        dtTglLahir.Enabled = False
-        cbTamatan.Enabled = False
-        cbKewarganegaraan.Enabled = False
-        cbAgama.Enabled = False
-        txtGolonganDarah.Enabled = False
-        cbStatusKawin.Enabled = False
-        dtTglKawin.Enabled = False
-        txtJumlahAnak.Enabled = False
-        txtReference.Enabled = False
+        cbTipeAlamat.Enabled = False
+        txtAlamat.Enabled = False
+        txtRT.Enabled = False
+        txtRW.Enabled = False
+        cbNegara.Enabled = False
+        cbProvinsi.Enabled = False
+        txtKota.Enabled = False
+        cbKecamatan.Enabled = False
+        txtKelurahan.Enabled = False
+        txtKodepos.Enabled = False
+        txtNoTelp.Enabled = False
         txtKet.Enabled = False
         btnSave.Enabled = False
     End Sub
@@ -144,9 +133,9 @@ Public Class FrmHRPADataAlamat
                 If CheckValidasi() = False Then
                     _isSave = True
                     If isAction <> "Edit" Then
-                        srvHR.SaveNewDataPribadi(modelDataPribadi)
+                        'srvHR.SaveNewDataPribadi(modelDataPribadi)
                     Else
-                        srvHR.SaveEditDataPribadi(modelDataPribadi)
+                        'srvHR.SaveEditDataPribadi(modelDataPribadi)
                     End If
                     Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     Me.Hide()
@@ -163,12 +152,10 @@ Public Class FrmHRPADataAlamat
         Try
             If dtTglMulai.EditValue > dtTglSelesai.EditValue Then
                 Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Lebih Besar Dari Tanggal Selesai !")
-            ElseIf txtNamaLengkap.Text = "" Then
+            ElseIf txtAlamat.Text = "" Then
                 Err.Raise(ErrNumber, , "Nama Lengkap Tidak Boleh Kosong!")
-            ElseIf cbJenisKelamin.Text = "" Then
-                Err.Raise(ErrNumber, , "Jenis Kelamin Tidak Boleh Kosong!")
-            ElseIf cbStatusKawin.Text = "MENIKAH" And dtTglKawin.EditValue = Nothing Then
-                Err.Raise(ErrNumber, , "Tanggal Kawin Tidak Boleh Kosong !")
+            ElseIf cbTipeAlamat.Text = "" Then
+                Err.Raise(ErrNumber, , "Tipe Alamat Tidak Boleh Kosong!")
             Else
                 If isAction <> "Edit" Then
                     If srvHR.CheckRangeDatePribadi(EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
@@ -181,34 +168,26 @@ Public Class FrmHRPADataAlamat
                 End If
             End If
 
-            modelDataPribadi = New HRPADataPribadiModel
-            Dim tmpData As Byte()
-            Using ms As New MemoryStream()
-                txtFoto.Image.Save(ms, ImageFormat.Jpeg)
-                tmpData = ms.ToArray
-            End Using
+            modelDataAlamat = New HRPADataAlamatModel
 
             Dim Now As DateTime = DateTime.Now
-            With modelDataPribadi
+            With modelDataAlamat
                 .ID = ID
                 .TglMulai = dtTglMulai.EditValue
                 .TglSelesai = dtTglSelesai.EditValue
                 .EmpID = EmpID
-                .PINFinger = txtPINFinger.Text
-                .NamaLengkap = txtNamaLengkap.Text
-                .NamaPanggilan = txtNamaPanggilan.Text
-                .JenisKelamin = cbJenisKelamin.Text
-                .TempatLahir = txtTempatLahir.Text
-                .TglLahir = dtTglLahir.EditValue
-                .Tamatan = cbTamatan.Text
-                .Kewarganegaraan = cbKewarganegaraan.Text
-                .Agama = cbAgama.Text
-                .GolonganDarah = txtGolonganDarah.Text
-                .StatusKawin = cbStatusKawin.Text
-                .TglKawin = dtTglKawin.EditValue
-                .JumlahAnak = txtJumlahAnak.Text
-                .Gambar = tmpData
-                .Reference = txtReference.Text
+                .TipeAlamat = cbTipeAlamat.Text
+                .Seq = 1
+                .Alamat = txtAlamat.Text
+                .RT = txtRT.Text
+                .RW = txtRW.Text
+                .Negara = cbNegara.Text
+                .Provinsi = cbProvinsi.Text
+                .KotaKab = txtKota.Text
+                .Kecamatan = cbKecamatan.Text
+                .Kelurahan = txtKelurahan.Text
+                .KodePos = txtKodepos.Text
+                .NoTelpon = txtNoTelp.Text
                 .Ket = txtKet.Text
                 If isAction <> "Edit" Then
                     .TglBuat = Now
@@ -227,8 +206,25 @@ Public Class FrmHRPADataAlamat
         Return validasi
     End Function
 
-    Private Sub txtJumlahAnak_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtJumlahAnak.KeyPress
+    Private Sub txtKodepos_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtKodepos.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
 
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtRT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtRT.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtRW_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtRW.KeyPress
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 

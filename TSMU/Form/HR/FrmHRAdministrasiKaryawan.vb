@@ -28,6 +28,9 @@ Public Class FrmHRAdministrasiKaryawan
         dtGridKaryawan = srvHR.GetDataKaryawan()
         GridKaryawan.DataSource = dtGridKaryawan
         Dim colEmpID As GridColumn = GridViewKaryawan.Columns("EmployeeID")
+        Dim colTglLahir As GridColumn = GridViewKaryawan.Columns("TglLahir")
+        colTglLahir.DisplayFormat.FormatType = FormatType.DateTime
+        colTglLahir.DisplayFormat.FormatString = "dd/MM/yyyy"
         colEmpID.Visible = False
         GridViewKaryawan.BestFitColumns()
     End Sub

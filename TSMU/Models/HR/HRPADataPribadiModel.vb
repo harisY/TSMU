@@ -17,7 +17,7 @@
     Public Property StatusKawin As String
     Public Property TglKawin As Date
     Public Property JumlahAnak As Integer
-    Public Property Gambar As Byte()
+    Public Property Foto As String
     Public Property Reference As String
     Public Property Ket As String
     Public Property TglBuat As DateTime

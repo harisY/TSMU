@@ -435,7 +435,7 @@ Partial Public Class FrmMain
                     dialogResult = MessageBox.Show($"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. Do you want to update the application now?", "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 End If
 
-                If dialogResult.Equals(DialogResult.Yes) OrElse dialogResult.Equals(DialogResult.OK) Then
+                If dialogResult.Equals(dialogResult.Yes) OrElse dialogResult.Equals(dialogResult.OK) Then
 
                     Try
 

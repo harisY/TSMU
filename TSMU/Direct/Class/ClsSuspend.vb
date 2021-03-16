@@ -33,7 +33,7 @@ Public Class ClsSuspend
     Public Property subaccount() As String
     Public Property account() As String
     Public Property perpost() As String
-
+    'tes
     Public Sub New()
         Me._Query = "select suspendID,Tgl,deptid,total,remark from suspend_header order by suspendID"
     End Sub
