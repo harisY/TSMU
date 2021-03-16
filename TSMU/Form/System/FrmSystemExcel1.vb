@@ -1,7 +1,5 @@
-﻿Imports System.Data.OleDb
-Imports System.Data.SqlClient
-Imports System.Configuration
-Imports System.IO
+﻿Imports System.Configuration
+Imports System.Data.OleDb
 Imports DevExpress.XtraEditors.Controls
 
 Public Class FrmSystemExcel1
@@ -12,7 +10,7 @@ Public Class FrmSystemExcel1
     Dim b As Integer = 0
     Dim _isSync As Boolean
     Dim _Caller As Integer
-
+    Dim _IsCancel As Boolean = True
     Public Property DtAdm As DataTable
 
     Public Sub New()
@@ -33,26 +31,37 @@ Public Class FrmSystemExcel1
         _isSync = IsSync
         _Caller = Caller
     End Sub
+
+    ReadOnly Property IsCancel As Boolean
+        Get
+            Return _IsCancel
+        End Get
+    End Property
+
     ReadOnly Property Tahun As String
         Get
             Return _cmbTahun.Text.Trim
         End Get
     End Property
+
     ReadOnly Property Tahun1 As String
         Get
             Return TxtTahun2.Text.Trim
         End Get
     End Property
+
     ReadOnly Property Customer As String
         Get
             Return _cmbCust.Text.Trim
         End Get
     End Property
+
     ReadOnly Property _Site As String
         Get
             Return _CmbSite.Text.Trim
         End Get
     End Property
+
     ReadOnly Property Flag As String
         Get
             Return _CmbFlag.Text.Trim
@@ -74,6 +83,7 @@ Public Class FrmSystemExcel1
             End If
         End Get
     End Property
+
     ReadOnly Property BulanAngka As String
         Get
             If _cmbBulan.EditValue <> "" Then
@@ -83,6 +93,7 @@ Public Class FrmSystemExcel1
             End If
         End Get
     End Property
+
     ReadOnly Property PO As String
         Get
             If TxtPO.EditValue <> "" Then
@@ -98,14 +109,15 @@ Public Class FrmSystemExcel1
             Return XtraTabControl1.SelectedTabPageIndex
         End Get
     End Property
+
     Private Sub FrmSystemExcel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If _Caller = 1 Then
-            _cmbBulan.Enabled = True
-            _txtExcel.Enabled = True
-        Else
-            _cmbBulan.Enabled = False
-            _txtExcel.Enabled = False
-        End If
+        'If _Caller = 1 Then
+        '    _cmbBulan.Enabled = True
+        '    _txtExcel.Enabled = True
+        'Else
+        '    _cmbBulan.Enabled = False
+        '    _txtExcel.Enabled = False
+        'End If
         FillComboTahun()
         'FillComboTahun1()
         FillComboCustomer()
@@ -113,13 +125,14 @@ Public Class FrmSystemExcel1
         lblStatus.Text = ""
         FillComboSite()
         FillComboFlag()
-        _CmbSite.Enabled = False
-        _CmbFlag.Enabled = False
-        TxtPO.Enabled = False
+        '_CmbSite.Enabled = False
+        '_CmbFlag.Enabled = False
+        'TxtPO.Enabled = False
 
         'XtraTabControl1.SelectedTabPageIndex = 0
         XtraTabControl1.TabPages.RemoveAt(1)
     End Sub
+
     Private Sub FillComboTahun()
         Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString, (DateTime.Today.Year - 2).ToString}
         _cmbTahun.Properties.Items.Clear()
@@ -127,6 +140,7 @@ Public Class FrmSystemExcel1
             _cmbTahun.Properties.Items.Add(var)
         Next
     End Sub
+
     Private Sub FillComboTahun1()
         Dim tahun() As String = {"", (DateTime.Today.Year + 1).ToString, DateTime.Today.Year.ToString, (DateTime.Today.Year - 1).ToString}
         TxtTahun2.Properties.Items.Clear()
@@ -142,6 +156,7 @@ Public Class FrmSystemExcel1
             _CmbSite.Properties.Items.Add(var)
         Next
     End Sub
+
     Private Sub FillComboFlag()
         Dim tahun() As String = {"N/A", "ADMSPD", "KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3"}
         _CmbFlag.Properties.Items.Clear()
@@ -177,6 +192,7 @@ Public Class FrmSystemExcel1
         _cmbBulan.Properties.DisplayMember = "Text"
         _cmbBulan.Properties.ValueMember = "Value"
     End Sub
+
     Private Sub FillComboCustomer()
         Dim dtTabel As New DataTable
         dtTabel = fc_class.getCusstID_Solomon
@@ -188,6 +204,7 @@ Public Class FrmSystemExcel1
             _cmbCust.Properties.Items.Add(dtTabel.Rows(i)("CustId"))
         Next
     End Sub
+
     Dim path As String
     Dim path2 As String
 
@@ -224,6 +241,7 @@ Public Class FrmSystemExcel1
     Private Sub _btnExport_Click(sender As Object, e As EventArgs) Handles _btnExport.Click
         Try
             If XtraTabControl1.SelectedTabPageIndex = 0 Then
+
                 If _Caller = 1 Then
                     If lblStatus.Text <> "" Then
                         Throw New Exception("Proses masih berjalan !")
@@ -245,7 +263,7 @@ Public Class FrmSystemExcel1
                             _CmbSite.Focus()
                             Throw New Exception("Pilih Site !")
                         ElseIf _CmbFlag.Text = "" Then
-                            _CmbSite.Focus()
+                            _CmbFlag.Focus()
                             Throw New Exception("Pilih Flag !")
                         ElseIf TxtPO.Text = "" Then
                             TxtPO.Focus()
@@ -285,15 +303,26 @@ Public Class FrmSystemExcel1
                         _cmbTahun.Focus()
                         Throw New Exception("Pilih Tahun !")
                     End If
+                    If _cmbBulan.Text = "" Then
+                        _cmbBulan.Focus()
+                        Throw New Exception("Pilih Bulan !")
+                    End If
                     If _cmbCust.Text = "" Then
                         _cmbCust.Focus()
                         Throw New Exception("Pilih Customer !")
                     End If
+                    If _CmbSite.Text = "" Then
+                        _CmbSite.Focus()
+                        Throw New Exception("Pilih Site !")
+                    End If
+                    If _CmbFlag.Text = "" Then
+                        _CmbFlag.Focus()
+                        Throw New Exception("Pilih Flag !")
+                    End If
+                    _IsCancel = False
                 End If
-
             End If
             Close()
-
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
@@ -317,20 +346,21 @@ Public Class FrmSystemExcel1
         End Try
     End Sub
 
-    Private Sub _cmbCust_EditValueChanged(sender As Object, e As EventArgs) Handles _cmbCust.EditValueChanged
-        Try
-            If _Caller = 1 Then
-                If String.IsNullOrEmpty(_cmbCust.Text) Then
-                    Return
-                End If
-                If _cmbCust.Text.ToLower = "adm" Then
-                    _CmbSite.Enabled = True
-                    _CmbFlag.Enabled = True
-                    TxtPO.Enabled = True
-                End If
-            End If
-        Catch ex As Exception
-            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-        End Try
-    End Sub
+    'Private Sub _cmbCust_EditValueChanged(sender As Object, e As EventArgs) Handles _cmbCust.EditValueChanged
+    '    Try
+    '        If _Caller = 1 Then
+    '            If String.IsNullOrEmpty(_cmbCust.Text) Then
+    '                Return
+    '            End If
+    '            If _cmbCust.Text.ToLower = "adm" Then
+    '                _CmbSite.Enabled = True
+    '                _CmbFlag.Enabled = True
+    '                TxtPO.Enabled = True
+    '            End If
+    '        End If
+    '    Catch ex As Exception
+    '        ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+    '    End Try
+    'End Sub
+
 End Class

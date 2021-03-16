@@ -45,7 +45,7 @@ Public Class ForecastDailyService
         End Try
     End Sub
 
-    Public Sub Delete(Tahun As String, Bulan As Integer)
+    Public Sub Delete(Customer As String, Tahun As String, Bulan As Integer)
         Try
             Using Conn1 As New SqlConnection(GetConnString)
                 Conn1.Open()
@@ -55,7 +55,7 @@ Public Class ForecastDailyService
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        DeleteData(Tahun, Bulan)
+                        DeleteData(Customer, Tahun, Bulan)
 
                         Trans1.Commit()
                     Catch ex As Exception
@@ -76,6 +76,7 @@ Public Class ForecastDailyService
 
             Dim Params As List(Of SqlParameter) = New List(Of SqlParameter) From {
                 New SqlParameter() With {.ParameterName = "Tahun", .Value = ObjForecastCollection.Item(Index).Tahun},
+                New SqlParameter() With {.ParameterName = "CustId", .Value = ObjForecastCollection.Item(Index).CustId},
                 New SqlParameter() With {.ParameterName = "Bulan", .Value = ObjForecastCollection.Item(Index).Bulan},
                 New SqlParameter() With {.ParameterName = "PartNo", .Value = ObjForecastCollection.Item(Index).PartNo},
                 New SqlParameter() With {.ParameterName = "PartName", .Value = ObjForecastCollection.Item(Index).PartName},
@@ -90,12 +91,13 @@ Public Class ForecastDailyService
         End Try
     End Sub
 
-    Public Sub DeleteData(Tahun As String, Bulan As Integer)
+    Public Sub DeleteData(Customer As String, Tahun As String, Bulan As Integer)
         Try
 
             Dim Params As List(Of SqlParameter) = New List(Of SqlParameter) From {
                 New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun},
-                New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan}
+                New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan},
+                New SqlParameter() With {.ParameterName = "CustId", .Value = Customer}
             }
             ExecQueryWithValue("tForecastDailyDelete", CommandType.StoredProcedure, Params, GetConnString)
         Catch ex As Exception

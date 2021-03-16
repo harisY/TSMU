@@ -33,6 +33,8 @@ Partial Class FrmLookupForecastDaily
         Me.LblFile = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.TxtCutomer = New DevExpress.XtraEditors.ComboBoxEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.CmbTahun.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,6 +46,8 @@ Partial Class FrmLookupForecastDaily
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LblFile, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCutomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -51,6 +55,7 @@ Partial Class FrmLookupForecastDaily
         Me.LayoutControl1.Controls.Add(Me.CmbTahun)
         Me.LayoutControl1.Controls.Add(Me.CmbBulan)
         Me.LayoutControl1.Controls.Add(Me.TxtFile)
+        Me.LayoutControl1.Controls.Add(Me.TxtCutomer)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -62,31 +67,31 @@ Partial Class FrmLookupForecastDaily
         '
         'CmbTahun
         '
-        Me.CmbTahun.Location = New System.Drawing.Point(51, 12)
+        Me.CmbTahun.Location = New System.Drawing.Point(86, 38)
         Me.CmbTahun.Name = "CmbTahun"
         Me.CmbTahun.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CmbTahun.Size = New System.Drawing.Size(406, 22)
+        Me.CmbTahun.Size = New System.Drawing.Size(371, 22)
         Me.CmbTahun.StyleController = Me.LayoutControl1
         Me.CmbTahun.TabIndex = 4
         '
         'CmbBulan
         '
-        Me.CmbBulan.Location = New System.Drawing.Point(51, 38)
+        Me.CmbBulan.Location = New System.Drawing.Point(86, 64)
         Me.CmbBulan.Name = "CmbBulan"
         Me.CmbBulan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CmbBulan.Properties.NullText = ""
         Me.CmbBulan.Properties.PopupSizeable = False
         Me.CmbBulan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me.CmbBulan.Size = New System.Drawing.Size(406, 22)
+        Me.CmbBulan.Size = New System.Drawing.Size(371, 22)
         Me.CmbBulan.StyleController = Me.LayoutControl1
         Me.CmbBulan.TabIndex = 5
         '
         'TxtFile
         '
-        Me.TxtFile.Location = New System.Drawing.Point(51, 64)
+        Me.TxtFile.Location = New System.Drawing.Point(86, 90)
         Me.TxtFile.Name = "TxtFile"
         Me.TxtFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TxtFile.Size = New System.Drawing.Size(406, 22)
+        Me.TxtFile.Size = New System.Drawing.Size(371, 22)
         Me.TxtFile.StyleController = Me.LayoutControl1
         Me.TxtFile.TabIndex = 6
         '
@@ -94,7 +99,7 @@ Partial Class FrmLookupForecastDaily
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LblFile})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LblFile, Me.LayoutControlItem3})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(469, 152)
         Me.Root.TextVisible = False
@@ -102,37 +107,37 @@ Partial Class FrmLookupForecastDaily
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.CmbTahun
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 26)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(449, 26)
         Me.LayoutControlItem1.Text = "Tahun"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(36, 16)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(71, 16)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 78)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 104)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(449, 54)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(449, 28)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.CmbBulan
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 26)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 52)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(449, 26)
         Me.LayoutControlItem2.Text = "Bulan"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(36, 16)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(71, 16)
         '
         'LblFile
         '
         Me.LblFile.Control = Me.TxtFile
-        Me.LblFile.Location = New System.Drawing.Point(0, 52)
+        Me.LblFile.Location = New System.Drawing.Point(0, 78)
         Me.LblFile.Name = "LblFile"
         Me.LblFile.Size = New System.Drawing.Size(449, 26)
         Me.LblFile.Text = "File"
-        Me.LblFile.TextSize = New System.Drawing.Size(36, 16)
+        Me.LblFile.TextSize = New System.Drawing.Size(71, 16)
         '
         'Panel1
         '
@@ -151,6 +156,24 @@ Partial Class FrmLookupForecastDaily
         Me.SimpleButton1.Size = New System.Drawing.Size(94, 29)
         Me.SimpleButton1.TabIndex = 0
         Me.SimpleButton1.Text = "Submit"
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me.TxtCutomer
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(449, 26)
+        Me.LayoutControlItem3.Text = "Customer ID"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(71, 16)
+        '
+        'TxtCutomer
+        '
+        Me.TxtCutomer.Location = New System.Drawing.Point(86, 12)
+        Me.TxtCutomer.Name = "TxtCutomer"
+        Me.TxtCutomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TxtCutomer.Size = New System.Drawing.Size(371, 22)
+        Me.TxtCutomer.StyleController = Me.LayoutControl1
+        Me.TxtCutomer.TabIndex = 7
         '
         'FrmLookupForecastDaily
         '
@@ -175,6 +198,8 @@ Partial Class FrmLookupForecastDaily
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LblFile, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCutomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -190,4 +215,6 @@ Partial Class FrmLookupForecastDaily
     Friend WithEvents CmbBulan As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents TxtFile As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LblFile As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TxtCutomer As DevExpress.XtraEditors.ComboBoxEdit
 End Class
