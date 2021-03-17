@@ -1723,6 +1723,12 @@
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmHarigami - Copy.Designer.vb">
+      <DependentUpon>frmHarigami - Copy.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmHarigami - Copy.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmJogres.Designer.vb">
       <DependentUpon>frmJogres.vb</DependentUpon>
     </Compile>
@@ -2702,6 +2708,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\DragDropHelper.vb" />
+    <Compile Include="Helpers\ExcelReader.vb" />
     <Compile Include="Helpers\Extensions.vb" />
     <Compile Include="Helpers\ParameterInfo.vb" />
     <Compile Include="Helpers\SqlHelper.vb" />
@@ -3810,6 +3817,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmHarigami - Copy.resx">
+      <DependentUpon>frmHarigami - Copy.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmJogres.resx">
       <DependentUpon>frmJogres.vb</DependentUpon>
