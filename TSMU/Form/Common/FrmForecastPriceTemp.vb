@@ -80,7 +80,7 @@ Public Class FrmForecastPriceTemp
                 End With
             Else
                 TxtTahun.Text = Date.Today.Year
-                TxtBulan.EditValue = ""
+                TxtBulan.EditValue = "0"
                 TxtCustomer.Text = ""
                 TxtPartNo.Text = ""
                 TxtPartName.Text = ""
