@@ -39,6 +39,7 @@ Partial Class FrmHRPADataAlamat
         Me.txtKota = New DevExpress.XtraEditors.TextEdit()
         Me.cbKecamatan = New DevExpress.XtraEditors.TextEdit()
         Me.txtKelurahan = New DevExpress.XtraEditors.TextEdit()
+        Me.txtAlamat = New DevExpress.XtraEditors.MemoEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -60,8 +61,8 @@ Partial Class FrmHRPADataAlamat
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.btnCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -69,7 +70,6 @@ Partial Class FrmHRPADataAlamat
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtAlamat = New DevExpress.XtraEditors.MemoEdit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -95,6 +95,7 @@ Partial Class FrmHRPADataAlamat
         CType(Me.txtKota.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbKecamatan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKelurahan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtAlamat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,15 +117,14 @@ Partial Class FrmHRPADataAlamat
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtAlamat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -222,7 +222,6 @@ Partial Class FrmHRPADataAlamat
         '
         Me.txtRT.Location = New System.Drawing.Point(136, 202)
         Me.txtRT.Name = "txtRT"
-        Me.txtRT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtRT.Properties.MaxLength = 3
         Me.txtRT.Size = New System.Drawing.Size(134, 28)
         Me.txtRT.StyleController = Me.LayoutControl1
@@ -373,6 +372,17 @@ Partial Class FrmHRPADataAlamat
         Me.txtKelurahan.Size = New System.Drawing.Size(137, 28)
         Me.txtKelurahan.StyleController = Me.LayoutControl1
         Me.txtKelurahan.TabIndex = 19
+        '
+        'txtAlamat
+        '
+        Me.txtAlamat.Location = New System.Drawing.Point(136, 140)
+        Me.txtAlamat.Name = "txtAlamat"
+        Me.txtAlamat.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtAlamat.Properties.LinesCount = 3
+        Me.txtAlamat.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.txtAlamat.Size = New System.Drawing.Size(134, 58)
+        Me.txtAlamat.StyleController = Me.LayoutControl1
+        Me.txtAlamat.TabIndex = 8
         '
         'Root
         '
@@ -558,15 +568,6 @@ Partial Class FrmHRPADataAlamat
         Me.LayoutControlItem13.Text = "Provinsi"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(121, 19)
         '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me.txtKota
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(325, 0)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(265, 32)
-        Me.LayoutControlItem12.Text = "Kota/Kabupaten  "
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(121, 19)
-        '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.txtNoTelp
@@ -575,6 +576,15 @@ Partial Class FrmHRPADataAlamat
         Me.LayoutControlItem7.Size = New System.Drawing.Size(265, 32)
         Me.LayoutControlItem7.Text = "No Telpon"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(121, 19)
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.txtKota
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(325, 0)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(265, 32)
+        Me.LayoutControlItem12.Text = "Kota/Kabupaten  "
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(121, 19)
         '
         'LayoutControl2
         '
@@ -650,16 +660,6 @@ Partial Class FrmHRPADataAlamat
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem19.TextVisible = False
         '
-        'txtAlamat
-        '
-        Me.txtAlamat.Location = New System.Drawing.Point(136, 140)
-        Me.txtAlamat.Name = "txtAlamat"
-        Me.txtAlamat.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtAlamat.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.txtAlamat.Size = New System.Drawing.Size(134, 58)
-        Me.txtAlamat.StyleController = Me.LayoutControl1
-        Me.txtAlamat.TabIndex = 8
-        '
         'FrmHRPADataAlamat
         '
         Me.ClientSize = New System.Drawing.Size(732, 396)
@@ -693,6 +693,7 @@ Partial Class FrmHRPADataAlamat
         CType(Me.txtKota.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbKecamatan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKelurahan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtAlamat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -714,15 +715,14 @@ Partial Class FrmHRPADataAlamat
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtAlamat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

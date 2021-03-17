@@ -32,6 +32,8 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnBrowse = New DevExpress.XtraEditors.SimpleButton()
+        Me.pictureFoto = New System.Windows.Forms.PictureBox()
         Me.dtTglSelesai = New DevExpress.XtraEditors.DateEdit()
         Me.txtNIK = New DevExpress.XtraEditors.TextEdit()
         Me.txtPINFinger = New DevExpress.XtraEditors.TextEdit()
@@ -48,8 +50,8 @@ Partial Class FrmHRPANewEmployee
         Me.dtTglKawin = New DevExpress.XtraEditors.DateEdit()
         Me.txtKet = New DevExpress.XtraEditors.MemoEdit()
         Me.txtReference = New DevExpress.XtraEditors.TextEdit()
-        Me.txtFoto = New DevExpress.XtraEditors.PictureEdit()
         Me.txtJumlahAnak = New DevExpress.XtraEditors.TextEdit()
+        Me.TextEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -67,13 +69,16 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem8 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem41 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem11 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
         Me.dtDKTglSelesai = New DevExpress.XtraEditors.DateEdit()
         Me.txtDKNIK = New DevExpress.XtraEditors.TextEdit()
@@ -127,8 +132,6 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem40 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem10 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.TextEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -143,6 +146,7 @@ Partial Class FrmHRPANewEmployee
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
+        CType(Me.pictureFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtTglSelesai.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtTglSelesai.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,8 +167,8 @@ Partial Class FrmHRPANewEmployee
         CType(Me.dtTglKawin.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtReference.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtFoto.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtJumlahAnak.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,13 +186,16 @@ Partial Class FrmHRPANewEmployee
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl3.SuspendLayout()
         CType(Me.dtDKTglSelesai.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,8 +247,6 @@ Partial Class FrmHRPANewEmployee
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -364,6 +369,8 @@ Partial Class FrmHRPANewEmployee
         '
         'LayoutControl2
         '
+        Me.LayoutControl2.Controls.Add(Me.btnBrowse)
+        Me.LayoutControl2.Controls.Add(Me.pictureFoto)
         Me.LayoutControl2.Controls.Add(Me.dtTglSelesai)
         Me.LayoutControl2.Controls.Add(Me.txtNIK)
         Me.LayoutControl2.Controls.Add(Me.txtPINFinger)
@@ -380,7 +387,6 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControl2.Controls.Add(Me.dtTglKawin)
         Me.LayoutControl2.Controls.Add(Me.txtKet)
         Me.LayoutControl2.Controls.Add(Me.txtReference)
-        Me.LayoutControl2.Controls.Add(Me.txtFoto)
         Me.LayoutControl2.Controls.Add(Me.txtJumlahAnak)
         Me.LayoutControl2.Controls.Add(Me.TextEdit1)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -392,6 +398,27 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControl2.Size = New System.Drawing.Size(1027, 306)
         Me.LayoutControl2.TabIndex = 1
         Me.LayoutControl2.Text = "LayoutControl2"
+        '
+        'btnBrowse
+        '
+        Me.btnBrowse.AutoWidthInLayoutControl = True
+        Me.btnBrowse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnBrowse.ImageOptions.Image = CType(resources.GetObject("btnBrowse.ImageOptions.Image"), System.Drawing.Image)
+        Me.btnBrowse.Location = New System.Drawing.Point(739, 241)
+        Me.btnBrowse.Name = "btnBrowse"
+        Me.btnBrowse.Size = New System.Drawing.Size(30, 32)
+        Me.btnBrowse.StyleController = Me.LayoutControl2
+        Me.btnBrowse.TabIndex = 31
+        '
+        'pictureFoto
+        '
+        Me.pictureFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pictureFoto.Location = New System.Drawing.Point(635, 179)
+        Me.pictureFoto.Name = "pictureFoto"
+        Me.pictureFoto.Size = New System.Drawing.Size(100, 94)
+        Me.pictureFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pictureFoto.TabIndex = 30
+        Me.pictureFoto.TabStop = False
         '
         'dtTglSelesai
         '
@@ -408,7 +435,7 @@ Partial Class FrmHRPANewEmployee
         Me.dtTglSelesai.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.dtTglSelesai.Properties.Mask.EditMask = "dd/MM/yyyy"
         Me.dtTglSelesai.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtTglSelesai.Size = New System.Drawing.Size(78, 28)
+        Me.dtTglSelesai.Size = New System.Drawing.Size(75, 28)
         Me.dtTglSelesai.StyleController = Me.LayoutControl2
         Me.dtTglSelesai.TabIndex = 5
         '
@@ -418,7 +445,7 @@ Partial Class FrmHRPANewEmployee
         Me.txtNIK.Location = New System.Drawing.Point(167, 117)
         Me.txtNIK.Margin = New System.Windows.Forms.Padding(4)
         Me.txtNIK.Name = "txtNIK"
-        Me.txtNIK.Size = New System.Drawing.Size(78, 28)
+        Me.txtNIK.Size = New System.Drawing.Size(75, 28)
         Me.txtNIK.StyleController = Me.LayoutControl2
         Me.txtNIK.TabIndex = 6
         '
@@ -427,7 +454,7 @@ Partial Class FrmHRPANewEmployee
         Me.txtPINFinger.Location = New System.Drawing.Point(167, 149)
         Me.txtPINFinger.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPINFinger.Name = "txtPINFinger"
-        Me.txtPINFinger.Size = New System.Drawing.Size(78, 28)
+        Me.txtPINFinger.Size = New System.Drawing.Size(75, 28)
         Me.txtPINFinger.StyleController = Me.LayoutControl2
         Me.txtPINFinger.TabIndex = 7
         '
@@ -436,7 +463,8 @@ Partial Class FrmHRPANewEmployee
         Me.txtNamaLengkap.Location = New System.Drawing.Point(167, 181)
         Me.txtNamaLengkap.Margin = New System.Windows.Forms.Padding(4)
         Me.txtNamaLengkap.Name = "txtNamaLengkap"
-        Me.txtNamaLengkap.Size = New System.Drawing.Size(78, 28)
+        Me.txtNamaLengkap.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtNamaLengkap.Size = New System.Drawing.Size(75, 28)
         Me.txtNamaLengkap.StyleController = Me.LayoutControl2
         Me.txtNamaLengkap.TabIndex = 8
         '
@@ -445,7 +473,8 @@ Partial Class FrmHRPANewEmployee
         Me.txtNamaPanggilan.Location = New System.Drawing.Point(167, 213)
         Me.txtNamaPanggilan.Margin = New System.Windows.Forms.Padding(4)
         Me.txtNamaPanggilan.Name = "txtNamaPanggilan"
-        Me.txtNamaPanggilan.Size = New System.Drawing.Size(78, 28)
+        Me.txtNamaPanggilan.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtNamaPanggilan.Size = New System.Drawing.Size(75, 28)
         Me.txtNamaPanggilan.StyleController = Me.LayoutControl2
         Me.txtNamaPanggilan.TabIndex = 9
         '
@@ -455,42 +484,43 @@ Partial Class FrmHRPANewEmployee
         Me.cbJenisKelamin.Margin = New System.Windows.Forms.Padding(4)
         Me.cbJenisKelamin.Name = "cbJenisKelamin"
         Me.cbJenisKelamin.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbJenisKelamin.Properties.Items.AddRange(New Object() {"LAKI-LAKI", "PEREMPUAN"})
+        Me.cbJenisKelamin.Properties.Items.AddRange(New Object() {"L", "P"})
         Me.cbJenisKelamin.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbJenisKelamin.Size = New System.Drawing.Size(78, 28)
+        Me.cbJenisKelamin.Size = New System.Drawing.Size(75, 28)
         Me.cbJenisKelamin.StyleController = Me.LayoutControl2
         Me.cbJenisKelamin.TabIndex = 10
         '
         'txtTempatLahir
         '
-        Me.txtTempatLahir.Location = New System.Drawing.Point(404, 53)
+        Me.txtTempatLahir.Location = New System.Drawing.Point(401, 53)
         Me.txtTempatLahir.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTempatLahir.Name = "txtTempatLahir"
-        Me.txtTempatLahir.Size = New System.Drawing.Size(78, 28)
+        Me.txtTempatLahir.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtTempatLahir.Size = New System.Drawing.Size(75, 28)
         Me.txtTempatLahir.StyleController = Me.LayoutControl2
         Me.txtTempatLahir.TabIndex = 11
         '
         'cbTamatan
         '
-        Me.cbTamatan.Location = New System.Drawing.Point(404, 117)
+        Me.cbTamatan.Location = New System.Drawing.Point(401, 117)
         Me.cbTamatan.Margin = New System.Windows.Forms.Padding(4)
         Me.cbTamatan.Name = "cbTamatan"
         Me.cbTamatan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbTamatan.Properties.Items.AddRange(New Object() {"NONE", "SD", "SLTP", "SLTA", "DIPLOMA 1", "DIPLOMA 2", "DIPLOMA 3", "STRATA 1", "STRATA 2", "STRATA 3"})
+        Me.cbTamatan.Properties.Items.AddRange(New Object() {"NONE", "D1", "D2", "D3", "D4", "MA", "S1", "S2", "SD", "SMA", "SMA/SMK", "SMK", "SMP"})
         Me.cbTamatan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbTamatan.Size = New System.Drawing.Size(78, 28)
+        Me.cbTamatan.Size = New System.Drawing.Size(75, 28)
         Me.cbTamatan.StyleController = Me.LayoutControl2
         Me.cbTamatan.TabIndex = 13
         '
         'cbKewarganegaraan
         '
-        Me.cbKewarganegaraan.Location = New System.Drawing.Point(404, 149)
+        Me.cbKewarganegaraan.Location = New System.Drawing.Point(401, 149)
         Me.cbKewarganegaraan.Margin = New System.Windows.Forms.Padding(4)
         Me.cbKewarganegaraan.Name = "cbKewarganegaraan"
         Me.cbKewarganegaraan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cbKewarganegaraan.Properties.Items.AddRange(New Object() {"INDONESIA", "JEPANG"})
         Me.cbKewarganegaraan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbKewarganegaraan.Size = New System.Drawing.Size(78, 28)
+        Me.cbKewarganegaraan.Size = New System.Drawing.Size(75, 28)
         Me.cbKewarganegaraan.StyleController = Me.LayoutControl2
         Me.cbKewarganegaraan.TabIndex = 14
         '
@@ -509,14 +539,14 @@ Partial Class FrmHRPANewEmployee
         Me.dtTglMulai.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.dtTglMulai.Properties.Mask.EditMask = "dd/MM/yyyy"
         Me.dtTglMulai.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtTglMulai.Size = New System.Drawing.Size(78, 28)
+        Me.dtTglMulai.Size = New System.Drawing.Size(75, 28)
         Me.dtTglMulai.StyleController = Me.LayoutControl2
         Me.dtTglMulai.TabIndex = 28
         '
         'dtTglLahir
         '
         Me.dtTglLahir.EditValue = Nothing
-        Me.dtTglLahir.Location = New System.Drawing.Point(404, 85)
+        Me.dtTglLahir.Location = New System.Drawing.Point(401, 85)
         Me.dtTglLahir.Margin = New System.Windows.Forms.Padding(4)
         Me.dtTglLahir.Name = "dtTglLahir"
         Me.dtTglLahir.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -527,38 +557,38 @@ Partial Class FrmHRPANewEmployee
         Me.dtTglLahir.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.dtTglLahir.Properties.Mask.EditMask = "dd/MM/yyyy"
         Me.dtTglLahir.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtTglLahir.Size = New System.Drawing.Size(78, 28)
+        Me.dtTglLahir.Size = New System.Drawing.Size(75, 28)
         Me.dtTglLahir.StyleController = Me.LayoutControl2
         Me.dtTglLahir.TabIndex = 12
         '
         'cbAgama
         '
-        Me.cbAgama.Location = New System.Drawing.Point(404, 181)
+        Me.cbAgama.Location = New System.Drawing.Point(401, 181)
         Me.cbAgama.Margin = New System.Windows.Forms.Padding(4)
         Me.cbAgama.Name = "cbAgama"
         Me.cbAgama.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbAgama.Properties.Items.AddRange(New Object() {"BUDDHA", "HINDU", "ISLAM", "KRISTEN KATOLIK", "KRISTEN PROTESTAN"})
+        Me.cbAgama.Properties.Items.AddRange(New Object() {"BUDHA", "CHATOLIC", "ISLAM", "KATHOLIK", "KRISTEN", "MOSLEM", "PROTESTAN"})
         Me.cbAgama.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbAgama.Size = New System.Drawing.Size(78, 28)
+        Me.cbAgama.Size = New System.Drawing.Size(75, 28)
         Me.cbAgama.StyleController = Me.LayoutControl2
         Me.cbAgama.TabIndex = 16
         '
         'cbStatusKawin
         '
-        Me.cbStatusKawin.Location = New System.Drawing.Point(404, 245)
+        Me.cbStatusKawin.Location = New System.Drawing.Point(401, 245)
         Me.cbStatusKawin.Margin = New System.Windows.Forms.Padding(4)
         Me.cbStatusKawin.Name = "cbStatusKawin"
         Me.cbStatusKawin.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cbStatusKawin.Properties.Items.AddRange(New Object() {"MENIKAH", "BELUM MENIKAH", "SINGLE"})
         Me.cbStatusKawin.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbStatusKawin.Size = New System.Drawing.Size(78, 28)
+        Me.cbStatusKawin.Size = New System.Drawing.Size(75, 28)
         Me.cbStatusKawin.StyleController = Me.LayoutControl2
         Me.cbStatusKawin.TabIndex = 17
         '
         'dtTglKawin
         '
         Me.dtTglKawin.EditValue = Nothing
-        Me.dtTglKawin.Location = New System.Drawing.Point(641, 53)
+        Me.dtTglKawin.Location = New System.Drawing.Point(635, 53)
         Me.dtTglKawin.Margin = New System.Windows.Forms.Padding(4)
         Me.dtTglKawin.Name = "dtTglKawin"
         Me.dtTglKawin.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -569,52 +599,50 @@ Partial Class FrmHRPANewEmployee
         Me.dtTglKawin.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.dtTglKawin.Properties.Mask.EditMask = "dd/MM/yyyy"
         Me.dtTglKawin.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtTglKawin.Size = New System.Drawing.Size(78, 28)
+        Me.dtTglKawin.Size = New System.Drawing.Size(134, 28)
         Me.dtTglKawin.StyleController = Me.LayoutControl2
         Me.dtTglKawin.TabIndex = 18
         '
         'txtKet
         '
-        Me.txtKet.Location = New System.Drawing.Point(641, 149)
+        Me.txtKet.Location = New System.Drawing.Point(635, 149)
         Me.txtKet.Margin = New System.Windows.Forms.Padding(4)
         Me.txtKet.Name = "txtKet"
         Me.txtKet.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.txtKet.Size = New System.Drawing.Size(78, 28)
+        Me.txtKet.Size = New System.Drawing.Size(134, 26)
         Me.txtKet.StyleController = Me.LayoutControl2
         Me.txtKet.TabIndex = 23
         '
         'txtReference
         '
-        Me.txtReference.Location = New System.Drawing.Point(641, 117)
+        Me.txtReference.Location = New System.Drawing.Point(635, 117)
         Me.txtReference.Margin = New System.Windows.Forms.Padding(4)
         Me.txtReference.Name = "txtReference"
-        Me.txtReference.Size = New System.Drawing.Size(78, 28)
+        Me.txtReference.Size = New System.Drawing.Size(134, 28)
         Me.txtReference.StyleController = Me.LayoutControl2
         Me.txtReference.TabIndex = 21
         '
-        'txtFoto
-        '
-        Me.txtFoto.Location = New System.Drawing.Point(641, 181)
-        Me.txtFoto.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtFoto.Name = "txtFoto"
-        Me.txtFoto.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray
-        Me.txtFoto.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.txtFoto.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom
-        Me.txtFoto.Size = New System.Drawing.Size(78, 92)
-        Me.txtFoto.StyleController = Me.LayoutControl2
-        Me.txtFoto.TabIndex = 20
-        Me.txtFoto.TabStop = True
-        '
         'txtJumlahAnak
         '
-        Me.txtJumlahAnak.Location = New System.Drawing.Point(641, 85)
+        Me.txtJumlahAnak.Location = New System.Drawing.Point(635, 85)
         Me.txtJumlahAnak.Margin = New System.Windows.Forms.Padding(4)
         Me.txtJumlahAnak.Name = "txtJumlahAnak"
         Me.txtJumlahAnak.Properties.Mask.EditMask = "f0"
         Me.txtJumlahAnak.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtJumlahAnak.Size = New System.Drawing.Size(78, 28)
+        Me.txtJumlahAnak.Size = New System.Drawing.Size(134, 28)
         Me.txtJumlahAnak.StyleController = Me.LayoutControl2
         Me.txtJumlahAnak.TabIndex = 19
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.Location = New System.Drawing.Point(401, 213)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TextEdit1.Properties.Items.AddRange(New Object() {"NONE", "A", "A+", "AB", "AB+", "AO", "B", "B+", "O", "O+", "TT"})
+        Me.TextEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.TextEdit1.Size = New System.Drawing.Size(75, 28)
+        Me.TextEdit1.StyleController = Me.LayoutControl2
+        Me.TextEdit1.TabIndex = 29
         '
         'LayoutControlGroup1
         '
@@ -629,7 +657,7 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlGroup3.AppearanceGroup.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
         Me.LayoutControlGroup3.AppearanceGroup.Options.UseFont = True
-        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem14, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem15, Me.LayoutControlItem12, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem5, Me.LayoutControlItem11, Me.LayoutControlItem22, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem21, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3, Me.LayoutControlItem4, Me.EmptySpaceItem8, Me.LayoutControlItem18, Me.LayoutControlItem13})
+        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem14, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem15, Me.LayoutControlItem12, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem5, Me.LayoutControlItem11, Me.LayoutControlItem22, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3, Me.LayoutControlItem4, Me.EmptySpaceItem8, Me.LayoutControlItem18, Me.LayoutControlItem13, Me.LayoutControlItem21, Me.LayoutControlItem41, Me.EmptySpaceItem11})
         Me.LayoutControlGroup3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup3.Name = "LayoutControlGroup3"
         Me.LayoutControlGroup3.Size = New System.Drawing.Size(981, 287)
@@ -641,7 +669,7 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem14.CustomizationFormText = "Tanggal Mulai"
         Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem14.Text = "Tanggal Mulai"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -651,7 +679,7 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem6.CustomizationFormText = "PIN Finger"
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem6.Text = "PIN Finger"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -661,7 +689,7 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem7.CustomizationFormText = "Nama Lengkap"
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 128)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem7.Text = "Nama Lengkap"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -671,7 +699,7 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem8.CustomizationFormText = "Nama Panggilan"
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 160)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem8.Text = "Nama Panggilan"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -681,7 +709,7 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem9.CustomizationFormText = "Jenis Kelamin"
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 192)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem9.Text = "Jenis Kelamin"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -689,9 +717,9 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem10.Control = Me.txtTempatLahir
         Me.LayoutControlItem10.CustomizationFormText = "Tempat Lahir"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(237, 0)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(234, 0)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem10.Text = "Tempat Lahir"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -699,9 +727,9 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem15.Control = Me.dtTglLahir
         Me.LayoutControlItem15.CustomizationFormText = "Tanggal Lahir"
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(237, 32)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(234, 32)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem15.Text = "Tanggal Lahir"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -709,9 +737,9 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem12.Control = Me.cbKewarganegaraan
         Me.LayoutControlItem12.CustomizationFormText = "Kewarganegaraan   "
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(237, 96)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(234, 96)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem12.Text = "Kewarganegaraan   "
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -719,9 +747,9 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem16.Control = Me.cbAgama
         Me.LayoutControlItem16.CustomizationFormText = "Agama"
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(237, 128)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(234, 128)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem16.Text = "Agama"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -729,9 +757,9 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem17.Control = Me.cbStatusKawin
         Me.LayoutControlItem17.CustomizationFormText = "Status Kawin"
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(237, 192)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(234, 192)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem17.Text = "Status Kawin"
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -741,7 +769,7 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem5.CustomizationFormText = "NIK"
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 64)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem5.Text = "NIK"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -749,9 +777,9 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem11.Control = Me.cbTamatan
         Me.LayoutControlItem11.CustomizationFormText = "Tamatan"
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(237, 64)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(234, 64)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem11.Text = "Tamatan"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -759,9 +787,9 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem22.Control = Me.txtJumlahAnak
         Me.LayoutControlItem22.CustomizationFormText = "Jumlah Anak"
-        Me.LayoutControlItem22.Location = New System.Drawing.Point(474, 32)
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(468, 32)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
-        Me.LayoutControlItem22.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem22.Size = New System.Drawing.Size(281, 32)
         Me.LayoutControlItem22.Text = "Jumlah Anak"
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -769,9 +797,9 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem19.Control = Me.txtReference
         Me.LayoutControlItem19.CustomizationFormText = "Reference"
-        Me.LayoutControlItem19.Location = New System.Drawing.Point(474, 64)
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(468, 64)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(281, 32)
         Me.LayoutControlItem19.Text = "Reference"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -779,26 +807,16 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem20.Control = Me.txtKet
         Me.LayoutControlItem20.CustomizationFormText = "Catatan"
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(474, 96)
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(468, 96)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(281, 30)
         Me.LayoutControlItem20.Text = "Catatan"
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(140, 19)
-        '
-        'LayoutControlItem21
-        '
-        Me.LayoutControlItem21.Control = Me.txtFoto
-        Me.LayoutControlItem21.CustomizationFormText = "Foto"
-        Me.LayoutControlItem21.Location = New System.Drawing.Point(474, 128)
-        Me.LayoutControlItem21.Name = "LayoutControlItem21"
-        Me.LayoutControlItem21.Size = New System.Drawing.Size(225, 96)
-        Me.LayoutControlItem21.Text = "Foto"
-        Me.LayoutControlItem21.TextSize = New System.Drawing.Size(140, 19)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(225, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(222, 0)
         Me.EmptySpaceItem1.MaxSize = New System.Drawing.Size(30, 0)
         Me.EmptySpaceItem1.MinSize = New System.Drawing.Size(12, 12)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
@@ -809,7 +827,7 @@ Partial Class FrmHRPANewEmployee
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(462, 0)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(456, 0)
         Me.EmptySpaceItem2.MaxSize = New System.Drawing.Size(30, 0)
         Me.EmptySpaceItem2.MinSize = New System.Drawing.Size(12, 12)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
@@ -820,9 +838,9 @@ Partial Class FrmHRPANewEmployee
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(699, 0)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(749, 0)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(258, 224)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(208, 224)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem4
@@ -831,7 +849,7 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem4.CustomizationFormText = "Tanggal Selesai"
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 32)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(222, 32)
         Me.LayoutControlItem4.Text = "Tanggal Selesai"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(140, 19)
         '
@@ -847,11 +865,46 @@ Partial Class FrmHRPANewEmployee
         '
         Me.LayoutControlItem18.Control = Me.dtTglKawin
         Me.LayoutControlItem18.CustomizationFormText = "Tanggal Kawin"
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(474, 0)
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(468, 0)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(225, 32)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(281, 32)
         Me.LayoutControlItem18.Text = "Tanggal Kawin"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(140, 19)
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me.TextEdit1
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(234, 160)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(222, 32)
+        Me.LayoutControlItem13.Text = "Golongan Darah"
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(140, 19)
+        '
+        'LayoutControlItem21
+        '
+        Me.LayoutControlItem21.Control = Me.pictureFoto
+        Me.LayoutControlItem21.Location = New System.Drawing.Point(468, 126)
+        Me.LayoutControlItem21.Name = "LayoutControlItem21"
+        Me.LayoutControlItem21.Size = New System.Drawing.Size(247, 98)
+        Me.LayoutControlItem21.Text = "Foto"
+        Me.LayoutControlItem21.TextSize = New System.Drawing.Size(140, 19)
+        '
+        'LayoutControlItem41
+        '
+        Me.LayoutControlItem41.Control = Me.btnBrowse
+        Me.LayoutControlItem41.Location = New System.Drawing.Point(715, 188)
+        Me.LayoutControlItem41.Name = "LayoutControlItem41"
+        Me.LayoutControlItem41.Size = New System.Drawing.Size(34, 36)
+        Me.LayoutControlItem41.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem41.TextVisible = False
+        '
+        'EmptySpaceItem11
+        '
+        Me.EmptySpaceItem11.AllowHotTrack = False
+        Me.EmptySpaceItem11.Location = New System.Drawing.Point(715, 126)
+        Me.EmptySpaceItem11.Name = "EmptySpaceItem11"
+        Me.EmptySpaceItem11.Size = New System.Drawing.Size(34, 62)
+        Me.EmptySpaceItem11.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControl3
         '
@@ -1131,8 +1184,6 @@ Partial Class FrmHRPANewEmployee
         Me.txtJabatan.Properties.HideSelection = False
         Me.txtJabatan.Properties.NullValuePromptShowForEmptyValue = True
         Me.txtJabatan.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
-        Me.txtJabatan.Properties.PopupSizeable = False
-        Me.txtJabatan.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.UseEditorWidth
         Me.txtJabatan.Properties.TreeList = Me.tlJabatan
         Me.txtJabatan.Properties.ValueMember = "OrgID"
         Me.txtJabatan.Size = New System.Drawing.Size(75, 28)
@@ -1481,26 +1532,6 @@ Partial Class FrmHRPANewEmployee
         Me.EmptySpaceItem10.Size = New System.Drawing.Size(34, 156)
         Me.EmptySpaceItem10.TextSize = New System.Drawing.Size(0, 0)
         '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.Control = Me.TextEdit1
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(237, 160)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(225, 32)
-        Me.LayoutControlItem13.Text = "Golongan Darah"
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(140, 19)
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.Location = New System.Drawing.Point(404, 213)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TextEdit1.Properties.Items.AddRange(New Object() {"NONE", "A", "B", "AB", "O"})
-        Me.TextEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.TextEdit1.Size = New System.Drawing.Size(78, 28)
-        Me.TextEdit1.StyleController = Me.LayoutControl2
-        Me.TextEdit1.TabIndex = 29
-        '
         'FrmHRPANewEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
@@ -1523,6 +1554,7 @@ Partial Class FrmHRPANewEmployee
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
+        CType(Me.pictureFoto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtTglSelesai.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtTglSelesai.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1543,8 +1575,8 @@ Partial Class FrmHRPANewEmployee
         CType(Me.dtTglKawin.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtReference.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtFoto.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtJumlahAnak.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1562,13 +1594,16 @@ Partial Class FrmHRPANewEmployee
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl3.ResumeLayout(False)
         CType(Me.dtDKTglSelesai.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1620,8 +1655,6 @@ Partial Class FrmHRPANewEmployee
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1665,11 +1698,9 @@ Partial Class FrmHRPANewEmployee
     Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtKet As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents txtReference As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtFoto As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents txtJumlahAnak As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem20 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem19 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem21 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem22 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
@@ -1735,4 +1766,9 @@ Partial Class FrmHRPANewEmployee
     Friend WithEvents EmptySpaceItem10 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents pictureFoto As PictureBox
+    Friend WithEvents LayoutControlItem21 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents btnBrowse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem41 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem11 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

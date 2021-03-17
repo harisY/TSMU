@@ -1,8 +1,8 @@
-﻿Imports System.Drawing.Imaging
-Imports System.IO
+﻿'Imports System.Drawing.Imaging
+'Imports System.IO
 Imports System.Web.UI.WebControls
 Imports DevExpress.XtraGrid
-Imports DevExpress.XtraGrid.Columns
+'Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraTreeList
 
 Public Class FrmHRPANewEmployee
@@ -20,8 +20,15 @@ Public Class FrmHRPANewEmployee
     Dim modelOrgStruktur As HROrgStrukturModel
     Dim srvHR As New HRPAService
 
+    Dim openFDialog As OpenFileDialog
+
+    Dim ID As Integer
     Dim EmpID As String = String.Empty
     Dim NIK As String = String.Empty
+    Dim PathFoto As String = String.Empty
+    Dim extension As String = String.Empty
+    Dim PathSave As String = String.Empty
+    Dim FileName As String = String.Empty
 
     Public Sub New()
 
@@ -88,6 +95,9 @@ Public Class FrmHRPANewEmployee
 
         txtAction.Text = "NEW-HIRE"
         cbStatus.Text = "AKTIF"
+        cbPerpindahan.EditValue = "01"
+        cbAlasan.EditValue = "11"
+        cbFactory.Text = "TANGERANG"
         dtHTglMulai.EditValue = Date.Today
         dtTglMulai.EditValue = Date.Today
         dtTglSelesai.EditValue = Date.Parse("9999-12-31")
@@ -131,12 +141,15 @@ Public Class FrmHRPANewEmployee
                 txtDKNIK.Text = NIK
                 Dim now As DateTime = DateTime.Now
 
+                If openFDialog IsNot Nothing Then
+                    PathSave = srvHR.GetGeneralParam("PathFoto")
+                    ID = srvHR.GetMaxIDDataPribadi()
+                    PathFoto = openFDialog.FileName
+                    extension = IO.Path.GetExtension(PathFoto)
+                    FileName = "Foto_" + NIK + "_" + ID.ToString() + extension
+                End If
+
                 modelDataPribadi = New HRPADataPribadiModel
-                Dim tmpData As Byte()
-                Using ms As New MemoryStream()
-                    txtFoto.Image.Save(ms, ImageFormat.Jpeg)
-                    tmpData = ms.ToArray
-                End Using
                 With modelDataPribadi
                     .TglMulai = dtTglMulai.EditValue
                     .TglSelesai = dtTglSelesai.EditValue
@@ -154,7 +167,7 @@ Public Class FrmHRPANewEmployee
                     .StatusKawin = cbStatusKawin.Text
                     .TglKawin = dtTglKawin.EditValue
                     .JumlahAnak = IIf(txtJumlahAnak.Text = "", 0, txtJumlahAnak.Text)
-                    .Foto = ""
+                    .Foto = FileName
                     .Reference = txtReference.Text
                     .Ket = txtKet.Text
                     .TglBuat = now
@@ -176,7 +189,7 @@ Public Class FrmHRPANewEmployee
                     .TipeKaryawan = cbTipe.Text
                     .TipePosisiKaryawan = cbTipePosisi.Text
                     .Factory = cbFactory.Text
-                    .Organisasi = cbOrganisasi.EditValue
+                    .Organisasi = IIf(cbOrganisasi.EditValue Is Nothing, "", cbOrganisasi.EditValue)
                     .Jabatan = txtJabatan.EditValue
                     .Job = IIf(cbJob.EditValue Is Nothing, "", cbJob.EditValue)
                     .TglEfektif = dtTglEfektif.EditValue
@@ -218,6 +231,11 @@ Public Class FrmHRPANewEmployee
     Public Overrides Sub Proc_SaveData()
         Try
             srvHR.SaveNewEmployee(modelDataPribadi, modelDataKaryawan, modelOrgStruktur)
+            If pictureFoto IsNot Nothing Then
+                If openFDialog IsNot Nothing Then
+                    pictureFoto.Image.Save(PathSave & FileName, System.Drawing.Imaging.ImageFormat.Jpeg)
+                End If
+            End If
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
 
             Dim dtGridKaryawan = New DataTable
@@ -228,7 +246,6 @@ Public Class FrmHRPANewEmployee
             'GridViewKaryawan.BestFitColumns()
             IsClosed = True
             Me.Hide()
-
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -309,6 +326,26 @@ Public Class FrmHRPANewEmployee
     Private Sub btnDeleteJab_Click(sender As Object, e As EventArgs) Handles btnDeleteJab.Click
         txtJabatan.EditValue = ""
         cbOrganisasi.EditValue = ""
+    End Sub
+
+    Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
+        openFDialog = New OpenFileDialog
+        openFDialog.Filter = "Jpg, Jpeg Images|*.jpg;*.jpeg|PNG Image|*.png|BMP Image|*.bmp"
+        openFDialog.Title = "Select Image"
+        openFDialog.CheckFileExists = True
+
+        If openFDialog.ShowDialog = DialogResult.OK Then
+            pictureFoto.Image = System.Drawing.Image.FromFile(openFDialog.FileName)
+        End If
+    End Sub
+
+    Private Sub txtJumlahAnak_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtJumlahAnak.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
+            e.Handled = True
+        End If
     End Sub
 
 End Class

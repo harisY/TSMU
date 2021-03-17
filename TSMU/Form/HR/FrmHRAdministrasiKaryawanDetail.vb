@@ -5,6 +5,7 @@ Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraGrid.Columns
 Imports System.IO
+Imports System.Drawing.Imaging
 
 Public Class FrmHRAdministrasiKaryawanDetail
     Public IsClosed As Boolean = False
@@ -61,8 +62,6 @@ Public Class FrmHRAdministrasiKaryawanDetail
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                modelHeader = New HRPAHeaderModel
-                modelHeader = srvHR.GetDataKaryawanByID(fs_Code)
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -83,23 +82,39 @@ Public Class FrmHRAdministrasiKaryawanDetail
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            Me.Hide()
         End Try
     End Sub
 
     Private Sub LoadTxtBox()
         Try
             If fs_Code <> "" Then
+                modelHeader = New HRPAHeaderModel
+                modelHeader = srvHR.GetDataKaryawanByID(fs_Code)
                 With modelHeader
                     Dim PathSave As String = String.Empty
+                    Dim FileName As String = String.Empty
                     PathSave = srvHR.GetGeneralParam("PathFoto")
-                    If .Foto <> "" Then
-                        pictureFoto.Image = Image.FromFile(PathSave + .Foto)
+                    FileName = .Foto
+                    If Not String.IsNullOrEmpty(FileName) Then
+                        Using bmb = New Bitmap(PathSave + FileName)
+                            Dim ms As New MemoryStream()
+                            bmb.Save(ms, ImageFormat.Bmp)
+                            pictureFoto.Image = Image.FromStream(ms)
+                        End Using
+                    Else
+                        Using bmb = New Bitmap(PathSave + "NoImage.png")
+                            Dim ms As New MemoryStream()
+                            bmb.Save(ms, ImageFormat.Bmp)
+                            pictureFoto.Image = Image.FromStream(ms)
+                        End Using
                     End If
                     txtNIK.Text = .NIK
                     txtNamaLengkap.Text = .NamaLengkap
                     txtJenisKelamin.Text = .JenisKelamin
                     txtFactory.Text = .Factory
                     dtTglLahir.EditValue = .TglLahir
+                    dtTglJoin.EditValue = .TglJoin
                     txtStatus.Text = .StatusKaryawan
                     txtTipe.Text = .TipeKaryawan
                     txtOrganisasi.Text = .Organisasi
@@ -131,8 +146,8 @@ Public Class FrmHRAdministrasiKaryawanDetail
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        'dataRow = GridViewPADetail.GetDataRow(GridViewPADetail.FocusedRowHandle)
-        'Call CheckLoadFormMD(btnDelete.Text)
+        dataRow = GridViewPADetail.GetDataRow(GridViewPADetail.FocusedRowHandle)
+        Call CheckLoadFormMD(btnDelete.Text)
     End Sub
 
     Private Sub GridPADetail_DoubleClick(sender As Object, e As EventArgs) Handles GridPADetail.DoubleClick
@@ -176,9 +191,17 @@ Public Class FrmHRAdministrasiKaryawanDetail
             MsgBox("Tidak Ada Data Yang Dipilih !", MessageBoxIcon.Information, "Information")
         Else
             If cbMasterData.Text = "PRIBADI" Then
-                Call CallFrmDataPribadi(Action, dataRow)
+                If Action = "Delete" AndAlso GridViewPADetail.RowCount < 2 Then
+                    MsgBox("Data Pribadi Tidak Boleh Kosong !", MessageBoxIcon.Information, "Information")
+                Else
+                    Call CallFrmDataPribadi(Action, dataRow)
+                End If
             ElseIf cbMasterData.Text = "KARIR" Then
-                Call CallFrmDataKaryawan(Action, dataRow)
+                If Action = "Delete" AndAlso GridViewPADetail.RowCount < 2 Then
+                    MsgBox("Data Karir Tidak Boleh Kosong !", MessageBoxIcon.Information, "Information")
+                Else
+                    Call CallFrmDataKaryawan(Action, dataRow)
+                End If
             ElseIf cbMasterData.Text = "ALAMAT" Then
                 Call CallFrmDataAlamat(Action, dataRow)
             ElseIf cbMasterData.Text = "KELUARGA" Then
@@ -475,6 +498,7 @@ Public Class FrmHRAdministrasiKaryawanDetail
         frm_DataPribadi = New FrmHRPADataPribadi(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
         frm_DataPribadi.StartPosition = FormStartPosition.CenterScreen
         frm_DataPribadi.ShowDialog()
+        Call LoadTxtBox()
         CheckLoadGridMD()
     End Sub
 
@@ -488,6 +512,7 @@ Public Class FrmHRAdministrasiKaryawanDetail
         frm_DataKaryawan = New FrmHRPADataKaryawan(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
         frm_DataKaryawan.StartPosition = FormStartPosition.CenterScreen
         frm_DataKaryawan.ShowDialog()
+        Call LoadTxtBox()
         CheckLoadGridMD()
     End Sub
 

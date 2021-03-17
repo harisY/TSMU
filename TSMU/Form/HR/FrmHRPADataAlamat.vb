@@ -50,11 +50,7 @@ Public Class FrmHRPADataAlamat
 
     Public Sub InitialSetForm()
         Try
-            If isAction <> "Add" Then
-                Me.Text = isAction.ToUpper + " DATA ALAMAT"
-            Else
-                Me.Text = "ADD DATA ALAMAT"
-            End If
+            Me.Text = isAction.ToUpper + " DATA ALAMAT"
             Call LoadTxtBox()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -94,7 +90,7 @@ Public Class FrmHRPADataAlamat
                 txtUserUbah.Text = gh_Common.Username
             End If
 
-            If isAction = "View" Then
+            If isAction = "View" OrElse isAction = "Delete" Then
                 Call CondView()
             End If
         Catch ex As Exception
@@ -117,7 +113,9 @@ Public Class FrmHRPADataAlamat
         txtKodepos.Enabled = False
         txtNoTelp.Enabled = False
         txtKet.Enabled = False
-        btnSave.Enabled = False
+        If isAction = "View" Then
+            btnSave.Enabled = False
+        End If
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
@@ -126,18 +124,22 @@ Public Class FrmHRPADataAlamat
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            Dim result As DialogResult = MessageBox.Show("Apakah Yakin Ingin Save Data", "Konfirmasi",
+            Dim result As DialogResult = MessageBox.Show("Apakah Yakin Ingin " & isAction & " Data", "Konfirmasi",
                          MessageBoxButtons.YesNo,
                          MessageBoxIcon.Question)
             If (result = DialogResult.Yes) Then
                 If CheckValidasi() = False Then
                     _isSave = True
-                    If isAction <> "Edit" Then
-                        'srvHR.SaveNewDataPribadi(modelDataPribadi)
-                    Else
-                        'srvHR.SaveEditDataPribadi(modelDataPribadi)
+                    If isAction = "Add" OrElse isAction = "Copy" Then
+                        srvHR.SaveNewDataAlamat(modelDataAlamat)
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    ElseIf isAction = "Edit" Then
+                        srvHR.SaveEditDataAlamat(modelDataAlamat)
+                        Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+                    ElseIf isAction = "Delete" Then
+                        srvHR.SaveDeleteDataAlamat(modelDataAlamat)
+                        Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
-                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     Me.Hide()
                 End If
             End If
@@ -153,23 +155,12 @@ Public Class FrmHRPADataAlamat
             If dtTglMulai.EditValue > dtTglSelesai.EditValue Then
                 Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Lebih Besar Dari Tanggal Selesai !")
             ElseIf txtAlamat.Text = "" Then
-                Err.Raise(ErrNumber, , "Nama Lengkap Tidak Boleh Kosong!")
+                Err.Raise(ErrNumber, , "Alamat Tidak Boleh Kosong!")
             ElseIf cbTipeAlamat.Text = "" Then
                 Err.Raise(ErrNumber, , "Tipe Alamat Tidak Boleh Kosong!")
-            Else
-                If isAction <> "Edit" Then
-                    If srvHR.CheckRangeDatePribadi(EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
-                        Err.Raise(ErrNumber, , "Sudah Ada Tanggal Diperiode Ini  !")
-                    End If
-                Else
-                    If srvHR.CheckRangeDateEditPribadi(ID, EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
-                        Err.Raise(ErrNumber, , "Sudah Ada Tanggal Diperiode Ini  !")
-                    End If
-                End If
             End If
 
             modelDataAlamat = New HRPADataAlamatModel
-
             Dim Now As DateTime = DateTime.Now
             With modelDataAlamat
                 .ID = ID
