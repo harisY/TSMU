@@ -25,32 +25,26 @@ Public Class QcOutgoingService
         End Try
     End Sub
     Public Sub InsertTransactions()
-        Try
-            Using Conn As New SqlConnection(GetConnString())
-                Conn.Open()
-                Using Trans As SqlTransaction = Conn.BeginTransaction
-                    gh_Trans = New InstanceVariables.TransactionHelper
-                    gh_Trans.Command.Connection = Conn
-                    gh_Trans.Command.Transaction = Trans
+        Using Conn As New SqlConnection(GetConnString())
+            Conn.Open()
+            Using Trans As SqlTransaction = Conn.BeginTransaction
+                gh_Trans = New InstanceVariables.TransactionHelper
+                gh_Trans.Command.Connection = Conn
+                gh_Trans.Command.Transaction = Trans
+                Try
+                    For i As Integer = 0 To ObjCollections.Count - 1
+                        InsertData(i)
+                    Next
 
-                    Try
-                        For i As Integer = 0 To ObjCollections.Count - 1
-                            InsertData(i)
-                        Next
-
-                        Trans.Commit()
-                    Catch ex As Exception
-                        Trans.Rollback()
-                        Throw
-                    Finally
-                        gh_Trans = Nothing
-                    End Try
-                End Using
+                    Trans.Commit()
+                Catch ex As Exception
+                    Trans.Rollback()
+                    Throw ex
+                Finally
+                    gh_Trans = Nothing
+                End Try
             End Using
-
-        Catch ex As Exception
-            Throw ex
-        End Try
+        End Using
     End Sub
 
 End Class

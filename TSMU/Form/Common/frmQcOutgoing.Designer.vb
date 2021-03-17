@@ -49,7 +49,7 @@ Partial Class frmQcOutgoing
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.Grid)
         Me.KeyPreview = True
-        Me.Name = "frmBarcodeGenerate"
+        Me.Name = "frmQcOutgoing"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

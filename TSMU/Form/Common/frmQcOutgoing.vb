@@ -37,25 +37,25 @@ Public Class frmQcOutgoing
     Public Overrides Sub Proc_Excel()
         Dim _Table As New DataTable
         Dim Filename As String = String.Empty
-        Dim Dial As New OpenFileDialog
-        Dial.Filter = "Excel Files|*.xls;*.xlsx"
-        Dim result As DialogResult = Dial.ShowDialog()
-        If result = System.Windows.Forms.DialogResult.OK Then
-            _Table = ExcelReader.ExcelToDataTable(Dial.FileName)
-        End If
-
         Try
+            SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
+            SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
+            Dim Dial As New OpenFileDialog
+            Dial.Filter = "Excel Files|*.xls;*.xlsx"
+            Dim result As DialogResult = Dial.ShowDialog()
+            If result = System.Windows.Forms.DialogResult.OK Then
+                _Table = ExcelReader.ExcelToDataTable(Dial.FileName)
+            End If
+
             If _Table.Rows.Count > 0 Then
-                SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
-                SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
                 Service.ObjCollections.Clear()
                 For Each row As DataRow In _Table.Rows
                     Obj = New QcOutgoingModel
                     With Obj
-                        .PartNo = row("PartNo").ToString().AsString()
-                        .InvtId = row("InvtId").ToString().AsString()
-                        .PathFile = row("PathFile").ToString().AsString()
-                        .PathFile1 = row("PathFile1").ToString().AsString()
+                        .PartNo = row(0).ToString().AsString()
+                        .InvtId = row(1).ToString().AsString()
+                        .PathFile = row(2).ToString().AsString()
+                        .PathFile1 = row(3).ToString().AsString()
                     End With
                     Service.ObjCollections.Add(Obj)
                 Next
