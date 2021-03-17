@@ -15,6 +15,7 @@
 
             Grid.DataSource = dt
             With GridView1
+                .Columns(0).Visible = False
                 .BestFitColumns()
             End With
             If GridView1.RowCount > 0 Then
@@ -32,8 +33,27 @@
 
     Public Overrides Sub Proc_InputNewData()
         'GridView1.AddNewRow()
-
         CallFrm()
+    End Sub
+    Public Overrides Sub Proc_DeleteData()
+        If GridView1.RowCount = 0 Then
+            Return
+        End If
+        Dim Id As Integer = 0
+        Try
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    Id = GridView1.GetRowCellValue(rowHandle, "Id")
+                End If
+            Next rowHandle
+            Service.DeleteData(Id)
+            Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
+            tsBtn_refresh.PerformClick()
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 
     Private Sub CallFrm(Optional ByVal ls_Code As Integer = 0, Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)

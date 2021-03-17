@@ -2,7 +2,7 @@
 
 Public Class FrmForecastPriceTemp
     Dim Service As New TForecastPrice_TempService
-    Dim Model As TForecastPrice_TempModel
+    Dim Model As New TForecastPrice_TempModel
     Dim _Tag As TagModel
     Dim GridDtl As GridControl
     Dim ls_Error As String = ""
@@ -25,8 +25,8 @@ Public Class FrmForecastPriceTemp
         Me.New()
 
         fs_Code = Code.ToString
-            fs_Code2 = strCode2
-            bi_GridParentRow = li_GridRow
+        fs_Code2 = strCode2
+        bi_GridParentRow = li_GridRow
 
         GridDtl = _Grid
         FrmParent = lf_FormParent
@@ -41,7 +41,7 @@ Public Class FrmForecastPriceTemp
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "0" Then
-                Service.GetDataById(fs_Code)
+                Model = Service.GetDataById(fs_Code.AsInt)
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -70,7 +70,7 @@ Public Class FrmForecastPriceTemp
             If fs_Code <> "0" Then
                 With Model
                     TxtTahun.Text = .Tahun
-                    TxtBulan.Text = .Bulan
+                    TxtBulan.EditValue = .Bulan
                     TxtCustomer.Text = .CustID
                     TxtPartNo.Text = .PartNo
                     TxtPartName.Text = .PartName
@@ -80,7 +80,7 @@ Public Class FrmForecastPriceTemp
                 End With
             Else
                 TxtTahun.Text = Date.Today.Year
-                TxtBulan.Text = ""
+                TxtBulan.EditValue = ""
                 TxtCustomer.Text = ""
                 TxtPartNo.Text = ""
                 TxtPartName.Text = ""
@@ -163,9 +163,15 @@ Public Class FrmForecastPriceTemp
                 .Site = TxtSite.Text.AsString
                 .Harga = TxtHarga.Text.AsFloat
             End With
+            If fs_Code = 0 Then
 
-            Service.InsertData(Model)
-            ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                Service.InsertData(Model)
+                ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            Else
+                Service.UpdatetData(Model)
+                ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+
+            End If
             GridDtl.DataSource = Service.GetDataGrid()
             Close()
 
