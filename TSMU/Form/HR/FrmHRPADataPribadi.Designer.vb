@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmHRPADataPribadi
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,11 +17,13 @@ Partial Class FrmHRPADataPribadi
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmHRPADataPribadi))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnDownload = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.pictureFoto = New System.Windows.Forms.PictureBox()
         Me.txtUserUbah = New DevExpress.XtraEditors.TextEdit()
         Me.txtUserBuat = New DevExpress.XtraEditors.TextEdit()
@@ -58,7 +60,6 @@ Partial Class FrmHRPADataPribadi
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -67,11 +68,15 @@ Partial Class FrmHRPADataPribadi
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.btnCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -79,12 +84,6 @@ Partial Class FrmHRPADataPribadi
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnBrowse = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnDownload = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -130,7 +129,6 @@ Partial Class FrmHRPADataPribadi
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,20 +137,21 @@ Partial Class FrmHRPADataPribadi
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -208,12 +207,33 @@ Partial Class FrmHRPADataPribadi
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'btnDownload
+        '
+        Me.btnDownload.AutoWidthInLayoutControl = True
+        Me.btnDownload.ImageOptions.Image = CType(resources.GetObject("btnDownload.ImageOptions.Image"), System.Drawing.Image)
+        Me.btnDownload.Location = New System.Drawing.Point(491, 264)
+        Me.btnDownload.Name = "btnDownload"
+        Me.btnDownload.Size = New System.Drawing.Size(30, 32)
+        Me.btnDownload.StyleController = Me.LayoutControl1
+        Me.btnDownload.TabIndex = 32
+        '
+        'btnBrowse
+        '
+        Me.btnBrowse.AutoWidthInLayoutControl = True
+        Me.btnBrowse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnBrowse.ImageOptions.Image = CType(resources.GetObject("btnBrowse.ImageOptions.Image"), System.Drawing.Image)
+        Me.btnBrowse.Location = New System.Drawing.Point(491, 172)
+        Me.btnBrowse.Name = "btnBrowse"
+        Me.btnBrowse.Size = New System.Drawing.Size(30, 32)
+        Me.btnBrowse.StyleController = Me.LayoutControl1
+        Me.btnBrowse.TabIndex = 31
+        '
         'pictureFoto
         '
         Me.pictureFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pictureFoto.Location = New System.Drawing.Point(387, 204)
+        Me.pictureFoto.Location = New System.Drawing.Point(387, 172)
         Me.pictureFoto.Name = "pictureFoto"
-        Me.pictureFoto.Size = New System.Drawing.Size(100, 92)
+        Me.pictureFoto.Size = New System.Drawing.Size(100, 124)
         Me.pictureFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pictureFoto.TabIndex = 30
         Me.pictureFoto.TabStop = False
@@ -303,7 +323,7 @@ Partial Class FrmHRPADataPribadi
         Me.txtKet.Location = New System.Drawing.Point(387, 140)
         Me.txtKet.Name = "txtKet"
         Me.txtKet.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.txtKet.Size = New System.Drawing.Size(134, 60)
+        Me.txtKet.Size = New System.Drawing.Size(134, 28)
         Me.txtKet.StyleController = Me.LayoutControl1
         Me.txtKet.TabIndex = 23
         '
@@ -590,15 +610,6 @@ Partial Class FrmHRPADataPribadi
         Me.LayoutControlItem15.Text = "Tanggal Kawin"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(140, 19)
         '
-        'LayoutControlItem20
-        '
-        Me.LayoutControlItem20.Control = Me.txtKet
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(232, 128)
-        Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(281, 64)
-        Me.LayoutControlItem20.Text = "Catatan"
-        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(140, 19)
-        '
         'LayoutControlItem21
         '
         Me.LayoutControlItem21.Control = Me.dtTglBuat
@@ -670,15 +681,6 @@ Partial Class FrmHRPADataPribadi
         Me.LayoutControlItem9.Text = "Tanggal Lahir"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(140, 19)
         '
-        'LayoutControlItem16
-        '
-        Me.LayoutControlItem16.Control = Me.txtJumlahAnak
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(232, 64)
-        Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(281, 32)
-        Me.LayoutControlItem16.Text = "Jumlah Anak"
-        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(140, 19)
-        '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
@@ -708,11 +710,55 @@ Partial Class FrmHRPADataPribadi
         'LayoutControlItem26
         '
         Me.LayoutControlItem26.Control = Me.pictureFoto
-        Me.LayoutControlItem26.Location = New System.Drawing.Point(232, 192)
+        Me.LayoutControlItem26.Location = New System.Drawing.Point(232, 160)
         Me.LayoutControlItem26.Name = "LayoutControlItem26"
-        Me.LayoutControlItem26.Size = New System.Drawing.Size(247, 96)
+        Me.LayoutControlItem26.Size = New System.Drawing.Size(247, 128)
         Me.LayoutControlItem26.Text = "Foto"
         Me.LayoutControlItem26.TextSize = New System.Drawing.Size(140, 19)
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.btnBrowse
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(479, 160)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(34, 36)
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem17.TextVisible = False
+        '
+        'LayoutControlItem27
+        '
+        Me.LayoutControlItem27.Control = Me.btnDownload
+        Me.LayoutControlItem27.Location = New System.Drawing.Point(479, 252)
+        Me.LayoutControlItem27.Name = "LayoutControlItem27"
+        Me.LayoutControlItem27.Size = New System.Drawing.Size(34, 36)
+        Me.LayoutControlItem27.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem27.TextVisible = False
+        '
+        'EmptySpaceItem5
+        '
+        Me.EmptySpaceItem5.AllowHotTrack = False
+        Me.EmptySpaceItem5.Location = New System.Drawing.Point(479, 196)
+        Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
+        Me.EmptySpaceItem5.Size = New System.Drawing.Size(34, 56)
+        Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem20
+        '
+        Me.LayoutControlItem20.Control = Me.txtKet
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(232, 128)
+        Me.LayoutControlItem20.Name = "LayoutControlItem20"
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(281, 32)
+        Me.LayoutControlItem20.Text = "Catatan"
+        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(140, 19)
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.txtJumlahAnak
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(232, 64)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(281, 32)
+        Me.LayoutControlItem16.Text = "Jumlah Anak"
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(140, 19)
         '
         'LayoutControl2
         '
@@ -788,53 +834,6 @@ Partial Class FrmHRPADataPribadi
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem19.TextVisible = False
         '
-        'btnBrowse
-        '
-        Me.btnBrowse.AutoWidthInLayoutControl = True
-        Me.btnBrowse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnBrowse.ImageOptions.Image = CType(resources.GetObject("btnBrowse.ImageOptions.Image"), System.Drawing.Image)
-        Me.btnBrowse.Location = New System.Drawing.Point(491, 204)
-        Me.btnBrowse.Name = "btnBrowse"
-        Me.btnBrowse.Size = New System.Drawing.Size(30, 32)
-        Me.btnBrowse.StyleController = Me.LayoutControl1
-        Me.btnBrowse.TabIndex = 31
-        '
-        'LayoutControlItem17
-        '
-        Me.LayoutControlItem17.Control = Me.btnBrowse
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(479, 192)
-        Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(34, 36)
-        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem17.TextVisible = False
-        '
-        'btnDownload
-        '
-        Me.btnDownload.AutoWidthInLayoutControl = True
-        Me.btnDownload.ImageOptions.Image = CType(resources.GetObject("btnDownload.ImageOptions.Image"), System.Drawing.Image)
-        Me.btnDownload.Location = New System.Drawing.Point(491, 264)
-        Me.btnDownload.Name = "btnDownload"
-        Me.btnDownload.Size = New System.Drawing.Size(30, 32)
-        Me.btnDownload.StyleController = Me.LayoutControl1
-        Me.btnDownload.TabIndex = 32
-        '
-        'LayoutControlItem27
-        '
-        Me.LayoutControlItem27.Control = Me.btnDownload
-        Me.LayoutControlItem27.Location = New System.Drawing.Point(479, 252)
-        Me.LayoutControlItem27.Name = "LayoutControlItem27"
-        Me.LayoutControlItem27.Size = New System.Drawing.Size(34, 36)
-        Me.LayoutControlItem27.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem27.TextVisible = False
-        '
-        'EmptySpaceItem5
-        '
-        Me.EmptySpaceItem5.AllowHotTrack = False
-        Me.EmptySpaceItem5.Location = New System.Drawing.Point(479, 228)
-        Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(34, 24)
-        Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
-        '
         'FrmHRPADataPribadi
         '
         Me.ClientSize = New System.Drawing.Size(563, 524)
@@ -888,7 +887,6 @@ Partial Class FrmHRPADataPribadi
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
@@ -897,20 +895,21 @@ Partial Class FrmHRPADataPribadi
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -979,5 +978,4 @@ Partial Class FrmHRPADataPribadi
     Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem27 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem5 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class

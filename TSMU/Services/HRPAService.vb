@@ -323,8 +323,9 @@
                     Try
                         InsertDataPribadi(DataPribadi)
                         InsertDataKaryawan(DataKaryawan)
-
-                        InsertOrgStruktur(OrgStruktur)
+                        If OrgStruktur.OrgID <> "" Then
+                            InsertOrgStruktur(OrgStruktur)
+                        End If
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -377,6 +378,31 @@
 
                     Try
                         EditDataPribadi(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveDeleteDataPribadi(Data As HRPADataPribadiModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        DeleteDataPribadi(Data)
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -511,6 +537,31 @@
         End Try
     End Sub
 
+    Public Sub DeleteDataPribadi(Data As HRPADataPribadiModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PADeleteDataPribadi"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(4).Value = Data.TglUbah
+            pParam(5) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(5).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
 #End Region
 
 #Region "Service For MD Karir"
@@ -550,6 +601,31 @@
 
                     Try
                         EditDataKaryawan(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveDeleteDataKaryawan(Data As HRPADataKaryawanModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        DeleteDataKaryawan(Data)
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -673,6 +749,31 @@
             pParam(21).Value = Data.TglUbah
             pParam(22) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
             pParam(22).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub DeleteDataKaryawan(Data As HRPADataKaryawanModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PADeleteDataKaryawan"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(4).Value = Data.TglUbah
+            pParam(5) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(5).Value = Data.UserUbah
 
             ExecQueryByCommand_SP(SP_Name, pParam)
         Catch ex As Exception

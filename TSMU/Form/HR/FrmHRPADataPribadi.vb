@@ -17,7 +17,7 @@ Public Class FrmHRPADataPribadi
 
     Dim modelDataPribadi As HRPADataPribadiModel
     Dim srvHR As New HRPAService
-    Dim FileName As String = ""
+    Dim FileName As String = String.Empty
 
     Public Sub New()
 
@@ -84,11 +84,11 @@ Public Class FrmHRPADataPribadi
                 PathSave = srvHR.GetGeneralParam("PathFoto")
                 If dataRow("Foto") IsNot DBNull.Value Then
                     FileName = dataRow("Foto")
-                    Using ms As New IO.MemoryStream(IO.File.ReadAllBytes(PathSave + FileName))
+                    Using bmb = New Bitmap(PathSave + FileName)
+                        Dim ms As New MemoryStream()
+                        bmb.Save(ms, ImageFormat.Bmp)
                         pictureFoto.Image = Image.FromStream(ms)
-                        ms.Close()
                     End Using
-                    'pictureFoto.Image = Image.FromFile(PathSave + FileName)
                 End If
                 txtReference.Text = IIf(dataRow("Reference") Is DBNull.Value, "", dataRow("Reference"))
                 txtKet.Text = IIf(dataRow("Ket") Is DBNull.Value, "", dataRow("Ket"))
@@ -154,8 +154,8 @@ Public Class FrmHRPADataPribadi
                 If CheckValidasi() = False Then
                     _isSave = True
 
-                    Dim PathFoto As String = ""
-                    Dim extension As String = ""
+                    Dim PathFoto As String = String.Empty
+                    Dim extension As String = String.Empty
                     Dim PathSave As String = String.Empty
                     PathSave = srvHR.GetGeneralParam("PathFoto")
 
@@ -170,7 +170,6 @@ Public Class FrmHRPADataPribadi
                         srvHR.SaveNewDataPribadi(modelDataPribadi)
                         If openFDialog IsNot Nothing Then
                             Dim image As Image = New Bitmap(pictureFoto.Image)
-                            PathSave = srvHR.GetGeneralParam("PathFoto")
                             image.Save(PathSave & FileName, System.Drawing.Imaging.ImageFormat.Jpeg)
                         End If
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -181,8 +180,7 @@ Public Class FrmHRPADataPribadi
                             FileName = "Foto_" + NIK + "_" + ID.ToString() + extension
                             modelDataPribadi.Foto = FileName
                             Dim image As Image = New Bitmap(pictureFoto.Image)
-                            Dim fileSavePath As String = ""
-                            PathSave = srvHR.GetGeneralParam("PathFoto")
+                            Dim fileSavePath As String = String.Empty
                             fileSavePath = IO.Path.Combine(PathSave, FileName)
                             If File.Exists(fileSavePath) Then
                                 File.Delete(fileSavePath)
@@ -192,8 +190,11 @@ Public Class FrmHRPADataPribadi
                         srvHR.SaveEditDataPribadi(modelDataPribadi)
                         Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
                     ElseIf isAction = "Delete" Then
+                        srvHR.SaveDeleteDataPribadi(modelDataPribadi)
                         Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
+                    openFDialog.Dispose()
+                    openFDialog = Nothing
                     Me.Hide()
                 End If
             End If
@@ -278,7 +279,9 @@ Public Class FrmHRPADataPribadi
 
     Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
         openFDialog = New OpenFileDialog
-        openFDialog.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
+        openFDialog.Filter = "Jpg, Jpeg Images|*.jpg;*.jpeg|PNG Image|*.png|BMP Image|*.bmp"
+        openFDialog.Title = "Select Image"
+        openFDialog.CheckFileExists = True
 
         If openFDialog.ShowDialog = DialogResult.OK Then
             pictureFoto.Image = Image.FromFile(openFDialog.FileName)
@@ -286,10 +289,38 @@ Public Class FrmHRPADataPribadi
     End Sub
 
     Private Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
-        'Dim pic As Image
-        'pic = pictureFoto.Image
-        'SaveFileDialog1.ShowDialog()
-        'pic.Save(SaveFileDialog1.FileName)
+        Dim sfdPic As New SaveFileDialog()
+        Try
+            With sfdPic
+                .Title = "Save Image As"
+                .Filter = "Jpg, Jpeg Images|*.jpg;*.jpeg|PNG Image|*.png|BMP Image|*.bmp"
+                .AddExtension = True
+                .DefaultExt = ".jpg"
+                .FileName = txtNamaLengkap.Text & ".jpg"
+                .ValidateNames = True
+                .OverwritePrompt = True
+                .RestoreDirectory = True
+
+                If .ShowDialog = DialogResult.OK Then
+                    Dim pic As Image
+                    pic = pictureFoto.Image
+                    If .FilterIndex = 1 Then
+                        pic.Save(sfdPic.FileName, Imaging.ImageFormat.Jpeg)
+                    ElseIf .FilterIndex = 2 Then
+                        pic.Save(sfdPic.FileName, Imaging.ImageFormat.Png)
+                    ElseIf .FilterIndex = 3 Then
+                        pic.Save(sfdPic.FileName, Imaging.ImageFormat.Bmp)
+                    End If
+                Else
+                    Return
+                End If
+            End With
+        Catch ex As Exception
+            MessageBox.Show("Error: Saving Image Failed ->>" & ex.Message.ToString())
+        Finally
+            sfdPic.Dispose()
+        End Try
+
     End Sub
 
 End Class

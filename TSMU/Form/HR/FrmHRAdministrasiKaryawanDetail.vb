@@ -5,6 +5,7 @@ Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraGrid.Columns
 Imports System.IO
+Imports System.Drawing.Imaging
 
 Public Class FrmHRAdministrasiKaryawanDetail
     Public IsClosed As Boolean = False
@@ -96,14 +97,16 @@ Public Class FrmHRAdministrasiKaryawanDetail
                     PathSave = srvHR.GetGeneralParam("PathFoto")
                     FileName = .Foto
                     If Not String.IsNullOrEmpty(FileName) Then
-                        Using ms As New IO.MemoryStream(IO.File.ReadAllBytes(PathSave + FileName))
+                        Using bmb = New Bitmap(PathSave + FileName)
+                            Dim ms As New MemoryStream()
+                            bmb.Save(ms, ImageFormat.Bmp)
                             pictureFoto.Image = Image.FromStream(ms)
-                            ms.Close()
                         End Using
                     Else
-                        Using ms As New IO.MemoryStream(IO.File.ReadAllBytes(PathSave + "NoImage.png"))
+                        Using bmb = New Bitmap(PathSave + "NoImage.png")
+                            Dim ms As New MemoryStream()
+                            bmb.Save(ms, ImageFormat.Bmp)
                             pictureFoto.Image = Image.FromStream(ms)
-                            ms.Close()
                         End Using
                     End If
                     txtNIK.Text = .NIK
@@ -188,9 +191,17 @@ Public Class FrmHRAdministrasiKaryawanDetail
             MsgBox("Tidak Ada Data Yang Dipilih !", MessageBoxIcon.Information, "Information")
         Else
             If cbMasterData.Text = "PRIBADI" Then
-                Call CallFrmDataPribadi(Action, dataRow)
+                If Action = "Delete" AndAlso GridViewPADetail.RowCount < 2 Then
+                    MsgBox("Data Pribadi Tidak Boleh Kosong !", MessageBoxIcon.Information, "Information")
+                Else
+                    Call CallFrmDataPribadi(Action, dataRow)
+                End If
             ElseIf cbMasterData.Text = "KARIR" Then
-                Call CallFrmDataKaryawan(Action, dataRow)
+                If Action = "Delete" AndAlso GridViewPADetail.RowCount < 2 Then
+                    MsgBox("Data Karir Tidak Boleh Kosong !", MessageBoxIcon.Information, "Information")
+                Else
+                    Call CallFrmDataKaryawan(Action, dataRow)
+                End If
             ElseIf cbMasterData.Text = "ALAMAT" Then
                 Call CallFrmDataAlamat(Action, dataRow)
             ElseIf cbMasterData.Text = "KELUARGA" Then
