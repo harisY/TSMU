@@ -853,6 +853,27 @@ Public Class forecast_po_model_detail
         End Try
     End Function
 
+    Public Function GetSalesManual(Bulan As String, Tahun As String) As Double
+        Dim salesPrice As Double = 0
+
+        Try
+            Dim parameters As List(Of SqlParameter) = New List(Of SqlParameter)()
+            parameters.Add(New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun})
+            parameters.Add(New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan})
+            parameters.Add(New SqlParameter() With {.ParameterName = "CustID", .Value = CustID})
+            parameters.Add(New SqlParameter() With {.ParameterName = "PartNo", .Value = PartNo})
+            Dim dt As New DataTable
+            dt = GetDataTableByParam("tForecastPrice_Temp1GetHarga", CommandType.StoredProcedure, parameters, GetConnString)
+
+            If dt.Rows.Count > 0 Then
+                salesPrice = dt.Rows(0)(0).ToString().AsDouble
+            End If
+            Return salesPrice
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub InsertData()
         Try
 
@@ -2015,8 +2036,17 @@ Public Class forecast_po_model_detail
 
     Public Sub SinkronisasiHarga(Bulan As String, BulanAngka As String)
         Try
+            Dim Service As New AdmService
+            Dim dt As New DataTable
             Dim salesPrice As Double = 0
-            salesPrice = getSalesPrice(BulanAngka, Tahun)
+            'salesPrice = getSalesPrice(BulanAngka, Tahun)
+
+            dt = Service.GetInventory(CustID, PartNo)
+            If dt.Rows.Count > 0 Then
+                salesPrice = getSalesPrice(BulanAngka, Tahun)
+            Else
+                salesPrice = GetSalesManual(BulanAngka, Tahun)
+            End If
 
             Dim _Bulan As String = String.Empty
 
@@ -2316,11 +2346,15 @@ Public Class forecast_po_model_detail
         End Try
     End Sub
 
-    Public Function DeleteCustomer(CustId As String, Tahun As String) As Integer
+    Public Function DeleteCustomer(CustId As String, Tahun As String, Bulan As String, ColumnName As String, Flag As String, Site As String) As Integer
         Try
             Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
             Params.Add(New SqlParameter() With {.ParameterName = "CustId", .Value = CustId})
             Params.Add(New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun})
+            Params.Add(New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan})
+            Params.Add(New SqlParameter() With {.ParameterName = "Site", .Value = Site})
+            Params.Add(New SqlParameter() With {.ParameterName = "Flag", .Value = Flag})
+            Params.Add(New SqlParameter() With {.ParameterName = "ColumName", .Value = ColumnName})
             Dim success As Integer = ExecQueryWithValue("tForecastPrice_DeleteByCustomer", CommandType.StoredProcedure, Params, GetConnString)
             Return success
         Catch ex As Exception

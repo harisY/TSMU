@@ -71,7 +71,7 @@ Public Class frmSales_ForecastPrice_details
             Else
                 Me.Text = "FORECAST DETAIL"
             End If
-
+            RdTipe.SelectedIndex = 0
             Call LoadTxtBox()
             'End If
             Call InputBeginState(Me)

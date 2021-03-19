@@ -1,11 +1,12 @@
 ﻿Public Class HROrgService
     Dim strQuery As String = String.Empty
 
-    Public Function GetStrukturOrg() As DataTable
-        Dim _result As Integer = 0
+    Public Function GetStrukturOrg(TglMulai As Date) As DataTable
         Try
             Dim Sql As String = "HR_GetStrukturOrg"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter() {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(0).Value = TglMulai
 
             Dim dt As New DataTable
 

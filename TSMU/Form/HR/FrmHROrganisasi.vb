@@ -11,15 +11,17 @@ Public Class FrmHROrganisasi
     Dim dtTreeOrg As New DataTable
     Dim frm_OrgDetail As FrmHROrgOrganisasiDetail
     Dim frm_JabDetail As FrmHROrgJabatanDetail
+    Dim Now As Date
 
     Private Sub FrmHROrganisasi_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, False)
 
+        Now = Date.Today
         trStrukturOrg.Parent = Me
         trStrukturOrg.KeyFieldName = "ID"
         trStrukturOrg.ParentFieldName = "ParentID"
         trStrukturOrg.OptionsBehavior.PopulateServiceColumns = True
-        dtTreeOrg = srvHR.GetStrukturOrg()
+        dtTreeOrg = srvHR.GetStrukturOrg(Now)
         trStrukturOrg.DataSource = dtTreeOrg
         trStrukturOrg.RowHeight = 30
 

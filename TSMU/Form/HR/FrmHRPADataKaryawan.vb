@@ -58,11 +58,7 @@ Public Class FrmHRPADataKaryawan
 
     Public Sub InitialSetForm()
         Try
-            If isAction <> "Add" Then
-                Me.Text = isAction.ToUpper + " DATA KARIR"
-            Else
-                Me.Text = "ADD DATA KARIR"
-            End If
+            Me.Text = isAction.ToUpper + " DATA KARIR"
             Call LoadTxtBox()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -72,7 +68,7 @@ Public Class FrmHRPADataKaryawan
     Private Sub LoadTxtBox()
         Try
             ListItemsPerpindahan()
-            ListItemsGolongan()
+            'ListItemsGolongan()
 
             If isAction <> "Add" Then
                 ID = dataRow("ID")
@@ -111,7 +107,7 @@ Public Class FrmHRPADataKaryawan
                 txtUserUbah.Text = gh_Common.Username
             End If
 
-            If isAction = "View" Then
+            If isAction = "View" OrElse isAction = "Delete" Then
                 Call CondView()
             End If
 
@@ -137,7 +133,9 @@ Public Class FrmHRPADataKaryawan
         txtSK.Enabled = False
         txtKet.Enabled = False
         btnDeleteJab.Enabled = False
-        btnSave.Enabled = False
+        If isAction = "View" Then
+            btnSave.Enabled = False
+        End If
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
@@ -146,20 +144,23 @@ Public Class FrmHRPADataKaryawan
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            Dim result As DialogResult = MessageBox.Show("Apakah Yakin Ingin Save Data", "Konfirmasi",
+            Dim result As DialogResult = MessageBox.Show("Apakah Yakin Ingin " & isAction & " Data", "Konfirmasi",
                          MessageBoxButtons.YesNo,
                          MessageBoxIcon.Question)
 
             If (result = DialogResult.Yes) Then
                 If CheckValidasi() = False Then
                     _isSave = True
-                    If isAction <> "Edit" Then
+                    If isAction = "Add" OrElse isAction = "Copy" Then
                         srvHR.SaveNewDataKaryawan(modelDataKaryawan)
-                    Else
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    ElseIf isAction = "Edit" Then
                         srvHR.SaveEditDataKaryawan(modelDataKaryawan)
+                        Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+                    ElseIf isAction = "Delete" Then
+                        srvHR.SaveDeleteDataKaryawan(modelDataKaryawan)
+                        Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
-
-                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     Me.Hide()
                 End If
             End If
@@ -180,12 +181,14 @@ Public Class FrmHRPADataKaryawan
                 Err.Raise(ErrNumber, , "Perpindahan Tidak Boleh Kosong!")
             ElseIf cbAlasan.Text = "" Then
                 Err.Raise(ErrNumber, , "Alasan Pindah Tidak Boleh Kosong!")
+            ElseIf cbTipe.Text <> "PERMANENT" And dtTglBerakhir.EditValue = Nothing Then
+                Err.Raise(ErrNumber, , "Tanggal Berakhir Tidak Boleh Kosong!")
             Else
-                If isAction <> "Edit" Then
+                If isAction = "Add" OrElse isAction = "Copy" Then
                     If srvHR.CheckRangeDateKarir(EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
                         Err.Raise(ErrNumber, , "Sudah Ada Tanggal Diperiode Ini  !")
                     End If
-                Else
+                ElseIf isAction = "Edit" Then
                     If srvHR.CheckRangeDateEditKarir(ID, EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
                         Err.Raise(ErrNumber, , "Sudah Ada Tanggal Diperiode Ini  !")
                     End If
@@ -274,11 +277,11 @@ Public Class FrmHRPADataKaryawan
         cbAlasan.Properties.DataSource = dtAlasan
     End Sub
 
-    Private Sub ListItemsGolongan()
-        Dim dtGolongan = New DataTable
-        dtGolongan = srvHR.GetListGolongan()
-        cbGolongan.Properties.DataSource = dtGolongan
-    End Sub
+    'Private Sub ListItemsGolongan()
+    '    Dim dtGolongan = New DataTable
+    '    dtGolongan = srvHR.GetListGolongan()
+    '    cbGolongan.Properties.DataSource = dtGolongan
+    'End Sub
 
     Private Sub ListItemsOrganisasi()
         Dim dtOrganisasi = New DataTable
@@ -315,6 +318,15 @@ Public Class FrmHRPADataKaryawan
     Private Sub txtJabatan_Click(sender As Object, e As EventArgs) Handles txtJabatan.Click
         If dtTglMulai.EditValue = Nothing Then
             MsgBox("Tanggal Mulai Tidak Boleh Kosong !", MessageBoxIcon.Information, "Information")
+        End If
+    End Sub
+
+    Private Sub cbTipe_EditValueChanged(sender As Object, e As EventArgs) Handles cbTipe.EditValueChanged
+        If cbTipe.Text = "PERMANENT" Then
+            dtTglBerakhir.Enabled = False
+            dtTglBerakhir.EditValue = Nothing
+        Else
+            dtTglBerakhir.Enabled = True
         End If
     End Sub
 

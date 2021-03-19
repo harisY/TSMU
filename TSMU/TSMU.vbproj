@@ -140,20 +140,17 @@
     <Reference Include="DevExpress.XtraTreeMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraWizard.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="ExcelDataReader">
-      <HintPath>bin\Debug\ExcelDataReader.dll</HintPath>
+      <HintPath>..\..\..\BackUp\TSMU\TSMU\bin\Debug\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>bin\Debug\ExcelDataReader.DataSet.dll</HintPath>
+      <HintPath>..\..\..\BackUp\TSMU\TSMU\bin\Debug\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="ExcelLibrary">
-      <HintPath>bin\Debug\ExcelLibrary.dll</HintPath>
+      <HintPath>..\..\..\BackUp\TSMU\TSMU\bin\Debug\ExcelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
-    </Reference>
-    <Reference Include="LibDataAccess">
-      <HintPath>..\..\..\..\MsgPopupENx\down\LibDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -1716,10 +1713,28 @@
     <Compile Include="Form\Common\frmForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmForecastHargaManual.Designer.vb">
+      <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmForecastHargaManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\FrmForecastPriceTemp.Designer.vb">
+      <DependentUpon>FrmForecastPriceTemp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmForecastPriceTemp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.Designer.vb">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmQcOutgoing.Designer.vb">
+      <DependentUpon>frmQcOutgoing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmQcOutgoing.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmJogres.Designer.vb">
@@ -2701,6 +2716,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\DragDropHelper.vb" />
+    <Compile Include="Helpers\ExcelReader.vb" />
     <Compile Include="Helpers\Extensions.vb" />
     <Compile Include="Helpers\ParameterInfo.vb" />
     <Compile Include="Helpers\SqlHelper.vb" />
@@ -2789,11 +2805,13 @@
     <Compile Include="Models\MizuhoModels.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
+    <Compile Include="Models\QcOutgoingModel.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
     <Compile Include="Models\saldo_awal_models.vb" />
     <Compile Include="Models\SettingModel.vb" />
     <Compile Include="Models\SoRegTemplateModel.vb" />
     <Compile Include="Models\TamScan.vb" />
+    <Compile Include="Models\TForecastPrice_TempModel.vb" />
     <Compile Include="Models\TMMINmodel.vb" />
     <Compile Include="Models\TTI_Detail_Models.vb" />
     <Compile Include="Models\TTI_Header_Models.vb" />
@@ -3219,7 +3237,9 @@
     <Compile Include="Services\HRPAService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
+    <Compile Include="Services\QcOutgoingService.vb" />
     <Compile Include="Services\SettingService.vb" />
+    <Compile Include="Services\TForecastPrice_TempService.vb" />
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
     </Compile>
@@ -3802,8 +3822,17 @@
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmForecastHargaManual.resx">
+      <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmForecastPriceTemp.resx">
+      <DependentUpon>FrmForecastPriceTemp.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmQcOutgoing.resx">
+      <DependentUpon>frmQcOutgoing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmJogres.resx">
       <DependentUpon>frmJogres.vb</DependentUpon>

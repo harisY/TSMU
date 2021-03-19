@@ -71,6 +71,7 @@ Public Class frmForecastDaily
             End If
             Dim Tahun As String
             Dim Bulan As Integer
+            Dim Customer As String
 
             Dim frmExcel As FrmLookupForecastDaily
             frmExcel = New FrmLookupForecastDaily("Delete") With {
@@ -81,9 +82,10 @@ Public Class frmForecastDaily
 
             Tahun = frmExcel.Tahun
             Bulan = frmExcel.Bulan
+            Customer = frmExcel.Customer
 
             If Not frmExcel.IsCancel Then
-                Service.Delete(Tahun, Bulan)
+                Service.Delete(Customer, Tahun, Bulan)
                 ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                 LoadGrid()
             End If
@@ -97,6 +99,7 @@ Public Class frmForecastDaily
         Dim ls_Judul As String = "Forecast MDFO"
         Dim Bulan As Integer
         Dim Tahun As String = ""
+        Dim Customer As String = ""
         Dim DtTanggal As New DataTable
         Dim frmExcel As FrmLookupForecastDaily
         frmExcel = New FrmLookupForecastDaily("Insert") With {
@@ -107,6 +110,7 @@ Public Class frmForecastDaily
 
         Tahun = frmExcel.Tahun
         Bulan = frmExcel.Bulan
+        Customer = frmExcel.Customer
         table = frmExcel.DtExcel
         Try
             SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
@@ -122,6 +126,7 @@ Public Class frmForecastDaily
                     End If
                     ObjForecast = New ForecastDailyModel
                     With ObjForecast
+                        .CustId = Customer
                         .Tahun = Tahun
                         .Bulan = Bulan
                         .PartNo = row(0).ToString().AsString()

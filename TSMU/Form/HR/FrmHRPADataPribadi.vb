@@ -13,8 +13,11 @@ Public Class FrmHRPADataPribadi
     Dim GridDtl As GridControl
     Dim FrmParent As Form
 
+    Dim openFDialog As OpenFileDialog
+
     Dim modelDataPribadi As HRPADataPribadiModel
     Dim srvHR As New HRPAService
+    Dim FileName As String = String.Empty
 
     Public Sub New()
 
@@ -50,11 +53,7 @@ Public Class FrmHRPADataPribadi
 
     Public Sub InitialSetForm()
         Try
-            If isAction <> "Add" Then
-                Me.Text = isAction.ToUpper + " DATA PRIBADI"
-            Else
-                Me.Text = "ADD DATA PRIBADI"
-            End If
+            Me.Text = isAction.ToUpper + " DATA PRIBADI"
             Call LoadTxtBox()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -81,10 +80,16 @@ Public Class FrmHRPADataPribadi
                 cbStatusKawin.Text = IIf(dataRow("StatusKawin") Is DBNull.Value, "", dataRow("StatusKawin"))
                 dtTglKawin.EditValue = IIf(dataRow("TglKawin") Is DBNull.Value, Nothing, dataRow("TglKawin"))
                 txtJumlahAnak.Text = IIf(dataRow("JumlahAnak") Is DBNull.Value, 0, dataRow("JumlahAnak"))
-                Dim tmpData As Byte()
-                tmpData = CType(dataRow("Gambar"), Byte())
-                Dim ms As New MemoryStream(tmpData)
-                txtFoto.Image = Image.FromStream(ms)
+                Dim PathSave As String = String.Empty
+                PathSave = srvHR.GetGeneralParam("PathFoto")
+                If dataRow("Foto") IsNot DBNull.Value Then
+                    FileName = dataRow("Foto")
+                    Using bmb = New Bitmap(PathSave + FileName)
+                        Dim ms As New MemoryStream()
+                        bmb.Save(ms, ImageFormat.Bmp)
+                        pictureFoto.Image = Image.FromStream(ms)
+                    End Using
+                End If
                 txtReference.Text = IIf(dataRow("Reference") Is DBNull.Value, "", dataRow("Reference"))
                 txtKet.Text = IIf(dataRow("Ket") Is DBNull.Value, "", dataRow("Ket"))
                 dtTglBuat.EditValue = dataRow("TglBuat")
@@ -102,7 +107,7 @@ Public Class FrmHRPADataPribadi
                 txtUserUbah.Text = gh_Common.Username
             End If
 
-            If isAction = "View" Then
+            If isAction = "View" OrElse isAction = "Delete" Then
                 Call CondView()
             End If
         Catch ex As Exception
@@ -126,9 +131,14 @@ Public Class FrmHRPADataPribadi
         cbStatusKawin.Enabled = False
         dtTglKawin.Enabled = False
         txtJumlahAnak.Enabled = False
+        pictureFoto.Enabled = False
         txtReference.Enabled = False
         txtKet.Enabled = False
-        btnSave.Enabled = False
+        If isAction = "View" Then
+            btnSave.Enabled = False
+        End If
+        btnBrowse.Enabled = False
+        btnDownload.Enabled = False
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
@@ -137,18 +147,54 @@ Public Class FrmHRPADataPribadi
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            Dim result As DialogResult = MessageBox.Show("Apakah Yakin Ingin Save Data", "Konfirmasi",
+            Dim result As DialogResult = MessageBox.Show("Apakah Yakin Ingin " & isAction & " Data", "Konfirmasi",
                          MessageBoxButtons.YesNo,
                          MessageBoxIcon.Question)
             If (result = DialogResult.Yes) Then
                 If CheckValidasi() = False Then
                     _isSave = True
-                    If isAction <> "Edit" Then
+
+                    Dim PathFoto As String = String.Empty
+                    Dim extension As String = String.Empty
+                    Dim PathSave As String = String.Empty
+                    PathSave = srvHR.GetGeneralParam("PathFoto")
+
+                    If isAction = "Add" OrElse isAction = "Copy" Then
+                        If openFDialog IsNot Nothing Then
+                            ID = srvHR.GetMaxIDDataPribadi()
+                            PathFoto = openFDialog.FileName
+                            extension = IO.Path.GetExtension(PathFoto)
+                            FileName = "Foto_" + NIK + "_" + ID.ToString() + extension
+                            modelDataPribadi.Foto = FileName
+                        End If
                         srvHR.SaveNewDataPribadi(modelDataPribadi)
-                    Else
+                        If openFDialog IsNot Nothing Then
+                            Dim image As Image = New Bitmap(pictureFoto.Image)
+                            image.Save(PathSave & FileName, System.Drawing.Imaging.ImageFormat.Jpeg)
+                        End If
+                        Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    ElseIf isAction = "Edit" Then
+                        If openFDialog IsNot Nothing Then
+                            PathFoto = openFDialog.FileName
+                            extension = IO.Path.GetExtension(PathFoto)
+                            FileName = "Foto_" + NIK + "_" + ID.ToString() + extension
+                            modelDataPribadi.Foto = FileName
+                            Dim image As Image = New Bitmap(pictureFoto.Image)
+                            Dim fileSavePath As String = String.Empty
+                            fileSavePath = IO.Path.Combine(PathSave, FileName)
+                            If File.Exists(fileSavePath) Then
+                                File.Delete(fileSavePath)
+                            End If
+                            image.Save(PathSave & FileName, System.Drawing.Imaging.ImageFormat.Jpeg)
+                        End If
                         srvHR.SaveEditDataPribadi(modelDataPribadi)
+                        Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+                    ElseIf isAction = "Delete" Then
+                        srvHR.SaveDeleteDataPribadi(modelDataPribadi)
+                        Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
-                    Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                    openFDialog.Dispose()
+                    openFDialog = Nothing
                     Me.Hide()
                 End If
             End If
@@ -170,30 +216,25 @@ Public Class FrmHRPADataPribadi
             ElseIf cbStatusKawin.Text = "MENIKAH" And dtTglKawin.EditValue = Nothing Then
                 Err.Raise(ErrNumber, , "Tanggal Kawin Tidak Boleh Kosong !")
             Else
-                If isAction <> "Edit" Then
+                If isAction = "Add" OrElse isAction = "Copy" Then
                     If srvHR.CheckRangeDatePribadi(EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
                         Err.Raise(ErrNumber, , "Sudah Ada Tanggal Diperiode Ini  !")
                     End If
-                Else
+                ElseIf isAction = "Edit" Then
                     If srvHR.CheckRangeDateEditPribadi(ID, EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
                         Err.Raise(ErrNumber, , "Sudah Ada Tanggal Diperiode Ini  !")
                     End If
                 End If
             End If
 
-            modelDataPribadi = New HRPADataPribadiModel
-            Dim tmpData As Byte()
-            Using ms As New MemoryStream()
-                txtFoto.Image.Save(ms, ImageFormat.Jpeg)
-                tmpData = ms.ToArray
-            End Using
-
             Dim Now As DateTime = DateTime.Now
+            modelDataPribadi = New HRPADataPribadiModel
             With modelDataPribadi
                 .ID = ID
                 .TglMulai = dtTglMulai.EditValue
                 .TglSelesai = dtTglSelesai.EditValue
                 .EmpID = EmpID
+                .NIK = NIK
                 .PINFinger = txtPINFinger.Text
                 .NamaLengkap = txtNamaLengkap.Text
                 .NamaPanggilan = txtNamaPanggilan.Text
@@ -207,7 +248,7 @@ Public Class FrmHRPADataPribadi
                 .StatusKawin = cbStatusKawin.Text
                 .TglKawin = dtTglKawin.EditValue
                 .JumlahAnak = txtJumlahAnak.Text
-                .Gambar = tmpData
+                .Foto = FileName
                 .Reference = txtReference.Text
                 .Ket = txtKet.Text
                 If isAction <> "Edit" Then
@@ -228,13 +269,58 @@ Public Class FrmHRPADataPribadi
     End Function
 
     Private Sub txtJumlahAnak_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtJumlahAnak.KeyPress
-
         Dim tombol As Integer
         tombol = Asc(e.KeyChar)
 
         If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13)) Then
             e.Handled = True
         End If
+    End Sub
+
+    Private Sub btnBrowse_Click(sender As Object, e As EventArgs) Handles btnBrowse.Click
+        openFDialog = New OpenFileDialog
+        openFDialog.Filter = "Jpg, Jpeg Images|*.jpg;*.jpeg|PNG Image|*.png|BMP Image|*.bmp"
+        openFDialog.Title = "Select Image"
+        openFDialog.CheckFileExists = True
+
+        If openFDialog.ShowDialog = DialogResult.OK Then
+            pictureFoto.Image = Image.FromFile(openFDialog.FileName)
+        End If
+    End Sub
+
+    Private Sub btnDownload_Click(sender As Object, e As EventArgs) Handles btnDownload.Click
+        Dim sfdPic As New SaveFileDialog()
+        Try
+            With sfdPic
+                .Title = "Save Image As"
+                .Filter = "Jpg, Jpeg Images|*.jpg;*.jpeg|PNG Image|*.png|BMP Image|*.bmp"
+                .AddExtension = True
+                .DefaultExt = ".jpg"
+                .FileName = txtNamaLengkap.Text & ".jpg"
+                .ValidateNames = True
+                .OverwritePrompt = True
+                .RestoreDirectory = True
+
+                If .ShowDialog = DialogResult.OK Then
+                    Dim pic As Image
+                    pic = pictureFoto.Image
+                    If .FilterIndex = 1 Then
+                        pic.Save(sfdPic.FileName, Imaging.ImageFormat.Jpeg)
+                    ElseIf .FilterIndex = 2 Then
+                        pic.Save(sfdPic.FileName, Imaging.ImageFormat.Png)
+                    ElseIf .FilterIndex = 3 Then
+                        pic.Save(sfdPic.FileName, Imaging.ImageFormat.Bmp)
+                    End If
+                Else
+                    Return
+                End If
+            End With
+        Catch ex As Exception
+            MessageBox.Show("Error: Saving Image Failed ->>" & ex.Message.ToString())
+        Finally
+            sfdPic.Dispose()
+        End Try
+
     End Sub
 
 End Class

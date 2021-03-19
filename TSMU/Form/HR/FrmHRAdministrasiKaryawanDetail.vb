@@ -5,6 +5,7 @@ Imports DevExpress.XtraGrid.Views.Base.ViewInfo
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraGrid.Columns
 Imports System.IO
+Imports System.Drawing.Imaging
 
 Public Class FrmHRAdministrasiKaryawanDetail
     Public IsClosed As Boolean = False
@@ -22,6 +23,8 @@ Public Class FrmHRAdministrasiKaryawanDetail
 
     Dim frm_DataPribadi As FrmHRPADataPribadi
     Dim frm_DataKaryawan As FrmHRPADataKaryawan
+    Dim frm_DataAlamat As FrmHRPADataAlamat
+    Dim frm_DataKeluarga As FrmHRPADataKeluarga
 
     Public Sub New()
 
@@ -59,8 +62,6 @@ Public Class FrmHRAdministrasiKaryawanDetail
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                modelHeader = New HRPAHeaderModel
-                modelHeader = srvHR.GetDataKaryawanByID(fs_Code)
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -81,22 +82,39 @@ Public Class FrmHRAdministrasiKaryawanDetail
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            Me.Hide()
         End Try
     End Sub
 
     Private Sub LoadTxtBox()
         Try
             If fs_Code <> "" Then
+                modelHeader = New HRPAHeaderModel
+                modelHeader = srvHR.GetDataKaryawanByID(fs_Code)
                 With modelHeader
-                    Dim tmpData As Byte()
-                    tmpData = CType(.Gambar, Byte())
-                    Dim ms As New MemoryStream(tmpData)
-                    PictureFoto.Image = Image.FromStream(ms)
+                    Dim PathSave As String = String.Empty
+                    Dim FileName As String = String.Empty
+                    PathSave = srvHR.GetGeneralParam("PathFoto")
+                    FileName = .Foto
+                    If Not String.IsNullOrEmpty(FileName) Then
+                        Using bmb = New Bitmap(PathSave + FileName)
+                            Dim ms As New MemoryStream()
+                            bmb.Save(ms, ImageFormat.Bmp)
+                            pictureFoto.Image = Image.FromStream(ms)
+                        End Using
+                    Else
+                        Using bmb = New Bitmap(PathSave + "NoImage.png")
+                            Dim ms As New MemoryStream()
+                            bmb.Save(ms, ImageFormat.Bmp)
+                            pictureFoto.Image = Image.FromStream(ms)
+                        End Using
+                    End If
                     txtNIK.Text = .NIK
                     txtNamaLengkap.Text = .NamaLengkap
                     txtJenisKelamin.Text = .JenisKelamin
                     txtFactory.Text = .Factory
                     dtTglLahir.EditValue = .TglLahir
+                    dtTglJoin.EditValue = .TglJoin
                     txtStatus.Text = .StatusKaryawan
                     txtTipe.Text = .TipeKaryawan
                     txtOrganisasi.Text = .Organisasi
@@ -128,8 +146,8 @@ Public Class FrmHRAdministrasiKaryawanDetail
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        'dataRow = GridViewPADetail.GetDataRow(GridViewPADetail.FocusedRowHandle)
-        'Call CheckLoadFormMD(btnDelete.Text)
+        dataRow = GridViewPADetail.GetDataRow(GridViewPADetail.FocusedRowHandle)
+        Call CheckLoadFormMD(btnDelete.Text)
     End Sub
 
     Private Sub GridPADetail_DoubleClick(sender As Object, e As EventArgs) Handles GridPADetail.DoubleClick
@@ -169,18 +187,28 @@ Public Class FrmHRAdministrasiKaryawanDetail
     End Sub
 
     Private Sub CheckLoadFormMD(Action As String)
-        If cbMasterData.Text = "PRIBADI" Then
-            Call CallFrmDataPribadi(Action, dataRow)
-        ElseIf cbMasterData.Text = "KARIR" Then
-            Call CallFrmDataKaryawan(Action, dataRow)
+        If Action <> "Add" And dataRow Is Nothing Then
+            MsgBox("Tidak Ada Data Yang Dipilih !", MessageBoxIcon.Information, "Information")
         Else
-            Try
-                GridViewPADetail.Columns.Clear()
-                GridPADetail.DataSource = Nothing
-            Finally
-                GridPADetail.EndUpdate()
-            End Try
+            If cbMasterData.Text = "PRIBADI" Then
+                If Action = "Delete" AndAlso GridViewPADetail.RowCount < 2 Then
+                    MsgBox("Data Pribadi Tidak Boleh Kosong !", MessageBoxIcon.Information, "Information")
+                Else
+                    Call CallFrmDataPribadi(Action, dataRow)
+                End If
+            ElseIf cbMasterData.Text = "KARIR" Then
+                If Action = "Delete" AndAlso GridViewPADetail.RowCount < 2 Then
+                    MsgBox("Data Karir Tidak Boleh Kosong !", MessageBoxIcon.Information, "Information")
+                Else
+                    Call CallFrmDataKaryawan(Action, dataRow)
+                End If
+            ElseIf cbMasterData.Text = "ALAMAT" Then
+                Call CallFrmDataAlamat(Action, dataRow)
+            ElseIf cbMasterData.Text = "KELUARGA" Then
+                Call CallFrmDataKeluarga(Action, dataRow)
+            End If
         End If
+
     End Sub
 
 #Region "Grid Dynamic Master Data"
@@ -217,8 +245,8 @@ Public Class FrmHRAdministrasiKaryawanDetail
             colTglKawin.DisplayFormat.FormatType = FormatType.DateTime
             colTglKawin.DisplayFormat.FormatString = "dd/MM/yyyy"
 
-            Dim colGambar As GridColumn = GridViewPADetail.Columns("Gambar")
-            colGambar.Visible = False
+            Dim colFoto As GridColumn = GridViewPADetail.Columns("Foto")
+            colFoto.Visible = False
 
             Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
             colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
@@ -275,8 +303,8 @@ Public Class FrmHRAdministrasiKaryawanDetail
             Dim colTipe As GridColumn = GridViewPADetail.Columns("TipeKaryawan")
             colTipe.Caption = "Tipe"
 
-            Dim colGol As GridColumn = GridViewPADetail.Columns("Gol")
-            colGol.Visible = False
+            'Dim colGol As GridColumn = GridViewPADetail.Columns("Gol")
+            'colGol.Visible = False
 
             Dim colOrg As GridColumn = GridViewPADetail.Columns("OrgID")
             colOrg.Visible = False
@@ -470,6 +498,7 @@ Public Class FrmHRAdministrasiKaryawanDetail
         frm_DataPribadi = New FrmHRPADataPribadi(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
         frm_DataPribadi.StartPosition = FormStartPosition.CenterScreen
         frm_DataPribadi.ShowDialog()
+        Call LoadTxtBox()
         CheckLoadGridMD()
     End Sub
 
@@ -483,6 +512,33 @@ Public Class FrmHRAdministrasiKaryawanDetail
         frm_DataKaryawan = New FrmHRPADataKaryawan(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
         frm_DataKaryawan.StartPosition = FormStartPosition.CenterScreen
         frm_DataKaryawan.ShowDialog()
+        Call LoadTxtBox()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataAlamat(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataAlamat IsNot Nothing AndAlso frm_DataAlamat.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataAlamat.Close()
+        End If
+        frm_DataAlamat = New FrmHRPADataAlamat(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataAlamat.StartPosition = FormStartPosition.CenterScreen
+        frm_DataAlamat.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataKeluarga(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataKeluarga IsNot Nothing AndAlso frm_DataKeluarga.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataKeluarga.Close()
+        End If
+        frm_DataKeluarga = New FrmHRPADataKeluarga(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataKeluarga.StartPosition = FormStartPosition.CenterScreen
+        frm_DataKeluarga.ShowDialog()
         CheckLoadGridMD()
     End Sub
 
