@@ -280,6 +280,8 @@
     <Compile Include="Classes\clsReport.vb" />
     <Compile Include="Classes\Payment\Cls_cmdm.vb" />
     <Compile Include="Classes\Payment\Cls_Report.vb" />
+    <Compile Include="Classes\PRClass.vb" />
+    <Compile Include="Classes\PR\Cls_PR.vb" />
     <Compile Include="Classes\sales_model.vb" />
     <Compile Include="Classes\Security.vb" />
     <Compile Include="Classes\TagModel.vb" />
