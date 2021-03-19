@@ -2269,7 +2269,8 @@ Public Class ClsCR_Description_of_Cost
             Dim ls_SP As String = "UPDATE [CR_Description_Of_Cost]
                                        SET [Account] = '" & D_Account & "',
                                            [SalesType] = '" & D_SalesType & "'
-                                     WHERE [CirculationNo] = '" & CirculationNo & "'"
+                                     WHERE [CirculationNo] = '" & CirculationNo & "'
+                                            and [Id] = '" & D_Id & "'"
             MainModul.ExecQuery(ls_SP)
 
         Catch ex As Exception
