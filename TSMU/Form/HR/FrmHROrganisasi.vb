@@ -15,42 +15,7 @@ Public Class FrmHROrganisasi
 
     Private Sub FrmHROrganisasi_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, False)
-
-        Now = Date.Today
-        trStrukturOrg.Parent = Me
-        trStrukturOrg.KeyFieldName = "ID"
-        trStrukturOrg.ParentFieldName = "ParentID"
-        trStrukturOrg.OptionsBehavior.PopulateServiceColumns = True
-        dtTreeOrg = srvHR.GetStrukturOrg(Now)
-        trStrukturOrg.DataSource = dtTreeOrg
-        trStrukturOrg.RowHeight = 30
-
-        Dim colOrg As TreeListColumn = trStrukturOrg.Columns("Organisasi")
-        Dim colOrgID As TreeListColumn = trStrukturOrg.Columns("OrgID")
-        Dim colClass As TreeListColumn = trStrukturOrg.Columns("OrgClass")
-        Dim colLevel As TreeListColumn = trStrukturOrg.Columns("Level")
-        Dim colLevelDesc As TreeListColumn = trStrukturOrg.Columns("LevelDesc")
-        Dim colNIK As TreeListColumn = trStrukturOrg.Columns("NIK")
-        Dim colNama As TreeListColumn = trStrukturOrg.Columns("Nama")
-        trStrukturOrg.Columns(trStrukturOrg.KeyFieldName).Visible = False
-        trStrukturOrg.Columns(trStrukturOrg.ParentFieldName).Visible = False
-
-        trStrukturOrg.OptionsView.AllowHtmlDrawHeaders = True
-        trStrukturOrg.OptionsView.AutoWidth = False
-        colOrgID.Visible = False
-        colClass.Caption = "<b>Tipe</b>"
-        colOrg.Caption = "<b>Organisasi</b>"
-        colLevel.Visible = False
-        colLevelDesc.Caption = "<b>Level</b>"
-        colNIK.Caption = "<b>NIK</b>"
-        colNama.Caption = "<b>Nama</b>"
-
-        Me.BeginInvoke(New MethodInvoker(Sub()
-                                             trStrukturOrg.BestFitColumns()
-                                         End Sub))
-
-        trStrukturOrg.SelectImageList = ImageCollection1
-        trStrukturOrg.StateImageList = ImageCollection1
+        Call LoadStruktur()
     End Sub
 
     Private Sub trStrukturOrg_GetStateImage(sender As Object, e As GetStateImageEventArgs) Handles trStrukturOrg.GetStateImage
@@ -104,6 +69,49 @@ Public Class FrmHROrganisasi
                 ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             End If
         End Try
+    End Sub
+
+    Public Overrides Sub Proc_Refresh()
+        Call LoadStruktur()
+    End Sub
+
+    Private Sub LoadStruktur()
+
+        Now = Date.Today
+        trStrukturOrg.Parent = Me
+        trStrukturOrg.KeyFieldName = "ID"
+        trStrukturOrg.ParentFieldName = "ParentID"
+        trStrukturOrg.OptionsBehavior.PopulateServiceColumns = True
+        dtTreeOrg = srvHR.GetStrukturOrg(Now)
+        trStrukturOrg.DataSource = dtTreeOrg
+        'trStrukturOrg.RowHeight = 25
+
+        Dim colOrg As TreeListColumn = trStrukturOrg.Columns("Organisasi")
+        Dim colOrgID As TreeListColumn = trStrukturOrg.Columns("OrgID")
+        Dim colClass As TreeListColumn = trStrukturOrg.Columns("OrgClass")
+        Dim colLevel As TreeListColumn = trStrukturOrg.Columns("Level")
+        Dim colLevelDesc As TreeListColumn = trStrukturOrg.Columns("LevelDesc")
+        Dim colNIK As TreeListColumn = trStrukturOrg.Columns("NIK")
+        Dim colNama As TreeListColumn = trStrukturOrg.Columns("Nama")
+        trStrukturOrg.Columns(trStrukturOrg.KeyFieldName).Visible = False
+        trStrukturOrg.Columns(trStrukturOrg.ParentFieldName).Visible = False
+
+        trStrukturOrg.OptionsView.AllowHtmlDrawHeaders = True
+        trStrukturOrg.OptionsView.AutoWidth = False
+        colOrgID.Visible = False
+        colClass.Caption = "<b>Tipe</b>"
+        colOrg.Caption = "<b> </b>"
+        colLevel.Visible = False
+        colLevelDesc.Caption = "<b>Level</b>"
+        colNIK.Caption = "<b>NIK</b>"
+        colNama.Caption = "<b>Nama</b>"
+
+        Me.BeginInvoke(New MethodInvoker(Sub()
+                                             trStrukturOrg.BestFitColumns()
+                                         End Sub))
+
+        'trStrukturOrg.SelectImageList = ImageCollection1
+        trStrukturOrg.StateImageList = ImageCollection1
     End Sub
 
     Private Sub CallFrmOrganisasi(Optional ByVal ls_Code As String = "", Optional ByVal ParentID As String = "", Optional ByVal OrgLevel As String = "")

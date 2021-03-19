@@ -152,13 +152,13 @@ Public Class FrmHRPADataKaryawan
                 If CheckValidasi() = False Then
                     _isSave = True
                     If isAction = "Add" OrElse isAction = "Copy" Then
-                        srvHR.SaveNewDataKaryawan(modelDataKaryawan)
+                        srvHR.SaveNewDataKaryawan(modelDataKaryawan, modelOrgStruktur)
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     ElseIf isAction = "Edit" Then
-                        srvHR.SaveEditDataKaryawan(modelDataKaryawan)
+                        srvHR.SaveEditDataKaryawan(modelDataKaryawan, modelOrgStruktur)
                         Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
                     ElseIf isAction = "Delete" Then
-                        srvHR.SaveDeleteDataKaryawan(modelDataKaryawan)
+                        srvHR.SaveDeleteDataKaryawan(modelDataKaryawan, modelOrgStruktur)
                         Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
                     Me.Hide()

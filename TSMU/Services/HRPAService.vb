@@ -565,7 +565,7 @@
 #End Region
 
 #Region "Service For MD Karir"
-    Public Sub SaveNewDataKaryawan(Data As HRPADataKaryawanModel)
+    Public Sub SaveNewDataKaryawan(DataKaryawan As HRPADataKaryawanModel, OrgStruktur As HROrgStrukturModel)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -575,7 +575,10 @@
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        InsertDataKaryawan(Data)
+                        InsertDataKaryawan(DataKaryawan)
+                        If OrgStruktur.OrgID <> "" Then
+                            InsertOrgStruktur(OrgStruktur)
+                        End If
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -590,7 +593,7 @@
         End Try
     End Sub
 
-    Public Sub SaveEditDataKaryawan(Data As HRPADataKaryawanModel)
+    Public Sub SaveEditDataKaryawan(DataKaryawan As HRPADataKaryawanModel, OrgStruktur As HROrgStrukturModel)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -600,7 +603,10 @@
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        EditDataKaryawan(Data)
+                        EditDataKaryawan(DataKaryawan)
+                        If OrgStruktur.OrgID <> "" Then
+                            InsertOrgStruktur(OrgStruktur)
+                        End If
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -615,7 +621,7 @@
         End Try
     End Sub
 
-    Public Sub SaveDeleteDataKaryawan(Data As HRPADataKaryawanModel)
+    Public Sub SaveDeleteDataKaryawan(DataKaryawan As HRPADataKaryawanModel, OrgStruktur As HROrgStrukturModel)
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
                 Conn1.Open()
@@ -625,7 +631,7 @@
                     gh_Trans.Command.Transaction = Trans1
 
                     Try
-                        DeleteDataKaryawan(Data)
+                        DeleteDataKaryawan(DataKaryawan)
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -1498,7 +1504,7 @@
             Dim dt As New DataTable
             Dim SP_Name As String = "HR_OrgInsertStruktur"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(10) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(11) {}
             pParam(0) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
             pParam(0).Value = OrgStruktur.TglMulai
             pParam(1) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
@@ -1507,20 +1513,22 @@
             pParam(2).Value = OrgStruktur.OrgID
             pParam(3) = New SqlClient.SqlParameter("@OrgClass", SqlDbType.VarChar)
             pParam(3).Value = OrgStruktur.OrgClass
-            pParam(4) = New SqlClient.SqlParameter("@RelClass", SqlDbType.VarChar)
-            pParam(4).Value = OrgStruktur.RelClass
-            pParam(5) = New SqlClient.SqlParameter("@RelOrg", SqlDbType.VarChar)
-            pParam(5).Value = OrgStruktur.RelOrg
-            pParam(6) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
-            pParam(6).Value = OrgStruktur.Ket
-            pParam(7) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
-            pParam(7).Value = OrgStruktur.TglBuat
-            pParam(8) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
-            pParam(8).Value = OrgStruktur.UserBuat
-            pParam(9) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
-            pParam(9).Value = OrgStruktur.TglUbah
-            pParam(10) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
-            pParam(10).Value = OrgStruktur.UserUbah
+            pParam(4) = New SqlClient.SqlParameter("@RelTipe", SqlDbType.VarChar)
+            pParam(4).Value = OrgStruktur.RelTipe
+            pParam(5) = New SqlClient.SqlParameter("@RelClass", SqlDbType.VarChar)
+            pParam(5).Value = OrgStruktur.RelClass
+            pParam(6) = New SqlClient.SqlParameter("@RelOrg", SqlDbType.VarChar)
+            pParam(6).Value = OrgStruktur.RelOrg
+            pParam(7) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(7).Value = OrgStruktur.Ket
+            pParam(8) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(8).Value = OrgStruktur.TglBuat
+            pParam(9) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(9).Value = OrgStruktur.UserBuat
+            pParam(10) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(10).Value = OrgStruktur.TglUbah
+            pParam(11) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(11).Value = OrgStruktur.UserUbah
 
             ExecQueryByCommand_SP(SP_Name, pParam)
         Catch ex As Exception
