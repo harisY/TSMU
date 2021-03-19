@@ -1,9 +1,97 @@
-﻿Public Class FrmForecastPriceTemp
+﻿Imports DevExpress.XtraGrid
+
+Public Class FrmForecastPriceTemp
     Dim Service As New TForecastPrice_TempService
-    Dim Model As TForecastPrice_TempModel
+    Dim Model As New TForecastPrice_TempModel
+    Dim _Tag As TagModel
+    Dim GridDtl As GridControl
+    Dim ls_Error As String = ""
+    Public isCancel As Boolean = False
+    Dim isUpdate As Boolean = False
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+    Public Sub New(ByVal Code As Integer,
+                   ByVal strCode2 As String,
+                   ByRef lf_FormParent As Form,
+                   ByVal li_GridRow As Integer,
+                   ByRef _Grid As GridControl)
+        ' this call is required by the windows form designer
+        Me.New()
+
+        fs_Code = Code.ToString
+        fs_Code2 = strCode2
+        bi_GridParentRow = li_GridRow
+
+        GridDtl = _Grid
+        FrmParent = lf_FormParent
+        _Tag = New TagModel
+        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        Tag = _Tag
+    End Sub
     Private Sub FrmForecastPriceTemp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Proc_EnableButtons(False, True, False, False, False, False, False, False, False, False, False, False)
-        FillComboBulan()
+        InitialSetForm()
+    End Sub
+    Public Overrides Sub InitialSetForm()
+        Try
+            If fs_Code <> "0" Then
+                Model = Service.GetDataById(fs_Code.AsInt)
+                If ls_Error <> "" Then
+                    Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
+                    isCancel = True
+                    Close()
+                    Exit Sub
+                Else
+                    isUpdate = True
+                End If
+                Text = "HARGA MANUAL"
+            Else
+                Text = "HARGA MANUAL"
+            End If
+            Call LoadTxtBox()
+            FillComboBulan()
+            'End If
+            Call InputBeginState(Me)
+            bb_IsUpdate = isUpdate
+            bs_MainFormName = FrmParent.Name
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Private Sub LoadTxtBox()
+        Try
+            If fs_Code <> "0" Then
+                With Model
+                    TxtTahun.Text = .Tahun
+                    TxtBulan.EditValue = .Bulan
+                    TxtCustomer.Text = .CustID
+                    TxtPartNo.Text = .PartNo
+                    TxtPartName.Text = .PartName
+                    TxtSite.Text = .Site
+                    TxtHarga.Text = .Harga
+                    TxtInventory.Text = .InvtID
+                End With
+            Else
+                TxtTahun.Text = Date.Today.Year
+                TxtBulan.EditValue = "0"
+                TxtCustomer.Text = ""
+                TxtPartNo.Text = ""
+                TxtPartName.Text = ""
+                TxtSite.Text = "TNG-U"
+                TxtHarga.Text = "0"
+                TxtInventory.Text = ""
+                TxtTahun.Focus()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
     Private Sub FillComboBulan()
         Dim items =
@@ -65,6 +153,7 @@
 
             Model = New TForecastPrice_TempModel
             With Model
+                .Id = fs_Code.AsInt
                 .Tahun = TxtTahun.Text.AsString
                 .Bulan = TxtBulan.EditValue
                 .CustID = TxtCustomer.Text.AsString
@@ -74,9 +163,16 @@
                 .Site = TxtSite.Text.AsString
                 .Harga = TxtHarga.Text.AsFloat
             End With
+            If fs_Code = 0 Then
 
-            Service.InsertTemptData(Model)
-            ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                Service.InsertData(Model)
+                ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            Else
+                Service.UpdatetData(Model)
+                ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+
+            End If
+            GridDtl.DataSource = Service.GetDataGrid()
             Close()
 
         Catch ex As Exception
@@ -84,7 +180,4 @@
         End Try
     End Sub
 
-    Private Sub TxtHarga_EditValueChanged(sender As Object, e As EventArgs) Handles TxtHarga.EditValueChanged
-        'TxtHarga.Text = Format(TxtHarga.Text, gs_FormatDecimal)
-    End Sub
 End Class

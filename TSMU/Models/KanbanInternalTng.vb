@@ -49,7 +49,7 @@ Public Class KanbanInternalTng
             Throw ex
         End Try
     End Function
-    Private Sub Dep_onchange(ByVal sender As System.Object, ByVal e As System.Data.SqlClient.SqlNotificationEventArgs)
+    Private Sub Dep_onchange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
         ' this event is run asynchronously so you will need to invoke to run on the UI thread(if required)
         'If Me.InvokeRequired Then
         '    dtTable = BeginInvoke(New MethodInvoker(AddressOf GetAllData))

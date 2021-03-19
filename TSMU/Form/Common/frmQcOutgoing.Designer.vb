@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmHarigami
+Partial Class frmQcOutgoing
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -49,7 +49,7 @@ Partial Class frmHarigami
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.Grid)
         Me.KeyPreview = True
-        Me.Name = "frmHarigami"
+        Me.Name = "frmQcOutgoing"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

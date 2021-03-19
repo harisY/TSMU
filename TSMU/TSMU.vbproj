@@ -1711,6 +1711,12 @@
     <Compile Include="Form\Common\frmForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmForecastHargaManual.Designer.vb">
+      <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmForecastHargaManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\FrmForecastPriceTemp.Designer.vb">
       <DependentUpon>FrmForecastPriceTemp.vb</DependentUpon>
     </Compile>
@@ -1721,6 +1727,12 @@
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmQcOutgoing.Designer.vb">
+      <DependentUpon>frmQcOutgoing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmQcOutgoing.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmJogres.Designer.vb">
@@ -2714,6 +2726,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\DragDropHelper.vb" />
+    <Compile Include="Helpers\ExcelReader.vb" />
     <Compile Include="Helpers\Extensions.vb" />
     <Compile Include="Helpers\ParameterInfo.vb" />
     <Compile Include="Helpers\SqlHelper.vb" />
@@ -2802,6 +2815,7 @@
     <Compile Include="Models\MizuhoModels.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
+    <Compile Include="Models\QcOutgoingModel.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
     <Compile Include="Models\saldo_awal_models.vb" />
     <Compile Include="Models\SettingModel.vb" />
@@ -3233,6 +3247,7 @@
     <Compile Include="Services\HRPAService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
+    <Compile Include="Services\QcOutgoingService.vb" />
     <Compile Include="Services\SettingService.vb" />
     <Compile Include="Services\TForecastPrice_TempService.vb" />
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
@@ -3817,11 +3832,17 @@
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmForecastHargaManual.resx">
+      <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmForecastPriceTemp.resx">
       <DependentUpon>FrmForecastPriceTemp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmQcOutgoing.resx">
+      <DependentUpon>frmQcOutgoing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmJogres.resx">
       <DependentUpon>frmJogres.vb</DependentUpon>

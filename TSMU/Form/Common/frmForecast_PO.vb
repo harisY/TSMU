@@ -901,12 +901,6 @@ Public Class frmForecast_PO
         End Try
     End Sub
 
-    Private Sub InputDataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InputDataToolStripMenuItem.Click
-        FrmForecastPriceTemp.WindowState = FormWindowState.Normal
-        FrmForecastPriceTemp.StartPosition = FormStartPosition.CenterScreen
-        FrmForecastPriceTemp.ShowDialog()
-    End Sub
-
     'Private Sub GridView1_CustomColumnDisplayText(sender As Object, e As CustomColumnDisplayTextEventArgs) Handles GridView1.CustomColumnDisplayText
     '    Try
     '        If (e.Column.FieldName = "JulHarga2") Then

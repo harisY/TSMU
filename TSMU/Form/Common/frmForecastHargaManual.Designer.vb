@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmHarigami
+Partial Class frmForecastHargaManual
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -28,28 +28,39 @@ Partial Class frmHarigami
         'Grid
         '
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Grid.Location = New System.Drawing.Point(0, 25)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Location = New System.Drawing.Point(0, 27)
         Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(828, 556)
-        Me.Grid.TabIndex = 1
+        Me.Grid.Size = New System.Drawing.Size(828, 554)
+        Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsClipboard.ClipboardMode = DevExpress.Export.ClipboardMode.Formatted
+        Me.GridView1.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView1.OptionsPrint.PrintHorzLines = False
+        Me.GridView1.OptionsPrint.PrintVertLines = False
+        Me.GridView1.OptionsSelection.MultiSelect = True
+        Me.GridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
+        Me.GridView1.OptionsView.ShowFooter = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'frmSales_Forecast
+        'frmForecastHargaManual
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
         Me.ClientSize = New System.Drawing.Size(828, 581)
         Me.Controls.Add(Me.Grid)
-        Me.KeyPreview = True
-        Me.Name = "frmHarigami"
+        Me.Name = "frmForecastHargaManual"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
