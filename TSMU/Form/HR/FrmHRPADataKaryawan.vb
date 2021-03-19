@@ -240,9 +240,9 @@ Public Class FrmHRPADataKaryawan
                 .RelClass = "E"
                 .RelOrg = EmpID
                 .Ket = txtKet.Text
-                .TglBuat = DateTime.Now
+                .TglBuat = Now
                 .UserBuat = gh_Common.Username
-                .TglUbah = DateTime.Now
+                .TglUbah = Now
                 .UserUbah = gh_Common.Username
             End With
 

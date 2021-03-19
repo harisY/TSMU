@@ -971,6 +971,528 @@
 
 #End Region
 
+#Region "Service For MD Keluarga"
+    Public Sub SaveNewDataKeluarga(Data As HRPADataKeluargaModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertDataKeluarga(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveEditDataKeluarga(Data As HRPADataKeluargaModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        EditDataKeluarga(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveDeleteDataKeluarga(Data As HRPADataKeluargaModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+                    Try
+                        strQuery = " DELETE  FROM dbo.M_HRPADataKeluarga
+                                     WHERE   ID = " & QVal(Data.ID) & " "
+                        ExecQuery(strQuery)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub InsertDataKeluarga(Data As HRPADataKeluargaModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PAInsertDataKeluarga"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(20) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@Hubungan", SqlDbType.VarChar)
+            pParam(4).Value = Data.Hubungan
+            pParam(5) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
+            pParam(5).Value = Data.Seq
+            pParam(6) = New SqlClient.SqlParameter("@Nama", SqlDbType.VarChar)
+            pParam(6).Value = Data.Nama
+            pParam(7) = New SqlClient.SqlParameter("@JenisKelamin", SqlDbType.VarChar)
+            pParam(7).Value = Data.JenisKelamin
+            pParam(8) = New SqlClient.SqlParameter("@TempatLahir", SqlDbType.VarChar)
+            pParam(8).Value = Data.TempatLahir
+            pParam(9) = New SqlClient.SqlParameter("@TglLahir", SqlDbType.Date)
+            pParam(9).Value = Data.TglLahir
+            pParam(10) = New SqlClient.SqlParameter("@TglKematian", SqlDbType.Date)
+            pParam(10).Value = Data.TglKematian
+            pParam(11) = New SqlClient.SqlParameter("@Agama", SqlDbType.VarChar)
+            pParam(11).Value = Data.Agama
+            pParam(12) = New SqlClient.SqlParameter("@Tamatan", SqlDbType.VarChar)
+            pParam(12).Value = Data.Tamatan
+            pParam(13) = New SqlClient.SqlParameter("@Alamat", SqlDbType.VarChar)
+            pParam(13).Value = Data.Alamat
+            pParam(14) = New SqlClient.SqlParameter("@NoTelpon", SqlDbType.VarChar)
+            pParam(14).Value = Data.NoTelpon
+            pParam(15) = New SqlClient.SqlParameter("@Pekerjaan", SqlDbType.VarChar)
+            pParam(15).Value = Data.Pekerjaan
+            pParam(16) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(16).Value = Data.Ket
+            pParam(17) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(17).Value = Data.TglBuat
+            pParam(18) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(18).Value = Data.UserBuat
+            pParam(19) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(19).Value = Data.TglUbah
+            pParam(20) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(20).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub EditDataKeluarga(Data As HRPADataKeluargaModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PAEditDataKeluarga"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(20) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@Hubungan", SqlDbType.VarChar)
+            pParam(4).Value = Data.Hubungan
+            pParam(5) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
+            pParam(5).Value = Data.Seq
+            pParam(6) = New SqlClient.SqlParameter("@Nama", SqlDbType.VarChar)
+            pParam(6).Value = Data.Nama
+            pParam(7) = New SqlClient.SqlParameter("@JenisKelamin", SqlDbType.VarChar)
+            pParam(7).Value = Data.JenisKelamin
+            pParam(8) = New SqlClient.SqlParameter("@TempatLahir", SqlDbType.VarChar)
+            pParam(8).Value = Data.TempatLahir
+            pParam(9) = New SqlClient.SqlParameter("@TglLahir", SqlDbType.Date)
+            pParam(9).Value = Data.TglLahir
+            pParam(10) = New SqlClient.SqlParameter("@TglKematian", SqlDbType.Date)
+            pParam(10).Value = Data.TglKematian
+            pParam(11) = New SqlClient.SqlParameter("@Agama", SqlDbType.VarChar)
+            pParam(11).Value = Data.Agama
+            pParam(12) = New SqlClient.SqlParameter("@Tamatan", SqlDbType.VarChar)
+            pParam(12).Value = Data.Tamatan
+            pParam(13) = New SqlClient.SqlParameter("@Alamat", SqlDbType.VarChar)
+            pParam(13).Value = Data.Alamat
+            pParam(14) = New SqlClient.SqlParameter("@NoTelpon", SqlDbType.VarChar)
+            pParam(14).Value = Data.NoTelpon
+            pParam(15) = New SqlClient.SqlParameter("@Pekerjaan", SqlDbType.VarChar)
+            pParam(15).Value = Data.Pekerjaan
+            pParam(16) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(16).Value = Data.Ket
+            pParam(17) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(17).Value = Data.TglBuat
+            pParam(18) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(18).Value = Data.UserBuat
+            pParam(19) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(19).Value = Data.TglUbah
+            pParam(20) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(20).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+#End Region
+
+#Region "Service For MD Pendidikan"
+    Public Sub SaveNewDataPendidikan(Data As HRPADataPendidikanModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertDataPendidikan(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveEditDataPendidikan(Data As HRPADataPendidikanModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        EditDataPendidikan(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveDeleteDataPendidikan(Data As HRPADataPendidikanModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+                    Try
+                        strQuery = " DELETE  FROM dbo.M_HRPADataPendidikan
+                                     WHERE   ID = " & QVal(Data.ID) & " "
+                        ExecQuery(strQuery)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub InsertDataPendidikan(Data As HRPADataPendidikanModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PAInsertDataPendidikan"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
+            pParam(4).Value = Data.Seq
+            pParam(5) = New SqlClient.SqlParameter("@TipePendidikan", SqlDbType.VarChar)
+            pParam(5).Value = Data.TipePendidikan
+            pParam(6) = New SqlClient.SqlParameter("@TingkatPendidikan", SqlDbType.VarChar)
+            pParam(6).Value = Data.TingkatPendidikan
+            pParam(7) = New SqlClient.SqlParameter("@NamaInstitut", SqlDbType.VarChar)
+            pParam(7).Value = Data.NamaInstitut
+            pParam(8) = New SqlClient.SqlParameter("@Jurusan", SqlDbType.VarChar)
+            pParam(8).Value = Data.Jurusan
+            pParam(9) = New SqlClient.SqlParameter("@Alamat", SqlDbType.VarChar)
+            pParam(9).Value = Data.Alamat
+            pParam(10) = New SqlClient.SqlParameter("@IPK", SqlDbType.VarChar)
+            pParam(10).Value = Data.IPK
+            pParam(11) = New SqlClient.SqlParameter("@Nilai", SqlDbType.VarChar)
+            pParam(11).Value = Data.Nilai
+            pParam(12) = New SqlClient.SqlParameter("@NamaPelatihan", SqlDbType.VarChar)
+            pParam(12).Value = Data.NamaPelatihan
+            pParam(13) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(13).Value = Data.Ket
+            pParam(14) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(14).Value = Data.TglBuat
+            pParam(15) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(15).Value = Data.UserBuat
+            pParam(16) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(16).Value = Data.TglUbah
+            pParam(17) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(17).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub EditDataPendidikan(Data As HRPADataPendidikanModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PAEditDataPendidikan"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
+            pParam(4).Value = Data.Seq
+            pParam(5) = New SqlClient.SqlParameter("@TipePendidikan", SqlDbType.VarChar)
+            pParam(5).Value = Data.TipePendidikan
+            pParam(6) = New SqlClient.SqlParameter("@TingkatPendidikan", SqlDbType.VarChar)
+            pParam(6).Value = Data.TingkatPendidikan
+            pParam(7) = New SqlClient.SqlParameter("@NamaInstitut", SqlDbType.VarChar)
+            pParam(7).Value = Data.NamaInstitut
+            pParam(8) = New SqlClient.SqlParameter("@Jurusan", SqlDbType.VarChar)
+            pParam(8).Value = Data.Jurusan
+            pParam(9) = New SqlClient.SqlParameter("@Alamat", SqlDbType.VarChar)
+            pParam(9).Value = Data.Alamat
+            pParam(10) = New SqlClient.SqlParameter("@IPK", SqlDbType.VarChar)
+            pParam(10).Value = Data.IPK
+            pParam(11) = New SqlClient.SqlParameter("@Nilai", SqlDbType.VarChar)
+            pParam(11).Value = Data.Nilai
+            pParam(12) = New SqlClient.SqlParameter("@NamaPelatihan", SqlDbType.VarChar)
+            pParam(12).Value = Data.NamaPelatihan
+            pParam(13) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(13).Value = Data.Ket
+            pParam(14) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(14).Value = Data.TglBuat
+            pParam(15) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(15).Value = Data.UserBuat
+            pParam(16) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(16).Value = Data.TglUbah
+            pParam(17) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(17).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+#End Region
+
+#Region "Service For MD Komunikasi"
+    Public Sub SaveNewDataKomunikasi(Data As HRPADataKomunikasiModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertDataKomunikasi(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveEditDataKomunikasi(Data As HRPADataKomunikasiModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        EditDataKomunikasi(Data)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveDeleteDataKomunikasi(Data As HRPADataKomunikasiModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+                    Try
+                        strQuery = " DELETE  FROM dbo.M_HRPADataKomunikasi
+                                     WHERE   ID = " & QVal(Data.ID) & " "
+                        ExecQuery(strQuery)
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub InsertDataKomunikasi(Data As HRPADataKomunikasiModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PAInsertDataKomunikasi"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(11) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
+            pParam(4).Value = Data.Seq
+            pParam(5) = New SqlClient.SqlParameter("@TipeKomunikasi", SqlDbType.VarChar)
+            pParam(5).Value = Data.TipeKomunikasi
+            pParam(6) = New SqlClient.SqlParameter("@Deskripsi", SqlDbType.VarChar)
+            pParam(6).Value = Data.Deskripsi
+            pParam(7) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(7).Value = Data.Ket
+            pParam(8) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(8).Value = Data.TglBuat
+            pParam(9) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(9).Value = Data.UserBuat
+            pParam(10) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(10).Value = Data.TglUbah
+            pParam(11) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(11).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub EditDataKomunikasi(Data As HRPADataKomunikasiModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_PAEditDataKomunikasi"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(11) {}
+            pParam(0) = New SqlClient.SqlParameter("@ID", SqlDbType.Int)
+            pParam(0).Value = Data.ID
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = Data.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = Data.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@EmployeeID", SqlDbType.VarChar)
+            pParam(3).Value = Data.EmpID
+            pParam(4) = New SqlClient.SqlParameter("@Seq", SqlDbType.Int)
+            pParam(4).Value = Data.Seq
+            pParam(5) = New SqlClient.SqlParameter("@TipeKomunikasi", SqlDbType.VarChar)
+            pParam(5).Value = Data.TipeKomunikasi
+            pParam(6) = New SqlClient.SqlParameter("@Deskripsi", SqlDbType.VarChar)
+            pParam(6).Value = Data.Deskripsi
+            pParam(7) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(7).Value = Data.Ket
+            pParam(8) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(8).Value = Data.TglBuat
+            pParam(9) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(9).Value = Data.UserBuat
+            pParam(10) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(10).Value = Data.TglUbah
+            pParam(11) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(11).Value = Data.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+#End Region
+
     Public Sub InsertOrgStruktur(OrgStruktur As HROrgStrukturModel)
         Try
             Dim dt As New DataTable

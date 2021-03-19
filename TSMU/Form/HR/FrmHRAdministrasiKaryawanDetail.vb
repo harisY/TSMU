@@ -25,6 +25,8 @@ Public Class FrmHRAdministrasiKaryawanDetail
     Dim frm_DataKaryawan As FrmHRPADataKaryawan
     Dim frm_DataAlamat As FrmHRPADataAlamat
     Dim frm_DataKeluarga As FrmHRPADataKeluarga
+    Dim frm_DataPendidikan As FrmHRPADataPendidikan
+    Dim frm_DataKomunikasi As FrmHRPADataKomunikasi
 
     Public Sub New()
 
@@ -206,6 +208,10 @@ Public Class FrmHRAdministrasiKaryawanDetail
                 Call CallFrmDataAlamat(Action, dataRow)
             ElseIf cbMasterData.Text = "KELUARGA" Then
                 Call CallFrmDataKeluarga(Action, dataRow)
+            ElseIf cbMasterData.Text = "PENDIDIKAN" Then
+                Call CallFrmDataPendidikan(Action, dataRow)
+            ElseIf cbMasterData.Text = "KOMUNIKASI" Then
+                Call CallFrmDataKomunikasi(Action, dataRow)
             End If
         End If
 
@@ -539,6 +545,32 @@ Public Class FrmHRAdministrasiKaryawanDetail
         frm_DataKeluarga = New FrmHRPADataKeluarga(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
         frm_DataKeluarga.StartPosition = FormStartPosition.CenterScreen
         frm_DataKeluarga.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataKomunikasi(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataKomunikasi IsNot Nothing AndAlso frm_DataKomunikasi.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataKomunikasi.Close()
+        End If
+        frm_DataKomunikasi = New FrmHRPADataKomunikasi(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataKomunikasi.StartPosition = FormStartPosition.CenterScreen
+        frm_DataKomunikasi.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataPendidikan(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataPendidikan IsNot Nothing AndAlso frm_DataPendidikan.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataPendidikan.Close()
+        End If
+        frm_DataPendidikan = New FrmHRPADataPendidikan(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataPendidikan.StartPosition = FormStartPosition.CenterScreen
+        frm_DataPendidikan.ShowDialog()
         CheckLoadGridMD()
     End Sub
 
