@@ -77,6 +77,7 @@ Public Class FrmHRAdministrasiKaryawanDetail
                 Me.Text = "NEW KARYAWAN"
             End If
             Call LoadTxtBox()
+            cbMasterData.Text = "PRIBADI"
             LoadGridDataPribadi()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
@@ -121,7 +122,6 @@ Public Class FrmHRAdministrasiKaryawanDetail
                     txtTipe.Text = .TipeKaryawan
                     txtOrganisasi.Text = .Organisasi
                     txtJabatan.Text = .Jabatan
-                    cbMasterData.Text = "PRIBADI"
                 End With
             End If
         Catch ex As Exception

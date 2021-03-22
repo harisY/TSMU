@@ -31,7 +31,7 @@ Partial Class FrmHROrganisasi
         '
         Me.trStrukturOrg.Dock = System.Windows.Forms.DockStyle.Fill
         Me.trStrukturOrg.Location = New System.Drawing.Point(0, 27)
-        Me.trStrukturOrg.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.trStrukturOrg.Margin = New System.Windows.Forms.Padding(4)
         Me.trStrukturOrg.MinWidth = 25
         Me.trStrukturOrg.Name = "trStrukturOrg"
         Me.trStrukturOrg.OptionsBehavior.AllowExpandOnDblClick = False

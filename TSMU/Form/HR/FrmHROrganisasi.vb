@@ -76,7 +76,6 @@ Public Class FrmHROrganisasi
     End Sub
 
     Private Sub LoadStruktur()
-
         Now = Date.Today
         trStrukturOrg.Parent = Me
         trStrukturOrg.KeyFieldName = "ID"
@@ -100,6 +99,7 @@ Public Class FrmHROrganisasi
         trStrukturOrg.OptionsView.AutoWidth = False
         colOrgID.Visible = False
         colClass.Caption = "<b>Tipe</b>"
+        colClass.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         colOrg.Caption = "<b> </b>"
         colLevel.Visible = False
         colLevelDesc.Caption = "<b>Level</b>"
@@ -126,7 +126,7 @@ Public Class FrmHROrganisasi
             End If
             frm_JabDetail.Close()
         End If
-        frm_OrgDetail = New FrmHROrgOrganisasiDetail(ls_Code, ParentID, OrgLevel, Me)
+        frm_OrgDetail = New FrmHROrgOrganisasiDetail(ls_Code, ParentID, OrgLevel, trStrukturOrg, Me)
         frm_OrgDetail.MdiParent = FrmMain
         frm_OrgDetail.StartPosition = FormStartPosition.CenterScreen
         frm_OrgDetail.Show()
@@ -144,7 +144,7 @@ Public Class FrmHROrganisasi
             End If
             frm_JabDetail.Close()
         End If
-        frm_JabDetail = New FrmHROrgJabatanDetail(ls_Code, ls_Code2, Me)
+        frm_JabDetail = New FrmHROrgJabatanDetail(ls_Code, ls_Code2, trStrukturOrg, Me)
         frm_JabDetail.MdiParent = FrmMain
         frm_JabDetail.StartPosition = FormStartPosition.CenterScreen
         frm_JabDetail.Show()

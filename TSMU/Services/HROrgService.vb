@@ -108,4 +108,197 @@
         End Try
     End Function
 
+    Public Sub SaveNewOrgJabatan(OrgJabatan As HROrgJabatanModel, OrgStruktur As HROrgStrukturModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertOrgJabatan(OrgJabatan)
+                        InsertOrgStruktur(OrgStruktur)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub SaveNewOrgOrganisasi(OrgOrganisasi As HROrgOrganisasiModel, OrgStruktur As HROrgStrukturModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        InsertOrgOrganisasi(OrgOrganisasi)
+                        InsertOrgStruktur(OrgStruktur)
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertOrgStruktur(OrgStruktur As HROrgStrukturModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_OrgInsertStruktur"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(11) {}
+            pParam(0) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(0).Value = OrgStruktur.TglMulai
+            pParam(1) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(1).Value = OrgStruktur.TglSelesai
+            pParam(2) = New SqlClient.SqlParameter("@OrgID", SqlDbType.VarChar)
+            pParam(2).Value = OrgStruktur.OrgID
+            pParam(3) = New SqlClient.SqlParameter("@OrgClass", SqlDbType.VarChar)
+            pParam(3).Value = OrgStruktur.OrgClass
+            pParam(4) = New SqlClient.SqlParameter("@RelTipe", SqlDbType.VarChar)
+            pParam(4).Value = OrgStruktur.RelTipe
+            pParam(5) = New SqlClient.SqlParameter("@RelClass", SqlDbType.VarChar)
+            pParam(5).Value = OrgStruktur.RelClass
+            pParam(6) = New SqlClient.SqlParameter("@RelOrg", SqlDbType.VarChar)
+            pParam(6).Value = OrgStruktur.RelOrg
+            pParam(7) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(7).Value = OrgStruktur.Ket
+            pParam(8) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(8).Value = OrgStruktur.TglBuat
+            pParam(9) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(9).Value = OrgStruktur.UserBuat
+            pParam(10) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(10).Value = OrgStruktur.TglUbah
+            pParam(11) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(11).Value = OrgStruktur.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertOrgJabatan(OrgJabatan As HROrgJabatanModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_OrgInsertJabatan"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(10) {}
+            pParam(0) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(0).Value = OrgJabatan.TglMulai
+            pParam(1) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(1).Value = OrgJabatan.TglSelesai
+            pParam(2) = New SqlClient.SqlParameter("@OrgID", SqlDbType.VarChar)
+            pParam(2).Value = OrgJabatan.OrgID
+            pParam(3) = New SqlClient.SqlParameter("@OrgDesc", SqlDbType.VarChar)
+            pParam(3).Value = OrgJabatan.OrgDesc
+            pParam(4) = New SqlClient.SqlParameter("@IsHead", SqlDbType.VarChar)
+            pParam(4).Value = OrgJabatan.IsHead
+            pParam(5) = New SqlClient.SqlParameter("@Alias", SqlDbType.VarChar)
+            pParam(5).Value = OrgJabatan.Alias_
+            pParam(6) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(6).Value = OrgJabatan.Ket
+            pParam(7) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(7).Value = OrgJabatan.TglBuat
+            pParam(8) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(8).Value = OrgJabatan.UserBuat
+            pParam(9) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(9).Value = OrgJabatan.TglUbah
+            pParam(10) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(10).Value = OrgJabatan.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertOrgOrganisasi(OrgOrganisasi As HROrgOrganisasiModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_OrgInsertOrganisasi"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(10) {}
+            pParam(0) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(0).Value = OrgOrganisasi.TglMulai
+            pParam(1) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(1).Value = OrgOrganisasi.TglSelesai
+            pParam(2) = New SqlClient.SqlParameter("@OrgID", SqlDbType.VarChar)
+            pParam(2).Value = OrgOrganisasi.OrgID
+            pParam(3) = New SqlClient.SqlParameter("@OrgDesc", SqlDbType.VarChar)
+            pParam(3).Value = OrgOrganisasi.OrgDesc
+            pParam(4) = New SqlClient.SqlParameter("@OrgLevel", SqlDbType.VarChar)
+            pParam(4).Value = OrgOrganisasi.OrgLevel
+            pParam(5) = New SqlClient.SqlParameter("@Alias", SqlDbType.VarChar)
+            pParam(5).Value = OrgOrganisasi.Alias_
+            pParam(6) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(6).Value = OrgOrganisasi.Ket
+            pParam(7) = New SqlClient.SqlParameter("@TglBuat", SqlDbType.DateTime)
+            pParam(7).Value = OrgOrganisasi.TglBuat
+            pParam(8) = New SqlClient.SqlParameter("@UserBuat", SqlDbType.VarChar)
+            pParam(8).Value = OrgOrganisasi.UserBuat
+            pParam(9) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(9).Value = OrgOrganisasi.TglUbah
+            pParam(10) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(10).Value = OrgOrganisasi.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Function GetAutoNumberJabID() As String
+        Try
+            strQuery = "DECLARE @seq VARCHAR(8);
+                        SET @seq = ( SELECT RIGHT('0000000'
+                                                  + CAST(MAX(RIGHT(OrgID, 7)) + 1 AS VARCHAR(7)), 7)
+                                     FROM   dbo.M_HROrgJabatan
+                                   ); 
+                        SELECT  'P' + COALESCE(@seq, '0000001');"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows(0).Item(0).ToString
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function GetAutoNumberOrgID() As String
+        Try
+            strQuery = "DECLARE @seq VARCHAR(8);
+                        SET @seq = ( SELECT RIGHT('0000000'
+                                                  + CAST(MAX(RIGHT(OrgID, 7)) + 1 AS VARCHAR(7)), 7)
+                                     FROM   dbo.M_HROrgOrganisasi
+                                   ); 
+                        SELECT  'O' + COALESCE(@seq, '0000001');"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows(0).Item(0).ToString
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 End Class
