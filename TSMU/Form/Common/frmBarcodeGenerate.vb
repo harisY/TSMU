@@ -48,24 +48,25 @@ Public Class frmBarcodeGenerate
         Dim strCustomer As String = ""
 
         Dim frmExcel As FrmSystemExcelBarcode
-        frmExcel = New FrmSystemExcelBarcode(table, 69)
-        frmExcel.Text = "Import " & ls_Judul
-        frmExcel.StartPosition = FormStartPosition.CenterScreen
+        frmExcel = New FrmSystemExcelBarcode(table, 69) With {
+            .Text = "Import " & ls_Judul,
+            .StartPosition = FormStartPosition.CenterScreen
+        }
         frmExcel.ShowDialog()
 
         Try
-            Dim dv As DataView = New DataView(table)
-            Dim dtFilter As New DataTable
+            'Dim dv As DataView = New DataView(table)
+            'Dim dtFilter As New DataTable
 
-            dtFilter = dv.ToTable
+            'table = dv.ToTable
             'Exit Sub
-            If dtFilter.Rows.Count > 0 Then
+            If table.Rows.Count > 0 Then
 
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
 
                 Obj.ObjDetails.Clear()
-                For Each row As DataRow In dtFilter.Rows
+                For Each row As DataRow In table.Rows
                     ObjDet = New BarcodeDet
                     With ObjDet
                         .KodePart = If(row("KODE PART") Is DBNull.Value, "", row("KODE PART").ToString)
@@ -80,6 +81,7 @@ Public Class frmBarcodeGenerate
                         .QtyLabel = If(row("QTY LABEL") Is DBNull.Value, 0, Convert.ToInt32(row("QTY LABEL")))
                         .WarnaPasscard = If(row("WARNA PASCARD") Is DBNull.Value, "", row("WARNA PASCARD").ToString())
                         .LokalExport = If(row("LOKAL / EXPORT") Is DBNull.Value, "", row("LOKAL / EXPORT").ToString())
+                        .KodeWarna = If(row("KODE WARNA") Is DBNull.Value, "", row("KODE WARNA").ToString())
                         .KodeWarna = If(row("KODE WARNA") Is DBNull.Value, "", row("KODE WARNA").ToString())
                         .TglUpload = DateTime.Now
                         .UploadBy = gh_Common.Username

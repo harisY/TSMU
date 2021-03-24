@@ -80,30 +80,31 @@ Public Class FrmSystemExcelBarcode
                 _txtExcel.Focus()
                 Throw New Exception("File Excel yang akan di upload tidak ada !")
             End If
-            Dim connString As String = String.Empty
-            Dim extension As String = System.IO.Path.GetExtension(path)
-            Select Case extension
-                Case ".xls"
-                    'Excel 97-03
+            GridData = ExcelReader.ExcelToDataTable(_txtExcel.Text)
+            'Dim connString As String = String.Empty
+            'Dim extension As String = System.IO.Path.GetExtension(path)
+            'Select Case extension
+            '    Case ".xls"
+            '        'Excel 97-03
 
-                    connString = ConfigurationManager.ConnectionStrings("Excel03ConString").ConnectionString
-                    Exit Select
-                Case ".xlsx"
-                    'Excel 07 or higher
-                    connString = ConfigurationManager.ConnectionStrings("Excel07+ConString").ConnectionString
-                    Exit Select
+            '        connString = ConfigurationManager.ConnectionStrings("Excel03ConString").ConnectionString
+            '        Exit Select
+            '    Case ".xlsx"
+            '        'Excel 07 or higher
+            '        connString = ConfigurationManager.ConnectionStrings("Excel07+ConString").ConnectionString
+            '        Exit Select
 
-            End Select
-            connString = String.Format(connString, path)
-            Using excel_con As New OleDbConnection(connString)
-                excel_con.Open()
-                Dim sheet1 As String = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing).Rows(0)("TABLE_NAME").ToString()
-                Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") & sheet1) + "]", excel_con)
-                    oda.Fill(GridData)
-                End Using
-                excel_con.Close()
-            End Using
-            Me.Close()
+            'End Select
+            'connString = String.Format(connString, path)
+            'Using excel_con As New OleDbConnection(connString)
+            '    excel_con.Open()
+            '    Dim sheet1 As String = excel_con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, Nothing).Rows(0)("TABLE_NAME").ToString()
+            '    Using oda As New OleDbDataAdapter((Convert.ToString("SELECT * FROM [") & sheet1) + "]", excel_con)
+            '        oda.Fill(GridData)
+            '    End Using
+            '    excel_con.Close()
+            'End Using
+            Close()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
