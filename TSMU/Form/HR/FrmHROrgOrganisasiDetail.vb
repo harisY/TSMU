@@ -139,6 +139,10 @@ Public Class FrmHROrgOrganisasiDetail
                 Err.Raise(ErrNumber, , "Deskripsi Tidak Boleh Kosong!")
             ElseIf txtLevel.EditValue = "" Then
                 Err.Raise(ErrNumber, , "Level Tidak Boleh Kosong!")
+            ElseIf srvOrg.CekPeriodParent(ParentID, dtTglMulai.EditValue, dtTglSelesai.EditValue) = False Then
+                Err.Raise(ErrNumber, , "Period Tidak Boleh Lebih Besar Dari Period Parent!")
+            ElseIf Not String.IsNullOrEmpty(fs_Code) AndAlso srvOrg.CekPeriodChild(fs_Code, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
+                Err.Raise(ErrNumber, , "Period Tidak Boleh Lebih Kecil Dari Period Childnya!")
             End If
 
             If lb_Validated Then
@@ -206,7 +210,7 @@ Public Class FrmHROrgOrganisasiDetail
                 srvOrg.SaveNewOrgOrganisasi(modelOrganisasi, modelOrgStruktur)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
-                'ObjSettleHeader.UpdateData(TxtNoSettlement.Text)
+                srvOrg.SaveEditOrgOrganisasi(Date.Today, modelOrganisasi, modelOrgStruktur)
                 Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
             End If
 
