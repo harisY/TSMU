@@ -19,10 +19,9 @@ Partial Public Class PasscardTng
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim QrCodeGenerator1 As DevExpress.XtraPrinting.BarCode.QRCodeGenerator = New DevExpress.XtraPrinting.BarCode.QRCodeGenerator()
         Dim Code128Generator1 As DevExpress.XtraPrinting.BarCode.Code128Generator = New DevExpress.XtraPrinting.BarCode.Code128Generator()
-        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource(Me.components)
+        Me.ObjectDataSource1 = New DevExpress.DataAccess.ObjectBinding.ObjectDataSource()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.XrLine13 = New DevExpress.XtraReports.UI.XRLine()
         Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
@@ -78,6 +77,7 @@ Partial Public Class PasscardTng
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ExcelDataSource1 = New DevExpress.DataAccess.Excel.ExcelDataSource()
         Me.DsLaporan1 = New TSMU.dsLaporan()
+        Me.XrLine8 = New DevExpress.XtraReports.UI.XRLine()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DsLaporan1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,7 +161,7 @@ Partial Public Class PasscardTng
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.panel1.CanGrow = False
-        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel24, Me.XrLabel3, Me.LblTgl, Me.XrLabel1, Me.LblSite, Me.XrLabel16, Me.XrLabel7, Me.XrLabel27, Me.XrLine17, Me.LblBulan, Me.LblKodePart, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrBarCode2, Me.XrLabel14, Me.XrLine18, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLine16, Me.XrLine14, Me.XrLine6, Me.XrLine5, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLine7, Me.XrBarCode1, Me.XrLine4, Me.XrLabel2, Me.XrLine3, Me.XrLine2, Me.XrLine1})
+        Me.panel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine8, Me.XrLabel24, Me.XrLabel3, Me.LblTgl, Me.XrLabel1, Me.LblSite, Me.XrLabel16, Me.XrLabel7, Me.XrLabel27, Me.XrLine17, Me.LblBulan, Me.LblKodePart, Me.XrLabel23, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel17, Me.XrBarCode2, Me.XrLabel14, Me.XrLine18, Me.XrLabel13, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLine16, Me.XrLine14, Me.XrLine6, Me.XrLine5, Me.XrLine12, Me.XrLine11, Me.XrLine10, Me.XrLine9, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLine7, Me.XrBarCode1, Me.XrLine4, Me.XrLabel2, Me.XrLine3, Me.XrLine2, Me.XrLine1})
         Me.panel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 7.999992!)
         Me.panel1.Name = "panel1"
         Me.panel1.SizeF = New System.Drawing.SizeF(368.44!, 238.3751!)
@@ -170,14 +170,14 @@ Partial Public Class PasscardTng
         'XrLabel24
         '
         Me.XrLabel24.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Dot
-        Me.XrLabel24.Borders = DevExpress.XtraPrinting.BorderSide.Left
+        Me.XrLabel24.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel24.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Varian]")})
         Me.XrLabel24.Font = New System.Drawing.Font("Calibri", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(180.7915!, 59.60201!)
+        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(204.4583!, 59.60201!)
         Me.XrLabel24.Multiline = True
         Me.XrLabel24.Name = "XrLabel24"
         Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel24.SizeF = New System.Drawing.SizeF(109.7918!, 32.1063!)
+        Me.XrLabel24.SizeF = New System.Drawing.SizeF(86.12497!, 32.1063!)
         Me.XrLabel24.StylePriority.UseBorderDashStyle = False
         Me.XrLabel24.StylePriority.UseBorders = False
         Me.XrLabel24.StylePriority.UseFont = False
@@ -423,7 +423,7 @@ Partial Public Class PasscardTng
         Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(73.99999!, 76.0!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(106.7915!, 15.70835!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(130.4583!, 15.70835!)
         Me.XrLabel18.StylePriority.UseBorders = False
         Me.XrLabel18.StylePriority.UseFont = False
         Me.XrLabel18.Text = "XrLabel18"
@@ -436,7 +436,7 @@ Partial Public Class PasscardTng
         Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(73.99999!, 59.60201!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel17.SizeF = New System.Drawing.SizeF(106.7915!, 14.49576!)
+        Me.XrLabel17.SizeF = New System.Drawing.SizeF(130.4583!, 14.3147!)
         Me.XrLabel17.StylePriority.UseBorders = False
         Me.XrLabel17.StylePriority.UseFont = False
         Me.XrLabel17.Text = "XrLabel17"
@@ -608,7 +608,7 @@ Partial Public Class PasscardTng
         Me.XrLine5.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
         Me.XrLine5.LocationFloat = New DevExpress.Utils.PointFloat(2.12499!, 73.91672!)
         Me.XrLine5.Name = "XrLine5"
-        Me.XrLine5.SizeF = New System.Drawing.SizeF(178.6665!, 2.083282!)
+        Me.XrLine5.SizeF = New System.Drawing.SizeF(202.3333!, 2.083282!)
         Me.XrLine5.StylePriority.UseBorders = False
         '
         'XrLine12
@@ -795,6 +795,16 @@ Partial Public Class PasscardTng
         Me.DsLaporan1.DataSetName = "dsLaporan"
         Me.DsLaporan1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
+        'XrLine8
+        '
+        Me.XrLine8.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLine8.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical
+        Me.XrLine8.LineStyle = System.Drawing.Drawing2D.DashStyle.Dot
+        Me.XrLine8.LocationFloat = New DevExpress.Utils.PointFloat(203.4583!, 57.76442!)
+        Me.XrLine8.Name = "XrLine8"
+        Me.XrLine8.SizeF = New System.Drawing.SizeF(3.125!, 36.02721!)
+        Me.XrLine8.StylePriority.UseBorders = False
+        '
         'PasscardTng
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
@@ -870,4 +880,5 @@ Partial Public Class PasscardTng
     Friend WithEvents LblTgl As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel24 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLine8 As DevExpress.XtraReports.UI.XRLine
 End Class
