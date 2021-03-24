@@ -1,13 +1,10 @@
-﻿Imports DevExpress.LookAndFeel
-Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraSplashScreen
+﻿Imports DevExpress.XtraSplashScreen
 
 Public Class frmBarcodeGenerate
     Dim dtGrid As DataTable
     Dim Obj As New BarcodeGenerate
     Dim ObjDet As New BarcodeDet
+
     Private Sub frmBarcodeGenerate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
@@ -38,9 +35,11 @@ Public Class frmBarcodeGenerate
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Public Overrides Sub Proc_Refresh()
         Call LoadGrid()
     End Sub
+
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
         Dim ls_Judul As String = "Barcode"
@@ -146,4 +145,5 @@ Public Class frmBarcodeGenerate
             ContextMenuStrip1.Show(e.Location)
         End If
     End Sub
+
 End Class
