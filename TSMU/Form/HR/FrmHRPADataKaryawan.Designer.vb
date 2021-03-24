@@ -52,6 +52,7 @@ Partial Class FrmHRPADataKaryawan
         Me.cbOrganisasi = New DevExpress.XtraEditors.LookUpEdit()
         Me.cbPerpindahan = New DevExpress.XtraEditors.LookUpEdit()
         Me.cbAlasan = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cbGolongan = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -86,7 +87,6 @@ Partial Class FrmHRPADataKaryawan
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.cbGolongan = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -118,6 +118,7 @@ Partial Class FrmHRPADataKaryawan
         CType(Me.cbOrganisasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbPerpindahan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbAlasan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,7 +152,6 @@ Partial Class FrmHRPADataKaryawan
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -568,6 +568,17 @@ Partial Class FrmHRPADataKaryawan
         Me.cbAlasan.StyleController = Me.LayoutControl1
         Me.cbAlasan.TabIndex = 8
         '
+        'cbGolongan
+        '
+        Me.cbGolongan.Location = New System.Drawing.Point(135, 172)
+        Me.cbGolongan.Name = "cbGolongan"
+        Me.cbGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cbGolongan.Properties.Items.AddRange(New Object() {"NONE", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "TKA", "BOD"})
+        Me.cbGolongan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cbGolongan.Size = New System.Drawing.Size(153, 28)
+        Me.cbGolongan.StyleController = Me.LayoutControl1
+        Me.cbGolongan.TabIndex = 10
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -883,17 +894,6 @@ Partial Class FrmHRPADataKaryawan
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem19.TextVisible = False
         '
-        'cbGolongan
-        '
-        Me.cbGolongan.Location = New System.Drawing.Point(135, 172)
-        Me.cbGolongan.Name = "cbGolongan"
-        Me.cbGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbGolongan.Properties.Items.AddRange(New Object() {"NONE", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "TKA", "BOD"})
-        Me.cbGolongan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbGolongan.Size = New System.Drawing.Size(153, 28)
-        Me.cbGolongan.StyleController = Me.LayoutControl1
-        Me.cbGolongan.TabIndex = 10
-        '
         'FrmHRPADataKaryawan
         '
         Me.ClientSize = New System.Drawing.Size(732, 403)
@@ -933,6 +933,7 @@ Partial Class FrmHRPADataKaryawan
         CType(Me.cbOrganisasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbPerpindahan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbAlasan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -966,7 +967,6 @@ Partial Class FrmHRPADataKaryawan
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

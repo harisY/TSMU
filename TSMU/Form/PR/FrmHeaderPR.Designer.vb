@@ -24,6 +24,7 @@ Partial Class FrmHeaderPR
         Me.PRNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Tanggal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Dept = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Total = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.C_Submit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,7 +46,7 @@ Partial Class FrmHeaderPR
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PRNo, Me.Tanggal, Me.Dept})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PRNo, Me.Tanggal, Me.Dept, Me.Total})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -74,7 +75,7 @@ Partial Class FrmHeaderPR
         Me.Tanggal.OptionsColumn.AllowEdit = False
         Me.Tanggal.Visible = True
         Me.Tanggal.VisibleIndex = 1
-        Me.Tanggal.Width = 109
+        Me.Tanggal.Width = 163
         '
         'Dept
         '
@@ -87,7 +88,19 @@ Partial Class FrmHeaderPR
         Me.Dept.OptionsColumn.AllowEdit = False
         Me.Dept.Visible = True
         Me.Dept.VisibleIndex = 2
-        Me.Dept.Width = 91
+        Me.Dept.Width = 134
+        '
+        'Total
+        '
+        Me.Total.AppearanceHeader.Options.UseTextOptions = True
+        Me.Total.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Total.DisplayFormat.FormatString = "{0:N2}"
+        Me.Total.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.Total.FieldName = "Total"
+        Me.Total.Name = "Total"
+        Me.Total.Visible = True
+        Me.Total.VisibleIndex = 3
+        Me.Total.Width = 173
         '
         'C_Submit
         '
@@ -115,4 +128,5 @@ Partial Class FrmHeaderPR
     Friend WithEvents Tanggal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Dept As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents C_Submit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents Total As DevExpress.XtraGrid.Columns.GridColumn
 End Class

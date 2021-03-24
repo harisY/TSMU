@@ -2,7 +2,7 @@
 Imports System.IO
 Imports DevExpress.XtraGrid
 
-Public Class FrmHRPADataKeluarga
+Public Class FrmHRPADataPendidikan
 
     Dim _isSave As Boolean
     Dim isAction As String
@@ -13,7 +13,7 @@ Public Class FrmHRPADataKeluarga
     Dim GridDtl As GridControl
     Dim FrmParent As Form
 
-    Dim modelDataKeluarga As HRPADataKeluargaModel
+    Dim modelDataPendidikan As HRPADataPendidikanModel
     Dim srvHR As New HRPAService
 
     Public Sub New()
@@ -44,13 +44,13 @@ Public Class FrmHRPADataKeluarga
         FrmParent = lf_FormParent
     End Sub
 
-    Private Sub FrmHRPADataKeluarga_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmHRPADataPendidikan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call InitialSetForm()
     End Sub
 
     Public Sub InitialSetForm()
         Try
-            Me.Text = isAction.ToUpper + " DATA KELUARGA"
+            Me.Text = isAction.ToUpper + " DATA PENDIDIKAN"
             Call LoadTxtBox()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -64,17 +64,14 @@ Public Class FrmHRPADataKeluarga
                 dtTglMulai.EditValue = dataRow("TglMulai")
                 dtTglSelesai.EditValue = dataRow("TglSelesai")
                 txtNIK.Text = NIK
-                cbHubungan.Text = IIf(dataRow("Hubungan") Is DBNull.Value, "", dataRow("Hubungan"))
-                txtNama.Text = IIf(dataRow("Nama") Is DBNull.Value, "", dataRow("Nama"))
-                cbJenisKelamin.Text = IIf(dataRow("JenisKelamin") Is DBNull.Value, "", dataRow("JenisKelamin"))
-                txtTempatLahir.Text = IIf(dataRow("TempatLahir") Is DBNull.Value, "", dataRow("TempatLahir"))
-                dtTglLahir.EditValue = IIf(dataRow("TglLahir") Is DBNull.Value, Nothing, dataRow("TglLahir"))
-                dtTglKematian.EditValue = IIf(dataRow("TglKematian") Is DBNull.Value, Nothing, dataRow("TglKematian"))
-                cbAgama.Text = IIf(dataRow("Agama") Is DBNull.Value, "", dataRow("Agama"))
-                cbTamatan.Text = IIf(dataRow("Tamatan") Is DBNull.Value, "", dataRow("Tamatan"))
+                cbTipePendidikan.Text = IIf(dataRow("TipePendidikan") Is DBNull.Value, "", dataRow("TipePendidikan"))
+                cbTingkatPendidikan.Text = IIf(dataRow("TingkatPendidikan") Is DBNull.Value, "", dataRow("TingkatPendidikan"))
+                txtNamaInstitut.Text = IIf(dataRow("NamaInstitut") Is DBNull.Value, "", dataRow("NamaInstitut"))
+                txtJurusan.Text = IIf(dataRow("Jurusan") Is DBNull.Value, "", dataRow("Jurusan"))
                 txtAlamat.Text = IIf(dataRow("Alamat") Is DBNull.Value, "", dataRow("Alamat"))
-                txtNoTelpon.Text = IIf(dataRow("NoTelpon") Is DBNull.Value, "", dataRow("NoTelpon"))
-                txtPekerjaan.Text = IIf(dataRow("Pekerjaan") Is DBNull.Value, "", dataRow("Pekerjaan"))
+                txtIPK.Text = IIf(dataRow("IPK") Is DBNull.Value, 0, dataRow("IPK"))
+                txtNilai.Text = IIf(dataRow("Nilai") Is DBNull.Value, "", dataRow("Nilai"))
+                txtNamaPelatihan.Text = IIf(dataRow("NamaPelatihan") Is DBNull.Value, "", dataRow("NamaPelatihan"))
                 txtKet.Text = IIf(dataRow("Ket") Is DBNull.Value, "", dataRow("Ket"))
                 dtTglBuat.EditValue = dataRow("TglBuat")
                 txtUserBuat.Text = dataRow("UserBuat")
@@ -101,17 +98,14 @@ Public Class FrmHRPADataKeluarga
     Private Sub CondView()
         dtTglMulai.Enabled = False
         dtTglSelesai.Enabled = False
-        cbHubungan.Enabled = False
-        txtNama.Enabled = False
-        cbJenisKelamin.Enabled = False
-        txtTempatLahir.Enabled = False
-        dtTglLahir.Enabled = False
-        dtTglKematian.Enabled = False
-        cbAgama.Enabled = False
-        cbTamatan.Enabled = False
+        cbTipePendidikan.Enabled = False
+        cbTingkatPendidikan.Enabled = False
+        txtNamaInstitut.Enabled = False
+        txtJurusan.Enabled = False
         txtAlamat.Enabled = False
-        txtNoTelpon.Enabled = False
-        txtPekerjaan.Enabled = False
+        txtIPK.Enabled = False
+        txtNilai.Enabled = False
+        txtNamaPelatihan.Enabled = False
         txtKet.Enabled = False
         If isAction = "View" Then
             btnSave.Enabled = False
@@ -131,13 +125,13 @@ Public Class FrmHRPADataKeluarga
                 If CheckValidasi() = False Then
                     _isSave = True
                     If isAction = "Add" OrElse isAction = "Copy" Then
-                        srvHR.SaveNewDataKeluarga(modelDataKeluarga)
+                        srvHR.SaveNewDataPendidikan(modelDataPendidikan)
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     ElseIf isAction = "Edit" Then
-                        srvHR.SaveEditDataKeluarga(modelDataKeluarga)
+                        srvHR.SaveEditDataPendidikan(modelDataPendidikan)
                         Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
                     ElseIf isAction = "Delete" Then
-                        srvHR.SaveDeleteDataKeluarga(modelDataKeluarga)
+                        srvHR.SaveDeleteDataPendidikan(modelDataPendidikan)
                         Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
                     Me.Hide()
@@ -154,32 +148,26 @@ Public Class FrmHRPADataKeluarga
         Try
             If dtTglMulai.EditValue > dtTglSelesai.EditValue Then
                 Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Lebih Besar Dari Tanggal Selesai !")
-            ElseIf cbHubungan.Text = "" Then
-                Err.Raise(ErrNumber, , "Hubungan Tidak Boleh Kosong!")
-            ElseIf txtNama.Text = "" Then
-                Err.Raise(ErrNumber, , "Nama Tidak Boleh Kosong!")
+            ElseIf cbTipePendidikan.Text = "" Then
+                Err.Raise(ErrNumber, , "Tipe Pendidikan Tidak Boleh Kosong!")
             End If
 
-            modelDataKeluarga = New HRPADataKeluargaModel
-
+            modelDataPendidikan = New HRPADataPendidikanModel
             Dim Now As DateTime = DateTime.Now
-            With modelDataKeluarga
+            With modelDataPendidikan
                 .ID = ID
                 .TglMulai = dtTglMulai.EditValue
                 .TglSelesai = dtTglSelesai.EditValue
                 .EmpID = EmpID
-                .Hubungan = cbHubungan.Text
                 .Seq = 1
-                .Nama = txtNama.Text
-                .JenisKelamin = cbJenisKelamin.Text
-                .TempatLahir = txtTempatLahir.Text
-                .TglLahir = dtTglLahir.EditValue
-                .TglKematian = dtTglKematian.EditValue
-                .Agama = cbAgama.Text
-                .Tamatan = cbTamatan.Text
+                .TipePendidikan = cbTipePendidikan.Text
+                .TingkatPendidikan = cbTingkatPendidikan.Text
+                .NamaInstitut = txtNamaInstitut.Text
+                .Jurusan = txtJurusan.Text
                 .Alamat = txtAlamat.Text
-                .NoTelpon = txtNoTelpon.Text
-                .Pekerjaan = txtPekerjaan.Text
+                .IPK = txtIPK.Text
+                .Nilai = txtNilai.Text
+                .NamaPelatihan = txtNamaPelatihan.Text
                 .Ket = txtKet.Text
                 If isAction <> "Edit" Then
                     .TglBuat = Now
@@ -197,5 +185,15 @@ Public Class FrmHRPADataKeluarga
         End Try
         Return validasi
     End Function
+
+    Private Sub cbTipePendidikan_EditValueChanged(sender As Object, e As EventArgs) Handles cbTipePendidikan.EditValueChanged
+        cbTingkatPendidikan.Text = ""
+        Dim _item As New List(Of String)
+        _item = New List(Of String)({"SD", "SLTP", "SLTA", "S1", "S2", "S3", "D1", "D2", "D3"})
+        cbTingkatPendidikan.Properties.Items.Clear()
+        If cbTipePendidikan.Text = "FORMAL" Then
+            cbTingkatPendidikan.Properties.Items.AddRange(_item)
+        End If
+    End Sub
 
 End Class

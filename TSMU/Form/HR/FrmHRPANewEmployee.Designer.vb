@@ -84,7 +84,6 @@ Partial Class FrmHRPANewEmployee
         Me.txtDKNIK = New DevExpress.XtraEditors.TextEdit()
         Me.cbPerpindahan = New DevExpress.XtraEditors.LookUpEdit()
         Me.cbAlasan = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cbGolongan = New DevExpress.XtraEditors.LookUpEdit()
         Me.cbStatus = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cbTipePosisi = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cbFactory = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -132,6 +131,7 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControlItem40 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem10 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
+        Me.cbGolongan = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -203,7 +203,6 @@ Partial Class FrmHRPANewEmployee
         CType(Me.txtDKNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbPerpindahan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbAlasan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbTipePosisi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbFactory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -247,6 +246,7 @@ Partial Class FrmHRPANewEmployee
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -912,7 +912,6 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControl3.Controls.Add(Me.txtDKNIK)
         Me.LayoutControl3.Controls.Add(Me.cbPerpindahan)
         Me.LayoutControl3.Controls.Add(Me.cbAlasan)
-        Me.LayoutControl3.Controls.Add(Me.cbGolongan)
         Me.LayoutControl3.Controls.Add(Me.cbStatus)
         Me.LayoutControl3.Controls.Add(Me.cbTipePosisi)
         Me.LayoutControl3.Controls.Add(Me.cbFactory)
@@ -926,6 +925,7 @@ Partial Class FrmHRPANewEmployee
         Me.LayoutControl3.Controls.Add(Me.dtTglBerakhir)
         Me.LayoutControl3.Controls.Add(Me.txtJabatan)
         Me.LayoutControl3.Controls.Add(Me.btnDeleteJab)
+        Me.LayoutControl3.Controls.Add(Me.cbGolongan)
         Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl3.Location = New System.Drawing.Point(4, 389)
         Me.LayoutControl3.Margin = New System.Windows.Forms.Padding(4)
@@ -1000,32 +1000,13 @@ Partial Class FrmHRPANewEmployee
         Me.cbAlasan.StyleController = Me.LayoutControl3
         Me.cbAlasan.TabIndex = 8
         '
-        'cbGolongan
-        '
-        Me.cbGolongan.Location = New System.Drawing.Point(147, 213)
-        Me.cbGolongan.Margin = New System.Windows.Forms.Padding(4)
-        Me.cbGolongan.Name = "cbGolongan"
-        Me.cbGolongan.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
-        Me.cbGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbGolongan.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("GolDesc", "")})
-        Me.cbGolongan.Properties.DisplayMember = "GolDesc"
-        Me.cbGolongan.Properties.NullText = ""
-        Me.cbGolongan.Properties.PopupSizeable = False
-        Me.cbGolongan.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth
-        Me.cbGolongan.Properties.ShowFooter = False
-        Me.cbGolongan.Properties.ShowHeader = False
-        Me.cbGolongan.Properties.ValueMember = "Gol"
-        Me.cbGolongan.Size = New System.Drawing.Size(80, 28)
-        Me.cbGolongan.StyleController = Me.LayoutControl3
-        Me.cbGolongan.TabIndex = 10
-        '
         'cbStatus
         '
         Me.cbStatus.Location = New System.Drawing.Point(366, 53)
         Me.cbStatus.Margin = New System.Windows.Forms.Padding(4)
         Me.cbStatus.Name = "cbStatus"
         Me.cbStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbStatus.Properties.Items.AddRange(New Object() {"AKTIF", "TIDAK AKTIF", "RESIGN"})
+        Me.cbStatus.Properties.Items.AddRange(New Object() {"ACTIVE", "INACTIVE", "RESIGN"})
         Me.cbStatus.Size = New System.Drawing.Size(75, 28)
         Me.cbStatus.StyleController = Me.LayoutControl3
         Me.cbStatus.TabIndex = 11
@@ -1036,7 +1017,7 @@ Partial Class FrmHRPANewEmployee
         Me.cbTipePosisi.Margin = New System.Windows.Forms.Padding(4)
         Me.cbTipePosisi.Name = "cbTipePosisi"
         Me.cbTipePosisi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbTipePosisi.Properties.Items.AddRange(New Object() {"DIRECTOR", "ASST. DIRECTOR", "MANAGER", "EXPATRIATE", "STAFF", "LEADER"})
+        Me.cbTipePosisi.Properties.Items.AddRange(New Object() {"DIRECTOR", "ASST. DIRECTOR", "CHIEF SECURITY", "DEPARTEMENT HEAD", "DIVISION HEAD", "DRIVER", "DV/ASST", "EXPERT 1", "EXPERT 2", "EXPERT 3", "GROUP LEADER", "OB", "OFFICE BOY", "OPERATOR", "SECTION HEAD", "SECURITY", "STAFF", "TEAM LEADER"})
         Me.cbTipePosisi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cbTipePosisi.Size = New System.Drawing.Size(75, 28)
         Me.cbTipePosisi.StyleController = Me.LayoutControl3
@@ -1083,7 +1064,7 @@ Partial Class FrmHRPANewEmployee
         Me.cbTipe.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.cbTipe.Properties.EditFormat.FormatString = "dd/MM/yyyy"
         Me.cbTipe.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.cbTipe.Properties.Items.AddRange(New Object() {"KONTRAK", "MAGANG", "OUTSOURCING", "TETAP"})
+        Me.cbTipe.Properties.Items.AddRange(New Object() {"CONTRACT", "MAGANG", "OUTSOURCING", "PERMANENT"})
         Me.cbTipe.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cbTipe.Size = New System.Drawing.Size(75, 28)
         Me.cbTipe.StyleController = Me.LayoutControl3
@@ -1532,6 +1513,18 @@ Partial Class FrmHRPANewEmployee
         Me.EmptySpaceItem10.Size = New System.Drawing.Size(34, 156)
         Me.EmptySpaceItem10.TextSize = New System.Drawing.Size(0, 0)
         '
+        'cbGolongan
+        '
+        Me.cbGolongan.Location = New System.Drawing.Point(147, 213)
+        Me.cbGolongan.Margin = New System.Windows.Forms.Padding(4)
+        Me.cbGolongan.Name = "cbGolongan"
+        Me.cbGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cbGolongan.Properties.Items.AddRange(New Object() {"NONE", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "TKA", "BOD"})
+        Me.cbGolongan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cbGolongan.Size = New System.Drawing.Size(80, 28)
+        Me.cbGolongan.StyleController = Me.LayoutControl3
+        Me.cbGolongan.TabIndex = 10
+        '
         'FrmHRPANewEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
@@ -1611,7 +1604,6 @@ Partial Class FrmHRPANewEmployee
         CType(Me.txtDKNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbPerpindahan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbAlasan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbTipePosisi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbFactory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1655,6 +1647,7 @@ Partial Class FrmHRPANewEmployee
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1709,7 +1702,6 @@ Partial Class FrmHRPANewEmployee
     Friend WithEvents txtDKNIK As DevExpress.XtraEditors.TextEdit
     Friend WithEvents cbPerpindahan As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents cbAlasan As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents cbGolongan As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents cbStatus As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cbTipePosisi As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cbFactory As DevExpress.XtraEditors.ComboBoxEdit
@@ -1771,4 +1763,5 @@ Partial Class FrmHRPANewEmployee
     Friend WithEvents btnBrowse As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem41 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem11 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents cbGolongan As DevExpress.XtraEditors.ComboBoxEdit
 End Class

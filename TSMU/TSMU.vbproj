@@ -277,6 +277,8 @@
     <Compile Include="Classes\clsReport.vb" />
     <Compile Include="Classes\Payment\Cls_cmdm.vb" />
     <Compile Include="Classes\Payment\Cls_Report.vb" />
+    <Compile Include="Classes\PRClass.vb" />
+    <Compile Include="Classes\PR\Cls_PR.vb" />
     <Compile Include="Classes\sales_model.vb" />
     <Compile Include="Classes\Security.vb" />
     <Compile Include="Classes\TagModel.vb" />
@@ -2167,6 +2169,18 @@
     <Compile Include="Form\HR\FrmHRPADataKeluarga.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKomunikasi.designer.vb">
+      <DependentUpon>FrmHRPADataKomunikasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKomunikasi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataPendidikan.designer.vb">
+      <DependentUpon>FrmHRPADataPendidikan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataPendidikan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\HR\FrmHRPADataPribadi.Designer.vb">
       <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
     </Compile>
@@ -3891,6 +3905,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\HR\FrmHRPADataKeluarga.resx">
       <DependentUpon>FrmHRPADataKeluarga.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataKomunikasi.resx">
+      <DependentUpon>FrmHRPADataKomunikasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataPendidikan.resx">
+      <DependentUpon>FrmHRPADataPendidikan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\HR\FrmHRPADataPribadi.resx">
       <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>

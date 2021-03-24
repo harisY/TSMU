@@ -82,8 +82,9 @@ Public Class FrmHRPADataPribadi
                 txtJumlahAnak.Text = IIf(dataRow("JumlahAnak") Is DBNull.Value, 0, dataRow("JumlahAnak"))
                 Dim PathSave As String = String.Empty
                 PathSave = srvHR.GetGeneralParam("PathFoto")
-                If dataRow("Foto") IsNot DBNull.Value Then
-                    FileName = dataRow("Foto")
+                FileName = IIf(dataRow("Foto") Is DBNull.Value, "", dataRow("Foto"))
+                If FileName <> "" Then
+                    'FileName = dataRow("Foto")
                     Using bmb = New Bitmap(PathSave + FileName)
                         Dim ms As New MemoryStream()
                         bmb.Save(ms, ImageFormat.Bmp)
@@ -193,8 +194,6 @@ Public Class FrmHRPADataPribadi
                         srvHR.SaveDeleteDataPribadi(modelDataPribadi)
                         Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
-                    openFDialog.Dispose()
-                    openFDialog = Nothing
                     Me.Hide()
                 End If
             End If
