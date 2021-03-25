@@ -71,6 +71,71 @@ Public Class Cls_PR
         End Try
     End Function
 
+    Public Function GetBudget(Tahun As String,
+                                  Dept As String,
+                                  AcctID As String) As DataTable
+        Try
+            Dim query As String
+
+            query = "SELECT Rtrim(LTrim(rekap_budget_dept.AcctID)) as AcctID ,
+	                    Rtrim(LTrim(rekap_budget_dept.AcctName)) as AcctName,
+	                    Rtrim(LTrim(rekap_budget_dept.DeptID)) as DeptID,
+	                    Rtrim(LTrim(SiteID)),Rtrim(LTrim(Tahun)) As Tahun,
+	                    sum(jan_qty*jan_harga) as jan,
+	                    sum(feb_qty*feb_harga) as feb,
+	                    sum(mar_qty*mar_harga) as mar,
+	                    sum(apr_qty*apr_harga) as apr,
+	                    sum(mei_qty*mei_harga) as mei,
+	                    sum(jun_qty*jun_harga) as jun,
+	                    sum(jul_qty*jul_harga) as jul,
+	                    sum(agt_qty*agt_harga) as agu,
+	                    sum(sep_qty*sep_harga) as sep,
+	                    sum(okt_qty*okt_harga) as okt,
+	                    sum(nov_qty*nov_harga) as nov,
+	                    sum(des_qty*des_harga) as des
+	                    FROM rekap_budget_dept INNER JOIN tipeacct on tipeacct.acctid=rekap_budget_dept.acctid
+	                    WHERE tipeacct.tipe='D' 
+	                    and rekap_budget_dept.Tahun = '" & Tahun & "'
+	                    and rekap_budget_dept.DeptID = '" & Dept & "'
+	                    and rekap_budget_dept.AcctID = '" & AcctID & "'
+	                    GROUP BY rekap_budget_dept.DeptID,
+	                    rekap_budget_dept.AcctID,
+	                    rekap_budget_dept.AcctName,
+	                    SiteID,
+	                    Tahun"
+
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function GetActualBudget(Tahun As String,
+                                  Bulan As String,
+                                  subAccount As String,
+                                  Account As String) As DataTable
+        Try
+            Dim query As String = "[PR_D_GetSisaBudget]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@Year", SqlDbType.VarChar)
+            pParam(1) = New SqlClient.SqlParameter("@Month", SqlDbType.VarChar)
+            pParam(2) = New SqlClient.SqlParameter("@Sub", SqlDbType.VarChar)
+            pParam(3) = New SqlClient.SqlParameter("@Account", SqlDbType.VarChar)
+
+            pParam(0).Value = Tahun
+            pParam(1).Value = Bulan
+            pParam(2).Value = subAccount
+            pParam(3).Value = Account
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
     Public Function GetBarang(Type As String, SubAccount As String) As DataTable
         Try
             Dim query As String
@@ -474,6 +539,43 @@ Public Class Cls_PR
     End Sub
 
 
+    Public Sub CancelPR(PRNo As String)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        'InsertHistory(NPWO_)
+
+                        Dim ls_TA As String = "UPDATE [XPRHdr]
+                               SET [StatusFlag] ='D'
+                                  ,[UpdateDate] = '" & Date.Now & "'
+                                  ,[UpdateBy] = '" & gh_Common.Username & "'
+                             WHERE [PRNo] = '" & PRNo & "'"
+
+                        MainModul.ExecQuery(ls_TA)
+
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+
+
 End Class
 
 
@@ -508,6 +610,7 @@ Public Class Cls_PR_Detail
     Public Property D_UnitQty As String
     Public Property D_XQty As Double
     Public Property D_XSeqNo As Int32
+    Public Property D_Keterangan As String
     ' Public Property D_tstamp As String
     Public Property D_CirculationNo As String
 
@@ -543,7 +646,8 @@ Public Class Cls_PR_Detail
                                                ,[UnitPrice]
                                                ,[UnitQty]
                                                ,[XQty]
-                                               ,[XSeqNo])
+                                               ,[XSeqNo]
+                                               ,[Keterangan])
                                          VALUES
                                                ('" & D_Acct & "'
                                                ,'" & D_CurrCode & "'
@@ -571,7 +675,8 @@ Public Class Cls_PR_Detail
                                                ,'" & D_UnitPrice & "'
                                                ,'" & D_UnitQty & "'
                                                ,'" & D_XQty & "'
-                                               ,'" & D_XSeqNo & "')"
+                                               ,'" & D_XSeqNo & "'
+                                               ,'" & D_Keterangan & "')"
             MainModul.ExecQuery(ls_TA)
 
         Catch ex As Exception

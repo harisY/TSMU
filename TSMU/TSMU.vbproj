@@ -2367,6 +2367,12 @@
     <Compile Include="Form\PR\FrmHeaderPR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Purchase Order\Frm_Head_PurchaseOrder.Designer.vb">
+      <DependentUpon>Frm_Head_PurchaseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Purchase Order\Frm_Head_PurchaseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmMonitoringDelivery.Designer.vb">
       <DependentUpon>frmMonitoringDelivery.vb</DependentUpon>
     </Compile>
@@ -3997,6 +4003,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PR\FrmHeaderPR.resx">
       <DependentUpon>FrmHeaderPR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Purchase Order\Frm_Head_PurchaseOrder.resx">
+      <DependentUpon>Frm_Head_PurchaseOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmMonitoringDelivery.resx">
       <DependentUpon>frmMonitoringDelivery.vb</DependentUpon>
