@@ -2169,6 +2169,18 @@
     <Compile Include="Form\HR\FrmHRPADataKeluarga.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKomunikasi.designer.vb">
+      <DependentUpon>FrmHRPADataKomunikasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataKomunikasi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataPendidikan.designer.vb">
+      <DependentUpon>FrmHRPADataPendidikan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\HR\FrmHRPADataPendidikan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\HR\FrmHRPADataPribadi.Designer.vb">
       <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
     </Compile>
@@ -3217,10 +3229,10 @@
     <Compile Include="Report\QRKaryawan.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Report\Passcard.Designer.vb">
-      <DependentUpon>Passcard.vb</DependentUpon>
+    <Compile Include="Report\PasscardCkr.Designer.vb">
+      <DependentUpon>PasscardCkr.vb</DependentUpon>
     </Compile>
-    <Compile Include="Report\Passcard.vb">
+    <Compile Include="Report\PasscardCkr.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\ReportDrr.Designer.vb">
@@ -3229,10 +3241,10 @@
     <Compile Include="Report\ReportDrr.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Report\Testing.Designer.vb">
-      <DependentUpon>Testing.vb</DependentUpon>
+    <Compile Include="Report\PasscardTng.Designer.vb">
+      <DependentUpon>PasscardTng.vb</DependentUpon>
     </Compile>
-    <Compile Include="Report\Testing.vb">
+    <Compile Include="Report\PasscardTng.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\BudgetSerivce.vb" />
@@ -3900,6 +3912,12 @@
     <EmbeddedResource Include="Form\HR\FrmHRPADataKeluarga.resx">
       <DependentUpon>FrmHRPADataKeluarga.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataKomunikasi.resx">
+      <DependentUpon>FrmHRPADataKomunikasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\HR\FrmHRPADataPendidikan.resx">
+      <DependentUpon>FrmHRPADataPendidikan.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\HR\FrmHRPADataPribadi.resx">
       <DependentUpon>FrmHRPADataPribadi.vb</DependentUpon>
     </EmbeddedResource>
@@ -4392,8 +4410,8 @@
     <EmbeddedResource Include="Report\QRKaryawan.resx">
       <DependentUpon>QRKaryawan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\Passcard.resx">
-      <DependentUpon>Passcard.vb</DependentUpon>
+    <EmbeddedResource Include="Report\PasscardCkr.resx">
+      <DependentUpon>PasscardCkr.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\ReportDrr.resx">
       <DependentUpon>ReportDrr.vb</DependentUpon>
@@ -5014,8 +5032,8 @@
     <EmbeddedResource Include="Report\PrintPO.resx">
       <DependentUpon>PrintPO.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\Testing.resx">
-      <DependentUpon>Testing.vb</DependentUpon>
+    <EmbeddedResource Include="Report\PasscardTng.resx">
+      <DependentUpon>PasscardTng.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SuratJalan\FrmSuratJalan.resx">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>

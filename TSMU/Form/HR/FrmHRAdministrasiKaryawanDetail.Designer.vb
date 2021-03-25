@@ -617,6 +617,7 @@ Partial Class FrmHRAdministrasiKaryawanDetail
         Me.cbMasterData.Margin = New System.Windows.Forms.Padding(4)
         Me.cbMasterData.Name = "cbMasterData"
         Me.cbMasterData.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cbMasterData.Properties.DropDownRows = 15
         Me.cbMasterData.Properties.Items.AddRange(New Object() {"PRIBADI", "KARIR", "ALAMAT", "KELUARGA", "PENDIDIKAN", "KOMUNIKASI", "PENGALAMAN KERJA", "RIWAYAT KESEHATAN", "ID PRIBADI", "FASILITAS", "TEGURAN/PENGHARGAAN", "BERKAS DATA", "REMINDER", "RIWAYAT PERFORMA"})
         Me.cbMasterData.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cbMasterData.Size = New System.Drawing.Size(266, 28)

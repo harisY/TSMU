@@ -16,6 +16,7 @@ Public Class QcOutgoingService
         Try
             Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
             Params.Add(New SqlParameter() With {.ParameterName = "PartNo", .Value = ObjCollections(i).PartNo})
+            Params.Add(New SqlParameter() With {.ParameterName = "PartName", .Value = ObjCollections(i).PartName})
             Params.Add(New SqlParameter() With {.ParameterName = "InvtId", .Value = ObjCollections(i).InvtId})
             Params.Add(New SqlParameter() With {.ParameterName = "PathFile", .Value = ObjCollections(i).PathFile})
             Params.Add(New SqlParameter() With {.ParameterName = "PathFile1", .Value = ObjCollections(i).PathFile1})

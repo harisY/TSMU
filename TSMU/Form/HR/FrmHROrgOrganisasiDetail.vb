@@ -1,4 +1,7 @@
-﻿Public Class FrmHROrgOrganisasiDetail
+﻿Imports DevExpress.Data
+Imports DevExpress.XtraTreeList
+
+Public Class FrmHROrgOrganisasiDetail
     Public IsClosed As Boolean = False
     Public isCancel As Boolean = False
     Dim isUpdate As Boolean = False
@@ -6,10 +9,14 @@
     Dim isLoad As Boolean = False
     Dim _Tag = New TagModel
 
+    Dim OrgID As String
     Dim ParentID As String
     Dim OrgLevel As String
-    Dim ObjHROrgService As New HROrgService
+    Dim trListOrg As TreeList
+    Dim dtTreeOrg As New DataTable
+    Dim srvOrg As New HROrgService
     Dim modelOrganisasi As HROrgOrganisasiModel
+    Dim modelOrgStruktur As HROrgStrukturModel
 
     Public Sub New()
 
@@ -23,6 +30,7 @@
     Public Sub New(ByVal strCode As String,
                    ByVal strParentID As String,
                    ByVal strOrgLevel As String,
+                   ByVal TreeOrg As TreeList,
                    ByRef lf_FormParent As Form)
         ' this call is required by the windows form designer
         Me.New()
@@ -31,6 +39,7 @@
         End If
         ParentID = strParentID
         OrgLevel = strOrgLevel
+        trListOrg = TreeOrg
         FrmParent = lf_FormParent
         _Tag = New TagModel
         _Tag.PageIndex = lf_FormParent.Tag.PageIndex
@@ -46,7 +55,7 @@
         Try
             If fs_Code <> "" Then
                 modelOrganisasi = New HROrgOrganisasiModel
-                modelOrganisasi = ObjHROrgService.GetOrganisasiByID(fs_Code)
+                modelOrganisasi = srvOrg.GetOrganisasiByID(fs_Code)
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -102,16 +111,113 @@
 
     Private Sub ListItemsOrgLevelNew()
         Dim dtOrgLevel = New DataTable
-        dtOrgLevel = ObjHROrgService.GetListOrgLevel()
+        dtOrgLevel = srvOrg.GetListOrgLevel()
         Dim Rows As DataRow() = dtOrgLevel.[Select]("OrgLevel > '" & OrgLevel & "'")
         txtLevel.Properties.DataSource = Rows.CopyToDataTable()
     End Sub
 
     Private Sub ListItemsOrgLevelEdit()
         Dim dtOrgLevel = New DataTable
-        dtOrgLevel = ObjHROrgService.GetListOrgLevel()
+        dtOrgLevel = srvOrg.GetListOrgLevel()
         Dim Rows As DataRow() = dtOrgLevel.[Select]("OrgLevel >= '" & OrgLevel & "'")
         txtLevel.Properties.DataSource = Rows.CopyToDataTable()
+    End Sub
+
+    Public Overrides Function ValidateSave() As Boolean
+        Dim lb_Validated As Boolean = False
+        Try
+            Dim success As Boolean = True
+
+            If DxValidationProvider1.Validate Then
+                lb_Validated = True
+            Else
+                Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
+            End If
+            If dtTglMulai.EditValue > dtTglSelesai.EditValue Then
+                Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Lebih Besar Dari Tanggal Selesai !")
+            ElseIf txtDeskripsi.Text = "" Then
+                Err.Raise(ErrNumber, , "Deskripsi Tidak Boleh Kosong!")
+            ElseIf txtLevel.EditValue = "" Then
+                Err.Raise(ErrNumber, , "Level Tidak Boleh Kosong!")
+            End If
+
+            If lb_Validated Then
+                If isUpdate = False Then
+                    OrgID = srvOrg.GetAutoNumberOrgID()
+                    txtOrgID.Text = OrgID
+                End If
+
+                Dim now As DateTime = DateTime.Now
+
+                modelOrganisasi = New HROrgOrganisasiModel
+                With modelOrganisasi
+                    .TglMulai = dtTglMulai.EditValue
+                    .TglSelesai = dtTglSelesai.EditValue
+                    .OrgID = txtOrgID.Text
+                    .OrgDesc = txtDeskripsi.Text
+                    .OrgLevel = txtLevel.EditValue
+                    .Alias_ = txtAlias.Text
+                    .Ket = txtKet.Text
+                    If isUpdate = False Then
+                        .TglBuat = now
+                        .UserBuat = gh_Common.Username
+                    Else
+                        .TglBuat = dtTglBuat.EditValue
+                        .UserBuat = txtUserBuat.Text
+                    End If
+                    .TglUbah = now
+                    .UserUbah = gh_Common.Username
+                End With
+
+                modelOrgStruktur = New HROrgStrukturModel
+                With modelOrgStruktur
+                    .TglMulai = dtTglMulai.EditValue
+                    .TglSelesai = dtTglSelesai.EditValue
+                    .OrgID = ParentID
+                    .OrgClass = "O"
+                    .RelDir = "B"
+                    .RelTipe = "01"
+                    .Seq = 1
+                    .RelClass = "O"
+                    .RelOrg = txtOrgID.Text
+                    .Ket = txtKet.Text
+                    If isUpdate = False Then
+                        .TglBuat = now
+                        .UserBuat = gh_Common.Username
+                    Else
+                        .TglBuat = dtTglBuat.EditValue
+                        .UserBuat = txtUserBuat.Text
+                    End If
+                    .TglUbah = now
+                    .UserUbah = gh_Common.Username
+                End With
+            End If
+        Catch ex As Exception
+            lb_Validated = False
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+        Return lb_Validated
+    End Function
+
+    Public Overrides Sub Proc_SaveData()
+        Try
+            If isUpdate = False Then
+                srvOrg.SaveNewOrgOrganisasi(modelOrganisasi, modelOrgStruktur)
+                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            Else
+                'ObjSettleHeader.UpdateData(TxtNoSettlement.Text)
+                Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+            End If
+
+            dtTreeOrg = srvOrg.GetStrukturOrg(Date.Today)
+            trListOrg.DataSource = dtTreeOrg
+            IsClosed = True
+            Me.Hide()
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 
 End Class

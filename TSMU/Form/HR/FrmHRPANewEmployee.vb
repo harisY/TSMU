@@ -91,7 +91,7 @@ Public Class FrmHRPANewEmployee
 
     Private Sub LoadTxtBox()
         ListItemsPerpindahan()
-        ListItemsGolongan()
+        'ListItemsGolongan()
 
         txtAction.Text = "NEW-HIRE"
         cbStatus.Text = "AKTIF"
@@ -278,11 +278,11 @@ Public Class FrmHRPANewEmployee
         cbAlasan.Properties.DataSource = dtAlasan
     End Sub
 
-    Private Sub ListItemsGolongan()
-        Dim dtGolongan = New DataTable
-        dtGolongan = srvHR.GetListGolongan()
-        cbGolongan.Properties.DataSource = dtGolongan
-    End Sub
+    'Private Sub ListItemsGolongan()
+    '    Dim dtGolongan = New DataTable
+    '    dtGolongan = srvHR.GetListGolongan()
+    '    cbGolongan.Properties.DataSource = dtGolongan
+    'End Sub
 
     Private Sub ListItemsOrganisasi()
         Dim dtOrganisasi = New DataTable

@@ -23,16 +23,17 @@ Public Class BarcodeGenerate
                 ,[WarnaPasscard]
                 ,[LokalExport]
                 ,[Site]
+                ,Varian
                 ,UploadBy
             FROM [BarcodeGenerate]"
             Dim dtTable As New DataTable
             dtTable = GetDataTable(ls_SP)
-
             Return dtTable
         Catch ex As Exception
             Throw
         End Try
     End Function
+
     Public Function GetAllDataGridCKR() As DataTable
         Try
             Dim ls_SP As String =
@@ -62,64 +63,62 @@ Public Class BarcodeGenerate
             Throw
         End Try
     End Function
+
     Public Sub InsertData()
-        Try
-            If gh_Common.Site.ToLower = "tng" Then
-                Using Conn1 As New SqlClient.SqlConnection(GetConnString)
-                    Conn1.Open()
-                    Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                        gh_Trans = New InstanceVariables.TransactionHelper
-                        gh_Trans.Command.Connection = Conn1
-                        gh_Trans.Command.Transaction = Trans1
+        If gh_Common.Site.ToLower = "tng" Then
+            Using Conn As New SqlConnection(GetConnString)
+                Conn.Open()
+                Using Trans As SqlTransaction = Conn.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn
+                    gh_Trans.Command.Transaction = Trans
 
-                        Try
-                            DeleteData()
-                            For i As Integer = 0 To ObjDetails.Count - 1
-                                With ObjDetails(i)
-                                    .InsertData()
-                                End With
-                            Next
+                    Try
+                        DeleteData()
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertTng()
+                            End With
+                        Next
 
-                            Trans1.Commit()
-                        Catch ex As Exception
-                            Trans1.Rollback()
-                            Throw
-                        Finally
-                            gh_Trans = Nothing
-                        End Try
-                    End Using
+                        Trans.Commit()
+                    Catch ex As Exception
+                        Trans.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
                 End Using
-            Else
-                Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
-                    Conn1.Open()
-                    Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                        gh_Trans = New InstanceVariables.TransactionHelper
-                        gh_Trans.Command.Connection = Conn1
-                        gh_Trans.Command.Transaction = Trans1
+            End Using
+        Else
+            Using Conn As New SqlConnection(GetConnStringDbCKR)
+                Conn.Open()
+                Using Trans As SqlTransaction = Conn.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn
+                    gh_Trans.Command.Transaction = Trans
 
-                        Try
-                            DeleteData()
-                            For i As Integer = 0 To ObjDetails.Count - 1
-                                With ObjDetails(i)
-                                    .InsertData()
-                                End With
-                            Next
+                    Try
+                        DeleteData()
+                        For i As Integer = 0 To ObjDetails.Count - 1
+                            With ObjDetails(i)
+                                .InsertCKr()
+                            End With
+                        Next
 
-                            Trans1.Commit()
-                        Catch ex As Exception
-                            Trans1.Rollback()
-                            Throw
-                        Finally
-                            gh_Trans = Nothing
-                        End Try
-                    End Using
+                        Trans.Commit()
+                    Catch ex As Exception
+                        Trans.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
                 End Using
-            End If
+            End Using
+        End If
 
-        Catch ex As Exception
-            Throw ex
-        End Try
     End Sub
+
     Public Sub DeleteData()
         Try
             Dim sql As String = "Delete From [BarcodeGenerate] Where Site = " & QVal(gh_Common.Site) & " AND UploadBy = " & QVal(gh_Common.Username) & ""
@@ -128,7 +127,6 @@ Public Class BarcodeGenerate
             Else
                 ExecQueryCKR(sql)
             End If
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -138,7 +136,7 @@ Public Class BarcodeGenerate
         Dim ds As dsLaporan
         Try
             Dim sql As String =
-            "SELECT 
+            "SELECT
                 [KodePart]
                 ,[InvetoryID] InvtID
                 ,[SFG/FG] Status
@@ -151,10 +149,10 @@ Public Class BarcodeGenerate
                 ,WarnaPasscard Warna
                 ,LokalExport as LR
                 ,CustomerID
+                ,Varian
             FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & " AND LOWER(UploadBy)=" & QVal(Username) & ""
             ds = New dsLaporan
             ds = GetDsReport(sql, "QRCode")
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -172,18 +170,17 @@ Public Class BarcodeGenerate
                 Ada = CheckLog(Bulan, KodePart)
             End If
             If Ada Then
-                Dim _udpate As String = "Update BarcodePrintLog Set No = " & QVal(No) & ", 
-                                        PrintedDate = GETDATE() 
+                Dim _udpate As String = "Update BarcodePrintLog Set No = " & QVal(No) & ",
+                                        PrintedDate = GETDATE()
                                         WHERE Tahun = " & QVal(Tahun) & " AND Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
 
-                Dim _udpateCKR As String = "Update BarcodePrintLog Set No =" & QVal(No) & "  
+                Dim _udpateCKR As String = "Update BarcodePrintLog Set No =" & QVal(No) & "
                                         WHERE Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " and Year(PrintedDate) = YEAR(GETDATE())"
                 If gh_Common.Site.ToLower = "tng" Then
                     ExecQuery(_udpate)
                 Else
                     ExecQueryCKR(_udpateCKR)
                 End If
-
             Else
                 Dim Query As String = String.Empty
                 Query = "INSERT INTO [BarcodePrintLog]
@@ -192,7 +189,6 @@ Public Class BarcodeGenerate
                             ," & QVal(InvtId) & "," & QVal(PartName) & "," & QVal(PartNo) & "
                             ," & QVal(Tahun) & "," & QVal(Bulan) & "," & QVal(gh_Common.Site) & "," & QVal(No) & "
                             ," & QVal(gh_Common.Username) & ",GETDATE())"
-
 
                 Dim Query1 As String = String.Empty
                 Query1 = "INSERT INTO [BarcodePrintLog]
@@ -215,12 +211,12 @@ Public Class BarcodeGenerate
     Public Function GetNoPrint(Tahun As String, Bulan As String, KodePart As String) As Integer
         Dim hasil As Integer
         Try
-            Dim sql As String = "SELECT ISNULL(No,0) No From BarcodePrintLog 
-                                WHERE Tahun = " & QVal(Tahun) & " AND Bulan = " & QVal(Bulan) & " 
+            Dim sql As String = "SELECT ISNULL(No,0) No From BarcodePrintLog
+                                WHERE Tahun = " & QVal(Tahun) & " AND Bulan = " & QVal(Bulan) & "
                                 AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & ""
 
-            Dim sql2 As String = "SELECT ISNULL(No,0) No From BarcodePrintLog 
-                                WHERE Bulan = " & QVal(Bulan) & " 
+            Dim sql2 As String = "SELECT ISNULL(No,0) No From BarcodePrintLog
+                                WHERE Bulan = " & QVal(Bulan) & "
                                 AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " and YEAR(PrintedDate) =YEAR(GETDATE())"
             Dim dt As DataTable
             If gh_Common.Site.ToLower = "tng" Then
@@ -236,6 +232,7 @@ Public Class BarcodeGenerate
             Throw ex
         End Try
     End Function
+
     Public Function CheckLog(Bulan As String, KodePart As String, Optional Tahun As String = "") As Boolean
         Dim hasil As Boolean
         Try
@@ -243,7 +240,7 @@ Public Class BarcodeGenerate
             If gh_Common.Site.ToLower = "tng" Then
                 Dim sql As String = "SELECT * FROM BarcodePrintLog Where Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " AND Tahun = " & QVal(Tahun) & ""
 
-                dt = GetDataTable(Sql)
+                dt = GetDataTable(sql)
             Else
                 Dim sql1 As String = "SELECT * FROM BarcodePrintLog Where Bulan = " & QVal(Bulan) & " AND KodePart = " & QVal(KodePart) & " AND Site = " & QVal(gh_Common.Site) & " AND Year(PrintedDate) = YEAR(GETDATE())"
                 dt = GetDataTableCKR(sql1)
@@ -280,7 +277,7 @@ Public Class BarcodeGenerate
         Dim ds As dsLaporan
         Try
             Dim sql As String =
-            "SELECT 
+            "SELECT
                 [KodePart]
                 ,[InvetoryID] InvtID
                 ,[SFG/FG] Status
@@ -297,12 +294,12 @@ Public Class BarcodeGenerate
             FROM [BarcodeGenerate] WHERE KodePart = " & QVal(KodePart) & " AND Site=" & QVal(Site) & ""
             ds = New dsLaporan
             ds = GetDsReportCKR(sql, "QRCode")
-
         Catch ex As Exception
             Throw ex
         End Try
         Return ds
     End Function
+
 End Class
 
 Public Class BarcodeDet
@@ -324,6 +321,58 @@ Public Class BarcodeDet
     Public Property WarnaPasscard As String
     Public Property Site As String
     Public Property KodeWarna As String
+    Public Property Varian As String
+
+    Public Sub InsertTng()
+        Try
+            Using kon As New SqlConnection
+                kon.ConnectionString = GetConnString()
+                kon.Open()
+
+                Using com As New SqlCommand("Barcode_Generate_InserData")
+                    com.CommandType = CommandType.StoredProcedure
+                    com.Connection = kon
+                    com.Parameters.AddWithValue("@KodePart", KodePart)
+                    com.Parameters.AddWithValue("@CustomerID", CustomerID)
+                    com.Parameters.AddWithValue("@CustomerName", CustomerName)
+                    com.Parameters.AddWithValue("@InvetoryID", InventoryID)
+                    com.Parameters.AddWithValue("@SFG", SFGFG)
+                    com.Parameters.AddWithValue("@PartName", PartName)
+                    com.Parameters.AddWithValue("@PartNo", PartNo)
+                    com.Parameters.AddWithValue("@Colour", Colour)
+                    com.Parameters.AddWithValue("@JobNo", JobNo)
+                    com.Parameters.AddWithValue("@QtyLabel", QtyLabel)
+                    com.Parameters.AddWithValue("@WarnaPasscard", WarnaPasscard)
+                    com.Parameters.AddWithValue("@LokalExport", LokalExport)
+                    com.Parameters.AddWithValue("@Site", Site)
+                    com.Parameters.AddWithValue("@Varian", Varian)
+                    com.Parameters.AddWithValue("@UploadBy", UploadBy)
+                    com.ExecuteNonQuery()
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub InsertCKr()
+        Try
+            Dim Query As String = String.Empty
+            Query = "INSERT INTO [BarcodeGenerate]
+            ([TglUpload],[KodePart],[CustomerID],[CustomerName],[InvetoryID]
+                ,[SFG/FG],[PartName],[PartNo],[Colour]
+                ,[JobNo],[QtyLabel],[WarnaPasscard]
+                ,LokalExport,[Site],[KodeWarna],[UploadBy])
+            Values(GETDATE()," & QVal(KodePart) & "," & QVal(CustomerID) & "," & QVal(CustomerName) & "," & QVal(InventoryID) & "
+                ," & QVal(SFGFG) & "," & QVal(PartName) & "," & QVal(PartNo) & "," & QVal(Colour) & "
+                ," & QVal(JobNo) & "," & QVal(QtyLabel) & "," & QVal(WarnaPasscard) & "
+                ," & QVal(LokalExport) & "," & QVal(Site) & "," & QVal(KodeWarna) & "," & QVal(UploadBy) & ")"
+            ExecQueryCKR(Query)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Public Sub InsertData()
         Try
             Dim Query As String = String.Empty
@@ -370,16 +419,17 @@ Public Class BarcodeDet
                         com.Parameters.AddWithValue("@WarnaPasscard", WarnaPasscard)
                         com.Parameters.AddWithValue("@LokalExport", LokalExport)
                         com.Parameters.AddWithValue("@Site", Site)
+                        com.Parameters.AddWithValue("@Varian", Varian)
                         com.Parameters.AddWithValue("@UploadBy", UploadBy)
                         com.ExecuteNonQuery()
                     End Using
                 End Using
-
             Else
-                ExecQuery(Query)
+                ExecQueryCKR(Query)
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
 End Class

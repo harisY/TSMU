@@ -1,13 +1,10 @@
-﻿Imports DevExpress.LookAndFeel
-Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraSplashScreen
+﻿Imports DevExpress.XtraSplashScreen
 
 Public Class frmBarcodeGenerate
     Dim dtGrid As DataTable
     Dim Obj As New BarcodeGenerate
     Dim ObjDet As New BarcodeDet
+
     Private Sub frmBarcodeGenerate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
@@ -38,9 +35,11 @@ Public Class frmBarcodeGenerate
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Public Overrides Sub Proc_Refresh()
         Call LoadGrid()
     End Sub
+
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
         Dim ls_Judul As String = "Barcode"
@@ -49,40 +48,42 @@ Public Class frmBarcodeGenerate
         Dim strCustomer As String = ""
 
         Dim frmExcel As FrmSystemExcelBarcode
-        frmExcel = New FrmSystemExcelBarcode(table, 69)
-        frmExcel.Text = "Import " & ls_Judul
-        frmExcel.StartPosition = FormStartPosition.CenterScreen
+        frmExcel = New FrmSystemExcelBarcode(table, 69) With {
+            .Text = "Import " & ls_Judul,
+            .StartPosition = FormStartPosition.CenterScreen
+        }
         frmExcel.ShowDialog()
 
         Try
-            Dim dv As DataView = New DataView(table)
-            Dim dtFilter As New DataTable
+            'Dim dv As DataView = New DataView(table)
+            'Dim dtFilter As New DataTable
 
-            dtFilter = dv.ToTable
+            'table = dv.ToTable
             'Exit Sub
-            If dtFilter.Rows.Count > 0 Then
+            If table.Rows.Count > 0 Then
 
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
 
                 Obj.ObjDetails.Clear()
-                For Each row As DataRow In dtFilter.Rows
+                For Each row As DataRow In table.Rows
                     ObjDet = New BarcodeDet
                     With ObjDet
-                        .KodePart = If(row("KODE PART") Is DBNull.Value, "", row("KODE PART").ToString)
-                        .CustomerID = If(row("CUST") Is DBNull.Value, "", row("CUST").ToString())
-                        .CustomerName = If(row("CUST LENGKAP") Is DBNull.Value, "", row("CUST LENGKAP").ToString())
-                        .InventoryID = If(row("INVENTORY ID") Is DBNull.Value, "", row("INVENTORY ID").ToString())
-                        .SFGFG = If(row("SFG/FG") Is DBNull.Value, "", row("SFG/FG").ToString())
-                        .PartName = If(row("PART NAME") Is DBNull.Value, "", row("PART NAME").ToString())
-                        .PartNo = If(row("NO PART") Is DBNull.Value, "", row("NO PART").ToString())
-                        .Colour = If(row("COLOUR") Is DBNull.Value, "", row("COLOUR").ToString())
-                        .JobNo = If(row("JOB NO") Is DBNull.Value, "", row("JOB NO").ToString())
-                        .QtyLabel = If(row("QTY LABEL") Is DBNull.Value, 0, Convert.ToInt32(row("QTY LABEL")))
-                        .WarnaPasscard = If(row("WARNA PASCARD") Is DBNull.Value, "", row("WARNA PASCARD").ToString())
-                        .LokalExport = If(row("LOKAL / EXPORT") Is DBNull.Value, "", row("LOKAL / EXPORT").ToString())
-                        .KodeWarna = If(row("KODE WARNA") Is DBNull.Value, "", row("KODE WARNA").ToString())
-                        .TglUpload = DateTime.Now
+                        .KodePart = row("KODE PART").ToString().AsString()
+                        .CustomerID = row("CUST").ToString().AsString()
+                        .CustomerName = row("CUST LENGKAP").ToString().AsString()
+                        .InventoryID = row("INVENTORY ID").ToString().AsString()
+                        .SFGFG = row("SFG/FG").ToString().AsString()
+                        .PartName = row("PART NAME").ToString().AsString()
+                        .PartNo = row("NO PART").ToString().AsString()
+                        .Colour = row("COLOUR").ToString().AsString()
+                        .JobNo = row("JOB NO").ToString().AsString()
+                        .QtyLabel = row("QTY LABEL").ToString().AsInt()
+                        .WarnaPasscard = row("WARNA PASCARD").ToString().AsString()
+                        .LokalExport = row("LOKAL / EXPORT").ToString().AsString()
+                        .KodeWarna = row("KODE WARNA").ToString().AsString()
+                        .Varian = row("VARIAN").ToString().AsString()
+                        .TglUpload = Date.Now
                         .UploadBy = gh_Common.Username
                         .Site = gh_Common.Site
                     End With
@@ -146,4 +147,5 @@ Public Class frmBarcodeGenerate
             ContextMenuStrip1.Show(e.Location)
         End If
     End Sub
+
 End Class

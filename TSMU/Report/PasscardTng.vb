@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing.Printing
 Imports DevExpress.XtraReports.UI
 
-Public Class Testing
+Public Class PasscardTng
     Public param1, param2, param3, param4 As String
     Dim Obj As New BarcodeGenerate
     Private Sub Testing_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
