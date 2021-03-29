@@ -368,7 +368,7 @@ Public Class Frm_Rpt_APPaymentSolomon
     Private Async Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Try
             If ProgBar2.Visible = True Then
-                Throw New Exception("Process already running, Please wait !")
+                '' Throw New Exception("Process already running, Please wait !")
             End If
             ProgBar2.Visible = True
             ProgBar2.Style = ProgressBarStyle.Marquee
