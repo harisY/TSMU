@@ -143,6 +143,8 @@ Public Class FrmHROrgOrganisasiDetail
                 Err.Raise(ErrNumber, , "Period Tidak Boleh Lebih Besar Dari Period Parent!")
             ElseIf Not String.IsNullOrEmpty(fs_Code) AndAlso srvOrg.CekPeriodChild(fs_Code, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
                 Err.Raise(ErrNumber, , "Period Tidak Boleh Lebih Kecil Dari Period Childnya!")
+            ElseIf Not String.IsNullOrEmpty(fs_Code) AndAlso srvOrg.CekLevelChild(fs_Code, txtLevel.EditValue) Then
+                Err.Raise(ErrNumber, , "Level Tidak Boleh Lebih Kecil Dari Level Childnya!")
             End If
 
             If lb_Validated Then

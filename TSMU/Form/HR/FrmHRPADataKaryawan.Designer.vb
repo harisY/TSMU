@@ -229,7 +229,6 @@ Partial Class FrmHRPADataKaryawan
         Me.txtJabatan.Properties.HideSelection = False
         Me.txtJabatan.Properties.NullValuePromptShowForEmptyValue = True
         Me.txtJabatan.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
-        Me.txtJabatan.Properties.PopupSizeable = False
         Me.txtJabatan.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.UseEditorWidth
         Me.txtJabatan.Properties.TreeList = Me.tlJabatan
         Me.txtJabatan.Properties.ValueMember = "OrgID"

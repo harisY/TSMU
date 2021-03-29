@@ -496,4 +496,24 @@
         End Try
     End Function
 
+    Public Function CekLevelChild(OrgID As String, LevelParent As String) As Boolean
+        Try
+            strQuery = "SELECT  COUNT(oo.OrgLevel)
+                        FROM    dbo.M_HROrgRelOrgStruktur AS ros
+                                INNER JOIN dbo.M_HROrgOrganisasi AS oo ON oo.OrgID = ros.RelOrg
+                        WHERE   ros.OrgID = " & QVal(OrgID) & "
+                                AND OrgClass = 'O'
+                                AND RelClass = 'O'
+                                AND RelDir = 'B'
+                        GROUP BY oo.OrgLevel
+                        HAVING  MAX(oo.OrgLevel) <= " & QVal(LevelParent) & ";"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows.Count
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 End Class
