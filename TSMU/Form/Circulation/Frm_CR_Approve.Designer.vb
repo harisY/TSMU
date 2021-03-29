@@ -23,6 +23,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -40,6 +41,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,6 +74,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,6 +89,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -100,6 +104,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn58 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn59 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn61 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -108,11 +113,6 @@ Partial Class Frm_CR_Approve
         Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn69 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn70 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn71 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn72 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -179,6 +179,14 @@ Partial Class Frm_CR_Approve
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
         Me.GridColumn3.Width = 108
+        '
+        'GridColumn72
+        '
+        Me.GridColumn72.FieldName = "Name Of Item"
+        Me.GridColumn72.Name = "GridColumn72"
+        Me.GridColumn72.Visible = True
+        Me.GridColumn72.VisibleIndex = 3
+        Me.GridColumn72.Width = 166
         '
         'GridColumn4
         '
@@ -382,6 +390,14 @@ Partial Class Frm_CR_Approve
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 2
         Me.GridColumn9.Width = 91
+        '
+        'GridColumn68
+        '
+        Me.GridColumn68.FieldName = "Name Of Item"
+        Me.GridColumn68.Name = "GridColumn68"
+        Me.GridColumn68.Visible = True
+        Me.GridColumn68.VisibleIndex = 3
+        Me.GridColumn68.Width = 150
         '
         'GridColumn10
         '
@@ -745,6 +761,14 @@ Partial Class Frm_CR_Approve
         Me.GridColumn36.VisibleIndex = 2
         Me.GridColumn36.Width = 97
         '
+        'GridColumn69
+        '
+        Me.GridColumn69.FieldName = "Name Of Item"
+        Me.GridColumn69.Name = "GridColumn69"
+        Me.GridColumn69.Visible = True
+        Me.GridColumn69.VisibleIndex = 3
+        Me.GridColumn69.Width = 150
+        '
         'GridColumn37
         '
         Me.GridColumn37.AppearanceCell.Options.UseTextOptions = True
@@ -906,6 +930,14 @@ Partial Class Frm_CR_Approve
         Me.GridColumn47.Visible = True
         Me.GridColumn47.VisibleIndex = 2
         Me.GridColumn47.Width = 106
+        '
+        'GridColumn70
+        '
+        Me.GridColumn70.FieldName = "Name Of Item"
+        Me.GridColumn70.Name = "GridColumn70"
+        Me.GridColumn70.Visible = True
+        Me.GridColumn70.VisibleIndex = 3
+        Me.GridColumn70.Width = 112
         '
         'GridColumn48
         '
@@ -1069,6 +1101,14 @@ Partial Class Frm_CR_Approve
         Me.GridColumn58.VisibleIndex = 2
         Me.GridColumn58.Width = 102
         '
+        'GridColumn71
+        '
+        Me.GridColumn71.FieldName = "Name Of Item"
+        Me.GridColumn71.Name = "GridColumn71"
+        Me.GridColumn71.Visible = True
+        Me.GridColumn71.VisibleIndex = 3
+        Me.GridColumn71.Width = 148
+        '
         'GridColumn59
         '
         Me.GridColumn59.AppearanceCell.Options.UseTextOptions = True
@@ -1164,46 +1204,6 @@ Partial Class Frm_CR_Approve
         Me.GridColumn66.Visible = True
         Me.GridColumn66.VisibleIndex = 11
         Me.GridColumn66.Width = 183
-        '
-        'GridColumn68
-        '
-        Me.GridColumn68.FieldName = "Name Of Item"
-        Me.GridColumn68.Name = "GridColumn68"
-        Me.GridColumn68.Visible = True
-        Me.GridColumn68.VisibleIndex = 3
-        Me.GridColumn68.Width = 150
-        '
-        'GridColumn69
-        '
-        Me.GridColumn69.FieldName = "Name Of Item"
-        Me.GridColumn69.Name = "GridColumn69"
-        Me.GridColumn69.Visible = True
-        Me.GridColumn69.VisibleIndex = 3
-        Me.GridColumn69.Width = 150
-        '
-        'GridColumn70
-        '
-        Me.GridColumn70.FieldName = "Name Of Item"
-        Me.GridColumn70.Name = "GridColumn70"
-        Me.GridColumn70.Visible = True
-        Me.GridColumn70.VisibleIndex = 3
-        Me.GridColumn70.Width = 112
-        '
-        'GridColumn71
-        '
-        Me.GridColumn71.FieldName = "Name Of Item"
-        Me.GridColumn71.Name = "GridColumn71"
-        Me.GridColumn71.Visible = True
-        Me.GridColumn71.VisibleIndex = 3
-        Me.GridColumn71.Width = 148
-        '
-        'GridColumn72
-        '
-        Me.GridColumn72.FieldName = "Name Of Item"
-        Me.GridColumn72.Name = "GridColumn72"
-        Me.GridColumn72.Visible = True
-        Me.GridColumn72.VisibleIndex = 3
-        Me.GridColumn72.Width = 166
         '
         'Frm_CR_Approve
         '

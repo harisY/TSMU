@@ -670,4 +670,29 @@ Public Class Frm_CR_Approve
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Private Sub TabControl1_TabIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.TabIndexChanged
+
+        'Call LoadGrid(_level, division, director)
+        'Call LoadGrid_Other(gh_Common.GroupID, gh_Common.Username, DeptGroup)
+        'Call LoadGrid_Accounting()
+        'Call LoadGrid_Purchase()
+        'Call LoadGrid_CRClose()
+
+    End Sub
+
+    Private Sub Frm_CR_Approve_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick
+  
+
+    End Sub
+
+    Private Sub TabControl1_MouseClick(sender As Object, e As MouseEventArgs) Handles TabControl1.MouseClick
+        Call LoadGrid(_level, division, director)
+        Call LoadGrid_Other(gh_Common.GroupID, gh_Common.Username, DeptGroup)
+        Call LoadGrid_Accounting()
+        Call LoadGrid_Purchase()
+        Call LoadGrid_CRClose()
+        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True, True)
+
+    End Sub
 End Class
