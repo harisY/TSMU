@@ -551,7 +551,7 @@ Partial Public Class datauploadNonIDR
                     ByVal FromCuryId As String,  _
                     ByVal RateType As String,  _
                     ByVal EffDate As Date,  _
-                    ByVal Rate As String,  _
+                    ByVal Rate As Double,  _
                     ByVal doctype As String,  _
                     ByVal curydocbalrev As Double) As datauploadNonIDRRow
             Dim rowdatauploadNonIDRRow As datauploadNonIDRRow = CType(Me.NewRow,datauploadNonIDRRow)
@@ -635,7 +635,7 @@ Partial Public Class datauploadNonIDR
             MyBase.Columns.Add(Me.columnRateType)
             Me.columnEffDate = New Global.System.Data.DataColumn("EffDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnEffDate)
-            Me.columnRate = New Global.System.Data.DataColumn("Rate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnRate = New Global.System.Data.DataColumn("Rate", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRate)
             Me.columndoctype = New Global.System.Data.DataColumn("doctype", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndoctype)
@@ -1014,10 +1014,10 @@ Partial Public Class datauploadNonIDR
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Rate() As String
+        Public Property Rate() As Double
             Get
                 Try 
-                    Return CType(Me(Me.tabledatauploadNonIDR.RateColumn),String)
+                    Return CType(Me(Me.tabledatauploadNonIDR.RateColumn),Double)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Rate' in table 'datauploadNonIDR' is DBNull.", e)
                 End Try
