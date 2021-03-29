@@ -94,6 +94,7 @@ Public Class FrmHROrgJabatanDetail
             Else
                 dtTglMulai.EditValue = Date.Today
                 dtTglSelesai.EditValue = Date.Parse("9999-12-31")
+                cbIsHead.Text = "NO"
                 dtTglBuat.EditValue = DateTime.Now
                 txtUserBuat.Text = gh_Common.Username
                 dtTglUbah.EditValue = DateTime.Now
@@ -118,6 +119,10 @@ Public Class FrmHROrgJabatanDetail
                 Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Lebih Besar Dari Tanggal Selesai !")
             ElseIf txtDeskripsi.Text = "" Then
                 Err.Raise(ErrNumber, , "Deskripsi Tidak Boleh Kosong!")
+            ElseIf srvOrg.CekPeriodParent(ParentID, dtTglMulai.EditValue, dtTglSelesai.EditValue) = False Then
+                Err.Raise(ErrNumber, , "Period Tidak Boleh Lebih Besar Dari Period Parentnya!")
+            ElseIf Not String.IsNullOrEmpty(fs_Code) AndAlso srvOrg.CekPeriodChild(fs_Code, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
+                Err.Raise(ErrNumber, , "Period Tidak Boleh Lebih Kecil Dari Period Childnya!")
             End If
 
             If lb_Validated Then
@@ -185,7 +190,7 @@ Public Class FrmHROrgJabatanDetail
                 srvOrg.SaveNewOrgJabatan(modelJabatan, modelOrgStruktur)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
-                'ObjSettleHeader.UpdateData(TxtNoSettlement.Text)
+                srvOrg.SaveEditOrgJabatan(Date.Today, modelJabatan, modelOrgStruktur)
                 Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
             End If
 

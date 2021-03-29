@@ -22,9 +22,9 @@ Partial Class Frm_Rpt_APPaymentSolomon
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim GridFormatRule3 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_APPaymentSolomon))
         Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_APPaymentSolomon))
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.txt_perpost = New System.Windows.Forms.TextBox()
@@ -321,9 +321,9 @@ Partial Class Frm_Rpt_APPaymentSolomon
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colvrno, Me.coltgl, Me.colvendorname, Me.coldpp, Me.colppn, Me.coltotal, Me.colpph, Me.colgrand_total, Me.colbiaya_transfer, Me.coltotal_bayar})
-        GridFormatRule3.Name = "Format0"
-        GridFormatRule3.Rule = Nothing
-        Me.GridView1.FormatRules.Add(GridFormatRule3)
+        GridFormatRule1.Name = "Format0"
+        GridFormatRule1.Rule = Nothing
+        Me.GridView1.FormatRules.Add(GridFormatRule1)
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -627,9 +627,9 @@ Partial Class Frm_Rpt_APPaymentSolomon
         'GridView12
         '
         Me.GridView12.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
-        GridFormatRule1.Name = "Format0"
-        GridFormatRule1.Rule = Nothing
-        Me.GridView12.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.Name = "Format0"
+        GridFormatRule2.Rule = Nothing
+        Me.GridView12.FormatRules.Add(GridFormatRule2)
         Me.GridView12.GridControl = Me.GridControl7
         Me.GridView12.Name = "GridView12"
         Me.GridView12.OptionsBehavior.Editable = False
@@ -712,7 +712,7 @@ Partial Class Frm_Rpt_APPaymentSolomon
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ProgBar2})
         Me.ToolStrip1.Location = New System.Drawing.Point(382, 7)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(194, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(225, 25)
         Me.ToolStrip1.TabIndex = 19
         Me.ToolStrip1.Text = "ToolStrip1"
         '

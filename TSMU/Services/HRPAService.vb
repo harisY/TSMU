@@ -576,7 +576,7 @@
 
                     Try
                         InsertDataKaryawan(DataKaryawan)
-                        If OrgStruktur.OrgID <> "" Then
+                        If Not String.IsNullOrEmpty(DataKaryawan.Jabatan) Then
                             InsertOrgStruktur(OrgStruktur)
                         End If
                         Trans1.Commit()
@@ -604,9 +604,9 @@
 
                     Try
                         EditDataKaryawan(DataKaryawan)
-                        If OrgStruktur.OrgID <> "" Then
-                            InsertOrgStruktur(OrgStruktur)
-                        End If
+                        'If Not String.IsNullOrEmpty(DataKaryawan.Jabatan) Then
+                        '    InsertOrgStruktur(OrgStruktur)
+                        'End If
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -632,6 +632,9 @@
 
                     Try
                         DeleteDataKaryawan(DataKaryawan)
+                        If Not String.IsNullOrEmpty(DataKaryawan.Jabatan) Then
+                            DeleteOrgStruktur(OrgStruktur)
+                        End If
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -1536,6 +1539,68 @@
         End Try
     End Sub
 
+    Public Sub EditOrgStruktur(Now As Date, OrgStruktur As HROrgStrukturModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_OrgEditStruktur"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(10) {}
+            pParam(0) = New SqlClient.SqlParameter("@Now", SqlDbType.Date)
+            pParam(0).Value = Now
+            pParam(1) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(1).Value = OrgStruktur.TglMulai
+            pParam(2) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(2).Value = OrgStruktur.TglSelesai
+            pParam(3) = New SqlClient.SqlParameter("@OrgID", SqlDbType.VarChar)
+            pParam(3).Value = OrgStruktur.OrgID
+            pParam(4) = New SqlClient.SqlParameter("@OrgClass", SqlDbType.VarChar)
+            pParam(4).Value = OrgStruktur.OrgClass
+            pParam(5) = New SqlClient.SqlParameter("@RelTipe", SqlDbType.VarChar)
+            pParam(5).Value = OrgStruktur.RelTipe
+            pParam(6) = New SqlClient.SqlParameter("@RelClass", SqlDbType.VarChar)
+            pParam(6).Value = OrgStruktur.RelClass
+            pParam(7) = New SqlClient.SqlParameter("@RelOrg", SqlDbType.VarChar)
+            pParam(7).Value = OrgStruktur.RelOrg
+            pParam(8) = New SqlClient.SqlParameter("@Ket", SqlDbType.VarChar)
+            pParam(8).Value = OrgStruktur.Ket
+            pParam(9) = New SqlClient.SqlParameter("@TglUbah", SqlDbType.DateTime)
+            pParam(9).Value = OrgStruktur.TglUbah
+            pParam(10) = New SqlClient.SqlParameter("@UserUbah", SqlDbType.VarChar)
+            pParam(10).Value = OrgStruktur.UserUbah
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub DeleteOrgStruktur(OrgStruktur As HROrgStrukturModel)
+        Try
+            Dim dt As New DataTable
+            Dim SP_Name As String = "HR_OrgDeleteStruktur"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(6) {}
+            pParam(0) = New SqlClient.SqlParameter("@TglMulai", SqlDbType.Date)
+            pParam(0).Value = OrgStruktur.TglMulai
+            pParam(1) = New SqlClient.SqlParameter("@TglSelesai", SqlDbType.Date)
+            pParam(1).Value = OrgStruktur.TglSelesai
+            pParam(2) = New SqlClient.SqlParameter("@OrgID", SqlDbType.VarChar)
+            pParam(2).Value = OrgStruktur.OrgID
+            pParam(3) = New SqlClient.SqlParameter("@OrgClass", SqlDbType.VarChar)
+            pParam(3).Value = OrgStruktur.OrgClass
+            pParam(4) = New SqlClient.SqlParameter("@RelTipe", SqlDbType.VarChar)
+            pParam(4).Value = OrgStruktur.RelTipe
+            pParam(5) = New SqlClient.SqlParameter("@RelClass", SqlDbType.VarChar)
+            pParam(5).Value = OrgStruktur.RelClass
+            pParam(6) = New SqlClient.SqlParameter("@RelOrg", SqlDbType.VarChar)
+            pParam(6).Value = OrgStruktur.RelOrg
+
+            ExecQueryByCommand_SP(SP_Name, pParam)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Function GetStrukturOrg(TglMulai As Date) As DataTable
         Try
             Dim Sql As String = "HR_GetStrukturOrg"
@@ -1732,6 +1797,34 @@
                                       AND TglSelesai <= " & QVal(TglSelesai) & "
                                     )
                                 AND ID <> " & ID & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+
+            Return dt.Rows(0).Item(0)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+#End Region
+
+#Region "Check apakah jabatan ada relasi ke Employee lain di periode ini"
+    Public Function CheckRelasiJabatan(EmpID As String, Jabatan As String, TglMulai As Date, TglSelesai As Date) As Boolean
+        Try
+            strQuery = "SELECT  COUNT(*)
+                        FROM    dbo.M_HROrgRelOrgStruktur
+                        WHERE   OrgID = " & QVal(Jabatan) & "
+                                AND ( ( TglMulai <= " & QVal(TglMulai) & "
+                                        AND TglSelesai >= " & QVal(TglMulai) & "
+                                      )
+                                      OR ( TglMulai <= " & QVal(TglSelesai) & "
+                                           AND TglSelesai >= " & QVal(TglSelesai) & "
+                                         )
+                                    )
+                                AND OrgClass = 'P'
+                                AND RelDir = 'B'
+                                AND RelTipe = '03'
+                                AND RelClass = 'E'
+                                AND RelOrg <> " & QVal(EmpID) & ";"
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
 

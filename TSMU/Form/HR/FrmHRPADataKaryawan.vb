@@ -195,6 +195,10 @@ Public Class FrmHRPADataKaryawan
                 End If
             End If
 
+            If Not String.IsNullOrEmpty(txtJabatan.EditValue) AndAlso srvHR.CheckRelasiJabatan(EmpID, txtJabatan.EditValue, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
+                Err.Raise(ErrNumber, , "Jabatan Ada Relasi Ke Employee Lain Diperiode Ini  !")
+            End If
+
             Dim Now As DateTime = DateTime.Now
             modelDataKaryawan = New HRPADataKaryawanModel
             With modelDataKaryawan
@@ -328,6 +332,12 @@ Public Class FrmHRPADataKaryawan
         Else
             dtTglBerakhir.Enabled = True
         End If
+    End Sub
+
+    Private Sub dtTglMulai_EditValueChanged(sender As Object, e As EventArgs) Handles dtTglMulai.EditValueChanged
+        Dim dtTreeOrg As New DataTable
+        dtTreeOrg = srvHR.GetStrukturOrg(dtTglMulai.EditValue)
+        txtJabatan.Properties.DataSource = dtTreeOrg
     End Sub
 
 End Class

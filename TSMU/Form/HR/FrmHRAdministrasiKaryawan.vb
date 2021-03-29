@@ -27,11 +27,19 @@ Public Class FrmHRAdministrasiKaryawan
         dtGridKaryawan = New DataTable
         dtGridKaryawan = srvHR.GetDataKaryawan()
         GridKaryawan.DataSource = dtGridKaryawan
-        Dim colEmpID As GridColumn = GridViewKaryawan.Columns("EmployeeID")
-        Dim colTglLahir As GridColumn = GridViewKaryawan.Columns("TglLahir")
-        colTglLahir.DisplayFormat.FormatType = FormatType.DateTime
-        colTglLahir.DisplayFormat.FormatString = "dd/MM/yyyy"
-        colEmpID.Visible = False
+        'Dim colEmpID As GridColumn = GridViewKaryawan.Columns("EmployeeID")
+        'colEmpID.Visible = False
+
+        'Dim colTglLahir As GridColumn = GridViewKaryawan.Columns("TglLahir")
+        'colTglLahir.DisplayFormat.FormatType = FormatType.DateTime
+        'colTglLahir.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+        'Dim colJenisKelamin As GridColumn = GridViewKaryawan.Columns("JenisKelamin")
+        'colJenisKelamin.Caption = "JK"
+
+        'Dim colStatusKaryawan As GridColumn = GridViewKaryawan.Columns("StatusKaryawan")
+        'colStatusKaryawan.Caption = "Status"
+
         GridViewKaryawan.BestFitColumns()
     End Sub
 
