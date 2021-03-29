@@ -1,15 +1,13 @@
 ﻿Imports DevExpress.XtraSplashScreen
 
 Public Class frmQcOutgoing
-    Dim dtGrid As DataTable
+    Dim dtGrid As New DataTable
     Dim Service As New QcOutgoingService
     Dim Obj As New QcOutgoingModel
 
     Private Sub frmQcOutgoing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call LoadGrid()
-        Dim dtGrid As New DataTable
-        dtGrid = Grid.DataSource
+        LoadGrid()
         Call Proc_EnableButtons(False, False, False, True, True, False, True, False, False, False, False)
     End Sub
 
@@ -53,9 +51,10 @@ Public Class frmQcOutgoing
                     Obj = New QcOutgoingModel
                     With Obj
                         .PartNo = row(0).ToString().AsString()
-                        .InvtId = row(1).ToString().AsString()
-                        .PathFile = row(2).ToString().AsString()
-                        .PathFile1 = row(3).ToString().AsString()
+                        .PartName = row(1).ToString().AsString()
+                        .InvtId = row(2).ToString().AsString()
+                        .PathFile = row(3).ToString().AsString()
+                        .PathFile1 = row(4).ToString().AsString()
                     End With
                     Service.ObjCollections.Add(Obj)
                 Next

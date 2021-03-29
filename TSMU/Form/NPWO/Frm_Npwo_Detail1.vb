@@ -769,33 +769,45 @@ Public Class Frm_Npwo_Detail1
             Try
                 Dim provider As CultureInfo = CultureInfo.InvariantCulture
                 Dim ID As String = ""
+                Dim Group As String = ""
                 'fc_ClassCRUD = New ClsCR_CreateUser
                 Dim selectedRows() As Integer = GridView1.GetSelectedRows()
                 For Each rowHandle As Integer In selectedRows
                     If rowHandle >= 0 Then
                         ID = GridView1.GetRowCellValue(rowHandle, "Part No")
+                        Group = GridView1.GetRowCellValue(rowHandle, "Group ID")
                     End If
                 Next rowHandle
 
 
 
-                For b As Integer = 0 To dtDetail.Rows.Count - 1
-                    If dtDetail.Rows(b).Item("Part No") = ID Then
-                        Dim rows() As DataRow = dtDetail.Select()
-                        rows(b).Delete()
-                    End If
+                'For a As Integer = 0 To dt.Rows.Count - 1
+                '    If dt.Rows(a).Item("Part No") = ID Then
+                '        'Dim rows1() As DataRow = dt.Select()
+                '        'rows1(a).Delete()
+                '        dt.Rows(a).Delete()
+                '    End If
+                'Next
 
-                Next
+                'For b As Integer = 0 To dtDetail.Rows.Count - 1
+                '    If dtDetail.Rows(b).Item("Group ID") = Group Then
+                '        'Dim rows() As DataRow = dtDetail.Select()
+                '        'rows(b).Delete()
+                '        dtDetail.Rows(b).Delete()
 
-                For a As Integer = 0 To dt.Rows.Count - 1
-                    If dt.Rows(a).Item("Part No") = ID Then
-                        Dim rows() As DataRow = dt.Select()
-                        rows(a).Delete()
+                '    End If
 
-                    End If
-                Next
+                'Next
+
+                GridView1.DeleteRow(GridView1.FocusedRowHandle)
+                GridView1.RefreshData()
+
+
                 dt.AcceptChanges()
                 dtDetail.AcceptChanges()
+
+
+
                 dt.TableName = "Master1"
                 dtDetail.TableName = "Detail1"
                 dataSet.Tables.Add(dt)
@@ -803,6 +815,8 @@ Public Class Frm_Npwo_Detail1
                 dataSet.Relations.Add("NPWO1", dt.Columns("Group ID"), dtDetail.Columns("Group ID"))
                 Grid.DataSource = dataSet
                 Grid.DataMember = "Master1"
+
+                Grid.Refresh()
 
             Catch ex As Exception
 

@@ -34,6 +34,7 @@ Public Class FrmLookUpBarcode
         dtTemp.Columns.Add("KodeWarna")
         dtTemp.Columns.Add("CustomerID")
         dtTemp.Columns.Add("QrCode1")
+        dtTemp.Columns.Add("Varian")
         dtTemp.Clear()
     End Sub
     Private Sub FillComboBulan()
@@ -148,7 +149,7 @@ Public Class FrmLookUpBarcode
                 dtTemp.Rows(dtTemp.Rows.Count - 1).Item(9) = Trim(dt.Rows(0).Item("Qty") & "")
                 If gh_Common.Site.ToLower = "tng" Then
                     'dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(dt.Rows(0).Item("JobNo") & "") & "-" & cmbTahun.Text & "-" & CmbBulan.Text & "-" & i
-                    'dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = String.Format($"{Trim(dt.Rows(0).Item("JobNo"))}-{cmbTahun.Text}-{CmbBulan.Text}-{i}")
+                    dtTemp.Rows(dtTemp.Rows.Count - 1).Item(16) = Trim(dt.Rows(0).Item("Varian") & "")
                     dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = String.Format("{0}-{1}-{2}-{3}", Trim(dt.Rows(0).Item("JobNo")), cmbTahun.Text, CmbBulan.Text, i)
                 Else
                     dtTemp.Rows(dtTemp.Rows.Count - 1).Item(10) = Trim(dt.Rows(0).Item("JobNo") & "") & "-" & CmbBulan.Text & "-" & i
@@ -161,7 +162,7 @@ Public Class FrmLookUpBarcode
             Next
 
             If gh_Common.Site.ToLower = "tng" Then
-                Dim Laporan As New Testing()
+                Dim Laporan As New PasscardTng()
                 With Laporan
                     .param1 = TxtKodePart.Text
                     .param2 = CmbBulan.Text
@@ -177,7 +178,7 @@ Public Class FrmLookUpBarcode
                 PrintTool.ShowPreview(UserLookAndFeel.Default)
             Else
                 'Dim Laporan1 As New Testing()
-                Dim Laporan1 As New Passcard()
+                Dim Laporan1 As New PasscardCkr()
                 With Laporan1
                     .param1 = TxtKodePart.Text
                     .param2 = CmbBulan.Text

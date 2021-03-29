@@ -34,10 +34,13 @@ Partial Class FrmSystem_LookupGrid
         '
         'Grid
         '
+        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Grid.Location = New System.Drawing.Point(12, 42)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(568, 262)
+        Me.Grid.Size = New System.Drawing.Size(701, 420)
         Me.Grid.TabIndex = 0
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -56,7 +59,7 @@ Partial Class FrmSystem_LookupGrid
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BtnOk})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(592, 39)
+        Me.ToolStrip1.Size = New System.Drawing.Size(725, 39)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -73,7 +76,7 @@ Partial Class FrmSystem_LookupGrid
         'FrmSystem_LookupGrid
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(592, 316)
+        Me.ClientSize = New System.Drawing.Size(725, 474)
         Me.Controls.Add(Me.Grid)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

@@ -2379,6 +2379,12 @@
     <Compile Include="Form\PR\FrmHeaderPR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Purchase Order\Frm_Head_PurchaseOrder.Designer.vb">
+      <DependentUpon>Frm_Head_PurchaseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Purchase Order\Frm_Head_PurchaseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmMonitoringDelivery.Designer.vb">
       <DependentUpon>frmMonitoringDelivery.vb</DependentUpon>
     </Compile>
@@ -3223,10 +3229,10 @@
     <Compile Include="Report\QRKaryawan.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Report\Passcard.Designer.vb">
-      <DependentUpon>Passcard.vb</DependentUpon>
+    <Compile Include="Report\PasscardCkr.Designer.vb">
+      <DependentUpon>PasscardCkr.vb</DependentUpon>
     </Compile>
-    <Compile Include="Report\Passcard.vb">
+    <Compile Include="Report\PasscardCkr.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\ReportDrr.Designer.vb">
@@ -3235,10 +3241,10 @@
     <Compile Include="Report\ReportDrr.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Report\Testing.Designer.vb">
-      <DependentUpon>Testing.vb</DependentUpon>
+    <Compile Include="Report\PasscardTng.Designer.vb">
+      <DependentUpon>PasscardTng.vb</DependentUpon>
     </Compile>
-    <Compile Include="Report\Testing.vb">
+    <Compile Include="Report\PasscardTng.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\BudgetSerivce.vb" />
@@ -4016,6 +4022,9 @@
     <EmbeddedResource Include="Form\PR\FrmHeaderPR.resx">
       <DependentUpon>FrmHeaderPR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Purchase Order\Frm_Head_PurchaseOrder.resx">
+      <DependentUpon>Frm_Head_PurchaseOrder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmMonitoringDelivery.resx">
       <DependentUpon>frmMonitoringDelivery.vb</DependentUpon>
     </EmbeddedResource>
@@ -4401,8 +4410,8 @@
     <EmbeddedResource Include="Report\QRKaryawan.resx">
       <DependentUpon>QRKaryawan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\Passcard.resx">
-      <DependentUpon>Passcard.vb</DependentUpon>
+    <EmbeddedResource Include="Report\PasscardCkr.resx">
+      <DependentUpon>PasscardCkr.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\ReportDrr.resx">
       <DependentUpon>ReportDrr.vb</DependentUpon>
@@ -5023,8 +5032,8 @@
     <EmbeddedResource Include="Report\PrintPO.resx">
       <DependentUpon>PrintPO.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\Testing.resx">
-      <DependentUpon>Testing.vb</DependentUpon>
+    <EmbeddedResource Include="Report\PasscardTng.resx">
+      <DependentUpon>PasscardTng.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SuratJalan\FrmSuratJalan.resx">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
