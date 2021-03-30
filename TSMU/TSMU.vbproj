@@ -1731,6 +1731,12 @@
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmMonitoringInventory.Designer.vb">
+      <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmMonitoringInventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmQcOutgoing.Designer.vb">
       <DependentUpon>frmQcOutgoing.vb</DependentUpon>
     </Compile>
@@ -3251,6 +3257,7 @@
     <Compile Include="Services\DRRService.vb" />
     <Compile Include="Services\QcOutgoingService.vb" />
     <Compile Include="Services\SettingService.vb" />
+    <Compile Include="Services\SolomonService.vb" />
     <Compile Include="Services\TForecastPrice_TempService.vb" />
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
@@ -3842,6 +3849,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmMonitoringInventory.resx">
+      <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmQcOutgoing.resx">
       <DependentUpon>frmQcOutgoing.vb</DependentUpon>
