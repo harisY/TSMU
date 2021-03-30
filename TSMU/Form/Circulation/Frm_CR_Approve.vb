@@ -121,7 +121,7 @@ Public Class Frm_CR_Approve
             End If
 
             Dim dtGrid As New DataTable
-            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True, True)
+            Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, True, True)
 
         End If
 
@@ -216,7 +216,7 @@ Public Class Frm_CR_Approve
         Call LoadGrid_Accounting()
         Call LoadGrid_Purchase()
         Call LoadGrid_CRClose()
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True, True)
+        'Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True, True)
 
     End Sub
 
@@ -692,7 +692,39 @@ Public Class Frm_CR_Approve
         Call LoadGrid_Accounting()
         Call LoadGrid_Purchase()
         Call LoadGrid_CRClose()
-        Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True, True)
+        'Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True, True)
 
     End Sub
+
+
+    Public Overrides Sub Proc_Excel()
+
+        If TabControl1.SelectedTab.Name = "BOD" Then
+            Try
+                If GridView3.RowCount > 0 Then
+                    SaveToExcel(Grid3)
+                Else
+                    MsgBox("Grid Kosong !")
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            End Try
+        ElseIf TabControl1.SelectedTab.Name = "Close" Then
+            Try
+                If GridView5.RowCount > 0 Then
+                    SaveToExcel(Grid5)
+                Else
+                    MsgBox("Grid Kosong !")
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            End Try
+        Else
+            MsgBox("Download Excel Hanya Untuk Tab Accounting!")
+        End If
+
+    End Sub
+
 End Class
