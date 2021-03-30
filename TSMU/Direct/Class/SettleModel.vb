@@ -369,7 +369,7 @@ uploaded Is null and tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' order by vr
             ,sum(settle_detail.SettleAmount)SettleAmount
             , settle_header.pay
 FROM settle_header inner join settle_detail on settle_header.settleID=settle_detail.settleID 
-where pay=1 and settle_header.SuspendID not like '%EN%' group by settle_header.ID
+where pay=1 and DeptID = '" & gh_Common.GroupID & "' and (settle_header.SuspendID is null or settle_header.SuspendID not like '%EN%') group by settle_header.ID
 	, settle_header.SettleID
 	, settle_header.SuspendID, 
             settle_header.DeptID
