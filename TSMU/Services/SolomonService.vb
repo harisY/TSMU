@@ -6,11 +6,11 @@ Public Class SolomonService
             Dim Query As String =
             "
             SELECT
-	            Crtd_User,
-	            Crtd_DateTime,
-	            InvtID,
-	            Descr,
-	            StkUnit,
+	            Crtd_User CreatedBy,
+	            Crtd_DateTime CreatedDate,
+	            InvtID InventoryID,
+	            Descr Description,
+	            StkUnit StokUnit,
 	            CASE valmthd
 		            WHEN 'F' THEN 'FIFO'
 		            WHEN 'L' THEN 'LIFO'
@@ -23,7 +23,7 @@ Public Class SolomonService
 	            InvtAcct,
 	            COGSAcct,
 	            DfltSalesAcct,
-	            ppvacct,
+	            ppvacct PpvAcc,
 	            CASE TranStatusCode
 		            WHEN 'AC' THEN 'Active'
 		            WHEN 'NP' THEN 'No Purchase'
@@ -32,7 +32,7 @@ Public Class SolomonService
 		            WHEN 'IN' THEN 'Inactive'
 		            WHEN 'DE' THEN 'Delete'
 		            ELSE ''
-	            END AS STATUS
+	            END AS Status
             FROM Inventory
             WHERE Crtd_User <> 'sysadmin' and Convert(Date,crtd_datetime) >=@FromDate
             AND Convert(Date,crtd_datetime) <= @ToDate      

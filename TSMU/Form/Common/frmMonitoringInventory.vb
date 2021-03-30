@@ -11,14 +11,14 @@ Public Class frmMonitoringInventory
 
     Private Sub frmMonitoringInventory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
-        Call Proc_EnableButtons(False, False, False, True, True, False, True, False, False, False, False)
+        Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False, True)
     End Sub
 
-    Private Sub LoadGrid()
+    Private Sub LoadGrid(FromDate As Date, ToDate As Date)
         Try
             SplashScreenManager.ShowForm(GetType(FrmWait))
             dtGrid = New DataTable
-            dtGrid = Service.GetDataInventory(Date.Today, Date.Today)
+            dtGrid = Service.GetDataInventory(FromDate, ToDate)
             Grid.DataSource = dtGrid
 
             With GridView1
@@ -35,7 +35,7 @@ Public Class frmMonitoringInventory
         End Try
     End Sub
     Public Overrides Sub Proc_Refresh()
-        LoadGrid()
+        LoadGrid(Date.Today, Date.Today)
     End Sub
     Public Overrides Sub Proc_Excel()
         If GridView1.RowCount > 0 Then
@@ -53,7 +53,13 @@ Public Class frmMonitoringInventory
 
 
     Private Sub frmMonitoringInventory_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        LoadGrid()
+        LoadGrid(Date.Today, Date.Today)
     End Sub
 
+    Public Overrides Sub Proc_Search()
+        Dim Frm As New frmSearch
+        Frm.StartPosition = FormStartPosition.CenterScreen
+        Frm.ShowDialog()
+        LoadGrid(Frm.TglDari, Frm.TglSampai)
+    End Sub
 End Class
