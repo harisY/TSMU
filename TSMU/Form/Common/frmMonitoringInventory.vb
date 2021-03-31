@@ -1,9 +1,4 @@
-﻿Imports DevExpress.LookAndFeel
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraPrinting
-Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraSplashScreen
+﻿Imports DevExpress.XtraSplashScreen
 
 Public Class frmMonitoringInventory
     Dim dtGrid As DataTable
@@ -34,9 +29,11 @@ Public Class frmMonitoringInventory
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Public Overrides Sub Proc_Refresh()
         LoadGrid(Date.Today, Date.Today)
     End Sub
+
     Public Overrides Sub Proc_Excel()
         If GridView1.RowCount > 0 Then
             Dim save As New SaveFileDialog With {
@@ -51,7 +48,6 @@ Public Class frmMonitoringInventory
         End If
     End Sub
 
-
     Private Sub frmMonitoringInventory_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         LoadGrid(Date.Today, Date.Today)
     End Sub
@@ -62,4 +58,5 @@ Public Class frmMonitoringInventory
         Frm.ShowDialog()
         LoadGrid(Frm.TglDari, Frm.TglSampai)
     End Sub
+
 End Class

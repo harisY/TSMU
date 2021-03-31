@@ -3256,6 +3256,7 @@
     <Compile Include="Services\HRPAService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
+    <Compile Include="Services\ProblemService.vb" />
     <Compile Include="Services\QcOutgoingService.vb" />
     <Compile Include="Services\SettingService.vb" />
     <Compile Include="Services\SolomonService.vb" />
