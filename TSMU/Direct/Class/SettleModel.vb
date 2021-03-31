@@ -284,9 +284,9 @@ where pay=0 and settle_header.SuspendID like '" & Jenis & " %' and settle_header
     Public Function loadreportAPSolomon() As DataSet
         Dim query As String
 
-        query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub, refnbr1, vrno, tgl,
+        query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub='10000', refnbr1, vrno, tgl,
 VendId, origdocamt, RefNbr, curydocbal FROM dataupload
-where cek1=1 and prosespay=1 and uploaded=0 or 
+where curyid='IDR'and cek1=1 and prosespay=1 and uploaded=0 or 
 uploaded Is null and tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' order by vrno"
 
         Dim ds As New dsLaporan
@@ -298,7 +298,7 @@ uploaded Is null and tgl >='" & Date1 & "' And Tgl <='" & Date2 & "' order by vr
     Public Function loadreportAPSolomonNonIDR() As DataSet
         Dim query As String
 
-        query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub, refnbr1, 
+        query = "SELECT     CONVERT(VARCHAR(6), tgl, 112) AS tgl1, docbal, BankID, cashsub='10000', refnbr1, 
                  vrno, tgl, VendId, origdocamt, RefNbr, curydocbal, CuryID,FromCuryId,RateType,EffDate,Rate,doctype,
                   CASE 
 				  WHEN 
