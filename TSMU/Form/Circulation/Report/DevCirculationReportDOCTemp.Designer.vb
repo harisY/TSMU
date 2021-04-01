@@ -132,11 +132,11 @@ Partial Public Class DevCirculationReportDOCTemp
         '
         'XrTable2
         '
-        Me.XrTable2.Font = New System.Drawing.Font("Arial", 6.0!)
+        Me.XrTable2.Font = New System.Drawing.Font("Arial", 5.0!, System.Drawing.FontStyle.Bold)
         Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2})
-        Me.XrTable2.SizeF = New System.Drawing.SizeF(428.125!, 25.0!)
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(457.2917!, 25.0!)
         Me.XrTable2.StylePriority.UseFont = False
         Me.XrTable2.StylePriority.UseTextAlignment = False
         Me.XrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
@@ -157,7 +157,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell15.StylePriority.UseTextAlignment = False
         Me.XrTableCell15.Text = "No"
         Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell15.Weight = 0.15073892121764471R
+        Me.XrTableCell15.Weight = 0.11866533479115157R
         '
         'XrTableCell4
         '
@@ -169,7 +169,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell4.StylePriority.UseTextAlignment = False
         Me.XrTableCell4.Text = "Account"
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell4.Weight = 0.34792616907068563R
+        Me.XrTableCell4.Weight = 0.27688579321372342R
         '
         'XrTableCell5
         '
@@ -181,7 +181,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell5.StylePriority.UseTextAlignment = False
         Me.XrTableCell5.Text = "Name "
         Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell5.Weight = 0.69724244492675425R
+        Me.XrTableCell5.Weight = 0.711992056415611R
         '
         'XrTableCell6
         '
@@ -193,7 +193,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell6.StylePriority.UseBorders = False
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell6.Weight = 0.67173402652805R
+        Me.XrTableCell6.Weight = 0.94932274842565356R
         '
         'XrTableCell11
         '
@@ -205,7 +205,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell11.StylePriority.UseTextAlignment = False
         Me.XrTableCell11.Text = "Qty"
         Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell11.Weight = 0.16360462755174751R
+        Me.XrTableCell11.Weight = 0.15822045821647862R
         '
         'XrTableCell12
         '
@@ -217,7 +217,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell12.StylePriority.UseTextAlignment = False
         Me.XrTableCell12.Text = "Price"
         Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell12.Weight = 0.61512195796899571R
+        Me.XrTableCell12.Weight = 0.56523807225559586R
         '
         'XrTableCell13
         '
@@ -229,7 +229,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell13.StylePriority.UseTextAlignment = False
         Me.XrTableCell13.Text = "Curr"
         Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell13.Weight = 0.1778171503053263R
+        Me.XrTableCell13.Weight = 0.16812530978903661R
         '
         'XrTableCell14
         '
@@ -241,7 +241,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell14.StylePriority.UseTextAlignment = False
         Me.XrTableCell14.Text = "Total"
         Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell14.Weight = 0.793459388854974R
+        Me.XrTableCell14.Weight = 0.66919491331692782R
         '
         'Detail
         '
@@ -252,11 +252,11 @@ Partial Public Class DevCirculationReportDOCTemp
         'XrTable1
         '
         Me.XrTable1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrTable1.Font = New System.Drawing.Font("Arial", 6.0!)
+        Me.XrTable1.Font = New System.Drawing.Font("Arial", 5.0!)
         Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(428.1248!, 19.12498!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(457.2914!, 19.12498!)
         Me.XrTable1.StylePriority.UseBorders = False
         Me.XrTable1.StylePriority.UseFont = False
         '
@@ -278,7 +278,7 @@ Partial Public Class DevCirculationReportDOCTemp
         XrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Page
         Me.XrTableCell16.Summary = XrSummary1
         Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell16.Weight = 0.1507389317952253R
+        Me.XrTableCell16.Weight = 0.11866535772669451R
         '
         'XrTableCell1
         '
@@ -291,7 +291,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
         Me.XrTableCell1.Text = "XrTableCell1"
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell1.Weight = 0.34792615115819348R
+        Me.XrTableCell1.Weight = 0.27688581349130209R
         '
         'XrTableCell2
         '
@@ -304,7 +304,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "XrTableCell2"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell2.Weight = 0.69724250668485321R
+        Me.XrTableCell2.Weight = 0.71199212045763316R
         '
         'XrTableCell3
         '
@@ -317,7 +317,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell3.StylePriority.UseTextAlignment = False
         Me.XrTableCell3.Text = "XrTableCell3"
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell3.Weight = 0.6717333607679612R
+        Me.XrTableCell3.Weight = 0.94932276432411766R
         '
         'XrTableCell7
         '
@@ -330,7 +330,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "XrTableCell7"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell7.Weight = 0.16360490147589588R
+        Me.XrTableCell7.Weight = 0.15822047331507555R
         '
         'XrTableCell8
         '
@@ -344,7 +344,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell8.Text = "XrTableCell8"
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrTableCell8.TextFormatString = "{0:n2}"
-        Me.XrTableCell8.Weight = 0.61512247606697357R
+        Me.XrTableCell8.Weight = 0.56523812922605032R
         '
         'XrTableCell9
         '
@@ -357,7 +357,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell9.StylePriority.UseTextAlignment = False
         Me.XrTableCell9.Text = "XrTableCell9"
         Me.XrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell9.Weight = 0.17781562164465167R
+        Me.XrTableCell9.Weight = 0.16812352325424734R
         '
         'XrTableCell10
         '
@@ -371,7 +371,7 @@ Partial Public Class DevCirculationReportDOCTemp
         Me.XrTableCell10.Text = "XrTableCell10"
         Me.XrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrTableCell10.TextFormatString = "{0:n2}"
-        Me.XrTableCell10.Weight = 0.79345935490174768R
+        Me.XrTableCell10.Weight = 0.6691951227003814R
         '
         'DevCirculationReportDOCTemp
         '

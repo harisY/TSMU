@@ -373,7 +373,7 @@ Public Class Frm_CR_UserCreateDetail
                             .Columns("Name Of Goods").OptionsColumn.AllowEdit = False
                             .Columns("Spesification").OptionsColumn.AllowEdit = False
                             .Columns("Qty").OptionsColumn.AllowEdit = True
-                            .Columns("Price").OptionsColumn.AllowEdit = False
+                            .Columns("Price").OptionsColumn.AllowEdit = True
                             .Columns("Total Amount Currency").OptionsColumn.AllowEdit = False
                             .Columns("Curr").OptionsColumn.AllowEdit = False
                             .Columns("Category").OptionsColumn.AllowEdit = False
@@ -465,7 +465,7 @@ Public Class Frm_CR_UserCreateDetail
                             '.Columns("Check").Visible = True
                             .Columns("Note").Visible = True
                         End With
-                        If fc_Class.H_Status = "BA" Then
+                        If fc_Class.H_Status = "BA" Or fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "Set Installment" Then
                             Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
                             BBeritaAcara.Enabled = True
                         Else
@@ -3256,7 +3256,7 @@ Public Class Frm_CR_UserCreateDetail
 
                 ElseIf fc_Class.H_Status = "Approve 2" Or fc_Class.H_Status = "Other Dept" Then
                     If _Check1 = True Then
-                        XtraMessageBox.Show("Circulation Number : '" & fs_Code & "' Canot Submit   ?", "Confirmation", MessageBoxButtons.OK)
+                        XtraMessageBox.Show("Circulation Number : '" & fs_Code & "' Has been Approved   ?", "Confirmation", MessageBoxButtons.OK)
                         Exit Sub
                     Else
                         With fc_Class
@@ -3454,7 +3454,7 @@ Public Class Frm_CR_UserCreateDetail
 
 #Region "ElseIf Active_Form = 5"
         ElseIf Active_Form = 5 Then   '(Accounting)
-            If fc_Class.H_Status = "Other Dept" Or fc_Class.H_Status = "Set Installment" Then
+            If fc_Class.H_Status = "Other Dept" Or fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "Set Installment" Then
                 Dim result As DialogResult = XtraMessageBox.Show("Are You Sure To Approve " & fs_Code & "  ?", "Confirmation", MessageBoxButtons.YesNo)
                 If result = System.Windows.Forms.DialogResult.Yes Then
                     Try
@@ -3670,8 +3670,9 @@ Public Class Frm_CR_UserCreateDetail
             Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             GridDtl.DataSource = fc_Class_Accounting.Get_Cek_Purchase
             Me.Hide()
+
         ElseIf Active_Form = 7 Then   ' (CR Close)
-            If fc_Class.H_Status = "BA" Then
+            If fc_Class.H_Status = "BA" Or fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "Set Installment" Then
                 Dim result As DialogResult = MessageBox.Show("Are You Want to  Close CR '" & fs_Code & "'?",
                                                     "CIRCULATION",
                                                     MessageBoxButtons.OKCancel,

@@ -94,7 +94,7 @@ Public Class FrmHRPANewEmployee
         'ListItemsGolongan()
 
         txtAction.Text = "NEW-HIRE"
-        cbStatus.Text = "AKTIF"
+        cbStatus.Text = "ACTIVE"
         cbPerpindahan.EditValue = "01"
         cbAlasan.EditValue = "11"
         cbFactory.Text = "TANGERANG"

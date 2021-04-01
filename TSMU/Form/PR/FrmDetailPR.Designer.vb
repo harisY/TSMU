@@ -92,10 +92,14 @@ Partial Class FrmDetailPR
         Me.CJumlah = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.Harga = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Charga = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.Total = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Satuan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Digunakan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.WaktuTempo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DTempo = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GBudget = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSudahDipakai = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Keterangan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -178,6 +182,7 @@ Partial Class FrmDetailPR
         Me.TRevisi.Size = New System.Drawing.Size(87, 20)
         Me.TRevisi.StyleController = Me.LayoutControl1
         Me.TRevisi.TabIndex = 8
+        Me.TRevisi.Visible = False
         '
         'TKeterangan
         '
@@ -290,6 +295,7 @@ Partial Class FrmDetailPR
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.TRevisi
+        Me.LayoutControlItem5.Enabled = False
         Me.LayoutControlItem5.Location = New System.Drawing.Point(445, 0)
         Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(150, 24)
         Me.LayoutControlItem5.MinSize = New System.Drawing.Size(100, 24)
@@ -731,7 +737,7 @@ Partial Class FrmDetailPR
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.XSeq, Me.No, Me.PembelianUntuk, Me.KodeBarang, Me.NamaBarang, Me.Spesifikasi, Me.Accountt, Me.SubAccount, Me.Jumlah, Me.Harga, Me.Satuan, Me.Digunakan, Me.WaktuTempo})
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.XSeq, Me.No, Me.PembelianUntuk, Me.KodeBarang, Me.NamaBarang, Me.Spesifikasi, Me.Accountt, Me.SubAccount, Me.Jumlah, Me.Harga, Me.Total, Me.Satuan, Me.Digunakan, Me.WaktuTempo, Me.GBudget, Me.GSudahDipakai, Me.Keterangan})
         Me.GridView3.GridControl = Me.GridPR
         Me.GridView3.IndicatorWidth = 30
         Me.GridView3.Name = "GridView3"
@@ -875,7 +881,7 @@ Partial Class FrmDetailPR
         Me.Harga.AppearanceHeader.Options.UseTextOptions = True
         Me.Harga.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Harga.ColumnEdit = Me.Charga
-        Me.Harga.DisplayFormat.FormatString = "{0:N2}"
+        Me.Harga.DisplayFormat.FormatString = "{0:N0}"
         Me.Harga.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.Harga.FieldName = "Harga"
         Me.Harga.Name = "Harga"
@@ -889,6 +895,16 @@ Partial Class FrmDetailPR
         Me.Charga.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.Charga.Name = "Charga"
         '
+        'Total
+        '
+        Me.Total.DisplayFormat.FormatString = "{0:N0}"
+        Me.Total.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.Total.FieldName = "Total"
+        Me.Total.Name = "Total"
+        Me.Total.OptionsColumn.AllowEdit = False
+        Me.Total.Visible = True
+        Me.Total.VisibleIndex = 10
+        '
         'Satuan
         '
         Me.Satuan.AppearanceCell.Options.UseTextOptions = True
@@ -899,7 +915,7 @@ Partial Class FrmDetailPR
         Me.Satuan.Name = "Satuan"
         Me.Satuan.OptionsColumn.AllowEdit = False
         Me.Satuan.Visible = True
-        Me.Satuan.VisibleIndex = 10
+        Me.Satuan.VisibleIndex = 11
         Me.Satuan.Width = 81
         '
         'Digunakan
@@ -909,7 +925,7 @@ Partial Class FrmDetailPR
         Me.Digunakan.FieldName = "Digunakan Untuk"
         Me.Digunakan.Name = "Digunakan"
         Me.Digunakan.Visible = True
-        Me.Digunakan.VisibleIndex = 11
+        Me.Digunakan.VisibleIndex = 12
         Me.Digunakan.Width = 158
         '
         'WaktuTempo
@@ -929,6 +945,28 @@ Partial Class FrmDetailPR
         Me.DTempo.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DTempo.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DTempo.Name = "DTempo"
+        '
+        'GBudget
+        '
+        Me.GBudget.DisplayFormat.FormatString = "{0:N0}"
+        Me.GBudget.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GBudget.FieldName = "Budget"
+        Me.GBudget.Name = "GBudget"
+        '
+        'GSudahDipakai
+        '
+        Me.GSudahDipakai.DisplayFormat.FormatString = "{0:N0}"
+        Me.GSudahDipakai.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GSudahDipakai.FieldName = "Sudah Dipakai"
+        Me.GSudahDipakai.Name = "GSudahDipakai"
+        '
+        'Keterangan
+        '
+        Me.Keterangan.FieldName = "Keterangan"
+        Me.Keterangan.Name = "Keterangan"
+        Me.Keterangan.OptionsColumn.AllowEdit = False
+        Me.Keterangan.Visible = True
+        Me.Keterangan.VisibleIndex = 13
         '
         'BSubAccount
         '
@@ -1071,4 +1109,8 @@ Partial Class FrmDetailPR
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TSirkulasi As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents XSeq As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Total As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBudget As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GSudahDipakai As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Keterangan As DevExpress.XtraGrid.Columns.GridColumn
 End Class

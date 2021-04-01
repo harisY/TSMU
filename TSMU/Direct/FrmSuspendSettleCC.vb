@@ -232,4 +232,51 @@ Public Class FrmSuspendSettleCC
     Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
 
     End Sub
+
+    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+
+    End Sub
+
+    Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
+        Try
+
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = GridControl1.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+
+                ID = String.Empty
+                suspendid = String.Empty
+                suspend1 = String.Empty
+                Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        ID = GridView2.GetRowCellValue(rowHandle, "ID")
+                        suspendid = GridView2.GetRowCellValue(rowHandle, "SettleID")
+                        suspend1 = IIf(GridView2.GetRowCellValue(rowHandle, "SuspendID") Is DBNull.Value, "", (GridView2.GetRowCellValue(rowHandle, "SuspendID")))
+                    End If
+                Next rowHandle
+
+                If suspend1 = "" Then
+                    'Dim objGrid As DataGridView = sender
+                    Call CallFrmDirect(ID, suspendid,
+                         GridView2.RowCount)
+                Else
+                    'Dim objGrid As DataGridView = sender
+                    Call CallFrm(ID,
+                             suspendid,
+                             GridView2.RowCount)
+                End If
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
 End Class

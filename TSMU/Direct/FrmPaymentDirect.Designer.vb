@@ -482,6 +482,7 @@ Partial Class FrmPaymentDirect
         Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.MultiSelect = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1

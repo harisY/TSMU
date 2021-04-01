@@ -152,12 +152,13 @@ Public Class FrmHROrganisasi
 
     Private Sub trStrukturOrg_DoubleClick(sender As Object, e As EventArgs) Handles trStrukturOrg.DoubleClick
         Dim orgID As String = trStrukturOrg.FocusedNode.GetValue("OrgID")
+        Dim orgIDParent As String = trStrukturOrg.FocusedNode.GetValue("ParentID")
         Dim orgClass As String = trStrukturOrg.FocusedNode.GetValue("OrgClass")
         Dim orgLevel As String = trStrukturOrg.FocusedNode.GetValue("Level")
         If orgClass = "O" Then
-            CallFrmOrganisasi(orgID, "", orgLevel)
+            CallFrmOrganisasi(orgID, orgIDParent, orgLevel)
         Else
-            CallFrmJabatan(orgID, "")
+            CallFrmJabatan(orgID, orgIDParent)
         End If
     End Sub
 End Class

@@ -19,6 +19,9 @@ Imports DevExpress.XtraSplashScreen
 
 Public Class FrmDetailPR
 
+    Dim BudgetAccount As Double
+    Dim SisaBudgetAccount As Double
+
     Dim Grid As GridControl
     Dim _Tag As TagModel
     Dim Active_Form As Int32 = 0
@@ -34,6 +37,7 @@ Public Class FrmDetailPR
     Dim LastPRDate As Date
     Public IsClosed As Boolean = False
     Dim GridDtl As GridControl
+    Dim AktualPemakaian As Double
 
 
 
@@ -71,7 +75,7 @@ Public Class FrmDetailPR
     Private Sub CreateTable()
 
         DtGrid = New DataTable
-        DtGrid.Columns.AddRange(New DataColumn(13) {New DataColumn("No", GetType(String)),
+        DtGrid.Columns.AddRange(New DataColumn(17) {New DataColumn("No", GetType(String)),
                                                             New DataColumn("XSeq", GetType(Int16)),
                                                             New DataColumn("Pembelian Untuk", GetType(String)),
                                                             New DataColumn("Kode Barang", GetType(String)),
@@ -81,9 +85,13 @@ Public Class FrmDetailPR
                                                             New DataColumn("Sub Account", GetType(String)),
                                                             New DataColumn("Jumlah", GetType(Double)),
                                                             New DataColumn("Harga", GetType(Double)),
+                                                            New DataColumn("Total", GetType(Double)),
+                                                            New DataColumn("Budget", GetType(Double)),
+                                                            New DataColumn("Sudah Dipakai", GetType(Double)),
                                                             New DataColumn("Satuan", GetType(String)),
                                                             New DataColumn("Digunakan Untuk", GetType(String)),
                                                             New DataColumn("Waktu Tempo", GetType(Date)),
+                                                            New DataColumn("Keterangan", GetType(String)),
                                                             New DataColumn("Circulation", GetType(String))})
         GridPR.DataSource = DtGrid
         GridView3.OptionsView.ShowAutoFilterRow = False
@@ -170,6 +178,9 @@ Public Class FrmDetailPR
         GridView3.OptionsNavigation.AutoFocusNewRow = True
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, No, a)
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, XSeq, b)
+        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Jumlah, 0)
+        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Harga, 0)
+        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Total, 0)
 
 
 
@@ -253,6 +264,10 @@ Public Class FrmDetailPR
                 GridView3.SetRowCellValue(GridView3.FocusedRowHandle, NamaBarang, Value2)
                 GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Accountt, Value3)
                 GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Satuan, Value4)
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, WaktuTempo, "")
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, SubAccount, "")
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, GBudget, 0)
+
             End If
             lF_SearchData.Close()
         Catch ex As Exception
@@ -284,7 +299,7 @@ Public Class FrmDetailPR
             Call Sub_Dept(gh_Common.GroupID.ToString())
 
             If fc_Class.H_StatusFlag = "" Or fc_Class.H_StatusFlag = "P" Then
-                Call Proc_EnableButtons(False, True, False, False, False, False, False, False, False, False, False)
+                Call Proc_EnableButtons(False, True, True, False, False, False, False, False, False, False, False)
             Else
                 Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
             End If
@@ -350,8 +365,6 @@ Public Class FrmDetailPR
     Private Sub getdataview1()
 
         Dim IsEmpty As Boolean = False
-
-
 
         If GridView3.RowCount = 0 Then
 
@@ -488,6 +501,7 @@ Public Class FrmDetailPR
                     .D_XQty = GridView3.GetRowCellValue(i, Jumlah)
                     .D_SeqNo = GridView3.GetRowCellValue(i, No)
                     .D_XSeqNo = GridView3.GetRowCellValue(i, XSeq)
+                    .D_Keterangan = IIf(GridView3.GetRowCellValue(i, Keterangan) Is DBNull.Value, "", GridView3.GetRowCellValue(i, Keterangan))
 
                 End With
                 fc_Class.Collection_Detail.Add(fc_Class_Detail)
@@ -520,7 +534,7 @@ Public Class FrmDetailPR
                 .H_PRNo = TNoPR.EditValue
                 .H_Remark = TKeterangan.EditValue
                 .H_SecId = SubAccountDept.Substring(2, 2)
-                .H_SeqRev = TRevisi.EditValue
+                .H_SeqRev = Val(TRevisi.EditValue) + 1
                 .H_StatusFlag = "P"
                 .H_CreateBy = gh_Common.Username
                 .H_CreateDate = Format(Date.Now, "yyyy-MM-dd")
@@ -565,6 +579,7 @@ Public Class FrmDetailPR
                     .D_XQty = GridView3.GetRowCellValue(i, Jumlah)
                     .D_SeqNo = GridView3.GetRowCellValue(i, No)
                     .D_XSeqNo = GridView3.GetRowCellValue(i, XSeq)
+                    .D_Keterangan = IIf(GridView3.GetRowCellValue(i, Keterangan) Is DBNull.Value, "", GridView3.GetRowCellValue(i, Keterangan))
 
                 End With
                 fc_Class.Collection_Detail.Add(fc_Class_Detail)
@@ -643,9 +658,9 @@ Public Class FrmDetailPR
             gridView.PostEditor()
             gridView.UpdateCurrentRow()
 
+
+
             Dim provider As CultureInfo = CultureInfo.InvariantCulture
-
-
 
             fc_Class = New Cls_PR
             Dim ls_Judul As String = ""
@@ -656,17 +671,92 @@ Public Class FrmDetailPR
 
             Dim Th As Date = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, WaktuTempo)
             Dim Tahun As String = (Th.Year).ToString
+            Dim Bulan As String = (Th.Month).ToString
             Dim ACCT As String = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, Accountt).ToString()
-            'Dim Bulan As String = Convert.ToString(Param.ToString("MM"))
+
+
+            Dim dtBudget As New DataTable
+            dtBudget = fc_Class.GetBudget(Tahun, DeptID, ACCT)
+
+            If dtBudget.Rows.Count <= 0 Then
+                BudgetAccount = 0
+            Else
+                If Bulan = "1" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("jan")
+                ElseIf Bulan = "2" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("feb")
+                ElseIf Bulan = "3" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("mar")
+                ElseIf Bulan = "4" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("apr")
+                ElseIf Bulan = "5" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("mei")
+                ElseIf Bulan = "6" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("jun")
+                ElseIf Bulan = "7" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("jul")
+                ElseIf Bulan = "8" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("agu")
+                ElseIf Bulan = "9" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("sep")
+                ElseIf Bulan = "10" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("okt")
+                ElseIf Bulan = "11" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("nov")
+                ElseIf Bulan = "12" Then
+                    BudgetAccount = dtBudget.Rows(0).Item("des")
+                Else
+                    BudgetAccount = 0
+                End If
+            End If
+
+
+
+            Dim dtActualBudget As New DataTable
+            dtActualBudget = fc_Class.GetActualBudget(Tahun, Bulan, SubAccountDept, ACCT)
+            If dtActualBudget.Rows.Count <= 0 Then
+                AktualPemakaian = 0
+            Else
+                AktualPemakaian = dtActualBudget.Rows(0).Item("Total")
+            End If
+
+            Dim RangeRowIndex As Integer = GridView3.FocusedRowHandle
+            If RangeRowIndex = 0 Then
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "Sudah Dipakai", AktualPemakaian)
+            Else
+
+                Dim Pemakaian As Double = 0
+                Dim Thg As Date
+                Dim Tahung As String
+                Dim Bulang As String
+                Dim Acctg As String
+                For i As Integer = 0 To RangeRowIndex - 1
+                    Thg = GridView3.GetRowCellValue(i, WaktuTempo)
+                    Tahung = (Thg.Year).ToString()
+                    Bulang = (Thg.Month).ToString()
+                    Acctg = GridView3.GetRowCellValue(i, Accountt)
+                    If Acctg = ACCT And Tahung = Tahun And Bulang = Bulan Then
+                        Pemakaian = Pemakaian + Convert.ToDouble(GridView3.GetRowCellValue(i, GridView3.Columns("Total")))
+                    End If
+                Next
+
+                AktualPemakaian = AktualPemakaian + Pemakaian
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "Sudah Dipakai", AktualPemakaian)
+            End If
+
 
             dt = fc_Class.GetSubAccount(Tahun, DeptID, ACCT)
             If dt.Rows.Count > 0 Then
                 GridView3.SetRowCellValue(GridView3.FocusedRowHandle, SubAccount, dt.Rows(0).Item("Sub"))
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, GBudget, BudgetAccount)
             Else
                 MessageBox.Show("Tidak Ada Budget Untuk Barang ini ", "Warning",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Exclamation,
                            MessageBoxDefaultButton.Button1)
+
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, SubAccount, "")
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, GBudget, 0)
                 Exit Sub
             End If
 
@@ -677,6 +767,27 @@ Public Class FrmDetailPR
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub RefreshPakai()
+
+        Dim Th As Date
+        Dim Tahun As String
+        Dim Bulan As String
+        Dim ACCT As String
+
+        For i As Integer = 1 To GridView3.RowCount - 1
+
+            Th = GridView3.GetRowCellValue(i, WaktuTempo)
+            Tahun = (Th.Year).ToString
+            Bulan = (Th.Month).ToString
+            ACCT = GridView3.GetRowCellValue(i, Accountt).ToString()
+
+            For j As Integer = 0 To i - 1
+
+            Next
+        Next
+
     End Sub
 
     Private Sub BNo_EditValueChanged(sender As Object, e As EventArgs) Handles BNo.EditValueChanged
@@ -742,4 +853,113 @@ Public Class FrmDetailPR
     Private Sub TSirkulasi_Click(sender As Object, e As EventArgs) Handles TSirkulasi.Click
         TSirkulasi.SelectAll()
     End Sub
+
+    Private Sub CJumlah_EditValueChanged(sender As Object, e As EventArgs) Handles CJumlah.EditValueChanged
+
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+        Call HitungTotal()
+
+    End Sub
+
+    Private Sub HitungTotal()
+        Try
+
+            Dim BGT As Double = IIf(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, GBudget) Is DBNull.Value, 0, GridView3.GetRowCellValue(GridView3.FocusedRowHandle, GBudget))
+            Dim Pakai As Double = IIf(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, GSudahDipakai) Is DBNull.Value, 0, GridView3.GetRowCellValue(GridView3.FocusedRowHandle, GSudahDipakai))
+
+
+            Dim Jml As Double = IIf(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, Jumlah) Is DBNull.Value, 0, GridView3.GetRowCellValue(GridView3.FocusedRowHandle, Jumlah))
+            Dim Hrg As Double = IIf(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, Harga) Is DBNull.Value, 0, GridView3.GetRowCellValue(GridView3.FocusedRowHandle, Harga))
+
+            GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Total, Jml * Hrg)
+
+            Dim Acc_NoAccount As String = ""
+
+            Dim selectedRows() As Integer = GridView1.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    Acc_NoAccount = GridView1.GetRowCellValue(rowHandle, "Account")
+                End If
+            Next rowHandle
+
+            Dim sisa As Double = BGT - (Pakai + (Jml * Hrg))
+
+            If sisa < 0 Then
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Keterangan, "Over")
+            Else
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Keterangan, "")
+            End If
+
+
+
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Sub Charga_EditValueChanged(sender As Object, e As EventArgs) Handles Charga.EditValueChanged
+
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+        Dim _Account As Double = IIf(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, Accountt) Is DBNull.Value, 0, GridView3.GetRowCellValue(GridView3.FocusedRowHandle, Accountt))
+        Dim _tgl As Date = IIf(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, WaktuTempo) Is DBNull.Value, Nothing, GridView3.GetRowCellValue(GridView3.FocusedRowHandle, WaktuTempo))
+        Dim tahun As Int32 = _tgl.Year
+        Call HitungTotal()
+        Call Budget(tahun.ToString(), gh_Common.GroupID, _Account)
+
+    End Sub
+    Private Sub Budget(Tahun As String, Dept As String, Account As String)
+
+        Dim dtBudget As New DataTable
+        dtBudget = fc_Class.GetBudget(Tahun, Dept, Account)
+
+    End Sub
+
+
+
+    Private Sub GridView3_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView3.RowStyle
+
+        Dim View As GridView = sender
+        If (e.RowHandle >= 0) Then
+            Dim Keterangan As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("Keterangan"))
+            If Keterangan = "Over" Then
+                e.Appearance.BackColor = Color.Yellow
+                'e.Appearance.BackColor2 = Color.Yellow
+                e.HighPriority = True
+            End If
+        End If
+    End Sub
+
+
+    Public Overrides Sub Proc_DeleteData()
+
+        Try
+            If fc_Class.H_StatusFlag = "" Or fc_Class.H_StatusFlag = "P" Then
+
+                fc_Class.CancelPR(fs_Code)
+                Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+                Grid.DataSource = fc_Class.Get_PR(gh_Common.GroupID)
+                IsClosed = True
+                Me.Hide()
+            Else
+                MessageBox.Show("PR Tidak Bisa Di Cancel ", "Warning",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation,
+                         MessageBoxDefaultButton.Button1)
+
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+
 End Class
