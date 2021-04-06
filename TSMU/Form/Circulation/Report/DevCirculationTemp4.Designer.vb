@@ -114,8 +114,9 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable17 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow17 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell49 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrCheckBox4 = New DevExpress.XtraReports.UI.XRCheckBox()
+        Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrCheckBox2 = New DevExpress.XtraReports.UI.XRCheckBox()
         Me.XrTable18 = New DevExpress.XtraReports.UI.XRTable()
@@ -191,7 +192,6 @@ Partial Public Class DevCirculationTemp4
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrTableCell49 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrSubreport3 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrSubreport2 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
@@ -318,10 +318,10 @@ Partial Public Class DevCirculationTemp4
         '
         Me.XrTable32.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable32.Font = New System.Drawing.Font("Arial", 6.0!)
-        Me.XrTable32.LocationFloat = New DevExpress.Utils.PointFloat(366.3637!, 614.6473!)
+        Me.XrTable32.LocationFloat = New DevExpress.Utils.PointFloat(340.1459!, 614.6473!)
         Me.XrTable32.Name = "XrTable32"
         Me.XrTable32.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow46})
-        Me.XrTable32.SizeF = New System.Drawing.SizeF(430.6362!, 62.67511!)
+        Me.XrTable32.SizeF = New System.Drawing.SizeF(456.854!, 62.67511!)
         Me.XrTable32.StylePriority.UseBorders = False
         Me.XrTable32.StylePriority.UseFont = False
         Me.XrTable32.StylePriority.UseTextAlignment = False
@@ -343,7 +343,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell130.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell130.StylePriority.UseBorders = False
         Me.XrTableCell130.StylePriority.UseFont = False
-        Me.XrTableCell130.Weight = 0.4906554486118927R
+        Me.XrTableCell130.Weight = 0.6127018630133696R
         '
         'XrTableCell131
         '
@@ -358,10 +358,10 @@ Partial Public Class DevCirculationTemp4
         '
         Me.XrTable31.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable31.Font = New System.Drawing.Font("Arial", 6.0!)
-        Me.XrTable31.LocationFloat = New DevExpress.Utils.PointFloat(366.3637!, 601.6666!)
+        Me.XrTable31.LocationFloat = New DevExpress.Utils.PointFloat(340.1459!, 601.6666!)
         Me.XrTable31.Name = "XrTable31"
         Me.XrTable31.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow45})
-        Me.XrTable31.SizeF = New System.Drawing.SizeF(430.6363!, 12.98059!)
+        Me.XrTable31.SizeF = New System.Drawing.SizeF(456.8541!, 12.98059!)
         Me.XrTable31.StylePriority.UseBorders = False
         Me.XrTable31.StylePriority.UseFont = False
         Me.XrTable31.StylePriority.UseTextAlignment = False
@@ -382,7 +382,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell128.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell128.StylePriority.UseBorders = False
         Me.XrTableCell128.Text = "Accounting"
-        Me.XrTableCell128.Weight = 0.4906554486118927R
+        Me.XrTableCell128.Weight = 0.61270190717796758R
         '
         'XrTableCell129
         '
@@ -397,7 +397,7 @@ Partial Public Class DevCirculationTemp4
         '
         'XrCheckBox6
         '
-        Me.XrCheckBox6.LocationFloat = New DevExpress.Utils.PointFloat(319.3126!, 299.2959!)
+        Me.XrCheckBox6.LocationFloat = New DevExpress.Utils.PointFloat(294.7293!, 299.2959!)
         Me.XrCheckBox6.Name = "XrCheckBox6"
         Me.XrCheckBox6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrCheckBox6.SizeF = New System.Drawing.SizeF(20.83331!, 19.79486!)
@@ -410,7 +410,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrLabel3.Multiline = True
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(143.2691!, 58.85419!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(117.0514!, 58.8542!)
         Me.XrLabel3.StylePriority.UseBorders = False
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
@@ -575,12 +575,14 @@ Partial Public Class DevCirculationTemp4
         'XrTableCell17
         '
         Me.XrTableCell17.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[NameItem]")})
+        Me.XrTableCell17.Font = New System.Drawing.Font("Arial", 6.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell17.Multiline = True
         Me.XrTableCell17.Name = "XrTableCell17"
         Me.XrTableCell17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell17.StylePriority.UseFont = False
         Me.XrTableCell17.StylePriority.UseTextAlignment = False
         Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell17.Weight = 1.5515431565605447R
+        Me.XrTableCell17.Weight = 1.4111105997696567R
         '
         'XrTableCell18
         '
@@ -592,7 +594,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell18.StylePriority.UseTextAlignment = False
         Me.XrTableCell18.Text = "Kode Account / Chart of Account"
         Me.XrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell18.Weight = 0.43730753197486893R
+        Me.XrTableCell18.Weight = 0.57774008876575678R
         '
         'XrTable6
         '
@@ -736,7 +738,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable11.LocationFloat = New DevExpress.Utils.PointFloat(0!, 450.2208!)
         Me.XrTable11.Name = "XrTable11"
         Me.XrTable11.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow11})
-        Me.XrTable11.SizeF = New System.Drawing.SizeF(366.3639!, 55.86871!)
+        Me.XrTable11.SizeF = New System.Drawing.SizeF(340.146!, 55.86871!)
         Me.XrTable11.StylePriority.UseBorders = False
         Me.XrTable11.StylePriority.UseFont = False
         Me.XrTable11.StylePriority.UseTextAlignment = False
@@ -782,7 +784,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable7.LocationFloat = New DevExpress.Utils.PointFloat(223.0946!, 265.6855!)
         Me.XrTable7.Name = "XrTable7"
         Me.XrTable7.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow7})
-        Me.XrTable7.SizeF = New System.Drawing.SizeF(71.63458!, 22.91666!)
+        Me.XrTable7.SizeF = New System.Drawing.SizeF(61.63457!, 22.91666!)
         Me.XrTable7.StylePriority.UseBorders = False
         Me.XrTable7.StylePriority.UseFont = False
         Me.XrTable7.StylePriority.UseTextAlignment = False
@@ -808,10 +810,10 @@ Partial Public Class DevCirculationTemp4
         '
         Me.XrTable13.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable13.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
-        Me.XrTable13.LocationFloat = New DevExpress.Utils.PointFloat(294.7292!, 265.6855!)
+        Me.XrTable13.LocationFloat = New DevExpress.Utils.PointFloat(284.7292!, 265.6855!)
         Me.XrTable13.Name = "XrTable13"
         Me.XrTable13.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow13})
-        Me.XrTable13.SizeF = New System.Drawing.SizeF(71.63458!, 22.91666!)
+        Me.XrTable13.SizeF = New System.Drawing.SizeF(55.41675!, 22.91666!)
         Me.XrTable13.StylePriority.UseBorders = False
         Me.XrTable13.StylePriority.UseFont = False
         Me.XrTable13.StylePriority.UseTextAlignment = False
@@ -841,7 +843,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrLabel10.Multiline = True
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(71.63455!, 41.30603!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(61.63457!, 41.30603!)
         Me.XrLabel10.StylePriority.UseBorders = False
         Me.XrLabel10.StylePriority.UseFont = False
         Me.XrLabel10.StylePriority.UseTextAlignment = False
@@ -851,11 +853,11 @@ Partial Public Class DevCirculationTemp4
         '
         Me.XrLabel11.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel11.Font = New System.Drawing.Font("Arial", 6.0!)
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(294.7292!, 288.6023!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(284.7292!, 288.6023!)
         Me.XrLabel11.Multiline = True
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(71.63455!, 41.30603!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(55.41681!, 41.30603!)
         Me.XrLabel11.StylePriority.UseBorders = False
         Me.XrLabel11.StylePriority.UseFont = False
         Me.XrLabel11.StylePriority.UseTextAlignment = False
@@ -1062,7 +1064,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable15.LocationFloat = New DevExpress.Utils.PointFloat(76.70058!, 329.9082!)
         Me.XrTable15.Name = "XrTable15"
         Me.XrTable15.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow15})
-        Me.XrTable15.SizeF = New System.Drawing.SizeF(289.6632!, 12.98077!)
+        Me.XrTable15.SizeF = New System.Drawing.SizeF(263.4454!, 12.98077!)
         Me.XrTable15.StylePriority.UseFont = False
         Me.XrTable15.StylePriority.UseTextAlignment = False
         Me.XrTable15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
@@ -1081,7 +1083,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell8.StylePriority.UseBorders = False
         Me.XrTableCell8.Text = "Budget"
-        Me.XrTableCell8.Weight = 2.180286421589881R
+        Me.XrTableCell8.Weight = 2.0802858165061195R
         '
         'XrTableCell10
         '
@@ -1091,7 +1093,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell10.StylePriority.UseBorders = False
         Me.XrTableCell10.Text = "PO"
-        Me.XrTableCell10.Weight = 0.71634550590035317R
+        Me.XrTableCell10.Weight = 0.554168085244267R
         '
         'XrTable16
         '
@@ -1139,7 +1141,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable17.LocationFloat = New DevExpress.Utils.PointFloat(76.70053!, 342.8889!)
         Me.XrTable17.Name = "XrTable17"
         Me.XrTable17.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow17})
-        Me.XrTable17.SizeF = New System.Drawing.SizeF(289.6631!, 47.43591!)
+        Me.XrTable17.SizeF = New System.Drawing.SizeF(263.4455!, 47.43591!)
         Me.XrTable17.StylePriority.UseFont = False
         Me.XrTable17.StylePriority.UseTextAlignment = False
         Me.XrTable17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
@@ -1149,6 +1151,26 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableRow17.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell49, Me.XrTableCell14, Me.XrTableCell15})
         Me.XrTableRow17.Name = "XrTableRow17"
         Me.XrTableRow17.Weight = 1.0R
+        '
+        'XrTableCell49
+        '
+        Me.XrTableCell49.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrTableCell49.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrCheckBox4})
+        Me.XrTableCell49.Multiline = True
+        Me.XrTableCell49.Name = "XrTableCell49"
+        Me.XrTableCell49.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell49.StylePriority.UseBorders = False
+        Me.XrTableCell49.StylePriority.UseTextAlignment = False
+        Me.XrTableCell49.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrTableCell49.Weight = 0.30833341067991749R
+        '
+        'XrCheckBox4
+        '
+        Me.XrCheckBox4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckState", "[Budget]")})
+        Me.XrCheckBox4.LocationFloat = New DevExpress.Utils.PointFloat(4.299255!, 10.00003!)
+        Me.XrCheckBox4.Name = "XrCheckBox4"
+        Me.XrCheckBox4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrCheckBox4.SizeF = New System.Drawing.SizeF(20.83331!, 23.0!)
         '
         'XrTableCell14
         '
@@ -1163,15 +1185,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell14.StylePriority.UseTextAlignment = False
         Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell14.TextFormatString = "{0:#,#}"
-        Me.XrTableCell14.Weight = 1.8719543689775133R
-        '
-        'XrCheckBox4
-        '
-        Me.XrCheckBox4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckState", "[Budget]")})
-        Me.XrCheckBox4.LocationFloat = New DevExpress.Utils.PointFloat(4.299255!, 10.00003!)
-        Me.XrCheckBox4.Name = "XrCheckBox4"
-        Me.XrCheckBox4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrCheckBox4.SizeF = New System.Drawing.SizeF(20.83331!, 23.0!)
+        Me.XrTableCell14.Weight = 1.7719528541598708R
         '
         'XrTableCell15
         '
@@ -1181,12 +1195,12 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell15.Name = "XrTableCell15"
         Me.XrTableCell15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell15.StylePriority.UseBorders = False
-        Me.XrTableCell15.Weight = 0.7163427593184809R
+        Me.XrTableCell15.Weight = 0.554168094639589R
         '
         'XrCheckBox2
         '
         Me.XrCheckBox2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckState", "[PoType]")})
-        Me.XrCheckBox2.LocationFloat = New DevExpress.Utils.PointFloat(24.58334!, 10.00003!)
+        Me.XrCheckBox2.LocationFloat = New DevExpress.Utils.PointFloat(10.00016!, 10.00003!)
         Me.XrCheckBox2.Name = "XrCheckBox2"
         Me.XrCheckBox2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrCheckBox2.SizeF = New System.Drawing.SizeF(20.83331!, 23.0!)
@@ -1197,7 +1211,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable18.LocationFloat = New DevExpress.Utils.PointFloat(76.70058!, 390.325!)
         Me.XrTable18.Name = "XrTable18"
         Me.XrTable18.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow18})
-        Me.XrTable18.SizeF = New System.Drawing.SizeF(289.6632!, 12.98077!)
+        Me.XrTable18.SizeF = New System.Drawing.SizeF(263.4453!, 12.98077!)
         Me.XrTable18.StylePriority.UseFont = False
         Me.XrTable18.StylePriority.UseTextAlignment = False
         Me.XrTable18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
@@ -1216,7 +1230,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell16.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell16.StylePriority.UseBorders = False
         Me.XrTableCell16.Text = "Non Budget"
-        Me.XrTableCell16.Weight = 2.180286421589881R
+        Me.XrTableCell16.Weight = 2.0802858165061195R
         '
         'XrTableCell27
         '
@@ -1226,7 +1240,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell27.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell27.StylePriority.UseBorders = False
         Me.XrTableCell27.Text = "Non PO"
-        Me.XrTableCell27.Weight = 0.71634550590035317R
+        Me.XrTableCell27.Weight = 0.55416747489273666R
         '
         'XrTable19
         '
@@ -1234,7 +1248,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable19.LocationFloat = New DevExpress.Utils.PointFloat(76.70052!, 403.3057!)
         Me.XrTable19.Name = "XrTable19"
         Me.XrTable19.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow19})
-        Me.XrTable19.SizeF = New System.Drawing.SizeF(289.6633!, 47.43591!)
+        Me.XrTable19.SizeF = New System.Drawing.SizeF(263.4455!, 47.43591!)
         Me.XrTable19.StylePriority.UseFont = False
         Me.XrTable19.StylePriority.UseTextAlignment = False
         Me.XrTable19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
@@ -1253,7 +1267,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell32.Name = "XrTableCell32"
         Me.XrTableCell32.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell32.StylePriority.UseBorders = False
-        Me.XrTableCell32.Weight = 2.1802870319414112R
+        Me.XrTableCell32.Weight = 2.080286284805382R
         '
         'XrCheckBox5
         '
@@ -1271,12 +1285,12 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell33.Name = "XrTableCell33"
         Me.XrTableCell33.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell33.StylePriority.UseBorders = False
-        Me.XrTableCell33.Weight = 0.71634550590035317R
+        Me.XrTableCell33.Weight = 0.55416794974265926R
         '
         'XrCheckBox3
         '
         Me.XrCheckBox3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckState", "IIF([PoType] == 1,0,1)")})
-        Me.XrCheckBox3.LocationFloat = New DevExpress.Utils.PointFloat(24.58334!, 10.00003!)
+        Me.XrCheckBox3.LocationFloat = New DevExpress.Utils.PointFloat(10.00016!, 10.00003!)
         Me.XrCheckBox3.Name = "XrCheckBox3"
         Me.XrCheckBox3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrCheckBox3.SizeF = New System.Drawing.SizeF(20.83331!, 23.0!)
@@ -1289,7 +1303,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable20.LocationFloat = New DevExpress.Utils.PointFloat(0!, 506.0895!)
         Me.XrTable20.Name = "XrTable20"
         Me.XrTable20.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow20})
-        Me.XrTable20.SizeF = New System.Drawing.SizeF(366.3639!, 52.57935!)
+        Me.XrTable20.SizeF = New System.Drawing.SizeF(340.146!, 52.57935!)
         Me.XrTable20.StylePriority.UseBorders = False
         Me.XrTable20.StylePriority.UseFont = False
         Me.XrTable20.StylePriority.UseTextAlignment = False
@@ -1349,7 +1363,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable22.LocationFloat = New DevExpress.Utils.PointFloat(76.70065!, 558.5225!)
         Me.XrTable22.Name = "XrTable22"
         Me.XrTable22.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow22})
-        Me.XrTable22.SizeF = New System.Drawing.SizeF(289.6632!, 12.98077!)
+        Me.XrTable22.SizeF = New System.Drawing.SizeF(263.4453!, 12.98077!)
         Me.XrTable22.StylePriority.UseFont = False
         Me.XrTable22.StylePriority.UseTextAlignment = False
         Me.XrTable22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
@@ -1368,7 +1382,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell36.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell36.StylePriority.UseBorders = False
         Me.XrTableCell36.Text = "Departemen / Department"
-        Me.XrTableCell36.Weight = 1.6689226179609409R
+        Me.XrTableCell36.Weight = 1.3076909475366674R
         '
         'XrTableCell37
         '
@@ -1378,7 +1392,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell37.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell37.StylePriority.UseBorders = False
         Me.XrTableCell37.Text = "Division"
-        Me.XrTableCell37.Weight = 1.2277093095292933R
+        Me.XrTableCell37.Weight = 1.3267623438621889R
         '
         'XrTable23
         '
@@ -1386,7 +1400,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable23.LocationFloat = New DevExpress.Utils.PointFloat(76.70065!, 571.5034!)
         Me.XrTable23.Name = "XrTable23"
         Me.XrTable23.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow23})
-        Me.XrTable23.SizeF = New System.Drawing.SizeF(289.6632!, 31.33746!)
+        Me.XrTable23.SizeF = New System.Drawing.SizeF(263.4453!, 31.33746!)
         Me.XrTable23.StylePriority.UseFont = False
         Me.XrTable23.StylePriority.UseTextAlignment = False
         Me.XrTable23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
@@ -1401,25 +1415,29 @@ Partial Public Class DevCirculationTemp4
         '
         Me.XrTableCell38.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell38.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptID]")})
+        Me.XrTableCell38.Font = New System.Drawing.Font("Arial", 5.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell38.Multiline = True
         Me.XrTableCell38.Name = "XrTableCell38"
         Me.XrTableCell38.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell38.StylePriority.UseBorders = False
+        Me.XrTableCell38.StylePriority.UseFont = False
         Me.XrTableCell38.StylePriority.UseTextAlignment = False
         Me.XrTableCell38.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell38.Weight = 1.6689226179609409R
+        Me.XrTableCell38.Weight = 1.3076895742457242R
         '
         'XrTableCell39
         '
         Me.XrTableCell39.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell39.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Division]")})
+        Me.XrTableCell39.Font = New System.Drawing.Font("Arial", 5.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell39.Multiline = True
         Me.XrTableCell39.Name = "XrTableCell39"
         Me.XrTableCell39.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell39.StylePriority.UseBorders = False
+        Me.XrTableCell39.StylePriority.UseFont = False
         Me.XrTableCell39.StylePriority.UseTextAlignment = False
         Me.XrTableCell39.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell39.Weight = 1.2277093095292933R
+        Me.XrTableCell39.Weight = 1.3267637171531321R
         '
         'XrTable26
         '
@@ -1427,7 +1445,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable26.LocationFloat = New DevExpress.Utils.PointFloat(76.70072!, 614.6473!)
         Me.XrTable26.Name = "XrTable26"
         Me.XrTable26.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow26, Me.XrTableRow28})
-        Me.XrTable26.SizeF = New System.Drawing.SizeF(289.6632!, 33.50818!)
+        Me.XrTable26.SizeF = New System.Drawing.SizeF(263.4452!, 33.50818!)
         Me.XrTable26.StylePriority.UseFont = False
         Me.XrTable26.StylePriority.UseTextAlignment = False
         Me.XrTable26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
@@ -1442,7 +1460,7 @@ Partial Public Class DevCirculationTemp4
         '
         Me.XrTableCell43.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell43.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptHeadName]")})
-        Me.XrTableCell43.Font = New System.Drawing.Font("Arial", 6.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell43.Font = New System.Drawing.Font("Arial", 5.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell43.Multiline = True
         Me.XrTableCell43.Name = "XrTableCell43"
         Me.XrTableCell43.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -1450,13 +1468,13 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell43.StylePriority.UseFont = False
         Me.XrTableCell43.StylePriority.UseTextAlignment = False
         Me.XrTableCell43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell43.Weight = 1.6689228078621956R
+        Me.XrTableCell43.Weight = 1.3076903744985091R
         '
         'XrTableCell44
         '
         Me.XrTableCell44.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell44.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DivHeadName]")})
-        Me.XrTableCell44.Font = New System.Drawing.Font("Arial", 6.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell44.Font = New System.Drawing.Font("Arial", 5.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell44.Multiline = True
         Me.XrTableCell44.Name = "XrTableCell44"
         Me.XrTableCell44.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -1464,7 +1482,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell44.StylePriority.UseFont = False
         Me.XrTableCell44.StylePriority.UseTextAlignment = False
         Me.XrTableCell44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell44.Weight = 1.2277091196280385R
+        Me.XrTableCell44.Weight = 1.3267616961972866R
         '
         'XrTableRow28
         '
@@ -1476,7 +1494,7 @@ Partial Public Class DevCirculationTemp4
         '
         Me.XrTableCell47.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell47.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DeptHeadNameDate]")})
-        Me.XrTableCell47.Font = New System.Drawing.Font("Arial", 6.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell47.Font = New System.Drawing.Font("Arial", 5.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell47.Multiline = True
         Me.XrTableCell47.Name = "XrTableCell47"
         Me.XrTableCell47.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -1486,13 +1504,13 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell47.Text = "XrTableCell47"
         Me.XrTableCell47.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell47.TextFormatString = "{0:dd-MMM-yy}"
-        Me.XrTableCell47.Weight = 1.6689221975106008R
+        Me.XrTableCell47.Weight = 1.3076888486196188R
         '
         'XrTableCell48
         '
         Me.XrTableCell48.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTableCell48.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DivHeadNameDate]")})
-        Me.XrTableCell48.Font = New System.Drawing.Font("Arial", 6.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell48.Font = New System.Drawing.Font("Arial", 5.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell48.Multiline = True
         Me.XrTableCell48.Name = "XrTableCell48"
         Me.XrTableCell48.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -1502,7 +1520,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell48.Text = "XrTableCell48"
         Me.XrTableCell48.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell48.TextFormatString = "{0:dd-MMM-yy}"
-        Me.XrTableCell48.Weight = 1.2277097299796334R
+        Me.XrTableCell48.Weight = 1.3267632220761769R
         '
         'XrTable25
         '
@@ -1510,7 +1528,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable25.LocationFloat = New DevExpress.Utils.PointFloat(76.70072!, 601.6665!)
         Me.XrTable25.Name = "XrTable25"
         Me.XrTable25.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow25})
-        Me.XrTable25.SizeF = New System.Drawing.SizeF(289.6632!, 12.98077!)
+        Me.XrTable25.SizeF = New System.Drawing.SizeF(263.4452!, 12.98077!)
         Me.XrTable25.StylePriority.UseFont = False
         Me.XrTable25.StylePriority.UseTextAlignment = False
         Me.XrTable25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
@@ -1531,7 +1549,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell41.StylePriority.UseBorders = False
         Me.XrTableCell41.StylePriority.UseFont = False
         Me.XrTableCell41.Text = "Already Sign By"
-        Me.XrTableCell41.Weight = 1.6689226179609409R
+        Me.XrTableCell41.Weight = 1.3076903371851369R
         '
         'XrTableCell42
         '
@@ -1543,7 +1561,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell42.StylePriority.UseBorders = False
         Me.XrTableCell42.StylePriority.UseFont = False
         Me.XrTableCell42.Text = "Already Sign By"
-        Me.XrTableCell42.Weight = 1.2277093095292933R
+        Me.XrTableCell42.Weight = 1.3267617335106587R
         '
         'XrTable24
         '
@@ -1581,7 +1599,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTable27.LocationFloat = New DevExpress.Utils.PointFloat(0!, 645.9849!)
         Me.XrTable27.Name = "XrTable27"
         Me.XrTable27.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow27})
-        Me.XrTable27.SizeF = New System.Drawing.SizeF(366.3636!, 31.33746!)
+        Me.XrTable27.SizeF = New System.Drawing.SizeF(340.1459!, 31.33746!)
         Me.XrTable27.StylePriority.UseFont = False
         Me.XrTable27.StylePriority.UseTextAlignment = False
         Me.XrTable27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
@@ -1615,7 +1633,7 @@ Partial Public Class DevCirculationTemp4
         Me.XrTableCell46.StylePriority.UseTextAlignment = False
         Me.XrTableCell46.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell46.TextFormatString = "{0:dd-MMM-yy}"
-        Me.XrTableCell46.Weight = 2.8966310355791882R
+        Me.XrTableCell46.Weight = 2.634454186864474R
         '
         'XrTable30
         '
@@ -1907,27 +1925,15 @@ Partial Public Class DevCirculationTemp4
         '
         Me.XrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.Right
         Me.XrLabel12.Font = New System.Drawing.Font("Arial", 6.0!)
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(366.3637!, 206.8315!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(340.1459!, 206.8315!)
         Me.XrLabel12.Multiline = True
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(430.6363!, 394.835!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(456.8541!, 394.835!)
         Me.XrLabel12.StylePriority.UseBorders = False
         Me.XrLabel12.StylePriority.UseFont = False
         Me.XrLabel12.StylePriority.UseTextAlignment = False
         Me.XrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
-        'XrTableCell49
-        '
-        Me.XrTableCell49.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell49.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrCheckBox4})
-        Me.XrTableCell49.Multiline = True
-        Me.XrTableCell49.Name = "XrTableCell49"
-        Me.XrTableCell49.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell49.StylePriority.UseBorders = False
-        Me.XrTableCell49.StylePriority.UseTextAlignment = False
-        Me.XrTableCell49.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
-        Me.XrTableCell49.Weight = 0.30833341067991749R
         '
         'XrSubreport3
         '
@@ -1945,10 +1951,10 @@ Partial Public Class DevCirculationTemp4
         '
         'XrSubreport1
         '
-        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(367.3642!, 206.8314!)
+        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(340.146!, 206.8314!)
         Me.XrSubreport1.Name = "XrSubreport1"
         Me.XrSubreport1.ReportSource = New TSMU.DevCirculationReportDOCTemp()
-        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(428.635!, 351.8375!)
+        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(455.8532!, 351.8375!)
         '
         'DevCirculationTemp4
         '

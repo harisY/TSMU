@@ -142,6 +142,42 @@ Public Class FrmViewShipperNonInvoice
             MsgBox(ex.Message)
         End Try
     End Sub
+    Private Sub LoadData_NotIssue_Juga()
+        Try
+            If _TglSJFrom.Text = "" OrElse _TglSJTo.Text = "" Then
+                If _TglSJFrom.Text = "" Then
+                    _TglSJFrom.Focus()
+                ElseIf _TglSJTo.Text = "" Then
+                    _TglSJTo.Focus()
+                End If
+                Throw New Exception("Silahkan pilih tanggal !")
+            End If
+            Cursor = Cursors.WaitCursor
+            ObjSuspend2 = New ClsShippernotinvoice
+            Dim dtSearch2 As New DataTable
+            '' dtSearch2 = ObjSuspend2.GetCustomer2
+            dtSearch2 = ObjSuspend2.GetShipperNotInvNonIssue(IIf(_BtnCust2.Text = "", "ALL", _BtnCust2.Text), Format(_TglSJFrom.EditValue, gs_FormatSQLDate), Format(_TglSJTo.EditValue, gs_FormatSQLDate), _TxtLokasi.Text)
+            GridControl2.DataSource = dtSearch2
+            GridCellFormat(GridView5)
+            GridView5.BestFitColumns()
+
+            With GridView5
+                .Columns(0).Visible = False
+            End With
+            GridCellFormat(GridView5)
+            GridView5.Columns("ShipperID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView5.Columns("CustOrdNbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView5.Columns("AlternateID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView5.Columns("InvtID").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView5.Columns("PONbr").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+            GridView5.Columns("PONo_Reg").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisPath
+
+            Cursor = Cursors.Default
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     'Public Overrides Sub Proc_InputNewData()
 
     '    ''   LoadData()
@@ -283,9 +319,16 @@ Public Class FrmViewShipperNonInvoice
                 Else
                     MsgBox("Grid Kosong!")
                 End If
-            Else
+            ElseIf XtraTabControl1.SelectedTabPageIndex = 3 Then
                 If GridView4.RowCount > 0 Then
                     SaveToExcel(GridControl1)
+                    MsgBox("Data Sudah Berhasil Di Export.")
+                Else
+                    MsgBox("Grid Kosong!")
+                End If
+            Else
+                If GridView5.RowCount > 0 Then
+                    SaveToExcel(GridControl2)
                     MsgBox("Data Sudah Berhasil Di Export.")
                 Else
                     MsgBox("Grid Kosong!")
@@ -316,6 +359,7 @@ Public Class FrmViewShipperNonInvoice
         LoadGridCM()
         LoadGridDM()
         LoadData_NotIssue()
+        LoadData_NotIssue_Juga()
         TotAmount = 0
         Try
             For i As Integer = 0 To GridView1.RowCount - 1

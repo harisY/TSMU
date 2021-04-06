@@ -23,8 +23,8 @@ Partial Class Frm_Head_PurchaseOrder
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PRNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Tanggal = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Dept = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Total = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.C_Submit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,7 +46,7 @@ Partial Class Frm_Head_PurchaseOrder
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PRNo, Me.Tanggal, Me.Dept, Me.Total})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PRNo, Me.Tanggal, Me.Total, Me.Status})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -57,7 +57,7 @@ Partial Class Frm_Head_PurchaseOrder
         '
         Me.PRNo.AppearanceHeader.Options.UseTextOptions = True
         Me.PRNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.PRNo.FieldName = "PR No"
+        Me.PRNo.FieldName = "PO Number"
         Me.PRNo.Name = "PRNo"
         Me.PRNo.OptionsColumn.AllowEdit = False
         Me.PRNo.Visible = True
@@ -77,19 +77,6 @@ Partial Class Frm_Head_PurchaseOrder
         Me.Tanggal.VisibleIndex = 1
         Me.Tanggal.Width = 163
         '
-        'Dept
-        '
-        Me.Dept.AppearanceCell.Options.UseTextOptions = True
-        Me.Dept.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.Dept.AppearanceHeader.Options.UseTextOptions = True
-        Me.Dept.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.Dept.FieldName = "Dept"
-        Me.Dept.Name = "Dept"
-        Me.Dept.OptionsColumn.AllowEdit = False
-        Me.Dept.Visible = True
-        Me.Dept.VisibleIndex = 2
-        Me.Dept.Width = 134
-        '
         'Total
         '
         Me.Total.AppearanceHeader.Options.UseTextOptions = True
@@ -101,6 +88,14 @@ Partial Class Frm_Head_PurchaseOrder
         Me.Total.Visible = True
         Me.Total.VisibleIndex = 3
         Me.Total.Width = 173
+        '
+        'Status
+        '
+        Me.Status.FieldName = "Status"
+        Me.Status.Name = "Status"
+        Me.Status.Visible = True
+        Me.Status.VisibleIndex = 2
+        Me.Status.Width = 146
         '
         'C_Submit
         '
@@ -126,7 +121,7 @@ Partial Class Frm_Head_PurchaseOrder
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents PRNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Tanggal As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Dept As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Total As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents C_Submit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
 End Class

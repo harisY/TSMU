@@ -186,6 +186,7 @@ Public Class frmKanbanInternalTng
                 dr("RackPart") = item.RackPart
                 dr("Warna") = item.Warna
                 dr("QRCode") = item.InventoryId & item.PartNoLabel
+                'dr("QRCode") = String.Format($"{item.InventoryId}/{item.PartNoLabel}/{item.PONumber}/{item.QtyOrder.ToString.AsString}") 'item.InventoryId & item.PartNoLabel
                 dtTemp1.Rows.Add(dr)
                 urut = urut + 1
             Next

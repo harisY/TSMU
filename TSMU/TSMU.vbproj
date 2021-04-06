@@ -279,6 +279,7 @@
     <Compile Include="Classes\Payment\Cls_Report.vb" />
     <Compile Include="Classes\PRClass.vb" />
     <Compile Include="Classes\PR\Cls_PR.vb" />
+    <Compile Include="Classes\Purchase Order\Cls_PO.vb" />
     <Compile Include="Classes\sales_model.vb" />
     <Compile Include="Classes\Security.vb" />
     <Compile Include="Classes\TagModel.vb" />
@@ -1731,6 +1732,12 @@
     <Compile Include="Form\Common\FrmForecast_PO_TempTable.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmMonitoringInventory.Designer.vb">
+      <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmMonitoringInventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmQcOutgoing.Designer.vb">
       <DependentUpon>frmQcOutgoing.vb</DependentUpon>
     </Compile>
@@ -2409,6 +2416,12 @@
     <Compile Include="Form\PR\FrmHeaderPR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Purchase Order\Frm_Detail_PurchaseOrder.Designer.vb">
+      <DependentUpon>Frm_Detail_PurchaseOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Purchase Order\Frm_Detail_PurchaseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Purchase Order\Frm_Head_PurchaseOrder.Designer.vb">
       <DependentUpon>Frm_Head_PurchaseOrder.vb</DependentUpon>
     </Compile>
@@ -2858,6 +2871,7 @@
     <Compile Include="Models\MizuhoModels.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
+    <Compile Include="Models\ProblemModel.vb" />
     <Compile Include="Models\QcOutgoingModel.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
     <Compile Include="Models\saldo_awal_models.vb" />
@@ -3290,8 +3304,10 @@
     <Compile Include="Services\HRPAService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
+    <Compile Include="Services\ProblemService.vb" />
     <Compile Include="Services\QcOutgoingService.vb" />
     <Compile Include="Services\SettingService.vb" />
+    <Compile Include="Services\SolomonService.vb" />
     <Compile Include="Services\TForecastPrice_TempService.vb" />
     <Compile Include="SuratJalan\FrmSuratJalan.Designer.vb">
       <DependentUpon>FrmSuratJalan.vb</DependentUpon>
@@ -3884,6 +3900,9 @@
     <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTable.resx">
       <DependentUpon>FrmForecast_PO_TempTable.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmMonitoringInventory.resx">
+      <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmQcOutgoing.resx">
       <DependentUpon>frmQcOutgoing.vb</DependentUpon>
     </EmbeddedResource>
@@ -4071,6 +4090,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PR\FrmHeaderPR.resx">
       <DependentUpon>FrmHeaderPR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Purchase Order\Frm_Detail_PurchaseOrder.resx">
+      <DependentUpon>Frm_Detail_PurchaseOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Purchase Order\Frm_Head_PurchaseOrder.resx">
       <DependentUpon>Frm_Head_PurchaseOrder.vb</DependentUpon>

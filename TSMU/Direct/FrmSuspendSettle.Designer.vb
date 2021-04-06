@@ -62,16 +62,20 @@ Partial Class FrmSuspendSettle
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(3, 3)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Grid.Location = New System.Drawing.Point(4, 4)
         Me.Grid.MainView = Me.GridView1
+        Me.Grid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(800, 506)
+        Me.Grid.Size = New System.Drawing.Size(1067, 662)
         Me.Grid.TabIndex = 2
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+        Me.GridView1.DetailHeight = 458
+        Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -83,95 +87,109 @@ Partial Class FrmSuspendSettle
         '
         Me.GridColumn1.Caption = "ID"
         Me.GridColumn1.FieldName = "ID"
+        Me.GridColumn1.MinWidth = 27
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.FixedWidth = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 100
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Settle ID"
         Me.GridColumn2.FieldName = "SettleID"
+        Me.GridColumn2.MinWidth = 27
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.FixedWidth = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 100
+        Me.GridColumn2.Width = 133
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Suspend ID"
         Me.GridColumn3.FieldName = "SuspendID"
+        Me.GridColumn3.MinWidth = 27
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.FixedWidth = True
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 100
+        Me.GridColumn3.Width = 133
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Department"
         Me.GridColumn4.FieldName = "DeptID"
+        Me.GridColumn4.MinWidth = 27
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.FixedWidth = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.Width = 100
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Remark"
         Me.GridColumn5.FieldName = "Remark"
+        Me.GridColumn5.MinWidth = 27
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.FixedWidth = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        Me.GridColumn5.Width = 200
+        Me.GridColumn5.Width = 267
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Date"
         Me.GridColumn6.FieldName = "Tgl"
+        Me.GridColumn6.MinWidth = 27
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.FixedWidth = True
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
-        Me.GridColumn6.Width = 80
+        Me.GridColumn6.Width = 107
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "Currency"
         Me.GridColumn7.FieldName = "CuryID"
+        Me.GridColumn7.MinWidth = 27
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.FixedWidth = True
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
-        Me.GridColumn7.Width = 50
+        Me.GridColumn7.Width = 67
         '
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Amount"
         Me.GridColumn8.FieldName = "Total"
+        Me.GridColumn8.MinWidth = 27
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.FixedWidth = True
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
-        Me.GridColumn8.Width = 100
+        Me.GridColumn8.Width = 133
         '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Suspend Amount"
         Me.GridColumn9.FieldName = "SuspendAmount"
+        Me.GridColumn9.MinWidth = 27
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.Width = 100
         '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Settle Amount"
         Me.GridColumn10.FieldName = "SettleAmount"
+        Me.GridColumn10.MinWidth = 27
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 9
+        Me.GridColumn10.Width = 100
         '
         'OpenFileDialog1
         '
@@ -182,25 +200,28 @@ Partial Class FrmSuspendSettle
         Me.XtraTabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.XtraTabControl1.Location = New System.Drawing.Point(12, 28)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(16, 37)
+        Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(816, 550)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1088, 719)
         Me.XtraTabControl1.TabIndex = 3
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me.Grid)
+        Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(810, 522)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1081, 685)
         Me.XtraTabPage1.Text = "Settlement"
         '
         'XtraTabPage2
         '
         Me.XtraTabPage2.Controls.Add(Me.GridControl1)
+        Me.XtraTabPage2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(810, 522)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1081, 685)
         Me.XtraTabPage2.Text = "Settlement Paid"
         '
         'GridControl1
@@ -208,16 +229,20 @@ Partial Class FrmSuspendSettle
         Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridControl1.Location = New System.Drawing.Point(5, 3)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GridControl1.Location = New System.Drawing.Point(7, 4)
         Me.GridControl1.MainView = Me.GridView2
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(800, 511)
+        Me.GridControl1.Size = New System.Drawing.Size(1067, 668)
         Me.GridControl1.TabIndex = 3
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
         'GridView2
         '
         Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+        Me.GridView2.DetailHeight = 458
+        Me.GridView2.FixedLineWidth = 3
         Me.GridView2.GridControl = Me.GridControl1
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
@@ -229,101 +254,116 @@ Partial Class FrmSuspendSettle
         '
         Me.GridColumn11.Caption = "ID"
         Me.GridColumn11.FieldName = "ID"
+        Me.GridColumn11.MinWidth = 27
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.OptionsColumn.FixedWidth = True
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 100
         '
         'GridColumn12
         '
         Me.GridColumn12.Caption = "Settle ID"
         Me.GridColumn12.FieldName = "SettleID"
+        Me.GridColumn12.MinWidth = 27
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.FixedWidth = True
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 1
-        Me.GridColumn12.Width = 100
+        Me.GridColumn12.Width = 133
         '
         'GridColumn13
         '
         Me.GridColumn13.Caption = "Suspend ID"
         Me.GridColumn13.FieldName = "SuspendID"
+        Me.GridColumn13.MinWidth = 27
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.FixedWidth = True
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 100
+        Me.GridColumn13.Width = 133
         '
         'GridColumn14
         '
         Me.GridColumn14.Caption = "Department"
         Me.GridColumn14.FieldName = "DeptID"
+        Me.GridColumn14.MinWidth = 27
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.OptionsColumn.FixedWidth = True
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 3
+        Me.GridColumn14.Width = 100
         '
         'GridColumn15
         '
         Me.GridColumn15.Caption = "Remark"
         Me.GridColumn15.FieldName = "Remark"
+        Me.GridColumn15.MinWidth = 27
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.FixedWidth = True
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 4
-        Me.GridColumn15.Width = 200
+        Me.GridColumn15.Width = 267
         '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "Date"
         Me.GridColumn16.FieldName = "Tgl"
+        Me.GridColumn16.MinWidth = 27
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.FixedWidth = True
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 5
-        Me.GridColumn16.Width = 80
+        Me.GridColumn16.Width = 107
         '
         'GridColumn17
         '
         Me.GridColumn17.Caption = "Currency"
         Me.GridColumn17.FieldName = "CuryID"
+        Me.GridColumn17.MinWidth = 27
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.OptionsColumn.FixedWidth = True
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 6
-        Me.GridColumn17.Width = 50
+        Me.GridColumn17.Width = 67
         '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Amount"
         Me.GridColumn18.FieldName = "Total"
+        Me.GridColumn18.MinWidth = 27
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.OptionsColumn.FixedWidth = True
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 7
-        Me.GridColumn18.Width = 100
+        Me.GridColumn18.Width = 133
         '
         'GridColumn19
         '
         Me.GridColumn19.Caption = "Suspend Amount"
         Me.GridColumn19.FieldName = "SuspendAmount"
+        Me.GridColumn19.MinWidth = 27
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
         Me.GridColumn19.VisibleIndex = 8
+        Me.GridColumn19.Width = 100
         '
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Settle Amount"
         Me.GridColumn20.FieldName = "SettleAmount"
+        Me.GridColumn20.MinWidth = 27
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 9
+        Me.GridColumn20.Width = 100
         '
         'FrmSuspendSettle
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.XtraTabControl1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "FrmSuspendSettle"
         Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()

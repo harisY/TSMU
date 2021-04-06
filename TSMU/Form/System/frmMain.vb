@@ -9,7 +9,6 @@ Imports DevExpress.XtraTabbedMdi
 
 Partial Public Class FrmMain
     Inherits RibbonForm
-
     Private _manager As MenuManager
     Dim fs_AssProduct As String = ""
     Dim HasLoad As Boolean = False
