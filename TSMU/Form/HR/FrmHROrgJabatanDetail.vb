@@ -92,7 +92,7 @@ Public Class FrmHROrgJabatanDetail
                     txtUserUbah.Text = .UserUbah
                 End With
             Else
-                dtTglMulai.EditValue = Date.Today
+                dtTglMulai.EditValue = Date.Parse("1990-01-01") 'Date.Today
                 dtTglSelesai.EditValue = Date.Parse("9999-12-31")
                 cbIsHead.Text = "NO"
                 dtTglBuat.EditValue = DateTime.Now

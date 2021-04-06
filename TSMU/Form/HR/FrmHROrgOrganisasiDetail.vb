@@ -97,7 +97,7 @@ Public Class FrmHROrgOrganisasiDetail
                 End With
             Else
                 ListItemsOrgLevelNew()
-                dtTglMulai.EditValue = Date.Today
+                dtTglMulai.EditValue = Date.Parse("1990-01-01") 'Date.Today
                 dtTglSelesai.EditValue = Date.Parse("9999-12-31")
                 dtTglBuat.EditValue = DateTime.Now
                 txtUserBuat.Text = gh_Common.Username

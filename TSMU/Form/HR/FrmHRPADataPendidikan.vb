@@ -146,7 +146,11 @@ Public Class FrmHRPADataPendidikan
     Private Function CheckValidasi() As Boolean
         Dim validasi As Boolean = False
         Try
-            If dtTglMulai.EditValue > dtTglSelesai.EditValue Then
+            If dtTglMulai.EditValue = Nothing Then
+                Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Kosong!")
+            ElseIf dtTglSelesai.EditValue = Nothing Then
+                Err.Raise(ErrNumber, , "Tanggal Selesai Tidak Boleh Kosong!")
+            ElseIf dtTglMulai.EditValue > dtTglSelesai.EditValue Then
                 Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Lebih Besar Dari Tanggal Selesai !")
             ElseIf cbTipePendidikan.Text = "" Then
                 Err.Raise(ErrNumber, , "Tipe Pendidikan Tidak Boleh Kosong!")
