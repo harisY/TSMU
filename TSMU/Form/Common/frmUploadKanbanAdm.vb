@@ -1,11 +1,10 @@
-﻿Imports DevExpress.LookAndFeel
-Imports DevExpress.XtraGrid
-Imports DevExpress.XtraReports.UI
+﻿Imports DevExpress.XtraGrid
 Imports DevExpress.XtraSplashScreen
 
 Public Class frmUploadKanbanAdm
     Dim dtGrid As DataTable
     Dim Obj As New KanbanAdmModel
+
     Private Sub frmUploadKanbanAdm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
         Call Proc_EnableButtons(False, False, False, True, True, False, True, False, False, False, False)
@@ -22,10 +21,10 @@ Public Class frmUploadKanbanAdm
                     .BestFitColumns()
                     .Columns(0).Visible = False
                     .FixedLineWidth = 2
-                    .Columns(11).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-                    .Columns(12).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-                    .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-                    .Columns(2).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                    .Columns(11).Fixed = Columns.FixedStyle.Left
+                    .Columns(12).Fixed = Columns.FixedStyle.Left
+                    .Columns(1).Fixed = Columns.FixedStyle.Left
+                    .Columns(2).Fixed = Columns.FixedStyle.Left
 
                 End With
                 GridCellFormat(GridView1)
@@ -37,9 +36,11 @@ Public Class frmUploadKanbanAdm
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Public Overrides Sub Proc_Refresh()
         LoadGrid()
     End Sub
+
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
         Dim ls_Judul As String = "Barcode"
@@ -105,54 +106,6 @@ Public Class frmUploadKanbanAdm
                     Obj.ObjCollections.Add(ObjColllection)
                 Next
                 Obj.InsertTransactions()
-                'Dim dtKanban As New DataTable
-                'If gh_Common.Site.ToLower = "tng" Then
-                '    dtKanban = Obj.GetKanban
-                '    For i As Integer = 0 To dtKanban.Rows.Count - 1
-                '        Try
-                '            Dim Tgl As String = dtKanban.Rows(i)(0).ToString
-                '            Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
-                '            Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(2))
-                '            Dim shopCode As String = Convert.ToString(dtKanban.Rows(i)(3))
-
-                '            Dim IsExist As Boolean = Obj.IsKanbanExist(Tgl, Cycle, shopCode)
-                '            If Not IsExist Then
-                '                '    Obj.UpdateKanbanSum(Tgl, Cycle, Kanban)
-                '                'Else
-                '                Obj.SaveKanbanSum(Tgl, Cycle, Kanban, shopCode)
-                '            End If
-                '        Catch ex As Exception
-                '            MsgBox(ex.Message)
-                '            Console.WriteLine(ex.Message)
-                '            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                '            Continue For
-                '        End Try
-                '    Next
-                'Else
-                '    dtKanban = Obj.GetKanbanCKR
-                '    For i As Integer = 0 To dtKanban.Rows.Count - 1
-                '        Try
-                '            Dim Tgl As String = dtKanban.Rows(i)(0).ToString
-                '            Dim Cycle As Integer = Convert.ToInt32(dtKanban.Rows(i)(1))
-                '            Dim Kanban As Integer = Convert.ToInt32(dtKanban.Rows(i)(3))
-                '            Dim Remark As String = Convert.ToString(dtKanban.Rows(i)(2))
-                '            Dim TotDN As Integer = Convert.ToInt32(dtKanban.Rows(i)(4))
-                '            Dim shopCode As String = Convert.ToString(dtKanban.Rows(i)(5))
-                '            Dim plantCode As String = Convert.ToString(dtKanban.Rows(i)(6))
-
-                '            Dim IsExist As Boolean = Obj.IsKanbanExistCkr(Tgl, Cycle, Remark, shopCode)
-                '            If Not IsExist Then
-                '                Obj.SaveKanbanSumCKR(Tgl, Cycle, Kanban, Remark, TotDN, shopCode, plantCode)
-                '            End If
-                '        Catch ex As Exception
-                '            MsgBox(ex.Message)
-                '            Console.WriteLine(ex.Message)
-                '            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                '            Continue For
-                '        End Try
-                '    Next
-                'End If
-                'dtKanban = Obj.GetKanban
 
                 SplashScreenManager.CloseForm()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -171,6 +124,7 @@ Public Class frmUploadKanbanAdm
             ContextMenuStrip1.Show(e.Location)
         End If
     End Sub
+
     'Public Overrides Sub Proc_PrintPreview()
     '    Try
 
@@ -214,4 +168,5 @@ Public Class frmUploadKanbanAdm
     Private Sub frmUploadKanbanAdm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         LoadGrid()
     End Sub
+
 End Class
