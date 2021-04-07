@@ -1,4 +1,7 @@
-﻿Public Class KanbanYIMModel
+﻿Imports System.Collections.ObjectModel
+Imports System.Data.SqlClient
+
+Public Class KanbanYIMModel
     Public Property Delay_Days As String
     Public Property Delivery_Due_Date As Date?
     Public Property Delivery_Slip_No As String
@@ -25,6 +28,7 @@
     Public Property UploadedDate As Date?
     Public Property User_Code As String
     Public Property User_Name As String
+    Public Property ObjCollections() As New Collection(Of KanbanYIMModel)
 
     Public Function GetAllDataGrid() As DataTable
         Try
@@ -36,11 +40,45 @@
             Throw
         End Try
     End Function
+
+    Private Sub AddData(i As Integer)
+        Try
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter) From {
+                New SqlParameter() With {.ParameterName = "Delay_Days", .Value = ObjCollections(i).Delay_Days},
+                New SqlParameter() With {.ParameterName = "Delivery_Due_Date", .Value = ObjCollections(i).Delivery_Due_Date},
+                New SqlParameter() With {.ParameterName = "Delivery_Slip_No", .Value = ObjCollections(i).Delivery_Slip_No},
+                New SqlParameter() With {.ParameterName = "Delivery_Time_From", .Value = ObjCollections(i).Delivery_Time_From},
+                New SqlParameter() With {.ParameterName = "Delivery_Time_To", .Value = ObjCollections(i).Delivery_Time_To},
+                New SqlParameter() With {.ParameterName = "Item_Class", .Value = ObjCollections(i).Item_Class},
+                New SqlParameter() With {.ParameterName = "Item_Name", .Value = ObjCollections(i).Item_Name},
+                New SqlParameter() With {.ParameterName = "Item_Number", .Value = ObjCollections(i).Item_Number},
+                New SqlParameter() With {.ParameterName = "Item_Status", .Value = ObjCollections(i).Item_Status},
+                New SqlParameter() With {.ParameterName = "Order_No", .Value = ObjCollections(i).Order_No},
+                New SqlParameter() With {.ParameterName = "Order_Quantity", .Value = ObjCollections(i).Order_Quantity},
+                New SqlParameter() With {.ParameterName = "Output_date", .Value = ObjCollections(i).Output_date},
+                New SqlParameter() With {.ParameterName = "PF", .Value = ObjCollections(i).PF},
+                New SqlParameter() With {.ParameterName = "PF_Name", .Value = ObjCollections(i).PF_Name},
+                New SqlParameter() With {.ParameterName = "Production_Classification", .Value = ObjCollections(i).Production_Classification},
+                New SqlParameter() With {.ParameterName = "Remain_Quantity", .Value = ObjCollections(i).Remain_Quantity},
+                New SqlParameter() With {.ParameterName = "SEQ", .Value = ObjCollections(i).SEQ},
+                New SqlParameter() With {.ParameterName = "Shipping_LOC", .Value = ObjCollections(i).Shipping_LOC},
+                New SqlParameter() With {.ParameterName = "Supplier_Code", .Value = ObjCollections(i).Supplier_Code},
+                New SqlParameter() With {.ParameterName = "Supplier_Name", .Value = ObjCollections(i).Supplier_Name},
+                New SqlParameter() With {.ParameterName = "Unit", .Value = ObjCollections(i).Unit},
+                New SqlParameter() With {.ParameterName = "User_Code", .Value = ObjCollections(i).User_Code},
+                New SqlParameter() With {.ParameterName = "User_Name", .Value = ObjCollections(i).User_Name},
+                New SqlParameter() With {.ParameterName = "UploadedBy", .Value = ObjCollections(i).UploadedBy}
+            }
+            ExecQueryWithValue("KanbanYIM_Insert", CommandType.StoredProcedure, Params, GetConnString)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Sub InsertData()
         Try
             Dim Query As String = "KanbanYIM_Insert"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(23) {}
-            pParam(0) = New SqlClient.SqlParameter("@Delay_Days", SqlDbType.VarChar)
+            Dim pParam() As SqlParameter = New SqlClient.SqlParameter(23) {}
+            pParam(0) = New SqlParameter("@Delay_Days", SqlDbType.VarChar)
             pParam(0).Value = Delay_Days
             pParam(1) = New SqlClient.SqlParameter("@Delivery_Due_Date", SqlDbType.Date)
             pParam(1).Value = Delivery_Due_Date
@@ -92,6 +130,42 @@
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Public Sub InsertTransactions()
+        Using Conn As New SqlConnection(GetConnString())
+            Conn.Open()
+            Using Trans As SqlTransaction = Conn.BeginTransaction
+                gh_Trans = New InstanceVariables.TransactionHelper
+                gh_Trans.Command.Connection = Conn
+                gh_Trans.Command.Transaction = Trans
+                Try
+                    For i As Integer = 0 To ObjCollections.Count - 1
+                        AddData(i)
+                    Next
+                    Dim dtKanban As New DataTable
+                    dtKanban = GetKanban()
+
+                    For i As Integer = 0 To dtKanban.Rows.Count - 1
+                        Dim _tgl As String = Convert.ToString(dtKanban.Rows(i)(0))
+                        Dim _plant As String = Convert.ToString(dtKanban.Rows(i)(1))
+                            Dim _user As String = Convert.ToString(dtKanban.Rows(i)(2))
+                            Dim _qty As Integer = Convert.ToInt32(dtKanban.Rows(i)(3))
+
+                            Dim IsExist As Boolean = IsKanbanExist(_tgl, _plant, _user)
+                            If Not IsExist Then
+                                SaveKanbanSum(_tgl, _plant, _user, _qty)
+                            End If
+                    Next
+                    Trans.Commit()
+                Catch ex As Exception
+                    Trans.Rollback()
+                    Throw ex
+                Finally
+                    gh_Trans = Nothing
+                End Try
+            End Using
+        End Using
     End Sub
 
     Public Function GetKanban() As DataTable

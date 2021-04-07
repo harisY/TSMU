@@ -114,7 +114,7 @@ Public Class frmUploadKanbanAdm
         Catch ex As Exception
             SplashScreenManager.CloseForm()
             Console.WriteLine($"Gagal Upload data - {j} {ex.Message}")
-            ShowMessage($"Gagal Upload data - {j} {ex.Message}", MessageTypeEnum.ErrorMessage)
+            ShowMessage($"Gagal Upload data - {ex.Message}", MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
