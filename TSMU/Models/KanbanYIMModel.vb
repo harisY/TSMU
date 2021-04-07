@@ -146,13 +146,13 @@ Public Class KanbanYIMModel
                     Dim dtKanban As New DataTable
                     dtKanban = GetKanban()
 
-                    For i As Integer = 0 To dtKanban.Rows.Count - 1
-                        Dim _tgl As String = Convert.ToString(dtKanban.Rows(i)(0))
-                        Dim _plant As String = Convert.ToString(dtKanban.Rows(i)(1))
-                            Dim _user As String = Convert.ToString(dtKanban.Rows(i)(2))
-                            Dim _qty As Integer = Convert.ToInt32(dtKanban.Rows(i)(3))
+                    For j As Integer = 0 To dtKanban.Rows.Count - 1
+                        Dim _tgl As String = Convert.ToString(dtKanban.Rows(j)(0))
+                        Dim _plant As String = Convert.ToString(dtKanban.Rows(j)(1))
+                        Dim _user As String = Convert.ToString(dtKanban.Rows(j)(2))
+                        Dim _qty As Integer = Convert.ToInt32(dtKanban.Rows(j)(3))
 
-                            Dim IsExist As Boolean = IsKanbanExist(_tgl, _plant, _user)
+                        Dim IsExist As Boolean = IsKanbanExist(_tgl, _plant, _user)
                             If Not IsExist Then
                                 SaveKanbanSum(_tgl, _plant, _user, _qty)
                             End If

@@ -1,7 +1,4 @@
-﻿Imports DevExpress.LookAndFeel
-Imports DevExpress.XtraGrid
-Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraSplashScreen
+﻿Imports DevExpress.XtraSplashScreen
 
 Public Class frmUploadKanbanYIM
     Dim dtGrid As DataTable
@@ -48,9 +45,11 @@ Public Class frmUploadKanbanYIM
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
     Public Overrides Sub Proc_Refresh()
         Call LoadGrid()
     End Sub
+
     Public Overrides Sub Proc_Excel()
         Dim table As New DataTable
         Dim ls_Judul As String = "KANBAN YIM"
@@ -108,7 +107,7 @@ Public Class frmUploadKanbanYIM
                 Obj.InsertTransactions()
 
                 SplashScreenManager.CloseForm()
-                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                 LoadGrid()
             End If
         Catch ex As Exception
@@ -123,6 +122,7 @@ Public Class frmUploadKanbanYIM
             ContextMenuStrip1.Show(e.Location)
         End If
     End Sub
+
     'Public Overrides Sub Proc_PrintPreview()
     '    Try
 
@@ -158,4 +158,5 @@ Public Class frmUploadKanbanYIM
     Private Sub frmUploadKanbanYIM_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         LoadGrid()
     End Sub
+
 End Class
