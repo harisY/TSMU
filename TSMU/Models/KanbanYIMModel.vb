@@ -74,6 +74,7 @@ Public Class KanbanYIMModel
             Throw ex
         End Try
     End Sub
+
     Public Sub InsertData()
         Try
             Dim Query As String = "KanbanYIM_Insert"
@@ -153,9 +154,9 @@ Public Class KanbanYIMModel
                         Dim _qty As Integer = Convert.ToInt32(dtKanban.Rows(j)(3))
 
                         Dim IsExist As Boolean = IsKanbanExist(_tgl, _plant, _user)
-                            If Not IsExist Then
-                                SaveKanbanSum(_tgl, _plant, _user, _qty)
-                            End If
+                        If Not IsExist Then
+                            SaveKanbanSum(_tgl, _plant, _user, _qty)
+                        End If
                     Next
                     Trans.Commit()
                 Catch ex As Exception
@@ -178,6 +179,7 @@ Public Class KanbanYIMModel
             Throw
         End Try
     End Function
+
     Public Sub SaveKanbanSum(tgl As String, plant As String, user As String, qty As Integer)
         Try
             Dim sql As String = "KanbanYIMSum_Insert"
@@ -200,12 +202,12 @@ Public Class KanbanYIMModel
         Dim hasil As Boolean = False
         Try
             Dim sql As String = "KanbanYIMSum_CekKanban"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
-            pParam(0) = New SqlClient.SqlParameter("@tgl", SqlDbType.VarChar)
+            Dim pParam() As SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlParameter("@tgl", SqlDbType.VarChar)
             pParam(0).Value = tgl
-            pParam(1) = New SqlClient.SqlParameter("@plant", SqlDbType.VarChar)
+            pParam(1) = New SqlParameter("@plant", SqlDbType.VarChar)
             pParam(1).Value = plant
-            pParam(2) = New SqlClient.SqlParameter("@user", SqlDbType.VarChar)
+            pParam(2) = New SqlParameter("@user", SqlDbType.VarChar)
             pParam(2).Value = user
 
             Dim dt As New DataTable
