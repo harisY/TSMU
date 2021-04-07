@@ -35,7 +35,14 @@ Module Extensions
         Return item.ToString().Trim()
     End Function
     <Extension()>
-    Function AsDateTime(ByVal item As Object, ByVal Optional defaultDateTime As Date = Nothing) As DateTime
+    Function AsTime(ByVal item As Object, ByVal Optional defaultTime As TimeSpan = Nothing) As TimeSpan
+        If item Is Nothing OrElse item.Equals(DBNull.Value) Then Return defaultTime
+        Dim result As TimeSpan
+        If Not TimeSpan.TryParse(item.ToString(), result) Then Return defaultTime
+        Return result
+    End Function
+    <Extension()>
+    Function AsDateTime(ByVal item As Object, ByVal Optional defaultDateTime As Date = Nothing) As Date
         If item Is Nothing OrElse String.IsNullOrEmpty(item.ToString()) OrElse item.Equals(DBNull.Value) Then Return defaultDateTime
         Dim result As Date
         If Not Date.TryParse(item.ToString(), result) Then Return defaultDateTime
