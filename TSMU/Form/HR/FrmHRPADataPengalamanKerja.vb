@@ -2,7 +2,7 @@
 Imports System.IO
 Imports DevExpress.XtraGrid
 
-Public Class FrmHRPADataKomunikasi
+Public Class FrmHRPADataPengalamanKerja
 
     Dim _isSave As Boolean
     Dim isAction As String
@@ -13,7 +13,7 @@ Public Class FrmHRPADataKomunikasi
     Dim GridDtl As GridControl
     Dim FrmParent As Form
 
-    Dim modelDataKomunikasi As HRPADataKomunikasiModel
+    Dim modelDataPengalaman As HRPADataPengalamanKerjaModel
     Dim srvHR As New HRPAService
 
     Public Sub New()
@@ -44,13 +44,13 @@ Public Class FrmHRPADataKomunikasi
         FrmParent = lf_FormParent
     End Sub
 
-    Private Sub FrmHRPADataKomunikasi_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmHRPADataPengalamanKerja_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call InitialSetForm()
     End Sub
 
     Public Sub InitialSetForm()
         Try
-            Me.Text = isAction.ToUpper + " DATA KOMUNIKASI"
+            Me.Text = isAction.ToUpper + " DATA PENGALAMAN KERJA"
             Call LoadTxtBox()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -64,8 +64,14 @@ Public Class FrmHRPADataKomunikasi
                 dtTglMulai.EditValue = dataRow("TglMulai")
                 dtTglSelesai.EditValue = dataRow("TglSelesai")
                 txtNIK.Text = NIK
-                cbTipeKomunikasi.Text = IIf(dataRow("TipeKomunikasi") Is DBNull.Value, "", dataRow("TipeKomunikasi"))
-                txtDeskripsi.Text = IIf(dataRow("Deskripsi") Is DBNull.Value, "", dataRow("Deskripsi"))
+                txtPerusahaan.Text = IIf(dataRow("Perusahaan") Is DBNull.Value, "", dataRow("Perusahaan"))
+                txtJob.Text = IIf(dataRow("Job") Is DBNull.Value, "", dataRow("Job"))
+                txtJabatan.Text = IIf(dataRow("Jabatan") Is DBNull.Value, "", dataRow("Jabatan"))
+                txtAlamat.Text = IIf(dataRow("Alamat") Is DBNull.Value, "", dataRow("Alamat"))
+                txtAlasanKeluar.Text = IIf(dataRow("AlasanKeluar") Is DBNull.Value, "", dataRow("AlasanKeluar"))
+                txtJenisUsaha.Text = IIf(dataRow("JenisUsaha") Is DBNull.Value, "", dataRow("JenisUsaha"))
+                txtNoTelpon.Text = IIf(dataRow("NoTelpon") Is DBNull.Value, "", dataRow("NoTelpon"))
+                txtJobDesc.Text = IIf(dataRow("JobDesc") Is DBNull.Value, "", dataRow("JobDesc"))
                 txtKet.Text = IIf(dataRow("Ket") Is DBNull.Value, "", dataRow("Ket"))
                 dtTglBuat.EditValue = dataRow("TglBuat")
                 txtUserBuat.Text = dataRow("UserBuat")
@@ -92,8 +98,14 @@ Public Class FrmHRPADataKomunikasi
     Private Sub CondView()
         dtTglMulai.Enabled = False
         dtTglSelesai.Enabled = False
-        cbTipeKomunikasi.Enabled = False
-        txtDeskripsi.Enabled = False
+        txtPerusahaan.Enabled = False
+        txtJob.Enabled = False
+        txtJabatan.Enabled = False
+        txtAlamat.Enabled = False
+        txtAlasanKeluar.Enabled = False
+        txtJenisUsaha.Enabled = False
+        txtNoTelpon.Enabled = False
+        txtJobDesc.Enabled = False
         txtKet.Enabled = False
         If isAction = "View" Then
             btnSave.Enabled = False
@@ -113,13 +125,13 @@ Public Class FrmHRPADataKomunikasi
                 If CheckValidasi() = False Then
                     _isSave = True
                     If isAction = "Add" OrElse isAction = "Copy" Then
-                        srvHR.SaveNewDataKomunikasi(modelDataKomunikasi)
+                        srvHR.SaveNewDataPengalamanKerja(modelDataPengalaman)
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     ElseIf isAction = "Edit" Then
-                        srvHR.SaveEditDataKomunikasi(modelDataKomunikasi)
+                        srvHR.SaveEditDataPengalamanKerja(modelDataPengalaman)
                         Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
                     ElseIf isAction = "Delete" Then
-                        srvHR.SaveDeleteDataKomunikasi(modelDataKomunikasi)
+                        srvHR.SaveDeleteDataPengalamanKerja(modelDataPengalaman)
                         Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
                     Me.Hide()
@@ -140,22 +152,30 @@ Public Class FrmHRPADataKomunikasi
                 Err.Raise(ErrNumber, , "Tanggal Selesai Tidak Boleh Kosong!")
             ElseIf dtTglMulai.EditValue > dtTglSelesai.EditValue Then
                 Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Lebih Besar Dari Tanggal Selesai !")
-            ElseIf cbTipeKomunikasi.Text = "" Then
-                Err.Raise(ErrNumber, , "Tipe Komunikasi Tidak Boleh Kosong!")
-            ElseIf txtDeskripsi.Text = "" Then
-                Err.Raise(ErrNumber, , "Deskripsi Tidak Boleh Kosong!")
+            ElseIf txtPerusahaan.Text = "" Then
+                Err.Raise(ErrNumber, , "Perusahaan Tidak Boleh Kosong!")
+            ElseIf txtJob.Text = "" Then
+                Err.Raise(ErrNumber, , "Job Tidak Boleh Kosong!")
             End If
 
-            modelDataKomunikasi = New HRPADataKomunikasiModel
+            modelDataPengalaman = New HRPADataPengalamanKerjaModel
+
             Dim Now As DateTime = DateTime.Now
-            With modelDataKomunikasi
+            With modelDataPengalaman
                 .ID = ID
                 .TglMulai = dtTglMulai.EditValue
                 .TglSelesai = dtTglSelesai.EditValue
                 .EmpID = EmpID
-                .TipeKomunikasi = cbTipeKomunikasi.Text
                 .Seq = 1
-                .Deskripsi = txtDeskripsi.Text
+                .Perusahaan = txtPerusahaan.Text
+                .Job = txtJob.Text
+                .Jabatan = txtJabatan.Text
+                .Alamat = txtAlamat.EditValue
+                .AlasanKeluar = txtAlasanKeluar.EditValue
+                .JenisUsaha = txtJenisUsaha.Text
+                .NoTelpon = txtNoTelpon.Text
+                .JobDesc = txtJobDesc.Text
+                .NoTelpon = txtNoTelpon.Text
                 .Ket = txtKet.Text
                 If isAction <> "Edit" Then
                     .TglBuat = Now

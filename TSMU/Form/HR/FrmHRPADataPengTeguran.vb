@@ -2,7 +2,7 @@
 Imports System.IO
 Imports DevExpress.XtraGrid
 
-Public Class FrmHRPADataKomunikasi
+Public Class FrmHRPADataPengTeguran
 
     Dim _isSave As Boolean
     Dim isAction As String
@@ -13,7 +13,7 @@ Public Class FrmHRPADataKomunikasi
     Dim GridDtl As GridControl
     Dim FrmParent As Form
 
-    Dim modelDataKomunikasi As HRPADataKomunikasiModel
+    Dim modelDataPengTeguran As HRPADataPengTeguranModel
     Dim srvHR As New HRPAService
 
     Public Sub New()
@@ -44,13 +44,13 @@ Public Class FrmHRPADataKomunikasi
         FrmParent = lf_FormParent
     End Sub
 
-    Private Sub FrmHRPADataKomunikasi_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmHRPADataPengTeguran_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call InitialSetForm()
     End Sub
 
     Public Sub InitialSetForm()
         Try
-            Me.Text = isAction.ToUpper + " DATA KOMUNIKASI"
+            Me.Text = isAction.ToUpper + " DATA PENGHARGAAN/TEGURAN"
             Call LoadTxtBox()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
@@ -64,7 +64,8 @@ Public Class FrmHRPADataKomunikasi
                 dtTglMulai.EditValue = dataRow("TglMulai")
                 dtTglSelesai.EditValue = dataRow("TglSelesai")
                 txtNIK.Text = NIK
-                cbTipeKomunikasi.Text = IIf(dataRow("TipeKomunikasi") Is DBNull.Value, "", dataRow("TipeKomunikasi"))
+                cbTipe.Text = IIf(dataRow("Tipe") Is DBNull.Value, "", dataRow("Tipe"))
+                cbSubTipe.Text = IIf(dataRow("SubTipe") Is DBNull.Value, "", dataRow("SubTipe"))
                 txtDeskripsi.Text = IIf(dataRow("Deskripsi") Is DBNull.Value, "", dataRow("Deskripsi"))
                 txtKet.Text = IIf(dataRow("Ket") Is DBNull.Value, "", dataRow("Ket"))
                 dtTglBuat.EditValue = dataRow("TglBuat")
@@ -92,7 +93,8 @@ Public Class FrmHRPADataKomunikasi
     Private Sub CondView()
         dtTglMulai.Enabled = False
         dtTglSelesai.Enabled = False
-        cbTipeKomunikasi.Enabled = False
+        cbTipe.Enabled = False
+        cbSubTipe.Enabled = False
         txtDeskripsi.Enabled = False
         txtKet.Enabled = False
         If isAction = "View" Then
@@ -113,13 +115,13 @@ Public Class FrmHRPADataKomunikasi
                 If CheckValidasi() = False Then
                     _isSave = True
                     If isAction = "Add" OrElse isAction = "Copy" Then
-                        srvHR.SaveNewDataKomunikasi(modelDataKomunikasi)
+                        srvHR.SaveNewDataPengTeguran(modelDataPengTeguran)
                         Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
                     ElseIf isAction = "Edit" Then
-                        srvHR.SaveEditDataKomunikasi(modelDataKomunikasi)
+                        srvHR.SaveEditDataPengTeguran(modelDataPengTeguran)
                         Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
                     ElseIf isAction = "Delete" Then
-                        srvHR.SaveDeleteDataKomunikasi(modelDataKomunikasi)
+                        srvHR.SaveDeleteDataPengTeguran(modelDataPengTeguran)
                         Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
                     End If
                     Me.Hide()
@@ -140,21 +142,23 @@ Public Class FrmHRPADataKomunikasi
                 Err.Raise(ErrNumber, , "Tanggal Selesai Tidak Boleh Kosong!")
             ElseIf dtTglMulai.EditValue > dtTglSelesai.EditValue Then
                 Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Lebih Besar Dari Tanggal Selesai !")
-            ElseIf cbTipeKomunikasi.Text = "" Then
-                Err.Raise(ErrNumber, , "Tipe Komunikasi Tidak Boleh Kosong!")
-            ElseIf txtDeskripsi.Text = "" Then
-                Err.Raise(ErrNumber, , "Deskripsi Tidak Boleh Kosong!")
+            ElseIf cbSubTipe.Text = "" Then
+                Err.Raise(ErrNumber, , "Sub Tipe Tidak Boleh Kosong!")
+            ElseIf cbTipe.Text = "" Then
+                Err.Raise(ErrNumber, , "Tipe Tidak Boleh Kosong!")
             End If
 
-            modelDataKomunikasi = New HRPADataKomunikasiModel
+            modelDataPengTeguran = New HRPADataPengTeguranModel
+
             Dim Now As DateTime = DateTime.Now
-            With modelDataKomunikasi
+            With modelDataPengTeguran
                 .ID = ID
                 .TglMulai = dtTglMulai.EditValue
                 .TglSelesai = dtTglSelesai.EditValue
                 .EmpID = EmpID
-                .TipeKomunikasi = cbTipeKomunikasi.Text
                 .Seq = 1
+                .Tipe = cbTipe.Text
+                .SubTipe = cbSubTipe.Text
                 .Deskripsi = txtDeskripsi.Text
                 .Ket = txtKet.Text
                 If isAction <> "Edit" Then
