@@ -1714,6 +1714,12 @@
     <Compile Include="Form\Common\frmForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmFrmProblem.Designer.vb">
+      <DependentUpon>frmFrmProblem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmFrmProblem.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmForecastHargaManual.Designer.vb">
       <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
     </Compile>
@@ -1736,6 +1742,12 @@
       <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmMonitoringInventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmProbleDetail.Designer.vb">
+      <DependentUpon>frmProbleDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmProbleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmQcOutgoing.Designer.vb">
@@ -3891,6 +3903,9 @@
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmFrmProblem.resx">
+      <DependentUpon>frmFrmProblem.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecastHargaManual.resx">
       <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
     </EmbeddedResource>
@@ -3902,6 +3917,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmMonitoringInventory.resx">
       <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmProbleDetail.resx">
+      <DependentUpon>frmProbleDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmQcOutgoing.resx">
       <DependentUpon>frmQcOutgoing.vb</DependentUpon>

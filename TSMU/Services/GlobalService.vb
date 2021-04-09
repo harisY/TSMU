@@ -259,4 +259,14 @@
         End Try
     End Sub
 
+    Public Function GetListWorkCenter() As DataTable
+        Try
+            Dim Dt As New DataTable
+            Dt = GetDataTableByParam("Work_CenterSelect", CommandType.StoredProcedure, Nothing, GetConnString)
+            Return Dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 End Class
