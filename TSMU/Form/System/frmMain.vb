@@ -14,13 +14,11 @@ Partial Public Class FrmMain
     Dim HasLoad As Boolean = False
 
     Public Sub New()
-        RunAutoUpdate(My.Settings.Site.ToLower)
-        DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue" ' <<< NEW LINE
+        DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinName = "Office 2010 Blue"
         InitializeComponent()
     End Sub
 
     Private Sub RunAutoUpdate(Site As String)
-        ''add Site
         AutoUpdater.RunUpdateAsAdmin = False
         AutoUpdater.Mandatory = True
         AutoUpdater.UpdateMode = Mode.ForcedDownload
@@ -29,7 +27,6 @@ Partial Public Class FrmMain
         Else
             AutoUpdater.Start("http://10.10.3.6/AutoUpdate/AutoUpdaterCkr.xml")
         End If
-        'AddHandler AutoUpdater.ApplicationExitEvent, AddressOf AutoUpdater_ApplicationExitEvent
     End Sub
 
     Private Sub AutoUpdater_ApplicationExitEvent()
@@ -39,7 +36,6 @@ Partial Public Class FrmMain
 
     Public Sub LoadMenu()
         _manager = New MenuManager()
-        '_manager.Add(New Page2Interface())
         _manager.Add(New Page1Interface())
         _manager.RemomeEmpty()
 
@@ -112,18 +108,11 @@ Partial Public Class FrmMain
     Private Sub barButtonItem_ItemClick(ByVal sender As Object, ByVal e As ItemClickEventArgs)
         Dim item As Item = Nothing
         MenuItem = sender
-#Disable Warning BC40000 ' Type or member is obsolete
+#Disable Warning BC40000
         If CSharpImpl.__Assign(item, TryCast(e?.Item?.Tag, Item)) IsNot Nothing Then
-#Enable Warning BC40000 ' Type or member is obsolete
+#Enable Warning BC40000
 
             If item.ActionType = ActionType.URL Then
-                'Dim form As FormBrowser = New FormBrowser With {
-                '    .Text = item.Text,
-                '    .Url = item.Url,
-                '    .Tag = item,
-                '    .MdiParent = Me
-                '}
-                'Form.Show()
             Else
                 AddForm(item.Type, item, True)
             End If
@@ -140,14 +129,6 @@ Partial Public Class FrmMain
                     If item.Popup = False Then
                         _form.MdiParent = Me
                     End If
-
-                    'If item.FormType = FormTypes.FORM_CALLCENTER Then
-                    '    _form.TopMost = True
-                    '    _form.ShowIcon = False
-                    '    _form.ShowInTaskbar = False
-                    '    _form.FormBorderStyle = FormBorderStyle.None
-                    '    _form.Location = New Point(Screen.PrimaryScreen.WorkingArea.Right - _form.Width, Screen.PrimaryScreen.WorkingArea.Bottom - _form.Height)
-                    'End If
 
                     _form.Show()
                     Return _form
@@ -185,14 +166,10 @@ Partial Public Class FrmMain
 
     Private Sub FrmMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         ribbon.Minimized = True
-        'Me.MaximizeBox = False
-        'HasLoad = True
         LblLogin.Caption = ""
         lblGroup.Caption = "0 record(s)"
         LblRecords.Caption = ""
         LblDatabase.Caption = ""
-        'StatMsg.Text = " Shortcut : F1 - View Detail"
-
         fs_AssProduct = My.Application.Info.AssemblyName
 
         Dim separatorFormat As New System.Globalization.NumberFormatInfo()
@@ -203,7 +180,6 @@ Partial Public Class FrmMain
 
         Call gf_GetDatabaseVariables()
 
-        '# List forms...
         Call ListAppForms()
 
         ribbon.Enabled = True
@@ -229,8 +205,6 @@ Partial Public Class FrmMain
         Else
             FrmSystemLogin.ShowDialog()
         End If
-        'LoadMenu()
-
     End Sub
 
     Private Sub ribbon_Merge(ByVal sender As Object, ByVal e As RibbonMergeEventArgs)
@@ -283,7 +257,6 @@ Partial Public Class FrmMain
 
     Private Sub ListAppForms()
 
-        '# Load default forms...
         Dim frm As Form = Nothing
         Dim ObjType As Type = Nothing
         Try
@@ -312,7 +285,6 @@ Partial Public Class FrmMain
             End If
         End Try
 
-        '# Additional forms...
         Try
             frm = MyAss.CreateInstance(fs_AssProduct & ".FrmTrans_Closing")
             If frm IsNot Nothing Then
@@ -327,7 +299,6 @@ Partial Public Class FrmMain
         If LoginBar.Caption = "Log In" Then
         ElseIf LoginBar.Caption = "Log Out" Then
             LoginBar.Caption = "Log In"
-            '# Close opened forms...
             For iCount As Integer = Application.OpenForms.Count - 1 To 0 Step -1
                 If Application.OpenForms(iCount).IsMdiChild Then
                     If Application.OpenForms(iCount).Name <> "frmDashboard" Then
@@ -340,11 +311,8 @@ Partial Public Class FrmMain
             Next
 
             For Each item As Page In _manager.Pages.OrderBy(Function(c) c.Index)
-                'Dim page As RibbonPage = New RibbonPage(item.Text)
                 ribbon.Pages.Remove(ribbon.Pages(item.Text))
-                'RemoveRibbonPageWithBarItems(page, ribbon)
             Next
-            '_manager = Nothing
         End If
         FrmSystemLogin.ShowDialog()
     End Sub
@@ -359,7 +327,6 @@ Partial Public Class FrmMain
             For Each ChildForm As Form In Me.MdiChildren
                 ChildForm.Close()
             Next
-            'Application.Exit()
             End
         End If
     End Sub
@@ -396,8 +363,6 @@ Partial Public Class FrmMain
                     ChildForm.Close()
                 Next
                 RemoveHandler FormClosing, AddressOf FrmMain_FormClosing
-                'Application.Exit()
-
                 End
             Else
                 e.Cancel = True
