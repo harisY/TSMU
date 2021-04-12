@@ -22,7 +22,7 @@ Partial Class Frm_Rpt_TarikSoA
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_TarikSoA))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -83,6 +83,7 @@ Partial Class Frm_Rpt_TarikSoA
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
         Me.miniToolStrip = New System.Windows.Forms.ToolStrip()
         Me.CachedCRTravelDetailEntertainSettRightSum1 = New TSMU.CachedCRTravelDetailEntertainSettRightSum()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,6 +114,7 @@ Partial Class Frm_Rpt_TarikSoA
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.SimpleButton1)
         Me.TabPage1.Controls.Add(Me.DateEdit1)
         Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.txt_perpost)
@@ -150,7 +152,7 @@ Partial Class Frm_Rpt_TarikSoA
         '
         Me.txt_perpost.Location = New System.Drawing.Point(359, 6)
         Me.txt_perpost.Name = "txt_perpost"
-        Me.txt_perpost.Size = New System.Drawing.Size(100, 20)
+        Me.txt_perpost.Size = New System.Drawing.Size(88, 20)
         Me.txt_perpost.TabIndex = 17
         '
         'Panel1
@@ -294,9 +296,9 @@ Partial Class Frm_Rpt_TarikSoA
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colvrno, Me.coltgl, Me.colvendorname, Me.coldpp, Me.colppn, Me.coltotal, Me.colpph, Me.colgrand_total, Me.colbiaya_transfer, Me.coltotal_bayar})
-        GridFormatRule1.Name = "Format0"
-        GridFormatRule1.Rule = Nothing
-        Me.GridView1.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.Name = "Format0"
+        GridFormatRule2.Rule = Nothing
+        Me.GridView1.FormatRules.Add(GridFormatRule2)
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -386,9 +388,9 @@ Partial Class Frm_Rpt_TarikSoA
         '
         Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
-        Me.ToolStrip2.Location = New System.Drawing.Point(471, 3)
+        Me.ToolStrip2.Location = New System.Drawing.Point(527, 5)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(225, 25)
+        Me.ToolStrip2.Size = New System.Drawing.Size(111, 25)
         Me.ToolStrip2.TabIndex = 0
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -399,11 +401,13 @@ Partial Class Frm_Rpt_TarikSoA
         Me.btnLoad.Name = "btnLoad"
         Me.btnLoad.Size = New System.Drawing.Size(80, 22)
         Me.btnLoad.Text = "Load Data"
+        Me.btnLoad.Visible = False
         '
         'ProgBar
         '
         Me.ProgBar.Name = "ProgBar"
         Me.ProgBar.Size = New System.Drawing.Size(100, 22)
+        Me.ProgBar.Visible = False
         '
         'ToolStrip3
         '
@@ -580,6 +584,15 @@ Partial Class Frm_Rpt_TarikSoA
         Me.miniToolStrip.Size = New System.Drawing.Size(783, 25)
         Me.miniToolStrip.TabIndex = 4
         '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SimpleButton1.Location = New System.Drawing.Point(453, 3)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(71, 27)
+        Me.SimpleButton1.TabIndex = 26
+        Me.SimpleButton1.Text = "Load Data"
+        '
         'Frm_Rpt_TarikSoA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -685,4 +698,5 @@ Partial Class Frm_Rpt_TarikSoA
     Friend WithEvents CachedCRTravelDetailEntertainSettRightSum1 As CachedCRTravelDetailEntertainSettRightSum
     Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label4 As Label
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
