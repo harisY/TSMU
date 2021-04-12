@@ -245,7 +245,7 @@ Public Class FrmPaymentDirect
             saldoakhir = GridView1.GetRowCellValue(i, "Saldo")
         Next
         _txtendsaldo.Text = Format(saldoakhir, "#,#.##")
-
+        GridView1.Columns("Keterangan").AppearanceCell.TextOptions.Trimming = Trimming.EllipsisCharacter
         Call DataSuspend()
     End Sub
     Private Sub DataSuspend()

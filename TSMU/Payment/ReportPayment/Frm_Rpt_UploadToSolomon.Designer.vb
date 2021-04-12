@@ -51,6 +51,7 @@ Partial Class Frm_Rpt_UploadToSolomon
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsBtn_print = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.tsBtn_prev = New System.Windows.Forms.ToolStripButton()
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
         Me.colpph = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -83,6 +84,8 @@ Partial Class Frm_Rpt_UploadToSolomon
         Me.coldpp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colppn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.DateEdit5 = New DevExpress.XtraEditors.DateEdit()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.DateEdit4 = New DevExpress.XtraEditors.DateEdit()
         Me.DateEdit3 = New DevExpress.XtraEditors.DateEdit()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -118,9 +121,6 @@ Partial Class Frm_Rpt_UploadToSolomon
         Me.ProgBar2 = New System.Windows.Forms.ToolStripProgressBar()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.DateEdit5 = New DevExpress.XtraEditors.DateEdit()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.ToolStrip2.SuspendLayout()
         Me.ToolStrip3.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -138,6 +138,8 @@ Partial Class Frm_Rpt_UploadToSolomon
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
+        CType(Me.DateEdit5.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit4.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,8 +153,6 @@ Partial Class Frm_Rpt_UploadToSolomon
         CType(Me.GridControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
-        CType(Me.DateEdit5.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStripSeparator9
@@ -355,6 +355,16 @@ Partial Class Frm_Rpt_UploadToSolomon
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
         Me.ToolStripSeparator8.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton2.Text = "Print Non IDR"
+        Me.ToolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'tsBtn_prev
         '
@@ -643,6 +653,25 @@ Partial Class Frm_Rpt_UploadToSolomon
         Me.TabPage2.Text = "Filter By Tgl (Non-IDR)"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'DateEdit5
+        '
+        Me.DateEdit5.EditValue = Nothing
+        Me.DateEdit5.Location = New System.Drawing.Point(653, 10)
+        Me.DateEdit5.Name = "DateEdit5"
+        Me.DateEdit5.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit5.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit5.Size = New System.Drawing.Size(143, 20)
+        Me.DateEdit5.TabIndex = 25
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(558, 13)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(89, 13)
+        Me.Label5.TabIndex = 24
+        Me.Label5.Text = "Input Date Rate :"
+        '
         'DateEdit4
         '
         Me.DateEdit4.EditValue = Nothing
@@ -924,35 +953,6 @@ Partial Class Frm_Rpt_UploadToSolomon
         Me.Label4.TabIndex = 19
         Me.Label4.Text = "From :"
         '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "Print Non IDR"
-        Me.ToolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'DateEdit5
-        '
-        Me.DateEdit5.EditValue = Nothing
-        Me.DateEdit5.Location = New System.Drawing.Point(653, 10)
-        Me.DateEdit5.Name = "DateEdit5"
-        Me.DateEdit5.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit5.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit5.Size = New System.Drawing.Size(143, 20)
-        Me.DateEdit5.TabIndex = 25
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(558, 13)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(89, 13)
-        Me.Label5.TabIndex = 24
-        Me.Label5.Text = "Input Date Rate :"
-        '
         'Frm_Rpt_UploadToSolomon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -984,6 +984,8 @@ Partial Class Frm_Rpt_UploadToSolomon
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        CType(Me.DateEdit5.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit4.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -999,8 +1001,6 @@ Partial Class Frm_Rpt_UploadToSolomon
         CType(Me.GridView8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        CType(Me.DateEdit5.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

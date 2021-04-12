@@ -120,7 +120,11 @@ Public Class FrmHRPANewEmployee
             Else
                 Err.Raise(ErrNumber, , "Data yang anda input tidak valid, silahkan cek inputan anda !")
             End If
-            If txtNamaLengkap.EditValue = "" Then
+            If dtTglMulai.EditValue = Nothing Then
+                Err.Raise(ErrNumber, , "Tanggal Mulai Tidak Boleh Kosong!")
+            ElseIf dtTglSelesai.EditValue = Nothing Then
+                Err.Raise(ErrNumber, , "Tanggal Selesai Tidak Boleh Kosong!")
+            ElseIf txtNamaLengkap.EditValue = "" Then
                 Err.Raise(ErrNumber, , "Nama Lengkap tidak boleh kosong !")
             ElseIf cbPerpindahan.EditValue = "" Then
                 Err.Raise(ErrNumber, , "Perpindahan tidak boleh kosong !")

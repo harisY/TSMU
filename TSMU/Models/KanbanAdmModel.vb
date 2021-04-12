@@ -1,4 +1,7 @@
-﻿Public Class KanbanAdmModel
+﻿Imports System.Collections.ObjectModel
+Imports System.Data.SqlClient
+
+Public Class KanbanAdmModel
     Public Property CalcDate As DateTime
     Public Property CancelStatus As String
     Public Property DelCycle As String
@@ -36,6 +39,7 @@
     Public Property VendorCode As String
     Public Property VendorSite As String
     Public Property VendorSiteAlias As String
+    Public Property ObjCollections() As New Collection(Of KanbanAdmModel)
     Public Function GetAllDataGrid() As DataTable
         Try
             Dim ls_SP As String =
@@ -120,6 +124,148 @@
             Throw ex
         End Try
     End Sub
+    Private Sub AddData(i As Integer)
+        Try
+            Dim Query As String = String.Empty
+            Query = "INSERT INTO [KanbanADM] ([PlantCode]
+            ,[ShopCode],[PartCategory],[Route],LP,Trip,[VendorCode]
+            ,[VendorAlias],[VendorSite],[VendorSiteAlias],[OrderNo]
+            ,[PONo],[CalcDate],[OrderDate],[OrderTime]
+            ,[DelDate],[DelTime],[DelCycle],[DocNo]
+            ,[RecStatus],[DNType]
+            ,[PartNo],[PartName],[JobNo],[Lane]
+            ,[QtyKbn],[OrderKbn],[OrderPcs],[QtyReceive]
+            ,[QtyBalance],[CancelStatus],[Remark],[UploadedBy],[UploadedDate])
+            Values(@PlantCode
+                ,@ShopCode,@PartCategory,@Route,@LP,@Trip,@VendorCode
+                ,@VendorAlias,@VendorSite,@VendorSiteAlias,@OrderNo
+                ,@PONo,@CalcDate,@OrderDate,@OrderTime
+                ,@DelDate,@DelTime,@DelCycle,@DocNo
+                ,@RecStatus,@DNType
+                ,@PartNo,@PartName,@JobNo,@Lane
+                ,@QtyKbn,@OrderKbn,@OrderPcs,@QtyReceive
+                ,@QtyBalance,@CancelStatus,@Remark,@UploadedBy,GETDATE())"
+
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter) From {
+                New SqlParameter() With {.ParameterName = "PlantCode", .Value = ObjCollections(i).PlantCode},
+                New SqlParameter() With {.ParameterName = "ShopCode", .Value = ObjCollections(i).ShopCode},
+                New SqlParameter() With {.ParameterName = "PartCategory", .Value = ObjCollections(i).PartCategory},
+                New SqlParameter() With {.ParameterName = "Route", .Value = ObjCollections(i).Route},
+                New SqlParameter() With {.ParameterName = "LP", .Value = ObjCollections(i).LP},
+                New SqlParameter() With {.ParameterName = "Trip", .Value = ObjCollections(i).Trip},
+                New SqlParameter() With {.ParameterName = "VendorCode", .Value = ObjCollections(i).VendorCode},
+                New SqlParameter() With {.ParameterName = "VendorAlias", .Value = ObjCollections(i).VendorAlias},
+                New SqlParameter() With {.ParameterName = "VendorSite", .Value = ObjCollections(i).VendorSite},
+                New SqlParameter() With {.ParameterName = "VendorSiteAlias", .Value = ObjCollections(i).VendorSiteAlias},
+                New SqlParameter() With {.ParameterName = "OrderNo", .Value = ObjCollections(i).OrderNo},
+                New SqlParameter() With {.ParameterName = "PONo", .Value = ObjCollections(i).PONo},
+                New SqlParameter() With {.ParameterName = "CalcDate", .Value = ObjCollections(i).CalcDate},
+                New SqlParameter() With {.ParameterName = "OrderDate", .Value = ObjCollections(i).OrderDate},
+                New SqlParameter() With {.ParameterName = "OrderTime", .Value = ObjCollections(i).OrderTime},
+                New SqlParameter() With {.ParameterName = "DelDate", .Value = ObjCollections(i).DelDate},
+                New SqlParameter() With {.ParameterName = "DelTime", .Value = ObjCollections(i).DelTime},
+                New SqlParameter() With {.ParameterName = "DelCycle", .Value = ObjCollections(i).DelCycle},
+                New SqlParameter() With {.ParameterName = "DocNo", .Value = ObjCollections(i).DocNo},
+                New SqlParameter() With {.ParameterName = "RecStatus", .Value = ObjCollections(i).RecStatus},
+                New SqlParameter() With {.ParameterName = "DNType", .Value = ObjCollections(i).DNType},
+                New SqlParameter() With {.ParameterName = "PartNo", .Value = ObjCollections(i).PartNo},
+                New SqlParameter() With {.ParameterName = "PartName", .Value = ObjCollections(i).PartName},
+                New SqlParameter() With {.ParameterName = "JobNo", .Value = ObjCollections(i).JobNo},
+                New SqlParameter() With {.ParameterName = "Lane", .Value = ObjCollections(i).Lane},
+                New SqlParameter() With {.ParameterName = "QtyKbn", .Value = ObjCollections(i).QtyKbn},
+                New SqlParameter() With {.ParameterName = "OrderKbn", .Value = ObjCollections(i).OrderKbn},
+                New SqlParameter() With {.ParameterName = "OrderPcs", .Value = ObjCollections(i).OrderPcs},
+                New SqlParameter() With {.ParameterName = "QtyReceive", .Value = ObjCollections(i).QtyReceive},
+                New SqlParameter() With {.ParameterName = "QtyBalance", .Value = ObjCollections(i).QtyBalance},
+                New SqlParameter() With {.ParameterName = "CancelStatus", .Value = ObjCollections(i).CancelStatus},
+                New SqlParameter() With {.ParameterName = "Remark", .Value = ObjCollections(i).Remark},
+                New SqlParameter() With {.ParameterName = "UploadedBy", .Value = ObjCollections(i).UploadedBy}
+            }
+            If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+                ExecQueryWithValue(Query, CommandType.Text, Params, GetConnString)
+            Else
+                ExecQueryWithValue(Query, CommandType.Text, Params, GetConnStringDbCKR)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub InsertTransactions()
+        If Left(gh_Common.Site.ToLower, 3) = "tng" Then
+            Using Conn As New SqlConnection(GetConnString())
+                Conn.Open()
+                Using Trans As SqlTransaction = Conn.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn
+                    gh_Trans.Command.Transaction = Trans
+                    Try
+                        For i As Integer = 0 To ObjCollections.Count - 1
+                            AddData(i)
+                        Next
+                        Dim dtKanban As New DataTable
+                        dtKanban = GetKanban()
+
+                        For j As Integer = 0 To dtKanban.Rows.Count - 1
+                            Dim Tgl As String = dtKanban.Rows(j)(0).ToString.AsString
+                            Dim Cycle As Integer = dtKanban.Rows(j)(1).ToString.AsInt
+                            Dim Kanban As Integer = dtKanban.Rows(j)(2).ToString.AsInt
+                            Dim shopCode As String = dtKanban.Rows(j)(3).ToString.AsString
+
+                            Dim IsExist As Boolean = IsKanbanExist(Tgl, Cycle, shopCode)
+                            If Not IsExist Then
+                                SaveKanbanSum(Tgl, Cycle, Kanban, shopCode)
+                            End If
+                        Next
+                        Trans.Commit()
+                    Catch ex As Exception
+                        Trans.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Else
+            Using Conn As New SqlConnection(GetConnStringDbCKR())
+                Conn.Open()
+                Using Trans As SqlTransaction = Conn.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn
+                    gh_Trans.Command.Transaction = Trans
+                    Try
+                        For i As Integer = 0 To ObjCollections.Count - 1
+                            AddData(i)
+                        Next
+                        Dim dtKanban As New DataTable
+                        dtKanban = GetKanbanCKR()
+
+                        For i As Integer = 0 To dtKanban.Rows.Count - 1
+                            Dim Tgl As String = dtKanban.Rows(i)(0).ToString
+                            Dim Cycle As Integer = dtKanban.Rows(i)(1).ToString.AsInt
+                            Dim Kanban As Integer = dtKanban.Rows(i)(3).ToString.AsInt
+                            Dim Remark As String = dtKanban.Rows(i)(2).ToString.AsString
+                            Dim TotDN As Integer = dtKanban.Rows(i)(4).ToString.AsInt
+                            Dim shopCode As String = dtKanban.Rows(i)(5).ToString.AsString
+                            Dim plantCode As String = dtKanban.Rows(i)(6).ToString.AsString
+
+                            Dim IsExist As Boolean = IsKanbanExistCkr(Tgl, Cycle, Remark, shopCode)
+                            If Not IsExist Then
+                                SaveKanbanSumCKR(Tgl, Cycle, Kanban, Remark, TotDN, shopCode, plantCode)
+                            End If
+                        Next
+                        Trans.Commit()
+                    Catch ex As Exception
+                        Trans.Rollback()
+                        Throw ex
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        End If
+
+    End Sub
 
     Public Function GetKanban() As DataTable
         Try
@@ -137,7 +283,6 @@
 			                        [DelCycle]"
             Dim dt As New DataTable
             dt = GetDataTable(sql)
-
             Return dt
         Catch ex As Exception
             Throw
