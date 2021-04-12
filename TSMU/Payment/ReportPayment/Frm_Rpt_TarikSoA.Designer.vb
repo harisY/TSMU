@@ -22,10 +22,11 @@ Partial Class Frm_Rpt_TarikSoA
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_TarikSoA))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txt_perpost = New System.Windows.Forms.TextBox()
@@ -83,7 +84,6 @@ Partial Class Frm_Rpt_TarikSoA
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
         Me.miniToolStrip = New System.Windows.Forms.ToolStrip()
         Me.CachedCRTravelDetailEntertainSettRightSum1 = New TSMU.CachedCRTravelDetailEntertainSettRightSum()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,6 +128,15 @@ Partial Class Frm_Rpt_TarikSoA
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Tarik SoA"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SimpleButton1.Location = New System.Drawing.Point(453, 3)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(71, 27)
+        Me.SimpleButton1.TabIndex = 26
+        Me.SimpleButton1.Text = "Load Data"
         '
         'DateEdit1
         '
@@ -296,9 +305,9 @@ Partial Class Frm_Rpt_TarikSoA
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colvrno, Me.coltgl, Me.colvendorname, Me.coldpp, Me.colppn, Me.coltotal, Me.colpph, Me.colgrand_total, Me.colbiaya_transfer, Me.coltotal_bayar})
-        GridFormatRule2.Name = "Format0"
-        GridFormatRule2.Rule = Nothing
-        Me.GridView1.FormatRules.Add(GridFormatRule2)
+        GridFormatRule1.Name = "Format0"
+        GridFormatRule1.Rule = Nothing
+        Me.GridView1.FormatRules.Add(GridFormatRule1)
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -583,15 +592,6 @@ Partial Class Frm_Rpt_TarikSoA
         Me.miniToolStrip.Name = "miniToolStrip"
         Me.miniToolStrip.Size = New System.Drawing.Size(783, 25)
         Me.miniToolStrip.TabIndex = 4
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SimpleButton1.Location = New System.Drawing.Point(453, 3)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(71, 27)
-        Me.SimpleButton1.TabIndex = 26
-        Me.SimpleButton1.Text = "Load Data"
         '
         'Frm_Rpt_TarikSoA
         '

@@ -171,6 +171,25 @@ Public Class Frm_Rpt_APPaymentSolomon
                End Sub)
     End Sub
 
+    Private Sub GetDataGridAPOutstanding()
+        ''Dim perpost2 As String = ""
+        'Dim Date As DateTime
+        'Dim date4 As DateTime
+        'Invoke(Sub()
+        '           date3 = DateEdit3.Text
+        '           date4 = DateEdit4.Text
+        '       End Sub)
+        Dim dt As New DataTable
+        dt = pay_class.DataGridOutstanding()
+        setDataSource(dt, GridControl8)
+        Invoke(Sub()
+                   ProgBarOut.Visible = False
+               End Sub)
+    End Sub
+
+
+
+
     'Private Sub GetDataGridSup()
     '    Dim datesup1 As String = ""
     '    Dim datesup2 As String = ""
@@ -375,6 +394,21 @@ Public Class Frm_Rpt_APPaymentSolomon
             Await Task.Run(Sub() GetDataGridAPSign())
         Catch ex As Exception
             ProgBar2.Visible = False
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Async Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Try
+            If ProgBarOut.Visible = True Then
+                '' Throw New Exception("Process already running, Please wait !")
+            End If
+            ProgBarOut.Visible = True
+            ProgBarOut.Style = ProgressBarStyle.Marquee
+            Await Task.Run(Sub() GetDataGridAPOutstanding())
+        Catch ex As Exception
+            ProgBarOut.Visible = False
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
