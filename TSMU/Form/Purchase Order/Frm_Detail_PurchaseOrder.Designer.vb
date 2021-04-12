@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Frm_Detail_PurchaseOrder
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class Frm_Detail_PurchaseOrder
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.T_Blanket = New DevExpress.XtraEditors.TextEdit()
@@ -26,7 +26,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.T_StatusPO = New DevExpress.XtraEditors.TextEdit()
         Me.T_Pajak = New DevExpress.XtraEditors.TextEdit()
         Me.T_VendorName = New DevExpress.XtraEditors.TextEdit()
-        Me.TProjectID = New DevExpress.XtraEditors.TextEdit()
+        Me.T_ProjectID = New DevExpress.XtraEditors.TextEdit()
         Me.T_PONumber = New DevExpress.XtraEditors.TextEdit()
         Me.T_POType = New DevExpress.XtraEditors.LookUpEdit()
         Me.T_PRNo = New DevExpress.XtraEditors.ButtonEdit()
@@ -48,32 +48,46 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.GridDetail = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.No = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XSeq = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PRNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PRLineNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.AlternateManual = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.InventoryID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Quantity = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Qty = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.OUM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.UnitCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoUnitCost = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.ExtendedCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoExtendedCost = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.StatusPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.UnitWeight = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoUnitWeight = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.SiteID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ExtentedWeight = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoExtendedWeight = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PurchaseFor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.UnitVolume = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoUnitVolume = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.ExtendedVolume = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoExtendedVolume = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.Required = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoRequired = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.Promised = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoPromised = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.Account = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.SubAccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RcptQtyMin = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoQtyMin = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.RcptQtyMax = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoQtyMax = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.ReceiptAction = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ReceiptStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.VoucherStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.IncludeInLeadTimeCalc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -173,6 +187,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem51 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem52 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem53 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.RepoAlternate = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.T_Blanket.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,7 +196,7 @@ Partial Class Frm_Detail_PurchaseOrder
         CType(Me.T_StatusPO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_Pajak.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_VendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TProjectID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.T_ProjectID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_PONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_POType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_PRNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,6 +218,20 @@ Partial Class Frm_Detail_PurchaseOrder
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Qty, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoUnitCost, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoExtendedCost, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoUnitWeight, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoExtendedWeight, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoUnitVolume, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoExtendedVolume, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoRequired, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoRequired.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoPromised, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoPromised.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoQtyMin, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoQtyMax, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -305,6 +334,7 @@ Partial Class Frm_Detail_PurchaseOrder
         CType(Me.LayoutControlItem51, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem53, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoAlternate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -315,7 +345,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControl1.Controls.Add(Me.T_StatusPO)
         Me.LayoutControl1.Controls.Add(Me.T_Pajak)
         Me.LayoutControl1.Controls.Add(Me.T_VendorName)
-        Me.LayoutControl1.Controls.Add(Me.TProjectID)
+        Me.LayoutControl1.Controls.Add(Me.T_ProjectID)
         Me.LayoutControl1.Controls.Add(Me.T_PONumber)
         Me.LayoutControl1.Controls.Add(Me.T_POType)
         Me.LayoutControl1.Controls.Add(Me.T_PRNo)
@@ -378,13 +408,13 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.T_VendorName.StyleController = Me.LayoutControl1
         Me.T_VendorName.TabIndex = 6
         '
-        'TProjectID
+        'T_ProjectID
         '
-        Me.TProjectID.Location = New System.Drawing.Point(1105, 12)
-        Me.TProjectID.Name = "TProjectID"
-        Me.TProjectID.Size = New System.Drawing.Size(160, 20)
-        Me.TProjectID.StyleController = Me.LayoutControl1
-        Me.TProjectID.TabIndex = 4
+        Me.T_ProjectID.Location = New System.Drawing.Point(1105, 12)
+        Me.T_ProjectID.Name = "T_ProjectID"
+        Me.T_ProjectID.Size = New System.Drawing.Size(160, 20)
+        Me.T_ProjectID.StyleController = Me.LayoutControl1
+        Me.T_ProjectID.TabIndex = 4
         '
         'T_PONumber
         '
@@ -491,7 +521,7 @@ Partial Class Frm_Detail_PurchaseOrder
         '
         'LayoutControlItem6
         '
-        Me.LayoutControlItem6.Control = Me.TProjectID
+        Me.LayoutControlItem6.Control = Me.T_ProjectID
         Me.LayoutControlItem6.Location = New System.Drawing.Point(995, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(262, 24)
@@ -568,224 +598,399 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.GridDetail.Location = New System.Drawing.Point(6, 3)
         Me.GridDetail.MainView = Me.GridView1
         Me.GridDetail.Name = "GridDetail"
+        Me.GridDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.Qty, Me.RepoUnitCost, Me.RepoExtendedCost, Me.RepoUnitWeight, Me.RepoExtendedWeight, Me.RepoUnitVolume, Me.RepoExtendedVolume, Me.RepoQtyMin, Me.RepoQtyMax, Me.RepoRequired, Me.RepoPromised, Me.RepoAlternate})
         Me.GridDetail.Size = New System.Drawing.Size(1238, 377)
         Me.GridDetail.TabIndex = 2
         Me.GridDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PRNo, Me.PRLineNo, Me.AlternateManual, Me.InventoryID, Me.Description, Me.Quantity, Me.OUM, Me.UnitCost, Me.ExtendedCost, Me.StatusPrice, Me.UnitWeight, Me.SiteID, Me.ExtentedWeight, Me.PurchaseFor, Me.UnitVolume, Me.ExtendedVolume, Me.Required, Me.Promised, Me.Account, Me.SubAccount, Me.RcptQtyMin, Me.RcptQtyMax, Me.ReceiptAction, Me.ReceiptStatus, Me.VoucherStatus, Me.IncludeInLeadTimeCalc})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.No, Me.XSeq, Me.PRNo, Me.PRLineNo, Me.AlternateManual, Me.InventoryID, Me.Description, Me.Quantity, Me.OUM, Me.UnitCost, Me.ExtendedCost, Me.StatusPrice, Me.UnitWeight, Me.SiteID, Me.ExtentedWeight, Me.PurchaseFor, Me.UnitVolume, Me.ExtendedVolume, Me.Required, Me.Promised, Me.Account, Me.SubAccount, Me.RcptQtyMin, Me.RcptQtyMax, Me.ReceiptAction, Me.ReceiptStatus, Me.VoucherStatus, Me.IncludeInLeadTimeCalc})
         Me.GridView1.GridControl = Me.GridDetail
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        'No
+        '
+        Me.No.FieldName = "No"
+        Me.No.Name = "No"
+        Me.No.Visible = True
+        Me.No.VisibleIndex = 0
+        '
+        'XSeq
+        '
+        Me.XSeq.FieldName = "XSeq"
+        Me.XSeq.Name = "XSeq"
+        Me.XSeq.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Max, "XSeq", "MAX={0}")})
+        Me.XSeq.Visible = True
+        Me.XSeq.VisibleIndex = 1
+        '
         'PRNo
         '
+        Me.PRNo.AppearanceHeader.Options.UseTextOptions = True
+        Me.PRNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.PRNo.FieldName = "PR No"
         Me.PRNo.Name = "PRNo"
         Me.PRNo.Visible = True
-        Me.PRNo.VisibleIndex = 0
+        Me.PRNo.VisibleIndex = 2
         Me.PRNo.Width = 92
         '
         'PRLineNo
         '
+        Me.PRLineNo.AppearanceCell.Options.UseTextOptions = True
+        Me.PRLineNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.PRLineNo.AppearanceHeader.Options.UseTextOptions = True
+        Me.PRLineNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.PRLineNo.FieldName = "PR Line No"
         Me.PRLineNo.Name = "PRLineNo"
         Me.PRLineNo.Visible = True
-        Me.PRLineNo.VisibleIndex = 1
+        Me.PRLineNo.VisibleIndex = 3
         Me.PRLineNo.Width = 94
         '
         'AlternateManual
         '
+        Me.AlternateManual.AppearanceHeader.Options.UseTextOptions = True
+        Me.AlternateManual.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.AlternateManual.ColumnEdit = Me.RepoAlternate
         Me.AlternateManual.FieldName = "Alternate Manual"
         Me.AlternateManual.Name = "AlternateManual"
         Me.AlternateManual.Visible = True
-        Me.AlternateManual.VisibleIndex = 2
+        Me.AlternateManual.VisibleIndex = 4
         Me.AlternateManual.Width = 90
         '
         'InventoryID
         '
+        Me.InventoryID.AppearanceHeader.Options.UseTextOptions = True
+        Me.InventoryID.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.InventoryID.FieldName = "Inventory ID"
         Me.InventoryID.Name = "InventoryID"
         Me.InventoryID.Visible = True
-        Me.InventoryID.VisibleIndex = 3
+        Me.InventoryID.VisibleIndex = 5
         '
         'Description
         '
+        Me.Description.AppearanceHeader.Options.UseTextOptions = True
+        Me.Description.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Description.FieldName = "Description"
         Me.Description.Name = "Description"
         Me.Description.Visible = True
-        Me.Description.VisibleIndex = 4
+        Me.Description.VisibleIndex = 6
         Me.Description.Width = 80
         '
         'Quantity
         '
+        Me.Quantity.AppearanceCell.Options.UseTextOptions = True
+        Me.Quantity.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Quantity.AppearanceHeader.Options.UseTextOptions = True
+        Me.Quantity.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Quantity.ColumnEdit = Me.Qty
         Me.Quantity.FieldName = "Quantity"
         Me.Quantity.Name = "Quantity"
         Me.Quantity.Visible = True
-        Me.Quantity.VisibleIndex = 5
+        Me.Quantity.VisibleIndex = 7
         Me.Quantity.Width = 72
+        '
+        'Qty
+        '
+        Me.Qty.AutoHeight = False
+        Me.Qty.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.Qty.Name = "Qty"
         '
         'OUM
         '
+        Me.OUM.AppearanceHeader.Options.UseTextOptions = True
+        Me.OUM.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.OUM.FieldName = "OUM"
         Me.OUM.Name = "OUM"
         Me.OUM.Visible = True
-        Me.OUM.VisibleIndex = 6
+        Me.OUM.VisibleIndex = 8
         Me.OUM.Width = 90
         '
         'UnitCost
         '
+        Me.UnitCost.AppearanceHeader.Options.UseTextOptions = True
+        Me.UnitCost.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.UnitCost.ColumnEdit = Me.RepoUnitCost
         Me.UnitCost.FieldName = "Unit Cost"
         Me.UnitCost.Name = "UnitCost"
         Me.UnitCost.Visible = True
-        Me.UnitCost.VisibleIndex = 7
+        Me.UnitCost.VisibleIndex = 9
         Me.UnitCost.Width = 70
+        '
+        'RepoUnitCost
+        '
+        Me.RepoUnitCost.AutoHeight = False
+        Me.RepoUnitCost.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoUnitCost.Name = "RepoUnitCost"
         '
         'ExtendedCost
         '
+        Me.ExtendedCost.AppearanceHeader.Options.UseTextOptions = True
+        Me.ExtendedCost.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ExtendedCost.ColumnEdit = Me.RepoExtendedCost
         Me.ExtendedCost.FieldName = "Extended Cost"
         Me.ExtendedCost.Name = "ExtendedCost"
         Me.ExtendedCost.Visible = True
-        Me.ExtendedCost.VisibleIndex = 8
+        Me.ExtendedCost.VisibleIndex = 10
         Me.ExtendedCost.Width = 109
+        '
+        'RepoExtendedCost
+        '
+        Me.RepoExtendedCost.AutoHeight = False
+        Me.RepoExtendedCost.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoExtendedCost.Name = "RepoExtendedCost"
         '
         'StatusPrice
         '
+        Me.StatusPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.StatusPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.StatusPrice.FieldName = "Status Price"
         Me.StatusPrice.Name = "StatusPrice"
         Me.StatusPrice.Visible = True
-        Me.StatusPrice.VisibleIndex = 9
+        Me.StatusPrice.VisibleIndex = 11
         Me.StatusPrice.Width = 72
         '
         'UnitWeight
         '
+        Me.UnitWeight.AppearanceCell.Options.UseTextOptions = True
+        Me.UnitWeight.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.UnitWeight.AppearanceHeader.Options.UseTextOptions = True
+        Me.UnitWeight.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.UnitWeight.ColumnEdit = Me.RepoUnitWeight
         Me.UnitWeight.FieldName = "Unit Weight"
         Me.UnitWeight.Name = "UnitWeight"
         Me.UnitWeight.Visible = True
-        Me.UnitWeight.VisibleIndex = 10
+        Me.UnitWeight.VisibleIndex = 12
         Me.UnitWeight.Width = 71
+        '
+        'RepoUnitWeight
+        '
+        Me.RepoUnitWeight.AutoHeight = False
+        Me.RepoUnitWeight.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoUnitWeight.Name = "RepoUnitWeight"
         '
         'SiteID
         '
+        Me.SiteID.AppearanceCell.Options.UseTextOptions = True
+        Me.SiteID.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.SiteID.AppearanceHeader.Options.UseTextOptions = True
+        Me.SiteID.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.SiteID.FieldName = "Site ID"
         Me.SiteID.Name = "SiteID"
         Me.SiteID.Visible = True
-        Me.SiteID.VisibleIndex = 11
+        Me.SiteID.VisibleIndex = 13
         Me.SiteID.Width = 68
         '
         'ExtentedWeight
         '
+        Me.ExtentedWeight.AppearanceCell.Options.UseTextOptions = True
+        Me.ExtentedWeight.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ExtentedWeight.AppearanceHeader.Options.UseTextOptions = True
+        Me.ExtentedWeight.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ExtentedWeight.ColumnEdit = Me.RepoExtendedWeight
         Me.ExtentedWeight.FieldName = "Extented Weight"
         Me.ExtentedWeight.Name = "ExtentedWeight"
         Me.ExtentedWeight.Visible = True
-        Me.ExtentedWeight.VisibleIndex = 12
+        Me.ExtentedWeight.VisibleIndex = 14
         Me.ExtentedWeight.Width = 104
+        '
+        'RepoExtendedWeight
+        '
+        Me.RepoExtendedWeight.AutoHeight = False
+        Me.RepoExtendedWeight.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoExtendedWeight.Name = "RepoExtendedWeight"
         '
         'PurchaseFor
         '
+        Me.PurchaseFor.AppearanceCell.Options.UseTextOptions = True
+        Me.PurchaseFor.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.PurchaseFor.AppearanceHeader.Options.UseTextOptions = True
+        Me.PurchaseFor.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.PurchaseFor.FieldName = "Purchase For"
         Me.PurchaseFor.Name = "PurchaseFor"
         Me.PurchaseFor.Visible = True
-        Me.PurchaseFor.VisibleIndex = 13
+        Me.PurchaseFor.VisibleIndex = 15
         Me.PurchaseFor.Width = 74
         '
         'UnitVolume
         '
+        Me.UnitVolume.AppearanceCell.Options.UseTextOptions = True
+        Me.UnitVolume.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.UnitVolume.AppearanceHeader.Options.UseTextOptions = True
+        Me.UnitVolume.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.UnitVolume.ColumnEdit = Me.RepoUnitVolume
         Me.UnitVolume.FieldName = "Unit Volume"
         Me.UnitVolume.Name = "UnitVolume"
         Me.UnitVolume.Visible = True
-        Me.UnitVolume.VisibleIndex = 14
+        Me.UnitVolume.VisibleIndex = 16
         Me.UnitVolume.Width = 81
+        '
+        'RepoUnitVolume
+        '
+        Me.RepoUnitVolume.AutoHeight = False
+        Me.RepoUnitVolume.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoUnitVolume.Name = "RepoUnitVolume"
         '
         'ExtendedVolume
         '
+        Me.ExtendedVolume.AppearanceHeader.Options.UseTextOptions = True
+        Me.ExtendedVolume.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ExtendedVolume.ColumnEdit = Me.RepoExtendedVolume
         Me.ExtendedVolume.FieldName = "Extended Volume"
         Me.ExtendedVolume.Name = "ExtendedVolume"
         Me.ExtendedVolume.Visible = True
-        Me.ExtendedVolume.VisibleIndex = 15
+        Me.ExtendedVolume.VisibleIndex = 17
         Me.ExtendedVolume.Width = 125
+        '
+        'RepoExtendedVolume
+        '
+        Me.RepoExtendedVolume.AutoHeight = False
+        Me.RepoExtendedVolume.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoExtendedVolume.Name = "RepoExtendedVolume"
         '
         'Required
         '
+        Me.Required.AppearanceHeader.Options.UseTextOptions = True
+        Me.Required.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Required.ColumnEdit = Me.RepoRequired
         Me.Required.FieldName = "Required"
         Me.Required.Name = "Required"
         Me.Required.Visible = True
-        Me.Required.VisibleIndex = 16
+        Me.Required.VisibleIndex = 18
         Me.Required.Width = 81
+        '
+        'RepoRequired
+        '
+        Me.RepoRequired.AutoHeight = False
+        Me.RepoRequired.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoRequired.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoRequired.Name = "RepoRequired"
         '
         'Promised
         '
+        Me.Promised.AppearanceHeader.Options.UseTextOptions = True
+        Me.Promised.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Promised.ColumnEdit = Me.RepoPromised
         Me.Promised.FieldName = "Promised"
         Me.Promised.Name = "Promised"
         Me.Promised.Visible = True
-        Me.Promised.VisibleIndex = 17
+        Me.Promised.VisibleIndex = 19
         Me.Promised.Width = 77
+        '
+        'RepoPromised
+        '
+        Me.RepoPromised.AutoHeight = False
+        Me.RepoPromised.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoPromised.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoPromised.Name = "RepoPromised"
         '
         'Account
         '
+        Me.Account.AppearanceCell.Options.UseTextOptions = True
+        Me.Account.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Account.AppearanceHeader.Options.UseTextOptions = True
+        Me.Account.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Account.FieldName = "Account"
         Me.Account.Name = "Account"
         Me.Account.Visible = True
-        Me.Account.VisibleIndex = 18
+        Me.Account.VisibleIndex = 20
         Me.Account.Width = 76
         '
         'SubAccount
         '
+        Me.SubAccount.AppearanceCell.Options.UseTextOptions = True
+        Me.SubAccount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.SubAccount.AppearanceHeader.Options.UseTextOptions = True
+        Me.SubAccount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.SubAccount.FieldName = "SubAccount"
         Me.SubAccount.Name = "SubAccount"
         Me.SubAccount.Visible = True
-        Me.SubAccount.VisibleIndex = 19
+        Me.SubAccount.VisibleIndex = 21
         Me.SubAccount.Width = 79
         '
         'RcptQtyMin
         '
+        Me.RcptQtyMin.AppearanceCell.Options.UseTextOptions = True
+        Me.RcptQtyMin.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.RcptQtyMin.AppearanceHeader.Options.UseTextOptions = True
+        Me.RcptQtyMin.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.RcptQtyMin.ColumnEdit = Me.RepoQtyMin
         Me.RcptQtyMin.FieldName = "Rcpt Qty Min%"
         Me.RcptQtyMin.Name = "RcptQtyMin"
         Me.RcptQtyMin.Visible = True
-        Me.RcptQtyMin.VisibleIndex = 20
+        Me.RcptQtyMin.VisibleIndex = 22
         Me.RcptQtyMin.Width = 114
+        '
+        'RepoQtyMin
+        '
+        Me.RepoQtyMin.AutoHeight = False
+        Me.RepoQtyMin.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoQtyMin.Name = "RepoQtyMin"
         '
         'RcptQtyMax
         '
+        Me.RcptQtyMax.AppearanceCell.Options.UseTextOptions = True
+        Me.RcptQtyMax.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.RcptQtyMax.AppearanceHeader.Options.UseTextOptions = True
+        Me.RcptQtyMax.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.RcptQtyMax.ColumnEdit = Me.RepoQtyMax
         Me.RcptQtyMax.FieldName = "Rcpt Qty Max%"
         Me.RcptQtyMax.Name = "RcptQtyMax"
         Me.RcptQtyMax.Visible = True
-        Me.RcptQtyMax.VisibleIndex = 21
+        Me.RcptQtyMax.VisibleIndex = 23
         Me.RcptQtyMax.Width = 89
+        '
+        'RepoQtyMax
+        '
+        Me.RepoQtyMax.AutoHeight = False
+        Me.RepoQtyMax.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepoQtyMax.Name = "RepoQtyMax"
         '
         'ReceiptAction
         '
+        Me.ReceiptAction.AppearanceHeader.Options.UseTextOptions = True
+        Me.ReceiptAction.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.ReceiptAction.FieldName = "Receipt Action"
         Me.ReceiptAction.Name = "ReceiptAction"
         Me.ReceiptAction.Visible = True
-        Me.ReceiptAction.VisibleIndex = 22
+        Me.ReceiptAction.VisibleIndex = 24
         Me.ReceiptAction.Width = 82
         '
         'ReceiptStatus
         '
+        Me.ReceiptStatus.AppearanceHeader.Options.UseTextOptions = True
+        Me.ReceiptStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.ReceiptStatus.FieldName = "Receipt Status"
         Me.ReceiptStatus.Name = "ReceiptStatus"
         Me.ReceiptStatus.Visible = True
-        Me.ReceiptStatus.VisibleIndex = 23
+        Me.ReceiptStatus.VisibleIndex = 25
         Me.ReceiptStatus.Width = 109
         '
         'VoucherStatus
         '
+        Me.VoucherStatus.AppearanceHeader.Options.UseTextOptions = True
+        Me.VoucherStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.VoucherStatus.FieldName = "Voucher Status"
         Me.VoucherStatus.Name = "VoucherStatus"
         Me.VoucherStatus.Visible = True
-        Me.VoucherStatus.VisibleIndex = 24
+        Me.VoucherStatus.VisibleIndex = 26
         Me.VoucherStatus.Width = 108
         '
         'IncludeInLeadTimeCalc
         '
+        Me.IncludeInLeadTimeCalc.AppearanceHeader.Options.UseTextOptions = True
+        Me.IncludeInLeadTimeCalc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.IncludeInLeadTimeCalc.FieldName = "Include In Lead Time Calc"
         Me.IncludeInLeadTimeCalc.Name = "IncludeInLeadTimeCalc"
         Me.IncludeInLeadTimeCalc.Visible = True
-        Me.IncludeInLeadTimeCalc.VisibleIndex = 25
+        Me.IncludeInLeadTimeCalc.VisibleIndex = 27
         Me.IncludeInLeadTimeCalc.Width = 144
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'TabControl1
         '
@@ -1696,6 +1901,12 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem53.Text = "Buyer"
         Me.LayoutControlItem53.TextSize = New System.Drawing.Size(131, 13)
         '
+        'RepoAlternate
+        '
+        Me.RepoAlternate.AutoHeight = False
+        Me.RepoAlternate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepoAlternate.Name = "RepoAlternate"
+        '
         'Frm_Detail_PurchaseOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1713,7 +1924,7 @@ Partial Class Frm_Detail_PurchaseOrder
         CType(Me.T_StatusPO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_Pajak.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_VendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TProjectID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.T_ProjectID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_PONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_POType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_PRNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1735,6 +1946,20 @@ Partial Class Frm_Detail_PurchaseOrder
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Qty, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoUnitCost, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoExtendedCost, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoUnitWeight, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoExtendedWeight, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoUnitVolume, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoExtendedVolume, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoRequired.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoRequired, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoPromised.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoPromised, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoQtyMin, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoQtyMax, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
@@ -1837,6 +2062,7 @@ Partial Class Frm_Detail_PurchaseOrder
         CType(Me.LayoutControlItem51, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem53, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoAlternate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1850,7 +2076,7 @@ Partial Class Frm_Detail_PurchaseOrder
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents TProjectID As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents T_ProjectID As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
@@ -1996,4 +2222,19 @@ Partial Class Frm_Detail_PurchaseOrder
     Friend WithEvents T_ShippingOtherAddressID As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents T_ShippingCustomerAddress As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents T_ShippingVendorAddres As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents Qty As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepoUnitCost As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepoExtendedCost As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepoUnitWeight As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepoExtendedWeight As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepoUnitVolume As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepoExtendedVolume As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepoQtyMin As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepoQtyMax As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepoRequired As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents RepoPromised As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents No As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XSeq As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoAlternate As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

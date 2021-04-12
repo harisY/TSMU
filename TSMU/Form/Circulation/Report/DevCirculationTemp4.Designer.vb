@@ -336,7 +336,7 @@ Partial Public Class DevCirculationTemp4
         'XrTableCell130
         '
         Me.XrTableCell130.Borders = DevExpress.XtraPrinting.BorderSide.Right
-        Me.XrTableCell130.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([DivHeadName] == '','' ,[FACName] )")})
+        Me.XrTableCell130.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[FACName]")})
         Me.XrTableCell130.Font = New System.Drawing.Font("Arial", 6.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell130.Multiline = True
         Me.XrTableCell130.Name = "XrTableCell130"
@@ -348,6 +348,7 @@ Partial Public Class DevCirculationTemp4
         'XrTableCell131
         '
         Me.XrTableCell131.Borders = DevExpress.XtraPrinting.BorderSide.Right
+        Me.XrTableCell131.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[FACOpinion]")})
         Me.XrTableCell131.Multiline = True
         Me.XrTableCell131.Name = "XrTableCell131"
         Me.XrTableCell131.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -905,6 +906,7 @@ Partial Public Class DevCirculationTemp4
         'XrLabel4
         '
         Me.XrLabel4.Borders = CType((DevExpress.XtraPrinting.BorderSide.Right Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SalesType]")})
         Me.XrLabel4.Font = New System.Drawing.Font("Arial", 6.0!)
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(76.70052!, 229.748!)
         Me.XrLabel4.Multiline = True

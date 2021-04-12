@@ -25,9 +25,11 @@ Public Class Frm_Detail_PurchaseOrder
 
     Private Sub CreateTableBarang()
         DtGridBarang = New DataTable
-        DtGridBarang.Columns.AddRange(New DataColumn(25) {New DataColumn("PR No", GetType(String)),
+        DtGridBarang.Columns.AddRange(New DataColumn(27) {New DataColumn("PR No", GetType(String)),
                                                             New DataColumn("PR Line No", GetType(String)),
                                                             New DataColumn("Alternate Manual", GetType(String)),
+                                                            New DataColumn("No", GetType(Double)),
+                                                            New DataColumn("XSeq", GetType(Double)),
                                                             New DataColumn("Inventory ID", GetType(String)),
                                                             New DataColumn("Description", GetType(String)),
                                                             New DataColumn("Quantity", GetType(Double)),
@@ -35,22 +37,24 @@ Public Class Frm_Detail_PurchaseOrder
                                                             New DataColumn("Unit Cost", GetType(Double)),
                                                             New DataColumn("Extended Cost", GetType(Double)),
                                                             New DataColumn("Status Price", GetType(String)),
-                                                            New DataColumn("Unit Weight", GetType(String)),
-                                                            New DataColumn("Site ID", GetType(Double)),
+                                                            New DataColumn("Unit Weight", GetType(Double)),
+                                                            New DataColumn("Site ID", GetType(String)),
                                                             New DataColumn("Extended Weight", GetType(Double)),
-                                                            New DataColumn("Purchase For", GetType(Double)),
+                                                            New DataColumn("Purchase For", GetType(String)),
                                                             New DataColumn("Unit Volume", GetType(Double)),
                                                             New DataColumn("Extended Volume", GetType(String)),
-                                                            New DataColumn("Required", GetType(String)),
-                                                            New DataColumn("Promised", GetType(Integer)),
+                                                            New DataColumn("Required", GetType(Date)),
+                                                            New DataColumn("Promised", GetType(Date)),
                                                             New DataColumn("Account", GetType(String)),
                                                             New DataColumn("SubAccount", GetType(String)),
-                                                            New DataColumn("Rcpt Qty Min%", GetType(String)),
-                                                            New DataColumn("Rcpt Qty Max%", GetType(String)),
+                                                            New DataColumn("Rcpt Qty Min%", GetType(Double)),
+                                                            New DataColumn("Rcpt Qty Max%", GetType(Double)),
                                                             New DataColumn("Receipt Action", GetType(String)),
                                                             New DataColumn("Receipt Status", GetType(String)),
                                                             New DataColumn("Voucher Status", GetType(String)),
                                                             New DataColumn("Include In Lead Time Calc", GetType(String))})
+        GridDetail.DataSource = DtGridBarang
+        GridView1.OptionsView.ShowAutoFilterRow = False
     End Sub
 
     Private Sub List_AddressType()
@@ -277,16 +281,32 @@ Public Class Frm_Detail_PurchaseOrder
 
     Private Sub T_NoPR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles T_PRNo.ButtonClick
         Try
+
+            GridView1.PostEditor()
+            GridView1.UpdateCurrentRow()
+
+            Dim a As Integer = 1
+
+
             fc_Class = New Cls_PO
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
+
+            Dim PR As String = ""
+            Dim Invt As String = ""
+            Dim Seq As String = ""
+
+
+            Dim Cek As Boolean = False
+
             dtBarang = New DataTable
 
 
             dtSearch = fc_Class.Get_PR()
             ls_Judul = "PR"
-            ls_OldKode = T_PRNo.EditValue
+            ls_OldKode = ""
+
 
             Dim lF_SearchData As FrmSystem_LookupGrid
             lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
@@ -298,6 +318,120 @@ Public Class Frm_Detail_PurchaseOrder
                 T_PRNo.EditValue = lF_SearchData.Values.Item(0).ToString.Trim
 
                 dtBarang = fc_Class.Get_PRDetail(lF_SearchData.Values.Item(0).ToString.Trim)
+
+                If dtBarang.Rows.Count > 0 Then
+                    For i As Integer = 0 To dtBarang.Rows.Count - 1
+                        Cek = False
+                        PR = dtBarang.Rows(i).Item("PRNo")
+                        Invt = dtBarang.Rows(i).Item("InvtId")
+                        Seq = dtBarang.Rows(i).Item("XSeqNo")
+
+                        If GridView1.RowCount = 0 Then
+
+                            a = a + GridView1.RowCount
+                            Dim b As Integer = GridView1.Columns("XSeq").SummaryItem.SummaryValue
+                            b = b + 1
+
+                            GridView1.AddNewRow()
+                            GridView1.OptionsNavigation.AutoFocusNewRow = True
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, No, a)
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, XSeq, b)
+
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PRNo, dtBarang.Rows(i).Item("PRNo"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, InventoryID, dtBarang.Rows(i).Item("InvtId"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Description, dtBarang.Rows(i).Item("InvtDescr"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PRLineNo, dtBarang.Rows(i).Item("XSeqNo"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Quantity, dtBarang.Rows(i).Item("Qty"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, UnitCost, dtBarang.Rows(i).Item("UnitPrice"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, OUM, 0)
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, ExtendedCost, 0)
+                            'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, StatusPrice, )
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, UnitWeight, 0)
+                            'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, SiteID, dtBarang.Rows(i).Item("XSeqNo"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, ExtentedWeight, 0)
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PurchaseFor, dtBarang.Rows(i).Item("PurchaseType"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, UnitVolume, 0)
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Required, dtBarang.Rows(i).Item("DelDate"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Promised, dtBarang.Rows(i).Item("DelDate"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Account, dtBarang.Rows(i).Item("Acct"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, SubAccount, dtBarang.Rows(i).Item("Sub"))
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, RcptQtyMax, 0)
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, RcptQtyMin, 0)
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, ReceiptAction, 0)
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, ReceiptStatus, "Not Received")
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, VoucherStatus, "Not Vouchered")
+                            GridView1.SetRowCellValue(GridView1.FocusedRowHandle, IncludeInLeadTimeCalc, 0)
+
+                        Else
+                            Dim GvPR As String = ""
+                            Dim GvInvt As String = ""
+                            Dim GvSeq As String = ""
+
+                            For b As Integer = 0 To GridView1.RowCount - 1
+
+                                GridView1.PostEditor()
+                                GridView1.UpdateCurrentRow()
+
+                                GvPR = GridView1.GetRowCellValue(b, GridView1.Columns("PR No"))
+                                GvInvt = Convert.ToString(GridView1.GetRowCellValue(b, GridView1.Columns("Inventory ID")).ToString())
+                                GvSeq = Convert.ToString(GridView1.GetRowCellValue(b, GridView1.Columns("PR Line No")).ToString)
+
+                                If (PR = GvPR) And (Invt = GvInvt) And (Seq = GvSeq) Then
+                                    Cek = Cek Or True
+                                End If
+
+                            Next
+
+                            If Cek = False Then
+
+                                a = a + GridView1.RowCount
+                                Dim b As Integer = GridView1.Columns("XSeq").SummaryItem.SummaryValue
+                                b = b + 1
+
+                                GridView1.AddNewRow()
+                                GridView1.OptionsNavigation.AutoFocusNewRow = True
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, No, a)
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, XSeq, b)
+
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PRNo, dtBarang.Rows(i).Item("PRNo"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, InventoryID, dtBarang.Rows(i).Item("InvtId"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Description, dtBarang.Rows(i).Item("InvtDescr"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PRLineNo, dtBarang.Rows(i).Item("XSeqNo"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Quantity, dtBarang.Rows(i).Item("Qty"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, OUM, 0)
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, UnitCost, dtBarang.Rows(i).Item("UnitPrice"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, ExtendedCost, 0)
+                                'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, StatusPrice, )
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, UnitWeight, 0)
+                                'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, SiteID, dtBarang.Rows(i).Item("XSeqNo"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, ExtentedWeight, 0)
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, PurchaseFor, dtBarang.Rows(i).Item("PurchaseType"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, UnitVolume, 0)
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Required, dtBarang.Rows(i).Item("DelDate"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Promised, dtBarang.Rows(i).Item("DelDate"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Account, dtBarang.Rows(i).Item("Acct"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, SubAccount, dtBarang.Rows(i).Item("Sub"))
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, RcptQtyMax, 0)
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, RcptQtyMin, 0)
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, ReceiptAction, 0)
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, ReceiptStatus, "Not Received")
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, VoucherStatus, "Not Vouchered")
+                                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, IncludeInLeadTimeCalc, 0)
+
+                            End If
+
+
+
+
+                        End If
+
+
+
+
+
+                    Next
+
+                End If
 
 
             End If
@@ -823,4 +957,340 @@ Public Class Frm_Detail_PurchaseOrder
     Private Sub TextEdit30_EditValueChanged(sender As Object, e As EventArgs) Handles T_VI_Country.EditValueChanged
 
     End Sub
+
+    Private Sub T_PRNo_EditValueChanged(sender As Object, e As EventArgs) Handles T_PRNo.EditValueChanged
+
+    End Sub
+
+    Private Sub GridDetail_KeyDown(sender As Object, e As KeyEventArgs) Handles GridDetail.KeyDown
+
+        If e.KeyData = Keys.Delete Then
+            GridView1.DeleteRow(GridView1.FocusedRowHandle)
+            GridView1.UpdateCurrentRow()
+            GridView1.RefreshData()
+        End If
+
+        For i As Integer = 0 To GridView1.RowCount - 1
+
+            'GridView3.GetRowCellValue(i, GridView3.Columns("No")) = i.ToString()
+
+            GridView1.SetRowCellValue(i, No, i + 1)
+
+        Next
+
+    End Sub
+
+    Public Overrides Sub Proc_SaveData()
+
+        Try
+            getdataview1()
+        Catch ex As Exception
+            ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
+    End Sub
+
+    Private Sub getdataview1()
+
+        Dim IsEmpty As Boolean = False
+
+        If GridView1.RowCount = 0 Then
+
+            MessageBox.Show("Check Item PO ", "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1)
+            Exit Sub
+
+        Else
+
+            'For i As Integer = 0 To GridView1.RowCount - 1
+            '    GridView1.MoveFirst()
+            '    GridView1.PostEditor()
+            '    GridView1.UpdateCurrentRow()
+            '    Dim cekPembelian As String = IIf(GridView1.GetRowCellValue(i, GridView1.Columns("Pembelian Untuk")) Is DBNull.Value, "", GridView1.GetRowCellValue(i, GridView1.Columns("Pembelian Untuk")))
+            '    Dim cekKodeBarang As String = IIf(GridView1.GetRowCellValue(i, GridView1.Columns("Kode Barang")) Is DBNull.Value, "", GridView1.GetRowCellValue(i, GridView1.Columns("Kode Barang")))
+            '    Dim cekWaktuTempo As String = IIf(GridView1.GetRowCellValue(i, GridView1.Columns("Waktu Tempo")) Is DBNull.Value, "", GridView1.GetRowCellValue(i, GridView1.Columns("Waktu Tempo")))
+            '    Dim cekHarga As String = IIf(GridView1.GetRowCellValue(i, GridView1.Columns("Harga")) Is DBNull.Value, "", GridView1.GetRowCellValue(i, GridView1.Columns("Harga")))
+            '    Dim cekJumlah As String = IIf(GridView1.GetRowCellValue(i, GridView1.Columns("Jumlah")) Is DBNull.Value, "", GridView1.GetRowCellValue(i, GridView1.Columns("Jumlah")))
+            '    Dim cekSubAccount As String = IIf(GridView1.GetRowCellValue(i, GridView1.Columns("Sub Account")) Is DBNull.Value, "", GridView1.GetRowCellValue(i, GridView1.Columns("Sub Account")))
+            '    If cekPembelian = "" Then
+            '        IsEmpty = True
+            '        MessageBox.Show("Cek Kolom Pembelian Untuk Baris Ke " & i + 1 & " ", "Warning",
+            '                MessageBoxButtons.OK,
+            '                MessageBoxIcon.Exclamation,
+            '                MessageBoxDefaultButton.Button1)
+            '        Exit Sub
+            '    ElseIf cekKodeBarang = "" Then
+            '        IsEmpty = True
+            '        MessageBox.Show("Cek Kolom Kode Barang Untuk Baris Ke " & i + 1 & " ", "Warning",
+            '                MessageBoxButtons.OK,
+            '                MessageBoxIcon.Exclamation,
+            '                MessageBoxDefaultButton.Button1)
+            '        Exit Sub
+
+
+
+            '    ElseIf cekWaktuTempo = "" Then
+            '        IsEmpty = True
+            '        MessageBox.Show("Cek Kolom Waktu Tempo Untuk Baris Ke " & i + 1 & " ", "Warning",
+            '                MessageBoxButtons.OK,
+            '                MessageBoxIcon.Exclamation,
+            '                MessageBoxDefaultButton.Button1)
+            '        Exit Sub
+            '    ElseIf cekSubAccount = "" Then
+            '        IsEmpty = True
+            '        MessageBox.Show("Cek Kolom Sub Account Untuk Baris Ke " & i + 1 & " ", "Warning",
+            '                MessageBoxButtons.OK,
+            '                MessageBoxIcon.Exclamation,
+            '                MessageBoxDefaultButton.Button1)
+            '        Exit Sub
+            '    ElseIf cekHarga = "" Or cekHarga = "0" Then
+            '        IsEmpty = True
+            '        MessageBox.Show("Cek Kolom Harga Untuk Baris Ke " & i + 1 & " ", "Warning",
+            '                MessageBoxButtons.OK,
+            '                MessageBoxIcon.Exclamation,
+            '                MessageBoxDefaultButton.Button1)
+            '        Exit Sub
+
+            '    ElseIf cekJumlah = "" Or cekJumlah = "0" Then
+            '        IsEmpty = True
+            '        MessageBox.Show("Cek Kolom Jumlah Untuk Baris Ke " & i + 1 & " ", "Warning",
+            '                MessageBoxButtons.OK,
+            '                MessageBoxIcon.Exclamation,
+            '                MessageBoxDefaultButton.Button1)
+            '        Exit Sub
+
+            '    End If
+            'Next
+
+
+        End If
+
+        If isUpdate = False Then
+
+            ''''''''''''''''''''''''' Insert''''''''''''''''''''''''''
+            With fc_Class
+
+                fc_Class.H_PONbr = T_PONumber.EditValue
+                fc_Class.H_CpnyID = "TSMU"
+                fc_Class.H_Crtd_DateTime = Date.Now
+                fc_Class.H_Crtd_Prog = "04250"
+                fc_Class.H_Crtd_User = gh_Common.Username
+                fc_Class.H_CurrentNbr = 0
+                fc_Class.H_CuryEffDate = Date.Now
+                fc_Class.H_CuryFreight = 0
+                fc_Class.H_CuryID = "IDR"
+                fc_Class.H_CuryMultDiv = "M"
+                fc_Class.H_CuryPOAmt = 0
+                fc_Class.H_CuryRate = 1
+                fc_Class.H_CuryRateType = "BIMID"
+                fc_Class.H_CuryRcptTotAmt = 0
+                fc_Class.H_LineCntr = 1
+                fc_Class.H_LUpd_DateTime = Date.Now
+                fc_Class.H_LUpd_Prog = "04250"
+                fc_Class.H_LUpd_User = gh_Common.Username
+                fc_Class.H_NoteID = 0
+                fc_Class.H_PerClosed = "0"
+                fc_Class.H_PerEnt = "0"
+                fc_Class.H_POType = T_POType.EditValue
+                fc_Class.H_ProjectID = T_ProjectID.EditValue
+                fc_Class.H_RcptStage = ""
+
+                fc_Class.H_ShipAddr1 = T_ShippingAddress1.EditValue
+                fc_Class.H_ShipAddr2 = T_ShippingAddress2.EditValue
+                fc_Class.H_ShipAddrID = T_ShippingSiteId.EditValue
+                fc_Class.H_ShipAttn = T_ShippingAttention.EditValue
+                fc_Class.H_ShipCity = T_ShippingCity.EditValue
+                fc_Class.H_ShipCountry = T_ShippingCountry.EditValue
+                fc_Class.H_ShipCustID = T_ShippingCustomerID.EditValue
+                fc_Class.H_ShipEmail = T_ShippingEmail.EditValue
+                fc_Class.H_ShipFax = T_ShippingFax.EditValue
+                fc_Class.H_ShipName = T_ShippingName.EditValue
+                fc_Class.H_ShipPhone = T_ShippingPhone.EditValue
+                fc_Class.H_ShipSiteID = T_ShippingSiteId.EditValue
+                fc_Class.H_ShipState = T_ShippingState.EditValue
+                fc_Class.H_ShipZip = T_ShippingPostalCode.EditValue
+
+
+                fc_Class.H_VendAddr1 = T_VI_Address1.EditValue
+                fc_Class.H_VendAddr2 = T_VI_Address2.EditValue
+                fc_Class.H_VendAddrID = T_VI_AddresID.EditValue
+                fc_Class.H_VendAttn = T_VI_Attention.EditValue
+                fc_Class.H_VendCity = T_VI_City.EditValue
+                fc_Class.H_VendCountry = T_VI_Country.EditValue
+                fc_Class.H_VendEmail = T_VI_Email.EditValue
+                fc_Class.H_VendFax = T_VI_Fax.EditValue
+                fc_Class.H_VendID = T_VendorID.EditValue
+                fc_Class.H_VendName = T_VendorName.EditValue
+                fc_Class.H_VendPhone = T_VI_Phone.EditValue
+                fc_Class.H_VendState = T_VI_State.EditValue
+                fc_Class.H_VendZip = T_VI_Postal.EditValue
+
+
+
+
+
+
+
+
+
+
+
+
+
+                '.H_Sirkulasi = IIf(TSirkulasi.EditValue Is DBNull.Value, "", TSirkulasi.EditValue)
+                '.H_ApprovalDate = Format(Date.Now, "yyyy-MM-dd")
+                '.H_ApprovalPIC = ""
+                '.H_ApprovalRemark = ""
+                '.H_LocId = gh_Common.GroupID.Substring(0, 1)
+                ''.H_Customer = IIf(TCustomer.EditValue Is Nothing, "", TCustomer.EditValue)
+                '.H_LUpd_DateTime = Format(Date.Now, "yyyy-MM-dd")
+                '.H_LUpd_Prog = "0499910"
+                '.H_LUpd_User = gh_Common.Username
+                '.H_PRDate = Format(TTanggal.EditValue, "yyyy-MM-dd")
+                '.H_PRNo = TNoPR.EditValue
+                '.H_Remark = TKeterangan.EditValue
+                '.H_SecId = SubAccountDept.Substring(2, 2)
+                '.H_SeqRev = TRevisi.EditValue
+                '.H_StatusFlag = "P"
+                '.H_CreateBy = gh_Common.Username
+                '.H_CreateDate = Format(Date.Now, "yyyy-MM-dd")
+                '.H_UpdateBy = gh_Common.Username
+                '.H_UpdateDate = Format(Date.Now, "yyyy-MM-dd")
+
+            End With
+
+            ''Insert To Detail
+            'fc_Class.Collection_Detail.Clear()
+            'For i As Integer = 0 To GridView1.RowCount - 1
+
+            '    Call Get_LastPR(GridView1.GetRowCellValue(i, "Account"))
+
+            '    fc_Class_Detail = New Cls_PR_Detail
+            '    With fc_Class_Detail
+
+            '        .D_Acct = GridView1.GetRowCellValue(i, "Account")
+            '        .D_CurrCode = "IDR"
+            '        .D_DelDate = GridView1.GetRowCellValue(i, WaktuTempo)
+            '        .D_InvtDescr = GridView1.GetRowCellValue(i, "Nama Barang")
+            '        .D_InvtId = GridView1.GetRowCellValue(i, "Kode Barang")
+            '        .D_InvtSpec = IIf(GridView1.GetRowCellValue(i, Spesifikasi) Is DBNull.Value, "", GridView1.GetRowCellValue(i, Spesifikasi))
+            '        .D_LastPRNo = LastPR
+            '        .D_LastPRDate = LastPRDate
+            '        .D_LUpd_Datetime = Date.Now
+            '        .D_LUpd_Prog = "0499910"
+            '        .D_LUpd_User = gh_Common.Username
+            '        .D_OverFlag = "N"
+            '        .D_PRNo = TNoPR.EditValue
+            '        .D_PurchaseType = GridView1.GetRowCellValue(i, PembelianUntuk)
+            '        .D_Qty = GridView1.GetRowCellValue(i, Jumlah)
+            '        .D_QtyPO = 0
+            '        .D_QtyRcv = 0
+            '        .D_Remark = IIf(GridView1.GetRowCellValue(i, Digunakan) Is DBNull.Value, "", GridView1.GetRowCellValue(i, Digunakan))
+            '        .D_StatusDate = Date.Now
+            '        .D_StatusFlag = "O"
+            '        .D_StkItem = 0
+            '        .D_Sub = GridView1.GetRowCellValue(i, SubAccount)
+            '        .D_UnitPrice = GridView1.GetRowCellValue(i, Harga)
+            '        .D_UnitQty = GridView1.GetRowCellValue(i, Satuan)
+            '        .D_XQty = GridView1.GetRowCellValue(i, Jumlah)
+            '        .D_SeqNo = GridView1.GetRowCellValue(i, No)
+            '        .D_XSeqNo = GridView1.GetRowCellValue(i, XSeq)
+            '        .D_Keterangan = IIf(GridView1.GetRowCellValue(i, Keterangan) Is DBNull.Value, "", GridView1.GetRowCellValue(i, Keterangan))
+
+            '    End With
+            '    fc_Class.Collection_Detail.Add(fc_Class_Detail)
+
+            'Next
+
+            fc_Class.Insert()
+
+            'bs_Filter = gh_Common.GroupID
+
+            'Grid.DataSource = fc_Class.Get_PR(gh_Common.GroupID)
+            'IsClosed = True
+            '' Timer1.Enabled = True
+            'Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            'Me.Hide()
+
+        Else
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''' Update
+            'With fc_Class
+            '    .H_Sirkulasi = IIf(TSirkulasi.EditValue Is DBNull.Value, "", TSirkulasi.EditValue)
+            '    .H_ApprovalDate = Format(Date.Now, "yyyy-MM-dd")
+            '    .H_ApprovalPIC = ""
+            '    .H_ApprovalRemark = ""
+            '    .H_LocId = gh_Common.GroupID.Substring(0, 1)
+            '    '.H_Customer = IIf(TCustomer.EditValue Is Nothing, "", TCustomer.EditValue)
+            '    .H_LUpd_DateTime = Format(Date.Now, "yyyy-MM-dd")
+            '    .H_LUpd_Prog = "0499910"
+            '    .H_LUpd_User = gh_Common.Username
+            '    .H_PRDate = Format(TTanggal.EditValue, "yyyy-MM-dd")
+            '    .H_PRNo = TNoPR.EditValue
+            '    .H_Remark = TKeterangan.EditValue
+            '    .H_SecId = SubAccountDept.Substring(2, 2)
+            '    .H_SeqRev = Val(TRevisi.EditValue) + 1
+            '    .H_StatusFlag = "P"
+            '    .H_CreateBy = gh_Common.Username
+            '    .H_CreateDate = Format(Date.Now, "yyyy-MM-dd")
+            '    .H_UpdateBy = gh_Common.Username
+            '    .H_UpdateDate = Format(Date.Now, "yyyy-MM-dd")
+
+            'End With
+
+            'Insert To Detail
+            'fc_Class.Collection_Detail.Clear()
+            'For i As Integer = 0 To GridView1.RowCount - 1
+
+            '    Call Get_LastPR(GridView1.GetRowCellValue(i, "Account"))
+
+            '    fc_Class_Detail = New Cls_PR_Detail
+            '    With fc_Class_Detail
+
+            '        .D_Acct = IIf(GridView1.GetRowCellValue(i, "Account") Is DBNull.Value, "", GridView1.GetRowCellValue(i, "Account"))
+            '        .D_CurrCode = "IDR"
+            '        .D_DelDate = IIf(GridView1.GetRowCellValue(i, WaktuTempo) Is DBNull.Value, "", GridView1.GetRowCellValue(i, WaktuTempo))
+            '        .D_InvtDescr = GridView1.GetRowCellValue(i, "Nama Barang")
+            '        .D_InvtId = GridView1.GetRowCellValue(i, "Kode Barang")
+            '        .D_InvtSpec = IIf(GridView1.GetRowCellValue(i, Spesifikasi) Is DBNull.Value, "", GridView1.GetRowCellValue(i, Spesifikasi))
+            '        .D_LastPRNo = LastPR
+            '        .D_LastPRDate = LastPRDate
+            '        .D_LUpd_Datetime = Date.Now
+            '        .D_LUpd_Prog = "0499910"
+            '        .D_LUpd_User = gh_Common.Username
+            '        .D_OverFlag = "N"
+            '        .D_PRNo = TNoPR.EditValue
+            '        .D_PurchaseType = GridView1.GetRowCellValue(i, PembelianUntuk)
+            '        .D_Qty = GridView1.GetRowCellValue(i, Jumlah)
+            '        .D_QtyPO = 0
+            '        .D_QtyRcv = 0
+            '        .D_Remark = IIf(GridView1.GetRowCellValue(i, Digunakan) Is DBNull.Value, "", GridView1.GetRowCellValue(i, Digunakan))
+            '        .D_StatusDate = Date.Now
+            '        .D_StatusFlag = "O"
+            '        .D_StkItem = 0
+            '        .D_Sub = GridView1.GetRowCellValue(i, SubAccount)
+            '        .D_UnitPrice = GridView1.GetRowCellValue(i, Harga)
+            '        .D_UnitQty = GridView1.GetRowCellValue(i, Satuan)
+            '        .D_XQty = GridView1.GetRowCellValue(i, Jumlah)
+            '        .D_SeqNo = GridView1.GetRowCellValue(i, No)
+            '        .D_XSeqNo = GridView1.GetRowCellValue(i, XSeq)
+            '        .D_Keterangan = IIf(GridView1.GetRowCellValue(i, Keterangan) Is DBNull.Value, "", GridView1.GetRowCellValue(i, Keterangan))
+
+            '    End With
+            '    fc_Class.Collection_Detail.Add(fc_Class_Detail)
+
+            'Next
+
+            'fc_Class.Update(TNoPR.EditValue)
+            'Grid.DataSource = fc_Class.Get_PR(gh_Common.GroupID)
+            'IsClosed = True
+            '' Timer1.Enabled = True
+            'Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            'Me.Hide()
+        End If
+
+    End Sub
+
 End Class
