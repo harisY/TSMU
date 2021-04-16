@@ -63,7 +63,24 @@ Public Class TTI_Header_Models
             Throw ex
         End Try
     End Function
+    Public Sub DeleteHeaderR(ByVal _VRNO As String)
+        Try
 
+
+            Dim ls_SP3 As String = " " & vbCrLf &
+                "update ARDoc set User7 ='1900-01-01 00:00:00' from ARDoc inner join TTI_Detail on TTI_Detail.No_Invoice=ARDoc.RefNbr WHERE DocType='IN' AND TTI_Detail.vrno = '" & _VRNO & "'"
+            ExecQuery_Solomon(ls_SP3)
+
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "DELETE from TTI_Header  WHERE vrno = '" & _VRNO & "'"
+            ExecQuery_Solomon(ls_SP)
+            Dim ls_SP2 As String = " " & vbCrLf &
+                        "DELETE from TTI_Detail WHERE vrno = '" & _VRNO & "' "
+            ExecQuery_Solomon(ls_SP2)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Function PrintReport(Id As String) As DataSet
         Try
             Dim ds As dsLaporan2
@@ -82,30 +99,9 @@ Public Class TTI_Header_Models
             Dim sql As String = "SELECT [id]
                 ,[vrno]
                 ,[tgl]
-                ,[BankID]
-                ,[BankName]
       ,[CustID]
       ,[CustomerName]
-                ,[Descr]
-                ,[Tot_DPP]
-                ,[Tot_PPN]
-                ,[Total_DPP_PPN]
-                ,[PPh]
-                ,[Biaya_Transfer]
-                ,[CM_DM]
-                ,[CuryID]
-                ,[cek1]
-                ,[cek2]
-                ,[cek3]
-                ,[cek4]
-                ,[prosespay]
-                ,[uploaded]
-                ,[detsupplier]
-                ,[bankrek]
-                ,[norek]
-                ,[penerima]
-                ,[cmdm_manual]
-                ,[cmdm_manual_ket]
+                ,[Total_DPP_PPN] as Total_Invoice, CreatedBy 
             FROM [TTI_Header] Order By id desc"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -457,14 +453,14 @@ Public Class TTI_Header_Models
 
                         UpdateHeader(vrno)
 
-                        Dim PaymentDetails As New TTI_Detail_Models
-                        PaymentDetails.DeleteDetail(vrno)
+                        'Dim PaymentDetails As New TTI_Detail_Models
+                        'PaymentDetails.DeleteDetail(vrno)
 
-                        For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
-                            With Me.ObjPaymentDetails(i)
-                                .InsertDetails()
-                            End With
-                        Next
+                        'For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
+                        '    With Me.ObjPaymentDetails(i)
+                        '        .InsertDetails()
+                        '    End With
+                        'Next
 
                         Trans1.Commit()
                     Catch ex As Exception

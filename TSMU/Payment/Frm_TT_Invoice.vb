@@ -23,6 +23,7 @@ Public Class Frm_TT_Invoice
     Dim tableDetail As DataTable
     Dim ff_Detail As Frm_TT_Invoice_Detail
     Dim ObjPaymentHeader As New TTI_Header_Models
+    Dim ff_Detail2 As Frm_TT_Invoice_Detail
 
     Private Sub frm_AR2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -84,20 +85,20 @@ Public Class Frm_TT_Invoice
             With GridView2
                 .Columns(0).Visible = False
                 .BestFitColumns()
-                .FixedLineWidth = 2
-                .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+                ''     .FixedLineWidth = 2
+                ''     .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
             End With
             GridCellFormat(GridView2)
 
-            dtGrid2 = ObjPaymentHeader.GetDataGrid2()
-            GridControl1.DataSource = dtGrid2
-            With GridView2
-                .Columns(0).Visible = False
-                .BestFitColumns()
-                .FixedLineWidth = 2
-                .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-            End With
-            GridCellFormat(GridView2)
+            'dtGrid2 = ObjPaymentHeader.GetDataGrid2()
+            'GridControl1.DataSource = dtGrid2
+            'With GridView2
+            '    .Columns(0).Visible = False
+            '    .BestFitColumns()
+            '    .FixedLineWidth = 2
+            '    .Columns(1).Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            'End With
+            'GridCellFormat(GridView2)
 
 
 
@@ -128,7 +129,7 @@ Public Class Frm_TT_Invoice
         ff_Detail.Show()
     End Sub
 
-    Dim ff_Detail2 As Frm_TT_Invoice_Detail
+
     Private Sub CallFrm2(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal sts_screen As Byte = 0, Optional ByVal li_Row As Integer = 0)
         If ff_Detail2 IsNot Nothing AndAlso ff_Detail2.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
@@ -176,21 +177,27 @@ Public Class Frm_TT_Invoice
 
 
     Public Overrides Sub Proc_DeleteData()
+        Dim ID As String = String.Empty
+        Dim VRNO As String = String.Empty
         Try
+            Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+            For Each rowHandle As Integer In selectedRows
+                If rowHandle >= 0 Then
+                    ID = GridView2.GetRowCellValue(rowHandle, "id")
+                    VRNO = GridView2.GetRowCellValue(rowHandle, "vrno")
+                End If
+            Next rowHandle
+            ObjPaymentHeader.id = ID
+            ObjPaymentHeader.id = ID
+            ObjPaymentHeader.vrno = VRNO
+            ObjPaymentHeader.DeleteHeaderR(VRNO)
 
-            'Dim fc_Class1 As New clsBoMTrans
-            'fc_Class1.BoMID = Trim(Grid.SelectedRows(0).Cells(0).Value)
-            'fc_Class1.DeleteData()
-            'Call ShowMessage(GetMessage(MessageEnum.HapusBerhasil), MessageTypeEnum.NormalMessage)
-            'tsBtn_refresh.PerformClick()
-            'Grid.RemoveItem(Grid.Row)
-            'If Grid.Rows.Count > Grid.Rows.Fixed Then
-            '    Call Proc_EnableButtons(True, False, True, True, True, True, False, False)
-            'Else
-            '    Call Proc_EnableButtons(True, False, False, True, True, True, False, False)
-            'End If
+
+            tsBtn_refresh.PerformClick()
+
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 
@@ -226,9 +233,6 @@ Public Class Frm_TT_Invoice
     Dim NoVoucher, id, NoBukti As String
     Dim CustID, Customer, AcctID_tujuan, Descr_tujuan, CurryID As String
 
-    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
-
-    End Sub
 
     Dim Jumlah As Double
 
