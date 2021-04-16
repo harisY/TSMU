@@ -142,21 +142,21 @@ Public Class Frm_Rpt_TarikSoA
 
     Private Sub GetDataGrid()
 
+        Dim dateprocess As DateTime
         Dim dateperpost As String = ""
-        Dim dateprocess As String = ""
-        Dim dateupdate1 As String = ""
-        Dim dateupdate2 As String = ""
-        Dim dateupdate3 As String = ""
+        Dim dateupdate1 As DateTime
+        Dim dateupdate2 As DateTime
+        Dim dateupdate3 As DateTime
         Invoke(Sub()
-                   dateperpost = txt_perpost.Text
                    dateprocess = DateEdit1.Text
                    dateupdate1 = DateEdit1.Text
+                   dateperpost = txt_perpost.Text
                    dateupdate2 = DateEdit1.Text
                    dateupdate3 = DateEdit1.Text
 
                End Sub)
         Dim dt As New DataTable
-        dt = pay_class.DataGridViewTarikSoA(dateperpost, dateprocess, dateupdate1, dateupdate2, dateupdate3)
+        dt = pay_class.DataGridViewTarikSoA(dateprocess, dateperpost, dateupdate1, dateupdate2, dateupdate3)
         setDataSource(dt, GridControl3)
         Invoke(Sub()
                    ProgBar.Visible = False
@@ -247,15 +247,15 @@ Public Class Frm_Rpt_TarikSoA
 
     Private Async Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
         Try
-            If ProgBar.Visible = True Then
-                Throw New Exception("Process already running, Please wait !")
-            End If
+            'If ProgBar.Visible = True Then
+            '    Throw New Exception("Process already running, Please wait !")
+            'End If
             ProgBar.Visible = True
             ProgBar.Style = ProgressBarStyle.Marquee
             Await Task.Run(Sub() GetDataGrid())
         Catch ex As Exception
             ProgBar.Visible = False
-            MsgBox(ex.Message)
+            MsgBox("Data Telah Berhasil Ditarik, Silahkan Download Data Di Solomon")
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
 
@@ -356,6 +356,15 @@ Public Class Frm_Rpt_TarikSoA
             newform.Show()
         Catch ex As Exception
             MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Try
+            GetDataGrid()
+        Catch ex As Exception
+            MsgBox("Data Telah Berhasil Ditarik, Silahkan Download Data Di Solomon")
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
 

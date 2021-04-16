@@ -27,6 +27,11 @@ Public Class FrmHRAdministrasiKaryawanDetail
     Dim frm_DataKeluarga As FrmHRPADataKeluarga
     Dim frm_DataPendidikan As FrmHRPADataPendidikan
     Dim frm_DataKomunikasi As FrmHRPADataKomunikasi
+    Dim frm_DataPengalaman As FrmHRPADataPengalamanKerja
+    Dim frm_DataKesehatan As FrmHRPADataKesehatan
+    Dim frm_DataIDPribadi As FrmHRPADataIDPribadi
+    Dim frm_DataFasilitas As FrmHRPADataFasilitas
+    Dim frm_DataPengTeguran As FrmHRPADataPengTeguran
 
     Public Sub New()
 
@@ -178,6 +183,20 @@ Public Class FrmHRAdministrasiKaryawanDetail
             Call LoadGridDataPendidikan()
         ElseIf cbMasterData.Text = "KOMUNIKASI" Then
             Call LoadGridDataKomunikasi()
+        ElseIf cbMasterData.Text = "PENGALAMAN KERJA" Then
+            Call LoadGridDataPengalamanKerja()
+        ElseIf cbMasterData.Text = "RIWAYAT KESEHATAN" Then
+            Call LoadGridDataKesehatan()
+        ElseIf cbMasterData.Text = "ID PRIBADI" Then
+            Call LoadGridDataIDPribadi()
+        ElseIf cbMasterData.Text = "FASILITAS" Then
+            Call LoadGridDataFasilitas()
+        ElseIf cbMasterData.Text = "TEGURAN/PENGHARGAAN" Then
+            Call LoadGridDataPengTeguran()
+        ElseIf cbMasterData.Text = "REMINDER" Then
+            Call LoadGridDataReminder()
+        ElseIf cbMasterData.Text = "RIWAYAT PERFORMA" Then
+            Call LoadGridDataPerforma()
         Else
             Try
                 GridViewPADetail.Columns.Clear()
@@ -212,6 +231,16 @@ Public Class FrmHRAdministrasiKaryawanDetail
                 Call CallFrmDataPendidikan(Action, dataRow)
             ElseIf cbMasterData.Text = "KOMUNIKASI" Then
                 Call CallFrmDataKomunikasi(Action, dataRow)
+            ElseIf cbMasterData.Text = "PENGALAMAN KERJA" Then
+                Call CallFrmDataPengalaman(Action, dataRow)
+            ElseIf cbMasterData.Text = "RIWAYAT KESEHATAN" Then
+                Call CallFrmDataKesehatan(Action, dataRow)
+            ElseIf cbMasterData.Text = "ID PRIBADI" Then
+                Call CallFrmDataIDPribadi(Action, dataRow)
+            ElseIf cbMasterData.Text = "FASILITAS" Then
+                Call CallFrmDataFasilitas(Action, dataRow)
+            ElseIf cbMasterData.Text = "TEGURAN/PENGHARGAAN" Then
+                Call CallFrmDataPengTeguran(Action, dataRow)
             End If
         End If
 
@@ -492,6 +521,289 @@ Public Class FrmHRAdministrasiKaryawanDetail
         End Try
     End Sub
 
+    Private Sub LoadGridDataPengalamanKerja()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataPengalamanKerja(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub LoadGridDataKesehatan()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataKesehatan(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub LoadGridDataIDPribadi()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataIDPribadi(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colGambar As GridColumn = GridViewPADetail.Columns("Gambar")
+            colGambar.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub LoadGridDataFasilitas()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataFasilitas(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub LoadGridDataPengTeguran()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataPengTeguran(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub LoadGridDataReminder()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataIDPribadi(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
+    Private Sub LoadGridDataPerforma()
+        GridPADetail.BeginUpdate()
+        Try
+            dtGridDetail = New DataTable
+            dtGridDetail = srvHR.GetDataDataIDPribadi(fs_Code)
+            GridViewPADetail.Columns.Clear()
+            GridPADetail.DataSource = Nothing
+            GridPADetail.DataSource = dtGridDetail
+
+            Dim colID As GridColumn = GridViewPADetail.Columns("ID")
+            colID.Visible = False
+
+            Dim colTglMulai As GridColumn = GridViewPADetail.Columns("TglMulai")
+            colTglMulai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglMulai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colTglSelesai As GridColumn = GridViewPADetail.Columns("TglSelesai")
+            colTglSelesai.DisplayFormat.FormatType = FormatType.DateTime
+            colTglSelesai.DisplayFormat.FormatString = "dd/MM/yyyy"
+
+            Dim colEmpID As GridColumn = GridViewPADetail.Columns("EmployeeID")
+            colEmpID.Visible = False
+
+            Dim colPerpindahan As GridColumn = GridViewPADetail.Columns("Seq")
+            colPerpindahan.Visible = False
+
+            Dim colTglBuat As GridColumn = GridViewPADetail.Columns("TglBuat")
+            colTglBuat.DisplayFormat.FormatType = FormatType.DateTime
+            colTglBuat.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            Dim colTglUbah As GridColumn = GridViewPADetail.Columns("TglUbah")
+            colTglUbah.DisplayFormat.FormatType = FormatType.DateTime
+            colTglUbah.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+
+            GridViewPADetail.BestFitColumns()
+        Finally
+            GridPADetail.EndUpdate()
+        End Try
+    End Sub
+
 #End Region
 
     Private Sub CallFrmDataPribadi(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
@@ -571,6 +883,71 @@ Public Class FrmHRAdministrasiKaryawanDetail
         frm_DataPendidikan = New FrmHRPADataPendidikan(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
         frm_DataPendidikan.StartPosition = FormStartPosition.CenterScreen
         frm_DataPendidikan.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataPengalaman(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataPengalaman IsNot Nothing AndAlso frm_DataPengalaman.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataPengalaman.Close()
+        End If
+        frm_DataPengalaman = New FrmHRPADataPengalamanKerja(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataPengalaman.StartPosition = FormStartPosition.CenterScreen
+        frm_DataPengalaman.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataKesehatan(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataKesehatan IsNot Nothing AndAlso frm_DataKesehatan.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataKesehatan.Close()
+        End If
+        frm_DataKesehatan = New FrmHRPADataKesehatan(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataKesehatan.StartPosition = FormStartPosition.CenterScreen
+        frm_DataKesehatan.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataIDPribadi(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataIDPribadi IsNot Nothing AndAlso frm_DataIDPribadi.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataIDPribadi.Close()
+        End If
+        frm_DataIDPribadi = New FrmHRPADataIDPribadi(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataIDPribadi.StartPosition = FormStartPosition.CenterScreen
+        frm_DataIDPribadi.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataFasilitas(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataFasilitas IsNot Nothing AndAlso frm_DataFasilitas.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataFasilitas.Close()
+        End If
+        frm_DataFasilitas = New FrmHRPADataFasilitas(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataFasilitas.StartPosition = FormStartPosition.CenterScreen
+        frm_DataFasilitas.ShowDialog()
+        CheckLoadGridMD()
+    End Sub
+
+    Private Sub CallFrmDataPengTeguran(Optional ByVal isAction As String = "", Optional ByVal dataRow As DataRow = Nothing)
+        If frm_DataPengTeguran IsNot Nothing AndAlso frm_DataPengTeguran.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frm_DataPengTeguran.Close()
+        End If
+        frm_DataPengTeguran = New FrmHRPADataPengTeguran(isAction, fs_Code, txtNIK.Text, dataRow, GridPADetail, Me)
+        frm_DataPengTeguran.StartPosition = FormStartPosition.CenterScreen
+        frm_DataPengTeguran.ShowDialog()
         CheckLoadGridMD()
     End Sub
 
