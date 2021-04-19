@@ -169,7 +169,7 @@ Public Class Frm_TT_Invoice_Detail
             .vrno = _txtVoucher.Text
             .CustomerName = _TxtVendorName.Text
             .Total_DPP_PPN = _TxtTotalAmount.Text
-
+            .H_CreatedBy = gh_Common.Username
             .NoBukti = TextEdit1.Text
         End With
         '    End If
