@@ -1714,10 +1714,10 @@
     <Compile Include="Form\Common\frmForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Common\frmFrmProblem.Designer.vb">
-      <DependentUpon>frmFrmProblem.vb</DependentUpon>
+    <Compile Include="Form\Common\frmProblem.Designer.vb">
+      <DependentUpon>frmProblem.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Common\frmFrmProblem.vb">
+    <Compile Include="Form\Common\frmProblem.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmForecastHargaManual.Designer.vb">
@@ -3903,8 +3903,8 @@
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Common\frmFrmProblem.resx">
-      <DependentUpon>frmFrmProblem.vb</DependentUpon>
+    <EmbeddedResource Include="Form\Common\frmProblem.resx">
+      <DependentUpon>frmProblem.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecastHargaManual.resx">
       <DependentUpon>frmForecastHargaManual.vb</DependentUpon>

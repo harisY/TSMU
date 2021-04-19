@@ -1,4 +1,4 @@
-﻿Public Class frmFrmProblem
+﻿Public Class frmProblem
     Dim Service As New ProblemService
     Dim Model As ProblemModel
     Dim ff_Detail As frmProbleDetail
