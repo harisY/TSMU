@@ -216,8 +216,8 @@ Public Class FrmHRPADataPribadi
                 Err.Raise(ErrNumber, , "Nama Lengkap Tidak Boleh Kosong!")
             ElseIf cbJenisKelamin.Text = "" Then
                 Err.Raise(ErrNumber, , "Jenis Kelamin Tidak Boleh Kosong!")
-            ElseIf cbStatusKawin.Text = "MENIKAH" And dtTglKawin.EditValue = Nothing Then
-                Err.Raise(ErrNumber, , "Tanggal Kawin Tidak Boleh Kosong !")
+                'ElseIf cbStatusKawin.Text = "MENIKAH" And dtTglKawin.EditValue = Nothing Then
+                '    Err.Raise(ErrNumber, , "Tanggal Kawin Tidak Boleh Kosong !")
             Else
                 If isAction = "Add" OrElse isAction = "Copy" Then
                     If srvHR.CheckRangeDatePribadi(EmpID, dtTglMulai.EditValue, dtTglSelesai.EditValue) Then
