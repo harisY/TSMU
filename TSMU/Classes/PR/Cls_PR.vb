@@ -48,6 +48,27 @@ Public Class Cls_PR
 
     End Function
 
+
+    Public Function GetSirkulasiSudahPR(Sirkulasi As String, PRNo As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[PR_D_GetSirkulasiSudahPR]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@Sirkulasi", SqlDbType.VarChar)
+            pParam(1) = New SqlClient.SqlParameter("@PRNO", SqlDbType.VarChar)
+
+            pParam(0).Value = Sirkulasi
+            pParam(1).Value = PRNo
+
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
     Public Function GetSubAccount(Tahun As String,
                                   Dept As String,
                                   AcctID As String) As DataTable
