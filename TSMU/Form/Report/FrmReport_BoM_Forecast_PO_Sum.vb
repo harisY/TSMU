@@ -167,9 +167,9 @@ Public Class FrmReport_BoM_Forecast_PO_Sum
     Private Sub AdvBandedGridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles AdvBandedGridView1.RowStyle
         Dim View As AdvBandedGridView = sender
         If e.RowHandle > 0 Then
-            Dim Level As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("Level"))
+            Dim ParentID As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("ParentID"))
             'Dim array2() As String = TempSJ.ToArray
-            If Level.ToLower = "0" Then
+            If ParentID.ToLower = "" Then
                 e.Appearance.BackColor = Color.LightBlue
                 e.Appearance.BackColor2 = Color.SeaShell
                 e.HighPriority = True
