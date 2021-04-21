@@ -1708,10 +1708,22 @@
     <Compile Include="Form\Common\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\FrmDeleteForecast.designer.vb">
+      <DependentUpon>FrmDeleteForecast.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmDeleteForecast.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmForecastDaily.Designer.vb">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmForecastDaily.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmProblem.Designer.vb">
+      <DependentUpon>frmProblem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmProblem.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmForecastHargaManual.Designer.vb">
@@ -1736,6 +1748,12 @@
       <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmMonitoringInventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmProbleDetail.Designer.vb">
+      <DependentUpon>frmProbleDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmProbleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmQcOutgoing.Designer.vb">
@@ -2438,6 +2456,12 @@
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO_Sum.designer.vb">
+      <DependentUpon>FrmReport_BoM_Forecast_PO_Sum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO_Sum.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Report\frmReport_Harigami1.Designer.vb">
@@ -3900,8 +3924,14 @@
     <EmbeddedResource Include="Form\Common\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmDeleteForecast.resx">
+      <DependentUpon>FrmDeleteForecast.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmProblem.resx">
+      <DependentUpon>frmProblem.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecastHargaManual.resx">
       <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
@@ -3914,6 +3944,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmMonitoringInventory.resx">
       <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmProbleDetail.resx">
+      <DependentUpon>frmProbleDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmQcOutgoing.resx">
       <DependentUpon>frmQcOutgoing.vb</DependentUpon>
@@ -4114,6 +4147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO.resx">
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO_Sum.resx">
+      <DependentUpon>FrmReport_BoM_Forecast_PO_Sum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Harigami1.resx">
       <DependentUpon>frmReport_Harigami1.vb</DependentUpon>

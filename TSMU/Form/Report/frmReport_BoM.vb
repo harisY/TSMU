@@ -17,6 +17,7 @@ Public Class frmReport_BoM
         cmbSite.SelectedIndex = 0
         cmbStatus.SelectedIndex = 0
         cmbStatusM.SelectedIndex = 0
+        cmbActive.SelectedIndex = 0
         Grid.DataSource = Nothing
         cmbSite.Focus()
         _txtInvID.Text = "ALL"
@@ -38,6 +39,7 @@ Public Class frmReport_BoM
             Else
                 cmbSite.SelectedIndex = 0
                 cmbStatus.SelectedIndex = 0
+                cmbActive.SelectedIndex = 0
                 Grid.DataSource = Nothing
                 cmbSite.Focus()
                 _txtInvID.Text = "ALL"
@@ -142,7 +144,7 @@ Public Class frmReport_BoM
         End Try
     End Sub
 
-    Private Sub cmbSite_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbSite.KeyPress, cmbStatus.KeyPress
+    Private Sub cmbSite_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbSite.KeyPress, cmbStatus.KeyPress, cmbActive.KeyPress
         Dim tmp As System.Windows.Forms.KeyPressEventArgs = e
         If tmp.KeyChar = ChrW(Keys.Enter) Then
         Else
@@ -227,13 +229,15 @@ Public Class frmReport_BoM
         Dim strSite As String = ""
         Dim strStatus As String = ""
         Dim strinvtID As String = ""
+        Dim strActive As String = ""
         Invoke(Sub()
                    strSite = cmbSite.Text
                    strStatus = cmbStatus.Text
                    strinvtID = _txtInvID.Text
+                   strActive = cmbActive.Text
                End Sub)
         Dim dt As New DataTable
-        dt = fc_class.DataGridBoMRouting(strSite, strStatus, strinvtID)
+        dt = fc_class.DataGridBoMRouting(strSite, strStatus, strinvtID, strActive)
         setDataSource(dt, Grid)
 
         Invoke(Sub()
@@ -676,4 +680,5 @@ Public Class frmReport_BoM
                    End If
                End Sub)
     End Sub
+
 End Class
