@@ -3176,6 +3176,18 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TTI_All.Designer.vb">
+      <DependentUpon>Frm_TTI_All.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TTI_All.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TT_Outstanding.Designer.vb">
+      <DependentUpon>Frm_TT_Outstanding.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TT_Outstanding.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Rpt_APSignature.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4444,6 +4456,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
       <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_TTI_All.resx">
+      <DependentUpon>Frm_TTI_All.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_TT_Outstanding.resx">
+      <DependentUpon>Frm_TT_Outstanding.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_APSignature.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

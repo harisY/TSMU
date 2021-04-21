@@ -177,6 +177,20 @@
             Throw ex
         End Try
     End Function
+    Public Function GetGridDetailPaymentByVendorID2(VendorId) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+                "PROSES_VOUCHER_ARNOTPAYYMENT1_TTI3"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(0).Value = VendorId
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetDetailPaymentByVendorID2(VendorId) As Double
         Try
             Dim auto As Double
