@@ -67,7 +67,7 @@ Public Class KanbanYIMModel
                 New SqlParameter() With {.ParameterName = "Unit", .Value = ObjCollections(i).Unit},
                 New SqlParameter() With {.ParameterName = "User_Code", .Value = ObjCollections(i).User_Code},
                 New SqlParameter() With {.ParameterName = "User_Name", .Value = ObjCollections(i).User_Name},
-                New SqlParameter() With {.ParameterName = "UploadedBy", .Value = ObjCollections(i).UploadedBy}
+                New SqlParameter() With {.ParameterName = "UploadedBy", .Value = gh_Common.Username}
             }
             ExecQueryWithValue("KanbanYIM_Insert", CommandType.StoredProcedure, Params, GetConnString)
         Catch ex As Exception

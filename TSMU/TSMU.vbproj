@@ -1720,6 +1720,12 @@
     <Compile Include="Form\Common\frmForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\frmProblem.Designer.vb">
+      <DependentUpon>frmProblem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmProblem.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmForecastHargaManual.Designer.vb">
       <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
     </Compile>
@@ -1742,6 +1748,12 @@
       <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmMonitoringInventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmProbleDetail.Designer.vb">
+      <DependentUpon>frmProbleDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmProbleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmQcOutgoing.Designer.vb">
@@ -3188,6 +3200,18 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TTI_All.Designer.vb">
+      <DependentUpon>Frm_TTI_All.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TTI_All.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TT_Outstanding.Designer.vb">
+      <DependentUpon>Frm_TT_Outstanding.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TT_Outstanding.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Rpt_APSignature.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3906,6 +3930,9 @@
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmProblem.resx">
+      <DependentUpon>frmProblem.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecastHargaManual.resx">
       <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
     </EmbeddedResource>
@@ -3917,6 +3944,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmMonitoringInventory.resx">
       <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmProbleDetail.resx">
+      <DependentUpon>frmProbleDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmQcOutgoing.resx">
       <DependentUpon>frmQcOutgoing.vb</DependentUpon>
@@ -4462,6 +4492,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
       <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_TTI_All.resx">
+      <DependentUpon>Frm_TTI_All.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_TT_Outstanding.resx">
+      <DependentUpon>Frm_TT_Outstanding.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_APSignature.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

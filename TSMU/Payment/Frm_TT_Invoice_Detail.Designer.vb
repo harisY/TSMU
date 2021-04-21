@@ -64,9 +64,9 @@ Partial Class Frm_TT_Invoice_Detail
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckedComboBoxEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtTotalAmountAP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,7 +211,6 @@ Partial Class Frm_TT_Invoice_Detail
         Me._txtVoucher.Location = New System.Drawing.Point(288, 12)
         Me._txtVoucher.Margin = New System.Windows.Forms.Padding(4)
         Me._txtVoucher.Name = "_txtVoucher"
-        Me._txtVoucher.Properties.ReadOnly = True
         Me._txtVoucher.Size = New System.Drawing.Size(110, 22)
         Me._txtVoucher.StyleController = Me.LayoutControl1
         Me._txtVoucher.TabIndex = 9
@@ -605,16 +604,6 @@ Partial Class Frm_TT_Invoice_Detail
         Me.GridColumn3.VisibleIndex = 3
         Me.GridColumn3.Width = 94
         '
-        'RepositoryItemCheckedComboBoxEdit1
-        '
-        Me.RepositoryItemCheckedComboBoxEdit1.AutoHeight = False
-        Me.RepositoryItemCheckedComboBoxEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemCheckedComboBoxEdit1.Name = "RepositoryItemCheckedComboBoxEdit1"
-        '
-        'DxValidationProvider1
-        '
-        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
-        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "CreatedBy"
@@ -624,6 +613,16 @@ Partial Class Frm_TT_Invoice_Detail
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 11
         Me.GridColumn4.Width = 94
+        '
+        'RepositoryItemCheckedComboBoxEdit1
+        '
+        Me.RepositoryItemCheckedComboBoxEdit1.AutoHeight = False
+        Me.RepositoryItemCheckedComboBoxEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemCheckedComboBoxEdit1.Name = "RepositoryItemCheckedComboBoxEdit1"
+        '
+        'DxValidationProvider1
+        '
+        Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
         'Frm_TT_Invoice_Detail
         '

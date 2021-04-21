@@ -15,8 +15,6 @@ Public Class frmBarcodeGenerate
 
     Private Sub LoadGrid()
         Try
-            'Grid.ReadOnly = True
-            'Grid.AllowSorting = AllowSortingEnum.SingleColumn
             If gh_Common.Site.ToLower = "tng" Then
                 dtGrid = Obj.GetAllDataGrid()
             Else
@@ -55,11 +53,6 @@ Public Class frmBarcodeGenerate
         frmExcel.ShowDialog()
 
         Try
-            'Dim dv As DataView = New DataView(table)
-            'Dim dtFilter As New DataTable
-
-            'table = dv.ToTable
-            'Exit Sub
             If table.Rows.Count > 0 Then
 
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
@@ -106,28 +99,6 @@ Public Class frmBarcodeGenerate
             Dim f As New FrmLookUpBarcode
             f.StartPosition = FormStartPosition.CenterParent
             f.ShowDialog()
-            'If GridView1.RowCount = 0 Then
-            '    Throw New Exception("Tidak ada data yang di akan print.")
-            'End If
-
-            'Dim ds As DataSet = New DataSet
-            'Dim dt As DataTable = New DataTable
-            'ds = Obj.PrintQRCOde()
-
-            'dt = ds.Tables("QRCode")
-
-            'Dim Laporan As Testing = New Testing
-            'With Laporan
-            '    '.param1 = No
-            '    '.param2 = No
-            '    .DataSource = dt
-            '    '.DataMember = ds.Tables("PrintPO").TableName
-            'End With
-
-            'Using PrintTool As ReportPrintTool = New ReportPrintTool(Laporan)
-            '    PrintTool.ShowPreviewDialog()
-            '    PrintTool.ShowPreview(UserLookAndFeel.Default)
-            'End Using
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

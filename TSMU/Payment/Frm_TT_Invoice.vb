@@ -30,7 +30,7 @@ Public Class Frm_TT_Invoice
         Call LoadGrid()
         Dim dtGrid2 As New DataTable
         dtGrid2 = GridControl1.DataSource
-        Call Proc_EnableButtons(True, False, True, True, False, False, False, True, False, False, False, True)
+        Call Proc_EnableButtons(True, False, True, True, False, False, True, True, False, False, False, True)
     End Sub
     Dim PrintTool As ReportPrintTool
     Public Overrides Sub Proc_Print()
@@ -115,7 +115,10 @@ Public Class Frm_TT_Invoice
 
         Call LoadGrid()
     End Sub
-
+    Public Overrides Sub Proc_PrintPreview()
+        Frm_TTI_All.Show()
+        'Frm_TT_Outstanding.Show()
+    End Sub
     Private Sub CallFrm(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal ls_Code3 As String = "", Optional ByVal ls_Code4 As String = "", Optional ByVal ls_Code5 As String = "", Optional ByVal ls_Code6 As Double = 0, Optional ByVal sts_screen As Byte = 0, Optional ByVal li_Row As Integer = 0)
         If ff_Detail IsNot Nothing AndAlso ff_Detail.Visible Then
             If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
