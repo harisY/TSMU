@@ -134,7 +134,7 @@ Public Class FrmDeleteForecast
     End Sub
 
     Private Sub FillComboFlag()
-        Dim tahun() As String = {"N/A", "ADMSPD", "KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3"}
+        Dim tahun() As String = {"N/A", "ADMSPD", "KAP TSC1", "KAP TSC3", "SAP TSC1", "SAP TSC3", "TD-LINK", "MMK SP"}
         _CmbFlag.Properties.Items.Clear()
         For Each var As String In tahun
             _CmbFlag.Properties.Items.Add(var)
