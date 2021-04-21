@@ -216,6 +216,19 @@ Public Class Cls_report
         End Try
     End Function
 
+    Public Function DataGridOutstanding() As DataTable
+        Try
+            Dim query As String = "AP_OUTSTANDING_INVOICE"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter() {}
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
     Public Function DataGridViewAR(ByVal date1 As String, ByVal date2 As String) As DataTable
         Try
             Dim query As String = "ViewAR"

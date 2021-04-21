@@ -26,6 +26,7 @@ Partial Class Frm_Rpt_TarikSoA
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_TarikSoA))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txt_perpost = New System.Windows.Forms.TextBox()
@@ -113,6 +114,7 @@ Partial Class Frm_Rpt_TarikSoA
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.SimpleButton1)
         Me.TabPage1.Controls.Add(Me.DateEdit1)
         Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.txt_perpost)
@@ -126,6 +128,15 @@ Partial Class Frm_Rpt_TarikSoA
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Tarik SoA"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SimpleButton1.Location = New System.Drawing.Point(453, 3)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(71, 27)
+        Me.SimpleButton1.TabIndex = 26
+        Me.SimpleButton1.Text = "Load Data"
         '
         'DateEdit1
         '
@@ -150,7 +161,7 @@ Partial Class Frm_Rpt_TarikSoA
         '
         Me.txt_perpost.Location = New System.Drawing.Point(359, 6)
         Me.txt_perpost.Name = "txt_perpost"
-        Me.txt_perpost.Size = New System.Drawing.Size(100, 20)
+        Me.txt_perpost.Size = New System.Drawing.Size(88, 20)
         Me.txt_perpost.TabIndex = 17
         '
         'Panel1
@@ -386,9 +397,9 @@ Partial Class Frm_Rpt_TarikSoA
         '
         Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
-        Me.ToolStrip2.Location = New System.Drawing.Point(471, 3)
+        Me.ToolStrip2.Location = New System.Drawing.Point(527, 5)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(225, 25)
+        Me.ToolStrip2.Size = New System.Drawing.Size(111, 25)
         Me.ToolStrip2.TabIndex = 0
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -399,11 +410,13 @@ Partial Class Frm_Rpt_TarikSoA
         Me.btnLoad.Name = "btnLoad"
         Me.btnLoad.Size = New System.Drawing.Size(80, 22)
         Me.btnLoad.Text = "Load Data"
+        Me.btnLoad.Visible = False
         '
         'ProgBar
         '
         Me.ProgBar.Name = "ProgBar"
         Me.ProgBar.Size = New System.Drawing.Size(100, 22)
+        Me.ProgBar.Visible = False
         '
         'ToolStrip3
         '
@@ -685,4 +698,5 @@ Partial Class Frm_Rpt_TarikSoA
     Friend WithEvents CachedCRTravelDetailEntertainSettRightSum1 As CachedCRTravelDetailEntertainSettRightSum
     Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label4 As Label
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class

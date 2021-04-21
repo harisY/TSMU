@@ -98,6 +98,15 @@ Public Class FrmDetailPR
 
     End Sub
     Private Sub FrmDetailPR_Load(sender As Object, e As EventArgs) Handles MyBase.Load, TSirkulasi.DoubleClick
+
+        Me.T_SirkulasiJumlah.Properties.Mask.EditMask = "n0"
+        Me.T_SirkulasiJumlah.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.T_SirkulasiJumlah.Properties.Mask.UseMaskAsDisplayFormat = True
+
+        Me.TJumlahProses.Properties.Mask.EditMask = "n0"
+        Me.TJumlahProses.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TJumlahProses.Properties.Mask.UseMaskAsDisplayFormat = True
+
         Call CreateTable()
         Call FillComboPembelianUntuk()
         Call InitialSetForm()
@@ -809,9 +818,11 @@ Public Class FrmDetailPR
             fc_Class = New Cls_PR
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
+            Dim dtSt As New DataTable
             Dim ls_OldKode As String = ""
             DeptID = gh_Common.GroupID
             Dim tgl As Date = TTanggal.EditValue
+            Dim Value1 As String = ""
 
 
             'Dim Tahun As String = Convert.ToString(Param.ToString("yyyy"))
@@ -826,14 +837,25 @@ Public Class FrmDetailPR
             lF_SearchData.Text = "Pilih  " & ls_Judul
             lF_SearchData.StartPosition = FormStartPosition.CenterScreen
             lF_SearchData.ShowDialog()
-            Dim Value1 As String = ""
+
 
             If lF_SearchData.Values IsNot Nothing Then 'AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode 
                 Value1 = lF_SearchData.Values.Item(0).ToString.Trim
 
                 TSirkulasi.EditValue = Value1
+                T_SirkulasiJumlah.EditValue = lF_SearchData.Values.Item(5).ToString.Trim
                 TSirkulasi.SelectAll()
+
             End If
+
+            dtSt = fc_Class.GetSirkulasiSudahPR(Value1, TNoPR.EditValue)
+            If dtSt.Rows.Count <= 0 Then
+                TJumlahProses.EditValue = "0"
+            Else
+                TJumlahProses.EditValue = dtSt.Rows(0).Item("Total")
+            End If
+
+
             lF_SearchData.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -847,6 +869,11 @@ Public Class FrmDetailPR
 
         If Not ((tombol = 0) Or (tombol = 8)) Then
             e.Handled = True
+        End If
+
+        If tombol = 8 Then
+            T_SirkulasiJumlah.EditValue = ""
+            TJumlahProses.EditValue = ""
         End If
     End Sub
 
@@ -961,5 +988,14 @@ Public Class FrmDetailPR
         End Try
     End Sub
 
+    Private Sub TAmmountSirkulasi_KeyPress(sender As Object, e As KeyPressEventArgs)
 
+        'Dim tombol As Integer
+        'tombol = Asc(e.KeyChar)
+
+        'If Not ((tombol = 0)) Then
+        '    e.Handled = True
+        'End If
+
+    End Sub
 End Class

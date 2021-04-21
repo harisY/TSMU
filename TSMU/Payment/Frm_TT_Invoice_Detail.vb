@@ -169,7 +169,7 @@ Public Class Frm_TT_Invoice_Detail
             .vrno = _txtVoucher.Text
             .CustomerName = _TxtVendorName.Text
             .Total_DPP_PPN = _TxtTotalAmount.Text
-
+            .H_CreatedBy = gh_Common.Username
             .NoBukti = TextEdit1.Text
         End With
         '    End If
@@ -197,10 +197,13 @@ Public Class Frm_TT_Invoice_Detail
                         .Pph = GridView1.GetRowCellValue(i, "PPH")
                         .No_Faktur = GridView1.GetRowCellValue(i, "fp").ToString().TrimEnd
                         .NoPO = GridView1.GetRowCellValue(i, "NoPO").ToString().TrimEnd
+                        .Crtd_User = GridView1.GetRowCellValue(i, "Crtd_User").ToString().TrimEnd
                         .cek1 = True
                         .NoBukti = TextEdit1.Text
                         .Paid = GridView1.GetRowCellValue(i, "Paid")
                         .tgl = _TxtTgl.EditValue
+                        .H_CreatedBy = gh_Common.Username
+                        .H_CreatedDate = Date.Now
                     End With
                     ObjPaymentHeader.ObjPaymentDetails.Add(ObjDetails)
                 End If
@@ -213,13 +216,13 @@ Public Class Frm_TT_Invoice_Detail
                 ObjPaymentHeader.UpdateData()
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             End If
-            GridDtl.DataSource = ObjPaymentHeader.GetDataGrid()
-            ''IsClosed = True
-            ''Me.Hide()
+            GridDtl.DataSource = ObjPaymentHeader.GetDataGrid2()
+            IsClosed = True
+            Me.Hide()
 
-            LoadGridDetail()
+            'LoadGridDetail()
 
-            _TxtPerpost.Focus()
+            '_TxtPerpost.Focus()
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -433,7 +436,7 @@ Public Class Frm_TT_Invoice_Detail
 
             Dim dtGrid As New DataTable
             ''dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(Value1.TrimEnd)
-
+            _TxtVendorID.Text = _TxtVendorID.Text.ToUpper
             dtGrid = ObjPaymentDetail.GetGridDetailPaymentByVendorID(_TxtVendorID.Text.TrimEnd)
             If dtGrid.Rows.Count > 0 Then
                 GridInvoice.DataSource = dtGrid
