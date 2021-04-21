@@ -86,7 +86,7 @@ Public Class ProblemService
             Dim Params As List(Of SqlParameter) = New List(Of SqlParameter) From {
                  New SqlParameter() With {.ParameterName = "Id", .Value = Id.AsInt}
                 }
-            ExecQueryWithValue("m_problemUpdate", CommandType.StoredProcedure, Params, GetConnString)
+            ExecQueryWithValue("m_problemDelete", CommandType.StoredProcedure, Params, GetConnString)
         Catch ex As Exception
             Throw ex
         End Try
