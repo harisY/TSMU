@@ -2464,6 +2464,12 @@
     <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO_Sum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_Budget_NonBoM.designer.vb">
+      <DependentUpon>frmReport_Budget_NonBoM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Budget_NonBoM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_Harigami1.Designer.vb">
       <DependentUpon>frmReport_Harigami1.vb</DependentUpon>
     </Compile>
@@ -4150,6 +4156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO_Sum.resx">
       <DependentUpon>FrmReport_BoM_Forecast_PO_Sum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_Budget_NonBoM.resx">
+      <DependentUpon>frmReport_Budget_NonBoM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Harigami1.resx">
       <DependentUpon>frmReport_Harigami1.vb</DependentUpon>
