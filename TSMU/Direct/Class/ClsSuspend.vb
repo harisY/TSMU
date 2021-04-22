@@ -75,6 +75,19 @@ Public Class ClsSuspend
             Throw ex
         End Try
     End Function
+    Public Function GetSub() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                RTRIM(Sub) [Sub],
+	                                RTRIM(Descr) Descritiption
+                                FROM dbo.SubAcct"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Function GetBank() As DataTable
         Try

@@ -463,6 +463,7 @@ Public Class FrmSuspendSettleDetail
                 Dim dt As New DataTable
                 ObjSuspendHeader = New SuspendHeaderModel
                 ObjSuspendHeader.SuspendHeaderID = Value1
+                ObjSuspendHeader.SuspendID = Value2
                 ObjSuspendHeader.GetSuspenById()
                 With ObjSuspendHeader
                     TxtNoSuspend.Text = .SuspendID
