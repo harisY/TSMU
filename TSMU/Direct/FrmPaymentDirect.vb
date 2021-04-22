@@ -19,6 +19,7 @@ Public Class FrmPaymentDirect
     Dim ff_Detail5 As FrmEditDirectPayment
     Dim ff_Detail6 As FrmBankPaid
     Dim ff_Detail6z As FrmBankPaid
+    Dim ff_Detail10 As FrmBankPaid
     Dim ff_Detail7 As frm_payment_aprrove_details
     Dim ff_Detail8 As FrmBankReceipt_Detail
     Dim ff_Detail81 As FrmBankTransfer_Detail
@@ -1609,16 +1610,16 @@ Public Class FrmPaymentDirect
         End Try
     End Sub
 
-    Private Sub btnadd_e_Click(sender As Object, e As EventArgs) Handles btnadd_e.Click
-        Try
-            tab_adv_ent()
+    'Private Sub btnadd_e_Click(sender As Object, e As EventArgs) Handles btnadd_e.Click
+    '    Try
+    '        tab_adv_ent()
 
-            tab_adv_ent02()
-        Catch ex As Exception
-            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
-            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-        End Try
-    End Sub
+    '        tab_adv_ent02()
+    '    Catch ex As Exception
+    '        Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+    '        WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+    '    End Try
+    'End Sub
 
     Dim dtTemp1 As DataTable
     Private Sub TempTable1()
@@ -2088,4 +2089,47 @@ Public Class FrmPaymentDirect
             XtraMessageBox.Show(ex.Message)
         End Try
     End Sub
+
+    Private Sub btnadd_e_Click(sender As Object, e As EventArgs) Handles btnadd_e.Click
+
+        TempTable10()
+        For i As Integer = 0 To GridView5.RowCount - 1
+            If GridView5.GetRowCellValue(i, "Proses") = True Then
+                dtTemp10.Rows.Add()
+                dtTemp10.Rows(dtTemp10.Rows.Count - 1).Item(0) = GridView5.GetRowCellValue(i, "Tgl")
+                dtTemp10.Rows(dtTemp10.Rows.Count - 1).Item(1) = GridView5.GetRowCellValue(i, "SuspendID")
+                dtTemp10.Rows(dtTemp10.Rows.Count - 1).Item(2) = GridView5.GetRowCellValue(i, "Description")
+                dtTemp10.Rows(dtTemp10.Rows.Count - 1).Item(3) = GridView5.GetRowCellValue(i, "Currency")
+                dtTemp10.Rows(dtTemp10.Rows.Count - 1).Item(4) = GridView5.GetRowCellValue(i, "Amount")
+                dtTemp10.Rows(dtTemp10.Rows.Count - 1).Item(5) = GridView5.GetRowCellValue(i, "AcctID")
+            End If
+        Next
+
+
+        ff_Detail10 = New FrmBankPaid(dtTemp10)
+        ff_Detail10._transaksi.Text = "Suspend Entertaint"
+        ff_Detail10.ShowDialog()
+        _txtperpost.Text = ff_Detail10.Perpost
+        _txtaccount.Text = ff_Detail10.Rekening
+        tempperpost = ff_Detail10.Perpost
+        tempacct = ff_Detail10.Rekening
+        tsBtn_refresh.PerformClick()
+    End Sub
+
+
+
+
+    Dim dtTemp10 As DataTable
+    Private Sub TempTable10()
+        dtTemp10 = New DataTable
+
+        dtTemp10.Columns.AddRange(New DataColumn(5) {New DataColumn("Tgl", GetType(DateTime)),
+                                                   New DataColumn("SuspendID", GetType(String)),
+                                                   New DataColumn("Description", GetType(String)),
+                                                   New DataColumn("CuryID", GetType(String)),
+                                                   New DataColumn("Amount", GetType(Decimal)),
+                                                   New DataColumn("AcctID", GetType(String))})
+        dtTemp10.Clear()
+    End Sub
+
 End Class

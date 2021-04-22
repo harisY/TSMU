@@ -92,6 +92,17 @@ Public Class FrmBankPaid
                                                    New DataColumn("AcctID", GetType(String))})
         dtTemp1q.Clear()
     End Sub
+    Dim dtTemp10 As DataTable
+    Private Sub TempTable10()
+        dtTemp10 = New DataTable
+        dtTemp10.Columns.AddRange(New DataColumn(5) {New DataColumn("Tgl", GetType(DateTime)),
+                                                   New DataColumn("SuspendID", GetType(String)),
+                                                   New DataColumn("Description", GetType(String)),
+                                                   New DataColumn("CuryID", GetType(String)),
+                                                   New DataColumn("Amount", GetType(Decimal)),
+                                                   New DataColumn("AcctID", GetType(String))})
+        dtTemp10.Clear()
+    End Sub
     Private Sub FrmBankPaid_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _txtperpost.EditValue = Format(DateTime.Today, "yyyy-MM")
         TxtTgl.EditValue = DateTime.Today
@@ -99,7 +110,7 @@ Public Class FrmBankPaid
         'Call CreateTable()
 
         Dim totalamt As Double
-        If _transaksi.Text = "Suspend" Or _transaksi.Text = "Travel" Then
+        If _transaksi.Text = "Suspend" Or _transaksi.Text = "Travel" Or _transaksi.Text = "Suspend Entertaint" Then
             GridControl2.DataSource = _dt
             For i As Integer = 0 To GridView2.RowCount - 1
                 totalamt = totalamt + GridView2.GetRowCellValue(i, "Amount")
@@ -281,7 +292,7 @@ Public Class FrmBankPaid
     End Sub
 
     Private Sub _TsbOk_Click(sender As Object, e As EventArgs) Handles _TsbOk.Click
-        If _transaksi.Text = "suspend" Or _transaksi.Text = "travel" Then
+        If _transaksi.Text = "suspend" Or _transaksi.Text = "travel" Or _transaksi.Text = "Suspend Entertaint" Then
             tabu1()
             tabu2()
         ElseIf _transaksi.Text = "settlecc" Then
@@ -639,5 +650,9 @@ Public Class FrmBankPaid
             _txtcuryid.Text = "IDR"
         End If
         Me.Close()
+    End Sub
+
+    Private Sub _txtaccount_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccount.EditValueChanged
+
     End Sub
 End Class
