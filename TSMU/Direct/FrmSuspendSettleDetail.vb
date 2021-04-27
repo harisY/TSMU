@@ -187,6 +187,12 @@ Public Class FrmSuspendSettleDetail
                     .PRNo = ""
                     .SettleID = .SettleAutoNo
                     _SettleID = ObjSettle.SettleAutoNo
+                    ''Úpdate Midi Untuk PaymentType Finance
+                    .PaymentType = "FINANCE"
+                    .CreditCardID = ""
+                    .CreditCardNumber = ""
+                    .AccountName = ""
+                    ''
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
                     .Tgl = oDate
                     .Total = TxtTotExpense.Text

@@ -709,7 +709,7 @@ where pay=1 and DeptID = '" & gh_Common.GroupID & "' and (settle_header.SuspendI
             "       " & QVal(Tgl) & ", " & vbCrLf &
             "       " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
             "       'Close', " & vbCrLf &
-            "       'Finance', " & vbCrLf &
+            "       " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
             "       " & QVal(Total) & ")"
             ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -843,7 +843,7 @@ where pay=1 and DeptID = '" & gh_Common.GroupID & "' and (settle_header.SuspendI
                                     "       Tgl = " & QVal(Tgl) & ", " & vbCrLf &
                                     "       CuryID = " & QVal(CuryID.TrimEnd) & ", " & vbCrLf &
                                     "       Status = 'Close', " & vbCrLf &
-                                    "       PaymentType = 'Finance', " & vbCrLf &
+                                    "       PaymentType = " & QVal(PaymentType.TrimEnd) & ", " & vbCrLf &
                                     "       CreditCardID = " & QVal(CreditCardID.TrimEnd) & ", " & vbCrLf &
                                     "       CreditCardNumber = " & QVal(CreditCardNumber.TrimEnd) & ", " & vbCrLf &
                                     "       AccountName = " & QVal(AccountName.TrimEnd) & ", " & vbCrLf &
