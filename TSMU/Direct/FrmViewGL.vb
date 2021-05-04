@@ -69,7 +69,7 @@ Public Class FrmViewGL
             Objgl = New GJHeaderModel
             Dim dtSearch2 As New DataTable
             '' dtSearch2 = ObjSuspend2.GetCustomer2
-            dtSearch2 = Objgl.GetGLPerpost2(IIf(_txtaccount.Text = "", "ALL", _txtaccount.Text), _TxtPerpost.Text, IIf(_TxtModule.Text = "", "ALL", _TxtModule.Text))
+            dtSearch2 = Objgl.GetGLPerpost2(IIf(_txtaccount.Text = "", "ALL", _txtaccount.Text), IIf(_txtsub.Text = "", "ALL", _txtsub.Text), _TxtPerpost.Text, IIf(_TxtModule.Text = "", "ALL", _TxtModule.Text))
             Grid.DataSource = dtSearch2
             GridCellFormat(GridView1)
             GridView1.BestFitColumns()
@@ -95,6 +95,34 @@ Public Class FrmViewGL
         End Try
     End Sub
 
+
+    Private Sub LoadDataGJ2()
+        Try
+            If _TxtPerpost.Text = "" Then
+
+                Throw New Exception("Silahkan pilih perpost!")
+            End If
+            Cursor = Cursors.WaitCursor
+            Objgl = New GJHeaderModel
+            Dim dtSearch2 As New DataTable
+
+            dtSearch2 = Objgl.GetGLPerpost2x(IIf(_txtaccount.Text = "", "ALL", _txtaccount.Text), IIf(_txtsub.Text = "", "ALL", _txtsub.Text), _TxtPerpost.Text, IIf(_TxtModule.Text = "", "ALL", _TxtModule.Text))
+
+            Grid.DataSource = dtSearch2
+            GridCellFormat(GridView1)
+            GridView1.BestFitColumns()
+
+            With GridView1
+                .Columns(0).Visible = False
+            End With
+            GridCellFormat(GridView1)
+
+            Cursor = Cursors.Default
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
         LoadDataGJ()
@@ -313,7 +341,43 @@ Public Class FrmViewGL
     Private Sub _txtaccount_EditValueChanged(sender As Object, e As EventArgs) Handles _txtaccount.EditValueChanged
 
     End Sub
+    Private Sub _txtsub_Click(sender As Object, e As EventArgs) Handles _txtsub.Click
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
 
+            Dim ObjSuspend As New ClsSuspend
+            If sender.Name = _txtsub.Name Then
+                dtSearch = ObjSuspend.GetSub
+                ls_OldKode = _txtsub.Text.Trim
+                ls_Judul = "sub"
+            End If
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+
+                If sender.Name = _txtsub.Name AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> "" AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                    Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                    Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+
+                    _txtsub.Text = Value1
+
+                End If
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
     Private Sub _txtaccount_Click(sender As Object, e As EventArgs) Handles _txtaccount.Click
         Try
             Dim ls_Judul As String = ""
@@ -350,5 +414,10 @@ Public Class FrmViewGL
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        LoadDataGJ2()
     End Sub
 End Class

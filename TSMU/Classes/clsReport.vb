@@ -447,6 +447,25 @@
 
     End Function
 
+    Public Function SB_LoadDataGridNonBoM(ByVal strSite As String, ByVal strYear As String, ByVal strCust As String) As DataTable
+        Try
+            Dim query As String = "Sales_Budget_NonBoM"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            pParam(0).Value = strSite
+            pParam(1) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(1).Value = strYear
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = strCust
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
     Public Function SB_LoadReport(ByVal strSite As String, ByVal strYear As String, ByVal strInvtid As String, ByVal strCust As String) As DataSet
         Try
             Dim query As String = "Sales_Budget_report_View"
