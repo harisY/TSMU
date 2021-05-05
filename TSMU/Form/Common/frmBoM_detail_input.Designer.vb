@@ -41,10 +41,11 @@ Partial Class frmBoM_detail_input
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Location = New System.Drawing.Point(13, 29)
+        Me.TabControl1.Location = New System.Drawing.Point(17, 38)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(803, 540)
+        Me.TabControl1.Size = New System.Drawing.Size(1071, 706)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
@@ -58,97 +59,108 @@ Partial Class frmBoM_detail_input
         Me.TabPage1.Controls.Add(Me.Label8)
         Me.TabPage1.Controls.Add(Me._txtInvID)
         Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 26)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(795, 514)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage1.Size = New System.Drawing.Size(1063, 676)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Data"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         '_txtUnit
         '
-        Me._txtUnit.Location = New System.Drawing.Point(78, 84)
+        Me._txtUnit.Location = New System.Drawing.Point(104, 110)
+        Me._txtUnit.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._txtUnit.Name = "_txtUnit"
         Me._txtUnit.ReadOnly = True
-        Me._txtUnit.Size = New System.Drawing.Size(121, 22)
+        Me._txtUnit.Size = New System.Drawing.Size(160, 23)
         Me._txtUnit.TabIndex = 5
         Me._txtUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 84)
+        Me.Label2.Location = New System.Drawing.Point(11, 110)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(29, 13)
+        Me.Label2.Size = New System.Drawing.Size(33, 17)
         Me.Label2.TabIndex = 23
         Me.Label2.Text = "Unit"
         '
         '_txtQty
         '
-        Me._txtQty.Location = New System.Drawing.Point(78, 58)
+        Me._txtQty.Location = New System.Drawing.Point(104, 76)
+        Me._txtQty.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._txtQty.Name = "_txtQty"
-        Me._txtQty.Size = New System.Drawing.Size(121, 22)
+        Me._txtQty.Size = New System.Drawing.Size(160, 23)
         Me._txtQty.TabIndex = 4
         Me._txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 58)
+        Me.Label1.Location = New System.Drawing.Point(11, 76)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(24, 13)
+        Me.Label1.Size = New System.Drawing.Size(30, 17)
         Me.Label1.TabIndex = 21
         Me.Label1.Text = "Qty"
         '
         'btnCari
         '
         Me.btnCari.Image = CType(resources.GetObject("btnCari.Image"), System.Drawing.Image)
-        Me.btnCari.Location = New System.Drawing.Point(200, 6)
+        Me.btnCari.Location = New System.Drawing.Point(267, 8)
+        Me.btnCari.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnCari.Name = "btnCari"
-        Me.btnCari.Size = New System.Drawing.Size(25, 21)
+        Me.btnCari.Size = New System.Drawing.Size(33, 27)
         Me.btnCari.TabIndex = 2
         Me.btnCari.UseVisualStyleBackColor = True
         '
         '_txtDesc
         '
-        Me._txtDesc.Location = New System.Drawing.Point(78, 32)
+        Me._txtDesc.Location = New System.Drawing.Point(104, 42)
+        Me._txtDesc.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._txtDesc.Name = "_txtDesc"
         Me._txtDesc.ReadOnly = True
-        Me._txtDesc.Size = New System.Drawing.Size(299, 22)
+        Me._txtDesc.Size = New System.Drawing.Size(397, 23)
         Me._txtDesc.TabIndex = 3
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(8, 32)
+        Me.Label8.Location = New System.Drawing.Point(11, 42)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(66, 13)
+        Me.Label8.Size = New System.Drawing.Size(79, 17)
         Me.Label8.TabIndex = 19
         Me.Label8.Text = "Description"
         '
         '_txtInvID
         '
-        Me._txtInvID.Location = New System.Drawing.Point(78, 6)
+        Me._txtInvID.Location = New System.Drawing.Point(104, 8)
+        Me._txtInvID.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._txtInvID.Name = "_txtInvID"
         Me._txtInvID.ReadOnly = True
-        Me._txtInvID.Size = New System.Drawing.Size(121, 22)
+        Me._txtInvID.Size = New System.Drawing.Size(160, 23)
         Me._txtInvID.TabIndex = 1
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(8, 6)
+        Me.Label7.Location = New System.Drawing.Point(11, 8)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(62, 13)
+        Me.Label7.Size = New System.Drawing.Size(75, 17)
         Me.Label7.TabIndex = 18
         Me.Label7.Text = "Invetory ID"
         '
         'frmBoM_detail_input
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(828, 581)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
+        Me.ClientSize = New System.Drawing.Size(1104, 760)
         Me.Controls.Add(Me.TabControl1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmBoM_detail_input"
         Me.Controls.SetChildIndex(Me.TabControl1, 0)
         Me.TabControl1.ResumeLayout(False)

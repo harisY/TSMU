@@ -170,4 +170,10 @@
             MsgBox(ex.Message)
         End Try
     End Sub
+
+    Private Sub _txtQty_KeyPress(sender As Object, e As KeyPressEventArgs) Handles _txtQty.KeyPress
+        If Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = ".") And Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
 End Class
