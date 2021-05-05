@@ -16,12 +16,11 @@ Public Class FrmReport_BoM_Forecast_PO_Sum
     End Sub
 
     Private Sub FrmReport_BoM_Forecast_PO_Sum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         Dim Tahun As String = String.Empty
         Tahun = Date.Today.Year().ToString
         _txtTahun.Text = Tahun
+        txtInSub.SelectedIndex = 0
         Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False, False)
-        'LoadGrid(Tahun)
     End Sub
 
     Private Sub LoadGrid(Tahun As String)
@@ -31,7 +30,7 @@ Public Class FrmReport_BoM_Forecast_PO_Sum
             SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
             SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
             Dim dt As New DataTable
-            dt = ObjReportMatome.Generate_Report_BoM_PO_ForecastCalculateSum(Tahun, txtInvtId.EditValue, "")
+            dt = ObjReportMatome.Generate_Report_BoM_PO_ForecastCalculateSum(Tahun, txtInvtId.EditValue, txtInSub.Text, "")
             If dt.Rows.Count > 0 Then
                 Grid.DataSource = dt
                 AdvBandedGridView1.BestFitColumns()
@@ -131,7 +130,6 @@ Public Class FrmReport_BoM_Forecast_PO_Sum
             ls_OldKode = txtInvtId.Text.Trim
             ls_Judul = "Inventory ID"
 
-            '   dtSearch.Rows.InsertAt(dtSearch.NewRow, 0)
             dtSearch.Rows(0).Item(0) = "ALL"
             dtSearch.Rows(0).Item(1) = "ALL"
 
@@ -168,15 +166,11 @@ Public Class FrmReport_BoM_Forecast_PO_Sum
         Dim View As AdvBandedGridView = sender
         If e.RowHandle > 0 Then
             Dim ParentID As String = View.GetRowCellDisplayText(e.RowHandle, View.Columns("ParentID"))
-            'Dim array2() As String = TempSJ.ToArray
             If ParentID.ToLower = "" Then
                 e.Appearance.BackColor = Color.LightBlue
                 e.Appearance.BackColor2 = Color.SeaShell
                 e.HighPriority = True
             End If
-            'For Each sj As String In array2
-
-            'Next
         End If
     End Sub
 
@@ -188,6 +182,14 @@ Public Class FrmReport_BoM_Forecast_PO_Sum
                 Throw ex
             End Try
         End If
+    End Sub
+
+    Private Sub txtInSub_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txtInSub.SelectedIndexChanged
+        Try
+            tsBtn_refresh.PerformClick()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
 End Class

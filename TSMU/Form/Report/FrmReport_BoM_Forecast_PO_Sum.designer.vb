@@ -21,13 +21,16 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
     Private Sub InitializeComponent()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.AdvBandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
+        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.colAccount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.colMaterialID = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColParentID = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.ColInvtId = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.ColParentID0 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.ColSite = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColDescription = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.ColUnit = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.ColPOJan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColPOFeb = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColPOMar = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -40,6 +43,7 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColPOOkt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColPONov = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColPODes = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.ColFJan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColFFeb = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColFMar = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -52,7 +56,9 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColFOkt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColFNov = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColFDes = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.ColQtyAktualDes = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.ColTotPOJan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColTotPOFeb = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColTotPOMar = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -65,6 +71,7 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColTotPOOkt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColTotPONov = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColTotPODes = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.ColTotFJan = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColTotFFeb = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColTotFMar = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -77,6 +84,7 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColTotFOkt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColTotFNov = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.ColTotFDes = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.ColTotAktualSales = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
@@ -85,20 +93,14 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.TxtPerost = New DevExpress.XtraEditors.TextEdit()
         Me._txtTahun = New DevExpress.XtraEditors.TextEdit()
         Me.txtInvtId = New DevExpress.XtraEditors.ButtonEdit()
+        Me.txtInSub = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AdvBandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,32 +111,32 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         CType(Me.TxtPerost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me._txtTahun.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtInvtId.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInSub.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Grid
         '
-        Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
-        Me.Grid.Location = New System.Drawing.Point(0, 161)
+        Me.Grid.Location = New System.Drawing.Point(5, 115)
         Me.Grid.MainView = Me.AdvBandedGridView1
         Me.Grid.Margin = New System.Windows.Forms.Padding(5)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(1380, 733)
+        Me.Grid.Size = New System.Drawing.Size(1289, 336)
         Me.Grid.TabIndex = 1
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.AdvBandedGridView1})
         '
         'AdvBandedGridView1
         '
         Me.AdvBandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand5, Me.gridBand4, Me.gridBand1, Me.gridBand2, Me.gridBand7, Me.gridBand3, Me.gridBand6, Me.gridBand8})
-        Me.AdvBandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.colAccount, Me.colMaterialID, Me.ColParentID, Me.ColInvtId, Me.ColDescription, Me.ColUnit, Me.ColQty, Me.ColPOJan, Me.ColPOFeb, Me.ColPOMar, Me.ColPOApr, Me.ColPOMei, Me.ColPOJun, Me.ColPOJul, Me.ColPOAgt, Me.ColPOSep, Me.ColPOOkt, Me.ColPONov, Me.ColPODes, Me.ColFJan, Me.ColFFeb, Me.ColFMar, Me.ColFApr, Me.ColFMei, Me.ColFJun, Me.ColFJul, Me.ColFAgt, Me.ColFSep, Me.ColFOkt, Me.ColFNov, Me.ColFDes, Me.ColQtyAktualDes, Me.ColTotPOJan, Me.ColTotPOFeb, Me.ColTotPOMar, Me.ColTotPOApr, Me.ColTotPOMei, Me.ColTotPOJun, Me.ColTotPOJul, Me.ColTotPOAgt, Me.ColTotPOSep, Me.ColTotPOOkt, Me.ColTotPONov, Me.ColTotPODes, Me.ColTotFJan, Me.ColTotFFeb, Me.ColTotFMar, Me.ColTotFApr, Me.ColTotFMei, Me.ColTotFJun, Me.ColTotFJul, Me.ColTotFAgt, Me.ColTotFSep, Me.ColTotFOkt, Me.ColTotFNov, Me.ColTotFDes, Me.ColTotAktualSales, Me.BandedGridColumn1})
+        Me.AdvBandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.colAccount, Me.colMaterialID, Me.ColParentID, Me.ColParentID0, Me.ColSite, Me.ColDescription, Me.ColQty, Me.ColPOJan, Me.ColPOFeb, Me.ColPOMar, Me.ColPOApr, Me.ColPOMei, Me.ColPOJun, Me.ColPOJul, Me.ColPOAgt, Me.ColPOSep, Me.ColPOOkt, Me.ColPONov, Me.ColPODes, Me.ColFJan, Me.ColFFeb, Me.ColFMar, Me.ColFApr, Me.ColFMei, Me.ColFJun, Me.ColFJul, Me.ColFAgt, Me.ColFSep, Me.ColFOkt, Me.ColFNov, Me.ColFDes, Me.ColQtyAktualDes, Me.ColTotPOJan, Me.ColTotPOFeb, Me.ColTotPOMar, Me.ColTotPOApr, Me.ColTotPOMei, Me.ColTotPOJun, Me.ColTotPOJul, Me.ColTotPOAgt, Me.ColTotPOSep, Me.ColTotPOOkt, Me.ColTotPONov, Me.ColTotPODes, Me.ColTotFJan, Me.ColTotFFeb, Me.ColTotFMar, Me.ColTotFApr, Me.ColTotFMei, Me.ColTotFJun, Me.ColTotFJul, Me.ColTotFAgt, Me.ColTotFSep, Me.ColTotFOkt, Me.ColTotFNov, Me.ColTotFDes, Me.ColTotAktualSales, Me.BandedGridColumn1})
         Me.AdvBandedGridView1.DetailHeight = 539
         Me.AdvBandedGridView1.FixedLineWidth = 4
         Me.AdvBandedGridView1.GridControl = Me.Grid
@@ -150,6 +152,31 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.AdvBandedGridView1.OptionsView.ShowAutoFilterRow = True
         Me.AdvBandedGridView1.OptionsView.ShowFooter = True
         Me.AdvBandedGridView1.OptionsView.ShowGroupPanel = False
+        '
+        'gridBand5
+        '
+        Me.gridBand5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand5.MinWidth = 16
+        Me.gridBand5.Name = "gridBand5"
+        Me.gridBand5.OptionsBand.ShowCaption = False
+        Me.gridBand5.Visible = False
+        Me.gridBand5.VisibleIndex = -1
+        Me.gridBand5.Width = 125
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Columns.Add(Me.colAccount)
+        Me.gridBand4.Columns.Add(Me.colMaterialID)
+        Me.gridBand4.Columns.Add(Me.ColParentID)
+        Me.gridBand4.Columns.Add(Me.ColParentID0)
+        Me.gridBand4.Columns.Add(Me.ColSite)
+        Me.gridBand4.Columns.Add(Me.ColDescription)
+        Me.gridBand4.Columns.Add(Me.ColQty)
+        Me.gridBand4.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand4.MinWidth = 16
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 0
+        Me.gridBand4.Width = 734
         '
         'colAccount
         '
@@ -178,13 +205,23 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColParentID.Visible = True
         Me.ColParentID.Width = 125
         '
-        'ColInvtId
+        'ColParentID0
         '
-        Me.ColInvtId.Caption = "Inventory ID"
-        Me.ColInvtId.FieldName = "InvtID"
-        Me.ColInvtId.MinWidth = 34
-        Me.ColInvtId.Name = "ColInvtId"
-        Me.ColInvtId.Width = 125
+        Me.ColParentID0.Caption = "Parent ID Lvl 0"
+        Me.ColParentID0.FieldName = "ParentID0"
+        Me.ColParentID0.MinWidth = 34
+        Me.ColParentID0.Name = "ColParentID0"
+        Me.ColParentID0.Visible = True
+        Me.ColParentID0.Width = 125
+        '
+        'ColSite
+        '
+        Me.ColSite.Caption = "Site"
+        Me.ColSite.FieldName = "Site"
+        Me.ColSite.MinWidth = 34
+        Me.ColSite.Name = "ColSite"
+        Me.ColSite.Visible = True
+        Me.ColSite.Width = 125
         '
         'ColDescription
         '
@@ -195,14 +232,6 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColDescription.Visible = True
         Me.ColDescription.Width = 125
         '
-        'ColUnit
-        '
-        Me.ColUnit.Caption = "Unit"
-        Me.ColUnit.FieldName = "Unit"
-        Me.ColUnit.MinWidth = 34
-        Me.ColUnit.Name = "ColUnit"
-        Me.ColUnit.Width = 125
-        '
         'ColQty
         '
         Me.ColQty.Caption = "Kons. Material"
@@ -212,6 +241,31 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColQty.MinWidth = 34
         Me.ColQty.Name = "ColQty"
         Me.ColQty.Width = 125
+        '
+        'gridBand1
+        '
+        Me.gridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.gridBand1.AppearanceHeader.Options.UseFont = True
+        Me.gridBand1.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand1.Caption = "Qty PO"
+        Me.gridBand1.Columns.Add(Me.ColPOJan)
+        Me.gridBand1.Columns.Add(Me.ColPOFeb)
+        Me.gridBand1.Columns.Add(Me.ColPOMar)
+        Me.gridBand1.Columns.Add(Me.ColPOApr)
+        Me.gridBand1.Columns.Add(Me.ColPOMei)
+        Me.gridBand1.Columns.Add(Me.ColPOJun)
+        Me.gridBand1.Columns.Add(Me.ColPOJul)
+        Me.gridBand1.Columns.Add(Me.ColPOAgt)
+        Me.gridBand1.Columns.Add(Me.ColPOSep)
+        Me.gridBand1.Columns.Add(Me.ColPOOkt)
+        Me.gridBand1.Columns.Add(Me.ColPONov)
+        Me.gridBand1.Columns.Add(Me.ColPODes)
+        Me.gridBand1.MinWidth = 12
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.Visible = False
+        Me.gridBand1.VisibleIndex = -1
+        Me.gridBand1.Width = 124
         '
         'ColPOJan
         '
@@ -309,6 +363,31 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColPODes.Name = "ColPODes"
         Me.ColPODes.Width = 124
         '
+        'gridBand2
+        '
+        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.gridBand2.AppearanceHeader.Options.UseFont = True
+        Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand2.Caption = "Qty Forecast"
+        Me.gridBand2.Columns.Add(Me.ColFJan)
+        Me.gridBand2.Columns.Add(Me.ColFFeb)
+        Me.gridBand2.Columns.Add(Me.ColFMar)
+        Me.gridBand2.Columns.Add(Me.ColFApr)
+        Me.gridBand2.Columns.Add(Me.ColFMei)
+        Me.gridBand2.Columns.Add(Me.ColFJun)
+        Me.gridBand2.Columns.Add(Me.ColFJul)
+        Me.gridBand2.Columns.Add(Me.ColFAgt)
+        Me.gridBand2.Columns.Add(Me.ColFSep)
+        Me.gridBand2.Columns.Add(Me.ColFOkt)
+        Me.gridBand2.Columns.Add(Me.ColFNov)
+        Me.gridBand2.Columns.Add(Me.ColFDes)
+        Me.gridBand2.MinWidth = 12
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.Visible = False
+        Me.gridBand2.VisibleIndex = -1
+        Me.gridBand2.Width = 114
+        '
         'ColFJan
         '
         Me.ColFJan.Caption = "Jan"
@@ -405,6 +484,20 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColFDes.Name = "ColFDes"
         Me.ColFDes.Width = 114
         '
+        'gridBand7
+        '
+        Me.gridBand7.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.gridBand7.AppearanceHeader.Options.UseFont = True
+        Me.gridBand7.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand7.Caption = "Qty Actual Sales"
+        Me.gridBand7.Columns.Add(Me.ColQtyAktualDes)
+        Me.gridBand7.MinWidth = 12
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.Visible = False
+        Me.gridBand7.VisibleIndex = -1
+        Me.gridBand7.Width = 187
+        '
         'ColQtyAktualDes
         '
         Me.ColQtyAktualDes.Caption = "Aktual Sales"
@@ -412,6 +505,30 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColQtyAktualDes.MinWidth = 31
         Me.ColQtyAktualDes.Name = "ColQtyAktualDes"
         Me.ColQtyAktualDes.Width = 187
+        '
+        'gridBand3
+        '
+        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.gridBand3.AppearanceHeader.Options.UseFont = True
+        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand3.Caption = "Total Konsumsi PO"
+        Me.gridBand3.Columns.Add(Me.ColTotPOJan)
+        Me.gridBand3.Columns.Add(Me.ColTotPOFeb)
+        Me.gridBand3.Columns.Add(Me.ColTotPOMar)
+        Me.gridBand3.Columns.Add(Me.ColTotPOApr)
+        Me.gridBand3.Columns.Add(Me.ColTotPOMei)
+        Me.gridBand3.Columns.Add(Me.ColTotPOJun)
+        Me.gridBand3.Columns.Add(Me.ColTotPOJul)
+        Me.gridBand3.Columns.Add(Me.ColTotPOAgt)
+        Me.gridBand3.Columns.Add(Me.ColTotPOSep)
+        Me.gridBand3.Columns.Add(Me.ColTotPOOkt)
+        Me.gridBand3.Columns.Add(Me.ColTotPONov)
+        Me.gridBand3.Columns.Add(Me.ColTotPODes)
+        Me.gridBand3.MinWidth = 12
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 1
+        Me.gridBand3.Width = 1224
         '
         'ColTotPOJan
         '
@@ -521,6 +638,30 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColTotPODes.Visible = True
         Me.ColTotPODes.Width = 102
         '
+        'gridBand6
+        '
+        Me.gridBand6.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.gridBand6.AppearanceHeader.Options.UseFont = True
+        Me.gridBand6.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand6.Caption = "Total Konsumsi Forecast"
+        Me.gridBand6.Columns.Add(Me.ColTotFJan)
+        Me.gridBand6.Columns.Add(Me.ColTotFFeb)
+        Me.gridBand6.Columns.Add(Me.ColTotFMar)
+        Me.gridBand6.Columns.Add(Me.ColTotFApr)
+        Me.gridBand6.Columns.Add(Me.ColTotFMei)
+        Me.gridBand6.Columns.Add(Me.ColTotFJun)
+        Me.gridBand6.Columns.Add(Me.ColTotFJul)
+        Me.gridBand6.Columns.Add(Me.ColTotFAgt)
+        Me.gridBand6.Columns.Add(Me.ColTotFSep)
+        Me.gridBand6.Columns.Add(Me.ColTotFOkt)
+        Me.gridBand6.Columns.Add(Me.ColTotFNov)
+        Me.gridBand6.Columns.Add(Me.ColTotFDes)
+        Me.gridBand6.MinWidth = 12
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 2
+        Me.gridBand6.Width = 1500
+        '
         'ColTotFJan
         '
         Me.ColTotFJan.Caption = "Jan"
@@ -629,6 +770,19 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.ColTotFDes.Visible = True
         Me.ColTotFDes.Width = 125
         '
+        'gridBand8
+        '
+        Me.gridBand8.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
+        Me.gridBand8.AppearanceHeader.Options.UseFont = True
+        Me.gridBand8.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand8.Caption = "Total Konsumsi Actual Sales"
+        Me.gridBand8.Columns.Add(Me.ColTotAktualSales)
+        Me.gridBand8.MinWidth = 12
+        Me.gridBand8.Name = "gridBand8"
+        Me.gridBand8.VisibleIndex = 3
+        Me.gridBand8.Width = 187
+        '
         'ColTotAktualSales
         '
         Me.ColTotAktualSales.Caption = "Total Aktual Sales"
@@ -649,11 +803,11 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         '
         Me.XtraTabControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 44)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(5, 5)
         Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1395, 119)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1289, 100)
         Me.XtraTabControl1.TabIndex = 2
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
@@ -662,7 +816,7 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.XtraTabPage1.Controls.Add(Me.LayoutControl1)
         Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(5)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1387, 80)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1281, 61)
         Me.XtraTabPage1.Text = "Filter By"
         '
         'LayoutControl1
@@ -670,21 +824,22 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.LayoutControl1.Controls.Add(Me.TxtPerost)
         Me.LayoutControl1.Controls.Add(Me._txtTahun)
         Me.LayoutControl1.Controls.Add(Me.txtInvtId)
+        Me.LayoutControl1.Controls.Add(Me.txtInSub)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(1387, 80)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1281, 61)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'TxtPerost
         '
-        Me.TxtPerost.Location = New System.Drawing.Point(935, 12)
+        Me.TxtPerost.Location = New System.Drawing.Point(1150, 12)
         Me.TxtPerost.Margin = New System.Windows.Forms.Padding(4)
         Me.TxtPerost.Name = "TxtPerost"
-        Me.TxtPerost.Size = New System.Drawing.Size(440, 28)
+        Me.TxtPerost.Size = New System.Drawing.Size(119, 28)
         Me.TxtPerost.StyleController = Me.LayoutControl1
         Me.TxtPerost.TabIndex = 6
         '
@@ -699,30 +854,34 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         '
         'txtInvtId
         '
-        Me.txtInvtId.Location = New System.Drawing.Point(399, 12)
+        Me.txtInvtId.Location = New System.Drawing.Point(407, 12)
         Me.txtInvtId.Margin = New System.Windows.Forms.Padding(4)
         Me.txtInvtId.Name = "txtInvtId"
         Me.txtInvtId.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.txtInvtId.Size = New System.Drawing.Size(434, 28)
+        Me.txtInvtId.Size = New System.Drawing.Size(426, 28)
         Me.txtInvtId.StyleController = Me.LayoutControl1
         Me.txtInvtId.TabIndex = 5
+        '
+        'txtInSub
+        '
+        Me.txtInSub.Location = New System.Drawing.Point(943, 12)
+        Me.txtInSub.MaximumSize = New System.Drawing.Size(150, 0)
+        Me.txtInSub.Name = "txtInSub"
+        Me.txtInSub.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtInSub.Properties.Items.AddRange(New Object() {"ALL", "Subcont", "InHouse", "Discontinue"})
+        Me.txtInSub.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtInSub.Size = New System.Drawing.Size(105, 28)
+        Me.txtInSub.StyleController = Me.LayoutControl1
+        Me.txtInSub.TabIndex = 7
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem2, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1387, 80)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1281, 61)
         Me.LayoutControlGroup1.TextVisible = False
-        '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 32)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(1367, 28)
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem1
         '
@@ -731,7 +890,7 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.LayoutControlItem1.MaxSize = New System.Drawing.Size(289, 31)
         Me.LayoutControlItem1.MinSize = New System.Drawing.Size(289, 31)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(289, 32)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(289, 41)
         Me.LayoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem1.Text = "Tahun"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(95, 19)
@@ -743,7 +902,8 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.LayoutControlItem2.MaxSize = New System.Drawing.Size(536, 31)
         Me.LayoutControlItem2.MinSize = New System.Drawing.Size(536, 31)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(536, 32)
+        Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(536, 41)
         Me.LayoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem2.Text = "Invtentory ID"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(95, 19)
@@ -751,12 +911,22 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.TxtPerost
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(825, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(1040, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(542, 32)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(221, 41)
         Me.LayoutControlItem3.Text = "Perpost"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(95, 19)
         Me.LayoutControlItem3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me.txtInSub
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(825, 0)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Padding = New DevExpress.XtraLayout.Utils.Padding(10, 2, 2, 2)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(215, 41)
+        Me.LayoutControlItem4.Text = "In/Sub"
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(95, 19)
         '
         'EmptySpaceItem1
         '
@@ -766,166 +936,29 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(802, 37)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
-        'gridBand5
+        'TableLayoutPanel1
         '
-        Me.gridBand5.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBand5.MinWidth = 16
-        Me.gridBand5.Name = "gridBand5"
-        Me.gridBand5.OptionsBand.ShowCaption = False
-        Me.gridBand5.Visible = False
-        Me.gridBand5.VisibleIndex = -1
-        Me.gridBand5.Width = 125
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Columns.Add(Me.colAccount)
-        Me.gridBand4.Columns.Add(Me.colMaterialID)
-        Me.gridBand4.Columns.Add(Me.ColParentID)
-        Me.gridBand4.Columns.Add(Me.ColInvtId)
-        Me.gridBand4.Columns.Add(Me.ColDescription)
-        Me.gridBand4.Columns.Add(Me.ColUnit)
-        Me.gridBand4.Columns.Add(Me.ColQty)
-        Me.gridBand4.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBand4.MinWidth = 16
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 0
-        Me.gridBand4.Width = 484
-        '
-        'gridBand1
-        '
-        Me.gridBand1.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.gridBand1.AppearanceHeader.Options.UseFont = True
-        Me.gridBand1.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand1.Caption = "Qty PO"
-        Me.gridBand1.Columns.Add(Me.ColPOJan)
-        Me.gridBand1.Columns.Add(Me.ColPOFeb)
-        Me.gridBand1.Columns.Add(Me.ColPOMar)
-        Me.gridBand1.Columns.Add(Me.ColPOApr)
-        Me.gridBand1.Columns.Add(Me.ColPOMei)
-        Me.gridBand1.Columns.Add(Me.ColPOJun)
-        Me.gridBand1.Columns.Add(Me.ColPOJul)
-        Me.gridBand1.Columns.Add(Me.ColPOAgt)
-        Me.gridBand1.Columns.Add(Me.ColPOSep)
-        Me.gridBand1.Columns.Add(Me.ColPOOkt)
-        Me.gridBand1.Columns.Add(Me.ColPONov)
-        Me.gridBand1.Columns.Add(Me.ColPODes)
-        Me.gridBand1.MinWidth = 12
-        Me.gridBand1.Name = "gridBand1"
-        Me.gridBand1.Visible = False
-        Me.gridBand1.VisibleIndex = -1
-        Me.gridBand1.Width = 124
-        '
-        'gridBand2
-        '
-        Me.gridBand2.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.gridBand2.AppearanceHeader.Options.UseFont = True
-        Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand2.Caption = "Qty Forecast"
-        Me.gridBand2.Columns.Add(Me.ColFJan)
-        Me.gridBand2.Columns.Add(Me.ColFFeb)
-        Me.gridBand2.Columns.Add(Me.ColFMar)
-        Me.gridBand2.Columns.Add(Me.ColFApr)
-        Me.gridBand2.Columns.Add(Me.ColFMei)
-        Me.gridBand2.Columns.Add(Me.ColFJun)
-        Me.gridBand2.Columns.Add(Me.ColFJul)
-        Me.gridBand2.Columns.Add(Me.ColFAgt)
-        Me.gridBand2.Columns.Add(Me.ColFSep)
-        Me.gridBand2.Columns.Add(Me.ColFOkt)
-        Me.gridBand2.Columns.Add(Me.ColFNov)
-        Me.gridBand2.Columns.Add(Me.ColFDes)
-        Me.gridBand2.MinWidth = 12
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.Visible = False
-        Me.gridBand2.VisibleIndex = -1
-        Me.gridBand2.Width = 114
-        '
-        'gridBand7
-        '
-        Me.gridBand7.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.gridBand7.AppearanceHeader.Options.UseFont = True
-        Me.gridBand7.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand7.Caption = "Qty Actual Sales"
-        Me.gridBand7.Columns.Add(Me.ColQtyAktualDes)
-        Me.gridBand7.MinWidth = 12
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.Visible = False
-        Me.gridBand7.VisibleIndex = -1
-        Me.gridBand7.Width = 187
-        '
-        'gridBand3
-        '
-        Me.gridBand3.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.gridBand3.AppearanceHeader.Options.UseFont = True
-        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand3.Caption = "Total Konsumsi PO"
-        Me.gridBand3.Columns.Add(Me.ColTotPOJan)
-        Me.gridBand3.Columns.Add(Me.ColTotPOFeb)
-        Me.gridBand3.Columns.Add(Me.ColTotPOMar)
-        Me.gridBand3.Columns.Add(Me.ColTotPOApr)
-        Me.gridBand3.Columns.Add(Me.ColTotPOMei)
-        Me.gridBand3.Columns.Add(Me.ColTotPOJun)
-        Me.gridBand3.Columns.Add(Me.ColTotPOJul)
-        Me.gridBand3.Columns.Add(Me.ColTotPOAgt)
-        Me.gridBand3.Columns.Add(Me.ColTotPOSep)
-        Me.gridBand3.Columns.Add(Me.ColTotPOOkt)
-        Me.gridBand3.Columns.Add(Me.ColTotPONov)
-        Me.gridBand3.Columns.Add(Me.ColTotPODes)
-        Me.gridBand3.MinWidth = 12
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 1
-        Me.gridBand3.Width = 1224
-        '
-        'gridBand6
-        '
-        Me.gridBand6.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.gridBand6.AppearanceHeader.Options.UseFont = True
-        Me.gridBand6.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand6.Caption = "Total Konsumsi Forecast"
-        Me.gridBand6.Columns.Add(Me.ColTotFJan)
-        Me.gridBand6.Columns.Add(Me.ColTotFFeb)
-        Me.gridBand6.Columns.Add(Me.ColTotFMar)
-        Me.gridBand6.Columns.Add(Me.ColTotFApr)
-        Me.gridBand6.Columns.Add(Me.ColTotFMei)
-        Me.gridBand6.Columns.Add(Me.ColTotFJun)
-        Me.gridBand6.Columns.Add(Me.ColTotFJul)
-        Me.gridBand6.Columns.Add(Me.ColTotFAgt)
-        Me.gridBand6.Columns.Add(Me.ColTotFSep)
-        Me.gridBand6.Columns.Add(Me.ColTotFOkt)
-        Me.gridBand6.Columns.Add(Me.ColTotFNov)
-        Me.gridBand6.Columns.Add(Me.ColTotFDes)
-        Me.gridBand6.MinWidth = 12
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 2
-        Me.gridBand6.Width = 1500
-        '
-        'gridBand8
-        '
-        Me.gridBand8.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Bold)
-        Me.gridBand8.AppearanceHeader.Options.UseFont = True
-        Me.gridBand8.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand8.Caption = "Total Konsumsi Actual Sales"
-        Me.gridBand8.Columns.Add(Me.ColTotAktualSales)
-        Me.gridBand8.MinWidth = 12
-        Me.gridBand8.Name = "gridBand8"
-        Me.gridBand8.VisibleIndex = 3
-        Me.gridBand8.Width = 187
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.XtraTabControl1, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.Grid, 0, 1)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 27)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1299, 456)
+        Me.TableLayoutPanel1.TabIndex = 3
         '
         'FrmReport_BoM_Forecast_PO_Sum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
-        Me.ClientSize = New System.Drawing.Size(1380, 894)
-        Me.Controls.Add(Me.Grid)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.ClientSize = New System.Drawing.Size(1299, 483)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "FrmReport_BoM_Forecast_PO_Sum"
-        Me.Controls.SetChildIndex(Me.XtraTabControl1, 0)
-        Me.Controls.SetChildIndex(Me.Grid, 0)
+        Me.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AdvBandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -936,12 +969,14 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
         CType(Me.TxtPerost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me._txtTahun.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtInvtId.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInSub.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -950,8 +985,8 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents AdvBandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
     Friend WithEvents ColParentID As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents ColInvtId As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents ColUnit As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents ColParentID0 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents ColSite As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents ColQty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents ColPOApr As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents ColPOFeb As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1007,7 +1042,6 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents _txtTahun As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents txtInvtId As DevExpress.XtraEditors.ButtonEdit
@@ -1027,4 +1061,7 @@ Partial Class FrmReport_BoM_Forecast_PO_Sum
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents txtInSub As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
 End Class

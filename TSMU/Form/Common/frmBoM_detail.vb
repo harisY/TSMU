@@ -711,7 +711,7 @@ Public Class frmBoM_detail
             Dim ls_Kode As String = ""
             Dim ls_Nama As String = ""
 
-            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+            If lF_SearchData.Values IsNot Nothing Then
                 ls_Kode = lF_SearchData.Values.Item(0).ToString.Trim
                 ls_Nama = lF_SearchData.Values.Item(1).ToString.Trim
                 _txtInvID.Text = ls_Kode

@@ -2422,6 +2422,48 @@
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\PPIC\FrmPPICBuildup.designer.vb">
+      <DependentUpon>FrmPPICBuildup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICBuildup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICBuildupDetail.Designer.vb">
+      <DependentUpon>FrmPPICBuildupDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICBuildupDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICConvertMuat.Designer.vb">
+      <DependentUpon>FrmPPICConvertMuat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICConvertMuat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICConvertMuatDetail.Designer.vb">
+      <DependentUpon>FrmPPICConvertMuatDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICConvertMuatDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICKapOEM.Designer.vb">
+      <DependentUpon>FrmPPICKapOEM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICKapOEM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICKapOEMDetail.Designer.vb">
+      <DependentUpon>FrmPPICKapOEMDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICKapOEMDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICUploadPO.Designer.vb">
+      <DependentUpon>FrmPPICUploadPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICUploadPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\PR\FrmDetailPR.Designer.vb">
       <DependentUpon>FrmDetailPR.vb</DependentUpon>
     </Compile>
@@ -2901,6 +2943,10 @@
     <Compile Include="Models\MizuhoModels.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
+    <Compile Include="Models\PPIC\PPICBuildupModel.vb" />
+    <Compile Include="Models\PPIC\PPICConvertMuatDetailModel.vb" />
+    <Compile Include="Models\PPIC\PPICConvertMuatHeaderModel.vb" />
+    <Compile Include="Models\PPIC\PPICKapOEMModel.vb" />
     <Compile Include="Models\ProblemModel.vb" />
     <Compile Include="Models\QcOutgoingModel.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
@@ -3346,6 +3392,7 @@
     <Compile Include="Services\HRPAService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
+    <Compile Include="Services\PPICService.vb" />
     <Compile Include="Services\ProblemService.vb" />
     <Compile Include="Services\QcOutgoingService.vb" />
     <Compile Include="Services\SettingService.vb" />
@@ -4135,6 +4182,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICBuildup.resx">
+      <DependentUpon>FrmPPICBuildup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICBuildupDetail.resx">
+      <DependentUpon>FrmPPICBuildupDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICConvertMuat.resx">
+      <DependentUpon>FrmPPICConvertMuat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICConvertMuatDetail.resx">
+      <DependentUpon>FrmPPICConvertMuatDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICKapOEM.resx">
+      <DependentUpon>FrmPPICKapOEM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICKapOEMDetail.resx">
+      <DependentUpon>FrmPPICKapOEMDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICUploadPO.resx">
+      <DependentUpon>FrmPPICUploadPO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PR\FrmDetailPR.resx">
       <DependentUpon>FrmDetailPR.vb</DependentUpon>
