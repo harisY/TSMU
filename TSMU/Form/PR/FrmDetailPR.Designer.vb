@@ -24,22 +24,20 @@ Partial Class FrmDetailPR
         Me.T_SirkulasiJumlah = New DevExpress.XtraEditors.TextEdit()
         Me.BTambahBaris = New System.Windows.Forms.Button()
         Me.TRevisi = New DevExpress.XtraEditors.TextEdit()
-        Me.TKeterangan = New DevExpress.XtraEditors.TextEdit()
-        Me.TBagian = New DevExpress.XtraEditors.TextEdit()
         Me.TNoPR = New DevExpress.XtraEditors.TextEdit()
         Me.TTanggal = New DevExpress.XtraEditors.TextEdit()
         Me.TSirkulasi = New DevExpress.XtraEditors.ButtonEdit()
+        Me.TBagian = New DevExpress.XtraEditors.LookUpEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.C_Submit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Tanggal = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -104,27 +102,27 @@ Partial Class FrmDetailPR
         Me.GSudahDipakai = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Keterangan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.RepoUnitCost = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TJumlahProses.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_SirkulasiJumlah.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRevisi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TKeterangan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TBagian.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TNoPR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TSirkulasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TBagian.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Submit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Qty, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,6 +148,8 @@ Partial Class FrmDetailPR
         CType(Me.DTempo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DTempo.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoUnitCost, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -158,30 +158,29 @@ Partial Class FrmDetailPR
         Me.LayoutControl1.Controls.Add(Me.T_SirkulasiJumlah)
         Me.LayoutControl1.Controls.Add(Me.BTambahBaris)
         Me.LayoutControl1.Controls.Add(Me.TRevisi)
-        Me.LayoutControl1.Controls.Add(Me.TKeterangan)
-        Me.LayoutControl1.Controls.Add(Me.TBagian)
         Me.LayoutControl1.Controls.Add(Me.TNoPR)
         Me.LayoutControl1.Controls.Add(Me.TTanggal)
         Me.LayoutControl1.Controls.Add(Me.TSirkulasi)
+        Me.LayoutControl1.Controls.Add(Me.TBagian)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(0, 419, 650, 299)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1156, 79)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1156, 72)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'TJumlahProses
         '
         Me.TJumlahProses.Enabled = False
-        Me.TJumlahProses.Location = New System.Drawing.Point(990, 12)
+        Me.TJumlahProses.Location = New System.Drawing.Point(1077, 5)
         Me.TJumlahProses.Name = "TJumlahProses"
         Me.TJumlahProses.Properties.DisplayFormat.FormatString = "n0"
         Me.TJumlahProses.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TJumlahProses.Properties.EditFormat.FormatString = "n0"
         Me.TJumlahProses.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TJumlahProses.Size = New System.Drawing.Size(154, 20)
+        Me.TJumlahProses.Size = New System.Drawing.Size(50, 20)
         Me.TJumlahProses.StyleController = Me.LayoutControl1
         Me.TJumlahProses.TabIndex = 12
         '
@@ -189,7 +188,7 @@ Partial Class FrmDetailPR
         '
         Me.T_SirkulasiJumlah.EditValue = "0"
         Me.T_SirkulasiJumlah.Enabled = False
-        Me.T_SirkulasiJumlah.Location = New System.Drawing.Point(751, 12)
+        Me.T_SirkulasiJumlah.Location = New System.Drawing.Point(946, 5)
         Me.T_SirkulasiJumlah.Name = "T_SirkulasiJumlah"
         Me.T_SirkulasiJumlah.Properties.DisplayFormat.FormatString = "n"
         Me.T_SirkulasiJumlah.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -197,13 +196,13 @@ Partial Class FrmDetailPR
         Me.T_SirkulasiJumlah.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.T_SirkulasiJumlah.Properties.Mask.EditMask = "n"
         Me.T_SirkulasiJumlah.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.T_SirkulasiJumlah.Size = New System.Drawing.Size(158, 20)
+        Me.T_SirkulasiJumlah.Size = New System.Drawing.Size(50, 20)
         Me.T_SirkulasiJumlah.StyleController = Me.LayoutControl1
         Me.T_SirkulasiJumlah.TabIndex = 11
         '
         'BTambahBaris
         '
-        Me.BTambahBaris.Location = New System.Drawing.Point(1054, 36)
+        Me.BTambahBaris.Location = New System.Drawing.Point(1037, 29)
         Me.BTambahBaris.MaximumSize = New System.Drawing.Size(90, 20)
         Me.BTambahBaris.MinimumSize = New System.Drawing.Size(90, 20)
         Me.BTambahBaris.Name = "BTambahBaris"
@@ -214,34 +213,17 @@ Partial Class FrmDetailPR
         '
         'TRevisi
         '
-        Me.TRevisi.Location = New System.Drawing.Point(339, 12)
+        Me.TRevisi.Location = New System.Drawing.Point(339, 5)
         Me.TRevisi.Name = "TRevisi"
-        Me.TRevisi.Size = New System.Drawing.Size(45, 20)
+        Me.TRevisi.Size = New System.Drawing.Size(66, 20)
         Me.TRevisi.StyleController = Me.LayoutControl1
         Me.TRevisi.TabIndex = 8
         Me.TRevisi.Visible = False
         '
-        'TKeterangan
-        '
-        Me.TKeterangan.Location = New System.Drawing.Point(567, 36)
-        Me.TKeterangan.Name = "TKeterangan"
-        Me.TKeterangan.Size = New System.Drawing.Size(483, 20)
-        Me.TKeterangan.StyleController = Me.LayoutControl1
-        Me.TKeterangan.TabIndex = 7
-        '
-        'TBagian
-        '
-        Me.TBagian.Enabled = False
-        Me.TBagian.Location = New System.Drawing.Point(89, 36)
-        Me.TBagian.Name = "TBagian"
-        Me.TBagian.Size = New System.Drawing.Size(169, 20)
-        Me.TBagian.StyleController = Me.LayoutControl1
-        Me.TBagian.TabIndex = 5
-        '
         'TNoPR
         '
         Me.TNoPR.Enabled = False
-        Me.TNoPR.Location = New System.Drawing.Point(89, 12)
+        Me.TNoPR.Location = New System.Drawing.Point(89, 5)
         Me.TNoPR.Name = "TNoPR"
         Me.TNoPR.Size = New System.Drawing.Size(169, 20)
         Me.TNoPR.StyleController = Me.LayoutControl1
@@ -250,31 +232,41 @@ Partial Class FrmDetailPR
         'TTanggal
         '
         Me.TTanggal.Enabled = False
-        Me.TTanggal.Location = New System.Drawing.Point(339, 36)
+        Me.TTanggal.Location = New System.Drawing.Point(486, 29)
         Me.TTanggal.Name = "TTanggal"
         Me.TTanggal.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me.TTanggal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TTanggal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.TTanggal.Size = New System.Drawing.Size(147, 20)
+        Me.TTanggal.Size = New System.Drawing.Size(98, 20)
         Me.TTanggal.StyleController = Me.LayoutControl1
         Me.TTanggal.TabIndex = 6
         '
         'TSirkulasi
         '
-        Me.TSirkulasi.Location = New System.Drawing.Point(465, 12)
+        Me.TSirkulasi.Location = New System.Drawing.Point(486, 5)
         Me.TSirkulasi.Name = "TSirkulasi"
         Me.TSirkulasi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TSirkulasi.Size = New System.Drawing.Size(205, 20)
+        Me.TSirkulasi.Size = New System.Drawing.Size(379, 20)
         Me.TSirkulasi.StyleController = Me.LayoutControl1
         Me.TSirkulasi.TabIndex = 10
+        '
+        'TBagian
+        '
+        Me.TBagian.Location = New System.Drawing.Point(89, 29)
+        Me.TBagian.Name = "TBagian"
+        Me.TBagian.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TBagian.Properties.NullText = ""
+        Me.TBagian.Size = New System.Drawing.Size(316, 20)
+        Me.TBagian.StyleController = Me.LayoutControl1
+        Me.TBagian.TabIndex = 13
         '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem9, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem5})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem9, Me.LayoutControlItem5, Me.EmptySpaceItem1, Me.LayoutControlItem10, Me.LayoutControlItem6, Me.EmptySpaceItem2})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1156, 79)
+        Me.Root.Size = New System.Drawing.Size(1139, 79)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -289,51 +281,31 @@ Partial Class FrmDetailPR
         Me.LayoutControlItem1.Text = "No PR"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(74, 13)
         '
-        'EmptySpaceItem1
-        '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 49)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1136, 10)
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me.TBagian
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
-        Me.LayoutControlItem2.MaxSize = New System.Drawing.Size(250, 24)
-        Me.LayoutControlItem2.MinSize = New System.Drawing.Size(250, 24)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(250, 25)
-        Me.LayoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem2.Text = "Bagian"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(74, 13)
-        '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.TSirkulasi
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(376, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(397, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(286, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(460, 24)
         Me.LayoutControlItem7.Text = "No Sirkulasi"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(74, 13)
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.T_SirkulasiJumlah
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(662, 0)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(857, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(239, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(131, 24)
         Me.LayoutControlItem8.Text = "Jumlah Sirkulasi"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(74, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.TTanggal
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(250, 24)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(397, 24)
         Me.LayoutControlItem3.MinSize = New System.Drawing.Size(50, 25)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(228, 25)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(179, 25)
         Me.LayoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem3.Text = "Tanggal"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(74, 13)
@@ -341,29 +313,11 @@ Partial Class FrmDetailPR
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.TJumlahProses
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(901, 0)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(988, 0)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(235, 24)
-        Me.LayoutControlItem9.Text = "Jumlah Proses"
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(131, 24)
+        Me.LayoutControlItem9.Text = "Sisa Sirkulasi"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(74, 13)
-        '
-        'LayoutControlItem4
-        '
-        Me.LayoutControlItem4.Control = Me.TKeterangan
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(478, 24)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(564, 25)
-        Me.LayoutControlItem4.Text = "Keterangan"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(74, 13)
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.BTambahBaris
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(1042, 24)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(94, 25)
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem6.TextVisible = False
         '
         'LayoutControlItem5
         '
@@ -373,10 +327,36 @@ Partial Class FrmDetailPR
         Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(150, 24)
         Me.LayoutControlItem5.MinSize = New System.Drawing.Size(100, 24)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(126, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(147, 24)
         Me.LayoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem5.Text = "Revisi"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(74, 13)
+        '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 49)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1119, 10)
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.TBagian
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(397, 25)
+        Me.LayoutControlItem10.Text = "Bagian"
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(74, 13)
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.BTambahBaris
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(1025, 24)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(94, 25)
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem6.TextVisible = False
         '
         'C_Submit
         '
@@ -774,11 +754,11 @@ Partial Class FrmDetailPR
         Me.GridPR.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridPR.Location = New System.Drawing.Point(12, 108)
+        Me.GridPR.Location = New System.Drawing.Point(12, 105)
         Me.GridPR.MainView = Me.GridView3
         Me.GridPR.Name = "GridPR"
-        Me.GridPR.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPembelianUntuk, Me.BBarang, Me.CJumlah, Me.Charga, Me.DTempo, Me.BSubAccount, Me.BNo})
-        Me.GridPR.Size = New System.Drawing.Size(1132, 332)
+        Me.GridPR.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPembelianUntuk, Me.BBarang, Me.CJumlah, Me.Charga, Me.DTempo, Me.BSubAccount, Me.BNo, Me.RepoUnitCost})
+        Me.GridPR.Size = New System.Drawing.Size(1132, 335)
         Me.GridPR.TabIndex = 2
         Me.GridPR.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
@@ -982,6 +962,8 @@ Partial Class FrmDetailPR
         Me.WaktuTempo.AppearanceHeader.Options.UseTextOptions = True
         Me.WaktuTempo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.WaktuTempo.ColumnEdit = Me.DTempo
+        Me.WaktuTempo.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.WaktuTempo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.WaktuTempo.FieldName = "Waktu Tempo"
         Me.WaktuTempo.Name = "WaktuTempo"
         Me.WaktuTempo.Visible = True
@@ -993,6 +975,8 @@ Partial Class FrmDetailPR
         Me.DTempo.AutoHeight = False
         Me.DTempo.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DTempo.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DTempo.DisplayFormat.FormatString = "D"
+        Me.DTempo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DTempo.Name = "DTempo"
         '
         'GBudget
@@ -1001,6 +985,8 @@ Partial Class FrmDetailPR
         Me.GBudget.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GBudget.FieldName = "Budget"
         Me.GBudget.Name = "GBudget"
+        Me.GBudget.Visible = True
+        Me.GBudget.VisibleIndex = 15
         '
         'GSudahDipakai
         '
@@ -1008,6 +994,8 @@ Partial Class FrmDetailPR
         Me.GSudahDipakai.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GSudahDipakai.FieldName = "Sudah Dipakai"
         Me.GSudahDipakai.Name = "GSudahDipakai"
+        Me.GSudahDipakai.Visible = True
+        Me.GSudahDipakai.VisibleIndex = 14
         '
         'Keterangan
         '
@@ -1023,6 +1011,19 @@ Partial Class FrmDetailPR
         Me.BSubAccount.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.BSubAccount.Name = "BSubAccount"
         '
+        'RepoUnitCost
+        '
+        Me.RepoUnitCost.AutoHeight = False
+        Me.RepoUnitCost.Name = "RepoUnitCost"
+        '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(576, 24)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(449, 25)
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
+        '
         'FrmDetailPR
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1037,22 +1038,20 @@ Partial Class FrmDetailPR
         CType(Me.TJumlahProses.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_SirkulasiJumlah.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRevisi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TKeterangan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TBagian.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TNoPR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TSirkulasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TBagian.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C_Submit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C_Qty, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1078,6 +1077,8 @@ Partial Class FrmDetailPR
         CType(Me.DTempo.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DTempo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoUnitCost, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1086,14 +1087,9 @@ Partial Class FrmDetailPR
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents TRevisi As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TKeterangan As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TBagian As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TNoPR As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents BTambahBaris As Button
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
@@ -1168,4 +1164,9 @@ Partial Class FrmDetailPR
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TJumlahProses As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents RepoUnitCost As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents TBagian As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

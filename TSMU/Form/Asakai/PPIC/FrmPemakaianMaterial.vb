@@ -434,7 +434,7 @@ Public Class FrmPemakaianMaterial
                             cbHeader.Add("Extended Properties", "Excel 8.0; IMEX=1; HDR=No;")
                             Dim cnHeader As New System.Data.OleDb.OleDbConnection With {.ConnectionString = cbHeader.ConnectionString}
                             cnHeader.Open()
-                            Dim cmdHeader As OleDbCommand = New OleDbCommand("SELECT F1 as IDMaterial, F2 as Description," & KolomQty & " as Quantity," & KolomHarga & " as TotalPrice FROM [Sheet2$A1:CN600]", cn) '
+                            Dim cmdHeader As OleDbCommand = New OleDbCommand("SELECT F1 as IDMaterial, F2 as Description," & KolomQty & " as Quantity," & KolomHarga & " as TotalPrice FROM [Sheet2$A1: " & TxtBarisKomponen2.Text & " ]", cn) '
                             Dim dtHeader As New DataTable
                             dtHeader.Load(cmdHeader.ExecuteReader)
 

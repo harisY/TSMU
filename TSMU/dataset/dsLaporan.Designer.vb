@@ -14177,10 +14177,10 @@ Partial Public Class dsLaporan
                     ByVal Customer_Name As String,  _
                     ByVal Order_Month As Long,  _
                     ByVal Order_Max_Month As Long,  _
-                    ByVal T0 As String,  _
-                    ByVal T1 As String,  _
-                    ByVal T2 As String,  _
-                    ByVal MP As String,  _
+                    ByVal T0 As Date,  _
+                    ByVal T1 As Date,  _
+                    ByVal T2 As Date,  _
+                    ByVal MP As Date,  _
                     ByVal Drawing As Boolean,  _
                     ByVal CAD_Data As Boolean,  _
                     ByVal Sample As Boolean,  _
@@ -14333,13 +14333,13 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnOrder_Month)
             Me.columnOrder_Max_Month = New Global.System.Data.DataColumn("Order_Max_Month", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOrder_Max_Month)
-            Me.columnT0 = New Global.System.Data.DataColumn("T0", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnT0 = New Global.System.Data.DataColumn("T0", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnT0)
-            Me.columnT1 = New Global.System.Data.DataColumn("T1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnT1 = New Global.System.Data.DataColumn("T1", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnT1)
-            Me.columnT2 = New Global.System.Data.DataColumn("T2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnT2 = New Global.System.Data.DataColumn("T2", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnT2)
-            Me.columnMP = New Global.System.Data.DataColumn("MP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnMP = New Global.System.Data.DataColumn("MP", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMP)
             Me.columnDrawing = New Global.System.Data.DataColumn("Drawing", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDrawing)
@@ -35167,10 +35167,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property T0() As String
+        Public Property T0() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableNPWO.T0Column),String)
+                    Return CType(Me(Me.tableNPWO.T0Column),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'T0' in table 'NPWO' is DBNull.", e)
                 End Try
@@ -35182,10 +35182,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property T1() As String
+        Public Property T1() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableNPWO.T1Column),String)
+                    Return CType(Me(Me.tableNPWO.T1Column),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'T1' in table 'NPWO' is DBNull.", e)
                 End Try
@@ -35197,10 +35197,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property T2() As String
+        Public Property T2() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableNPWO.T2Column),String)
+                    Return CType(Me(Me.tableNPWO.T2Column),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'T2' in table 'NPWO' is DBNull.", e)
                 End Try
@@ -35212,10 +35212,10 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property MP() As String
+        Public Property MP() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableNPWO.MPColumn),String)
+                    Return CType(Me(Me.tableNPWO.MPColumn),Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'MP' in table 'NPWO' is DBNull.", e)
                 End Try
