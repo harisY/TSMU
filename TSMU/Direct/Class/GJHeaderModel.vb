@@ -140,19 +140,42 @@ Public Class GJHeaderModel
             Throw ex
         End Try
     End Function
-    Public Function GetGLPerpost2(acc As String, perpost As String, modul As String) As DataTable
+    Public Function GetGLPerpost2(acc As String, subx As String, perpost As String, modul As String) As DataTable
         Try
             Dim dt As New DataTable
             ''        Dim sql As String = "Proses_GJPerpost"
             Dim sql As String = "Proses_GLPerpost_upload_all"
 
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
             pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
             pParam(0).Value = perpost
             pParam(1) = New SqlClient.SqlParameter("@acct", SqlDbType.VarChar)
             pParam(1).Value = acc
             pParam(2) = New SqlClient.SqlParameter("@module", SqlDbType.VarChar)
             pParam(2).Value = modul
+            pParam(3) = New SqlClient.SqlParameter("@sub", SqlDbType.VarChar)
+            pParam(3).Value = subx
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetGLPerpost2x(acc As String, subx As String, perpost As String, modul As String) As DataTable
+        Try
+            Dim dt As New DataTable
+            ''        Dim sql As String = "Proses_GJPerpost"
+            Dim sql As String = "Proses_GLPerpost_upload_all2"
+
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@perpost", SqlDbType.VarChar)
+            pParam(0).Value = perpost
+            pParam(1) = New SqlClient.SqlParameter("@acct", SqlDbType.VarChar)
+            pParam(1).Value = acc
+            pParam(2) = New SqlClient.SqlParameter("@module", SqlDbType.VarChar)
+            pParam(2).Value = modul
+            pParam(3) = New SqlClient.SqlParameter("@sub", SqlDbType.VarChar)
+            pParam(3).Value = subx
             dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
             Return dt
         Catch ex As Exception

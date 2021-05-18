@@ -22,9 +22,10 @@ Partial Class Frm_Rpt_APPaymentSolomon
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim GridFormatRule3 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim GridFormatRule4 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_Rpt_APPaymentSolomon))
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.txt_perpost = New System.Windows.Forms.TextBox()
@@ -118,6 +119,38 @@ Partial Class Frm_Rpt_APPaymentSolomon
         Me.tsBtn_next = New System.Windows.Forms.ToolStripButton()
         Me.miniToolStrip = New System.Windows.Forms.ToolStrip()
         Me.CachedCRTravelDetailEntertainSettRightSum1 = New TSMU.CachedCRTravelDetailEntertainSettRightSum()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.GridControl8 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView13 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridControl9 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView15 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridControl10 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView16 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ToolStrip5 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ProgBarOut = New System.Windows.Forms.ToolStripProgressBar()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -144,6 +177,16 @@ Partial Class Frm_Rpt_APPaymentSolomon
         CType(Me.GridView12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.ToolStrip3.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        CType(Me.GridControl8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView16, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip5.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -153,6 +196,7 @@ Partial Class Frm_Rpt_APPaymentSolomon
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Location = New System.Drawing.Point(4, 27)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -321,9 +365,9 @@ Partial Class Frm_Rpt_APPaymentSolomon
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colvrno, Me.coltgl, Me.colvendorname, Me.coldpp, Me.colppn, Me.coltotal, Me.colpph, Me.colgrand_total, Me.colbiaya_transfer, Me.coltotal_bayar})
-        GridFormatRule1.Name = "Format0"
-        GridFormatRule1.Rule = Nothing
-        Me.GridView1.FormatRules.Add(GridFormatRule1)
+        GridFormatRule3.Name = "Format0"
+        GridFormatRule3.Rule = Nothing
+        Me.GridView1.FormatRules.Add(GridFormatRule3)
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -627,9 +671,9 @@ Partial Class Frm_Rpt_APPaymentSolomon
         'GridView12
         '
         Me.GridView12.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
-        GridFormatRule2.Name = "Format0"
-        GridFormatRule2.Rule = Nothing
-        Me.GridView12.FormatRules.Add(GridFormatRule2)
+        GridFormatRule4.Name = "Format0"
+        GridFormatRule4.Rule = Nothing
+        Me.GridView12.FormatRules.Add(GridFormatRule4)
         Me.GridView12.GridControl = Me.GridControl7
         Me.GridView12.Name = "GridView12"
         Me.GridView12.OptionsBehavior.Editable = False
@@ -712,7 +756,7 @@ Partial Class Frm_Rpt_APPaymentSolomon
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ProgBar2})
         Me.ToolStrip1.Location = New System.Drawing.Point(382, 7)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(225, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(194, 25)
         Me.ToolStrip1.TabIndex = 19
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -904,6 +948,261 @@ Partial Class Frm_Rpt_APPaymentSolomon
         Me.miniToolStrip.Size = New System.Drawing.Size(783, 25)
         Me.miniToolStrip.TabIndex = 4
         '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.Panel3)
+        Me.TabPage4.Controls.Add(Me.ToolStrip5)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(795, 528)
+        Me.TabPage4.TabIndex = 2
+        Me.TabPage4.Text = "AP Outstanding"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'Panel3
+        '
+        Me.Panel3.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel3.Controls.Add(Me.GridControl8)
+        Me.Panel3.Controls.Add(Me.GridControl9)
+        Me.Panel3.Controls.Add(Me.GridControl10)
+        Me.Panel3.Location = New System.Drawing.Point(3, 34)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(789, 489)
+        Me.Panel3.TabIndex = 26
+        '
+        'GridControl8
+        '
+        Me.GridControl8.DataMember = Nothing
+        Me.GridControl8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl8.Location = New System.Drawing.Point(0, 0)
+        Me.GridControl8.MainView = Me.GridView13
+        Me.GridControl8.Name = "GridControl8"
+        Me.GridControl8.Size = New System.Drawing.Size(789, 489)
+        Me.GridControl8.TabIndex = 5
+        Me.GridControl8.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView13, Me.GridView14})
+        '
+        'GridView13
+        '
+        Me.GridView13.GridControl = Me.GridControl8
+        Me.GridView13.Name = "GridView13"
+        Me.GridView13.OptionsBehavior.Editable = False
+        Me.GridView13.OptionsView.ColumnAutoWidth = False
+        Me.GridView13.OptionsView.ShowGroupPanel = False
+        '
+        'GridView14
+        '
+        Me.GridView14.GridControl = Me.GridControl8
+        Me.GridView14.Name = "GridView14"
+        '
+        'GridControl9
+        '
+        Me.GridControl9.DataMember = "Query"
+        Me.GridControl9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl9.Location = New System.Drawing.Point(0, 0)
+        Me.GridControl9.MainView = Me.GridView15
+        Me.GridControl9.Name = "GridControl9"
+        Me.GridControl9.Size = New System.Drawing.Size(789, 489)
+        Me.GridControl9.TabIndex = 4
+        Me.GridControl9.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView15})
+        '
+        'GridView15
+        '
+        Me.GridView15.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30})
+        Me.GridView15.GridControl = Me.GridControl9
+        Me.GridView15.Name = "GridView15"
+        Me.GridView15.OptionsBehavior.Editable = False
+        Me.GridView15.OptionsView.ColumnAutoWidth = False
+        Me.GridView15.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.FieldName = "vrno"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 0
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.FieldName = "tgl"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 1
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.FieldName = "vendorname"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 2
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.FieldName = "tot_DPP"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 3
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.FieldName = "tot_PPN"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 4
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.FieldName = "Total"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 5
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.FieldName = "pph"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 6
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.FieldName = "Grand_Total"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 7
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.FieldName = "biaya_transfer"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 8
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.FieldName = "Total_Bayar"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 9
+        '
+        'GridControl10
+        '
+        Me.GridControl10.DataMember = "ViewPayment"
+        Me.GridControl10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl10.Location = New System.Drawing.Point(0, 0)
+        Me.GridControl10.MainView = Me.GridView16
+        Me.GridControl10.Name = "GridControl10"
+        Me.GridControl10.Size = New System.Drawing.Size(789, 489)
+        Me.GridControl10.TabIndex = 3
+        Me.GridControl10.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView16})
+        '
+        'GridView16
+        '
+        Me.GridView16.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn31, Me.GridColumn32, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40})
+        GridFormatRule1.Name = "Format0"
+        GridFormatRule1.Rule = Nothing
+        Me.GridView16.FormatRules.Add(GridFormatRule1)
+        Me.GridView16.GridControl = Me.GridControl10
+        Me.GridView16.Name = "GridView16"
+        Me.GridView16.OptionsBehavior.Editable = False
+        Me.GridView16.OptionsView.ColumnAutoWidth = False
+        Me.GridView16.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.FieldName = "vrno"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 0
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.FieldName = "tgl"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 1
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.FieldName = "vendorname"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 2
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.FieldName = "dpp"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 3
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.FieldName = "ppn"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 4
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.FieldName = "total"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 5
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.FieldName = "pph"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 6
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.FieldName = "grand_total"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 7
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.FieldName = "biaya_transfer"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 8
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.FieldName = "total_bayar"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 9
+        '
+        'ToolStrip5
+        '
+        Me.ToolStrip5.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip5.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton2, Me.ProgBarOut})
+        Me.ToolStrip5.Location = New System.Drawing.Point(3, 6)
+        Me.ToolStrip5.Name = "ToolStrip5"
+        Me.ToolStrip5.Size = New System.Drawing.Size(225, 25)
+        Me.ToolStrip5.TabIndex = 25
+        Me.ToolStrip5.Text = "ToolStrip5"
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(80, 22)
+        Me.ToolStripButton2.Text = "Load Data"
+        '
+        'ProgBarOut
+        '
+        Me.ProgBarOut.Name = "ProgBarOut"
+        Me.ProgBarOut.Size = New System.Drawing.Size(100, 22)
+        '
         'Frm_Rpt_APPaymentSolomon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -945,6 +1244,18 @@ Partial Class Frm_Rpt_APPaymentSolomon
         Me.ToolStrip1.PerformLayout()
         Me.ToolStrip3.ResumeLayout(False)
         Me.ToolStrip3.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        CType(Me.GridControl8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView16, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip5.ResumeLayout(False)
+        Me.ToolStrip5.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1057,4 +1368,36 @@ Partial Class Frm_Rpt_APPaymentSolomon
     Friend WithEvents DateEdit3 As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents GridControl8 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView13 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridView14 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridControl9 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView15 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridControl10 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView16 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ToolStrip5 As ToolStrip
+    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents ProgBarOut As ToolStripProgressBar
 End Class

@@ -38,7 +38,7 @@ Public Class TTI_Header_Models
     Public Property Jumlah As Double
     Public Property NoBukti As String
     Public Property Remark As String
-
+    Public Property H_CreatedBy As String
     Public Property ObjPaymentDetails() As New Collection(Of TTI_Detail_Models)
     Public Property ObjBatch() As New Collection(Of batch)
     Public Function GetDataGrid() As DataTable
@@ -63,7 +63,24 @@ Public Class TTI_Header_Models
             Throw ex
         End Try
     End Function
+    Public Sub DeleteHeaderR(ByVal _VRNO As String)
+        Try
 
+
+            Dim ls_SP3 As String = " " & vbCrLf &
+                "update ARDoc set User7 ='1900-01-01 00:00:00' from ARDoc inner join TTI_Detail on TTI_Detail.No_Invoice=ARDoc.RefNbr WHERE DocType='IN' AND TTI_Detail.vrno = '" & _VRNO & "'"
+            ExecQuery_Solomon(ls_SP3)
+
+            Dim ls_SP As String = " " & vbCrLf &
+                                    "DELETE from TTI_Header  WHERE vrno = '" & _VRNO & "'"
+            ExecQuery_Solomon(ls_SP)
+            Dim ls_SP2 As String = " " & vbCrLf &
+                        "DELETE from TTI_Detail WHERE vrno = '" & _VRNO & "' "
+            ExecQuery_Solomon(ls_SP2)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Function PrintReport(Id As String) As DataSet
         Try
             Dim ds As dsLaporan2
@@ -79,34 +96,13 @@ Public Class TTI_Header_Models
     End Function
     Public Function GetDataGrid2() As DataTable
         Try
-            Dim sql As String = "SELECT [id]
+            Dim sql As String = "  SELECT [id]
                 ,[vrno]
                 ,[tgl]
-                ,[BankID]
-                ,[BankName]
-      ,[CustID]
-      ,[CustomerName]
-                ,[Descr]
-                ,[Tot_DPP]
-                ,[Tot_PPN]
-                ,[Total_DPP_PPN]
-                ,[PPh]
-                ,[Biaya_Transfer]
-                ,[CM_DM]
-                ,[CuryID]
-                ,[cek1]
-                ,[cek2]
-                ,[cek3]
-                ,[cek4]
-                ,[prosespay]
-                ,[uploaded]
-                ,[detsupplier]
-                ,[bankrek]
-                ,[norek]
-                ,[penerima]
-                ,[cmdm_manual]
-                ,[cmdm_manual_ket]
-            FROM [TTI_Header] Order By id desc"
+      ,TTI_Header.[CustID]
+      ,Customer.Name AS [CustomerName]
+                ,[Total_DPP_PPN] as Total_Invoice, CreatedBy 
+            FROM [TTI_Header] inner join Customer on TTI_Header.CustID=Customer.CustId Order By id desc"
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
             Return dt
@@ -257,7 +253,7 @@ Public Class TTI_Header_Models
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO TTI_Header (vrno,tgl,BankID,BankName,CustID,CustomerName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima,cmdm_manual,cmdm_manual_ket,NoBukti,TotReceive) " & vbCrLf &
+                                    "INSERT INTO TTI_Header (vrno,tgl,BankID,BankName,CustID,CustomerName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima,cmdm_manual,cmdm_manual_ket,NoBukti,CreatedBy,TotReceive) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.tgl) & ", " & vbCrLf &
                                     "       " & QVal(Me.BankID) & ", " & vbCrLf &
@@ -285,6 +281,7 @@ Public Class TTI_Header_Models
                                     "       " & QVal(Me.cmdm_manual) & ", " & vbCrLf &
                                     "       " & QVal(Me.cmdm_manual_ket) & ", " & vbCrLf &
                                     "       " & QVal(Me.NoBukti) & ", " & vbCrLf &
+                                    "       " & QVal(Me.H_CreatedBy) & ", " & vbCrLf &
                                     "       " & QVal(Me.TotReceive) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
@@ -457,14 +454,14 @@ Public Class TTI_Header_Models
 
                         UpdateHeader(vrno)
 
-                        Dim PaymentDetails As New TTI_Detail_Models
-                        PaymentDetails.DeleteDetail(vrno)
+                        'Dim PaymentDetails As New TTI_Detail_Models
+                        'PaymentDetails.DeleteDetail(vrno)
 
-                        For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
-                            With Me.ObjPaymentDetails(i)
-                                .InsertDetails()
-                            End With
-                        Next
+                        'For i As Integer = 0 To Me.ObjPaymentDetails.Count - 1
+                        '    With Me.ObjPaymentDetails(i)
+                        '        .InsertDetails()
+                        '    End With
+                        'Next
 
                         Trans1.Commit()
                     Catch ex As Exception

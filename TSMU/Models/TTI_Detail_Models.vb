@@ -20,8 +20,12 @@
     Public Property Tgl_Invoice As DateTime
     Public Property vrno As String
     Public Property NoPO As String
+    Public Property Crtd_User As String
     Public Property Paid As Double
     Public Property tgl As Nullable(Of DateTime)
+
+    Public Property H_CreatedBy As String
+    Public Property H_CreatedDate As Date
 
     Public Function GetPaymentByVoucherNo() As DataTable
         Try
@@ -35,7 +39,7 @@
                       ,[Pph] PPH
                       ,[cek1] [Check]
                       ,[cek4] [CheckPPH]
-                      ,[Paid]
+                      ,[Paid],Crtd_User
                   FROM [TTI_detail] where RTRIM(vrno)=" & QVal(vrno.TrimEnd) & ""
             Dim dt As New DataTable
             dt = MainModul.GetDataTable_Solomon(sql)
@@ -163,7 +167,21 @@
         Try
             Dim dt As New DataTable
             Dim sql As String =
-                "PROSES_VOUCHER_ARNOTPAYYMENT1_TTI"
+                "PROSES_VOUCHER_ARNOTPAYYMENT1_TTI2"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(0).Value = VendorId
+            dt = MainModul.GetDataTableByCommand_SP_Solomon(sql, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetGridDetailPaymentByVendorID2(VendorId) As DataTable
+        Try
+            Dim dt As New DataTable
+            Dim sql As String =
+                "PROSES_VOUCHER_ARNOTPAYYMENT1_TTI3"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
             pParam(0).Value = VendorId
@@ -194,7 +212,7 @@
         Try
 
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO TTI_detail (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1,cek4,NoPO,Paid) " & vbCrLf &
+                                    "INSERT INTO TTI_detail (vrno,No_Invoice,Tgl_Invoice,Jml_Invoice,CuryID,Ppn,Dpp,Pph,No_Faktur,cek1,cek4,NoPO,CreatedBy,CreatedDate,Crtd_User,Paid) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.No_Invoice) & ", " & vbCrLf &
                                     "       " & QVal(Me.Tgl_Invoice) & ", " & vbCrLf &
@@ -207,6 +225,9 @@
                                     "       " & QVal(Me.cek1) & ", " & vbCrLf &
                                     "       " & QVal(Me.cek4) & ", " & vbCrLf &
                                     "       " & QVal(Me.NoPO) & ", " & vbCrLf &
+                                    "       " & QVal(Me.H_CreatedBy) & ", " & vbCrLf &
+                                    "       " & QVal(Me.H_CreatedDate) & ", " & vbCrLf &
+                                    "       " & QVal(Me.Crtd_User) & ", " & vbCrLf &
                                     "       " & QVal(Me.Paid) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception

@@ -129,16 +129,18 @@
 
 
 
-    Public Function DataGridBoMRouting(ByVal strSite As String, ByVal strStatus As String, ByVal strInvtid As String) As DataTable
+    Public Function DataGridBoMRouting(ByVal strSite As String, ByVal strStatus As String, ByVal strInvtid As String, ByVal strActive As String) As DataTable
         Try
             Dim query As String = "BoMRouting"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
             pParam(0) = New SqlClient.SqlParameter("@siteid", SqlDbType.VarChar)
             pParam(0).Value = strSite
             pParam(1) = New SqlClient.SqlParameter("@statusBoM", SqlDbType.VarChar)
             pParam(1).Value = strStatus
             pParam(2) = New SqlClient.SqlParameter("@Invtid_", SqlDbType.VarChar)
             pParam(2).Value = strInvtid
+            pParam(3) = New SqlClient.SqlParameter("@Active", SqlDbType.VarChar)
+            pParam(3).Value = strActive
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
             Return dt
@@ -436,6 +438,25 @@
             pParam(2).Value = strInvtid
             pParam(3) = New SqlClient.SqlParameter("@customer", SqlDbType.VarChar)
             pParam(3).Value = strCust
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
+    Public Function SB_LoadDataGridNonBoM(ByVal strSite As String, ByVal strYear As String, ByVal strCust As String) As DataTable
+        Try
+            Dim query As String = "Sales_Budget_NonBoM"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@Site", SqlDbType.VarChar)
+            pParam(0).Value = strSite
+            pParam(1) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(1).Value = strYear
+            pParam(2) = New SqlClient.SqlParameter("@CustID", SqlDbType.VarChar)
+            pParam(2).Value = strCust
             Dim dt As New DataTable
             dt = MainModul.GetDataTableByCommand_SP(query, pParam)
             Return dt

@@ -179,17 +179,40 @@
 
     End Function
 
-    Public Function Generate_Report_BoM_PO_ForecastCalculate(strYear As String, ParentId As String, Perpost As String) As DataTable
+    Public Function Generate_Report_BoM_PO_ForecastCalculate(strYear As String, ParentId As String, Perpost As String, SubIn As String) As DataTable
         Try
             Dim query As String = "BoM_PO_Forecast_WithNoAktual"
             'Dim query As String = "BoM_PO_Forecast_aktual_Calculate"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
             pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
             pParam(0).Value = Left(strYear, 4)
             pParam(1) = New SqlClient.SqlParameter("@ParentId", SqlDbType.VarChar)
             pParam(1).Value = ParentId
             pParam(2) = New SqlClient.SqlParameter("@PerPost", SqlDbType.VarChar)
             pParam(2).Value = Perpost
+            pParam(3) = New SqlClient.SqlParameter("@SubIn", SqlDbType.VarChar)
+            pParam(3).Value = SubIn
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
+    Public Function Generate_Report_BoM_PO_ForecastCalculateSum(strYear As String, ParentId As String, SubIn As String, Perpost As String) As DataTable
+        Try
+            Dim query As String = "BoM_PO_Forecast_WithNoAktual_Sum"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            pParam(0) = New SqlClient.SqlParameter("@Tahun", SqlDbType.VarChar)
+            pParam(0).Value = Left(strYear, 4)
+            pParam(1) = New SqlClient.SqlParameter("@InvtID", SqlDbType.VarChar)
+            pParam(1).Value = ParentId
+            pParam(2) = New SqlClient.SqlParameter("@SubIn", SqlDbType.VarChar)
+            pParam(2).Value = SubIn
+            pParam(3) = New SqlClient.SqlParameter("@PerPost", SqlDbType.VarChar)
+            pParam(3).Value = Perpost
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
             Return dt

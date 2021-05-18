@@ -234,6 +234,9 @@ Public Class SuspendHeaderModel
             Dim sql As String =
             "SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
             FROM suspend_header where SuspendID=" & QVal(SuspendID) & ""
+            'Dim sql As String =
+            '"SELECT SuspendHeaderID, SuspendID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total
+            'FROM suspend_header where SuspendHeaderID=" & QVal(SuspendHeaderID) & ""
             Dim dt As New DataTable
             dt = GetDataTable_Solomon(sql)
             If dt.Rows.Count > 0 Then

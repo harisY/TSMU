@@ -64,6 +64,7 @@ Partial Class Frm_TT_Invoice_Detail
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckedComboBoxEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,7 +211,6 @@ Partial Class Frm_TT_Invoice_Detail
         Me._txtVoucher.Location = New System.Drawing.Point(288, 12)
         Me._txtVoucher.Margin = New System.Windows.Forms.Padding(4)
         Me._txtVoucher.Name = "_txtVoucher"
-        Me._txtVoucher.Properties.ReadOnly = True
         Me._txtVoucher.Size = New System.Drawing.Size(110, 22)
         Me._txtVoucher.StyleController = Me.LayoutControl1
         Me._txtVoucher.TabIndex = 9
@@ -437,7 +437,7 @@ Partial Class Frm_TT_Invoice_Detail
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColInvcDate, Me.ColInvcNbr, Me.Colfp, Me.ColCuryId, Me.ColDPP, Me.ColPpn, Me.ColPPH, Me.ColAmount, Me.GridColumn2, Me.ColCheck, Me.GridColumn1, Me.GridColumn3})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColInvcDate, Me.ColInvcNbr, Me.Colfp, Me.ColCuryId, Me.ColDPP, Me.ColPpn, Me.ColPPH, Me.ColAmount, Me.GridColumn2, Me.ColCheck, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4})
         Me.GridView1.DetailHeight = 458
         Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.GridInvoice
@@ -604,6 +604,16 @@ Partial Class Frm_TT_Invoice_Detail
         Me.GridColumn3.VisibleIndex = 3
         Me.GridColumn3.Width = 94
         '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "CreatedBy"
+        Me.GridColumn4.FieldName = "Crtd_User"
+        Me.GridColumn4.MinWidth = 25
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 11
+        Me.GridColumn4.Width = 94
+        '
         'RepositoryItemCheckedComboBoxEdit1
         '
         Me.RepositoryItemCheckedComboBoxEdit1.AutoHeight = False
@@ -708,4 +718,5 @@ Partial Class Frm_TT_Invoice_Detail
     Friend WithEvents RepositoryItemCheckedComboBoxEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
     Friend WithEvents DxValidationProvider1 As DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

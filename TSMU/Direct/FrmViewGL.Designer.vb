@@ -20,6 +20,7 @@ Partial Class FrmViewGL
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me._TxtModule = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.lblnama = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -32,8 +33,11 @@ Partial Class FrmViewGL
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me._txtsub = New DevExpress.XtraEditors.ButtonEdit()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me._TxtModule.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,17 +50,22 @@ Partial Class FrmViewGL
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me._txtsub.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.Button2)
         Me.LayoutControl1.Controls.Add(Me._TxtModule)
         Me.LayoutControl1.Controls.Add(Me.lblnama)
         Me.LayoutControl1.Controls.Add(Me.Button1)
         Me.LayoutControl1.Controls.Add(Me._TxtPerpost)
         Me.LayoutControl1.Controls.Add(Me._txtaccount)
+        Me.LayoutControl1.Controls.Add(Me._txtsub)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
@@ -66,14 +75,23 @@ Partial Class FrmViewGL
         Me.LayoutControl1.TabIndex = 22
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(846, 12)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(156, 27)
+        Me.Button2.TabIndex = 15
+        Me.Button2.Text = "View Data Yearly"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         '_TxtModule
         '
         Me._TxtModule.EditValue = "ALL"
-        Me._TxtModule.Location = New System.Drawing.Point(428, 12)
+        Me._TxtModule.Location = New System.Drawing.Point(562, 12)
         Me._TxtModule.Name = "_TxtModule"
         Me._TxtModule.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me._TxtModule.Properties.Items.AddRange(New Object() {"AP", "AR", "CA", "CM", "GL", "IN", "PO"})
-        Me._TxtModule.Size = New System.Drawing.Size(118, 22)
+        Me._TxtModule.Size = New System.Drawing.Size(136, 22)
         Me._TxtModule.StyleController = Me.LayoutControl1
         Me._TxtModule.TabIndex = 14
         '
@@ -86,9 +104,9 @@ Partial Class FrmViewGL
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(550, 12)
+        Me.Button1.Location = New System.Drawing.Point(702, 12)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(85, 27)
+        Me.Button1.Size = New System.Drawing.Size(140, 27)
         Me.Button1.TabIndex = 7
         Me.Button1.Text = "View Data"
         Me.Button1.UseVisualStyleBackColor = True
@@ -99,17 +117,17 @@ Partial Class FrmViewGL
         Me._TxtPerpost.Margin = New System.Windows.Forms.Padding(4)
         Me._TxtPerpost.Name = "_TxtPerpost"
         Me._TxtPerpost.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me._TxtPerpost.Size = New System.Drawing.Size(103, 22)
+        Me._TxtPerpost.Size = New System.Drawing.Size(91, 22)
         Me._TxtPerpost.StyleController = Me.LayoutControl1
         Me._TxtPerpost.TabIndex = 5
         '
         '_txtaccount
         '
         Me._txtaccount.EditValue = "ALL"
-        Me._txtaccount.Location = New System.Drawing.Point(284, 12)
+        Me._txtaccount.Location = New System.Drawing.Point(272, 12)
         Me._txtaccount.Name = "_txtaccount"
         Me._txtaccount.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me._txtaccount.Size = New System.Drawing.Size(92, 22)
+        Me._txtaccount.Size = New System.Drawing.Size(96, 22)
         Me._txtaccount.StyleController = Me.LayoutControl1
         Me._txtaccount.TabIndex = 9
         '
@@ -117,7 +135,7 @@ Partial Class FrmViewGL
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem1, Me.LayoutControlItem7})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem1, Me.LayoutControlItem7, Me.LayoutControlItem3, Me.LayoutControlItem4})
         Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1104, 51)
         Me.LayoutControlGroup1.TextVisible = False
@@ -127,24 +145,24 @@ Partial Class FrmViewGL
         Me.LayoutControlItem2.Control = Me._TxtPerpost
         Me.LayoutControlItem2.Location = New System.Drawing.Point(69, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(155, 31)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(143, 31)
         Me.LayoutControlItem2.Text = "Perpost"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(45, 16)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(627, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(994, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(457, 31)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(90, 31)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.Button1
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(538, 0)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(690, 0)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(89, 31)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(144, 31)
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
@@ -160,20 +178,29 @@ Partial Class FrmViewGL
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me._txtaccount
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(224, 0)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(212, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(144, 31)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(148, 31)
         Me.LayoutControlItem1.Text = "Account"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(45, 16)
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me._TxtModule
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(368, 0)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(502, 0)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(170, 31)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(188, 31)
         Me.LayoutControlItem7.Text = "Module"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(45, 16)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me.Button2
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(834, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(160, 31)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem3.TextVisible = False
         '
         'Grid
         '
@@ -203,6 +230,25 @@ Partial Class FrmViewGL
         Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
+        '_txtsub
+        '
+        Me._txtsub.EditValue = "ALL"
+        Me._txtsub.Location = New System.Drawing.Point(420, 12)
+        Me._txtsub.Name = "_txtsub"
+        Me._txtsub.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me._txtsub.Size = New System.Drawing.Size(90, 22)
+        Me._txtsub.StyleController = Me.LayoutControl1
+        Me._txtsub.TabIndex = 16
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me._txtsub
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(360, 0)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(142, 31)
+        Me.LayoutControlItem4.Text = "Sub"
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(45, 16)
+        '
         'FrmViewGL
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -224,8 +270,11 @@ Partial Class FrmViewGL
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me._txtsub.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -246,4 +295,8 @@ Partial Class FrmViewGL
     Friend WithEvents Grid As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents _txtaccount As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents Button2 As Button
+    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents _txtsub As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
 End Class

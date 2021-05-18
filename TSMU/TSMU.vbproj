@@ -1708,10 +1708,22 @@
     <Compile Include="Form\Common\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\FrmDeleteForecast.designer.vb">
+      <DependentUpon>FrmDeleteForecast.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmDeleteForecast.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmForecastDaily.Designer.vb">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmForecastDaily.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmProblem.Designer.vb">
+      <DependentUpon>frmProblem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmProblem.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmForecastHargaManual.Designer.vb">
@@ -1736,6 +1748,12 @@
       <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmMonitoringInventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\frmProbleDetail.Designer.vb">
+      <DependentUpon>frmProbleDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\frmProbleDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmQcOutgoing.Designer.vb">
@@ -2404,6 +2422,48 @@
     <Compile Include="Form\PO Check\frm_TAM_InportExcel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\PPIC\FrmPPICBuildup.designer.vb">
+      <DependentUpon>FrmPPICBuildup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICBuildup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICBuildupDetail.Designer.vb">
+      <DependentUpon>FrmPPICBuildupDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICBuildupDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICConvertMuat.Designer.vb">
+      <DependentUpon>FrmPPICConvertMuat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICConvertMuat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICConvertMuatDetail.Designer.vb">
+      <DependentUpon>FrmPPICConvertMuatDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICConvertMuatDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICKapOEM.Designer.vb">
+      <DependentUpon>FrmPPICKapOEM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICKapOEM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICKapOEMDetail.Designer.vb">
+      <DependentUpon>FrmPPICKapOEMDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICKapOEMDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICUploadPO.Designer.vb">
+      <DependentUpon>FrmPPICUploadPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICUploadPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\PR\FrmDetailPR.Designer.vb">
       <DependentUpon>FrmDetailPR.vb</DependentUpon>
     </Compile>
@@ -2444,6 +2504,18 @@
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO_Sum.designer.vb">
+      <DependentUpon>FrmReport_BoM_Forecast_PO_Sum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\FrmReport_BoM_Forecast_PO_Sum.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Budget_NonBoM.designer.vb">
+      <DependentUpon>frmReport_Budget_NonBoM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Budget_NonBoM.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Report\frmReport_Harigami1.Designer.vb">
@@ -2877,6 +2949,10 @@
     <Compile Include="Models\MizuhoModels.vb" />
     <Compile Include="Models\payment_detail_models.vb" />
     <Compile Include="Models\payment_header_models.vb" />
+    <Compile Include="Models\PPIC\PPICBuildupModel.vb" />
+    <Compile Include="Models\PPIC\PPICConvertMuatDetailModel.vb" />
+    <Compile Include="Models\PPIC\PPICConvertMuatHeaderModel.vb" />
+    <Compile Include="Models\PPIC\PPICKapOEMModel.vb" />
     <Compile Include="Models\ProblemModel.vb" />
     <Compile Include="Models\QcOutgoingModel.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
@@ -3182,6 +3258,18 @@
     <Compile Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TTI_All.Designer.vb">
+      <DependentUpon>Frm_TTI_All.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TTI_All.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TT_Outstanding.Designer.vb">
+      <DependentUpon>Frm_TT_Outstanding.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\ReportPayment\Frm_TT_Outstanding.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Payment\ReportPayment\Rpt_APSignature.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3310,6 +3398,7 @@
     <Compile Include="Services\HRPAService.vb" />
     <Compile Include="Services\MApproveService.vb" />
     <Compile Include="Services\DRRService.vb" />
+    <Compile Include="Services\PPICService.vb" />
     <Compile Include="Services\ProblemService.vb" />
     <Compile Include="Services\QcOutgoingService.vb" />
     <Compile Include="Services\SettingService.vb" />
@@ -3894,8 +3983,14 @@
     <EmbeddedResource Include="Form\Common\Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmDeleteForecast.resx">
+      <DependentUpon>FrmDeleteForecast.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmProblem.resx">
+      <DependentUpon>frmProblem.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecastHargaManual.resx">
       <DependentUpon>frmForecastHargaManual.vb</DependentUpon>
@@ -3908,6 +4003,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmMonitoringInventory.resx">
       <DependentUpon>frmMonitoringInventory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\frmProbleDetail.resx">
+      <DependentUpon>frmProbleDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmQcOutgoing.resx">
       <DependentUpon>frmQcOutgoing.vb</DependentUpon>
@@ -4091,6 +4189,27 @@
     <EmbeddedResource Include="Form\PO Check\frm_TAM_InportExcel.resx">
       <DependentUpon>frm_TAM_InportExcel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICBuildup.resx">
+      <DependentUpon>FrmPPICBuildup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICBuildupDetail.resx">
+      <DependentUpon>FrmPPICBuildupDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICConvertMuat.resx">
+      <DependentUpon>FrmPPICConvertMuat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICConvertMuatDetail.resx">
+      <DependentUpon>FrmPPICConvertMuatDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICKapOEM.resx">
+      <DependentUpon>FrmPPICKapOEM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICKapOEMDetail.resx">
+      <DependentUpon>FrmPPICKapOEMDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICUploadPO.resx">
+      <DependentUpon>FrmPPICUploadPO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\PR\FrmDetailPR.resx">
       <DependentUpon>FrmDetailPR.vb</DependentUpon>
     </EmbeddedResource>
@@ -4111,6 +4230,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO.resx">
       <DependentUpon>FrmReport_BoM_Forecast_PO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\FrmReport_BoM_Forecast_PO_Sum.resx">
+      <DependentUpon>FrmReport_BoM_Forecast_PO_Sum.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_Budget_NonBoM.resx">
+      <DependentUpon>frmReport_Budget_NonBoM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Harigami1.resx">
       <DependentUpon>frmReport_Harigami1.vb</DependentUpon>
@@ -4453,6 +4578,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Frm_Rpt_ViewPayment2.resx">
       <DependentUpon>Frm_Rpt_ViewPayment2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_TTI_All.resx">
+      <DependentUpon>Frm_TTI_All.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment\ReportPayment\Frm_TT_Outstanding.resx">
+      <DependentUpon>Frm_TT_Outstanding.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Payment\ReportPayment\Rpt_APSignature.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -877,8 +877,8 @@ Public Class frmForecast_PO
 
     Private Sub DeleteByCustToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteByCustToolStripMenuItem.Click
         Try
-            Dim frmExcel As FrmSystemExcel1
-            frmExcel = New FrmSystemExcel1(Nothing, 69, 2)
+            Dim frmExcel As FrmDeleteForecast
+            frmExcel = New FrmDeleteForecast(Nothing, 69, 2)
             frmExcel.Text = "Pilih Parameters"
             frmExcel.StartPosition = FormStartPosition.CenterScreen
             frmExcel.ShowDialog()
@@ -901,24 +901,4 @@ Public Class frmForecast_PO
         End Try
     End Sub
 
-    'Private Sub GridView1_CustomColumnDisplayText(sender As Object, e As CustomColumnDisplayTextEventArgs) Handles GridView1.CustomColumnDisplayText
-    '    Try
-    '        If (e.Column.FieldName = "JulHarga2") Then
-    '            Dim _value As Double = Math.Truncate(Convert.ToDouble(e.Value) * 100) / 100
-    '            e.DisplayText = _value.ToString("N")
-    '        End If
-
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message)
-    '    End Try
-    'End Sub
-
-    'Private Sub GridView1_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles GridView1.RowCellStyle
-    '    Dim view As GridView = TryCast(sender, GridView)
-    '    If e.Column = view.Columns("YourFieldName") AndAlso e.RowHandle > 0 AndAlso e.RowHandle < view.RowCount Then
-    '        If CInt(Math.Truncate(e.CellValue)) > CInt(Math.Truncate(view.GetRowCellValue(e.RowHandle - 1, e.Column))) Then
-    '            e.Appearance.BackColor = Color.Red
-    '        End If
-    '    End If
-    'End Sub
 End Class

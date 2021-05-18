@@ -248,14 +248,10 @@ Public Class FrmSuspendSettleDetailDirect
                     Dim oDate As DateTime = DateTime.ParseExact(TxtTgl.Text, "dd-MM-yyyy", provider)
                     .Tgl = oDate
                     .Total = TxtTotExpense.Text
-                    '.CreditCardID = creditCardID
-                    '.AccountName = accountName
-
-
-                    .CreditCardID = creditCardID
+                    .PaymentType = "FINANCE"
+                    .CreditCardID = ""
                     .CreditCardNumber = ""
-                    .AccountName = accountName
-                    .PaymentType = ""
+                    .AccountName = ""
                     'If isUpdate = False Then
                     '    .ValidateInsert()
                     'Else

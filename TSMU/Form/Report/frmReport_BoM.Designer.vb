@@ -23,6 +23,8 @@ Partial Class frmReport_BoM
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmReport_BoM))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.cmbActive = New System.Windows.Forms.ComboBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Grid = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -91,15 +93,17 @@ Partial Class frmReport_BoM
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
-        Me.TabControl1.Location = New System.Drawing.Point(17, 38)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabControl1.Location = New System.Drawing.Point(21, 45)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1071, 706)
+        Me.TabControl1.Size = New System.Drawing.Size(1339, 831)
         Me.TabControl1.TabIndex = 1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label5)
+        Me.TabPage1.Controls.Add(Me.cmbActive)
         Me.TabPage1.Controls.Add(Me.Panel1)
         Me.TabPage1.Controls.Add(Me.btnCari)
         Me.TabPage1.Controls.Add(Me._txtInvID)
@@ -108,14 +112,35 @@ Partial Class frmReport_BoM
         Me.TabPage1.Controls.Add(Me.Label2)
         Me.TabPage1.Controls.Add(Me.cmbSite)
         Me.TabPage1.Controls.Add(Me.Label1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 26)
-        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(5)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage1.Size = New System.Drawing.Size(1063, 676)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(5)
+        Me.TabPage1.Size = New System.Drawing.Size(1331, 798)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "View BoM Routing"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(379, 50)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(55, 20)
+        Me.Label5.TabIndex = 18
+        Me.Label5.Text = "Active"
+        '
+        'cmbActive
+        '
+        Me.cmbActive.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.cmbActive.FormattingEnabled = True
+        Me.cmbActive.Items.AddRange(New Object() {"ALL", "Subcon", "InHouse", "Discontinue"})
+        Me.cmbActive.Location = New System.Drawing.Point(503, 47)
+        Me.cmbActive.Margin = New System.Windows.Forms.Padding(5)
+        Me.cmbActive.Name = "cmbActive"
+        Me.cmbActive.Size = New System.Drawing.Size(199, 28)
+        Me.cmbActive.TabIndex = 17
         '
         'Panel1
         '
@@ -124,28 +149,28 @@ Partial Class frmReport_BoM
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.Grid)
         Me.Panel1.Controls.Add(Me.ToolStrip2)
-        Me.Panel1.Location = New System.Drawing.Point(8, 129)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel1.Location = New System.Drawing.Point(10, 99)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(5)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1044, 535)
+        Me.Panel1.Size = New System.Drawing.Size(1305, 682)
         Me.Panel1.TabIndex = 16
         '
         'Grid
         '
         Me.Grid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.Grid.Location = New System.Drawing.Point(0, 34)
+        Me.Grid.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
+        Me.Grid.Location = New System.Drawing.Point(0, 39)
         Me.Grid.MainView = Me.GridView1
-        Me.Grid.Margin = New System.Windows.Forms.Padding(4)
+        Me.Grid.Margin = New System.Windows.Forms.Padding(5)
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(1044, 501)
+        Me.Grid.Size = New System.Drawing.Size(1305, 643)
         Me.Grid.TabIndex = 3
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.DetailHeight = 458
-        Me.GridView1.FixedLineWidth = 3
+        Me.GridView1.DetailHeight = 539
+        Me.GridView1.FixedLineWidth = 4
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -161,7 +186,7 @@ Partial Class frmReport_BoM
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnLoad, Me.ProgBar})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(1044, 34)
+        Me.ToolStrip2.Size = New System.Drawing.Size(1305, 39)
         Me.ToolStrip2.TabIndex = 0
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -170,39 +195,39 @@ Partial Class frmReport_BoM
         Me.btnLoad.Image = CType(resources.GetObject("btnLoad.Image"), System.Drawing.Image)
         Me.btnLoad.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnLoad.Name = "btnLoad"
-        Me.btnLoad.Size = New System.Drawing.Size(102, 31)
+        Me.btnLoad.Size = New System.Drawing.Size(117, 36)
         Me.btnLoad.Text = "Load Data"
         '
         'ProgBar
         '
         Me.ProgBar.Name = "ProgBar"
-        Me.ProgBar.Size = New System.Drawing.Size(133, 31)
+        Me.ProgBar.Size = New System.Drawing.Size(166, 36)
         '
         'btnCari
         '
         Me.btnCari.Image = CType(resources.GetObject("btnCari.Image"), System.Drawing.Image)
-        Me.btnCari.Location = New System.Drawing.Point(515, 78)
-        Me.btnCari.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnCari.Location = New System.Drawing.Point(891, 6)
+        Me.btnCari.Margin = New System.Windows.Forms.Padding(5)
         Me.btnCari.Name = "btnCari"
-        Me.btnCari.Size = New System.Drawing.Size(33, 27)
+        Me.btnCari.Size = New System.Drawing.Size(41, 32)
         Me.btnCari.TabIndex = 14
         Me.btnCari.UseVisualStyleBackColor = True
         '
         '_txtInvID
         '
-        Me._txtInvID.Location = New System.Drawing.Point(107, 78)
-        Me._txtInvID.Margin = New System.Windows.Forms.Padding(4)
+        Me._txtInvID.Location = New System.Drawing.Point(503, 9)
+        Me._txtInvID.Margin = New System.Windows.Forms.Padding(5)
         Me._txtInvID.Name = "_txtInvID"
-        Me._txtInvID.Size = New System.Drawing.Size(407, 23)
+        Me._txtInvID.Size = New System.Drawing.Size(378, 26)
         Me._txtInvID.TabIndex = 13
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(8, 78)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Location = New System.Drawing.Point(379, 12)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(75, 17)
+        Me.Label7.Size = New System.Drawing.Size(89, 20)
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Invetory ID"
         '
@@ -211,19 +236,19 @@ Partial Class frmReport_BoM
         Me.cmbStatus.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbStatus.FormattingEnabled = True
         Me.cmbStatus.Items.AddRange(New Object() {"ALL", "Regular", "Project"})
-        Me.cmbStatus.Location = New System.Drawing.Point(107, 43)
-        Me.cmbStatus.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmbStatus.Location = New System.Drawing.Point(134, 47)
+        Me.cmbStatus.Margin = New System.Windows.Forms.Padding(5)
         Me.cmbStatus.Name = "cmbStatus"
-        Me.cmbStatus.Size = New System.Drawing.Size(160, 25)
+        Me.cmbStatus.Size = New System.Drawing.Size(199, 28)
         Me.cmbStatus.TabIndex = 3
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 43)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(10, 50)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(48, 17)
+        Me.Label2.Size = New System.Drawing.Size(57, 20)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Status"
         '
@@ -232,19 +257,19 @@ Partial Class frmReport_BoM
         Me.cmbSite.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbSite.FormattingEnabled = True
         Me.cmbSite.Items.AddRange(New Object() {"ALL", "TSC1", "TSC3"})
-        Me.cmbSite.Location = New System.Drawing.Point(107, 8)
-        Me.cmbSite.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmbSite.Location = New System.Drawing.Point(134, 9)
+        Me.cmbSite.Margin = New System.Windows.Forms.Padding(5)
         Me.cmbSite.Name = "cmbSite"
-        Me.cmbSite.Size = New System.Drawing.Size(160, 25)
+        Me.cmbSite.Size = New System.Drawing.Size(199, 28)
         Me.cmbSite.TabIndex = 1
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 8)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(10, 12)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(32, 17)
+        Me.Label1.Size = New System.Drawing.Size(38, 20)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Site"
         '
@@ -256,11 +281,11 @@ Partial Class frmReport_BoM
         Me.TabPage2.Controls.Add(Me._btnFind)
         Me.TabPage2.Controls.Add(Me._txtInvtID2)
         Me.TabPage2.Controls.Add(Me.Label3)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 26)
-        Me.TabPage2.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(5)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage2.Size = New System.Drawing.Size(1063, 676)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(5)
+        Me.TabPage2.Size = New System.Drawing.Size(1331, 798)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Multi Level BoM"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -270,19 +295,19 @@ Partial Class frmReport_BoM
         Me.cmbStatusM.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbStatusM.FormattingEnabled = True
         Me.cmbStatusM.Items.AddRange(New Object() {"Regular", "Project"})
-        Me.cmbStatusM.Location = New System.Drawing.Point(107, 38)
-        Me.cmbStatusM.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmbStatusM.Location = New System.Drawing.Point(134, 45)
+        Me.cmbStatusM.Margin = New System.Windows.Forms.Padding(5)
         Me.cmbStatusM.Name = "cmbStatusM"
-        Me.cmbStatusM.Size = New System.Drawing.Size(160, 25)
+        Me.cmbStatusM.Size = New System.Drawing.Size(199, 28)
         Me.cmbStatusM.TabIndex = 21
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(8, 38)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Location = New System.Drawing.Point(10, 45)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(48, 17)
+        Me.Label4.Size = New System.Drawing.Size(57, 20)
         Me.Label4.TabIndex = 20
         Me.Label4.Text = "Status"
         '
@@ -293,28 +318,28 @@ Partial Class frmReport_BoM
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.Controls.Add(Me.GridMultiLevel)
         Me.Panel2.Controls.Add(Me.tsMultiLevel)
-        Me.Panel2.Location = New System.Drawing.Point(8, 71)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel2.Location = New System.Drawing.Point(10, 84)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(5)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1044, 594)
+        Me.Panel2.Size = New System.Drawing.Size(1305, 699)
         Me.Panel2.TabIndex = 19
         '
         'GridMultiLevel
         '
         Me.GridMultiLevel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridMultiLevel.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridMultiLevel.Location = New System.Drawing.Point(0, 34)
+        Me.GridMultiLevel.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
+        Me.GridMultiLevel.Location = New System.Drawing.Point(0, 39)
         Me.GridMultiLevel.MainView = Me.GridView2
-        Me.GridMultiLevel.Margin = New System.Windows.Forms.Padding(4)
+        Me.GridMultiLevel.Margin = New System.Windows.Forms.Padding(5)
         Me.GridMultiLevel.Name = "GridMultiLevel"
-        Me.GridMultiLevel.Size = New System.Drawing.Size(1044, 560)
+        Me.GridMultiLevel.Size = New System.Drawing.Size(1305, 660)
         Me.GridMultiLevel.TabIndex = 4
         Me.GridMultiLevel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
         'GridView2
         '
-        Me.GridView2.DetailHeight = 458
-        Me.GridView2.FixedLineWidth = 3
+        Me.GridView2.DetailHeight = 539
+        Me.GridView2.FixedLineWidth = 4
         Me.GridView2.GridControl = Me.GridMultiLevel
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
@@ -330,7 +355,7 @@ Partial Class frmReport_BoM
         Me.tsMultiLevel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbMultiLevel, Me.PBMultiLevel})
         Me.tsMultiLevel.Location = New System.Drawing.Point(0, 0)
         Me.tsMultiLevel.Name = "tsMultiLevel"
-        Me.tsMultiLevel.Size = New System.Drawing.Size(1044, 34)
+        Me.tsMultiLevel.Size = New System.Drawing.Size(1305, 39)
         Me.tsMultiLevel.TabIndex = 0
         Me.tsMultiLevel.Text = "ToolStrip3"
         '
@@ -339,50 +364,50 @@ Partial Class frmReport_BoM
         Me.tsbMultiLevel.Image = CType(resources.GetObject("tsbMultiLevel.Image"), System.Drawing.Image)
         Me.tsbMultiLevel.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbMultiLevel.Name = "tsbMultiLevel"
-        Me.tsbMultiLevel.Size = New System.Drawing.Size(102, 31)
+        Me.tsbMultiLevel.Size = New System.Drawing.Size(117, 36)
         Me.tsbMultiLevel.Text = "Load Data"
         '
         'PBMultiLevel
         '
         Me.PBMultiLevel.Name = "PBMultiLevel"
-        Me.PBMultiLevel.Size = New System.Drawing.Size(133, 31)
+        Me.PBMultiLevel.Size = New System.Drawing.Size(166, 36)
         '
         '_btnFind
         '
         Me._btnFind.Image = CType(resources.GetObject("_btnFind.Image"), System.Drawing.Image)
-        Me._btnFind.Location = New System.Drawing.Point(515, 8)
-        Me._btnFind.Margin = New System.Windows.Forms.Padding(4)
+        Me._btnFind.Location = New System.Drawing.Point(644, 9)
+        Me._btnFind.Margin = New System.Windows.Forms.Padding(5)
         Me._btnFind.Name = "_btnFind"
-        Me._btnFind.Size = New System.Drawing.Size(33, 27)
+        Me._btnFind.Size = New System.Drawing.Size(41, 32)
         Me._btnFind.TabIndex = 17
         Me._btnFind.UseVisualStyleBackColor = True
         '
         '_txtInvtID2
         '
-        Me._txtInvtID2.Location = New System.Drawing.Point(107, 8)
-        Me._txtInvtID2.Margin = New System.Windows.Forms.Padding(4)
+        Me._txtInvtID2.Location = New System.Drawing.Point(134, 9)
+        Me._txtInvtID2.Margin = New System.Windows.Forms.Padding(5)
         Me._txtInvtID2.Name = "_txtInvtID2"
-        Me._txtInvtID2.Size = New System.Drawing.Size(407, 23)
+        Me._txtInvtID2.Size = New System.Drawing.Size(508, 26)
         Me._txtInvtID2.TabIndex = 16
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(8, 8)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Location = New System.Drawing.Point(10, 9)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(5, 0, 5, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(75, 17)
+        Me.Label3.Size = New System.Drawing.Size(89, 20)
         Me.Label3.TabIndex = 18
         Me.Label3.Text = "Invetory ID"
         '
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.Panel3)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 26)
-        Me.TabPage3.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage3.Margin = New System.Windows.Forms.Padding(5)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage3.Size = New System.Drawing.Size(1063, 676)
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(5)
+        Me.TabPage3.Size = New System.Drawing.Size(1331, 798)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Material Used By"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -394,28 +419,28 @@ Partial Class frmReport_BoM
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel3.Controls.Add(Me.GridMaterial)
         Me.Panel3.Controls.Add(Me.tsMaterial)
-        Me.Panel3.Location = New System.Drawing.Point(8, 4)
-        Me.Panel3.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel3.Location = New System.Drawing.Point(10, 5)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(5)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1044, 660)
+        Me.Panel3.Size = New System.Drawing.Size(1305, 776)
         Me.Panel3.TabIndex = 19
         '
         'GridMaterial
         '
         Me.GridMaterial.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridMaterial.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridMaterial.Location = New System.Drawing.Point(0, 34)
+        Me.GridMaterial.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
+        Me.GridMaterial.Location = New System.Drawing.Point(0, 39)
         Me.GridMaterial.MainView = Me.GridView3
-        Me.GridMaterial.Margin = New System.Windows.Forms.Padding(4)
+        Me.GridMaterial.Margin = New System.Windows.Forms.Padding(5)
         Me.GridMaterial.Name = "GridMaterial"
-        Me.GridMaterial.Size = New System.Drawing.Size(1044, 626)
+        Me.GridMaterial.Size = New System.Drawing.Size(1305, 737)
         Me.GridMaterial.TabIndex = 4
         Me.GridMaterial.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
         'GridView3
         '
-        Me.GridView3.DetailHeight = 458
-        Me.GridView3.FixedLineWidth = 3
+        Me.GridView3.DetailHeight = 539
+        Me.GridView3.FixedLineWidth = 4
         Me.GridView3.GridControl = Me.GridMaterial
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsBehavior.Editable = False
@@ -431,7 +456,7 @@ Partial Class frmReport_BoM
         Me.tsMaterial.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbLoadMaterial, Me.PBMaterial})
         Me.tsMaterial.Location = New System.Drawing.Point(0, 0)
         Me.tsMaterial.Name = "tsMaterial"
-        Me.tsMaterial.Size = New System.Drawing.Size(1044, 34)
+        Me.tsMaterial.Size = New System.Drawing.Size(1305, 39)
         Me.tsMaterial.TabIndex = 0
         Me.tsMaterial.Text = "ToolStrip4"
         '
@@ -440,22 +465,22 @@ Partial Class frmReport_BoM
         Me.tsbLoadMaterial.Image = CType(resources.GetObject("tsbLoadMaterial.Image"), System.Drawing.Image)
         Me.tsbLoadMaterial.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbLoadMaterial.Name = "tsbLoadMaterial"
-        Me.tsbLoadMaterial.Size = New System.Drawing.Size(102, 31)
+        Me.tsbLoadMaterial.Size = New System.Drawing.Size(117, 36)
         Me.tsbLoadMaterial.Text = "Load Data"
         '
         'PBMaterial
         '
         Me.PBMaterial.Name = "PBMaterial"
-        Me.PBMaterial.Size = New System.Drawing.Size(133, 31)
+        Me.PBMaterial.Size = New System.Drawing.Size(166, 36)
         '
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.GridHeaderBoM)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 26)
-        Me.TabPage4.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage4.Margin = New System.Windows.Forms.Padding(5)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage4.Size = New System.Drawing.Size(1063, 676)
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(5)
+        Me.TabPage4.Size = New System.Drawing.Size(1331, 798)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Header BoM"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -463,19 +488,19 @@ Partial Class frmReport_BoM
         'GridHeaderBoM
         '
         Me.GridHeaderBoM.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridHeaderBoM.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        Me.GridHeaderBoM.Location = New System.Drawing.Point(4, 4)
+        Me.GridHeaderBoM.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
+        Me.GridHeaderBoM.Location = New System.Drawing.Point(5, 5)
         Me.GridHeaderBoM.MainView = Me.GridView4
-        Me.GridHeaderBoM.Margin = New System.Windows.Forms.Padding(4)
+        Me.GridHeaderBoM.Margin = New System.Windows.Forms.Padding(5)
         Me.GridHeaderBoM.Name = "GridHeaderBoM"
-        Me.GridHeaderBoM.Size = New System.Drawing.Size(1055, 668)
+        Me.GridHeaderBoM.Size = New System.Drawing.Size(1321, 788)
         Me.GridHeaderBoM.TabIndex = 3
         Me.GridHeaderBoM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
         'GridView4
         '
-        Me.GridView4.DetailHeight = 458
-        Me.GridView4.FixedLineWidth = 3
+        Me.GridView4.DetailHeight = 539
+        Me.GridView4.FixedLineWidth = 4
         Me.GridView4.GridControl = Me.GridHeaderBoM
         Me.GridView4.Name = "GridView4"
         Me.GridView4.OptionsBehavior.Editable = False
@@ -489,20 +514,20 @@ Partial Class frmReport_BoM
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportToExcelToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(180, 28)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(202, 34)
         '
         'ExportToExcelToolStripMenuItem
         '
         Me.ExportToExcelToolStripMenuItem.Name = "ExportToExcelToolStripMenuItem"
-        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(179, 24)
+        Me.ExportToExcelToolStripMenuItem.Size = New System.Drawing.Size(201, 30)
         Me.ExportToExcelToolStripMenuItem.Text = "Export To Excel"
         '
         'frmReport_BoM
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
-        Me.ClientSize = New System.Drawing.Size(1104, 760)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
+        Me.ClientSize = New System.Drawing.Size(1380, 894)
         Me.Controls.Add(Me.TabControl1)
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmReport_BoM"
         Me.Controls.SetChildIndex(Me.TabControl1, 0)
         Me.TabControl1.ResumeLayout(False)
@@ -576,4 +601,6 @@ Partial Class frmReport_BoM
     Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents cmbStatusM As ComboBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents cmbActive As ComboBox
 End Class

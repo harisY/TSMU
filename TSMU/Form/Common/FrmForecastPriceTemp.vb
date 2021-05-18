@@ -17,21 +17,21 @@ Public Class FrmForecastPriceTemp
 
     End Sub
     Public Sub New(ByVal Code As Integer,
-                   ByVal strCode2 As String,
-                   ByRef lf_FormParent As Form,
-                   ByVal li_GridRow As Integer,
-                   ByRef _Grid As GridControl)
+                   ByVal Code2 As String,
+                   ByRef FrmParent As Form,
+                   ByVal GridRow As Integer,
+                   ByRef Grid As GridControl)
         ' this call is required by the windows form designer
         Me.New()
 
         fs_Code = Code.ToString
-        fs_Code2 = strCode2
-        bi_GridParentRow = li_GridRow
+        fs_Code2 = Code2
+        bi_GridParentRow = GridRow
 
-        GridDtl = _Grid
-        FrmParent = lf_FormParent
+        GridDtl = Grid
+        MyBase.FrmParent = FrmParent
         _Tag = New TagModel
-        _Tag.PageIndex = lf_FormParent.Tag.PageIndex
+        _Tag.PageIndex = FrmParent.Tag.PageIndex
         Tag = _Tag
     End Sub
     Private Sub FrmForecastPriceTemp_Load(sender As Object, e As EventArgs) Handles MyBase.Load

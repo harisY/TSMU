@@ -20,6 +20,7 @@ Public Class FrmReport_BoM_Forecast_PO
         Dim Tahun As String = String.Empty
         Tahun = Date.Today.Year().ToString
         _txtTahun.Text = Tahun
+        txtSubIn.SelectedIndex = 0
         Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False, False)
         'LoadGrid(Tahun)
     End Sub
@@ -31,7 +32,7 @@ Public Class FrmReport_BoM_Forecast_PO
             SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
             SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
             Dim dt As New DataTable
-            dt = ObjReportMatome.Generate_Report_BoM_PO_ForecastCalculate(Tahun, txtInvtId.EditValue, "")
+            dt = ObjReportMatome.Generate_Report_BoM_PO_ForecastCalculate(Tahun, txtInvtId.EditValue, "", txtSubIn.Text)
             If dt.Rows.Count > 0 Then
                 Grid.DataSource = dt
                 AdvBandedGridView1.BestFitColumns()
@@ -188,6 +189,14 @@ Public Class FrmReport_BoM_Forecast_PO
                 Throw ex
             End Try
         End If
+    End Sub
+
+    Private Sub txtSubIn_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txtSubIn.SelectedIndexChanged
+        Try
+            tsBtn_refresh.PerformClick()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
 End Class
