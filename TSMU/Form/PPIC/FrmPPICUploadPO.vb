@@ -16,7 +16,6 @@ Public Class FrmPPICUploadPO
     Dim dtResult As New DataTable
     Dim isUpload As Boolean = False
 
-    Dim No As Integer
     Dim succes As Integer
     Dim warning As Integer
     Dim _error As Integer
@@ -34,11 +33,11 @@ Public Class FrmPPICUploadPO
         End Get
     End Property
 
-    ReadOnly Property _dtResult() As DataTable
-        Get
-            Return dtResult
-        End Get
-    End Property
+    'ReadOnly Property _dtResult() As DataTable
+    '    Get
+    '        Return dtResult
+    '    End Get
+    'End Property
 
     Public Property UploadDate() As Date
     Public Property CustID() As String
@@ -159,7 +158,6 @@ Public Class FrmPPICUploadPO
         Try
             dtResult.Clear()
             If checkColumn() = False Then
-                No = 0
                 succes = 0
                 warning = 0
                 _error = 0
@@ -168,19 +166,18 @@ Public Class FrmPPICUploadPO
 
                 Dim dtBuildup As New DataTable
                 dtBuildup = srvPPIC.CheckBuildup()
-                For Each rows As DataRow In dtExcel.Select("", "[User Code] ASC, [Delivery Time (To)] ASC").CopyToDataTable.Rows
+                For Each rows As DataRow In dtExcel.Rows
 
                     If Not String.IsNullOrEmpty(IIf(rows("Item Number") Is DBNull.Value, "", rows("Item Number"))) Then
                         Dim rowBuildup As DataRow()
                         Dim status As String = "Error"
                         Dim message As String = String.Empty
-                        'Dim invtID As String = String.Empty
                         rowBuildup = dtBuildup.Select("PartNo = " & QVal(Replace(rows("Item Number"), "-", "")) & " ")
                         If rowBuildup.Count = 0 Then
                             'Jika partno tidak ditemukan di KapOEM
-                            message = "Jenis Packing Not Found !"
+                            message = "Item Number Tidak Ditemukan Di Master Standar Packing !"
                             _error += 1
-                            addNewDtResult(rows, rowBuildup(0), status, message)
+                            addNewDtResult(rows, "", 0, 0, status, message)
                         Else
                             Dim dt As New DataTable
                             dt = srvPPIC.CheckInventoryID(CustID)
@@ -192,20 +189,17 @@ Public Class FrmPPICUploadPO
                                 status = "Warning"
                                 message = "Item Number Not Found !"
                                 warning += 1
-                                addNewDtResult(rows, rowBuildup(0), status, message)
+                                addNewDtResult(rows, rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
                             Else
                                 status = "Success"
                                 succes += 1
-                                addNewDtResult(rows, rowBuildup(0), status, message)
+                                addNewDtResult(rows, rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
                             End If
                         End If
                     End If
                 Next
                 SplashScreenManager.CloseForm()
                 With GridViewResult
-                    Dim colNo As GridColumn = .Columns("No")
-                    colNo.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center
-
                     Dim colSeq As GridColumn = .Columns("Seq")
                     colSeq.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center
 
@@ -216,9 +210,6 @@ Public Class FrmPPICUploadPO
                     colDeliveryTime.Caption = "Delivery Time (To)"
                     colDeliveryTime.DisplayFormat.FormatType = FormatType.DateTime
                     colDeliveryTime.DisplayFormat.FormatString = "HH:mm"
-
-                    'Dim colOrderQuantity As GridColumn = .Columns("OrderQuantity")
-                    'colOrderQuantity.Caption = "Order Qty"
 
                     Dim colStandarQty As GridColumn = .Columns("StandarQty")
                     colStandarQty.Visible = False
@@ -283,11 +274,9 @@ Public Class FrmPPICUploadPO
         Return isNotFound
     End Function
 
-    Private Sub addNewDtResult(Rows As DataRow, RowsKapOEM As DataRow, Status As String, Message As String)
+    Private Sub addNewDtResult(Rows As DataRow, JenisPacking As String, StandarQty As String, KapMuat As String, Status As String, Message As String)
         Dim newRow As DataRow
         newRow = dtResult.NewRow
-        No += 1
-        newRow("No") = No
         newRow("Seq") = Rows("Seq")
         newRow("ItemNumber") = Rows("Item Number")
         newRow("ItemName") = Rows("Item Name")
@@ -297,9 +286,9 @@ Public Class FrmPPICUploadPO
         newRow("DeliveryDueDate") = Rows("Delivery Due Date")
         newRow("DeliveryTime") = Rows("Delivery Time (To)")
         newRow("OrderQuantity") = Rows("Order Quantity")
-        newRow("JenisPacking") = RowsKapOEM("JenisPacking")
-        newRow("StandarQty") = RowsKapOEM("StandarQty")
-        newRow("KapasitasMuat") = RowsKapOEM("KapasitasMuat")
+        newRow("JenisPacking") = JenisPacking
+        newRow("StandarQty") = StandarQty
+        newRow("KapasitasMuat") = KapMuat
         newRow("ButuhPacking") = 0
         newRow("KebutuhanTruk") = 0
         newRow("GroupTruk") = 0
@@ -313,13 +302,12 @@ Public Class FrmPPICUploadPO
         CustID = "YIM"
         txtCustomer.Text = "YAMAHA INDONESIA MOTOR"
         dtResult = New DataTable
-        dtResult.Columns.AddRange(New DataColumn(17) {New DataColumn("No", GetType(Integer)),
-                                                    New DataColumn("Seq", GetType(Integer)),
+        dtResult.Columns.AddRange(New DataColumn(16) {New DataColumn("Seq", GetType(Integer)),
                                                     New DataColumn("ItemNumber", GetType(String)),
                                                     New DataColumn("ItemName", GetType(String)),
                                                     New DataColumn("UserCode", GetType(String)),
                                                     New DataColumn("PF", GetType(String)),
-                                                    New DataColumn("OrderNo", GetType(Integer)),
+                                                    New DataColumn("OrderNo", GetType(String)),
                                                     New DataColumn("DeliveryDueDate", GetType(Date)),
                                                     New DataColumn("DeliveryTime", GetType(DateTime)),
                                                     New DataColumn("OrderQuantity", GetType(Integer)),
@@ -368,12 +356,14 @@ Public Class FrmPPICUploadPO
                     Dim isRev As Integer = srvPPIC.CheckDataExist(UploadDate)
                     If isRev > 0 Then
                         If MsgBox("List PO Already Exist, Are You Sure Upload Data", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.Yes Then
+                            srvPPIC.CopyDTToDB(dtResult)
                             Revised = "Yes"
                             isUpload = True
                             Me.Close()
                         End If
                     Else
                         If MsgBox("Are You Sure Upload Data", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.Yes Then
+                            srvPPIC.CopyDTToDB(dtResult)
                             isUpload = True
                             Me.Close()
                         End If

@@ -82,8 +82,10 @@ Public Class FrmPPICBuildupDetail
                     txtLebar.EditValue = .Lebar
                     txtTinggi.EditValue = .Tinggi
                     txtQtyPallet.EditValue = .QtyPallet
+                    txtStandarQty.EditValue = .StandarQty
                     txtKapasitasMuat.EditValue = .KapasitasMuat
                     txtPersentase.EditValue = .Persentase
+                    txtTipe.Text = .Tipe
                     txtKeterangan.Text = .Keterangan
                     txtUsedForCustomer.Text = .UsedForCustomer
                     txtJenisPacking.Enabled = False
@@ -94,8 +96,10 @@ Public Class FrmPPICBuildupDetail
                 txtLebar.EditValue = 0
                 txtTinggi.EditValue = 0
                 txtQtyPallet.EditValue = 0
+                txtStandarQty.EditValue = 0
                 txtKapasitasMuat.EditValue = 0
                 txtPersentase.EditValue = 0
+                txtTipe.Text = ""
                 txtKeterangan.Text = ""
                 txtUsedForCustomer.Text = ""
                 txtJenisPacking.Focus()
@@ -134,8 +138,10 @@ Public Class FrmPPICBuildupDetail
                     .Lebar = txtLebar.EditValue
                     .Tinggi = txtTinggi.EditValue
                     .QtyPallet = txtQtyPallet.EditValue
+                    .StandarQty = txtStandarQty.EditValue
                     .KapasitasMuat = txtKapasitasMuat.EditValue
                     .Persentase = txtPersentase.EditValue
+                    .Tipe = txtTipe.Text
                     .Keterangan = txtKeterangan.Text
                     .UsedForCustomer = txtUsedForCustomer.Text
                     .CreateBy = gh_Common.Username

@@ -1,4 +1,6 @@
-﻿Public Class PPICService
+﻿Imports System.Data.SqlClient
+
+Public Class PPICService
     Dim _globalService As GlobalService
     Dim strQuery As String = String.Empty
 
@@ -10,8 +12,10 @@
                                 Lebar ,
                                 Tinggi ,
                                 QtyPallet ,
+                                StandarQty ,
                                 KapasitasMuat ,
                                 Persentase ,
+                                Tipe ,
                                 Keterangan ,
                                 UsedForCustomer ,
                                 CreateBy ,
@@ -35,8 +39,10 @@
                                 Lebar ,
                                 Tinggi ,
                                 QtyPallet ,
+                                StandarQty ,
                                 KapasitasMuat ,
                                 Persentase ,
+                                Tipe ,
                                 Keterangan ,
                                 UsedForCustomer ,
                                 CreateBy ,
@@ -56,8 +62,10 @@
                     .Lebar = If(IsDBNull(dt.Rows(0).Item("Lebar")), 0, dt.Rows(0).Item("Lebar"))
                     .Tinggi = If(IsDBNull(dt.Rows(0).Item("Tinggi")), 0, dt.Rows(0).Item("Tinggi"))
                     .QtyPallet = If(IsDBNull(dt.Rows(0).Item("QtyPallet")), 0, dt.Rows(0).Item("QtyPallet"))
+                    .StandarQty = If(IsDBNull(dt.Rows(0).Item("StandarQty")), 0, dt.Rows(0).Item("StandarQty"))
                     .KapasitasMuat = If(IsDBNull(dt.Rows(0).Item("KapasitasMuat")), 0, dt.Rows(0).Item("KapasitasMuat"))
                     .Persentase = If(IsDBNull(dt.Rows(0).Item("Persentase")), 0, dt.Rows(0).Item("Persentase"))
+                    .Tipe = If(IsDBNull(dt.Rows(0).Item("Tipe")), "", dt.Rows(0).Item("Tipe").ToString())
                     .Keterangan = If(IsDBNull(dt.Rows(0).Item("Keterangan")), "", dt.Rows(0).Item("Keterangan").ToString())
                     .UsedForCustomer = If(IsDBNull(dt.Rows(0).Item("UsedForCustomer")), "", dt.Rows(0).Item("UsedForCustomer").ToString())
                     .CreateBy = If(IsDBNull(dt.Rows(0).Item("CreateBy")), "", dt.Rows(0).Item("CreateBy").ToString())
@@ -80,8 +88,10 @@
                                   Lebar ,
                                   Tinggi ,
                                   QtyPallet ,
+                                  StandarQty ,
                                   KapasitasMuat ,
                                   Persentase ,
+                                  Tipe ,
                                   Keterangan ,
                                   UsedForCustomer ,
                                   CreateBy ,
@@ -94,8 +104,10 @@
                                   " & Data.Lebar & " , -- Lebar - float
                                   " & Data.Tinggi & " , -- Tinggi - float
                                   " & Data.QtyPallet & " , -- QtyPallet - int
+                                  " & Data.StandarQty & " , -- StandarQty - int
                                   " & Data.KapasitasMuat & " , -- KapasitasMuat - int
                                   " & Data.Persentase & " , -- Persentase - float
+                                  " & QVal(Data.Tipe) & " , -- Tipe - varchar(20)
                                   " & QVal(Data.Keterangan) & " , -- Keterangan - varchar(50)
                                   " & QVal(Data.UsedForCustomer) & " , -- UsedForCustomer - varchar(5)
                                   " & QVal(Data.CreateBy) & " , -- CreateBy - varchar(20)
@@ -116,8 +128,10 @@
                               ,[Lebar] = " & Data.Lebar & "
                               ,[Tinggi] = " & Data.Tinggi & "
                               ,[QtyPallet] = " & Data.QtyPallet & "
+                              ,[StandarQty] = " & Data.StandarQty & "
                               ,[KapasitasMuat] = " & Data.KapasitasMuat & "
                               ,[Persentase] = " & Data.Persentase & "
+                              ,[Tipe] = " & QVal(Data.Tipe) & "
                               ,[Keterangan] = " & QVal(Data.Keterangan) & "
                               ,[UsedForCustomer] = " & QVal(Data.UsedForCustomer) & "
                               ,[UpdateBy] = " & QVal(Data.UpdateBy) & "
@@ -518,4 +532,60 @@
         End Try
     End Function
 
+    Public Sub CopyDTToDB(dtUpload As DataTable)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Using sqlBulkCopy As New SqlBulkCopy(Conn1)
+                    sqlBulkCopy.DestinationTableName = "dbo.T_PPICTempPO"
+
+                    Conn1.Open()
+                    sqlBulkCopy.WriteToServer(dtUpload)
+                    Conn1.Close()
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Function GetDataPPICTemp() As DataTable
+        Try
+            strQuery = "SELECT  ROW_NUMBER() OVER ( ORDER BY usr.[Group] ASC, usr.Seq ASC, temp.UserCode ASC, temp.DeliveryTime ASC ) AS [No] ,
+                                temp.Seq ,
+                                temp.ItemNumber ,
+                                temp.ItemName ,
+                                temp.UserCode ,
+                                temp.PF ,
+                                usr.[Group] ,
+                                usr.Seq ,
+                                temp.OrderNo ,
+                                temp.DeliveryDueDate ,
+                                temp.DeliveryTime ,
+                                temp.OrderQuantity ,
+                                temp.JenisPacking ,
+                                temp.StandarQty ,
+                                temp.KapasitasMuat ,
+                                temp.ButuhPacking ,
+                                temp.KebutuhanTruk ,
+                                temp.GroupTruk
+                        FROM    dbo.T_PPICTempPO AS temp
+                                INNER JOIN dbo.M_PPICUser AS usr ON usr.UserCode = temp.UserCode
+                                                                    AND COALESCE(usr.PF, '') = COALESCE(temp.PF,
+                                                                                      '')"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub DeleteDataTemp()
+        Try
+            strQuery = "DELETE FROM dbo.M_PPICKapOEM"
+            MainModul.ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
 End Class

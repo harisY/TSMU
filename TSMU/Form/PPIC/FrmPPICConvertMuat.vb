@@ -37,7 +37,8 @@ Public Class FrmPPICConvertMuat
 
             With frmUploadPO
                 dtUpload = New DataTable
-                dtUpload = ._dtResult
+                dtUpload = srvPPIC.GetDataPPICTemp()
+                srvPPIC.DeleteDataTemp()
                 ff_Detail.UploadDate = .UploadDate
                 ff_Detail.CustID = .CustID
                 ff_Detail.FileName = .FileName
