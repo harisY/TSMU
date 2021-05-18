@@ -28,6 +28,8 @@ Public Class Cls_PR
     Public Property H_UpdateDate As Date
     Public Property H_UpdateBy As String
     Public Property H_Sirkulasi As String
+    Public Property H_ForDept As String
+    Public Property H_DeptCreate As String
 
     Public Property Collection_Detail() As New Collection(Of Cls_PR_Detail)
 
@@ -47,6 +49,28 @@ Public Class Cls_PR
         End Try
 
     End Function
+
+    Public Function Get_PR_Search(Dept As String, TglAwal As Date, TglAkhir As Date) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[PR_D_GetPR_Search]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            pParam(0) = New SqlClient.SqlParameter("@Dept", SqlDbType.VarChar)
+            pParam(1) = New SqlClient.SqlParameter("@TglAwal", SqlDbType.Date)
+            pParam(2) = New SqlClient.SqlParameter("@TglAkhir", SqlDbType.Date)
+
+            pParam(0).Value = Dept
+            pParam(1).Value = TglAwal
+            pParam(2).Value = TglAkhir
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
 
 
     Public Function GetSirkulasiSudahPR(Sirkulasi As String, PRNo As String) As DataTable
@@ -69,20 +93,43 @@ Public Class Cls_PR
 
     End Function
 
+    Public Function Get_UntuBagian() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query = "SELECT DISTINCT DeptID,DeptName FROM M_Root_Approval
+                         WHERE Active = 'TRUE'"
+
+
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand(query)
+
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
     Public Function GetSubAccount(Tahun As String,
                                   Dept As String,
                                   AcctID As String) As DataTable
         Try
             Dim query As String
 
-            query = "SELECT Distinct Rtrim(LTrim(A.AcctID)) As AcctID
-			        ,Rtrim(LTrim(A.DeptID)) as DeptID
-			        ,Rtrim(LTrim(B.Sub)) as Sub
-			        FROM [New_BOM].[dbo].rekap_budget_dept A inner Join [New_BOM].[dbo].M_Root_Approval B
-			        on A.DeptID = B.DeptID
-			        WHERE A.Tahun = '" & Tahun & "' 
-			        and A.DeptID = '" & Dept & "' 
-			        and A.AcctID = '" & AcctID & "'"
+            ' query = "SELECT Distinct Rtrim(LTrim(A.AcctID)) As AcctID
+            ',Rtrim(LTrim(A.DeptID)) as DeptID
+            ',Rtrim(LTrim(B.Sub)) as Sub
+            'FROM [New_BOM].[dbo].rekap_budget_dept A inner Join [New_BOM].[dbo].M_Root_Approval B
+            'on A.DeptID = B.DeptID
+            'WHERE A.Tahun = '" & Tahun & "' 
+            'and A.DeptID = '" & Dept & "' 
+            'and A.AcctID = '" & AcctID & "'"
+
+            query = "SELECT Distinct *
+			        FROM AcctHist
+			        WHERE FiscYr = '" & Tahun & "' 
+			        and Sub = '" & Dept & "' 
+			        and Acct = '" & AcctID & "'"
 
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
@@ -98,35 +145,67 @@ Public Class Cls_PR
         Try
             Dim query As String
 
-            query = "SELECT Rtrim(LTrim(rekap_budget_dept.AcctID)) as AcctID ,
-	                    Rtrim(LTrim(rekap_budget_dept.AcctName)) as AcctName,
-	                    Rtrim(LTrim(rekap_budget_dept.DeptID)) as DeptID,
-	                    Rtrim(LTrim(SiteID)),Rtrim(LTrim(Tahun)) As Tahun,
-	                    sum(jan_qty*jan_harga) as jan,
-	                    sum(feb_qty*feb_harga) as feb,
-	                    sum(mar_qty*mar_harga) as mar,
-	                    sum(apr_qty*apr_harga) as apr,
-	                    sum(mei_qty*mei_harga) as mei,
-	                    sum(jun_qty*jun_harga) as jun,
-	                    sum(jul_qty*jul_harga) as jul,
-	                    sum(agt_qty*agt_harga) as agu,
-	                    sum(sep_qty*sep_harga) as sep,
-	                    sum(okt_qty*okt_harga) as okt,
-	                    sum(nov_qty*nov_harga) as nov,
-	                    sum(des_qty*des_harga) as des
-	                    FROM rekap_budget_dept INNER JOIN tipeacct on tipeacct.acctid=rekap_budget_dept.acctid
-	                    WHERE tipeacct.tipe='D' 
-	                    and rekap_budget_dept.Tahun = '" & Tahun & "'
-	                    and rekap_budget_dept.DeptID = '" & Dept & "'
-	                    and rekap_budget_dept.AcctID = '" & AcctID & "'
-	                    GROUP BY rekap_budget_dept.DeptID,
-	                    rekap_budget_dept.AcctID,
-	                    rekap_budget_dept.AcctName,
-	                    SiteID,
-	                    Tahun"
+            'query = "SELECT Rtrim(LTrim(rekap_budget_dept.AcctID)) as AcctID ,
+            '         Rtrim(LTrim(rekap_budget_dept.AcctName)) as AcctName,
+            '         Rtrim(LTrim(rekap_budget_dept.DeptID)) as DeptID,
+            '         Rtrim(LTrim(SiteID)),Rtrim(LTrim(Tahun)) As Tahun,
+            '         sum(jan_qty*jan_harga) as jan,
+            '         sum(feb_qty*feb_harga) as feb,
+            '         sum(mar_qty*mar_harga) as mar,
+            '         sum(apr_qty*apr_harga) as apr,
+            '         sum(mei_qty*mei_harga) as mei,
+            '         sum(jun_qty*jun_harga) as jun,
+            '         sum(jul_qty*jul_harga) as jul,
+            '         sum(agt_qty*agt_harga) as agu,
+            '         sum(sep_qty*sep_harga) as sep,
+            '         sum(okt_qty*okt_harga) as okt,
+            '         sum(nov_qty*nov_harga) as nov,
+            '         sum(des_qty*des_harga) as des
+            '         FROM rekap_budget_dept INNER JOIN tipeacct on tipeacct.acctid=rekap_budget_dept.acctid
+            '         WHERE tipeacct.tipe='D' 
+            '         and rekap_budget_dept.Tahun = '" & Tahun & "'
+            '         and rekap_budget_dept.DeptID = '" & Dept & "'
+            '         and rekap_budget_dept.AcctID = '" & AcctID & "'
+            '         GROUP BY rekap_budget_dept.DeptID,
+            '         rekap_budget_dept.AcctID,
+            '         rekap_budget_dept.AcctName,
+            '         SiteID,
+            '         Tahun"
+
+            query = "SELECT Rtrim(LTrim(Acct)) as AcctID ,
+	                    --Rtrim(LTrim(rekap_budget_dept.AcctName)) as AcctName,
+	                    Rtrim(LTrim(Sub)) as DeptID,
+	                    --Rtrim(LTrim(SiteID)),
+	                    Rtrim(LTrim(FiscYr)) As Tahun,
+	                    sum(PtdBal00) as jan,
+	                    sum(PtdBal01) as feb,
+	                    sum(PtdBal02) as mar,
+	                    sum(PtdBal03) as apr,
+	                    sum(PtdBal04) as mei,
+	                    sum(PtdBal05) as jun,
+	                    sum(PtdBal06) as jul,
+	                    sum(PtdBal07) as agu,
+	                    sum(PtdBal08) as sep,
+	                    sum(PtdBal09) as okt,
+	                    sum(PtdBal10) as nov,
+	                    sum(PtdBal11) as [des]
+	                    FROM AcctHist 
+	                    --INNER JOIN tipeacct on tipeacct.acctid=rekap_budget_dept.acctid
+	                    WHERE 
+	                    --tipeacct.tipe='D' 
+	                    FiscYr = '" & Tahun & "'
+	                    and Sub = '" & Dept & "'
+	                    and Acct = '" & AcctID & "'
+	                    GROUP BY 
+	                    Acct,
+	                    Sub,
+	                    FiscYr"
+
+
 
             Dim dt As New DataTable
-            dt = GetDataTableByCommand(query)
+            'dt = GetDataTableByCommand(query)
+            dt = GetDataTableByCommand_sol(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -136,19 +215,22 @@ Public Class Cls_PR
     Public Function GetActualBudget(Tahun As String,
                                   Bulan As String,
                                   subAccount As String,
-                                  Account As String) As DataTable
+                                  Account As String,
+                                  PRNo As String) As DataTable
         Try
             Dim query As String = "[PR_D_GetSisaBudget]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(3) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(4) {}
             pParam(0) = New SqlClient.SqlParameter("@Year", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Month", SqlDbType.VarChar)
             pParam(2) = New SqlClient.SqlParameter("@Sub", SqlDbType.VarChar)
             pParam(3) = New SqlClient.SqlParameter("@Account", SqlDbType.VarChar)
+            pParam(4) = New SqlClient.SqlParameter("@PR", SqlDbType.VarChar)
 
             pParam(0).Value = Tahun
             pParam(1).Value = Bulan
             pParam(2).Value = subAccount
             pParam(3).Value = Account
+            pParam(4).Value = PRNo
             Dim dt As New DataTable
             dt = GetDataTableByCommand_SP(query, pParam)
             Return dt
@@ -157,13 +239,21 @@ Public Class Cls_PR
         End Try
     End Function
 
-    Public Function GetBarang(Type As String, SubAccount As String) As DataTable
+    Public Function GetBarang(Type As String, SubAccount As String, Sirkulasi As String) As DataTable
         Try
             Dim query As String
             If Type = "SE" Then
                 query = "Select InvtID,Descr,Acct,UnitQty from XPRItem"
             ElseIf Type = "GN" Then
-                query = "Select InvtID,Descr,InvtAcct,StkUnit from Inventory
+                'query = "Select Distinct a.InvtID,a.Descr,a.InvtAcct,a.StkUnit from Inventory a
+                '            inner join New_BOM.dbo.CR_Description_Of_Cost b
+                '            on a.InvtAcct = b.Account
+                '            Where a.TranStatusCode = 'AC' 
+                '            and User5 = 1
+                '            and StkItem = 0
+                '            and b.CirculationNo = '" & Sirkulasi & "'"
+
+                query = "Select Distinct InvtID,Descr,InvtAcct,StkUnit from Inventory 
                             Where TranStatusCode = 'AC' 
                             and User5 = 1
                             and StkItem = 0"
@@ -214,6 +304,7 @@ Public Class Cls_PR
                     H_StatusFlag = Trim(.Item("StatusFlag") & "")
                     H_CreateBy = Trim(.Item("CreateBy") & "")
                     H_CreateDate = .Item("CreateDate")
+                    H_ForDept = .Item("ForDept")
                     ' H_UpdateBy = Trim(.Item("UpdateBy") & "")
                     ' H_UpdateDate = .Item("UpdateDate")
 
@@ -231,6 +322,22 @@ Public Class Cls_PR
         Try
             'Dim query As String = "[Generate_Report_Matome]"
             Dim query As String = "[PR_Get_Detail]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@PRNo", SqlDbType.VarChar)
+            pParam(0).Value = PRNo
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
+    Public Function GetDataDelete(PRNo As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[PR_D_Get_Delete]"
             Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
             pParam(0) = New SqlClient.SqlParameter("@PRNo", SqlDbType.VarChar)
             pParam(0).Value = PRNo
@@ -276,6 +383,7 @@ Public Class Cls_PR
 
 
     Public Sub GetNoPRAuto(Dept_ As String)
+
         Try
             Dim Tahun, Bulan As String
             Tahun = Format(Now, "yy")
@@ -290,20 +398,22 @@ Public Class Cls_PR
             dtTable = MainModul.GetDataTableByCommand(Query)
 
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
-                AutoNumber = Dept_ & Bulan & Tahun & "001"
+                AutoNumber = Dept_ & Bulan & Tahun & "0001"
             Else
                 AutoNumber = dtTable.Rows(0).Item("PRNo")
                 AutoNumber = Microsoft.VisualBasic.Mid(AutoNumber, 1, 8)
                 If AutoNumber <> Ulang Then
-                    AutoNumber = Dept_ & Bulan & Tahun & "001"
+                    AutoNumber = Dept_ & Bulan & Tahun & "0001"
                 Else
                     AutoNumber = dtTable.Rows(0).Item("PRNo")
-                    AutoNumber = Val(Microsoft.VisualBasic.Mid(AutoNumber, 9, 3) + 1)
+                    AutoNumber = Val(Microsoft.VisualBasic.Mid(AutoNumber, 9, 4) + 1)
                     If Len(AutoNumber) = 1 Then
-                        AutoNumber = Dept_ & Bulan & Tahun & "00" & AutoNumber & ""
+                        AutoNumber = Dept_ & Bulan & Tahun & "000" & AutoNumber & ""
                     ElseIf Len(AutoNumber) = 2 Then
+                        AutoNumber = Dept_ & Bulan & Tahun & "00" & AutoNumber & ""
+                    ElseIf Len(AutoNumber) = 3 Then
                         AutoNumber = Dept_ & Bulan & Tahun & "0" & AutoNumber & ""
-                    Else
+
                         AutoNumber = Dept_ & Bulan & Tahun & AutoNumber & ""
                     End If
                 End If
@@ -374,7 +484,9 @@ Public Class Cls_PR
                                         H_StatusFlag,
                                         H_CreateDate,
                                         H_CreateBy,
-                                        H_Sirkulasi)
+                                        H_Sirkulasi,
+                                        H_ForDept,
+                                        H_DeptCreate)
 
                         For i As Integer = 0 To Collection_Detail.Count - 1
                             With Collection_Detail(i)
@@ -441,7 +553,8 @@ Public Class Cls_PR
                                         H_StatusFlag,
                                         H_UpdateDate,
                                         H_UpdateBy,
-                                        H_Sirkulasi)
+                                        H_Sirkulasi,
+                                        H_ForDept)
 
                         Delete_Detail(PRNo)
 
@@ -479,7 +592,9 @@ Public Class Cls_PR
                                StatusFlag As String,
                                CreateDate As Date,
                                CreateBy As String,
-                               Sirkulasi As String)
+                               Sirkulasi As String,
+                               ForDept As String,
+                               DeptCreate As String)
 
 
         Dim ls_TA As String = "INSERT INTO [XPRHdr]
@@ -495,7 +610,9 @@ Public Class Cls_PR
                                                ,[StatusFlag]
                                                ,[CreateDate]
                                                ,[CreateBy]
-                                               ,Sirkulasi)
+                                               ,Sirkulasi
+                                               ,ForDept
+                                               ,DeptCreate)
                                          VALUES
                                                ('" & LocId & "'
                                                ,'" & LUpd_DateTime & "'
@@ -509,7 +626,9 @@ Public Class Cls_PR
                                                ,'" & StatusFlag & "'
                                               ,'" & CreateDate & "'
                                               ,'" & CreateBy & "'
-                                               ,'" & Sirkulasi & "')"
+                                              ,'" & Sirkulasi & "'
+                                              ,'" & ForDept & "'
+                                               ,'" & DeptCreate & "')"
         MainModul.ExecQuery(ls_TA)
 
 
@@ -527,7 +646,8 @@ Public Class Cls_PR
                                StatusFlag As String,
                                UpdateDate As Date,
                                UpdateBy As String,
-                               Sirkulasi As String)
+                               Sirkulasi As String,
+                               ForDept As String)
 
 
         Dim ls_TA As String = "UPDATE [XPRHdr]
@@ -536,9 +656,50 @@ Public Class Cls_PR
                                   ,[UpdateDate] = '" & UpdateDate & "'
                                   ,[UpdateBy] = '" & UpdateBy & "'
                                   ,[Sirkulasi] = '" & Sirkulasi & "'
+                                  ,[ForDept] = '" & ForDept & "'
                              WHERE [PRNo] = '" & PRNo & "'"
 
         MainModul.ExecQuery(ls_TA)
+
+    End Sub
+
+    Public Sub Delete_PR(PRNo As String)
+
+
+
+
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        'InsertHistory(NPWO_)
+
+                        Dim ls_TA As String = "UPDATE [XPRHdr]
+                               SET [StatusFlag] ='D'
+                                  ,[UpdateDate] = '" & Date.Now & "'
+                                  ,[UpdateBy] = '" & gh_Common.Username & "'
+                             WHERE [PRNo] = '" & PRNo & "'"
+
+                        MainModul.ExecQuery(ls_TA)
+
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
 
     End Sub
 

@@ -61,9 +61,20 @@ Public Class Frm_CR_Approve
         If gh_Common.AdminStatus = True Then
 
             Dim DateAkhir As Date = Date.Now()
-            Dim DateAwal As Date = DateAkhir.AddMonths(-1)
+            Dim DateAwal As Date = DateAkhir.AddMonths(-6)
             Call LoadGridAdmin(DateAwal, DateAkhir)
-            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, True)
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+            TabControl1.TabPages.Remove(Approval)
+            TabControl1.TabPages.Remove(Opinion)
+            TabControl1.TabPages.Remove(BOD)
+            TabControl1.TabPages.Remove(Purchase)
+            TabControl1.TabPages.Remove(Close)
+            TabControl1.TabPages.Remove(Search)
+        ElseIf gh_Common.Username = "Suratno" Or gh_Common.Username = "Suratno1" Then
+            Dim DateAkhir As Date = Date.Now()
+            Dim DateAwal As Date = DateAkhir.AddMonths(-6)
+            Call LoadGridSur(DateAwal, DateAkhir)
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
             TabControl1.TabPages.Remove(Approval)
             TabControl1.TabPages.Remove(Opinion)
             TabControl1.TabPages.Remove(BOD)
@@ -190,13 +201,25 @@ Public Class Frm_CR_Approve
                     Grid4.DataSource = dtGrid
                 End With
             ElseIf TabControl1.SelectedTab.Name = "Admin" Then
+
                 dtGrid = New DataTable
-                With fSearch
-                    .StartPosition = FormStartPosition.CenterScreen
-                    .ShowDialog()
-                    dtGrid = fc_Class.Get_ApproveAdmin(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
-                    GridAdmin.DataSource = dtGrid
-                End With
+
+                If gh_Common.Username = "Suratno" Or gh_Common.Username = "Suratno1" Then
+                    With fSearch
+                        .StartPosition = FormStartPosition.CenterScreen
+                        .ShowDialog()
+                        dtGrid = fc_Class.Get_ApproveSur(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                        GridAdmin.DataSource = dtGrid
+                    End With
+                Else
+                    With fSearch
+                        .StartPosition = FormStartPosition.CenterScreen
+                        .ShowDialog()
+                        dtGrid = fc_Class.Get_ApproveAdmin(If(IsDBNull(.TglDari), Format(Date.Today, gs_FormatSQLDate), .TglDari), If(IsDBNull(.TglSampai), Format(Date.Today, gs_FormatSQLDate), .TglSampai))
+                        GridAdmin.DataSource = dtGrid
+                    End With
+                End If
+
 
             End If
 
@@ -209,14 +232,91 @@ Public Class Frm_CR_Approve
     End Sub
 
     Public Overrides Sub Proc_Refresh()
+
         bs_Filter = ""
-        ' LoadGrid(_level, division, director)
-        Call LoadGrid(_level, division, director)
-        Call LoadGrid_Other(gh_Common.GroupID, gh_Common.Username, DeptGroup)
-        Call LoadGrid_Accounting()
-        Call LoadGrid_Purchase()
-        Call LoadGrid_CRClose()
-        'Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, True, True)
+        'Call LoadGrid(_level, division, director)
+        'Call LoadGrid_Other(gh_Common.GroupID, gh_Common.Username, DeptGroup)
+        'Call LoadGrid_Accounting()
+        'Call LoadGrid_Purchase()
+        'Call LoadGrid_CRClose()
+
+        If gh_Common.AdminStatus = True Then
+
+            Dim DateAkhir As Date = Date.Now()
+            Dim DateAwal As Date = DateAkhir.AddMonths(-6)
+            Call LoadGridAdmin(DateAwal, DateAkhir)
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+            TabControl1.TabPages.Remove(Approval)
+            TabControl1.TabPages.Remove(Opinion)
+            TabControl1.TabPages.Remove(BOD)
+            TabControl1.TabPages.Remove(Purchase)
+            TabControl1.TabPages.Remove(Close)
+            TabControl1.TabPages.Remove(Search)
+        ElseIf gh_Common.Username = "Suratno" Or gh_Common.Username = "Suratno1" Then
+            Dim DateAkhir As Date = Date.Now()
+            Dim DateAwal As Date = DateAkhir.AddMonths(-6)
+            Call LoadGridSur(DateAwal, DateAkhir)
+            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+            TabControl1.TabPages.Remove(Approval)
+            TabControl1.TabPages.Remove(Opinion)
+            TabControl1.TabPages.Remove(BOD)
+            TabControl1.TabPages.Remove(Purchase)
+            TabControl1.TabPages.Remove(Close)
+            TabControl1.TabPages.Remove(Search)
+        Else
+
+            GService = New GlobalService
+            _level = GService.GetLevel_str("CIRCULATION")
+            DeptGroup = GService.GetDept_Group(RTrim(LTrim((gh_Common.GroupID))))
+
+            Dim dtRoot As DataTable
+            dtRoot = fc_Class.Get_Root_Approve(gh_Common.GroupID)
+
+            If dtRoot.Rows.Count > 0 Then
+                division = dtRoot.Rows(0).Item("div_Id")
+                director = dtRoot.Rows(0).Item("director_Id")
+            End If
+
+            bb_SetDisplayChangeConfirmation = False
+            Dept = gh_Common.GroupID
+
+            Call LoadGrid(_level, division, director)
+            Call LoadGrid_Other(RTrim(LTrim(gh_Common.GroupID)), RTrim(LTrim(gh_Common.Username)), DeptGroup.ToString())
+            Call LoadGrid_Accounting()
+            Call LoadGrid_Purchase()
+            Call LoadGrid_CRClose()
+            Call Grid_Properties()
+
+            If gh_Common.GroupID = "1FAC" Then
+                'TabControl1.TabPages.Remove(TabPage1)
+                'TabControl1.TabPages.Remove(TabPage2)
+                'TabControl1.TabPages.Remove(TabPage3)
+                TabControl1.TabPages.Remove(Purchase)
+                'TabControl1.TabPages.Remove(TabPage5)
+                'TabControl1.TabPages.Remove(TabPage6)
+                TabControl1.TabPages.Remove(Admin)
+            ElseIf gh_Common.GroupID = "1PUR" Then
+                'TabControl1.TabPages.Remove(TabPage1)
+                'TabControl1.TabPages.Remove(TabPage2)
+                TabControl1.TabPages.Remove(BOD)
+                'TabControl1.TabPages.Remove(TabPage4)
+                TabControl1.TabPages.Remove(Close)
+                TabControl1.TabPages.Remove(Search)
+                TabControl1.TabPages.Remove(Admin)
+            Else
+                'TabControl1.TabPages.Remove(TabPage1)
+                'TabControl1.TabPages.Remove(TabPage2)
+                TabControl1.TabPages.Remove(BOD)
+                TabControl1.TabPages.Remove(Purchase)
+                TabControl1.TabPages.Remove(Close)
+                TabControl1.TabPages.Remove(Search)
+                TabControl1.TabPages.Remove(Admin)
+            End If
+
+            Dim dtGrid As New DataTable
+            Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, True, True)
+
+        End If
 
     End Sub
 
@@ -267,6 +367,20 @@ Public Class Frm_CR_Approve
             Dim dt As New DataTable
 
             dt = fc_Class.Get_ApproveAdmin(DateAwal, DateAkhir)
+            GridAdmin.DataSource = dt
+            Cursor.Current = Cursors.Default
+        Catch ex As Exception
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub LoadGridSur(DateAwal As Date, DateAkhir As Date)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+
+            Dim dt As New DataTable
+
+            dt = fc_Class.Get_ApproveSur(DateAwal, DateAkhir)
             GridAdmin.DataSource = dt
             Cursor.Current = Cursors.Default
         Catch ex As Exception

@@ -25,6 +25,7 @@ Partial Class Frm_Head_PurchaseOrder
         Me.Tanggal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Total = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Vendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.C_Submit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,7 +47,7 @@ Partial Class Frm_Head_PurchaseOrder
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PRNo, Me.Tanggal, Me.Total, Me.Status})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.PRNo, Me.Tanggal, Me.Total, Me.Status, Me.Vendor})
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ColumnAutoWidth = False
@@ -55,6 +56,8 @@ Partial Class Frm_Head_PurchaseOrder
         '
         'PRNo
         '
+        Me.PRNo.AppearanceCell.Options.UseTextOptions = True
+        Me.PRNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.PRNo.AppearanceHeader.Options.UseTextOptions = True
         Me.PRNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.PRNo.FieldName = "PO Number"
@@ -74,7 +77,7 @@ Partial Class Frm_Head_PurchaseOrder
         Me.Tanggal.Name = "Tanggal"
         Me.Tanggal.OptionsColumn.AllowEdit = False
         Me.Tanggal.Visible = True
-        Me.Tanggal.VisibleIndex = 1
+        Me.Tanggal.VisibleIndex = 2
         Me.Tanggal.Width = 163
         '
         'Total
@@ -85,17 +88,35 @@ Partial Class Frm_Head_PurchaseOrder
         Me.Total.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.Total.FieldName = "Total"
         Me.Total.Name = "Total"
+        Me.Total.OptionsColumn.AllowEdit = False
+        Me.Total.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Total.Visible = True
-        Me.Total.VisibleIndex = 3
+        Me.Total.VisibleIndex = 4
         Me.Total.Width = 173
         '
         'Status
         '
+        Me.Status.AppearanceCell.Options.UseTextOptions = True
+        Me.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Status.AppearanceHeader.Options.UseTextOptions = True
+        Me.Status.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Status.FieldName = "Status"
         Me.Status.Name = "Status"
+        Me.Status.OptionsColumn.AllowEdit = False
         Me.Status.Visible = True
-        Me.Status.VisibleIndex = 2
+        Me.Status.VisibleIndex = 3
         Me.Status.Width = 146
+        '
+        'Vendor
+        '
+        Me.Vendor.AppearanceHeader.Options.UseTextOptions = True
+        Me.Vendor.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Vendor.FieldName = "Vendor"
+        Me.Vendor.Name = "Vendor"
+        Me.Vendor.OptionsColumn.AllowEdit = False
+        Me.Vendor.Visible = True
+        Me.Vendor.VisibleIndex = 1
+        Me.Vendor.Width = 348
         '
         'C_Submit
         '
@@ -124,4 +145,5 @@ Partial Class Frm_Head_PurchaseOrder
     Friend WithEvents Total As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents C_Submit As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents Status As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Vendor As DevExpress.XtraGrid.Columns.GridColumn
 End Class

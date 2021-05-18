@@ -61,7 +61,7 @@ Partial Class Frm_Get_Npp_Detail
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemCheckEdit1})
-        Me.Grid.Size = New System.Drawing.Size(927, 297)
+        Me.Grid.Size = New System.Drawing.Size(767, 335)
         Me.Grid.TabIndex = 7
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -286,7 +286,7 @@ Partial Class Frm_Get_Npp_Detail
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(951, 351)
+        Me.ClientSize = New System.Drawing.Size(791, 389)
         Me.Controls.Add(Me.BAdd)
         Me.Controls.Add(Me.Grid)
         Me.Name = "Frm_Get_Npp_Detail"

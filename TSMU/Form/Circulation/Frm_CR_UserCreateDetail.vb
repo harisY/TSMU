@@ -534,6 +534,24 @@ Public Class Frm_CR_UserCreateDetail
 
             bb_IsUpdate = isUpdate
             bs_MainFormName = FrmParent.Name.ToString()
+
+            If T_CRType.EditValue = "Mold" Then
+                With GridView1
+                    .Columns("Model").Visible = True
+                    .Columns("Sales Type").Visible = True
+                    .Columns("Remark").Visible = True
+                End With
+            Else
+                With GridView1
+                    .Columns("Model").Visible = False
+                    .Columns("Sales Type").Visible = False
+                    .Columns("Remark").Visible = False
+                End With
+
+            End If
+
+
+
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -1319,18 +1337,27 @@ Public Class Frm_CR_UserCreateDetail
                     If Total <= 50000000 Then
                         dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 4)
                     ElseIf Total >= 50000001 And Total <= 100000000 Then
-                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 4)
                     ElseIf Total >= 100000001 Then
-                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 4)
                     End If
 
+
+                ElseIf gh_Common.GroupID = "1PUR" Or gh_Common.GroupID = "1MKT" Or gh_Common.GroupID = "3NPD" Then
+                    If Total > 10000001 And Total <= 50000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 2)
+                    ElseIf Total >= 50000001 And Total <= 100000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 4)
+                    ElseIf Total >= 100000001 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 4)
+                    End If
                 Else
                     If Total > 10000001 And Total <= 50000000 Then
                         dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
                     ElseIf Total >= 50000001 And Total <= 100000000 Then
-                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 4)
                     ElseIf Total >= 100000001 Then
-                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 4)
                     End If
                 End If
 
@@ -1515,23 +1542,53 @@ Public Class Frm_CR_UserCreateDetail
                 dtApprove = New DataTable
                 Dim Total As Double = Convert.ToDouble(GridView1.Columns("Total IDR").SummaryText)
 
+                'If gh_Common.GroupID = "1BOD" Then
+
+                '    If Total <= 50000000 Then
+                '        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 4)
+                '    ElseIf Total >= 50000001 And Total <= 100000000 Then
+                '        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                '    ElseIf Total >= 100000001 Then
+                '        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                '    End If
+
+                'Else
+                '    If Total > 10000001 And Total <= 50000000 Then
+                '        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
+                '    ElseIf Total >= 50000001 And Total <= 100000000 Then
+                '        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                '    ElseIf Total >= 100000001 Then
+                '        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                '    End If
+                'End If
+
+
                 If gh_Common.GroupID = "1BOD" Then
 
                     If Total <= 50000000 Then
                         dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 4)
                     ElseIf Total >= 50000001 And Total <= 100000000 Then
-                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 4)
                     ElseIf Total >= 100000001 Then
-                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 4)
                     End If
 
+
+                ElseIf gh_Common.GroupID = "1PUR" Or gh_Common.GroupID = "1MKT" Or gh_Common.GroupID = "3NPD" Then
+                    If Total > 10000001 And Total <= 50000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 2)
+                    ElseIf Total >= 50000001 And Total <= 100000000 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 4)
+                    ElseIf Total >= 100000001 Then
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 4)
+                    End If
                 Else
                     If Total > 10000001 And Total <= 50000000 Then
                         dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 3, 3)
                     ElseIf Total >= 50000001 And Total <= 100000000 Then
-                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 5)
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 2, 4)
                     ElseIf Total >= 100000001 Then
-                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 5)
+                        dtApprove = fc_Class.Get_ApproveBOD(gh_Common.GroupID, 1, 4)
                     End If
                 End If
 
