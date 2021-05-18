@@ -105,6 +105,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.DisplayFormat.FormatString = "dd-MMM-yyyy"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn2.FieldName = "Requirement Date"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
@@ -328,6 +330,8 @@ Partial Class Frm_CR_UserCreateHeader
         Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.DisplayFormat.FormatString = "dd-MMM-yyyy"
+        Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn35.FieldName = "Requirement Date"
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True

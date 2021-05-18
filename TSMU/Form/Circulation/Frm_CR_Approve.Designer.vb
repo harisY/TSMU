@@ -113,6 +113,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn73 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -162,6 +163,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.DisplayFormat.FormatString = "dd-MMM-yyyy"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn2.FieldName = "Requirement Date"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
@@ -373,6 +376,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn8.DisplayFormat.FormatString = "dd-MMM-yyyy"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn8.FieldName = "Requirement Date"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
@@ -573,6 +578,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn24.DisplayFormat.FormatString = "dd-MMM-yyyy"
+        Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn24.FieldName = "Requirement Date"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
@@ -743,6 +750,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn35.DisplayFormat.FormatString = "dd-MMM-yyyy"
+        Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn35.FieldName = "Requirement Date"
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True
@@ -913,6 +922,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn46.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn46.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn46.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn46.DisplayFormat.FormatString = "dd-MMM-yyyy"
+        Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn46.FieldName = "Requirement Date"
         Me.GridColumn46.Name = "GridColumn46"
         Me.GridColumn46.Visible = True
@@ -1060,7 +1071,7 @@ Partial Class Frm_CR_Approve
         '
         'GridView7
         '
-        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn71, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66})
+        Me.GridView7.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn71, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn73})
         Me.GridView7.GridControl = Me.GridAdmin
         Me.GridView7.Name = "GridView7"
         Me.GridView7.OptionsBehavior.Editable = False
@@ -1075,7 +1086,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn56.Name = "GridColumn56"
         Me.GridColumn56.Visible = True
         Me.GridColumn56.VisibleIndex = 0
-        Me.GridColumn56.Width = 110
+        Me.GridColumn56.Width = 106
         '
         'GridColumn57
         '
@@ -1083,11 +1094,13 @@ Partial Class Frm_CR_Approve
         Me.GridColumn57.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn57.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn57.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn57.DisplayFormat.FormatString = "dd-MMM-yyyy"
+        Me.GridColumn57.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn57.FieldName = "Requirement Date"
         Me.GridColumn57.Name = "GridColumn57"
         Me.GridColumn57.Visible = True
-        Me.GridColumn57.VisibleIndex = 1
-        Me.GridColumn57.Width = 107
+        Me.GridColumn57.VisibleIndex = 2
+        Me.GridColumn57.Width = 97
         '
         'GridColumn58
         '
@@ -1098,16 +1111,16 @@ Partial Class Frm_CR_Approve
         Me.GridColumn58.FieldName = "Dept"
         Me.GridColumn58.Name = "GridColumn58"
         Me.GridColumn58.Visible = True
-        Me.GridColumn58.VisibleIndex = 2
-        Me.GridColumn58.Width = 102
+        Me.GridColumn58.VisibleIndex = 3
+        Me.GridColumn58.Width = 92
         '
         'GridColumn71
         '
         Me.GridColumn71.FieldName = "Name Of Item"
         Me.GridColumn71.Name = "GridColumn71"
         Me.GridColumn71.Visible = True
-        Me.GridColumn71.VisibleIndex = 3
-        Me.GridColumn71.Width = 148
+        Me.GridColumn71.VisibleIndex = 4
+        Me.GridColumn71.Width = 134
         '
         'GridColumn59
         '
@@ -1118,8 +1131,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn59.FieldName = "Status"
         Me.GridColumn59.Name = "GridColumn59"
         Me.GridColumn59.Visible = True
-        Me.GridColumn59.VisibleIndex = 4
-        Me.GridColumn59.Width = 72
+        Me.GridColumn59.VisibleIndex = 5
+        Me.GridColumn59.Width = 65
         '
         'GridColumn60
         '
@@ -1130,8 +1143,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn60.FieldName = "Requester"
         Me.GridColumn60.Name = "GridColumn60"
         Me.GridColumn60.Visible = True
-        Me.GridColumn60.VisibleIndex = 5
-        Me.GridColumn60.Width = 54
+        Me.GridColumn60.VisibleIndex = 6
+        Me.GridColumn60.Width = 49
         '
         'GridColumn61
         '
@@ -1142,8 +1155,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn61.FieldName = "Dept Head"
         Me.GridColumn61.Name = "GridColumn61"
         Me.GridColumn61.Visible = True
-        Me.GridColumn61.VisibleIndex = 6
-        Me.GridColumn61.Width = 51
+        Me.GridColumn61.VisibleIndex = 7
+        Me.GridColumn61.Width = 46
         '
         'GridColumn62
         '
@@ -1154,8 +1167,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn62.FieldName = "Div Head"
         Me.GridColumn62.Name = "GridColumn62"
         Me.GridColumn62.Visible = True
-        Me.GridColumn62.VisibleIndex = 7
-        Me.GridColumn62.Width = 51
+        Me.GridColumn62.VisibleIndex = 8
+        Me.GridColumn62.Width = 46
         '
         'GridColumn63
         '
@@ -1166,8 +1179,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn63.FieldName = "Other Dept"
         Me.GridColumn63.Name = "GridColumn63"
         Me.GridColumn63.Visible = True
-        Me.GridColumn63.VisibleIndex = 8
-        Me.GridColumn63.Width = 51
+        Me.GridColumn63.VisibleIndex = 9
+        Me.GridColumn63.Width = 46
         '
         'GridColumn64
         '
@@ -1178,8 +1191,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn64.FieldName = "Accounting"
         Me.GridColumn64.Name = "GridColumn64"
         Me.GridColumn64.Visible = True
-        Me.GridColumn64.VisibleIndex = 9
-        Me.GridColumn64.Width = 51
+        Me.GridColumn64.VisibleIndex = 10
+        Me.GridColumn64.Width = 46
         '
         'GridColumn65
         '
@@ -1190,8 +1203,8 @@ Partial Class Frm_CR_Approve
         Me.GridColumn65.FieldName = "Purch"
         Me.GridColumn65.Name = "GridColumn65"
         Me.GridColumn65.Visible = True
-        Me.GridColumn65.VisibleIndex = 10
-        Me.GridColumn65.Width = 51
+        Me.GridColumn65.VisibleIndex = 11
+        Me.GridColumn65.Width = 46
         '
         'GridColumn66
         '
@@ -1202,8 +1215,16 @@ Partial Class Frm_CR_Approve
         Me.GridColumn66.FieldName = "Amount"
         Me.GridColumn66.Name = "GridColumn66"
         Me.GridColumn66.Visible = True
-        Me.GridColumn66.VisibleIndex = 11
-        Me.GridColumn66.Width = 183
+        Me.GridColumn66.VisibleIndex = 12
+        Me.GridColumn66.Width = 175
+        '
+        'GridColumn73
+        '
+        Me.GridColumn73.FieldName = "Type"
+        Me.GridColumn73.Name = "GridColumn73"
+        Me.GridColumn73.Visible = True
+        Me.GridColumn73.VisibleIndex = 1
+        Me.GridColumn73.Width = 120
         '
         'Frm_CR_Approve
         '
@@ -1333,4 +1354,5 @@ Partial Class Frm_CR_Approve
     Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn70 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn71 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn73 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

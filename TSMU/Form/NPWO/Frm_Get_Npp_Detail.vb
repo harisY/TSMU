@@ -120,8 +120,6 @@ Public Class Frm_Get_Npp_Detail
     Private Sub CreateTableBarang()
 
         dt = New DataTable
-
-
         dt.Columns.AddRange(New DataColumn(18) {New DataColumn("Part No", GetType(String)),
                                                            New DataColumn("Check", GetType(Boolean)),
                                                            New DataColumn("Part Name", GetType(String)),

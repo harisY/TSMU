@@ -514,11 +514,9 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell55
         '
-        Me.XrTableCell55.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([T0]='01-01-1900','' ,[T0] )")})
         Me.XrTableCell55.Multiline = True
         Me.XrTableCell55.Name = "XrTableCell55"
         Me.XrTableCell55.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell55.Text = "XrTableCell42"
         Me.XrTableCell55.TextFormatString = "{0:dd-MMM-yy}"
         Me.XrTableCell55.Weight = 1.2702752989686232R
         '
@@ -548,11 +546,9 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell58
         '
-        Me.XrTableCell58.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([T1]='01-01-1900','' ,[T1] )")})
         Me.XrTableCell58.Multiline = True
         Me.XrTableCell58.Name = "XrTableCell58"
         Me.XrTableCell58.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell58.Text = "XrTableCell45"
         Me.XrTableCell58.TextFormatString = "{0:dd-MMM-yy}"
         Me.XrTableCell58.Weight = 1.2702752989686232R
         '
@@ -582,11 +578,9 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell61
         '
-        Me.XrTableCell61.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([T2]='01-01-1900','' ,[T2] )")})
         Me.XrTableCell61.Multiline = True
         Me.XrTableCell61.Name = "XrTableCell61"
         Me.XrTableCell61.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell61.Text = "XrTableCell48"
         Me.XrTableCell61.TextFormatString = "{0:dd-MMM-yy}"
         Me.XrTableCell61.Weight = 1.2702752989686232R
         '
@@ -621,7 +615,7 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell64.Name = "XrTableCell64"
         Me.XrTableCell64.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell64.Text = "XrTableCell64"
-        Me.XrTableCell64.TextFormatString = "{0:MM/dd/yyyy}"
+        Me.XrTableCell64.TextFormatString = "{0:dd-MMM-yy}"
         Me.XrTableCell64.Weight = 1.2702752989686232R
         '
         'XrTable4
