@@ -534,6 +534,24 @@ Public Class Frm_CR_UserCreateDetail
 
             bb_IsUpdate = isUpdate
             bs_MainFormName = FrmParent.Name.ToString()
+
+            If T_CRType.EditValue = "Mold" Then
+                With GridView1
+                    .Columns("Model").Visible = True
+                    .Columns("Sales Type").Visible = True
+                    .Columns("Remark").Visible = True
+                End With
+            Else
+                With GridView1
+                    .Columns("Model").Visible = False
+                    .Columns("Sales Type").Visible = False
+                    .Columns("Remark").Visible = False
+                End With
+
+            End If
+
+
+
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
