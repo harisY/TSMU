@@ -2525,6 +2525,12 @@
     <Compile Include="Form\Report\frmReport_Budget_NonBoM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Report\frmReport_Outgoing.Designer.vb">
+      <DependentUpon>frmReport_Outgoing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Outgoing.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmReport_Harigami1.Designer.vb">
       <DependentUpon>frmReport_Harigami1.vb</DependentUpon>
     </Compile>
@@ -3408,6 +3414,7 @@
     <Compile Include="Services\PPICService.vb" />
     <Compile Include="Services\ProblemService.vb" />
     <Compile Include="Services\QcOutgoingService.vb" />
+    <Compile Include="Services\ReportService.vb" />
     <Compile Include="Services\SettingService.vb" />
     <Compile Include="Services\SolomonService.vb" />
     <Compile Include="Services\TForecastPrice_TempService.vb" />
@@ -4246,6 +4253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Budget_NonBoM.resx">
       <DependentUpon>frmReport_Budget_NonBoM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_Outgoing.resx">
+      <DependentUpon>frmReport_Outgoing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Harigami1.resx">
       <DependentUpon>frmReport_Harigami1.vb</DependentUpon>
