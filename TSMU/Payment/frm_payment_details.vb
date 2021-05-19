@@ -204,6 +204,7 @@ Public Class frm_payment_details
                     .cmdm_manual = _txtCMDMmanual.Text
                     .cmdm_manual_ket = _txtKetCMDMmanual.Text
                     .VendorName = _TxtVendorName.Text
+                    .tgl_approved1 = Now
                 End With
             End If
         Catch ex As Exception
