@@ -235,6 +235,7 @@
     <Compile Include="Classes\Circulation\clsCR_ApproveDivHead.vb" />
     <Compile Include="Classes\Circulation\clsCR_CreateUser.vb" />
     <Compile Include="Classes\ClsDashbard.vb" />
+    <Compile Include="Classes\clsReceptPO.vb" />
     <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
     <Compile Include="Classes\ComboBoxObj.vb" />
     <Compile Include="Classes\EBUDGET\Cls_eBudget.vb" />
@@ -586,6 +587,12 @@
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmPaymentDirect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmPaymentDirect2.Designer.vb">
+      <DependentUpon>FrmPaymentDirect2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmPaymentDirect2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmPettyCash.Designer.vb">
@@ -1802,6 +1809,12 @@
       <DependentUpon>frmKanbanInternalTng.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmKanbanInternalTng.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\FrmReceipt_PO.Designer.vb">
+      <DependentUpon>FrmReceipt_PO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmReceipt_PO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
@@ -3524,6 +3537,9 @@
     <EmbeddedResource Include="Direct\FrmMktUploadPriceDetail.resx">
       <DependentUpon>FrmMktUploadPriceDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmPaymentDirect2.resx">
+      <DependentUpon>FrmPaymentDirect2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspendSettleCC.resx">
       <DependentUpon>FrmSuspendSettleCC.vb</DependentUpon>
     </EmbeddedResource>
@@ -4030,6 +4046,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmKanbanInternalTng.resx">
       <DependentUpon>frmKanbanInternalTng.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmReceipt_PO.resx">
+      <DependentUpon>FrmReceipt_PO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>

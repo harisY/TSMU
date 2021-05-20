@@ -34,6 +34,7 @@ Public Class payment_header_models
     Public Property ObjBatch() As New Collection(Of batch)
     Public Property tglfrom As DateTime
     Public Property tgluntil As DateTime
+    Public Property tgl_approved1 As DateTime
 
     Public Function GetDataGrid() As DataTable
         Try
@@ -157,7 +158,7 @@ Public Class payment_header_models
     Public Sub InsertHeader()
         Try
             Dim ls_SP As String = " " & vbCrLf &
-                                    "INSERT INTO Payment_Header1 (vrno,tgl,BankID,BankName,VendID,VendorName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima,cmdm_manual,cmdm_manual_ket) " & vbCrLf &
+                                    "INSERT INTO Payment_Header1 (vrno,tgl,BankID,BankName,VendID,VendorName,Descr,CuryID,Tot_DPP,Tot_PPN,Total_DPP_PPN,PPh,Biaya_Transfer,CM_DM,cek1,cek2,cek3,cek4,prosespay,uploaded,detsupplier,bankrek,norek,penerima,cmdm_manual,cmdm_manual_ket,tgl_approved1) " & vbCrLf &
                                     "Values(" & QVal(Me.vrno) & ", " & vbCrLf &
                                     "       " & QVal(Me.tgl) & ", " & vbCrLf &
                                     "       " & QVal(Me.BankID) & ", " & vbCrLf &
@@ -183,7 +184,8 @@ Public Class payment_header_models
                                     "       " & QVal(Me.norek) & ", " & vbCrLf &
                                     "       " & QVal(Me.penerima) & ", " & vbCrLf &
                                     "       " & QVal(Me.cmdm_manual) & ", " & vbCrLf &
-                                    "       " & QVal(Me.cmdm_manual_ket) & ")"
+                                    "       " & QVal(Me.cmdm_manual_ket) & ", " & vbCrLf &
+                                    "       " & QVal(Me.tgl_approved1) & ")"
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
             Throw ex
@@ -801,11 +803,11 @@ Public Class payment_header_models
         Try
             Dim ls_SP As String = String.Empty
             If Level = 2 Then
-                ls_SP = "UPDATE payment_header1 SET cek2= " & QVal(True) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE payment_header1 SET cek2= " & QVal(True) & ", tgl_approved2=getdate() WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 3 Then
-                ls_SP = "UPDATE payment_header1 SET cek3= " & QVal(True) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE payment_header1 SET cek3= " & QVal(True) & ", tgl_approved3=getdate() WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             ElseIf Level = 4 Then
-                ls_SP = "UPDATE payment_header1 SET cek4= " & QVal(True) & " WHERE vrno=" & QVal(vrno.TrimEnd) & ""
+                ls_SP = "UPDATE payment_header1 SET cek4= " & QVal(True) & ", tgl_approved4=getdate() WHERE vrno=" & QVal(vrno.TrimEnd) & ""
             End If
             MainModul.ExecQuery_Solomon(ls_SP)
         Catch ex As Exception
