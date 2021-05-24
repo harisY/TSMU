@@ -4329,4 +4329,8 @@ Public Class Frm_CR_UserCreateDetail
         TBudget.Enabled = False
         TBudget.Text = 0
     End Sub
+
+    Private Sub TBudget_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TBudget.KeyPress
+
+    End Sub
 End Class

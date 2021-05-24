@@ -75,7 +75,7 @@ Partial Class Frm_CR_UserCreateHeader
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
         Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.C_Submit})
-        Me.Grid.Size = New System.Drawing.Size(888, 330)
+        Me.Grid.Size = New System.Drawing.Size(938, 341)
         Me.Grid.TabIndex = 10
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
