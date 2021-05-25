@@ -30,13 +30,13 @@ Public Class FrmNonProduksiDetail_CKR
     Dim KodeTrans As String = ""
 
 
-    Dim ObjNonproduksiDetail As New NonProduksiDetailModel
+    Dim ObjNonproduksiDetail As New NonProduksiDetailModel_CKR
     '---------------------------
     Dim DtScan As DataTable
-    Dim Fc_Class As New NonProduksiModel
+    Dim Fc_Class As New NonProduksiModel_CKR
 
-    'Dim SimpanFoto As String = "D:\@KERJA\Project\Foto\"
-    Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
+    Dim SimpanFoto As String = "D:\@KERJA\Project\Foto\"
+    'Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
     Dim PathFoto As String = ""
     Dim NamaFile As String = ""
     Dim DirectoryFoto As String = ""
@@ -79,7 +79,7 @@ Public Class FrmNonProduksiDetail_CKR
         Try
             If fs_Code <> "" Then
                 Fc_Class.H_IDTransaksi = fs_Code
-                Fc_Class.GetData(fs_Code)
+                Fc_Class.GetData_CKR(fs_Code)
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -124,7 +124,7 @@ Public Class FrmNonProduksiDetail_CKR
         Try
             If fs_Code <> "" Then
                 Dim dtGrid As New DataTable
-                dtGrid = Fc_Class.GetDataDetailNonProduksi(fs_Code)
+                dtGrid = Fc_Class.GetDataDetailNonProduksi_CKR(fs_Code)
                 Grid.DataSource = dtGrid
             Else
                 'Code
@@ -134,6 +134,8 @@ Public Class FrmNonProduksiDetail_CKR
             XtraMessageBox.Show(ex.Message)
         End Try
     End Sub
+
+
 
 
     Private Sub FrmNonProduksiDetail_CKR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -218,7 +220,7 @@ Public Class FrmNonProduksiDetail_CKR
                 Fc_Class.ObjDetailNonProduksi.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
 
-                    ObjNonproduksiDetail = New NonProduksiDetailModel
+                    ObjNonproduksiDetail = New NonProduksiDetailModel_CKR
                     With ObjNonproduksiDetail
                         .D_IDTransaksi = KodeTrans
                         .D_Informasi = Convert.ToString(GridView1.GetRowCellValue(i, "INFORMASI"))
@@ -241,7 +243,7 @@ Public Class FrmNonProduksiDetail_CKR
                 Fc_Class.ObjDetailNonProduksi.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
 
-                    ObjNonproduksiDetail = New NonProduksiDetailModel
+                    ObjNonproduksiDetail = New NonProduksiDetailModel_CKR
                     With ObjNonproduksiDetail
                         .D_IDTransaksi = KodeTrans
                         .D_Informasi = Convert.ToString(GridView1.GetRowCellValue(i, "INFORMASI"))
