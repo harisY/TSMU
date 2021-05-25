@@ -41,9 +41,8 @@ Partial Class Frm_EBudget
         Me.LSemester = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.BApprove = New System.Windows.Forms.Button()
-        Me.C_Dept = New DevExpress.XtraEditors.LookUpEdit()
-        Me.C_Site_Approve = New DevExpress.XtraEditors.LookUpEdit()
-        Me.C_Account_Approve = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Dept_Approve = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Account_Approve = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -51,23 +50,24 @@ Partial Class Frm_EBudget
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.CTahunApprove = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.tpersen = New DevExpress.XtraEditors.TextEdit()
+        Me.Tahun_Approve = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Semester_Approve = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.Persen_Approve = New DevExpress.XtraEditors.TextEdit()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Site_Approve = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Panel1.SuspendLayout()
         CType(Me.TtahunCreate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.CSemester.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CTahunOpenBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
-        CType(Me.C_Dept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C_Site_Approve.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.C_Account_Approve.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CTahunApprove.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tpersen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Dept_Approve.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Account_Approve.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tahun_Approve.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Semester_Approve.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Persen_Approve.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
+        CType(Me.Site_Approve.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -280,9 +280,8 @@ Partial Class Frm_EBudget
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel3.Controls.Add(Me.BApprove)
-        Me.Panel3.Controls.Add(Me.C_Dept)
-        Me.Panel3.Controls.Add(Me.C_Site_Approve)
-        Me.Panel3.Controls.Add(Me.C_Account_Approve)
+        Me.Panel3.Controls.Add(Me.Dept_Approve)
+        Me.Panel3.Controls.Add(Me.Account_Approve)
         Me.Panel3.Controls.Add(Me.Label16)
         Me.Panel3.Controls.Add(Me.Label15)
         Me.Panel3.Controls.Add(Me.Label14)
@@ -290,9 +289,10 @@ Partial Class Frm_EBudget
         Me.Panel3.Controls.Add(Me.Label12)
         Me.Panel3.Controls.Add(Me.Label11)
         Me.Panel3.Controls.Add(Me.Label10)
-        Me.Panel3.Controls.Add(Me.CTahunApprove)
-        Me.Panel3.Controls.Add(Me.LookUpEdit1)
-        Me.Panel3.Controls.Add(Me.tpersen)
+        Me.Panel3.Controls.Add(Me.Tahun_Approve)
+        Me.Panel3.Controls.Add(Me.Semester_Approve)
+        Me.Panel3.Controls.Add(Me.Persen_Approve)
+        Me.Panel3.Controls.Add(Me.Site_Approve)
         Me.Panel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Panel3.Location = New System.Drawing.Point(492, 39)
         Me.Panel3.Name = "Panel3"
@@ -309,40 +309,29 @@ Partial Class Frm_EBudget
         Me.BApprove.Text = "Approve"
         Me.BApprove.UseVisualStyleBackColor = True
         '
-        'C_Dept
+        'Dept_Approve
         '
-        Me.C_Dept.Location = New System.Drawing.Point(126, 158)
-        Me.C_Dept.Name = "C_Dept"
-        Me.C_Dept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.C_Dept.Properties.DropDownRows = 20
-        Me.C_Dept.Properties.NullText = ""
-        Me.C_Dept.Properties.PopupSizeable = False
-        Me.C_Dept.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me.C_Dept.Size = New System.Drawing.Size(316, 20)
-        Me.C_Dept.TabIndex = 11
+        Me.Dept_Approve.Location = New System.Drawing.Point(126, 158)
+        Me.Dept_Approve.Name = "Dept_Approve"
+        Me.Dept_Approve.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.Dept_Approve.Properties.DropDownRows = 20
+        Me.Dept_Approve.Properties.NullText = ""
+        Me.Dept_Approve.Properties.PopupSizeable = False
+        Me.Dept_Approve.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.Dept_Approve.Size = New System.Drawing.Size(316, 20)
+        Me.Dept_Approve.TabIndex = 11
         '
-        'C_Site_Approve
+        'Account_Approve
         '
-        Me.C_Site_Approve.Location = New System.Drawing.Point(126, 132)
-        Me.C_Site_Approve.Name = "C_Site_Approve"
-        Me.C_Site_Approve.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.C_Site_Approve.Properties.NullText = ""
-        Me.C_Site_Approve.Properties.PopupSizeable = False
-        Me.C_Site_Approve.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me.C_Site_Approve.Size = New System.Drawing.Size(131, 20)
-        Me.C_Site_Approve.TabIndex = 10
-        '
-        'C_Account_Approve
-        '
-        Me.C_Account_Approve.Location = New System.Drawing.Point(126, 106)
-        Me.C_Account_Approve.Name = "C_Account_Approve"
-        Me.C_Account_Approve.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.C_Account_Approve.Properties.DropDownRows = 20
-        Me.C_Account_Approve.Properties.NullText = ""
-        Me.C_Account_Approve.Properties.PopupSizeable = False
-        Me.C_Account_Approve.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me.C_Account_Approve.Size = New System.Drawing.Size(316, 20)
-        Me.C_Account_Approve.TabIndex = 9
+        Me.Account_Approve.Location = New System.Drawing.Point(126, 106)
+        Me.Account_Approve.Name = "Account_Approve"
+        Me.Account_Approve.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.Account_Approve.Properties.DropDownRows = 20
+        Me.Account_Approve.Properties.NullText = ""
+        Me.Account_Approve.Properties.PopupSizeable = False
+        Me.Account_Approve.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.Account_Approve.Size = New System.Drawing.Size(316, 20)
+        Me.Account_Approve.TabIndex = 9
         '
         'Label16
         '
@@ -413,33 +402,33 @@ Partial Class Frm_EBudget
         Me.Label10.TabIndex = 0
         Me.Label10.Text = "APPROVAL BUDGET"
         '
-        'CTahunApprove
+        'Tahun_Approve
         '
-        Me.CTahunApprove.Location = New System.Drawing.Point(126, 54)
-        Me.CTahunApprove.Name = "CTahunApprove"
-        Me.CTahunApprove.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CTahunApprove.Properties.NullText = ""
-        Me.CTahunApprove.Properties.PopupSizeable = False
-        Me.CTahunApprove.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
-        Me.CTahunApprove.Size = New System.Drawing.Size(131, 20)
-        Me.CTahunApprove.TabIndex = 7
+        Me.Tahun_Approve.Location = New System.Drawing.Point(126, 54)
+        Me.Tahun_Approve.Name = "Tahun_Approve"
+        Me.Tahun_Approve.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.Tahun_Approve.Properties.NullText = ""
+        Me.Tahun_Approve.Properties.PopupSizeable = False
+        Me.Tahun_Approve.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.Tahun_Approve.Size = New System.Drawing.Size(131, 20)
+        Me.Tahun_Approve.TabIndex = 7
         '
-        'LookUpEdit1
+        'Semester_Approve
         '
-        Me.LookUpEdit1.Location = New System.Drawing.Point(126, 80)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Properties.DropDownRows = 4
-        Me.LookUpEdit1.Properties.Items.AddRange(New Object() {"1", "2"})
-        Me.LookUpEdit1.Size = New System.Drawing.Size(131, 20)
-        Me.LookUpEdit1.TabIndex = 8
+        Me.Semester_Approve.Location = New System.Drawing.Point(126, 80)
+        Me.Semester_Approve.Name = "Semester_Approve"
+        Me.Semester_Approve.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.Semester_Approve.Properties.DropDownRows = 4
+        Me.Semester_Approve.Properties.Items.AddRange(New Object() {"All", "1", "2"})
+        Me.Semester_Approve.Size = New System.Drawing.Size(131, 20)
+        Me.Semester_Approve.TabIndex = 8
         '
-        'tpersen
+        'Persen_Approve
         '
-        Me.tpersen.Location = New System.Drawing.Point(126, 184)
-        Me.tpersen.Name = "tpersen"
-        Me.tpersen.Size = New System.Drawing.Size(131, 20)
-        Me.tpersen.TabIndex = 12
+        Me.Persen_Approve.Location = New System.Drawing.Point(126, 184)
+        Me.Persen_Approve.Name = "Persen_Approve"
+        Me.Persen_Approve.Size = New System.Drawing.Size(131, 20)
+        Me.Persen_Approve.TabIndex = 12
         '
         'Panel4
         '
@@ -457,6 +446,15 @@ Partial Class Frm_EBudget
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(434, 128)
         Me.Panel4.TabIndex = 19
+        '
+        'Site_Approve
+        '
+        Me.Site_Approve.Location = New System.Drawing.Point(126, 132)
+        Me.Site_Approve.Name = "Site_Approve"
+        Me.Site_Approve.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.Site_Approve.Properties.Items.AddRange(New Object() {"All", "TNG-U", "TSC3-U"})
+        Me.Site_Approve.Size = New System.Drawing.Size(131, 20)
+        Me.Site_Approve.TabIndex = 10
         '
         'Frm_EBudget
         '
@@ -480,14 +478,14 @@ Partial Class Frm_EBudget
         CType(Me.CTahunOpenBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        CType(Me.C_Dept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C_Site_Approve.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.C_Account_Approve.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CTahunApprove.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tpersen.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Dept_Approve.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Account_Approve.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tahun_Approve.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Semester_Approve.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Persen_Approve.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        CType(Me.Site_Approve.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -521,11 +519,11 @@ Partial Class Frm_EBudget
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents CTahunApprove As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents C_Dept As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents C_Site_Approve As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents C_Account_Approve As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents Tahun_Approve As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Dept_Approve As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Account_Approve As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Semester_Approve As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents BApprove As Button
-    Friend WithEvents tpersen As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Persen_Approve As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Site_Approve As DevExpress.XtraEditors.ComboBoxEdit
 End Class

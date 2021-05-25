@@ -9,7 +9,7 @@ Public Class sales_model
             Dim query As String = String.Empty
             Dim _perPost As Integer = Convert.ToInt32(Perpost)
             Dim Batas As Integer = 202005
-            If _perPost > Batas Then
+            If _perPost < Batas Then
                 query = "Stp_Sales_202006"
             Else
                 query = "Stp_Sales"

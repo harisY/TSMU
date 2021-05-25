@@ -35,10 +35,14 @@ Partial Class FrmVendorManagementDetail
         Me.Pic = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Target = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Gambar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoGambar = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.LotNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Path = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GambarHapus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Status = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Gambar2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoGambar2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.Path2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -86,10 +90,10 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.BAdd = New System.Windows.Forms.Button()
-        Me.Gambar2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Path2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoGambar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoGambar2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,8 +153,8 @@ Partial Class FrmVendorManagementDetail
         Me.Grid.Location = New System.Drawing.Point(12, 275)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2})
-        Me.Grid.Size = New System.Drawing.Size(829, 173)
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.RepoGambar, Me.RepoGambar2})
+        Me.Grid.Size = New System.Drawing.Size(936, 173)
         Me.Grid.TabIndex = 27
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -299,11 +303,18 @@ Partial Class FrmVendorManagementDetail
         Me.Gambar.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Gambar.AppearanceHeader.Options.UseTextOptions = True
         Me.Gambar.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Gambar.ColumnEdit = Me.RepoGambar
         Me.Gambar.FieldName = "Gambar"
         Me.Gambar.Name = "Gambar"
         Me.Gambar.Visible = True
         Me.Gambar.VisibleIndex = 14
         Me.Gambar.Width = 185
+        '
+        'RepoGambar
+        '
+        Me.RepoGambar.AutoHeight = False
+        Me.RepoGambar.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepoGambar.Name = "RepoGambar"
         '
         'LotNo
         '
@@ -325,8 +336,6 @@ Partial Class FrmVendorManagementDetail
         Me.Path.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Path.FieldName = "Path"
         Me.Path.Name = "Path"
-        Me.Path.Visible = True
-        Me.Path.VisibleIndex = 16
         Me.Path.Width = 276
         '
         'GambarHapus
@@ -340,6 +349,26 @@ Partial Class FrmVendorManagementDetail
         Me.Status.Name = "Status"
         Me.Status.Visible = True
         Me.Status.VisibleIndex = 15
+        '
+        'Gambar2
+        '
+        Me.Gambar2.ColumnEdit = Me.RepoGambar2
+        Me.Gambar2.FieldName = "Gambar2"
+        Me.Gambar2.Name = "Gambar2"
+        Me.Gambar2.Visible = True
+        Me.Gambar2.VisibleIndex = 16
+        Me.Gambar2.Width = 192
+        '
+        'RepoGambar2
+        '
+        Me.RepoGambar2.AutoHeight = False
+        Me.RepoGambar2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepoGambar2.Name = "RepoGambar2"
+        '
+        'Path2
+        '
+        Me.Path2.FieldName = "Path2"
+        Me.Path2.Name = "Path2"
         '
         'RepositoryItemTextEdit1
         '
@@ -387,15 +416,15 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(127, 346, 273, 400)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(853, 214)
+        Me.LayoutControl1.Size = New System.Drawing.Size(960, 214)
         Me.LayoutControl1.TabIndex = 28
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'BGambar2
         '
-        Me.BGambar2.Location = New System.Drawing.Point(741, 170)
+        Me.BGambar2.Location = New System.Drawing.Point(834, 170)
         Me.BGambar2.Name = "BGambar2"
-        Me.BGambar2.Size = New System.Drawing.Size(100, 32)
+        Me.BGambar2.Size = New System.Drawing.Size(114, 32)
         Me.BGambar2.TabIndex = 24
         Me.BGambar2.Text = "Cari Gambar 2"
         Me.BGambar2.UseVisualStyleBackColor = True
@@ -403,17 +432,17 @@ Partial Class FrmVendorManagementDetail
         'PictureBox2
         '
         Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox2.Location = New System.Drawing.Point(741, 12)
+        Me.PictureBox2.Location = New System.Drawing.Point(834, 12)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(100, 154)
+        Me.PictureBox2.Size = New System.Drawing.Size(114, 154)
         Me.PictureBox2.TabIndex = 23
         Me.PictureBox2.TabStop = False
         '
         'TxtLotNo
         '
-        Me.TxtLotNo.Location = New System.Drawing.Point(334, 36)
+        Me.TxtLotNo.Location = New System.Drawing.Point(364, 36)
         Me.TxtLotNo.Name = "TxtLotNo"
-        Me.TxtLotNo.Size = New System.Drawing.Size(289, 20)
+        Me.TxtLotNo.Size = New System.Drawing.Size(338, 20)
         Me.TxtLotNo.StyleController = Me.LayoutControl1
         Me.TxtLotNo.TabIndex = 12
         '
@@ -421,15 +450,15 @@ Partial Class FrmVendorManagementDetail
         '
         Me.TxtQty.Location = New System.Drawing.Point(100, 156)
         Me.TxtQty.Name = "TxtQty"
-        Me.TxtQty.Size = New System.Drawing.Size(142, 20)
+        Me.TxtQty.Size = New System.Drawing.Size(172, 20)
         Me.TxtQty.StyleController = Me.LayoutControl1
         Me.TxtQty.TabIndex = 21
         '
         'BGambar
         '
-        Me.BGambar.Location = New System.Drawing.Point(637, 170)
+        Me.BGambar.Location = New System.Drawing.Point(717, 170)
         Me.BGambar.Name = "BGambar"
-        Me.BGambar.Size = New System.Drawing.Size(100, 32)
+        Me.BGambar.Size = New System.Drawing.Size(113, 32)
         Me.BGambar.TabIndex = 20
         Me.BGambar.Text = "Cari Gambar 1"
         Me.BGambar.UseVisualStyleBackColor = True
@@ -437,42 +466,42 @@ Partial Class FrmVendorManagementDetail
         'PictureBox1
         '
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox1.Location = New System.Drawing.Point(637, 12)
+        Me.PictureBox1.Location = New System.Drawing.Point(717, 12)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 154)
+        Me.PictureBox1.Size = New System.Drawing.Size(113, 154)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 19
         Me.PictureBox1.TabStop = False
         '
         'TxtPreventive
         '
-        Me.TxtPreventive.Location = New System.Drawing.Point(334, 156)
+        Me.TxtPreventive.Location = New System.Drawing.Point(364, 156)
         Me.TxtPreventive.Name = "TxtPreventive"
-        Me.TxtPreventive.Size = New System.Drawing.Size(289, 20)
+        Me.TxtPreventive.Size = New System.Drawing.Size(338, 20)
         Me.TxtPreventive.StyleController = Me.LayoutControl1
         Me.TxtPreventive.TabIndex = 17
         '
         'TxtCorrection
         '
-        Me.TxtCorrection.Location = New System.Drawing.Point(334, 132)
+        Me.TxtCorrection.Location = New System.Drawing.Point(364, 132)
         Me.TxtCorrection.Name = "TxtCorrection"
-        Me.TxtCorrection.Size = New System.Drawing.Size(289, 20)
+        Me.TxtCorrection.Size = New System.Drawing.Size(338, 20)
         Me.TxtCorrection.StyleController = Me.LayoutControl1
         Me.TxtCorrection.TabIndex = 16
         '
         'TxtAnalisis
         '
-        Me.TxtAnalisis.Location = New System.Drawing.Point(334, 108)
+        Me.TxtAnalisis.Location = New System.Drawing.Point(364, 108)
         Me.TxtAnalisis.Name = "TxtAnalisis"
-        Me.TxtAnalisis.Size = New System.Drawing.Size(289, 20)
+        Me.TxtAnalisis.Size = New System.Drawing.Size(338, 20)
         Me.TxtAnalisis.StyleController = Me.LayoutControl1
         Me.TxtAnalisis.TabIndex = 15
         '
         'TxtProblem
         '
-        Me.TxtProblem.Location = New System.Drawing.Point(334, 84)
+        Me.TxtProblem.Location = New System.Drawing.Point(364, 84)
         Me.TxtProblem.Name = "TxtProblem"
-        Me.TxtProblem.Size = New System.Drawing.Size(289, 20)
+        Me.TxtProblem.Size = New System.Drawing.Size(338, 20)
         Me.TxtProblem.StyleController = Me.LayoutControl1
         Me.TxtProblem.TabIndex = 14
         '
@@ -480,7 +509,7 @@ Partial Class FrmVendorManagementDetail
         '
         Me.TxtType.Location = New System.Drawing.Point(100, 180)
         Me.TxtType.Name = "TxtType"
-        Me.TxtType.Size = New System.Drawing.Size(142, 20)
+        Me.TxtType.Size = New System.Drawing.Size(172, 20)
         Me.TxtType.StyleController = Me.LayoutControl1
         Me.TxtType.TabIndex = 10
         '
@@ -488,7 +517,7 @@ Partial Class FrmVendorManagementDetail
         '
         Me.TxtInvtName.Location = New System.Drawing.Point(100, 132)
         Me.TxtInvtName.Name = "TxtInvtName"
-        Me.TxtInvtName.Size = New System.Drawing.Size(142, 20)
+        Me.TxtInvtName.Size = New System.Drawing.Size(172, 20)
         Me.TxtInvtName.StyleController = Me.LayoutControl1
         Me.TxtInvtName.TabIndex = 9
         '
@@ -496,7 +525,7 @@ Partial Class FrmVendorManagementDetail
         '
         Me.TxtInvtID.Location = New System.Drawing.Point(100, 108)
         Me.TxtInvtID.Name = "TxtInvtID"
-        Me.TxtInvtID.Size = New System.Drawing.Size(142, 20)
+        Me.TxtInvtID.Size = New System.Drawing.Size(172, 20)
         Me.TxtInvtID.StyleController = Me.LayoutControl1
         Me.TxtInvtID.TabIndex = 8
         '
@@ -504,7 +533,7 @@ Partial Class FrmVendorManagementDetail
         '
         Me.TxtPic.Location = New System.Drawing.Point(100, 84)
         Me.TxtPic.Name = "TxtPic"
-        Me.TxtPic.Size = New System.Drawing.Size(142, 20)
+        Me.TxtPic.Size = New System.Drawing.Size(172, 20)
         Me.TxtPic.StyleController = Me.LayoutControl1
         Me.TxtPic.TabIndex = 7
         '
@@ -512,7 +541,7 @@ Partial Class FrmVendorManagementDetail
         '
         Me.TxtSubcount.Location = New System.Drawing.Point(100, 60)
         Me.TxtSubcount.Name = "TxtSubcount"
-        Me.TxtSubcount.Size = New System.Drawing.Size(142, 20)
+        Me.TxtSubcount.Size = New System.Drawing.Size(172, 20)
         Me.TxtSubcount.StyleController = Me.LayoutControl1
         Me.TxtSubcount.TabIndex = 6
         '
@@ -520,7 +549,7 @@ Partial Class FrmVendorManagementDetail
         '
         Me.TxtKeterangan.Location = New System.Drawing.Point(100, 36)
         Me.TxtKeterangan.Name = "TxtKeterangan"
-        Me.TxtKeterangan.Size = New System.Drawing.Size(142, 20)
+        Me.TxtKeterangan.Size = New System.Drawing.Size(172, 20)
         Me.TxtKeterangan.StyleController = Me.LayoutControl1
         Me.TxtKeterangan.TabIndex = 5
         '
@@ -537,14 +566,14 @@ Partial Class FrmVendorManagementDetail
         Me.DtTanggalLaporan.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DtTanggalLaporan.Properties.Mask.EditMask = ""
         Me.DtTanggalLaporan.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.DtTanggalLaporan.Size = New System.Drawing.Size(142, 20)
+        Me.DtTanggalLaporan.Size = New System.Drawing.Size(172, 20)
         Me.DtTanggalLaporan.StyleController = Me.LayoutControl1
         Me.DtTanggalLaporan.TabIndex = 4
         '
         'DtTarget
         '
         Me.DtTarget.EditValue = Nothing
-        Me.DtTarget.Location = New System.Drawing.Point(334, 60)
+        Me.DtTarget.Location = New System.Drawing.Point(364, 60)
         Me.DtTarget.Name = "DtTarget"
         Me.DtTarget.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DtTarget.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -554,28 +583,28 @@ Partial Class FrmVendorManagementDetail
         Me.DtTarget.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DtTarget.Properties.Mask.EditMask = ""
         Me.DtTarget.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
-        Me.DtTarget.Size = New System.Drawing.Size(289, 20)
+        Me.DtTarget.Size = New System.Drawing.Size(338, 20)
         Me.DtTarget.StyleController = Me.LayoutControl1
         Me.DtTarget.TabIndex = 13
         '
         'CmbShift
         '
-        Me.CmbShift.Location = New System.Drawing.Point(334, 12)
+        Me.CmbShift.Location = New System.Drawing.Point(364, 12)
         Me.CmbShift.Name = "CmbShift"
         Me.CmbShift.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.CmbShift.Properties.DropDownRows = 5
         Me.CmbShift.Properties.Items.AddRange(New Object() {"-", "1", "2", "3"})
-        Me.CmbShift.Size = New System.Drawing.Size(289, 20)
+        Me.CmbShift.Size = New System.Drawing.Size(338, 20)
         Me.CmbShift.StyleController = Me.LayoutControl1
         Me.CmbShift.TabIndex = 11
         '
         'TxtStatus
         '
-        Me.TxtStatus.Location = New System.Drawing.Point(334, 180)
+        Me.TxtStatus.Location = New System.Drawing.Point(364, 180)
         Me.TxtStatus.Name = "TxtStatus"
         Me.TxtStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TxtStatus.Properties.Items.AddRange(New Object() {"Open", "Close"})
-        Me.TxtStatus.Size = New System.Drawing.Size(289, 20)
+        Me.TxtStatus.Size = New System.Drawing.Size(338, 20)
         Me.TxtStatus.StyleController = Me.LayoutControl1
         Me.TxtStatus.TabIndex = 22
         '
@@ -585,7 +614,7 @@ Partial Class FrmVendorManagementDetail
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.EmptySpaceItem1, Me.LayoutControlItem16, Me.LayoutControlItem15, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem9, Me.LayoutControlItem19, Me.LayoutControlItem20})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(853, 214)
+        Me.Root.Size = New System.Drawing.Size(960, 214)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -593,7 +622,7 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControlItem1.Control = Me.DtTanggalLaporan
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(234, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(264, 24)
         Me.LayoutControlItem1.Text = "Tanggal"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(85, 13)
         '
@@ -602,7 +631,7 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControlItem2.Control = Me.TxtKeterangan
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(234, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(264, 24)
         Me.LayoutControlItem2.Text = "Keterangan"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(85, 13)
         '
@@ -611,7 +640,7 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControlItem3.Control = Me.TxtSubcount
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(234, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(264, 24)
         Me.LayoutControlItem3.Text = "Subcount"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(85, 13)
         '
@@ -620,7 +649,7 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControlItem4.Control = Me.TxtPic
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(234, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(264, 24)
         Me.LayoutControlItem4.Text = "PIC"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(85, 13)
         '
@@ -629,7 +658,7 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControlItem5.Control = Me.TxtInvtID
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(234, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(264, 24)
         Me.LayoutControlItem5.Text = "Kode Barang"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(85, 13)
         '
@@ -638,7 +667,7 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControlItem6.Control = Me.TxtInvtName
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 120)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(234, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(264, 24)
         Me.LayoutControlItem6.Text = "Nama Barang"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(85, 13)
         '
@@ -647,78 +676,78 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControlItem7.Control = Me.TxtType
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(234, 26)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(264, 26)
         Me.LayoutControlItem7.Text = "Tipe"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(85, 13)
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.CmbShift
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(234, 0)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(264, 0)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(381, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(430, 24)
         Me.LayoutControlItem8.Text = "Shift"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(85, 13)
         '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.DtTarget
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(234, 48)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(264, 48)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(381, 24)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(430, 24)
         Me.LayoutControlItem10.Text = "Target"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(85, 13)
         '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.TxtProblem
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(234, 72)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(264, 72)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(381, 24)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(430, 24)
         Me.LayoutControlItem11.Text = "Problem"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(85, 13)
         '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.TxtAnalisis
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(234, 96)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(264, 96)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(381, 24)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(430, 24)
         Me.LayoutControlItem12.Text = "Analis"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(85, 13)
         '
         'LayoutControlItem13
         '
         Me.LayoutControlItem13.Control = Me.TxtCorrection
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(234, 120)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(264, 120)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(381, 24)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(430, 24)
         Me.LayoutControlItem13.Text = "Corrective Action"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(85, 13)
         '
         'LayoutControlItem14
         '
         Me.LayoutControlItem14.Control = Me.TxtPreventive
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(234, 144)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(264, 144)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(381, 24)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(430, 24)
         Me.LayoutControlItem14.Text = "Preventive Action"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(85, 13)
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(615, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(694, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(10, 194)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(11, 194)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.PictureBox1
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(625, 0)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(705, 0)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(104, 158)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(117, 158)
         Me.LayoutControlItem16.Text = "Gambar"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem16.TextVisible = False
@@ -726,9 +755,9 @@ Partial Class FrmVendorManagementDetail
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me.BGambar
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(625, 158)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(705, 158)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(104, 36)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(117, 36)
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem15.TextVisible = False
         '
@@ -737,7 +766,7 @@ Partial Class FrmVendorManagementDetail
         Me.LayoutControlItem17.Control = Me.TxtQty
         Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 144)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(234, 24)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(264, 24)
         Me.LayoutControlItem17.Text = "Qty"
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(85, 13)
         '
@@ -745,66 +774,52 @@ Partial Class FrmVendorManagementDetail
         '
         Me.LayoutControlItem18.Control = Me.TxtStatus
         Me.LayoutControlItem18.CustomizationFormText = "Status"
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(234, 168)
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(264, 168)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(381, 26)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(430, 26)
         Me.LayoutControlItem18.Text = "Status"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(85, 13)
         '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.TxtLotNo
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(234, 24)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(264, 24)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(381, 24)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(430, 24)
         Me.LayoutControlItem9.Text = "Lot"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(85, 13)
         '
         'LayoutControlItem19
         '
         Me.LayoutControlItem19.Control = Me.PictureBox2
-        Me.LayoutControlItem19.Location = New System.Drawing.Point(729, 0)
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(822, 0)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(104, 158)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(118, 158)
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem19.TextVisible = False
         '
         'LayoutControlItem20
         '
         Me.LayoutControlItem20.Control = Me.BGambar2
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(729, 158)
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(822, 158)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(104, 36)
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(118, 36)
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem20.TextVisible = False
         '
         'BAdd
         '
-        Me.BAdd.Location = New System.Drawing.Point(13, 246)
+        Me.BAdd.Location = New System.Drawing.Point(12, 246)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(75, 23)
         Me.BAdd.TabIndex = 29
         Me.BAdd.Text = "Add"
         Me.BAdd.UseVisualStyleBackColor = True
         '
-        'Gambar2
-        '
-        Me.Gambar2.FieldName = "Gambar2"
-        Me.Gambar2.Name = "Gambar2"
-        Me.Gambar2.Visible = True
-        Me.Gambar2.VisibleIndex = 17
-        '
-        'Path2
-        '
-        Me.Path2.FieldName = "Path2"
-        Me.Path2.Name = "Path2"
-        Me.Path2.Visible = True
-        Me.Path2.VisibleIndex = 18
-        '
         'FrmVendorManagementDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(853, 460)
+        Me.ClientSize = New System.Drawing.Size(960, 460)
         Me.Controls.Add(Me.BAdd)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.Grid)
@@ -814,6 +829,8 @@ Partial Class FrmVendorManagementDetail
         Me.Controls.SetChildIndex(Me.BAdd, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoGambar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoGambar2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -937,4 +954,6 @@ Partial Class FrmVendorManagementDetail
     Friend WithEvents LayoutControlItem20 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents Gambar2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Path2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepoGambar As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents RepoGambar2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

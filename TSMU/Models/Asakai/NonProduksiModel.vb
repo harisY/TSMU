@@ -47,6 +47,35 @@ Public Class NonProduksiModel
         End Try
     End Function
 
+    Public Function GetDataLoad_CKR() As DataTable
+        Try
+            'Dim dt As New DataTable
+            'Dim sql As String =
+            '"SELECT [IDTransaksi] as IDTransaksi
+            '       ,Convert (Varchar,Tanggal,105) as Tanggal
+            '       ,[Dept] as Dept
+            '  FROM AsakaiOtherDept Where Dept = '" & gh_Common.GroupID & "'"
+            ''dt = GetDataTableByCommand(sql)
+            'dt = GetDataTableByCommand_SP_Tsc(sql)
+
+            Dim query As String = "[Asakai_Nonproduksi_GetDataHeader_CKR]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
+
+            pParam(0).Value = gh_Common.GroupID
+
+
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_StorePCKR(query, pParam)
+            Return dt
+
+
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Sub DeleteHeader(ByVal ID As String)
         Try
 

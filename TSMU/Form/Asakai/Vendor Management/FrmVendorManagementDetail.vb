@@ -23,6 +23,7 @@ Public Class FrmVendorManagementDetail
     'Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
     Dim PathFoto As String = ""
     Dim NamaFile As String = ""
+
     Dim DirectoryFoto As String = ""
     Dim extension As String = ""
     Dim fileSavePath As String = ""
@@ -194,9 +195,9 @@ Public Class FrmVendorManagementDetail
 
             'File.Copy(opfImage.FileName, fileSavePath, True)
 
-            Dim i As Image = PictureBox1.Image
-            Dim i2 As Image = New Bitmap(i)
-            i2.Save(SimpanFoto & NamaFile, System.Drawing.Imaging.ImageFormat.Jpeg)
+            'Dim i As Image = PictureBox1.Image
+            'Dim i2 As Image = New Bitmap(i)
+            'i2.Save(SimpanFoto & NamaFile, System.Drawing.Imaging.ImageFormat.Jpeg)
 
         End If
 
@@ -313,14 +314,39 @@ Public Class FrmVendorManagementDetail
 
 
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar, NamaFile)
-                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Path, PathFoto)
+                ' GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Path, PathFoto)
 
                 GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar2, NamaFile2)
-                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Path2, PathFoto2)
+                ' GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Path2, PathFoto2)
 
                 GridView1.UpdateCurrentRow()
                 'File.Copy(opfImage.FileName, fileSavePath, True)
-                Call TextBoxLoad()
+                'Call TextBoxLoad()
+
+                TxtStatus.EditValue = ""
+                TxtKeterangan.EditValue = ""
+                TxtSubcount.EditValue = ""
+                TxtInvtID.EditValue = ""
+                TxtInvtName.EditValue = ""
+                TxtType.EditValue = ""
+                TxtQty.EditValue = "0"
+                TxtProblem.EditValue = ""
+                TxtAnalisis.EditValue = ""
+                TxtCorrection.EditValue = ""
+                TxtPreventive.EditValue = ""
+                TxtPic.EditValue = ""
+                TxtLotNo.EditValue = ""
+                TxtStatus.EditValue = "Open"
+                CmbShift.EditValue = "-"
+
+                Dim i As Image = PictureBox1.Image
+                Dim i2 As Image = New Bitmap(i)
+                i2.Save(SimpanFoto & NamaFile, System.Drawing.Imaging.ImageFormat.Jpeg)
+
+                Dim ii As Image = PictureBox2.Image
+                Dim ii2 As Image = New Bitmap(ii)
+                ii2.Save(SimpanFoto & NamaFile2, System.Drawing.Imaging.ImageFormat.Jpeg)
+
                 PictureBox1.Image = Nothing
                 PictureBox2.Image = Nothing
 
@@ -418,17 +444,17 @@ Public Class FrmVendorManagementDetail
                     fc_Class.ObjDetailVMProblem.Add(ObjVMProblemDetail)
 
 
-                    fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")))
+                    'fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")))
 
-                    If Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")) <> "" Then
-                        File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path")), fileSavePath, True)
-                    End If
+                    'If Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")) <> "" Then
+                    '    File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path")), fileSavePath, True)
+                    'End If
 
-                    fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar2")))
+                    'fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar2")))
 
-                    If Convert.ToString(GridView1.GetRowCellValue(i, "Gambar2")) <> "" Then
-                        File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path2")), fileSavePath, True)
-                    End If
+                    'If Convert.ToString(GridView1.GetRowCellValue(i, "Gambar2")) <> "" Then
+                    '    File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path2")), fileSavePath, True)
+                    'End If
 
                 Next
 
@@ -437,7 +463,7 @@ Public Class FrmVendorManagementDetail
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
-                KodeTrans = fc_Class.IDTrans
+                KodeTrans = fc_Class.H_IDTransaksi
                 fc_Class.H_Tanggal = Format(DtTanggalLaporan.EditValue, "yyyy-MM-dd")
                 'Insert To ObjDetailMaterial
                 fc_Class.ObjDetailVMProblem.Clear()
@@ -469,17 +495,17 @@ Public Class FrmVendorManagementDetail
                     End With
                     fc_Class.ObjDetailVMProblem.Add(ObjVMProblemDetail)
 
-                    fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")))
+                    'fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")))
 
-                    If Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")) <> "" Then
-                        File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path")), fileSavePath, True)
-                    End If
+                    'If Convert.ToString(GridView1.GetRowCellValue(i, "Gambar")) <> "" Then
+                    '    File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path")), fileSavePath, True)
+                    'End If
 
-                    fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar2")))
+                    'fileSavePath = IO.Path.Combine(SimpanFoto, Convert.ToString(GridView1.GetRowCellValue(i, "Gambar2")))
 
-                    If Convert.ToString(GridView1.GetRowCellValue(i, "Gambar2")) <> "" Then
-                        File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path2")), fileSavePath, True)
-                    End If
+                    'If Convert.ToString(GridView1.GetRowCellValue(i, "Gambar2")) <> "" Then
+                    '    File.Copy(Convert.ToString(GridView1.GetRowCellValue(i, "Path2")), fileSavePath, True)
+                    'End If
 
                     'If Convert.ToString(GridView1.GetRowCellValue(i, "Path")) <> "" And Convert.ToString(GridView1.GetRowCellValue(i, "Gambar Hapus")) <> "" Then
 
@@ -602,10 +628,92 @@ Public Class FrmVendorManagementDetail
 
             'File.Copy(opfImage.FileName, fileSavePath, True)
 
-            Dim i As Image = PictureBox2.Image
-            Dim i2 As Image = New Bitmap(i)
-            i2.Save(SimpanFoto & NamaFile2, System.Drawing.Imaging.ImageFormat.Jpeg)
+            'Dim i As Image = PictureBox2.Image
+            'Dim i2 As Image = New Bitmap(i)
+            'i2.Save(SimpanFoto & NamaFile2, System.Drawing.Imaging.ImageFormat.Jpeg)
 
         End If
+    End Sub
+
+
+
+
+    Private Sub RepoGambar_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoGambar.ButtonClick
+
+        Try
+            opfImage = New OpenFileDialog()
+            opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
+            'Dim a As String = "D:\@KERJA\Project\Foto\"
+
+            If opfImage.ShowDialog = DialogResult.OK Then
+
+                Dim Tanggal As String = Convert.ToString(Format(Date.Now, "yyyy-MM-dd"))
+                PictureBox1.Image = Image.FromFile(opfImage.FileName)
+
+                Dim NewSize As New Size(600, 400)
+                Dim Resize As Image = New Bitmap(PictureBox1.Image, NewSize)
+                PictureBox1.Image = Resize
+
+                PathFoto = opfImage.FileName
+                Dim extension As String = IO.Path.GetExtension(PathFoto)
+                NamaFile = Tanggal & "_VM_" + IO.Path.GetRandomFileName() + extension
+
+                'fileSavePath = IO.Path.Combine(SimpanFoto, NamaFile)
+
+
+                Dim i As Image = PictureBox1.Image
+
+                Dim i2 As Image = New Bitmap(i)
+                i2.Save(SimpanFoto & NamaFile, System.Drawing.Imaging.ImageFormat.Jpeg)
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Gambar", NamaFile)
+                'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "Path", PathFoto)
+                'File.Copy(opfImage.FileName, fileSavePath, True)
+
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
+    End Sub
+
+    Private Sub RepoGambar2_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles RepoGambar2.ButtonClick
+
+        Try
+            opfImage = New OpenFileDialog()
+            opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
+            'Dim a As String = "D:\@KERJA\Project\Foto\"
+
+            If opfImage.ShowDialog = DialogResult.OK Then
+
+                Dim Tanggal As String = Convert.ToString(Format(Date.Now, "yyyy-MM-dd"))
+                PictureBox2.Image = Image.FromFile(opfImage.FileName)
+
+                Dim NewSize As New Size(600, 400)
+                Dim Resize As Image = New Bitmap(PictureBox2.Image, NewSize)
+                PictureBox2.Image = Resize
+
+                PathFoto2 = opfImage.FileName
+                Dim extension As String = IO.Path.GetExtension(PathFoto2)
+                NamaFile2 = Tanggal & "_VM_" + IO.Path.GetRandomFileName() + extension
+
+                'fileSavePath = IO.Path.Combine(SimpanFoto, NamaFile)
+                'File.Copy(opfImage.FileName, fileSavePath, True)
+
+                Dim i As Image = PictureBox2.Image
+
+                Dim i2 As Image = New Bitmap(i)
+                i2.Save(SimpanFoto & NamaFile2, System.Drawing.Imaging.ImageFormat.Jpeg)
+                GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Gambar2, NamaFile2)
+                'GridView1.SetRowCellValue(GridView1.FocusedRowHandle, Path2, PathFoto2)
+
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+
     End Sub
 End Class

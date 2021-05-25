@@ -12,11 +12,31 @@
         End Try
     End Function
 
+    Public Function GetTahunApprove() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[Ebudget_GetTahunApprove]"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            'pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+            'pParam(0).Value = CirculationNo
+            Dim dt As New DataTable
+            dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
     Public Function GetAccountApprove() As DataTable
         Try
-            Dim query As String = "select Distinct  AcctID,AcctName from rekap_budget_dept "
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[Ebudget_GetAccountApprove]"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            'pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+            'pParam(0).Value = CirculationNo
             Dim dt As New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = GetDataTableByCommand_SP(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -35,9 +55,13 @@
 
     Public Function GetDeptApprove() As DataTable
         Try
-            Dim query As String = "select Distinct  DeptID from rekap_budget_dept "
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[Ebudget_GetDeptApprove]"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            'pParam(0) = New SqlClient.SqlParameter("@CirculationNo", SqlDbType.VarChar)
+            'pParam(0).Value = CirculationNo
             Dim dt As New DataTable
-            dt = GetDataTableByCommand(query)
+            dt = GetDataTableByCommand_SP(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -230,8 +254,6 @@
 
                         ExecQueryByCommand_SP(queryBOD, pParamBOD)
 
-
-
                         Trans1.Commit()
                     Catch ex As Exception
                         Trans1.Rollback()
@@ -246,7 +268,7 @@
         End Try
     End Sub
 
-    Public Sub ApproveBOD(Tahun As String, semester As String, Dept As String, AcctiD As String)
+    Public Sub ApproveBOD(Tahun As String, semester As String, Dept As String, AcctiD As String, Site As String, Persen As Double)
 
         Try
             Using Conn1 As New SqlClient.SqlConnection(GetConnString)
@@ -259,11 +281,24 @@
                     Dim result As Boolean = 0
 
                     Try
-                        Dim querysp As String = "[Ebudget_CopyBudget_s1]"
-                        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+                        Dim querysp As String = "[Ebudget_ApproveBOD]"
+                        Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(5) {}
                         pParam(0) = New SqlClient.SqlParameter("@tahun", SqlDbType.VarChar)
+                        pParam(1) = New SqlClient.SqlParameter("@semester", SqlDbType.VarChar)
+                        pParam(2) = New SqlClient.SqlParameter("@dept", SqlDbType.VarChar)
+                        pParam(3) = New SqlClient.SqlParameter("@acctid", SqlDbType.VarChar)
+                        pParam(4) = New SqlClient.SqlParameter("@site", SqlDbType.VarChar)
+                        pParam(5) = New SqlClient.SqlParameter("@persen", SqlDbType.Float)
+
+
 
                         pParam(0).Value = Tahun
+                        pParam(1).Value = semester
+                        pParam(2).Value = Dept
+                        pParam(3).Value = AcctiD
+                        pParam(4).Value = Site
+                        pParam(5).Value = Persen
+
                         ExecQueryByCommand_SP(querysp, pParam)
 
                         Trans1.Commit()
