@@ -1225,6 +1225,12 @@
       <DependentUpon>suspendreport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksi_CKR.Designer.vb">
+      <DependentUpon>FrmNonProduksi_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksi_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.Designer.vb">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
     </Compile>
@@ -1241,6 +1247,12 @@
       <DependentUpon>FrmDetailPerbaikan.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Asakai\Enginering\FrmDetailPerbaikan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.Designer.vb">
+      <DependentUpon>FrmNonProduksiDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Injection\FrmInjectionShot.Designer.vb">
@@ -3757,6 +3769,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptBankTransfer3.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Non Produksi\FrmNonProduksi_CKR.resx">
+      <DependentUpon>FrmNonProduksi_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.resx">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
     </EmbeddedResource>
@@ -3765,6 +3780,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Enginering\FrmDetailPerbaikan.resx">
       <DependentUpon>FrmDetailPerbaikan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.resx">
+      <DependentUpon>FrmNonProduksiDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Injection\FrmInjectionShot.resx">
       <DependentUpon>FrmInjectionShot.vb</DependentUpon>
