@@ -112,14 +112,14 @@ Partial Class FrmMaterialPainting_CKR
         Me.GroupBox1.Controls.Add(Me.TxtAkumulasiPemakaianRp)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 28)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1159, 188)
+        Me.GroupBox1.Size = New System.Drawing.Size(1159, 115)
         Me.GroupBox1.TabIndex = 20
         Me.GroupBox1.TabStop = False
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(576, 77)
+        Me.Label8.Location = New System.Drawing.Point(576, 65)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(80, 13)
         Me.Label8.TabIndex = 65
@@ -128,7 +128,7 @@ Partial Class FrmMaterialPainting_CKR
         'TxtProduksiOKAll
         '
         Me.TxtProduksiOKAll.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtProduksiOKAll.Location = New System.Drawing.Point(691, 74)
+        Me.TxtProduksiOKAll.Location = New System.Drawing.Point(691, 65)
         Me.TxtProduksiOKAll.Name = "TxtProduksiOKAll"
         Me.TxtProduksiOKAll.ReadOnly = True
         Me.TxtProduksiOKAll.Size = New System.Drawing.Size(100, 20)
@@ -137,7 +137,7 @@ Partial Class FrmMaterialPainting_CKR
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(576, 52)
+        Me.Label7.Location = New System.Drawing.Point(576, 44)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(107, 13)
         Me.Label7.TabIndex = 63
@@ -146,7 +146,7 @@ Partial Class FrmMaterialPainting_CKR
         'TxtProduksiOKPaint
         '
         Me.TxtProduksiOKPaint.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtProduksiOKPaint.Location = New System.Drawing.Point(691, 48)
+        Me.TxtProduksiOKPaint.Location = New System.Drawing.Point(691, 44)
         Me.TxtProduksiOKPaint.Name = "TxtProduksiOKPaint"
         Me.TxtProduksiOKPaint.ReadOnly = True
         Me.TxtProduksiOKPaint.Size = New System.Drawing.Size(100, 20)
@@ -173,7 +173,7 @@ Partial Class FrmMaterialPainting_CKR
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(280, 51)
+        Me.Label6.Location = New System.Drawing.Point(280, 44)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(158, 13)
         Me.Label6.TabIndex = 59
@@ -182,7 +182,7 @@ Partial Class FrmMaterialPainting_CKR
         'TxtAkumulasiPemakaianLiter
         '
         Me.TxtAkumulasiPemakaianLiter.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtAkumulasiPemakaianLiter.Location = New System.Drawing.Point(442, 48)
+        Me.TxtAkumulasiPemakaianLiter.Location = New System.Drawing.Point(442, 44)
         Me.TxtAkumulasiPemakaianLiter.Name = "TxtAkumulasiPemakaianLiter"
         Me.TxtAkumulasiPemakaianLiter.ReadOnly = True
         Me.TxtAkumulasiPemakaianLiter.Size = New System.Drawing.Size(100, 20)
@@ -191,7 +191,7 @@ Partial Class FrmMaterialPainting_CKR
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(19, 78)
+        Me.Label4.Location = New System.Drawing.Point(19, 65)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(54, 13)
         Me.Label4.TabIndex = 57
@@ -200,7 +200,7 @@ Partial Class FrmMaterialPainting_CKR
         'TxtAktualRp
         '
         Me.TxtAktualRp.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtAktualRp.Location = New System.Drawing.Point(152, 75)
+        Me.TxtAktualRp.Location = New System.Drawing.Point(152, 65)
         Me.TxtAktualRp.Name = "TxtAktualRp"
         Me.TxtAktualRp.ReadOnly = True
         Me.TxtAktualRp.Size = New System.Drawing.Size(100, 20)
@@ -237,7 +237,7 @@ Partial Class FrmMaterialPainting_CKR
         'txtPercentPainting
         '
         Me.txtPercentPainting.BackColor = System.Drawing.SystemColors.Window
-        Me.txtPercentPainting.Location = New System.Drawing.Point(940, 78)
+        Me.txtPercentPainting.Location = New System.Drawing.Point(940, 65)
         Me.txtPercentPainting.Name = "txtPercentPainting"
         Me.txtPercentPainting.ReadOnly = True
         Me.txtPercentPainting.Size = New System.Drawing.Size(100, 20)
@@ -246,7 +246,7 @@ Partial Class FrmMaterialPainting_CKR
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(839, 81)
+        Me.Label2.Location = New System.Drawing.Point(839, 65)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(56, 13)
         Me.Label2.TabIndex = 51
@@ -255,7 +255,7 @@ Partial Class FrmMaterialPainting_CKR
         'TxtAktualLiter
         '
         Me.TxtAktualLiter.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtAktualLiter.Location = New System.Drawing.Point(442, 74)
+        Me.TxtAktualLiter.Location = New System.Drawing.Point(442, 65)
         Me.TxtAktualLiter.Name = "TxtAktualLiter"
         Me.TxtAktualLiter.ReadOnly = True
         Me.TxtAktualLiter.Size = New System.Drawing.Size(100, 20)
@@ -264,7 +264,7 @@ Partial Class FrmMaterialPainting_CKR
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(280, 78)
+        Me.Label1.Location = New System.Drawing.Point(280, 65)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(84, 13)
         Me.Label1.TabIndex = 49
@@ -273,7 +273,7 @@ Partial Class FrmMaterialPainting_CKR
         'TxtPercentTarget
         '
         Me.TxtPercentTarget.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtPercentTarget.Location = New System.Drawing.Point(940, 52)
+        Me.TxtPercentTarget.Location = New System.Drawing.Point(940, 44)
         Me.TxtPercentTarget.Name = "TxtPercentTarget"
         Me.TxtPercentTarget.ReadOnly = True
         Me.TxtPercentTarget.Size = New System.Drawing.Size(100, 20)
@@ -282,16 +282,16 @@ Partial Class FrmMaterialPainting_CKR
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(19, 136)
+        Me.Label10.Location = New System.Drawing.Point(280, 91)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(15, 13)
+        Me.Label10.Size = New System.Drawing.Size(44, 13)
         Me.Label10.TabIndex = 47
-        Me.Label10.Text = "%"
+        Me.Label10.Text = "Sales %"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(839, 55)
+        Me.Label11.Location = New System.Drawing.Point(839, 44)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(49, 13)
         Me.Label11.TabIndex = 26
@@ -318,7 +318,7 @@ Partial Class FrmMaterialPainting_CKR
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(19, 111)
+        Me.Label9.Location = New System.Drawing.Point(19, 91)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(33, 13)
         Me.Label9.TabIndex = 23
@@ -327,7 +327,7 @@ Partial Class FrmMaterialPainting_CKR
         'TXT
         '
         Me.TXT.AutoSize = True
-        Me.TXT.Location = New System.Drawing.Point(19, 48)
+        Me.TXT.Location = New System.Drawing.Point(19, 44)
         Me.TXT.Name = "TXT"
         Me.TXT.Size = New System.Drawing.Size(128, 13)
         Me.TXT.TabIndex = 22
@@ -354,7 +354,7 @@ Partial Class FrmMaterialPainting_CKR
         'TxtPercentSales
         '
         Me.TxtPercentSales.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtPercentSales.Location = New System.Drawing.Point(152, 134)
+        Me.TxtPercentSales.Location = New System.Drawing.Point(442, 91)
         Me.TxtPercentSales.Name = "TxtPercentSales"
         Me.TxtPercentSales.ReadOnly = True
         Me.TxtPercentSales.Size = New System.Drawing.Size(100, 20)
@@ -363,7 +363,7 @@ Partial Class FrmMaterialPainting_CKR
         'TxtSales
         '
         Me.TxtSales.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtSales.Location = New System.Drawing.Point(152, 108)
+        Me.TxtSales.Location = New System.Drawing.Point(152, 88)
         Me.TxtSales.Name = "TxtSales"
         Me.TxtSales.ReadOnly = True
         Me.TxtSales.Size = New System.Drawing.Size(100, 20)
@@ -372,7 +372,7 @@ Partial Class FrmMaterialPainting_CKR
         'TxtAkumulasiPemakaianRp
         '
         Me.TxtAkumulasiPemakaianRp.BackColor = System.Drawing.SystemColors.Window
-        Me.TxtAkumulasiPemakaianRp.Location = New System.Drawing.Point(152, 45)
+        Me.TxtAkumulasiPemakaianRp.Location = New System.Drawing.Point(152, 44)
         Me.TxtAkumulasiPemakaianRp.Name = "TxtAkumulasiPemakaianRp"
         Me.TxtAkumulasiPemakaianRp.ReadOnly = True
         Me.TxtAkumulasiPemakaianRp.Size = New System.Drawing.Size(100, 20)
@@ -383,10 +383,10 @@ Partial Class FrmMaterialPainting_CKR
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(12, 222)
+        Me.Grid.Location = New System.Drawing.Point(12, 149)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(1159, 236)
+        Me.Grid.Size = New System.Drawing.Size(1159, 299)
         Me.Grid.TabIndex = 21
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -396,6 +396,7 @@ Partial Class FrmMaterialPainting_CKR
         Me.GridView1.GridControl = Me.Grid
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowFooter = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'InvtID
         '
@@ -554,7 +555,7 @@ Partial Class FrmMaterialPainting_CKR
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'FrmMaterialPainting
+        'FrmMaterialPainting_CKR
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1183, 470)

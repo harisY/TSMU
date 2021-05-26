@@ -17,7 +17,7 @@ Public Class FrmMaterialPainting_CKR
     Public rs_ReturnCode As String = ""
     Dim isUpdate As Boolean = False
     Dim ls_Error As String = ""
-    Dim fc_Class As New PemakaianPaintingModel
+    Dim fc_Class As New PemakaianPaintingModel_CKR
 
     Dim GridDtl As GridControl
 
@@ -27,7 +27,7 @@ Public Class FrmMaterialPainting_CKR
     Dim dtGrid As New DataTable
     Dim KodeTrans As String = ""
 
-    Dim ObjPaintingDetail As New PemakaianPaintinglDetailModel
+    Dim ObjPaintingDetail As New PemakaianPaintinglDetailModel_CKR
     Dim TanggalMulai As Date
     Dim TanggalSampai As Date
     Dim Keterangan As String = ""
@@ -279,7 +279,6 @@ Public Class FrmMaterialPainting_CKR
     Private Sub getdataview1()
         Try
 
-
             Dim IsEmpty As Boolean = False
             For i As Integer = 0 To GridView1.RowCount - 1
                 GridView1.MoveFirst()
@@ -316,7 +315,7 @@ Public Class FrmMaterialPainting_CKR
                 fc_Class.ObjDetailPainting.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
 
-                    ObjPaintingDetail = New PemakaianPaintinglDetailModel
+                    ObjPaintingDetail = New PemakaianPaintinglDetailModel_CKR
                     With ObjPaintingDetail
                         .IDTrans = KodeTrans
                         .invtId = Convert.ToString(GridView1.GetRowCellValue(i, "InvtID"))
@@ -349,7 +348,7 @@ Public Class FrmMaterialPainting_CKR
                 fc_Class.ObjDetailPainting.Clear()
                 For i As Integer = 0 To GridView1.RowCount - 1
 
-                    ObjPaintingDetail = New PemakaianPaintinglDetailModel
+                    ObjPaintingDetail = New PemakaianPaintinglDetailModel_CKR
                     With ObjPaintingDetail
                         .IDTrans = KodeTrans
                         .invtId = Convert.ToString(GridView1.GetRowCellValue(i, "InvtID"))

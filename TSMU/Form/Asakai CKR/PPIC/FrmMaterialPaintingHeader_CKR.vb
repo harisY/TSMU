@@ -106,7 +106,7 @@
         Try
             IdTrans = String.Empty
 
-            fc_Class = New PemakaianPaintingModel
+            fc_Class = New PemakaianPaintingModel_CKR
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then

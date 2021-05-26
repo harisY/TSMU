@@ -62,7 +62,7 @@ Public Class PemakaianPaintingModel_CKR
     Public Property TotalStokTNG04 As Double
 
 
-    Public Property ObjDetailPainting() As New Collection(Of PemakaianPaintinglDetailModel)
+    Public Property ObjDetailPainting() As New Collection(Of PemakaianPaintinglDetailModel_CKR)
 
 
     Public Sub New()
@@ -72,7 +72,8 @@ Public Class PemakaianPaintingModel_CKR
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            'dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            dtTable = GetDataTableByParam(Me._Query, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -87,7 +88,8 @@ Public Class PemakaianPaintingModel_CKR
                                    IDTrans,TanggalDari,[1.AktualRP] as AktualRp ,[10.AktualLiter] as AktualLiter From AsakaiPemakaianPainting Where datepart(year, TanggalDari) = '" & tahun & "' AND datepart(month, TanggalDari) = '" & bulan & "' AND datepart(day, TanggalDari) < '" & tanggal & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand(query)
+            'dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             'SummaryPemakaian = Convert.ToDouble(dtTable.Compute("SUM(TotalPemakaian)", "IDTrans > 2"))
             Dim hitungRp As Double = 0
             Dim HitungLiter As Double = 0
@@ -134,7 +136,8 @@ Public Class PemakaianPaintingModel_CKR
                                     FROM AsakaiPemakaianPainting WHERE AsakaiPemakaianPainting.IDTrans = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand(query)
+            'dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.IDTrans = Trim(.Item(0) & "")
@@ -184,11 +187,9 @@ Public Class PemakaianPaintingModel_CKR
                                     ,AsakaiPaintingDetail.Pemakaian as Pemakaian
                                     ,AsakaiPaintingDetail.Harga as Harga
                                     ,AsakaiPaintingDetail.TotalRP as Amount
-                                    FROM AsakaiPaintingDetail Left join Inventory on AsakaiPaintingDetail.invtId =Inventory.InvtID where AsakaiPaintingDetail.IDTrans  = '" & ID & "'"
+                                    FROM AsakaiPaintingDetail Left join New_BOM.dbo.Inventory on AsakaiPaintingDetail.invtId = New_BOM.dbo.Inventory.InvtID where AsakaiPaintingDetail.IDTrans  = '" & ID & "'"
             Dim dtTable As New DataTable
-            'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand(query)
-
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -200,8 +201,7 @@ Public Class PemakaianPaintingModel_CKR
             Dim ls_SP As String = "SELECT TOP 1 [IDTrans],TanggalSampai                   
                                     FROM [AsakaiPemakaianPainting] where IDTrans = '" & IDTrans & "' or TanggalSampai >= '" & HeadTanggalSampai & "' "
             Dim dtTable As New DataTable
-            'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.IDTrans & "]")
@@ -217,32 +217,33 @@ Public Class PemakaianPaintingModel_CKR
 
     Public Function GetIDTransAuto()
         Try
-            Dim Tahun As String
+            Dim Tahun, Bulan As String
             Tahun = Format(Now, "yy")
+            Bulan = Format(Now, "MM")
 
             Dim ls_SP As String = "SELECT [IDTrans]                   
                                     FROM [AsakaiPemakaianPainting] order by IDTrans desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            Dim Ulang As String = Tahun
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
+            Dim Ulang As String = Tahun & Bulan
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
-                IDTrans = "P" & Tahun & "0001"
+                IDTrans = "P" & Tahun & Bulan & "0001"
             Else
                 IDTrans = dtTable.Rows(0).Item("IDTrans")
-                IDTrans = Microsoft.VisualBasic.Mid(IDTrans, 2, 2)
+                IDTrans = Microsoft.VisualBasic.Mid(IDTrans, 2, 4)
                 If IDTrans <> Ulang Then
-                    IDTrans = "P" & Tahun & "0001"
+                    IDTrans = "P" & Tahun & Bulan & "0001"
                 Else
                     IDTrans = dtTable.Rows(0).Item("IDTrans")
-                    IDTrans = Val(Microsoft.VisualBasic.Mid(IDTrans, 4, 4)) + 1
+                    IDTrans = Val(Microsoft.VisualBasic.Mid(IDTrans, 6, 4)) + 1
                     If Len(IDTrans) = 1 Then
-                        IDTrans = "P" & Tahun & "000" & IDTrans & ""
+                        IDTrans = "P" & Tahun & Bulan & "000" & IDTrans & ""
                     ElseIf Len(IDTrans) = 2 Then
-                        IDTrans = "P" & Tahun & "00" & IDTrans & ""
+                        IDTrans = "P" & Tahun & Bulan & "00" & IDTrans & ""
                     ElseIf Len(IDTrans) = 3 Then
-                        IDTrans = "P" & Tahun & "0" & IDTrans & ""
+                        IDTrans = "P" & Tahun & Bulan & "0" & IDTrans & ""
                     Else
-                        IDTrans = "P" & Tahun & IDTrans & ""
+                        IDTrans = "P" & Tahun & Bulan & IDTrans & ""
                     End If
 
                 End If
@@ -261,7 +262,7 @@ Public Class PemakaianPaintingModel_CKR
 
     Public Sub InsertPainting()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -386,8 +387,7 @@ Public Class PemakaianPaintingModel_CKR
                                             ," & QVal(gh_Common.Username) & "
                                             ,GETDATE())"
 
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw
         End Try
@@ -398,12 +398,12 @@ Public Class PemakaianPaintingModel_CKR
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiPemakaianPainting WHERE rtrim(IDTrans)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteHeader)
+            ExecQueryWithValue(ls_DeleteHeader, CommandType.Text, Nothing, GetConnStringDbCKR)
 
 
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiPaintingDetail WHERE rtrim(IDTrans)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteDetail)
+            ExecQueryWithValue(ls_DeleteDetail, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw
@@ -414,7 +414,7 @@ Public Class PemakaianPaintingModel_CKR
         Try
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiPaintingDetail WHERE rtrim(IDTrans)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteDetail)
+            ExecQueryWithValue(ls_DeleteDetail, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw
@@ -451,7 +451,7 @@ Public Class PemakaianPaintingModel_CKR
                                     "    [6.Percent Painting] = " & QVal(HeadPercentPainting) & ", " & vbCrLf &
                                     "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTrans = '" & _IDMaterialUsage & "'"
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw ex
         End Try
@@ -534,8 +534,8 @@ Public Class PemakaianPaintinglDetailModel_CKR
             "       " & QVal(Pemakaian) & ", " & vbCrLf &
             "       " & QVal(Harga) & ", " & vbCrLf &
             "       " & QVal(TotalRP) & ")"
-            'ExecQuery(ls_SP)
-            ExecQuery(ls_SP)
+
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw
