@@ -62,13 +62,14 @@ Public Class VendorManagementModel
             Dim query As String = "SELECT [IDTransaksi]
                                  ,[Tanggal]
                                  ,[Shift]
-                                ,[keterangan] as [Keterangan]
+                                 ,[keterangan] as [Keterangan]
                                  ,[subcount] as [Subcount]
                                  ,[InvtId] as [Kode Barang]
                                  ,[InvtName] as [Nama Barang]
                                  ,[Type]
                                  ,[Qty]
                                  ,[Foto] as Gambar
+                                 ,[Foto2] as Gambar2
                                  ,[Problem]
                                  ,[Analisis]
                                  ,[Lot Produksi] as [Lot No]
@@ -76,8 +77,8 @@ Public Class VendorManagementModel
                                  ,[PREVENTIVE ACTION] as [Preventive Action]
                                  ,[Pic]
                                  ,[Target]  
-                                ,[Foto] as [Gambar Hapus]
-                                 ,[Status]
+                                 ,[Foto] as [Gambar Hapus]
+                                 ,[Status] 
                                 From [AsakaiVMProblemDetail] where IDTransaksi  = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)

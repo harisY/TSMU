@@ -12,7 +12,7 @@
         Call combotahun()
         Call combotahunApprove()
         Call comboAccountApprove()
-        Call comboSiteApprove()
+        ' Call comboSiteApprove()
         Call comboDeptApprove()
         Call Status()
 
@@ -23,6 +23,7 @@
         CTahunOpenBudget.Properties.Items.Clear()
         dt = New DataTable
         dt = fc_Class.GetTahun()
+        'CTahunOpenBudget.Properties.Items.Add("ALL")
         For i As Integer = 0 To dt.Rows.Count - 1
             CTahunOpenBudget.Properties.Items.Add(dt.Rows(i).Item(0))
         Next
@@ -32,11 +33,11 @@
 
         'CTahunOpenBudget.Properties.Items.Clear()
         dt = New DataTable
-        dt = fc_Class.GetTahun()
-        CTahunApprove.Properties.DataSource = Nothing
-        CTahunApprove.Properties.DataSource = dt
-        CTahunApprove.Properties.ValueMember = "Tahun"
-        CTahunApprove.Properties.DisplayMember = "Tahun"
+        dt = fc_Class.GetTahunApprove()
+        Tahun_Approve.Properties.DataSource = Nothing
+        Tahun_Approve.Properties.DataSource = dt
+        Tahun_Approve.Properties.ValueMember = "Tahun"
+        Tahun_Approve.Properties.DisplayMember = "Tahun"
     End Sub
 
     Private Sub comboAccountApprove()
@@ -44,33 +45,33 @@
         'CTahunOpenBudget.Properties.Items.Clear()
         dt = New DataTable
         dt = fc_Class.GetAccountApprove()
-        C_Account_Approve.Properties.DataSource = Nothing
-        C_Account_Approve.Properties.DataSource = dt
-        C_Account_Approve.Properties.ValueMember = "AcctID"
-        C_Account_Approve.Properties.DisplayMember = "AcctName"
+        Account_Approve.Properties.DataSource = Nothing
+        Account_Approve.Properties.DataSource = dt
+        Account_Approve.Properties.ValueMember = "AcctID"
+        Account_Approve.Properties.DisplayMember = "AcctName"
 
     End Sub
 
-    Private Sub comboSiteApprove()
+    'Private Sub comboSiteApprove()
 
-        'CTahunOpenBudget.Properties.Items.Clear()
-        dt = New DataTable
-        dt = fc_Class.GetSiteApprove()
-        C_Site_Approve.Properties.DataSource = Nothing
-        C_Site_Approve.Properties.DataSource = dt
-        C_Site_Approve.Properties.ValueMember = "SiteID"
-        C_Site_Approve.Properties.DisplayMember = "SiteID"
+    '    'CTahunOpenBudget.Properties.Items.Clear()
+    '    dt = New DataTable
+    '    dt = fc_Class.GetSiteApprove()
+    '    Site_Approve.Properties.DataSource = Nothing
+    '    Site_Approve.Properties.DataSource = dt
+    '    Site_Approve.Properties.ValueMember = "SiteID"
+    '    Site_Approve.Properties.DisplayMember = "SiteID"
 
-    End Sub
+    'End Sub
     Private Sub comboDeptApprove()
 
         'CTahunOpenBudget.Properties.Items.Clear()
         dt = New DataTable
         dt = fc_Class.GetDeptApprove()
-        C_Dept.Properties.DataSource = Nothing
-        C_Dept.Properties.DataSource = dt
-        C_Dept.Properties.ValueMember = "DeptID"
-        C_Dept.Properties.DisplayMember = "DeptID"
+        Dept_Approve.Properties.DataSource = Nothing
+        Dept_Approve.Properties.DataSource = dt
+        Dept_Approve.Properties.ValueMember = "DeptID"
+        Dept_Approve.Properties.DisplayMember = "DeptName"
 
     End Sub
 
@@ -221,45 +222,81 @@
             End If
 
             Dim a As Boolean = False
-                Dim konfirmasi = MsgBox("Apakah Budget akan di Buka?", vbQuestion + vbYesNo, "Konfirmasi")
-                If konfirmasi = vbYes Then
-                    a = fc_Class.Open_Budget(CTahunOpenBudget.Text, CSemester.Text, "Open")
-                    If a = True Then
-                        MessageBox.Show("Budget Sukses di Buka",
+            Dim konfirmasi = MsgBox("Apakah Budget akan di Buka?", vbQuestion + vbYesNo, "Konfirmasi")
+            If konfirmasi = vbYes Then
+                a = fc_Class.Open_Budget(CTahunOpenBudget.Text, CSemester.Text, "Open")
+                If a = True Then
+                    MessageBox.Show("Budget Sukses di Buka",
                                       "Informasi",
                                       MessageBoxButtons.OK,
                                       MessageBoxIcon.Information,
                                       MessageBoxDefaultButton.Button1)
-                    Else
-                        MessageBox.Show("Budget Gagal!",
+                Else
+                    MessageBox.Show("Budget Gagal!",
                                       "Warning",
                                       MessageBoxButtons.OK,
                                       MessageBoxIcon.Warning,
                                       MessageBoxDefaultButton.Button1)
-                    End If
                 End If
-                Call Status()
+            End If
+            Call Status()
 
         End If
 
     End Sub
 
-    Private Sub C_Dept_EditValueChanged(sender As Object, e As EventArgs) Handles C_Dept.EditValueChanged
+    Private Sub C_Dept_EditValueChanged(sender As Object, e As EventArgs) Handles Dept_Approve.EditValueChanged
 
     End Sub
 
     Private Sub BApprove_Click(sender As Object, e As EventArgs) Handles BApprove.Click
 
-        If CTahunApprove.EditValue = "" Or tpersen.EditValue = "" Then
+
+
+        If Tahun_Approve.EditValue = "" Or Persen_Approve.EditValue = "" Then
             MessageBox.Show("Periksa Tahun atau Persen ",
                                      "Waning",
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Warning,
                                      MessageBoxDefaultButton.Button1)
         Else
-            'fc_Class.ApproveBOD(CTahunApprove.EditValue,)
+            Dim A As Double = 0
+            A = Convert.ToDouble(Persen_Approve.EditValue)
+            If A > 100 Then
+                MessageBox.Show("Nilai Persen Tidak Boleh Lebih dari 100 ",
+                                     "Waning",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Warning,
+                                     MessageBoxDefaultButton.Button1)
+            Else
+                fc_Class.ApproveBOD(Tahun_Approve.EditValue, Semester_Approve.EditValue, Dept_Approve.EditValue, Account_Approve.EditValue, Site_Approve.EditValue, Convert.ToDouble(Persen_Approve.EditValue))
+                Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
+            End If
 
         End If
+
+    End Sub
+
+    Private Sub tpersenApprove_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Persen_Approve.KeyPress
+
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not (((tombol >= 48) And (tombol <= 57)) Or (tombol = 8) Or (tombol = 13) Or (tombol = 46)) Then
+            e.Handled = True
+        End If
+
+
+
+    End Sub
+
+    Private Sub tpersenApprove_EditValueChanged(sender As Object, e As EventArgs) Handles Persen_Approve.EditValueChanged
+
+
+
+    End Sub
+
+    Private Sub Site_Approve_EditValueChanged(sender As Object, e As EventArgs) Handles Site_Approve.EditValueChanged
 
     End Sub
 End Class

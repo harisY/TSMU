@@ -119,7 +119,7 @@ Partial Class FrmPemakaianMaterial
         Me.TxtBarisMaterial2.Name = "TxtBarisMaterial2"
         Me.TxtBarisMaterial2.Size = New System.Drawing.Size(69, 20)
         Me.TxtBarisMaterial2.TabIndex = 9
-        Me.TxtBarisMaterial2.Text = "CN286"
+        Me.TxtBarisMaterial2.Text = "CV296"
         '
         'Label2
         '
@@ -172,7 +172,7 @@ Partial Class FrmPemakaianMaterial
         Me.TxtBarisKomponen2.Name = "TxtBarisKomponen2"
         Me.TxtBarisKomponen2.Size = New System.Drawing.Size(69, 20)
         Me.TxtBarisKomponen2.TabIndex = 16
-        Me.TxtBarisKomponen2.Text = "CN588"
+        Me.TxtBarisKomponen2.Text = "CN644"
         '
         'TxtBarisKomponen1
         '
@@ -180,7 +180,7 @@ Partial Class FrmPemakaianMaterial
         Me.TxtBarisKomponen1.Name = "TxtBarisKomponen1"
         Me.TxtBarisKomponen1.Size = New System.Drawing.Size(78, 20)
         Me.TxtBarisKomponen1.TabIndex = 15
-        Me.TxtBarisKomponen1.Text = "A293"
+        Me.TxtBarisKomponen1.Text = "A303"
         '
         'Label7
         '

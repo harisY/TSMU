@@ -235,6 +235,7 @@
     <Compile Include="Classes\Circulation\clsCR_ApproveDivHead.vb" />
     <Compile Include="Classes\Circulation\clsCR_CreateUser.vb" />
     <Compile Include="Classes\ClsDashbard.vb" />
+    <Compile Include="Classes\clsReceptPO.vb" />
     <Compile Include="Classes\clsSalesBudgetCalculate.vb" />
     <Compile Include="Classes\ComboBoxObj.vb" />
     <Compile Include="Classes\EBUDGET\Cls_eBudget.vb" />
@@ -586,6 +587,12 @@
       <DependentUpon>FrmPaymentDirect.vb</DependentUpon>
     </Compile>
     <Compile Include="Direct\FrmPaymentDirect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct\FrmPaymentDirect2.Designer.vb">
+      <DependentUpon>FrmPaymentDirect2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Direct\FrmPaymentDirect2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Direct\FrmPettyCash.Designer.vb">
@@ -1218,6 +1225,12 @@
       <DependentUpon>suspendreport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksi_CKR.Designer.vb">
+      <DependentUpon>FrmNonProduksi_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksi_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.Designer.vb">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
     </Compile>
@@ -1234,6 +1247,12 @@
       <DependentUpon>FrmDetailPerbaikan.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Asakai\Enginering\FrmDetailPerbaikan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.Designer.vb">
+      <DependentUpon>FrmNonProduksiDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Injection\FrmInjectionShot.Designer.vb">
@@ -1802,6 +1821,12 @@
       <DependentUpon>frmKanbanInternalTng.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Common\frmKanbanInternalTng.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Common\FrmReceipt_PO.Designer.vb">
+      <DependentUpon>FrmReceipt_PO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmReceipt_PO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Common\frmSoRegTemplate.Designer.vb">
@@ -2516,6 +2541,12 @@
       <DependentUpon>frmReport_Budget_NonBoM.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Report\frmReport_Budget_NonBoM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Outgoing.Designer.vb">
+      <DependentUpon>frmReport_Outgoing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\frmReport_Outgoing.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Report\frmReport_Harigami1.Designer.vb">
@@ -3413,6 +3444,7 @@
     <Compile Include="Services\PPICService.vb" />
     <Compile Include="Services\ProblemService.vb" />
     <Compile Include="Services\QcOutgoingService.vb" />
+    <Compile Include="Services\ReportService.vb" />
     <Compile Include="Services\SettingService.vb" />
     <Compile Include="Services\SolomonService.vb" />
     <Compile Include="Services\TForecastPrice_TempService.vb" />
@@ -3535,6 +3567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmMktUploadPriceDetail.resx">
       <DependentUpon>FrmMktUploadPriceDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct\FrmPaymentDirect2.resx">
+      <DependentUpon>FrmPaymentDirect2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\FrmSuspendSettleCC.resx">
       <DependentUpon>FrmSuspendSettleCC.vb</DependentUpon>
@@ -3753,6 +3788,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptBankTransfer3.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Non Produksi\FrmNonProduksi_CKR.resx">
+      <DependentUpon>FrmNonProduksi_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.resx">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
     </EmbeddedResource>
@@ -3761,6 +3799,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Enginering\FrmDetailPerbaikan.resx">
       <DependentUpon>FrmDetailPerbaikan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.resx">
+      <DependentUpon>FrmNonProduksiDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Injection\FrmInjectionShot.resx">
       <DependentUpon>FrmInjectionShot.vb</DependentUpon>
@@ -4043,6 +4084,9 @@
     <EmbeddedResource Include="Form\Common\frmKanbanInternalTng.resx">
       <DependentUpon>frmKanbanInternalTng.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmReceipt_PO.resx">
+      <DependentUpon>FrmReceipt_PO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmSoRegTemplate.resx">
       <DependentUpon>frmSoRegTemplate.vb</DependentUpon>
     </EmbeddedResource>
@@ -4248,6 +4292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Budget_NonBoM.resx">
       <DependentUpon>frmReport_Budget_NonBoM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Report\frmReport_Outgoing.resx">
+      <DependentUpon>frmReport_Outgoing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmReport_Harigami1.resx">
       <DependentUpon>frmReport_Harigami1.vb</DependentUpon>

@@ -23,6 +23,7 @@ Public Class Frm_CR_UserCreateHeader
 
     Dim pDate2 As Date
     Dim pDate1 As Date
+    Dim SelectTab As String
 
     Private Sub Frm_CR_UserCreateHeader_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -34,6 +35,10 @@ Public Class Frm_CR_UserCreateHeader
 
         If gh_Common.GroupID = "1PUR" Then
             Call LoadGrid_Purchase()
+            Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, True)
+
+        Else
+            Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, True)
         End If
 
         bb_SetDisplayChangeConfirmation = False
@@ -43,8 +48,27 @@ Public Class Frm_CR_UserCreateHeader
 
         'Call Sub_Dept(gh_Common.GroupID)
         Dim dtGrid As New DataTable
-        Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, True)
     End Sub
+
+    Public Overrides Sub Proc_Excel()
+        If TabControl1.SelectedTab.Name = "TabPage2" Then
+            Try
+                If GridViewPurchase.RowCount > 0 Then
+                    SaveToExcel(GridPurchase)
+                Else
+                    MsgBox("Grid Kosong !")
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+                WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            End Try
+        Else
+            MsgBox("Pilih Tab Input PO")
+        End If
+
+    End Sub
+
+
     Private Sub Sub_Dept(Dept_Sub As String)
         Try
 
@@ -484,5 +508,9 @@ Public Class Frm_CR_UserCreateHeader
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
+    End Sub
+
+    Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
+        SelectTab = TabControl1.SelectedTab.Name
     End Sub
 End Class

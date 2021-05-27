@@ -80,6 +80,19 @@
             Throw ex
         End Try
     End Function
+    Public Function GetVendor2() As DataTable
+        Try
+            Dim sql As String = "SELECT 
+ 	                                VendID [Vendor ID],
+                                    name [Suppllier Name]
+                                FROM vendor order by name"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function GetBank() As DataTable
         Try
             Dim sql As String = "SELECT 
