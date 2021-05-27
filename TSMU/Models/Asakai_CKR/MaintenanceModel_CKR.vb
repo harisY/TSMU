@@ -37,7 +37,7 @@ Public Class MaintenanceModel_CKR
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me.Query)
+            dtTable = GetDataTableByParam(Me.Query, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -48,7 +48,7 @@ Public Class MaintenanceModel_CKR
         Try
             Dim Script As String = "SELECT IDTransaksi as ID,Convert(varchar,Tanggal,105) as Tanggal from AsakaiMaintenanceDownTime  Where datepart(year, Tanggal) = '" & Format((Date.Now), "yyyy") & "' AND datepart(month, Tanggal) = '" & Format((Date.Now), "MM") & "' order by Tanggal Desc"
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Script)
+            dtTable = GetDataTableByParam(Script, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -59,15 +59,15 @@ Public Class MaintenanceModel_CKR
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiMaintenance WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteHeader)
+            ExecQueryWithValue(ls_DeleteHeader, CommandType.Text, Nothing, GetConnStringDbCKR)
 
 
             'DeleteDetail
             Dim ls_DeleteDetailMesin As String = "DELETE FROM AsakaiMaintenanceMesin WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteDetailMesin)
+            ExecQueryWithValue(ls_DeleteDetailMesin, CommandType.Text, Nothing, GetConnStringDbCKR)
 
             Dim ls_DeleteDetailMold As String = "DELETE FROM AsakaiMaintenanceMold WHERE rtrim(IDTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteDetailMold)
+            ExecQueryWithValue(ls_DeleteDetailMold, CommandType.Text, Nothing, GetConnStringDbCKR)
 
 
         Catch ex As Exception
@@ -91,7 +91,7 @@ Public Class MaintenanceModel_CKR
                               inner Join AsakaiMaintenanceMold on AsakaiMaintenance.IDTransaksi = AsakaiMaintenanceMold.IDTransaksi  where AsakaiMaintenance.IDTransaksi = '" & ID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.H_IDTransaksi = Trim(.Item(0) & "")
@@ -121,7 +121,7 @@ Public Class MaintenanceModel_CKR
 
             Dim ls_SP As String = "SELECT [IDTransaksi] FROM [AsakaiMaintenance] order by IDTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "MT" & Tahun & "0001"
@@ -154,7 +154,7 @@ Public Class MaintenanceModel_CKR
 
     Public Sub InsertMain(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -194,9 +194,8 @@ Public Class MaintenanceModel_CKR
                                             ," & QVal(H_Tanggal) & "
                                             ," & QVal(gh_Common.Username) & "
                                             ,GETDATE())"
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
 
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
         Catch ex As Exception
             Throw
         End Try
@@ -222,8 +221,8 @@ Public Class MaintenanceModel_CKR
                                             ," & QVal(Mesin_Balance) & "
                                             ," & QVal(KeteranganMesin) & ")"
 
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
+
         Catch ex As Exception
             Throw
         End Try
@@ -249,8 +248,8 @@ Public Class MaintenanceModel_CKR
                                             ," & QVal(Mold_Balance) & "
                                             ," & QVal(Keterangan_Mold) & ")"
 
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
+
         Catch ex As Exception
             Throw
         End Try
@@ -259,7 +258,7 @@ Public Class MaintenanceModel_CKR
 
     Public Sub UpdateData(IdTransaksi As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -292,7 +291,7 @@ Public Class MaintenanceModel_CKR
                                     "UPDATE AsakaiMaintenance" & vbCrLf &
                                     "SET UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw ex
         End Try
@@ -306,7 +305,7 @@ Public Class MaintenanceModel_CKR
                                      "    [2. Actual]  = " & QVal(Mesin_Actual) & ", " & vbCrLf &
                                    "    [3. Balance]  = " & QVal(Mesin_Balance) & ", " & vbCrLf &
                                     "    [4. Keterangan]= " & QVal(KeteranganMesin) & " WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw ex
         End Try
@@ -320,7 +319,7 @@ Public Class MaintenanceModel_CKR
                                     "    [2. Actual]  = " & QVal(Mold_Actual) & ", " & vbCrLf &
                                     "    [3. Balance]  = " & QVal(Mold_Balance) & ", " & vbCrLf &
                                     "    [4. Keterangan]= " & QVal(Keterangan_Mold) & " WHERE IDTransaksi = '" & _IDTrans & "'"
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw ex
         End Try
@@ -332,7 +331,7 @@ Public Class MaintenanceModel_CKR
                                     FROM [AsakaiMaintenance] where Tanggal = '" & H_Tanggal & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Format(Me.H_Tanggal, "dd-MM-yyyy") & "]")
@@ -358,7 +357,7 @@ Public Class MaintenanceModel_CKR
                                     Where datepart(year, AsakaiMaintenance.[Tanggal]) = '" & tahun & "' AND datepart(month, AsakaiMaintenance.[Tanggal]) = '" & bulan & "' AND datepart(day, AsakaiMaintenance.[Tanggal]) < '" & tanggal & "'
                                     order by AsakaiMaintenance.[Tanggal] Desc"
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
 
 
             Dim Mesin As Double = 0

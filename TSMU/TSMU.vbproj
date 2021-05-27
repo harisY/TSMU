@@ -1267,6 +1267,18 @@
     <Compile Include="Form\Asakai CKR\Injection\FrmInjection_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Enginering\FrmMaintenance_CKR.Designer.vb">
+      <DependentUpon>FrmMaintenance_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Enginering\FrmMaintenance_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Enginering\FrmMaintenanceDetail_CKR.Designer.vb">
+      <DependentUpon>FrmMaintenanceDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Enginering\FrmMaintenanceDetail_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Injection\FrmInjectionShot.Designer.vb">
       <DependentUpon>FrmInjectionShot.vb</DependentUpon>
     </Compile>
@@ -3883,6 +3895,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai CKR\Injection\FrmInjection_CKR.resx">
       <DependentUpon>FrmInjection_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Enginering\FrmMaintenance_CKR.resx">
+      <DependentUpon>FrmMaintenance_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Enginering\FrmMaintenanceDetail_CKR.resx">
+      <DependentUpon>FrmMaintenanceDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Injection\FrmInjectionShot.resx">
       <DependentUpon>FrmInjectionShot.vb</DependentUpon>
