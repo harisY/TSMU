@@ -1261,10 +1261,10 @@
     <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai CKR\Injection\FrmInjection - Copy.Designer.vb">
-      <DependentUpon>FrmInjection - Copy.vb</DependentUpon>
+    <Compile Include="Form\Asakai CKR\Injection\FrmInjection_CKR.Designer.vb">
+      <DependentUpon>FrmInjection_CKR.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai CKR\Injection\FrmInjection - Copy.vb">
+    <Compile Include="Form\Asakai CKR\Injection\FrmInjection_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Injection\FrmInjectionShot.Designer.vb">
@@ -3857,8 +3857,8 @@
     <EmbeddedResource Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.resx">
       <DependentUpon>FrmNonProduksiDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai CKR\Injection\FrmInjection - Copy.resx">
-      <DependentUpon>FrmInjection - Copy.vb</DependentUpon>
+    <EmbeddedResource Include="Form\Asakai CKR\Injection\FrmInjection_CKR.resx">
+      <DependentUpon>FrmInjection_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Injection\FrmInjectionShot.resx">
       <DependentUpon>FrmInjectionShot.vb</DependentUpon>

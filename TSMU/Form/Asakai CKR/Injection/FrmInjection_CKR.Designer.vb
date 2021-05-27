@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmInjection
+Partial Class FrmInjection_CKR
     Inherits TSMU.baseForm
 
     'Form overrides dispose to clean up the component list.
@@ -40,10 +40,10 @@ Partial Class FrmInjection
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(0, 160)
+        Me.Grid.Location = New System.Drawing.Point(0, 99)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(770, 211)
+        Me.Grid.Size = New System.Drawing.Size(770, 272)
         Me.Grid.TabIndex = 7
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -53,6 +53,7 @@ Partial Class FrmInjection
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'Panel1
         '
@@ -67,24 +68,25 @@ Partial Class FrmInjection
         Me.Panel1.Controls.Add(Me.dtTanggal)
         Me.Panel1.Location = New System.Drawing.Point(0, 28)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(770, 126)
+        Me.Panel1.Size = New System.Drawing.Size(770, 65)
         Me.Panel1.TabIndex = 8
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(247, 87)
+        Me.ProgressBar1.Location = New System.Drawing.Point(392, 13)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(361, 23)
         Me.ProgressBar1.TabIndex = 12
         '
         'TxtFileName
         '
+        Me.TxtFileName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtFileName.BackColor = System.Drawing.Color.White
         Me.TxtFileName.Location = New System.Drawing.Point(114, 39)
-        Me.TxtFileName.Multiline = True
         Me.TxtFileName.Name = "TxtFileName"
         Me.TxtFileName.ReadOnly = True
-        Me.TxtFileName.Size = New System.Drawing.Size(494, 42)
+        Me.TxtFileName.Size = New System.Drawing.Size(644, 20)
         Me.TxtFileName.TabIndex = 11
         '
         'Label2
@@ -107,11 +109,11 @@ Partial Class FrmInjection
         '
         'BtnUploadExcel
         '
-        Me.BtnUploadExcel.Location = New System.Drawing.Point(114, 87)
+        Me.BtnUploadExcel.Location = New System.Drawing.Point(259, 13)
         Me.BtnUploadExcel.Name = "BtnUploadExcel"
         Me.BtnUploadExcel.Size = New System.Drawing.Size(127, 23)
         Me.BtnUploadExcel.TabIndex = 8
-        Me.BtnUploadExcel.Text = "Browse File"
+        Me.BtnUploadExcel.Text = "Browse File CKR"
         Me.BtnUploadExcel.UseVisualStyleBackColor = True
         '
         'dtTanggal
@@ -126,13 +128,13 @@ Partial Class FrmInjection
         'Timer1
         '
         '
-        'FrmInjection
+        'FrmInjection_CKR
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(770, 383)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Grid)
-        Me.Name = "FrmInjection"
+        Me.Name = "FrmInjection_CKR"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()

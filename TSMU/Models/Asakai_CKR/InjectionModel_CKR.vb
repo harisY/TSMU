@@ -10,11 +10,11 @@ Public Class InjectionModel_CKR
     Public Property H_UpdatedBy As Char
     Public Property H_UpdatedDate As DateTime
 
-    Public Property ObjDetailInjectionLB() As New Collection(Of InjectionDetailModel)
-    Public Property ObjDetailInjectionPPA() As New Collection(Of InjectionDetailModel)
-    Public Property ObjDetailInjectionPA() As New Collection(Of InjectionDetailModel)
-    Public Property ObjDetailInjectionREJECT() As New Collection(Of InjectionDetailModel)
-    Public Property ObjDetailInjectionRECOVERY() As New Collection(Of InjectionDetailModel)
+    Public Property ObjDetailInjectionLB() As New Collection(Of InjectionDetailModel_CKR)
+    Public Property ObjDetailInjectionPPA() As New Collection(Of InjectionDetailModel_CKR)
+    Public Property ObjDetailInjectionPA() As New Collection(Of InjectionDetailModel_CKR)
+    Public Property ObjDetailInjectionREJECT() As New Collection(Of InjectionDetailModel_CKR)
+    Public Property ObjDetailInjectionRECOVERY() As New Collection(Of InjectionDetailModel_CKR)
 
 #Region "Planing aktual"
 
@@ -124,7 +124,8 @@ Public Class InjectionModel_CKR
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            'dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            dtTable = GetDataTableByParam(Me._Query, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -134,37 +135,64 @@ Public Class InjectionModel_CKR
     Public Sub GetIDTransAuto()
         Dim fc_ClassDetail As New InjectionDetailModel
         Try
-            Dim Tahun As String
+            Dim Tahun, Bulan As String
             Tahun = Format(Now, "yy")
+            Bulan = Format(Now, "MM")
 
-            Dim ls_SP As String = "SELECT [IdTransaksi]                   
-                                    FROM [AsakaiInjectionHeader] order by IdTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
+            Dim ls_SP As String = "SELECT Top 1 [IdTransaksi]                   
+                                    FROM [AsakaiInjectionHeader]
+                                    where substring ([IdTransaksi],4,2) = '" & Tahun & "'
+                                    and substring ([IdTransaksi],6,2) = '" & Bulan & "'
+                                    and Dept = '" & gh_Common.GroupID & "'
+                                    order by substring([IdTransaksi], 8, 3) desc"
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            Dim Ulang As String = Tahun
-            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
-                IDTrans = "INJ" & Tahun & "0001"
-            Else
-                IDTrans = dtTable.Rows(0).Item("IdTransaksi")
-                IDTrans = Microsoft.VisualBasic.Mid(IDTrans, 4, 2)
-                If IDTrans <> Ulang Then
-                    IDTrans = "INJ" & Tahun & "0001"
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
+            Dim Ulang As String = Tahun & Bulan
+
+            If gh_Common.GroupID = "3INJ" Then
+                If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
+                    IDTrans = "INA" & Tahun & Bulan & "001"
                 Else
                     IDTrans = dtTable.Rows(0).Item("IdTransaksi")
-                    IDTrans = Val(Microsoft.VisualBasic.Mid(IDTrans, 6, 4)) + 1
-                    If Len(IDTrans) = 1 Then
-                        IDTrans = "INJ" & Tahun & "000" & IDTrans & ""
-                    ElseIf Len(IDTrans) = 2 Then
-                        IDTrans = "INJ" & Tahun & "00" & IDTrans & ""
-                    ElseIf Len(IDTrans) = 3 Then
-                        IDTrans = "INJ" & Tahun & "0" & IDTrans & ""
+                    IDTrans = Microsoft.VisualBasic.Mid(IDTrans, 4, 4)
+                    If IDTrans <> Ulang Then
+                        IDTrans = "INA" & Tahun & Bulan & "001"
                     Else
-                        IDTrans = "INJ" & Tahun & IDTrans & ""
+                        IDTrans = dtTable.Rows(0).Item("IdTransaksi")
+                        IDTrans = Val(Microsoft.VisualBasic.Mid(IDTrans, 8, 3)) + 1
+                        If Len(IDTrans) = 1 Then
+                            IDTrans = "INA" & Tahun & Bulan & "00" & IDTrans & ""
+                        ElseIf Len(IDTrans) = 2 Then
+                            IDTrans = "INA" & Tahun & Bulan & "0" & IDTrans & ""
+                        Else
+                            IDTrans = "INA" & Tahun & Bulan & IDTrans & ""
+                        End If
+
                     End If
 
                 End If
-
+            Else
+                If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
+                    IDTrans = "INB" & Tahun & Bulan & "001"
+                Else
+                    IDTrans = dtTable.Rows(0).Item("IdTransaksi")
+                    IDTrans = Microsoft.VisualBasic.Mid(IDTrans, 4, 4)
+                    If IDTrans <> Ulang Then
+                        IDTrans = "INB" & Tahun & Bulan & "001"
+                    Else
+                        IDTrans = dtTable.Rows(0).Item("IdTransaksi")
+                        IDTrans = Val(Microsoft.VisualBasic.Mid(IDTrans, 8, 3)) + 1
+                        If Len(IDTrans) = 1 Then
+                            IDTrans = "INB" & Tahun & Bulan & "00" & IDTrans & ""
+                        ElseIf Len(IDTrans) = 2 Then
+                            IDTrans = "INB" & Tahun & Bulan & "0" & IDTrans & ""
+                        Else
+                            IDTrans = "INB" & Tahun & Bulan & IDTrans & ""
+                        End If
+                    End If
+                End If
             End If
+
 
             fc_ClassDetail.D_IdTransaksi = IDTrans
 
@@ -175,7 +203,7 @@ Public Class InjectionModel_CKR
 
     Public Sub InsertInjection()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -185,8 +213,6 @@ Public Class InjectionModel_CKR
                     Try
 
                         InsertHeader()
-
-
                         For i As Integer = 0 To ObjDetailInjectionLB.Count - 1
                             With ObjDetailInjectionLB(i)
                                 .InsertInjectionDetailsLB(IDTrans)
@@ -260,8 +286,7 @@ Public Class InjectionModel_CKR
             "       " & QVal(PA_PRODUCTIVITY) & ", " & vbCrLf &
             "       " & QVal(PA_STRAIGHT_PASS) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery(ls_SP)
-
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw
         End Try
@@ -307,7 +332,8 @@ Public Class InjectionModel_CKR
             "       " & QVal(RR_Target_Persen_NG) & ", " & vbCrLf &
             "       " & QVal(RR_Total_Produksi) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery(ls_SP)
+            'ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw
@@ -323,16 +349,17 @@ Public Class InjectionModel_CKR
             Dim ls_SP As String = "INSERT INTO [AsakaiInjectionHeader]
                                            ([IdTransaksi]
                                            ,[Tanggal]
+                                           ,[Dept]
                                            ,[CreatedBy]
                                            ,[CreatedDate])
                                      VALUES 
                                             (" & QVal(IDTrans) & " 
                                             ," & QVal(Me.H_date) & "
+                                            ," & QVal(gh_Common.GroupID) & "
                                             ," & QVal(gh_Common.Username) & "
                                             ,GETDATE())"
 
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw
         End Try
@@ -346,7 +373,7 @@ Public Class InjectionModel_CKR
                                     "    [3. Balance] = " & Math.Round(QVal(Aktual_Mold - Target_Mold), 2) & ", " & vbCrLf &
                                     "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE Tanggal = '" & H_date & "'"
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw ex
         End Try
@@ -359,7 +386,7 @@ Public Class InjectionModel_CKR
                                     "    [3. Balance] = " & QVal(Aktual_Mesin - Target_Mesin) & ", " & vbCrLf &
                                     "    UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE Tanggal = '" & H_date & "'"
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw ex
         End Try
@@ -367,31 +394,54 @@ Public Class InjectionModel_CKR
 
 
     Public Sub Delete(ByVal ID As String)
+
+
         Try
-            'Delete Header
-            Dim ls_DeleteHeader As String = "DELETE FROM AsakaiInjectionHeader WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteHeader)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+
+                        'Delete Header
+                        Dim ls_DeleteHeader As String = "DELETE FROM AsakaiInjectionHeader WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        ExecQueryWithValue(ls_DeleteHeader, CommandType.Text, Nothing, GetConnStringDbCKR)
 
 
-            'DeleteDetail
-            Dim ls_DeletePA As String = "DELETE FROM AsakaiInjectionPA WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeletePA)
+                        'DeleteDetail
+                        Dim ls_DeletePA As String = "DELETE FROM AsakaiInjectionPA WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        ExecQueryWithValue(ls_DeletePA, CommandType.Text, Nothing, GetConnStringDbCKR)
 
-            Dim ls_DeleteRecovery As String = "DELETE FROM AsakaiInjectionRecovery WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteRecovery)
+                        Dim ls_DeleteRecovery As String = "DELETE FROM AsakaiInjectionRecovery WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        ExecQueryWithValue(ls_DeleteRecovery, CommandType.Text, Nothing, GetConnStringDbCKR)
 
-            Dim ls_DeleteRejectRate As String = "DELETE FROM AsakaiInjectionRejectRate WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteRejectRate)
+                        Dim ls_DeleteRejectRate As String = "DELETE FROM AsakaiInjectionRejectRate WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        ExecQueryWithValue(ls_DeleteRejectRate, CommandType.Text, Nothing, GetConnStringDbCKR)
 
-            Dim ls_DeletePPA As String = "DELETE FROM AsakaiInjectioPPA WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeletePPA)
+                        Dim ls_DeletePPA As String = "DELETE FROM AsakaiInjectioPPA WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        ExecQueryWithValue(ls_DeletePPA, CommandType.Text, Nothing, GetConnStringDbCKR)
 
-            Dim ls_DeleteLima As String = "DELETE FROM AsakaiJnjectionLimaBesar WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteLima)
+                        Dim ls_DeleteLima As String = "DELETE FROM AsakaiJnjectionLimaBesar WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        ExecQueryWithValue(ls_DeleteLima, CommandType.Text, Nothing, GetConnStringDbCKR)
 
+
+                        Trans1.Commit()
+
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
         Catch ex As Exception
             Throw
         End Try
+
     End Sub
 
 
@@ -547,7 +597,7 @@ Public Class InjectionDetailModel_CKR
             "       " & QVal(LB_Target) & ", " & vbCrLf &
             "       " & QVal(LB_Status) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw
@@ -598,8 +648,7 @@ Public Class InjectionDetailModel_CKR
             "       " & QVal(PPA_Target) & ", " & vbCrLf &
             "       " & QVal(PPA_Status) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery(ls_SP)
-
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw
         End Try
@@ -643,7 +692,7 @@ Public Class InjectionDetailModel_CKR
             "       " & QVal(R_Balance_OP) & ", " & vbCrLf &
             "       " & QVal(R_Keterangan) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw

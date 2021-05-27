@@ -11,7 +11,7 @@ Imports ExcelDataReader
 Imports GemBox.Spreadsheet
 Imports System.Data.OleDb
 
-Public Class FrmInjection
+Public Class FrmInjection_CKR
 
     Dim isUpdate As Boolean = False
     Dim FileLokasi As String = ""
@@ -21,8 +21,8 @@ Public Class FrmInjection
     Dim KolomTanggal As String = ""
     Dim KolomTanggalReject As String = ""
 
-    Dim fc_Class As New InjectionModel
-    Dim ObjInjectionDetail As New InjectionDetailModel
+    Dim fc_Class As New InjectionModel_CKR
+    Dim ObjInjectionDetail As New InjectionDetailModel_CKR
 
 
 #Region "Data Table"
@@ -41,7 +41,7 @@ Public Class FrmInjection
 
 
 
-    Private Sub FrmInjection_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmInjection_CKR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Call Proc_EnableButtons(True, True, True, True, True, False, False, False)
         Call LoadGrid()
@@ -212,7 +212,7 @@ Public Class FrmInjection
 
         For i As Integer = 0 To dtLimaBesar.Rows.Count - 1
 
-            ObjInjectionDetail = New InjectionDetailModel
+            ObjInjectionDetail = New InjectionDetailModel_CKR
             With ObjInjectionDetail
                 .LB_IdTransaksi = fc_Class.IDTrans
                 .LB_Shift = dtLimaBesar.Rows(i).Item(1).ToString
@@ -316,7 +316,7 @@ Public Class FrmInjection
         fc_Class.ObjDetailInjectionPPA.Clear()
         For j As Integer = 0 To dtPPA.Rows.Count - 1
 
-            ObjInjectionDetail = New InjectionDetailModel
+            ObjInjectionDetail = New InjectionDetailModel_CKR
             With ObjInjectionDetail
 
                 .PPA_IdTransaksi = fc_Class.IDTrans
@@ -457,7 +457,7 @@ Public Class FrmInjection
 
         For k As Integer = 0 To dtRecovery.Rows.Count - 1
 
-            ObjInjectionDetail = New InjectionDetailModel
+            ObjInjectionDetail = New InjectionDetailModel_CKR
             With ObjInjectionDetail
 
                 .R_IdTransaksi = fc_Class.IDTrans
@@ -888,7 +888,7 @@ Public Class FrmInjection
 
                     For i As Integer = 0 To dtLimaBesar.Rows.Count - 1
 
-                        ObjInjectionDetail = New InjectionDetailModel
+                        ObjInjectionDetail = New InjectionDetailModel_CKR
                         With ObjInjectionDetail
                             .LB_IdTransaksi = fc_Class.IDTrans
                             .LB_Shift = dtLimaBesar.Rows(i).Item(1).ToString

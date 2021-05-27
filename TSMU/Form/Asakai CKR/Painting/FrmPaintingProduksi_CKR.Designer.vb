@@ -48,7 +48,7 @@ Partial Class FrmPaintingProduksi_CKR
         Me.Panel1.Controls.Add(Me.dtTanggal)
         Me.Panel1.Location = New System.Drawing.Point(0, 28)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(926, 89)
+        Me.Panel1.Size = New System.Drawing.Size(750, 65)
         Me.Panel1.TabIndex = 10
         '
         'ProgressBar1
@@ -60,12 +60,13 @@ Partial Class FrmPaintingProduksi_CKR
         '
         'TxtFileName
         '
+        Me.TxtFileName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtFileName.BackColor = System.Drawing.Color.White
         Me.TxtFileName.Location = New System.Drawing.Point(114, 39)
-        Me.TxtFileName.Multiline = True
         Me.TxtFileName.Name = "TxtFileName"
         Me.TxtFileName.ReadOnly = True
-        Me.TxtFileName.Size = New System.Drawing.Size(621, 36)
+        Me.TxtFileName.Size = New System.Drawing.Size(621, 20)
         Me.TxtFileName.TabIndex = 11
         '
         'Label2
@@ -109,10 +110,10 @@ Partial Class FrmPaintingProduksi_CKR
         Me.Grid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Grid.Location = New System.Drawing.Point(0, 123)
+        Me.Grid.Location = New System.Drawing.Point(0, 99)
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Name = "Grid"
-        Me.Grid.Size = New System.Drawing.Size(926, 258)
+        Me.Grid.Size = New System.Drawing.Size(750, 282)
         Me.Grid.TabIndex = 9
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -130,7 +131,7 @@ Partial Class FrmPaintingProduksi_CKR
         'FrmPaintingProduksi_CKR
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(938, 393)
+        Me.ClientSize = New System.Drawing.Size(762, 393)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Grid)
         Me.Name = "FrmPaintingProduksi_CKR"
