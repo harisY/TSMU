@@ -1333,10 +1333,22 @@
     <Compile Include="Form\Asakai\Opening\FrmAbsenDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmClaimCustomer_CKR.Designer.vb">
+      <DependentUpon>FrmClaimCustomer_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmClaimCustomer_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Quality\FrmClaimCustomer.Designer.vb">
       <DependentUpon>FrmClaimCustomer.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FrmClaimCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmClaimCustomerDetail_CKR.Designer.vb">
+      <DependentUpon>FrmClaimCustomerDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmClaimCustomerDetail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FrmClaimCustomerDetail.Designer.vb">
@@ -1525,10 +1537,22 @@
     <Compile Include="Form\Asakai\Delivery\FrmProblemDeliveryDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmQualityProblem_CKR.Designer.vb">
+      <DependentUpon>FrmQualityProblem_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmQualityProblem_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Quality\FrmQualityProblem.Designer.vb">
       <DependentUpon>FrmQualityProblem.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FrmQualityProblem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmQualityProblemDetail_CKR.Designer.vb">
+      <DependentUpon>FrmQualityProblemDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmQualityProblemDetail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FrmQualityProblemDetail.Designer.vb">
@@ -3893,8 +3917,14 @@
     <EmbeddedResource Include="Form\Asakai\Opening\FrmAbsenDetail.resx">
       <DependentUpon>FrmAbsenDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Quality\FrmClaimCustomer_CKR.resx">
+      <DependentUpon>FrmClaimCustomer_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmClaimCustomer.resx">
       <DependentUpon>FrmClaimCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Quality\FrmClaimCustomerDetail_CKR.resx">
+      <DependentUpon>FrmClaimCustomerDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmClaimCustomerDetail.resx">
       <DependentUpon>FrmClaimCustomerDetail.vb</DependentUpon>
@@ -3989,8 +4019,14 @@
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmProblemDeliveryDetail.resx">
       <DependentUpon>FrmProblemDeliveryDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Quality\FrmQualityProblem_CKR.resx">
+      <DependentUpon>FrmQualityProblem_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblem.resx">
       <DependentUpon>FrmQualityProblem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Quality\FrmQualityProblemDetail_CKR.resx">
+      <DependentUpon>FrmQualityProblemDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblemDetail.resx">
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
