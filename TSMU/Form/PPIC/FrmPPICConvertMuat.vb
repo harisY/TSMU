@@ -8,8 +8,7 @@ Public Class FrmPPICConvertMuat
     Dim ff_Detail As FrmPPICConvertMuatDetail
     Dim srvPPIC As New PPICService()
 
-    Dim dtResult As New DataTable
-    Dim dtUpload As DataTable
+    Dim dtConvertMuat As New DataTable
 
     Private Sub FrmPPICConvertMuat_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         bb_SetDisplayChangeConfirmation = False
@@ -24,7 +23,7 @@ Public Class FrmPPICConvertMuat
             End If
             ff_Detail.Close()
         End If
-        ff_Detail = New FrmPPICConvertMuatDetail(ls_Code, ls_Code2, ls_Code3, Me, GridConvertMuat, GridViewConvertMuat)
+        ff_Detail = New FrmPPICConvertMuatDetail(ls_Code, ls_Code2, ls_Code3, Me, GridConvertMuat, GridViewConvertMuat, li_Row)
         ff_Detail.MdiParent = FrmMain
         ff_Detail.StartPosition = FormStartPosition.CenterScreen
         ff_Detail.Show()
@@ -36,30 +35,21 @@ Public Class FrmPPICConvertMuat
             frmUploadPO.ShowDialog()
 
             With frmUploadPO
-                dtUpload = New DataTable
-                dtUpload = ._dtResult
+                ff_Detail.dtDetail = srvPPIC.GetDataPPICTemp()
+                srvPPIC.DeleteDataTemp()
+                ff_Detail.NoUpload = .NoUpload
                 ff_Detail.UploadDate = .UploadDate
                 ff_Detail.CustID = .CustID
                 ff_Detail.FileName = .FileName
                 ff_Detail.Revised = .Revised
             End With
 
-            If frmUploadPO._isUpload AndAlso dtUpload.Rows.Count > 0 Then
+            If frmUploadPO._isUpload AndAlso ff_Detail.dtDetail.Rows.Count > 0 Then
                 ff_Detail.Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
-                ff_Detail.GridDetail.DataSource = dtUpload
+                ff_Detail.dtConvertMuat = New DataTable
+                ff_Detail.dtConvertMuat = ff_Detail.dtDetail.Copy()
+                ff_Detail.GridDetail.DataSource = ff_Detail.dtConvertMuat
                 With ff_Detail.GridViewDetail
-                    Dim colNo As GridColumn = .Columns("No")
-                    colNo.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center
-
-                    Dim colSeq As GridColumn = .Columns("Seq")
-                    colSeq.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center
-
-                    Dim colDeliveryTime As GridColumn = .Columns("DeliveryTime")
-                    colDeliveryTime.Caption = "Delivery Time (To)"
-                    colDeliveryTime.DisplayFormat.FormatType = FormatType.DateTime
-                    colDeliveryTime.DisplayFormat.FormatString = "HH:mm"
-
-                    .OptionsBehavior.Editable = False
                     .BestFitColumns()
                 End With
             Else
@@ -105,15 +95,17 @@ Public Class FrmPPICConvertMuat
                 lastDay = _now
             End If
 
-            dtResult = New DataTable
-            dtResult = srvPPIC.GetDataConvertMuatHeader(firstDay, lastDay)
-            GridConvertMuat.DataSource = dtResult
+            dtConvertMuat = New DataTable
+            dtConvertMuat = srvPPIC.GetDataConvertMuatHeader(firstDay, lastDay)
+            GridConvertMuat.DataSource = dtConvertMuat
             With GridViewConvertMuat
-                .BestFitColumns()
-                .Columns("UploadDate").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                .Columns("UploadDate").DisplayFormat.FormatType = FormatType.DateTime
                 .Columns("UploadDate").DisplayFormat.FormatString = "dd-MM-yyyy"
-                .Columns("CreateDate").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-                .Columns("CreateDate").DisplayFormat.FormatString = "dd/MM/yyyy HH:mm : ss"
+                .Columns("CreateDate").DisplayFormat.FormatType = FormatType.DateTime
+                .Columns("CreateDate").DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+                .Columns("UpdateDate").DisplayFormat.FormatType = FormatType.DateTime
+                .Columns("UpdateDate").DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
+                .BestFitColumns()
             End With
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)

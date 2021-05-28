@@ -5,8 +5,10 @@
     Public Property Lebar As Double
     Public Property Tinggi As Double
     Public Property QtyPallet As Integer
+    Public Property StandarQty As Integer
     Public Property KapasitasMuat As Integer
     Public Property Persentase As Double
+    Public Property Tipe As String
     Public Property Keterangan As String
     Public Property UsedForCustomer As String
     Public Property CreateBy As String
