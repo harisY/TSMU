@@ -28,7 +28,7 @@ Public Class AbsenModel_CKR
             '                            "else 'PURCHASE' end as [Group] " & _
             '                        "from inventory_lc order by Invtid"
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            dtTable = GetDataTableByParam(Me._Query, CommandType.Text, Nothing, GetConnStringDbCKR)
             'dtTable = MainModul.GetDataTableByCommand(Me._Query)
             Return dtTable
         Catch ex As Exception
@@ -38,7 +38,7 @@ Public Class AbsenModel_CKR
     Public Function GetAllDataTableKategoriAbsen() As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me._QueryKategoriAbsen)
+            dtTable = GetDataTableByParam(Me._QueryKategoriAbsen, CommandType.Text, Nothing, GetConnStringDbCKR)
             'dtTable = MainModul.GetDataTableByCommand(Me._QueryKategoriAbsen)
             Return dtTable
         Catch ex As Exception
@@ -62,7 +62,7 @@ Public Class AbsenModel_CKR
                                     ,[Percentage]
                                     FROM [Absen]"
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Return dtTable
         Catch ex As Exception
@@ -79,9 +79,9 @@ Public Class AbsenModel_CKR
                          ,Absen.[DeptID]
                          ,Absen.[Percentage]
                          ,Absen.[JumlahKaryawan] as Jumlah
-                         FROM [Absen] inner join [departemen] on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(gh_Common.GroupID) & ""
+                         FROM [Absen] inner join New_Bom.dbo.departemen on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(gh_Common.GroupID) & ""
             '"SELECT ID,TanggalAbsen,DeptID,Percentage,CreatedBy,CreatedDate from absen"
-            dt = GetDataTableByCommand(sql)
+            dt = GetDataTableByParam(sql, CommandType.Text, Nothing, GetConnStringDbCKR)
             'dt = GetDataTableByCommand(sql)
             Return dt
         Catch ex As Exception
@@ -122,7 +122,7 @@ Public Class AbsenModel_CKR
     '    End Try
     'End Sub
 
-    Public Function GetDataByDate(tgl As String) As DataTable
+    Public Sub GetDataByDate(tgl As String)
         Try
             Dim query As String = "SELECT 
                                     Absen.[ID]
@@ -130,9 +130,9 @@ Public Class AbsenModel_CKR
                                    ,Absen.[DeptID]
                                    ,Absen.[Percentage]
                                    ,Absen.[JumlahKaryawan]
-                                    FROM [Absen] inner join [departemen] on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(DeptID) & " and Absen.TanggalAbsen = " & QVal(tgl) & ""
+                                    FROM [Absen] inner join New_Bom.dbo.departemen on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(DeptID) & " and Absen.TanggalAbsen = " & QVal(tgl) & ""
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             'dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
@@ -154,14 +154,14 @@ Public Class AbsenModel_CKR
         Catch ex As Exception
             Throw
         End Try
-    End Function
+    End Sub
 
-    Public Function GetDataByID(ID As String) As DataTable
+    Public Sub GetDataByID(ID As String)
         Try
             Dim query As String = "SELECT ID,Kebijakan
                                     FROM AsakaiKebijakan where ID ='" & ID & "'"
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             'dtTable = MainModul.GetDataTableByCommand(query)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
@@ -183,7 +183,7 @@ Public Class AbsenModel_CKR
         Catch ex As Exception
             Throw
         End Try
-    End Function
+    End Sub
 
 
     Public Function GetDataDetailByDate(tgl As String) As DataTable
@@ -195,7 +195,7 @@ Public Class AbsenModel_CKR
                                    ,AbsenDetail.[Jumlah]
                                     FROM [Absen] inner join [AbsenDetail] on Absen.ID = AbsenDetail.ID inner join KategoriAbsen on KategoriAbsen.IDAbsen = AbsenDetail.IDAbsen WHERE Absen.DeptID = " & QVal(DeptID) & " and Absen.TanggalAbsen = " & QVal(tgl) & ""
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             'dtTable = MainModul.GetDataTableByCommand(query)
 
             Return dtTable
@@ -216,25 +216,10 @@ Public Class AbsenModel_CKR
                                      ,[Percentage]                     
                                     FROM [Absen] where [TanggalAbsen] = " & QVal(TanggalAbsen) & " and DeptID = " & QVal(DeptID) & ""
             Dim dtTable As New DataTable
-            'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.IDAbsen & "]")
-                'Else
-
-                '    Dim ls_SPNoAbsen As String = "SELECT TOP 1 [ID]
-                '                         ,[NoAbsen]                     
-                '                         ,[TanggalAbsen]                     
-                '                         ,[DeptID]                     
-                '                         ,[Percentage]                     
-                '                        FROM [Absen] where [NoAbsen] = " & QVal(NoAbsen) & ""
-                '    Dim dtTable1 As New DataTable
-                '    dtTable1 = MainModul.GetDataTableByCommand(ls_SPNoAbsen)
-                '    If dtTable1 IsNot Nothing AndAlso dtTable1.Rows.Count > 0 Then
-                '        Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
-                '        "[" & Me.IDAbsen & "]")
-                '    End If
             End If
         Catch ex As Exception
             Throw
@@ -247,7 +232,7 @@ Public Class AbsenModel_CKR
 
     Public Sub InsertDataAbsen()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -303,7 +288,7 @@ Public Class AbsenModel_CKR
 
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             result = dtTable.Rows(0).Item("identityvalue")
             Return result
 
@@ -315,7 +300,7 @@ Public Class AbsenModel_CKR
 
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -360,7 +345,7 @@ Public Class AbsenModel_CKR
                                     "       UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "       UpdatedDate = GETDATE() WHERE ID = '" & _NoIncrement & "'"
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw ex
         End Try
@@ -370,11 +355,11 @@ Public Class AbsenModel_CKR
         Try
             Dim ls_SP As String = "DELETE FROM Absen WHERE rtrim(ID)=" & QVal(ID) & ""
             'MainModul.ExecQuery(ls_SP)
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
 
             Dim ls_SPD As String = "DELETE FROM AbsenDetail WHERE rtrim(ID)=" & QVal(ID) & ""
             'ExecQuery(ls_SPD)
-            ExecQuery(ls_SPD)
+            ExecQueryWithValue(ls_SPD, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw
@@ -385,7 +370,7 @@ Public Class AbsenModel_CKR
 
     Public Sub DeleteData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -445,7 +430,7 @@ Public Class AbsenModelDetail_CKR
             "       " & QVal(ID) & ", " & vbCrLf &
             "       " & QVal(Jumlah) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw
         End Try
@@ -457,7 +442,7 @@ Public Class AbsenModelDetail_CKR
         Try
             Dim ls_SP As String = "DELETE FROM AbsenDetail WHERE rtrim(ID)=" & QVal(_NoIncremen) & ""
             'ExecQuery(ls_SP)
-            ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw
         End Try

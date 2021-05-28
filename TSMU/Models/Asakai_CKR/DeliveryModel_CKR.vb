@@ -47,7 +47,8 @@ Public Class DeliveryModel_CKR
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            'dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            dtTable = GetDataTableByParam(Me._Query, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -61,12 +62,12 @@ Public Class DeliveryModel_CKR
         Try
             'Delete Header
             Dim ls_DeleteHeader As String = "DELETE FROM AsakaiDeliveryHeader WHERE rtrim(IDTrans)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteHeader)
+            ExecQueryWithValue(ls_DeleteHeader, CommandType.Text, Nothing, GetConnStringDbCKR)
 
 
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiDeliveryDetail WHERE rtrim(IDTrans)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteDetail)
+            ExecQueryWithValue(ls_DeleteDetail, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw
@@ -84,7 +85,7 @@ Public Class DeliveryModel_CKR
                               FROM AsakaiDeliveryHeader where IDTrans = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.IDTrans = Trim(.Item("IDTrans") & "")
@@ -120,10 +121,11 @@ Public Class DeliveryModel_CKR
               ,[WHP] as Whp
               ,[Keterangan]
    
-          FROM AsakaiDeliveryDetail Left join Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
+          FROM AsakaiDeliveryDetail Left join New_Bom.dbo.Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
+
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
 
             Return dtTable
         Catch ex As Exception
@@ -140,7 +142,7 @@ Public Class DeliveryModel_CKR
             Dim ls_SP As String = "SELECT [IDTrans]                   
                                     FROM [AsakaiDeliveryHeader] order by IDTrans desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             Dim Ulang As String = Tahun
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
                 IDTrans = "D" & Tahun & "0001"
@@ -175,7 +177,7 @@ Public Class DeliveryModel_CKR
 
     Public Sub InsertDelivery()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -211,7 +213,7 @@ Public Class DeliveryModel_CKR
                                     FROM [AsakaiDeliveryHeader] where IDTrans = '" & IDTrans & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.Tanggal & "]")
@@ -242,7 +244,7 @@ Public Class DeliveryModel_CKR
                                             ," & QVal(gh_Common.Username) & "
                                             ,GETDATE())"
 
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw
         End Try
@@ -252,7 +254,7 @@ Public Class DeliveryModel_CKR
 
     Public Sub UpdateData()
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -292,7 +294,7 @@ Public Class DeliveryModel_CKR
                                     "UPDATE AsakaiDeliveryHeader" & vbCrLf &
                                     "SET UpdatedBy = " & QVal(gh_Common.Username) & ", " & vbCrLf &
                                     "    UpdatedDate = GETDATE() WHERE IDTrans = '" & _IDTrans & "'"
-            MainModul.ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw ex
         End Try
@@ -302,7 +304,7 @@ Public Class DeliveryModel_CKR
         Try
             'DeleteDetail
             Dim ls_DeleteDetail As String = "DELETE FROM AsakaiDeliveryDetail WHERE rtrim(IDTrans)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteDetail)
+            ExecQueryWithValue(ls_DeleteDetail, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw
@@ -385,13 +387,11 @@ Public Class DeliveryDetailModel_CKR
             "       " & QVal(Balance) & ", " & vbCrLf &
             "       " & QVal(Keterangan) & ")"
             'ExecQuery(ls_SP)
-            ExecQuery(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
 
         Catch ex As Exception
             Throw
         End Try
     End Sub
-
-
 
 End Class

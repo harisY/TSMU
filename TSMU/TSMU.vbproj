@@ -1237,6 +1237,18 @@
     <Compile Include="Form\Asakai CKR\Painting\FormPaintingProduksi_Detail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Delivery\FrmDeliveryHeader_CKR.Designer.vb">
+      <DependentUpon>FrmDeliveryHeader_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Delivery\FrmDeliveryHeader_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Delivery\FrmDeliveryDetail_CKR.Designer.vb">
+      <DependentUpon>FrmDeliveryDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Delivery\FrmDeliveryDetail_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.Designer.vb">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
     </Compile>
@@ -1313,6 +1325,18 @@
       <DependentUpon>FrmPaintingProduksi_CKR.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Asakai CKR\Painting\FrmPaintingProduksi_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\All\FrmAbsen_CKR.Designer.vb">
+      <DependentUpon>FrmAbsen_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\All\FrmAbsen_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\All\FrmAbsenDetail_CKR.Designer.vb">
+      <DependentUpon>FrmAbsenDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\All\FrmAbsenDetail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\PPIC\FrmMaterialUsage.Designer.vb">
@@ -3881,6 +3905,12 @@
     <EmbeddedResource Include="Form\Asakai CKR\Painting\FormPaintingProduksi_Detail_CKR.resx">
       <DependentUpon>FormPaintingProduksi_Detail_CKR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Delivery\FrmDeliveryHeader_CKR.resx">
+      <DependentUpon>FrmDeliveryHeader_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Delivery\FrmDeliveryDetail_CKR.resx">
+      <DependentUpon>FrmDeliveryDetail_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.resx">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
     </EmbeddedResource>
@@ -3919,6 +3949,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai CKR\Painting\FrmPaintingProduksi_CKR.resx">
       <DependentUpon>FrmPaintingProduksi_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\All\FrmAbsen_CKR.resx">
+      <DependentUpon>FrmAbsen_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\All\FrmAbsenDetail_CKR.resx">
+      <DependentUpon>FrmAbsenDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\PPIC\FrmMaterialUsage.resx">
       <DependentUpon>FrmMaterialUsage.vb</DependentUpon>
