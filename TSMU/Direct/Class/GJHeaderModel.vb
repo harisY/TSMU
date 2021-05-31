@@ -9,6 +9,7 @@ Public Class GJHeaderModel
     Public Property Remark As String
     Public Property Status As String
     Public Property GJHeaderID As Integer
+    Public Property Level As Integer
     Public Property GJID As String
     Public Property GJID_Revers As String
     Public Property GJID_Revers2 As String
@@ -23,6 +24,10 @@ Public Class GJHeaderModel
     Public Property ceklist As String
     Public Property bl As String
     Public Property th As String
+    Public Property cek1 As Boolean
+    Public Property cek2 As Boolean
+    Public Property cek3 As Boolean
+
     Public Property ID() As String
         Get
             Return _id
@@ -106,6 +111,19 @@ Public Class GJHeaderModel
             Throw ex
         End Try
     End Function
+    Public Sub UpdateCek(ByVal Levelx As Integer)
+        Try
+            Dim ls_SP As String = String.Empty
+            If Levelx = 2 Then
+                ls_SP = "UPDATE gj_header SET approved2= " & QVal(True) & ",user_approved2= " & QVal(gh_Common.Username) & ",tgl_approved2=getdate() WHERE GJID=" & QVal(GJID.TrimEnd) & ""
+            ElseIf Levelx = 3 Then
+                ls_SP = "UPDATE gj_header SET approved3= " & QVal(True) & ",user_approved3= " & QVal(gh_Common.Username) & ", tgl_approved3=getdate() WHERE GJID=" & QVal(GJID.TrimEnd) & ""
+            End If
+            MainModul.ExecQuery_Solomon(ls_SP)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
     Public Function GetTRPerpost(curyid As String, perpost As String) As DataTable
         Try
             Dim dt As New DataTable
@@ -259,6 +277,15 @@ Public Class GJHeaderModel
      ,gj_detail.Credit_Amount
       ,gj_detail.AcctID
       ,gj_detail.SubAcct
+      ,gj_header.User_Approved1
+      ,gj_header.User_Approved2
+      ,gj_header.User_Approved3
+      ,gj_header.Approved1
+      ,gj_header.Approved2
+      ,gj_header.Approved3
+      ,gj_header.Tgl_Approved1
+      ,gj_header.Tgl_Approved2
+      ,gj_header.Tgl_Approved3
   FROM gj_header left join gj_detail on gj_detail.GJID=gj_header.GJID where gj_header.GJID='" & GJID & "'"
 
         Dim ds As New dsLaporan
@@ -326,6 +353,51 @@ Public Class GJHeaderModel
             Dim sql As String =
             "SELECT GJHeaderID, GJID, Currency, DeptID, PRNo, Remark, Tgl, Total,TotalCr, Status 
             FROM gj_header WHERE DeptID='" & gh_Common.GroupID & "' AND Tipe = 'S' and status<>'Open' Order by GJID"
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetDataGrid3() As DataTable
+        Try
+            Dim dept As String()
+            dept = GetDept2.ToArray
+            Dim nilai = String.Join(",", GetDept2.ToArray)
+
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT GJHeaderID, GJID, Currency, DeptID, PRNo, Remark, Tgl, Total,TotalCr, Status,Approved1,Approved2,Approved3
+            FROM gj_header "
+            If Level = 1 Then
+                sql = sql & " WHERE Approved1='1'"
+            ElseIf Level = 2 Then
+                sql = sql & " WHERE Approved1='1' and Approved2!='1' and Approved3!='1' "
+            ElseIf Level = 3 Then
+                sql = sql & " WHERE Approved1='1' and Approved2='1' and Approved3!='1' "
+            End If
+            dt = GetDataTable_Solomon(sql)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Public Function GetDataGrid4() As DataTable
+        Try
+            Dim dept As String()
+            dept = GetDept2.ToArray
+            Dim nilai = String.Join(",", GetDept2.ToArray)
+
+            Dim dt As New DataTable
+            Dim sql As String =
+            "SELECT GJHeaderID, GJID, Currency, DeptID, PRNo, Remark, Tgl, Total,TotalCr, Status,User_Approved1,User_Approved2,User_Approved3
+            FROM gj_header "
+
+            If Level = 2 Then
+                sql = sql & " WHERE Approved1='1' and Approved2='1'"
+            ElseIf Level = 3 Then
+                sql = sql & " WHERE Approved1='1' and Approved2='1' and Approved3='1'"
+            End If
             dt = GetDataTable_Solomon(sql)
             Return dt
         Catch ex As Exception
@@ -489,8 +561,9 @@ Public Class GJHeaderModel
     End Function
     Public Sub InsertHeader()
         Try
+            Dim cek1ok As Boolean = True
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO gj_header (GJID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, batch, Total,TotalCr, CreatedBy, CreatedDate) " & vbCrLf &
+            "INSERT INTO gj_header (GJID, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, batch, Total,TotalCr, CreatedBy, CreatedDate,Approved1,User_Approved1,Tgl_Approved1) " & vbCrLf &
             "Values(" & QVal(GJID) & ", " & vbCrLf &
             "       " & QVal(Tipe) & ", " & vbCrLf &
             "       " & QVal(Currency) & ", " & vbCrLf &
@@ -502,6 +575,9 @@ Public Class GJHeaderModel
             "       " & QVal(Batch) & ", " & vbCrLf &
             "       " & QVal(Total) & ", " & vbCrLf &
             "       " & QVal(TotalCr) & ", " & vbCrLf &
+            "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
+            "         GETDATE(), " & vbCrLf &
+             "       " & QVal(cek1ok) & ", " & vbCrLf &
             "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
             "       GETDATE())"
             ExecQuery_Solomon(ls_SP)
@@ -519,8 +595,9 @@ Public Class GJHeaderModel
     End Sub
     Public Sub InsertHeaderR()
         Try
+            Dim cek1ok As Boolean = True
             Dim ls_SP As String = " " & vbCrLf &
-            "INSERT INTO gj_header (GJID,GJID_Revers, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total,TotalCr, CreatedBy, CreatedDate) " & vbCrLf &
+            "INSERT INTO gj_header (GJID,GJID_Revers, Tipe, Currency, DeptID, PRNo, Remark, Tgl, Status, Total,TotalCr, CreatedBy, CreatedDate,Approved1,User_Approved1,Tgl_Approved1) " & vbCrLf &
             "Values(" & QVal(GJID_Revers) & ", " & vbCrLf &
             "       " & QVal(GJID) & ", " & vbCrLf &
             "       " & QVal(Tipe) & ", " & vbCrLf &
@@ -532,6 +609,9 @@ Public Class GJHeaderModel
             "       " & QVal(Status) & ", " & vbCrLf &
             "       " & QVal(Total) & ", " & vbCrLf &
             "       " & QVal(TotalCr) & ", " & vbCrLf &
+            "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
+            "         GETDATE(), " & vbCrLf &
+         "       " & QVal(cek1ok) & ", " & vbCrLf &
             "       " & QVal(gh_Common.Username) & ", " & vbCrLf &
             "       GETDATE())"
             ExecQuery_Solomon(ls_SP)

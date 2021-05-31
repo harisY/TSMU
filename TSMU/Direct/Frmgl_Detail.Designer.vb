@@ -60,10 +60,11 @@ Partial Class Frmgl_Detail
         Me._account = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._subaccount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._description = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me._debit_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me._credit_amount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.CRAmount2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.GAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GAmount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,8 +103,9 @@ Partial Class Frmgl_Detail
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CRAmount2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GAccount
@@ -461,7 +463,7 @@ Partial Class Frmgl_Detail
         Me.Grid.MainView = Me.GridView1
         Me.Grid.Margin = New System.Windows.Forms.Padding(4)
         Me.Grid.Name = "Grid"
-        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
+        Me.Grid.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.CRAmount2})
         Me.Grid.Size = New System.Drawing.Size(1029, 543)
         Me.Grid.TabIndex = 4
         Me.Grid.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -510,6 +512,12 @@ Partial Class Frmgl_Detail
         Me._description.VisibleIndex = 2
         Me._description.Width = 376
         '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.MaxLength = 30
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
         '_debit_amount
         '
         Me._debit_amount.Caption = "Debit"
@@ -525,10 +533,11 @@ Partial Class Frmgl_Detail
         '_credit_amount
         '
         Me._credit_amount.Caption = "Credit"
-        Me._credit_amount.ColumnEdit = Me.CRAmount
+        Me._credit_amount.ColumnEdit = Me.CRAmount2
         Me._credit_amount.FieldName = "Credit_Amount"
         Me._credit_amount.MinWidth = 25
         Me._credit_amount.Name = "_credit_amount"
+        Me._credit_amount.OptionsColumn.FixedWidth = True
         Me._credit_amount.Visible = True
         Me._credit_amount.VisibleIndex = 4
         Me._credit_amount.Width = 117
@@ -537,11 +546,11 @@ Partial Class Frmgl_Detail
         '
         Me.DxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.[Auto]
         '
-        'RepositoryItemTextEdit1
+        'CRAmount2
         '
-        Me.RepositoryItemTextEdit1.AutoHeight = False
-        Me.RepositoryItemTextEdit1.MaxLength = 30
-        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.CRAmount2.AutoHeight = False
+        Me.CRAmount2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CRAmount2.Name = "CRAmount2"
         '
         'Frmgl_Detail
         '
@@ -591,8 +600,9 @@ Partial Class Frmgl_Detail
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Grid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CRAmount2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -642,4 +652,5 @@ Partial Class Frmgl_Detail
     Friend WithEvents TxtPerpost As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents CRAmount2 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class
