@@ -295,11 +295,14 @@ Partial Public Class DevCirculationReportBODTemp3
         '
         'XrTableCell11
         '
+        Me.XrTableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Status]")})
         Me.XrTableCell11.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.XrTableCell11.Multiline = True
         Me.XrTableCell11.Name = "XrTableCell11"
         Me.XrTableCell11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell11.StylePriority.UseFont = False
+        Me.XrTableCell11.StylePriority.UseTextAlignment = False
+        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell11.Weight = 0.43436507766026689R
         '
         'XrTableCell12
