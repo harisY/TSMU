@@ -272,19 +272,21 @@ Public Class InjectionModel_CKR
                        ,[G. BALANCE RECOVERY]
                        ,[H. TOTAL PRODUKSI]
                        ,[I. PRODUCIVITY]
-                       ,[J. STRAIGHT PASS]) " & vbCrLf &
-            "Values(" & QVal(IDTrans) & ", " & vbCrLf &
-            "       " & QVal(H_date) & ", " & vbCrLf &
-            "       " & QVal(PA_PLANING_JPH) & ", " & vbCrLf &
-            "       " & QVal(PA_ACTUAL_OK) & ", " & vbCrLf &
-            "       " & QVal(PA_TOTAL_NG) & ", " & vbCrLf &
-            "       " & QVal(PA_LOSS_PRODUKSI) & ", " & vbCrLf &
-            "       " & QVal(PA_TARGET_RECOVERY) & ", " & vbCrLf &
-            "       " & QVal(PA_RECOVERY) & ", " & vbCrLf &
-            "       " & QVal(PA_BALANCE_RECOVERY) & ", " & vbCrLf &
-            "       " & QVal(PA_TOTAL_PRODUKSI) & ", " & vbCrLf &
-            "       " & QVal(PA_PRODUCTIVITY) & ", " & vbCrLf &
-            "       " & QVal(PA_STRAIGHT_PASS) & ")"
+                       ,[J. STRAIGHT PASS]
+                       ,[Dept]) " & vbCrLf &
+                        "Values(" & QVal(IDTrans) & ", " & vbCrLf &
+                        "       " & QVal(H_date) & ", " & vbCrLf &
+                        "       " & QVal(PA_PLANING_JPH) & ", " & vbCrLf &
+                        "       " & QVal(PA_ACTUAL_OK) & ", " & vbCrLf &
+                        "       " & QVal(PA_TOTAL_NG) & ", " & vbCrLf &
+                        "       " & QVal(PA_LOSS_PRODUKSI) & ", " & vbCrLf &
+                        "       " & QVal(PA_TARGET_RECOVERY) & ", " & vbCrLf &
+                        "       " & QVal(PA_RECOVERY) & ", " & vbCrLf &
+                        "       " & QVal(PA_BALANCE_RECOVERY) & ", " & vbCrLf &
+                        "       " & QVal(PA_TOTAL_PRODUKSI) & ", " & vbCrLf &
+                        "       " & QVal(PA_PRODUCTIVITY) & ", " & vbCrLf &
+                        "       " & QVal(PA_STRAIGHT_PASS) & ", " & vbCrLf &
+                        "       " & QVal(gh_Common.GroupID) & ")"
             'ExecQuery(ls_SP)
             ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
@@ -313,7 +315,8 @@ Public Class InjectionModel_CKR
                        ,[L. TARGET SCRAP]
                        ,[M. TARGET SETTING]
                        ,[N. TARGET % NG]
-                       ,[O.TOTAL PRODUKSI]) " & vbCrLf &
+                       ,[O.TOTAL PRODUKSI]
+                       ,[Dept]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(H_date) & ", " & vbCrLf &
             "       " & QVal(RR_SCRAP_DANDORI) & ", " & vbCrLf &
@@ -330,7 +333,8 @@ Public Class InjectionModel_CKR
             "       " & QVal(RR_TARGET_SCRAP) & ", " & vbCrLf &
             "       " & QVal(RR_TARGET_SETTING) & ", " & vbCrLf &
             "       " & QVal(RR_Target_Persen_NG) & ", " & vbCrLf &
-            "       " & QVal(RR_Total_Produksi) & ")"
+            "       " & QVal(RR_Total_Produksi) & ", " & vbCrLf &
+            "       " & QVal(gh_Common.GroupID) & ")"
             'ExecQuery(ls_SP)
             'ExecQuery(ls_SP)
             ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
@@ -577,7 +581,8 @@ Public Class InjectionDetailModel_CKR
                            ,[Perbaikan Permanen]
                            ,[PIC]
                            ,[Target]
-                           ,[Status]) " & vbCrLf &
+                           ,[Status]
+                           ,[Dept]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(LB_Shift) & ", " & vbCrLf &
             "       " & QVal(LB_NoMC) & ", " & vbCrLf &
@@ -595,7 +600,8 @@ Public Class InjectionDetailModel_CKR
             "       " & QVal(LB_Perbaikan_Permanen) & ", " & vbCrLf &
             "       " & QVal(LB_PIC) & ", " & vbCrLf &
             "       " & QVal(LB_Target) & ", " & vbCrLf &
-            "       " & QVal(LB_Status) & ")"
+            "       " & QVal(LB_Status) & ", " & vbCrLf &
+            "       " & QVal(gh_Common.GroupID) & ")"
             'ExecQuery(ls_SP)
             ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
 
@@ -627,7 +633,8 @@ Public Class InjectionDetailModel_CKR
                            ,[Perbaikan Permanen]
                            ,[PIC]
                            ,[Target]
-                           ,[Status]) " & vbCrLf &
+                           ,[Status]
+                          ,[Dept]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(PPA_NoMC) & ", " & vbCrLf &
             "       " & QVal(PPA_Shift) & ", " & vbCrLf &
@@ -646,7 +653,8 @@ Public Class InjectionDetailModel_CKR
             "       " & QVal(PPA_Perbaikan_Permanen) & ", " & vbCrLf &
             "       " & QVal(PPA_PIC) & ", " & vbCrLf &
             "       " & QVal(PPA_Target) & ", " & vbCrLf &
-            "       " & QVal(PPA_Status) & ")"
+            "       " & QVal(PPA_Status) & ", " & vbCrLf &
+            "       " & QVal(gh_Common.GroupID) & ")"
             'ExecQuery(ls_SP)
             ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
@@ -674,7 +682,8 @@ Public Class InjectionDetailModel_CKR
                        ,[Target Recovery]
                        ,[Balance Recovery]
                        ,[Balance OP]
-                       ,[Keterangan]) " & vbCrLf &
+                       ,[Keterangan]
+                       ,[Dept]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(R_NoMC) & ", " & vbCrLf &
             "       " & QVal(R_Kode_Part) & ", " & vbCrLf &
@@ -690,7 +699,8 @@ Public Class InjectionDetailModel_CKR
             "       " & QVal(R_Target_Recovery) & ", " & vbCrLf &
             "       " & QVal(R_Balance_Recovery) & ", " & vbCrLf &
             "       " & QVal(R_Balance_OP) & ", " & vbCrLf &
-            "       " & QVal(R_Keterangan) & ")"
+            "       " & QVal(R_Keterangan) & ", " & vbCrLf &
+            "       " & QVal(gh_Common.GroupID) & ")"
             'ExecQuery(ls_SP)
             ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
 

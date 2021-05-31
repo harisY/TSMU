@@ -349,7 +349,8 @@ Public Class PaintingProduksiModel_CKR
                                            ,[3. % CRUSHING]
                                            ,[4. TARGET]
                                            ,[CreatedBy]
-                                           ,[CreatedDate])
+                                           ,[CreatedDate]
+                                           ,[Dept])
                                      VALUES 
                                             (" & QVal(IDTrans) & " 
                                             ," & QVal(Me.Tanggal) & "
@@ -358,7 +359,8 @@ Public Class PaintingProduksiModel_CKR
                                             ," & QVal(Me.Scrap_Persen_CRUSHING) & "
                                             ," & QVal(Me.Scrap_TARGET) & "
                                             ," & QVal(gh_Common.Username) & "
-                                            ,GETDATE())"
+                                            ,GETDATE() 
+                                            ," & QVal(gh_Common.GroupID) & ")"
             ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw

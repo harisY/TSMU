@@ -25,8 +25,9 @@ Public Class FrmClaimCustomerDetail_CKR
     Dim fc_Class As New ClaimCustomerModel_CKR
     Dim GridDtl As GridControl
 
-    Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
     'Dim SimpanFoto As String = "\\srv12\Asakai\Foto\"
+    'Dim SimpanFoto As String = "D:\@KERJA\Project\Foto"
+    Dim SimpanFoto As String = "\\10.10.3.6\d$\Aplikasi IIS\Asakai\File\"
     Dim PathFoto As String = ""
     Dim NamaFile As String = ""
     Dim DirectoryFoto As String = ""
@@ -519,7 +520,7 @@ Public Class FrmClaimCustomerDetail_CKR
 
         opfImage.Filter = "Choose Image(*.jpg;*.png;*.gif;*.Jpeg)|*.jpg;*.png;*.gif;*.Jpeg"
 
-        Dim a As String = "D:\@KERJA\Project\Foto\"
+        'Dim a As String = "D:\@KERJA\Project\Foto\"
 
         If opfImage.ShowDialog = DialogResult.OK Then
 

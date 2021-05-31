@@ -571,7 +571,7 @@ Public Class FrmPaintingProduksi_CKR
 
             fc_Class.Insert()
             TxtFileName.Text = ""
-            MessageBox.Show("File Saved")
+            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Call LoadGrid()
             TxtFileName.Text = ""
         End If

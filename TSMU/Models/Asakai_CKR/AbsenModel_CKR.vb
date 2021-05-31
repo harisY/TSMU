@@ -79,7 +79,7 @@ Public Class AbsenModel_CKR
                          ,Absen.[DeptID]
                          ,Absen.[Percentage]
                          ,Absen.[JumlahKaryawan] as Jumlah
-                         FROM [Absen] inner join New_Bom.dbo.departemen on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(gh_Common.GroupID) & ""
+                         FROM [Absen] inner join departemen on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(gh_Common.GroupID) & ""
             '"SELECT ID,TanggalAbsen,DeptID,Percentage,CreatedBy,CreatedDate from absen"
             dt = GetDataTableByParam(sql, CommandType.Text, Nothing, GetConnStringDbCKR)
             'dt = GetDataTableByCommand(sql)
@@ -130,7 +130,7 @@ Public Class AbsenModel_CKR
                                    ,Absen.[DeptID]
                                    ,Absen.[Percentage]
                                    ,Absen.[JumlahKaryawan]
-                                    FROM [Absen] inner join New_Bom.dbo.departemen on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(DeptID) & " and Absen.TanggalAbsen = " & QVal(tgl) & ""
+                                    FROM [Absen] inner join departemen on Absen.DeptID = Departemen.DeptID WHERE Absen.DeptID = " & QVal(DeptID) & " and Absen.TanggalAbsen = " & QVal(tgl) & ""
             Dim dtTable As New DataTable
             dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             'dtTable = MainModul.GetDataTableByCommand(query)

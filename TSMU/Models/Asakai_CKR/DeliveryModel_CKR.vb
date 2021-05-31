@@ -120,8 +120,9 @@ Public Class DeliveryModel_CKR
               ,[Stock TNG 04-02] as [TNG 04-02]
               ,[WHP] as Whp
               ,[Keterangan]
-   
-          FROM AsakaiDeliveryDetail Left join New_Bom.dbo.Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
+          FROM AsakaiDeliveryDetail  where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
+
+            '           From AsakaiDeliveryDetail Left join New_Bom.dbo.Inventory on AsakaiDeliveryDetail.invtId =Inventory.InvtID where AsakaiDeliveryDetail.IDTrans  = '" & ID & "'"
 
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
