@@ -26,9 +26,9 @@ Partial Class FrmPPICKapOEMDetail
         Me.txtPartName = New DevExpress.XtraEditors.TextEdit()
         Me.txtKapasitasMuat = New DevExpress.XtraEditors.TextEdit()
         Me.txtModel = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPartNo = New DevExpress.XtraEditors.TextEdit()
         Me.txtLocation = New DevExpress.XtraEditors.TextEdit()
         Me.txtJenisPacking = New DevExpress.XtraEditors.ButtonEdit()
+        Me.txtPartNo = New DevExpress.XtraEditors.ButtonEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -47,9 +47,9 @@ Partial Class FrmPPICKapOEMDetail
         CType(Me.txtPartName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKapasitasMuat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtModel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPartNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtLocation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtJenisPacking.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtPartNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,9 +70,9 @@ Partial Class FrmPPICKapOEMDetail
         Me.LayoutControl1.Controls.Add(Me.txtPartName)
         Me.LayoutControl1.Controls.Add(Me.txtKapasitasMuat)
         Me.LayoutControl1.Controls.Add(Me.txtModel)
-        Me.LayoutControl1.Controls.Add(Me.txtPartNo)
         Me.LayoutControl1.Controls.Add(Me.txtLocation)
         Me.LayoutControl1.Controls.Add(Me.txtJenisPacking)
+        Me.LayoutControl1.Controls.Add(Me.txtPartNo)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 27)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -133,6 +133,7 @@ Partial Class FrmPPICKapOEMDetail
         '
         'txtModel
         '
+        Me.txtModel.Enabled = False
         Me.txtModel.Location = New System.Drawing.Point(129, 12)
         Me.txtModel.MaximumSize = New System.Drawing.Size(100, 0)
         Me.txtModel.Name = "txtModel"
@@ -141,18 +142,6 @@ Partial Class FrmPPICKapOEMDetail
         Me.txtModel.Size = New System.Drawing.Size(100, 28)
         Me.txtModel.StyleController = Me.LayoutControl1
         Me.txtModel.TabIndex = 7
-        '
-        'txtPartNo
-        '
-        Me.txtPartNo.Location = New System.Drawing.Point(129, 76)
-        Me.txtPartNo.MaximumSize = New System.Drawing.Size(200, 0)
-        Me.txtPartNo.Name = "txtPartNo"
-        Me.txtPartNo.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.txtPartNo.Properties.Name = "txtPartNo"
-        Me.txtPartNo.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtPartNo.Size = New System.Drawing.Size(200, 28)
-        Me.txtPartNo.StyleController = Me.LayoutControl1
-        Me.txtPartNo.TabIndex = 6
         '
         'txtLocation
         '
@@ -176,6 +165,20 @@ Partial Class FrmPPICKapOEMDetail
         Me.txtJenisPacking.Size = New System.Drawing.Size(200, 28)
         Me.txtJenisPacking.StyleController = Me.LayoutControl1
         Me.txtJenisPacking.TabIndex = 4
+        '
+        'txtPartNo
+        '
+        Me.txtPartNo.Location = New System.Drawing.Point(129, 76)
+        Me.txtPartNo.MaximumSize = New System.Drawing.Size(250, 0)
+        Me.txtPartNo.Name = "txtPartNo"
+        Me.txtPartNo.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.txtPartNo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.txtPartNo.Properties.Name = "txtPartNo"
+        Me.txtPartNo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtPartNo.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.txtPartNo.Size = New System.Drawing.Size(250, 28)
+        Me.txtPartNo.StyleController = Me.LayoutControl1
+        Me.txtPartNo.TabIndex = 6
         '
         'Root
         '
@@ -281,9 +284,9 @@ Partial Class FrmPPICKapOEMDetail
         CType(Me.txtPartName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKapasitasMuat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtModel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPartNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtLocation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtJenisPacking.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtPartNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -305,7 +308,6 @@ Partial Class FrmPPICKapOEMDetail
     Friend WithEvents txtPartName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtKapasitasMuat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtModel As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPartNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtLocation As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
@@ -320,4 +322,5 @@ Partial Class FrmPPICKapOEMDetail
     Friend WithEvents txtStandarQty As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtJenisPacking As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents txtPartNo As DevExpress.XtraEditors.ButtonEdit
 End Class

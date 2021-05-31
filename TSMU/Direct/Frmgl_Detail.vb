@@ -612,7 +612,15 @@ Public Class Frmgl_Detail
         gridView.UpdateCurrentRow()
         'Grid.FocusedView.PostEditor()
     End Sub
+
     Private Sub CRAmount_EditValueChanged(sender As Object, e As EventArgs) Handles CRAmount.EditValueChanged
+        Dim baseEdit = TryCast(sender, BaseEdit)
+        Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
+        gridView.PostEditor()
+        gridView.UpdateCurrentRow()
+        'Grid.FocusedView.PostEditor()
+    End Sub
+    Private Sub CRAmount2_EditValueChanged(sender As Object, e As EventArgs) Handles CRAmount2.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
         Dim gridView = (TryCast((TryCast(baseEdit.Parent, GridControl)).MainView, GridView))
         gridView.PostEditor()

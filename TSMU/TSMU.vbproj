@@ -3367,6 +3367,18 @@
       <DependentUpon>Rpt_Upload2.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\DRPPICBuktiMuat.Designer.vb">
+      <DependentUpon>DRPPICBuktiMuat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DRPPICBuktiMuat.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\DRPPICBuktiMuatHeader.Designer.vb">
+      <DependentUpon>DRPPICBuktiMuatHeader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report\DRPPICBuktiMuatHeader.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\HarigamiReport.Designer.vb">
       <DependentUpon>HarigamiReport.vb</DependentUpon>
     </Compile>
@@ -4659,6 +4671,12 @@
     <EmbeddedResource Include="Payment\Rpt_Upload2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_Upload2.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\DRPPICBuktiMuat.resx">
+      <DependentUpon>DRPPICBuktiMuat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\DRPPICBuktiMuatHeader.resx">
+      <DependentUpon>DRPPICBuktiMuatHeader.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\HarigamiReport.resx">
       <DependentUpon>HarigamiReport.vb</DependentUpon>
