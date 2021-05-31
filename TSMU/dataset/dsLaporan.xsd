@@ -1058,6 +1058,39 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="PPICBuktiMuat" msprop:Generator_TableClassName="PPICBuktiMuatDataTable" msprop:Generator_TableVarName="tablePPICBuktiMuat" msprop:Generator_TablePropName="PPICBuktiMuat" msprop:Generator_RowDeletingName="PPICBuktiMuatRowDeleting" msprop:Generator_RowChangingName="PPICBuktiMuatRowChanging" msprop:Generator_RowEvHandlerName="PPICBuktiMuatRowChangeEventHandler" msprop:Generator_RowDeletedName="PPICBuktiMuatRowDeleted" msprop:Generator_UserTableName="PPICBuktiMuat" msprop:Generator_RowChangedName="PPICBuktiMuatRowChanged" msprop:Generator_RowEvArgName="PPICBuktiMuatRowChangeEvent" msprop:Generator_RowClassName="PPICBuktiMuatRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NoUpload" msprop:Generator_ColumnVarNameInTable="columnNoUpload" msprop:Generator_ColumnPropNameInRow="NoUpload" msprop:Generator_ColumnPropNameInTable="NoUploadColumn" msprop:Generator_UserColumnName="NoUpload" type="xs:string" minOccurs="0" />
+              <xs:element name="No" msprop:Generator_ColumnVarNameInTable="columnNo" msprop:Generator_ColumnPropNameInRow="No" msprop:Generator_ColumnPropNameInTable="NoColumn" msprop:Generator_UserColumnName="No" type="xs:string" minOccurs="0" />
+              <xs:element name="NoMobil" msprop:Generator_ColumnVarNameInTable="columnNoMobil" msprop:Generator_ColumnPropNameInRow="NoMobil" msprop:Generator_ColumnPropNameInTable="NoMobilColumn" msprop:Generator_UserColumnName="NoMobil" type="xs:string" minOccurs="0" />
+              <xs:element name="TglKirim" msprop:Generator_ColumnVarNameInTable="columnTglKirim" msprop:Generator_ColumnPropNameInRow="TglKirim" msprop:Generator_ColumnPropNameInTable="TglKirimColumn" msprop:Generator_UserColumnName="TglKirim" type="xs:string" minOccurs="0" />
+              <xs:element name="Tujuan" msprop:Generator_ColumnVarNameInTable="columnTujuan" msprop:Generator_ColumnPropNameInRow="Tujuan" msprop:Generator_ColumnPropNameInTable="TujuanColumn" msprop:Generator_UserColumnName="Tujuan" type="xs:string" minOccurs="0" />
+              <xs:element name="ItemNumber" msprop:Generator_ColumnVarNameInTable="columnItemNumber" msprop:Generator_ColumnPropNameInRow="ItemNumber" msprop:Generator_ColumnPropNameInTable="ItemNumberColumn" msprop:Generator_UserColumnName="ItemNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="ItemName" msprop:Generator_ColumnVarNameInTable="columnItemName" msprop:Generator_ColumnPropNameInRow="ItemName" msprop:Generator_ColumnPropNameInTable="ItemNameColumn" msprop:Generator_UserColumnName="ItemName" type="xs:string" minOccurs="0" />
+              <xs:element name="UserCode" msprop:Generator_ColumnVarNameInTable="columnUserCode" msprop:Generator_ColumnPropNameInRow="UserCode" msprop:Generator_ColumnPropNameInTable="UserCodeColumn" msprop:Generator_UserColumnName="UserCode" type="xs:string" minOccurs="0" />
+              <xs:element name="PL" msprop:Generator_ColumnVarNameInTable="columnPL" msprop:Generator_ColumnPropNameInRow="PL" msprop:Generator_ColumnPropNameInTable="PLColumn" msprop:Generator_UserColumnName="PL" type="xs:string" minOccurs="0" />
+              <xs:element name="Hourly" msprop:Generator_ColumnVarNameInTable="columnHourly" msprop:Generator_ColumnPropNameInRow="Hourly" msprop:Generator_ColumnPropNameInTable="HourlyColumn" msprop:Generator_UserColumnName="Hourly" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="OrderNo" msprop:Generator_ColumnVarNameInTable="columnOrderNo" msprop:Generator_ColumnPropNameInRow="OrderNo" msprop:Generator_ColumnPropNameInTable="OrderNoColumn" msprop:Generator_UserColumnName="OrderNo" type="xs:string" minOccurs="0" />
+              <xs:element name="JenisPacking" msprop:Generator_ColumnVarNameInTable="columnJenisPacking" msprop:Generator_ColumnPropNameInRow="JenisPacking" msprop:Generator_ColumnPropNameInTable="JenisPackingColumn" msprop:Generator_UserColumnName="JenisPacking" type="xs:string" minOccurs="0" />
+              <xs:element name="OrderQuantity" msprop:Generator_ColumnVarNameInTable="columnOrderQuantity" msprop:Generator_ColumnPropNameInRow="OrderQuantity" msprop:Generator_ColumnPropNameInTable="OrderQuantityColumn" msprop:Generator_UserColumnName="OrderQuantity" type="xs:string" minOccurs="0" />
+              <xs:element name="StandarQty" msprop:Generator_ColumnVarNameInTable="columnStandarQty" msprop:Generator_ColumnPropNameInRow="StandarQty" msprop:Generator_ColumnPropNameInTable="StandarQtyColumn" msprop:Generator_UserColumnName="StandarQty" type="xs:string" minOccurs="0" />
+              <xs:element name="KapasitasMuat" msprop:Generator_ColumnVarNameInTable="columnKapasitasMuat" msprop:Generator_ColumnPropNameInRow="KapasitasMuat" msprop:Generator_ColumnPropNameInTable="KapasitasMuatColumn" msprop:Generator_UserColumnName="KapasitasMuat" type="xs:string" minOccurs="0" />
+              <xs:element name="ButuhPacking" msprop:Generator_ColumnVarNameInTable="columnButuhPacking" msprop:Generator_ColumnPropNameInRow="ButuhPacking" msprop:Generator_ColumnPropNameInTable="ButuhPackingColumn" msprop:Generator_UserColumnName="ButuhPacking" type="xs:string" minOccurs="0" />
+              <xs:element name="GroupTruk" msprop:Generator_ColumnVarNameInTable="columnGroupTruk" msprop:Generator_ColumnPropNameInRow="GroupTruk" msprop:Generator_ColumnPropNameInTable="GroupTrukColumn" msprop:Generator_UserColumnName="GroupTruk" type="xs:string" minOccurs="0" />
+              <xs:element name="Barcode" msprop:Generator_ColumnVarNameInTable="columnBarcode" msprop:Generator_ColumnPropNameInRow="Barcode" msprop:Generator_ColumnPropNameInTable="BarcodeColumn" msprop:Generator_UserColumnName="Barcode" type="xs:string" minOccurs="0" />
+              <xs:element name="JmlPacking" msprop:Generator_ColumnVarNameInTable="columnJmlPacking" msprop:Generator_ColumnPropNameInRow="JmlPacking" msprop:Generator_ColumnPropNameInTable="JmlPackingColumn" msprop:Generator_UserColumnName="JmlPacking" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PPICBuktiMuatHeader" msprop:Generator_TableClassName="PPICBuktiMuatHeaderDataTable" msprop:Generator_TableVarName="tablePPICBuktiMuatHeader" msprop:Generator_TablePropName="PPICBuktiMuatHeader" msprop:Generator_RowDeletingName="PPICBuktiMuatHeaderRowDeleting" msprop:Generator_RowChangingName="PPICBuktiMuatHeaderRowChanging" msprop:Generator_RowEvHandlerName="PPICBuktiMuatHeaderRowChangeEventHandler" msprop:Generator_RowDeletedName="PPICBuktiMuatHeaderRowDeleted" msprop:Generator_UserTableName="PPICBuktiMuatHeader" msprop:Generator_RowChangedName="PPICBuktiMuatHeaderRowChanged" msprop:Generator_RowEvArgName="PPICBuktiMuatHeaderRowChangeEvent" msprop:Generator_RowClassName="PPICBuktiMuatHeaderRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NoUpload" msprop:Generator_ColumnVarNameInTable="columnNoUpload" msprop:Generator_ColumnPropNameInRow="NoUpload" msprop:Generator_ColumnPropNameInTable="NoUploadColumn" msprop:Generator_UserColumnName="NoUpload" type="xs:string" minOccurs="0" />
+              <xs:element name="NoMobil" msprop:Generator_ColumnVarNameInTable="columnNoMobil" msprop:Generator_ColumnPropNameInRow="NoMobil" msprop:Generator_ColumnPropNameInTable="NoMobilColumn" msprop:Generator_UserColumnName="NoMobil" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

@@ -1,4 +1,6 @@
-﻿Public Class PPICService
+﻿Imports System.Data.SqlClient
+
+Public Class PPICService
     Dim _globalService As GlobalService
     Dim strQuery As String = String.Empty
 
@@ -10,8 +12,10 @@
                                 Lebar ,
                                 Tinggi ,
                                 QtyPallet ,
+                                StandarQty ,
                                 KapasitasMuat ,
                                 Persentase ,
+                                Tipe ,
                                 Keterangan ,
                                 UsedForCustomer ,
                                 CreateBy ,
@@ -35,8 +39,10 @@
                                 Lebar ,
                                 Tinggi ,
                                 QtyPallet ,
+                                StandarQty ,
                                 KapasitasMuat ,
                                 Persentase ,
+                                Tipe ,
                                 Keterangan ,
                                 UsedForCustomer ,
                                 CreateBy ,
@@ -56,8 +62,10 @@
                     .Lebar = If(IsDBNull(dt.Rows(0).Item("Lebar")), 0, dt.Rows(0).Item("Lebar"))
                     .Tinggi = If(IsDBNull(dt.Rows(0).Item("Tinggi")), 0, dt.Rows(0).Item("Tinggi"))
                     .QtyPallet = If(IsDBNull(dt.Rows(0).Item("QtyPallet")), 0, dt.Rows(0).Item("QtyPallet"))
+                    .StandarQty = If(IsDBNull(dt.Rows(0).Item("StandarQty")), 0, dt.Rows(0).Item("StandarQty"))
                     .KapasitasMuat = If(IsDBNull(dt.Rows(0).Item("KapasitasMuat")), 0, dt.Rows(0).Item("KapasitasMuat"))
                     .Persentase = If(IsDBNull(dt.Rows(0).Item("Persentase")), 0, dt.Rows(0).Item("Persentase"))
+                    .Tipe = If(IsDBNull(dt.Rows(0).Item("Tipe")), "", dt.Rows(0).Item("Tipe").ToString())
                     .Keterangan = If(IsDBNull(dt.Rows(0).Item("Keterangan")), "", dt.Rows(0).Item("Keterangan").ToString())
                     .UsedForCustomer = If(IsDBNull(dt.Rows(0).Item("UsedForCustomer")), "", dt.Rows(0).Item("UsedForCustomer").ToString())
                     .CreateBy = If(IsDBNull(dt.Rows(0).Item("CreateBy")), "", dt.Rows(0).Item("CreateBy").ToString())
@@ -80,8 +88,10 @@
                                   Lebar ,
                                   Tinggi ,
                                   QtyPallet ,
+                                  StandarQty ,
                                   KapasitasMuat ,
                                   Persentase ,
+                                  Tipe ,
                                   Keterangan ,
                                   UsedForCustomer ,
                                   CreateBy ,
@@ -94,8 +104,10 @@
                                   " & Data.Lebar & " , -- Lebar - float
                                   " & Data.Tinggi & " , -- Tinggi - float
                                   " & Data.QtyPallet & " , -- QtyPallet - int
+                                  " & Data.StandarQty & " , -- StandarQty - int
                                   " & Data.KapasitasMuat & " , -- KapasitasMuat - int
                                   " & Data.Persentase & " , -- Persentase - float
+                                  " & QVal(Data.Tipe) & " , -- Tipe - varchar(20)
                                   " & QVal(Data.Keterangan) & " , -- Keterangan - varchar(50)
                                   " & QVal(Data.UsedForCustomer) & " , -- UsedForCustomer - varchar(5)
                                   " & QVal(Data.CreateBy) & " , -- CreateBy - varchar(20)
@@ -116,8 +128,10 @@
                               ,[Lebar] = " & Data.Lebar & "
                               ,[Tinggi] = " & Data.Tinggi & "
                               ,[QtyPallet] = " & Data.QtyPallet & "
+                              ,[StandarQty] = " & Data.StandarQty & "
                               ,[KapasitasMuat] = " & Data.KapasitasMuat & "
                               ,[Persentase] = " & Data.Persentase & "
+                              ,[Tipe] = " & QVal(Data.Tipe) & "
                               ,[Keterangan] = " & QVal(Data.Keterangan) & "
                               ,[UsedForCustomer] = " & QVal(Data.UsedForCustomer) & "
                               ,[UpdateBy] = " & QVal(Data.UpdateBy) & "
@@ -315,6 +329,23 @@
         End Try
     End Function
 
+    Public Function GetDataPart() As DataTable
+        Try
+            strQuery = "SELECT DISTINCT
+                                a.AlternateID AS PartNo ,
+                                a.Descr AS PartName ,
+                                a.InvtID AS InventoryID
+                        FROM    dbo.ItemXRef AS a
+                                INNER JOIN dbo.Inventory AS b ON b.InvtID = a.InvtID
+                        WHERE   EntityID = 'YIM'"
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function GetDataConvertMuatHeader(dateFrom As Date, dateTo As Date) As DataTable
         Try
             strQuery = "SELECT  NoUpload ,
@@ -325,7 +356,9 @@
                                 TotalRecordExcel ,
                                 TotalMobil ,
                                 CreateBy ,
-                                CreateDate
+                                CreateDate ,
+                                UpdateBy ,
+                                UpdateDate
                         FROM    dbo.T_PPICConvertMuatHeader
                         WHERE   ( CAST(UploadDate AS DATE) >= " & QVal(dateFrom) & "
                                   AND CAST(UploadDate AS DATE) <= " & QVal(dateTo) & "
@@ -382,7 +415,9 @@
                                   TotalRecordExcel ,
                                   TotalMobil ,
                                   CreateBy ,
-                                  CreateDate
+                                  CreateDate ,
+                                  UpdateBy ,
+                                  UpdateDate
                                 )
                         VALUES  ( " & QVal(Data.NoUpload) & " , -- NoUpload - varchar(20)
                                   " & QVal(Data.UploadDate) & " , -- UploadDate - date
@@ -391,6 +426,8 @@
                                   " & QVal(Data.Revised) & " , -- Revised - varchar(10)
                                   " & Data.TotalRecordExcel & " , -- TotalRecordExcel - int
                                   " & Data.TotalMobil & " , -- TotalMobil - int
+                                  " & QVal(gh_Common.Username) & " , -- CreateBy - varchar(50)
+                                  GETDATE() , -- CreateDate - datetime
                                   " & QVal(gh_Common.Username) & " , -- CreateBy - varchar(50)
                                   GETDATE()  -- CreateDate - datetime
                                 )"
@@ -404,13 +441,16 @@
         Try
             strQuery = "INSERT  INTO dbo.T_PPICConvertMuatDetail
                                 ( NoUpload ,
+                                  No ,
                                   Seq ,
                                   ItemNumber ,
                                   ItemName ,
+                                  Lokasi ,
                                   UserCode ,
                                   PF ,
                                   OrderNo ,
                                   DeliveryDueDate ,
+                                  GroupHourly ,
                                   DeliveryTime ,
                                   OrderQuantity ,
                                   JenisPacking ,
@@ -421,13 +461,16 @@
                                   GroupTruk
                                 )
                         VALUES  ( " & QVal(Data.NoUpload) & " , -- NoUpload - varchar(20)
+                                  " & Data.No & " , -- No - int
                                   " & Data.Seq & " , -- Seq - int
                                   " & QVal(Data.ItemNumber) & " , -- ItemNumber - varchar(20)
                                   " & QVal(Data.ItemName) & " , -- ItemName - varchar(50)
-                                  " & QVal(Data.UserCode) & " , -- UserCode - varchar(20)
+                                  " & QVal(Data.Lokasi) & " , -- Lokasi - varchar(10)
+                                  " & QVal(Left(Data.UserCode, 4)) & " , -- UserCode - varchar(20)
                                   " & QVal(Data.PF) & " , -- PF - varchar(20)
                                   " & Data.OrderNo & " , -- OrderNo - int
                                   " & QVal(Data.DeliveryDueDate) & " , -- DeliveryDueDate - date
+                                  " & Data.GroupHourly & " , -- GroupHourly - int
                                   " & QVal(Data.DeliveryTime) & " , -- DeliveryTime - datetime
                                   " & Data.OrderQuantity & " , -- OrderQuantity - int
                                   " & QVal(Data.JenisPacking) & " , -- JenisPacking - varchar(20)
@@ -443,16 +486,75 @@
         End Try
     End Sub
 
+    Public Sub EditConverMuat(frm As Form, Data As PPICConvertMuatHeaderModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        UpdateConvertHeader(Data)
+
+                        DeleteConvertDetail(Data.NoUpload)
+
+                        For i As Integer = 0 To Data.ObjConvertDetails.Count - 1
+                            InsertConvertDetail(Data.ObjConvertDetails(i))
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateConvertHeader(Data As PPICConvertMuatHeaderModel)
+        Try
+            strQuery = "UPDATE [New_BOM].[dbo].[T_PPICConvertMuatHeader]
+                           SET [FileName] = " & QVal(Data.FileName) & "
+                              ,[Revised] = " & QVal(Data.Revised) & "
+                              ,[TotalRecordExcel] = " & QVal(Data.TotalRecordExcel) & "
+                              ,[TotalMobil] = " & QVal(Data.TotalMobil) & "
+                              ,[UpdateBy] = " & QVal(gh_Common.Username) & "
+                              ,[UpdateDate] = GETDATE()
+                         WHERE NoUpload = " & QVal(Data.NoUpload) & ""
+            MainModul.ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub DeleteConvertDetail(NoUpload As String)
+        Try
+            strQuery = "DELETE FROM dbo.T_PPICConvertMuatDetail WHERE NoUpload = " & QVal(NoUpload) & ""
+            MainModul.ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Function GetDataConvertMuatDetail(NoUpload As String) As DataTable
         Try
-            strQuery = "SELECT  ROW_NUMBER() OVER ( ORDER BY UserCode ASC, DeliveryTime ASC ) AS No ,
+            strQuery = "SELECT  [No] ,
                                 Seq ,
                                 ItemNumber ,
                                 ItemName ,
-                                UserCode ,
+                                Lokasi ,
+                                UserCode + '/' + PF AS UserCode ,
                                 PF ,
                                 OrderNo ,
                                 DeliveryDueDate ,
+                                GroupHourly ,
                                 DeliveryTime ,
                                 OrderQuantity ,
                                 JenisPacking ,
@@ -505,14 +607,138 @@
         End Try
     End Function
 
-    Public Function CheckDataExist(UploadDate As Date) As Integer
+    Public Function CheckDataExist(UploadDate As Date) As String
         Try
-            strQuery = "SELECT  COUNT(NoUpload) AS IsRev
+            strQuery = "SELECT  NoUpload
                         FROM    dbo.T_PPICConvertMuatHeader
                         WHERE   UploadDate = " & QVal(UploadDate) & ""
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
-            Return dt.Rows(0).Item("IsRev")
+            Dim NoUpload As String = String.Empty
+            If dt.Rows.Count > 0 Then
+                NoUpload = dt.Rows(0).Item("NoUpload")
+            End If
+            Return NoUpload
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub CopyDTToDB(dtUpload As DataTable)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Using sqlBulkCopy As New SqlBulkCopy(Conn1)
+                    sqlBulkCopy.DestinationTableName = "dbo.T_PPICTempPO"
+
+                    Conn1.Open()
+                    sqlBulkCopy.WriteToServer(dtUpload)
+                    Conn1.Close()
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Function GetDataPPICTemp() As DataTable
+        Try
+            strQuery = "SELECT  ROW_NUMBER() OVER ( ORDER BY usr.Lokasi ASC, CASE WHEN ISNULL(DATEPART(HOUR,
+                                                                                      DeliveryTime), 0) <= 14
+                                                                                  THEN 1
+                                                                                  ELSE 2
+                                                                             END ASC, usr.[Group] ASC, usr.SeqUser ASC, bu.Seq ASC ) AS [No] ,
+                                temp.Seq ,
+                                temp.ItemNumber ,
+                                temp.ItemName ,
+                                usr.Lokasi ,
+                                temp.UserCode + '/' + temp.PF AS UserCode ,
+                                temp.PF ,
+                                usr.[Group] ,
+                                usr.SeqUser ,
+                                usr.Seq ,
+                                CASE WHEN ISNULL(DATEPART(HOUR, DeliveryTime), 0) <= 14 THEN 1
+                                     ELSE 2
+                                END AS GroupHourly ,
+                                temp.OrderNo ,
+                                temp.DeliveryDueDate ,
+                                temp.DeliveryTime ,
+                                temp.OrderQuantity ,
+                                temp.JenisPacking ,
+                                temp.StandarQty ,
+                                temp.KapasitasMuat ,
+                                0 AS ButuhPacking ,
+                                CAST(0 AS FLOAT) AS KebutuhanTruk ,
+                                0 AS GroupTruk
+                        FROM    dbo.T_PPICTempPO AS temp
+                                LEFT JOIN dbo.M_PPICUser AS usr ON usr.UserCode = temp.UserCode
+                                                                   AND usr.PF = temp.PF
+                                LEFT JOIN dbo.M_PPICBuildup AS bu ON bu.JenisPacking = temp.JenisPacking"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub DeleteDataTemp()
+        Try
+            strQuery = "DELETE FROM dbo.T_PPICTempPO"
+            MainModul.ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Function LoadReportBuktiMuatHeader(NoUpload) As DataTable
+        Try
+            strQuery = "SELECT  DISTINCT
+                                header.NoUpload ,
+                                detail.GroupTruk AS NoMobil
+                        FROM    dbo.T_PPICConvertMuatHeader AS header
+                                INNER JOIN dbo.T_PPICConvertMuatDetail AS detail ON detail.NoUpload = header.NoUpload
+                        WHERE   header.NoUpload = " & QVal(NoUpload) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function LoadReportBuktiMuat(NoUpload As String) As DataTable
+        Try
+            strQuery = "SELECT  header.NoUpload ,
+                                header.UploadDate ,
+                                ROW_NUMBER() OVER(Partition by detail.GroupTruk ORDER BY detail.GroupTruk) AS [No] ,
+                                detail.Seq ,
+                                detail.ItemNumber ,
+                                detail.ItemName ,
+                                'YIMM ' + detail.Lokasi AS Tujuan,
+                                detail.UserCode + '/' + detail.PF AS UserCode ,
+                                detail.PF ,
+                                detail.OrderNo ,
+                                UPPER(dbo.FormatDateTimeIDN(detail.DeliveryDueDate, 'dddd')) + ', '
+                                + dbo.FormatDateTimeIDN(detail.DeliveryDueDate, 'dd.MM.yyyy') AS TglKirim ,
+                                detail.GroupHourly ,
+                                detail.DeliveryTime AS Hourly,
+                                detail.OrderQuantity ,
+                                detail.JenisPacking ,
+                                CAST(detail.StandarQty AS VARCHAR(10)) + '  X  '
+                                + CAST(detail.ButuhPacking AS VARCHAR(10)) + '  =  '
+                                + CAST(detail.OrderQuantity AS VARCHAR(10)) AS JmlPacking ,
+                                detail.StandarQty ,
+                                detail.KapasitasMuat ,
+                                detail.ButuhPacking ,
+                                detail.KebutuhanTruk ,
+                                detail.GroupTruk ,
+                                'MOBIL ' + CAST(detail.GroupTruk AS VARCHAR(3)) AS NoMobil
+                        FROM    dbo.T_PPICConvertMuatHeader AS header
+                                INNER JOIN dbo.T_PPICConvertMuatDetail AS detail ON detail.NoUpload = header.NoUpload
+                        WHERE   header.NoUpload = " & QVal(NoUpload) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try

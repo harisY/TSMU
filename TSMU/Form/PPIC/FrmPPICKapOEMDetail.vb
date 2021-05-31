@@ -217,4 +217,40 @@ Public Class FrmPPICKapOEMDetail
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+
+    Private Sub txtPartNo_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles txtPartNo.ButtonClick
+        Try
+            Dim ls_Judul As String = ""
+            Dim dtSearch As New DataTable
+            Dim ls_OldKode As String = ""
+
+            dtSearch = srvHR.GetDataPart
+            ls_OldKode = txtJenisPacking.Text
+            ls_Judul = "Part No"
+
+            Dim lF_SearchData As FrmSystem_LookupGrid
+            lF_SearchData = New FrmSystem_LookupGrid(dtSearch)
+            lF_SearchData.Text = "Select Data " & ls_Judul
+            lF_SearchData.StartPosition = FormStartPosition.CenterScreen
+            lF_SearchData.ShowDialog()
+            Dim Value1 As String = ""
+            Dim Value2 As String = ""
+            Dim Value3 As String = ""
+
+            If lF_SearchData.Values IsNot Nothing AndAlso lF_SearchData.Values.Item(0).ToString.Trim <> ls_OldKode Then
+                Value1 = lF_SearchData.Values.Item(0).ToString.Trim
+                Value2 = lF_SearchData.Values.Item(1).ToString.Trim
+                Value3 = lF_SearchData.Values.Item(2).ToString.Trim
+                txtPartNo.Text = Value1
+                txtPartName.EditValue = Value2
+                txtInventoryID.EditValue = Value3
+                txtModel.Text = Microsoft.VisualBasic.Left(Value1, 3)
+            End If
+            lF_SearchData.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
 End Class
