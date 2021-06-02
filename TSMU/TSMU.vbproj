@@ -1195,6 +1195,12 @@
       <DependentUpon>settle1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\SettleEntertain1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SettleEntertain.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\suspend1.Designer.vb">
       <DependentUpon>suspend1.vb</DependentUpon>
     </Compile>
@@ -4905,7 +4911,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\SettleEntertain.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>SettleEntertain.vb</LastGenOutput>
+      <LastGenOutput>SettleEntertain1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\settle1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
