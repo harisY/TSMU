@@ -319,6 +319,7 @@ Public Class FrmMaterialPainting_CKR
                     With ObjPaintingDetail
                         .IDTrans = KodeTrans
                         .invtId = Convert.ToString(GridView1.GetRowCellValue(i, "InvtID"))
+                        .Material = Convert.ToString(GridView1.GetRowCellValue(i, "Material"))
                         .StokAwalTNG02 = Convert.ToDouble(GridView1.GetRowCellValue(i, "StockAwalTNG02"))
                         .StokAkhirTNG04 = Convert.ToDouble(GridView1.GetRowCellValue(i, "StockAwalTNG04"))
                         .Masuk = Convert.ToDouble(GridView1.GetRowCellValue(i, "Masuk"))
@@ -352,6 +353,7 @@ Public Class FrmMaterialPainting_CKR
                     With ObjPaintingDetail
                         .IDTrans = KodeTrans
                         .invtId = Convert.ToString(GridView1.GetRowCellValue(i, "InvtID"))
+                        .Material = Convert.ToString(GridView1.GetRowCellValue(i, "Material"))
                         .StokAwalTNG02 = Convert.ToDouble(GridView1.GetRowCellValue(i, "StockAwalTNG02"))
                         .StokAkhirTNG04 = Convert.ToDouble(GridView1.GetRowCellValue(i, "StockAwalTNG04"))
                         .Masuk = Convert.ToDouble(GridView1.GetRowCellValue(i, "Masuk"))

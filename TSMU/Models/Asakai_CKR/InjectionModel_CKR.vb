@@ -101,10 +101,12 @@ Public Class InjectionModel_CKR
     Public Sub ValidateInsert()
         Try
             Dim ls_SP As String = "SELECT TOP 1 [IdTransaksi],Tanggal                   
-                                    FROM [AsakaiInjectionHeader] where Tanggal = '" & H_date & "' "
+                                    FROM [AsakaiInjectionHeader] 
+                                    where Tanggal = '" & H_date & "' 
+                                    and Dept = '" & gh_Common.GroupID & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.H_date & " ")
@@ -118,14 +120,18 @@ Public Class InjectionModel_CKR
         End Try
     End Sub
     Public Sub New()
-        Me._Query = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal  FROM AsakaiInjectionHeader order by IdTransaksi Desc "
+        Me._Query = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal  FROM AsakaiInjectionHeader  order by IdTransaksi Desc "
     End Sub
 
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
+            Dim ls_SP As String = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal  
+                                    FROM AsakaiInjectionHeader 
+                                    Where Dept = '" & gh_Common.GroupID & "'
+                                    order by IdTransaksi Desc "
             'dtTable = MainModul.GetDataTableByCommand(Me._Query)
-            dtTable = GetDataTableByParam(Me._Query, CommandType.Text, Nothing, GetConnStringDbCKR)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw

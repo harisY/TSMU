@@ -67,8 +67,11 @@ Public Class PaintingProduksiModel_CKR
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            'dtTable = MainModul.GetDataTableByCommand(Me._Query)
-            dtTable = GetDataTableByParam(Me._Query, CommandType.Text, Nothing, GetConnStringDbCKR)
+            Dim ls_SP As String = "SELECT IdTransaksi,CONVERT(varchar,Tanggal,105) as Tanggal
+                                    FROM AsakaiPaintingStraightPass
+                                    Where Dept = '" & gh_Common.GroupID & "'
+                                    order by IdTransaksi Desc "
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw

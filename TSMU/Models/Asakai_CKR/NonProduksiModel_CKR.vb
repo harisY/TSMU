@@ -24,7 +24,7 @@ Public Class NonProduksiModel_CKR
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = GetDataTableByCommand(Me._Query)
+            dtTable = GetDataTableByParam(Me._Query, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -134,7 +134,7 @@ Public Class NonProduksiModel_CKR
                                     WHERE AsakaiOtherDeptDetail.[IDTransaksi] = " & QVal(ID) & ""
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(query)
-            dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 With dtTable.Rows(0)
                     Me.H_Tanggal = Trim(.Item("Tanggal") & "")
@@ -291,7 +291,7 @@ Public Class NonProduksiModel_CKR
                                     FROM [AsakaiOtherDept] where IDTransaksi = '" & H_IDTransaksi & "' "
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & (Me.H_IDTransaksi) & "]")

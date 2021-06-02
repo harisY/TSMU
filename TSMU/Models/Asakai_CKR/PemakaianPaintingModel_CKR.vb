@@ -170,8 +170,8 @@ Public Class PemakaianPaintingModel_CKR
     Public Function GetDataDetailPainting(ID As String) As DataTable
         Try
             Dim query As String = "SELECT 
-                                    AsakaiPaintingDetail.invtId as InvtID
-                                    ,Inventory.Descr as Material
+                                    invtId as InvtID
+                                    ,Material
                                     ,AsakaiPaintingDetail.StokAwalTNG02 as StockAwal02
                                     ,AsakaiPaintingDetail.StokAwalTNG04Konversi as StockAwal04
                                     ,AsakaiPaintingDetail.StokAwalTNG04BelumKonversi as StockAwal04Blm
@@ -187,7 +187,8 @@ Public Class PemakaianPaintingModel_CKR
                                     ,AsakaiPaintingDetail.Pemakaian as Pemakaian
                                     ,AsakaiPaintingDetail.Harga as Harga
                                     ,AsakaiPaintingDetail.TotalRP as Amount
-                                    FROM AsakaiPaintingDetail Left join New_BOM.dbo.Inventory on AsakaiPaintingDetail.invtId = New_BOM.dbo.Inventory.InvtID where AsakaiPaintingDetail.IDTrans  = '" & ID & "'"
+                                    FROM AsakaiPaintingDetail where IDTrans  = '" & ID & "'"
+            'From AsakaiPaintingDetail Left Join New_BOM.dbo.Inventory on AsakaiPaintingDetail.invtId = New_BOM.dbo.Inventory.InvtID Where AsakaiPaintingDetail.IDTrans = '" & ID & "'"
             Dim dtTable As New DataTable
             dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
@@ -199,7 +200,7 @@ Public Class PemakaianPaintingModel_CKR
     Public Sub ValidateInsert()
         Try
             Dim ls_SP As String = "SELECT TOP 1 [IDTrans],TanggalSampai                   
-                                    FROM [AsakaiPemakaianPainting] where IDTrans = '" & IDTrans & "' or TanggalSampai >= '" & HeadTanggalSampai & "' "
+                                    FROM [AsakaiPemakaianPainting] where IDTrans = '" & IDTrans & "' or TanggalSampai >= '" & HeadTanggalSampai & "'"
             Dim dtTable As New DataTable
             dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
@@ -247,9 +248,7 @@ Public Class PemakaianPaintingModel_CKR
                     End If
 
                 End If
-
             End If
-
         Catch ex As Exception
             Throw
         End Try
@@ -268,9 +267,7 @@ Public Class PemakaianPaintingModel_CKR
                     gh_Trans = New InstanceVariables.TransactionHelper
                     gh_Trans.Command.Connection = Conn1
                     gh_Trans.Command.Transaction = Trans1
-
                     Try
-
                         InsertHeader()
                         For i As Integer = 0 To ObjDetailPainting.Count - 1
                             With ObjDetailPainting(i)
@@ -478,6 +475,7 @@ Public Class PemakaianPaintinglDetailModel_CKR
     Public Property Harga As Double
     Public Property IDTrans As String
     Public Property invtId As String
+    Public Property Material As String
     Public Property Masuk As Double
     Public Property Pemakaian As Double
     Public Property PemakaianNonProduksi As Double
@@ -502,6 +500,7 @@ Public Class PemakaianPaintinglDetailModel_CKR
             "INSERT INTO AsakaiPaintingDetail
                         ([IDTrans]
                        ,[invtId]
+                       ,[Material]
                        ,[StokAwalTNG02]
                        ,[StokAwalTNG04Konversi]
                        ,[StokAwalTNG04BelumKonversi]
@@ -519,6 +518,7 @@ Public Class PemakaianPaintinglDetailModel_CKR
                        ,[TotalRP]) " & vbCrLf &
             "Values(" & QVal(IDTrans) & ", " & vbCrLf &
             "       " & QVal(invtId) & ", " & vbCrLf &
+            "       " & QVal(Material) & ", " & vbCrLf &
             "       " & QVal(StokAwalTNG02) & ", " & vbCrLf &
             "       " & QVal(StokAwalTNG02Konversi) & ", " & vbCrLf &
             "       " & QVal(StokAwalTNG04BelumKonversi) & ", " & vbCrLf &
