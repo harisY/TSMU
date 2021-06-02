@@ -130,26 +130,26 @@ Public Class clsBoM
         Try
             Dim ls_SP As String =
                 "SELECT [bomid] [BOM ID]
-                    ,[tgl]  [TGL]
-                    ,Status Jenis
-                    ,[invtid] [Inventory ID]
-                    ,[descr] [Description]
-                    ,[siteid] [Site]
-                    ,[runner] [Runner]
-                    ,[ct] [CT]
-                    ,[mc] [MC/Ton]
-                    ,[cavity] [Cavity]
-                    ,[wc] [WC]
-                    ,[allowance] [Allow]
-                    ,[mp] [MP]
-                    ,Case Active
-                        When 0 then 'Subcon'
+                    ,b.[tgl]  [TGL]
+                    ,b.Status Jenis
+                    ,b.[invtid] [Inventory ID]
+                    ,i.[Descr] [Description]
+                    ,b.[siteid] [Site]
+                    ,b.[runner] [Runner]
+                    ,b.[ct] [CT]
+                    ,b.[mc] [MC/Ton]
+                    ,b.[cavity] [Cavity]
+                    ,b.[wc] [WC]
+                    ,b.[allowance] [Allow]
+                    ,b.[mp] [MP]
+                    ,Case b.Active
+                        When 0 then 'Subcont'
                         When 1 then 'InHouse'
                         Else 'Discontinue'
                     END as [Status]
                     ,[updated_by] [Updated By]
-                    ,[updated_date] [Updated Date]
-                FROM [bomh]"
+                    ,[updated_date] [Updated Date] 
+                FROM [bomh] b Left Join TSC16Application.dbo.Inventory i on b.InvtId = i.InvtId"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Return dtTable
