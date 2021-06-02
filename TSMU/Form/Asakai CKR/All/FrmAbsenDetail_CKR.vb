@@ -83,7 +83,7 @@ Public Class FrmAbsenDetail_CKR
 
         Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         Call InitialSetForm()
-
+        'Pancing
     End Sub
     Private Sub jmlabsen_EditValueChanged(sender As Object, e As EventArgs) Handles jmlabsen.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
