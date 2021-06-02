@@ -90,7 +90,7 @@ Public Class FrmDeliveryDetail_CKR
             Call LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmDeliveryHeader"
+            bs_MainFormName = "FrmDeliveryHeader_CKR"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

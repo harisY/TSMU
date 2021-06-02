@@ -80,7 +80,8 @@ Public Class FrmAbsenDetail_CKR
 
 
     Private Sub FrmAbsenDetail_CKR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
+
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
         Call InitialSetForm()
 
     End Sub
@@ -113,7 +114,7 @@ Public Class FrmAbsenDetail_CKR
             LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmAbsen"
+            bs_MainFormName = "FrmAbsen_CKR"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
