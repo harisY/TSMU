@@ -2064,7 +2064,7 @@ Public Class ClsCR_CreateUser
         '   Dim query As String
         '   query = "SELECT ROW_NUMBER() OVER (
         'ORDER BY A.ID)[No]
-        '           ,[CirculationNo]
+        '           ,[CirculationNo]-
         '        ,A.[DeptID]
         '        ,A.[Date]
         '        ,A.[Opinion]

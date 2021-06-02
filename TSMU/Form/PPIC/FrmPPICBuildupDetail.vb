@@ -8,7 +8,7 @@ Public Class FrmPPICBuildupDetail
     Dim ls_Error As String = ""
     Dim _Tag = New TagModel
 
-    Dim srvHR As New PPICService
+    Dim srvPPIC As New PPICService
     Dim modelHeader As PPICBuildupModel
     Dim dtGridDetail As DataTable
     Dim GridDtl As GridControl
@@ -50,7 +50,7 @@ Public Class FrmPPICBuildupDetail
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                modelHeader = srvHR.GetDataBuildupByID(fs_Code)
+                modelHeader = srvPPIC.GetDataBuildupByID(fs_Code)
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -82,8 +82,10 @@ Public Class FrmPPICBuildupDetail
                     txtLebar.EditValue = .Lebar
                     txtTinggi.EditValue = .Tinggi
                     txtQtyPallet.EditValue = .QtyPallet
+                    txtStandarQty.EditValue = .StandarQty
                     txtKapasitasMuat.EditValue = .KapasitasMuat
                     txtPersentase.EditValue = .Persentase
+                    txtTipe.Text = .Tipe
                     txtKeterangan.Text = .Keterangan
                     txtUsedForCustomer.Text = .UsedForCustomer
                     txtJenisPacking.Enabled = False
@@ -94,8 +96,10 @@ Public Class FrmPPICBuildupDetail
                 txtLebar.EditValue = 0
                 txtTinggi.EditValue = 0
                 txtQtyPallet.EditValue = 0
+                txtStandarQty.EditValue = 0
                 txtKapasitasMuat.EditValue = 0
                 txtPersentase.EditValue = 0
+                txtTipe.Text = ""
                 txtKeterangan.Text = ""
                 txtUsedForCustomer.Text = ""
                 txtJenisPacking.Focus()
@@ -134,8 +138,10 @@ Public Class FrmPPICBuildupDetail
                     .Lebar = txtLebar.EditValue
                     .Tinggi = txtTinggi.EditValue
                     .QtyPallet = txtQtyPallet.EditValue
+                    .StandarQty = txtStandarQty.EditValue
                     .KapasitasMuat = txtKapasitasMuat.EditValue
                     .Persentase = txtPersentase.EditValue
+                    .Tipe = txtTipe.Text
                     .Keterangan = txtKeterangan.Text
                     .UsedForCustomer = txtUsedForCustomer.Text
                     .CreateBy = gh_Common.Username
@@ -143,7 +149,7 @@ Public Class FrmPPICBuildupDetail
                     .UpdateBy = gh_Common.Username
                     .UpdateDate = Now
                     If isUpdate = False Then
-                        srvHR.CheckDuplicateBuildup(modelHeader)
+                        srvPPIC.CheckDuplicateBuildup(modelHeader)
                     End If
                 End With
 
@@ -159,14 +165,14 @@ Public Class FrmPPICBuildupDetail
     Public Overrides Sub Proc_SaveData()
         Try
             If isUpdate = False Then
-                srvHR.InsertDataBuildup(modelHeader)
+                srvPPIC.InsertDataBuildup(modelHeader)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
-                srvHR.UpdateDataBuildup(modelHeader)
+                srvPPIC.UpdateDataBuildup(modelHeader)
                 Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
             End If
 
-            GridDtl.DataSource = srvHR.GetDataBuildup()
+            GridDtl.DataSource = srvPPIC.GetDataBuildup()
             IsClosed = True
             Me.Hide()
         Catch ex As Exception

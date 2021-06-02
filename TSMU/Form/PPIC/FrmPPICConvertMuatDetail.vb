@@ -1,8 +1,9 @@
 ﻿Imports DevExpress.XtraSplashScreen
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraGrid.Columns
-Imports DevExpress.Utils
+Imports DevExpress.LookAndFeel
+Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraReports.Parameters
 
 Public Class FrmPPICConvertMuatDetail
     Public IsClosed As Boolean = False
@@ -12,19 +13,21 @@ Public Class FrmPPICConvertMuatDetail
     Dim _Tag = New TagModel
 
     Dim clsGlobal As New GlobalService
-    Dim srvHR As New PPICService
+    Dim srvPPIC As New PPICService
     Dim modelHeader As PPICConvertMuatHeaderModel
     Dim modelDetail As PPICConvertMuatDetailModel
 
     Dim GridDtl As GridControl
     Dim gridViewHeader As GridView
-    Dim dtDetail As DataTable
 
-    Dim noUpload As String
+    Dim _rows As String
+    Public Property NoUpload() As String
     Public Property CustID() As String
     Public Property UploadDate() As Date
     Public Property FileName() As String
     Public Property Revised() As String
+    Public Property dtDetail() As DataTable
+    Public Property dtConvertMuat() As DataTable
 
     Public Sub New()
         InitializeComponent()
@@ -35,13 +38,15 @@ Public Class FrmPPICConvertMuatDetail
                    ByVal strCode3 As String,
                    ByRef lf_FormParent As Form,
                    ByRef _Grid As GridControl,
-                   ByRef _GridView As GridView)
+                   ByRef _GridView As GridView,
+                   ByRef rows As Integer)
         ' this call is required by the windows form designer
         Me.New()
         If strCode <> "" Then
             fs_Code = strCode
             fs_Code2 = strCode2
             UploadDate = strCode3
+            _rows = rows
         End If
         GridDtl = _Grid
         gridViewHeader = _GridView
@@ -83,40 +88,43 @@ Public Class FrmPPICConvertMuatDetail
     Private Sub LoadGridDetail()
         Try
             If isUpdate Then
-                Call Proc_EnableButtons(False, False, False, True, True, False, False, False, False, False, False, False)
+                Call Proc_EnableButtons(False, False, False, True, True, False, False, True, False, False, False, False)
+                NoUpload = fs_Code
+                CustID = gridViewHeader.GetRowCellValue(_rows, "CustID")
+                FileName = gridViewHeader.GetRowCellValue(_rows, "FileName")
+                Revised = "Yes"
                 btnKonversi.Enabled = False
-                srvHR = New PPICService
-                dtDetail = srvHR.GetDataConvertMuatDetail(fs_Code)
-                GridDetail.DataSource = dtDetail
-                With GridViewDetail
-                    Dim colNo As GridColumn = .Columns("No")
-                    colNo.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center
-
-                    Dim colSeq As GridColumn = .Columns("Seq")
-                    colSeq.AppearanceCell.TextOptions.HAlignment = HorzAlignment.Center
-
-                    Dim colDeliveryTime As GridColumn = .Columns("DeliveryTime")
-                    colDeliveryTime.Caption = "Delivery Time (To)"
-                    colDeliveryTime.DisplayFormat.FormatType = FormatType.DateTime
-                    colDeliveryTime.DisplayFormat.FormatString = "HH:mm"
-
-                    .BestFitColumns()
-                    If UploadDate = Date.Today Then
-                        .OptionsBehavior.Editable = True
-                    Else
-                        .OptionsBehavior.Editable = False
-                    End If
-                End With
+                srvPPIC = New PPICService
+                dtDetail = srvPPIC.GetDataConvertMuatDetail(fs_Code)
+                dtConvertMuat = New DataTable
+                dtConvertMuat = dtDetail.Copy()
+                GridDetail.DataSource = dtConvertMuat
                 txtTotalMobil.Text = fs_Code2
 
+                If UploadDate = Date.Today Then
+                    GridViewDetail.OptionsBehavior.Editable = True
+                Else
+                    GridViewDetail.OptionsBehavior.Editable = False
+                End If
+                HitungJumlahTruk()
             Else
+                Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
                 txtTotalMobil.Text = 0
-                GridDetail.DataSource = dtDetail
-                GridViewDetail.BestFitColumns()
+                dtConvertMuat = New DataTable
+                dtConvertMuat = dtDetail.Copy()
+                GridDetail.DataSource = dtConvertMuat
+                GridViewDetail.OptionsBehavior.Editable = False
+                btnKonversi.Enabled = True
             End If
+
+            GridViewDetail.BestFitColumns()
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
+    End Sub
+
+    Public Overrides Sub Proc_Refresh()
+        LoadGridDetail()
     End Sub
 
     Public Overrides Sub Proc_Excel()
@@ -153,12 +161,13 @@ Public Class FrmPPICConvertMuatDetail
             End If
 
             If lb_Validated Then
-                clsGlobal = New GlobalService
-                noUpload = clsGlobal.GetAutoNumber(FrmParent)
-                srvHR = New PPICService
+                If Revised = "No" Then
+                    clsGlobal = New GlobalService
+                    NoUpload = clsGlobal.GetAutoNumber(FrmParent)
+                End If
                 modelHeader = New PPICConvertMuatHeaderModel
                 With modelHeader
-                    .NoUpload = noUpload
+                    .NoUpload = NoUpload
                     .UploadDate = UploadDate
                     .CustID = CustID
                     .FileName = FileName
@@ -178,36 +187,45 @@ Public Class FrmPPICConvertMuatDetail
         Try
             modelHeader.ObjConvertDetails.Clear()
             For i As Integer = 0 To GridViewDetail.RowCount - 1
-                modelDetail = New PPICConvertMuatDetailModel
-                With modelDetail
-                    .NoUpload = noUpload
-                    .Seq = GridViewDetail.GetRowCellValue(i, "Seq")
-                    .ItemNumber = GridViewDetail.GetRowCellValue(i, "ItemNumber")
-                    .ItemName = GridViewDetail.GetRowCellValue(i, "ItemName")
-                    .UserCode = GridViewDetail.GetRowCellValue(i, "UserCode")
-                    .PF = GridViewDetail.GetRowCellValue(i, "PF")
-                    .OrderNo = GridViewDetail.GetRowCellValue(i, "OrderNo")
-                    .DeliveryDueDate = IIf(GridViewDetail.GetRowCellValue(i, "DeliveryDueDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "DeliveryDueDate"))
-                    .DeliveryTime = IIf(GridViewDetail.GetRowCellValue(i, "DeliveryTime") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "DeliveryTime"))
-                    .OrderQuantity = GridViewDetail.GetRowCellValue(i, "OrderQuantity")
-                    .JenisPacking = GridViewDetail.GetRowCellValue(i, "JenisPacking")
-                    .StandarQty = GridViewDetail.GetRowCellValue(i, "StandarQty")
-                    .KapasitasMuat = GridViewDetail.GetRowCellValue(i, "KapasitasMuat")
-                    .ButuhPacking = GridViewDetail.GetRowCellValue(i, "ButuhPacking")
-                    .KebutuhanTruk = GridViewDetail.GetRowCellValue(i, "KebutuhanTruk")
-                    .GroupTruk = GridViewDetail.GetRowCellValue(i, "GroupTruk")
-                End With
-                modelHeader.ObjConvertDetails.Add(modelDetail)
+                If GridViewDetail.GetRowCellValue(i, "ItemNumber") IsNot DBNull.Value Then
+                    modelDetail = New PPICConvertMuatDetailModel
+                    With modelDetail
+                        .NoUpload = NoUpload
+                        .No = GridViewDetail.GetRowCellValue(i, "No")
+                        .Seq = GridViewDetail.GetRowCellValue(i, "Seq")
+                        .PartNo = GridViewDetail.GetRowCellValue(i, "PartNo")
+                        .ItemNumber = GridViewDetail.GetRowCellValue(i, "ItemNumber")
+                        .ItemName = GridViewDetail.GetRowCellValue(i, "ItemName")
+                        .Lokasi = GridViewDetail.GetRowCellValue(i, "Lokasi")
+                        .UserCode = GridViewDetail.GetRowCellValue(i, "UserCode")
+                        .PF = GridViewDetail.GetRowCellValue(i, "PF")
+                        .OrderNo = GridViewDetail.GetRowCellValue(i, "OrderNo")
+                        .DeliveryDueDate = IIf(GridViewDetail.GetRowCellValue(i, "DeliveryDueDate") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "DeliveryDueDate"))
+                        .GroupHourly = GridViewDetail.GetRowCellValue(i, "GroupHourly")
+                        .DeliveryTime = IIf(GridViewDetail.GetRowCellValue(i, "DeliveryTime") Is DBNull.Value, Nothing, GridViewDetail.GetRowCellValue(i, "DeliveryTime"))
+                        .OrderQuantity = GridViewDetail.GetRowCellValue(i, "OrderQuantity")
+                        .JenisPacking = GridViewDetail.GetRowCellValue(i, "JenisPacking")
+                        .StandarQty = GridViewDetail.GetRowCellValue(i, "StandarQty")
+                        .KapasitasMuat = GridViewDetail.GetRowCellValue(i, "KapasitasMuat")
+                        .ButuhPacking = GridViewDetail.GetRowCellValue(i, "ButuhPacking")
+                        .KebutuhanTruk = GridViewDetail.GetRowCellValue(i, "KebutuhanTruk")
+                        .GroupTruk = GridViewDetail.GetRowCellValue(i, "GroupTruk")
+                    End With
+                    modelHeader.ObjConvertDetails.Add(modelDetail)
+                End If
             Next
-            If MsgBox("Are You Sure Upload Data", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.Yes Then
+            If MsgBox("Are You Sure Save Data", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.Yes Then
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
-
-                srvHR.SaveConverMuat(FrmParent, modelHeader)
+                If Revised = "No" Then
+                    srvPPIC.SaveConverMuat(FrmParent, modelHeader)
+                Else
+                    srvPPIC.EditConverMuat(FrmParent, modelHeader)
+                End If
 
                 SplashScreenManager.CloseForm()
                 Dim _now As Date = Date.Today
-                GridDtl.DataSource = srvHR.GetDataConvertMuatHeader(_now, _now)
+                GridDtl.DataSource = srvPPIC.GetDataConvertMuatHeader(_now, _now)
                 gridViewHeader.BestFitColumns()
                 IsClosed = True
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
@@ -219,44 +237,108 @@ Public Class FrmPPICConvertMuatDetail
         End Try
     End Sub
 
-    Private Sub btnKonversi_Click(sender As Object, e As EventArgs) Handles btnKonversi.Click
-        btnKonversi.Enabled = False
-        Dim TotalButuhTruk As Double = 0
-        Dim GroupTruk As Integer = 1
-        For i As Integer = 0 To GridViewDetail.RowCount - 1
-            Dim OrderQuantity As Integer = GridViewDetail.GetRowCellValue(i, "OrderQuantity")
-            Dim StandarQty As Integer = GridViewDetail.GetRowCellValue(i, "StandarQty")
-            Dim ButuhPacking As Integer = Math.Ceiling(OrderQuantity / StandarQty)
+    Public Overrides Sub Proc_Print()
+        srvPPIC = New PPICService
+        Dim lapBuktiMuatHeader As New DRPPICBuktiMuatHeader
+        Dim lapBuktiMuat As New DRPPICBuktiMuat
+        Dim dtBuktiMuatHeader As New DataTable
+        Dim dtBuktiMuatTemp As New DataTable
 
-            GridViewDetail.SetRowCellValue(i, "ButuhPacking", ButuhPacking)
+        dtBuktiMuatHeader = srvPPIC.LoadReportBuktiMuatHeader(NoUpload)
+        dtBuktiMuatTemp = srvPPIC.LoadReportBuktiMuat(NoUpload)
 
-            Dim KapasitasMuat As Integer = GridViewDetail.GetRowCellValue(i, "KapasitasMuat")
-            Dim ButuhTruk As Double = ButuhPacking / KapasitasMuat
-            TotalButuhTruk += ButuhTruk
+        lapBuktiMuatHeader.DataSource = dtBuktiMuatHeader
 
-            GridViewDetail.SetRowCellValue(i, "KebutuhanTruk", ButuhTruk)
+        Dim dtBuktiMuat As New DataTable
+        dtBuktiMuat = dtBuktiMuatTemp.Clone()
+        Dim newRow As DataRow
+        Dim UserCode As String = String.Empty
+        Dim NoMobil As String = String.Empty
 
-            If TotalButuhTruk > 1 Then
-                GroupTruk += 1
-                TotalButuhTruk = ButuhTruk
+        For Each rows As DataRow In dtBuktiMuatTemp.Rows
+            If Not String.IsNullOrEmpty(UserCode) AndAlso UserCode <> rows("UserCode") AndAlso NoMobil = rows("NoMobil") Then
+                newRow = dtBuktiMuat.NewRow
+                newRow("GroupTruk") = rows("GroupTruk")
+                newRow("NoMobil") = rows("NoMobil")
+                dtBuktiMuat.Rows.Add(newRow)
             End If
 
-            GridViewDetail.SetRowCellValue(i, "GroupTruk", GroupTruk)
+            UserCode = rows("UserCode")
+            NoMobil = rows("NoMobil")
+
+            newRow = dtBuktiMuat.NewRow
+            newRow("NoUpload") = rows("NoUpload")
+            newRow("No") = rows("No")
+            newRow("UploadDate") = rows("UploadDate")
+            newRow("No") = rows("No")
+            newRow("Seq") = rows("Seq")
+            newRow("ItemNumber") = rows("ItemNumber")
+            newRow("ItemName") = rows("ItemName")
+            newRow("Tujuan") = rows("Tujuan")
+            newRow("UserCode") = rows("UserCode")
+            newRow("PF") = rows("PF")
+            newRow("OrderNo") = rows("OrderNo")
+            newRow("TglKirim") = rows("TglKirim")
+            newRow("GroupHourly") = rows("GroupHourly")
+            newRow("Hourly") = rows("Hourly")
+            newRow("OrderQuantity") = rows("OrderQuantity")
+            newRow("JenisPacking") = rows("JenisPacking")
+            newRow("JmlPacking") = rows("JmlPacking")
+            newRow("StandarQty") = rows("StandarQty")
+            newRow("KapasitasMuat") = rows("KapasitasMuat")
+            newRow("ButuhPacking") = rows("ButuhPacking")
+            newRow("KebutuhanTruk") = rows("KebutuhanTruk")
+            newRow("GroupTruk") = rows("GroupTruk")
+            newRow("NoMobil") = rows("NoMobil")
+            dtBuktiMuat.Rows.Add(newRow)
         Next
-        txtTotalMobil.Text = GroupTruk
+
+        Dim parameter1 As New Parameter()
+        parameter1.Name = "Mobil"
+        parameter1.Type = GetType(System.Int32)
+        parameter1.MultiValue = True
+        parameter1.Description = "Mobil: "
+        parameter1.AllowNull = True
+
+        Dim lookupSettings As New DynamicListLookUpSettings()
+        lookupSettings.DataSource = dtBuktiMuatHeader
+        lookupSettings.DisplayMember = "NoMobil"
+        lookupSettings.ValueMember = "NoMobil"
+
+        parameter1.LookUpSettings = lookupSettings
+        parameter1.Visible = True
+        lapBuktiMuatHeader.Parameters.Add(parameter1)
+
+        lapBuktiMuatHeader.FilterString = "?Mobil Is Null or [NoMobil] In (?Mobil)"
+        lapBuktiMuatHeader.RequestParameters = False
+
+        Dim subReport As XRSubreport = CType(lapBuktiMuatHeader.FindControl("XrSubreport1", True), XRSubreport)
+        subReport.ReportSource.DataSource = dtBuktiMuat
+
+        Dim PrintTool As ReportPrintTool
+        PrintTool = New ReportPrintTool(lapBuktiMuatHeader)
+        TryCast(PrintTool.Report, XtraReport).Tag = PrintTool
+        PrintTool.ShowPreview(UserLookAndFeel.Default)
+    End Sub
+
+    Private Sub btnKonversi_Click(sender As Object, e As EventArgs) Handles btnKonversi.Click
+        HitungJumlahTruk()
         Call Proc_EnableButtons(False, True, False, True, True, False, False, False, False, False, False, False)
     End Sub
 
     Public Sub CreateTable()
         dtDetail = New DataTable
-        dtDetail.Columns.AddRange(New DataColumn(15) {New DataColumn("No", GetType(Integer)),
+        dtDetail.Columns.AddRange(New DataColumn(18) {New DataColumn("No", GetType(Integer)),
                                                     New DataColumn("Seq", GetType(Integer)),
+                                                    New DataColumn("PartNo", GetType(String)),
                                                     New DataColumn("ItemNumber", GetType(String)),
                                                     New DataColumn("ItemName", GetType(String)),
+                                                    New DataColumn("Lokasi", GetType(String)),
                                                     New DataColumn("UserCode", GetType(String)),
                                                     New DataColumn("PF", GetType(String)),
                                                     New DataColumn("OrderNo", GetType(Integer)),
                                                     New DataColumn("DeliveryDueDate", GetType(Date)),
+                                                    New DataColumn("GroupHourly", GetType(Integer)),
                                                     New DataColumn("DeliveryTime", GetType(DateTime)),
                                                     New DataColumn("OrderQuantity", GetType(Integer)),
                                                     New DataColumn("JenisPacking", GetType(String)),
@@ -265,6 +347,113 @@ Public Class FrmPPICConvertMuatDetail
                                                     New DataColumn("ButuhPacking", GetType(Integer)),
                                                     New DataColumn("KebutuhanTruk", GetType(Double)),
                                                     New DataColumn("GroupTruk", GetType(Integer))})
+    End Sub
+
+    Private Sub GridViewDetail_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridViewDetail.RowStyle
+        Dim foreColor As Color = Color.Red
+        Dim backColor As Color = Color.DarkGray
+        Dim view As GridView = TryCast(sender, GridView)
+        If view.RowCount > 0 Then
+            Dim ItemNumber As String = view.GetRowCellDisplayText(e.RowHandle, view.Columns("ItemNumber"))
+            If ItemNumber = "" Then
+                e.Appearance.ForeColor = foreColor
+                e.Appearance.BackColor = backColor
+                e.HighPriority = True
+            End If
+        End If
+    End Sub
+
+    Private Sub HitungJumlahTruk()
+        btnKonversi.Enabled = False
+        Dim TotalButuhTruk As Double = 0
+        Dim GroupTruk As Integer = 1
+        Dim GroupHourly As Integer = 0
+        Dim Lokasi As String = String.Empty
+        Dim Total As Double = 0
+
+        Dim drTemp As DataRow()
+        drTemp = dtConvertMuat.Select("ItemNumber <> ''")
+
+        Dim dtTemp As DataTable = New DataTable()
+        dtTemp = dtConvertMuat.Clone()
+
+        Dim newRow As DataRow
+
+        For Each rows As DataRow In drTemp
+            Dim NewTruk As Boolean = False
+            Dim OrderQuantity As Integer = rows("OrderQuantity")
+            Dim StandarQty As Integer = rows("StandarQty")
+            Dim ButuhPacking As Integer = Math.Ceiling(OrderQuantity / StandarQty)
+
+            Dim KapasitasMuat As Integer = rows("KapasitasMuat")
+            Dim ButuhTruk As Double = ButuhPacking / KapasitasMuat
+            TotalButuhTruk += ButuhTruk
+
+            If String.IsNullOrEmpty(Lokasi) Then
+                Lokasi = rows("Lokasi")
+                GroupHourly = rows("GroupHourly")
+            ElseIf Lokasi <> rows("Lokasi") Then
+                Lokasi = rows("Lokasi")
+                GroupHourly = rows("GroupHourly")
+                GroupTruk += 1
+                NewTruk = True
+                Total = TotalButuhTruk - ButuhTruk
+                TotalButuhTruk = ButuhTruk
+            Else
+                If GroupHourly <> rows("GroupHourly") Then
+                    GroupHourly = rows("GroupHourly")
+                    GroupTruk += 1
+                    NewTruk = True
+                    Total = TotalButuhTruk - ButuhTruk
+                    TotalButuhTruk = ButuhTruk
+                ElseIf TotalButuhTruk > 1 Then
+                    GroupTruk += 1
+                    NewTruk = True
+                    Total = TotalButuhTruk - ButuhTruk
+                    TotalButuhTruk = ButuhTruk
+                End If
+            End If
+
+            If NewTruk Then
+                newRow = dtTemp.NewRow
+                newRow("KebutuhanTruk") = Total
+                dtTemp.Rows.Add(newRow)
+            End If
+
+            newRow = dtTemp.NewRow
+            newRow("No") = rows("No")
+            newRow("Seq") = rows("Seq")
+            newRow("PartNo") = rows("PartNo")
+            newRow("ItemNumber") = rows("ItemNumber")
+            newRow("ItemName") = rows("ItemName")
+            newRow("Lokasi") = rows("Lokasi")
+            newRow("UserCode") = rows("UserCode")
+            newRow("PF") = rows("PF")
+            newRow("OrderNo") = rows("OrderNo")
+            newRow("DeliveryDueDate") = rows("DeliveryDueDate")
+            newRow("GroupHourly") = rows("GroupHourly")
+            newRow("DeliveryTime") = rows("DeliveryTime")
+            newRow("OrderQuantity") = rows("OrderQuantity")
+            newRow("JenisPacking") = rows("JenisPacking")
+            newRow("StandarQty") = rows("StandarQty")
+            newRow("KapasitasMuat") = rows("KapasitasMuat")
+            newRow("ButuhPacking") = ButuhPacking
+            newRow("KebutuhanTruk") = ButuhTruk
+            newRow("GroupTruk") = GroupTruk
+            dtTemp.Rows.Add(newRow)
+        Next
+        newRow = dtTemp.NewRow
+        newRow("KebutuhanTruk") = TotalButuhTruk
+        dtTemp.Rows.Add(newRow)
+
+        dtConvertMuat = dtTemp
+        GridDetail.DataSource = dtConvertMuat
+        GridViewDetail.BestFitColumns()
+        txtTotalMobil.Text = GroupTruk
+    End Sub
+
+    Private Sub RepOrderQty_EditValueChanged(sender As Object, e As EventArgs) Handles RepOrderQty.EditValueChanged
+        btnKonversi.Enabled = True
     End Sub
 
 End Class

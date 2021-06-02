@@ -10,5 +10,7 @@ Public Class PPICConvertMuatHeaderModel
     Public Property TotalMobil As Integer
     Public Property CreateBy As String
     Public Property CreateDate As DateTime
+    Public Property UpdateBy As String
+    Public Property UpdateDate As DateTime
     Public Property ObjConvertDetails() As New Collection(Of PPICConvertMuatDetailModel)
 End Class

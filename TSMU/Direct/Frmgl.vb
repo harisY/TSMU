@@ -8,7 +8,9 @@ Public Class Frmgl
     Dim ff_Detail As Frmgl_Detail
     Dim dtGrid As DataTable
     Dim dtGrid2 As DataTable
+    Dim dtGrid3 As DataTable
     Dim ObjGJ As GJHeaderModel
+    Dim ObjGJ2 As GJHeaderModel
     Dim _Service As GJHeaderModel
     Public Sub New()
 
@@ -21,7 +23,9 @@ Public Class Frmgl
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Call LoadGrid2()
-        Call Proc_EnableButtons(True, False, True, True, True, False, False, False, False, False, False, True)
+        Call LoadGrid3()
+        Call LoadGrid4()
+        Call Proc_EnableButtons(True, True, True, True, True, False, False, False, False, False, False, True)
     End Sub
     Private Sub LoadGrid()
         Try
@@ -37,6 +41,43 @@ Public Class Frmgl
         Catch ex As Exception
             Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Public Overrides Sub Proc_SaveData()
+        Try
+            ObjGJ2 = New GJHeaderModel
+            If gh_Common.Level = 1 Then
+                Exit Sub
+            End If
+            For i As Integer = 0 To GridView3.RowCount - 1
+                If gh_Common.Level = 2 Then
+                    If GridView3.GetRowCellValue(i, "Approved2") = True Then
+                        With ObjGJ2
+                            .cek2 = CBool(GridView3.GetRowCellValue(i, "Approved2"))
+                            .GJID = CStr(GridView3.GetRowCellValue(i, "GJID"))
+                            .UpdateCek(2)
+                        End With
+
+                    End If
+                ElseIf gh_Common.Level = 3 Then
+                    If GridView3.GetRowCellValue(i, "Approved3") = True Then
+                        With ObjGJ2
+                            .cek3 = CBool(GridView3.GetRowCellValue(i, "Approved3"))
+                            .GJID = CStr(GridView3.GetRowCellValue(i, "GJID"))
+                            .UpdateCek(3)
+                        End With
+
+                    End If
+                End If
+
+            Next
+            Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+            Call LoadGrid3()
+            tsBtn_refresh.PerformClick()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+            'ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
     End Sub
     Public Overrides Sub Proc_Search()
@@ -84,7 +125,44 @@ Public Class Frmgl
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    Private Sub LoadGrid3()
+        Try
+            ObjGJ = New GJHeaderModel
+            ObjGJ.Level = gh_Common.Level
+            dtGrid3 = ObjGJ.GetDataGrid3()
 
+            GridControl2.DataSource = dtGrid3
+
+            GridView3.BestFitColumns()
+
+            With GridView3
+                .Columns(0).Visible = False
+            End With
+            GridCellFormat(GridView3)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Private Sub LoadGrid4()
+        Try
+            ObjGJ = New GJHeaderModel
+            ObjGJ.Level = gh_Common.Level
+            dtGrid3 = ObjGJ.GetDataGrid4()
+
+            GridControl3.DataSource = dtGrid3
+
+            GridView4.BestFitColumns()
+
+            With GridView4
+                .Columns(0).Visible = False
+            End With
+            GridCellFormat(GridView4)
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
     Public Overrides Sub Proc_InputNewData()
         CallFrm()
     End Sub
@@ -193,8 +271,112 @@ Public Class Frmgl
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try
     End Sub
+    Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
+        Try
 
-    Private Sub Grid_Click(sender As Object, e As EventArgs) Handles Grid.Click
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = GridControl1.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
 
+                ID = String.Empty
+                gjid = String.Empty
+                Dim selectedRows() As Integer = GridView2.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        ID = GridView2.GetRowCellValue(rowHandle, "GJHeaderID")
+                        gjid = GridView2.GetRowCellValue(rowHandle, "GJID")
+                    End If
+                Next rowHandle
+
+                If GridView2.GetSelectedRows.Length > 0 Then
+                    'Dim objGrid As DataGridView = sender
+                    Call CallFrm(ID,
+                         gjid,
+                         GridView2.RowCount)
+                End If
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
+        Try
+
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = GridControl2.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+
+                ID = String.Empty
+                gjid = String.Empty
+                Dim selectedRows() As Integer = GridView3.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        ID = GridView3.GetRowCellValue(rowHandle, "GJHeaderID")
+                        gjid = GridView3.GetRowCellValue(rowHandle, "GJID")
+                    End If
+                Next rowHandle
+
+                If GridView3.GetSelectedRows.Length > 0 Then
+                    'Dim objGrid As DataGridView = sender
+                    Call CallFrm(ID,
+                         gjid,
+                         GridView3.RowCount)
+                End If
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+    Private Sub GridControl3_DoubleClick(sender As Object, e As EventArgs) Handles GridControl3.DoubleClick
+        Try
+
+            Dim ea As DXMouseEventArgs = TryCast(e, DXMouseEventArgs)
+            'Dim view As GridView = TryCast(sender, GridView)
+            Dim view As BaseView = GridControl3.GetViewAt(ea.Location)
+            If view Is Nothing Then
+                Return
+            End If
+            Dim baseHI As BaseHitInfo = view.CalcHitInfo(ea.Location)
+            Dim info As GridHitInfo = view.CalcHitInfo(ea.Location)
+            If info.InRow OrElse info.InRowCell Then
+
+                ID = String.Empty
+                gjid = String.Empty
+                Dim selectedRows() As Integer = GridView4.GetSelectedRows()
+                For Each rowHandle As Integer In selectedRows
+                    If rowHandle >= 0 Then
+                        ID = GridView4.GetRowCellValue(rowHandle, "GJHeaderID")
+                        gjid = GridView4.GetRowCellValue(rowHandle, "GJID")
+                    End If
+                Next rowHandle
+
+                If GridView4.GetSelectedRows.Length > 0 Then
+                    'Dim objGrid As DataGridView = sender
+                    Call CallFrm(ID,
+                         gjid,
+                         GridView4.RowCount)
+                End If
+            End If
+
+        Catch ex As Exception
+            Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
     End Sub
 End Class

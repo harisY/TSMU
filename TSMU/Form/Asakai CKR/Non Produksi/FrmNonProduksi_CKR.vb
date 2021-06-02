@@ -1,17 +1,14 @@
 ﻿Public Class FrmNonProduksi_CKR
     Dim ff_Detail As FrmNonProduksiDetail_CKR
     Dim dtGrid As DataTable
-    Dim fc_Class As New NonProduksiModel
-    'Dim ObjAbsenDetail As New KebijakanDetailModel
+    Dim fc_Class As New NonProduksiModel_CKR
     Dim ID As String
-
 
     Private Sub FrmNonProduksi_CKR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         bb_SetDisplayChangeConfirmation = False
         Call LoadGrid()
         Dim dtGrid As New DataTable
-        'FilterData = New FrmSystem_FilterData(dtGrid)
         Call Proc_EnableButtons(True, False, True, True, True, False, False, False)
 
     End Sub
@@ -78,7 +75,7 @@
 
         Try
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
-            fc_Class = New NonProduksiModel
+            fc_Class = New NonProduksiModel_CKR
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
                     ID = GridView1.GetRowCellValue(rowHandle, "IDTransaksi")
@@ -104,7 +101,7 @@
 
         Try
             ID = String.Empty
-            fc_Class = New NonProduksiModel
+            fc_Class = New NonProduksiModel_CKR
             Dim selectedRows() As Integer = GridView1.GetSelectedRows()
             For Each rowHandle As Integer In selectedRows
                 If rowHandle >= 0 Then
