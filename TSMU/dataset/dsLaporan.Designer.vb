@@ -17416,6 +17416,8 @@ Partial Public Class dsLaporan
         
         Private columnNoUrut As Global.System.Data.DataColumn
         
+        Private columnStatus As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -17484,6 +17486,14 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property StatusColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnStatus
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -17520,9 +17530,9 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddCirculationApproveRow(ByVal No As Integer, ByVal ApproveBy As String, ByVal ApproveName As String, ByVal NoUrut As String) As CirculationApproveRow
+        Public Overloads Function AddCirculationApproveRow(ByVal No As Integer, ByVal ApproveBy As String, ByVal ApproveName As String, ByVal NoUrut As String, ByVal Status As String) As CirculationApproveRow
             Dim rowCirculationApproveRow As CirculationApproveRow = CType(Me.NewRow,CirculationApproveRow)
-            Dim columnValuesArray() As Object = New Object() {No, ApproveBy, ApproveName, NoUrut}
+            Dim columnValuesArray() As Object = New Object() {No, ApproveBy, ApproveName, NoUrut, Status}
             rowCirculationApproveRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCirculationApproveRow)
             Return rowCirculationApproveRow
@@ -17549,6 +17559,7 @@ Partial Public Class dsLaporan
             Me.columnApproveBy = MyBase.Columns("ApproveBy")
             Me.columnApproveName = MyBase.Columns("ApproveName")
             Me.columnNoUrut = MyBase.Columns("NoUrut")
+            Me.columnStatus = MyBase.Columns("Status")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -17562,6 +17573,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnApproveName)
             Me.columnNoUrut = New Global.System.Data.DataColumn("NoUrut", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNoUrut)
+            Me.columnStatus = New Global.System.Data.DataColumn("Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnStatus)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -20666,6 +20679,18 @@ Partial Public Class dsLaporan
         
         Private columnStatus As Global.System.Data.DataColumn
         
+        Private columnUser_Approved1 As Global.System.Data.DataColumn
+        
+        Private columnUser_Approved2 As Global.System.Data.DataColumn
+        
+        Private columnUser_Approved3 As Global.System.Data.DataColumn
+        
+        Private columnTgl_Approved1 As Global.System.Data.DataColumn
+        
+        Private columnTgl_Approved2 As Global.System.Data.DataColumn
+        
+        Private columnTgl_Approved3 As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -20830,6 +20855,54 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property User_Approved1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUser_Approved1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property User_Approved2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUser_Approved2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property User_Approved3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUser_Approved3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Tgl_Approved1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTgl_Approved1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Tgl_Approved2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTgl_Approved2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Tgl_Approved3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTgl_Approved3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -20882,9 +20955,15 @@ Partial Public Class dsLaporan
                     ByVal Debit_Amount As Double,  _
                     ByVal Credit_Amount As Double,  _
                     ByVal ceklist As Boolean,  _
-                    ByVal Status As String) As GLRow
+                    ByVal Status As String,  _
+                    ByVal User_Approved1 As String,  _
+                    ByVal User_Approved2 As String,  _
+                    ByVal User_Approved3 As String,  _
+                    ByVal Tgl_Approved1 As Date,  _
+                    ByVal Tgl_Approved2 As Date,  _
+                    ByVal Tgl_Approved3 As Date) As GLRow
             Dim rowGLRow As GLRow = CType(Me.NewRow,GLRow)
-            Dim columnValuesArray() As Object = New Object() {GJID, GJID_Revers, DeptID, PRNo, Tgl, Remark, Currency, Total, TotalCr, AcctID, Description, SubAcct, Debit_Amount, Credit_Amount, ceklist, Status}
+            Dim columnValuesArray() As Object = New Object() {GJID, GJID_Revers, DeptID, PRNo, Tgl, Remark, Currency, Total, TotalCr, AcctID, Description, SubAcct, Debit_Amount, Credit_Amount, ceklist, Status, User_Approved1, User_Approved2, User_Approved3, Tgl_Approved1, Tgl_Approved2, Tgl_Approved3}
             rowGLRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowGLRow)
             Return rowGLRow
@@ -20923,6 +21002,12 @@ Partial Public Class dsLaporan
             Me.columnCredit_Amount = MyBase.Columns("Credit_Amount")
             Me.columnceklist = MyBase.Columns("ceklist")
             Me.columnStatus = MyBase.Columns("Status")
+            Me.columnUser_Approved1 = MyBase.Columns("User_Approved1")
+            Me.columnUser_Approved2 = MyBase.Columns("User_Approved2")
+            Me.columnUser_Approved3 = MyBase.Columns("User_Approved3")
+            Me.columnTgl_Approved1 = MyBase.Columns("Tgl_Approved1")
+            Me.columnTgl_Approved2 = MyBase.Columns("Tgl_Approved2")
+            Me.columnTgl_Approved3 = MyBase.Columns("Tgl_Approved3")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -20960,6 +21045,18 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnceklist)
             Me.columnStatus = New Global.System.Data.DataColumn("Status", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnStatus)
+            Me.columnUser_Approved1 = New Global.System.Data.DataColumn("User_Approved1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUser_Approved1)
+            Me.columnUser_Approved2 = New Global.System.Data.DataColumn("User_Approved2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUser_Approved2)
+            Me.columnUser_Approved3 = New Global.System.Data.DataColumn("User_Approved3", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUser_Approved3)
+            Me.columnTgl_Approved1 = New Global.System.Data.DataColumn("Tgl_Approved1", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTgl_Approved1)
+            Me.columnTgl_Approved2 = New Global.System.Data.DataColumn("Tgl_Approved2", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTgl_Approved2)
+            Me.columnTgl_Approved3 = New Global.System.Data.DataColumn("Tgl_Approved3", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTgl_Approved3)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -39901,6 +39998,21 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Status() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCirculationApprove.StatusColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Status' in table 'CirculationApprove' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCirculationApprove.StatusColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNoNull() As Boolean
             Return Me.IsNull(Me.tableCirculationApprove.NoColumn)
         End Function
@@ -39945,6 +40057,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetNoUrutNull()
             Me(Me.tableCirculationApprove.NoUrutColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsStatusNull() As Boolean
+            Return Me.IsNull(Me.tableCirculationApprove.StatusColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetStatusNull()
+            Me(Me.tableCirculationApprove.StatusColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -42747,6 +42871,96 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property User_Approved1() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableGL.User_Approved1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'User_Approved1' in table 'GL' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableGL.User_Approved1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property User_Approved2() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableGL.User_Approved2Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'User_Approved2' in table 'GL' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableGL.User_Approved2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property User_Approved3() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableGL.User_Approved3Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'User_Approved3' in table 'GL' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableGL.User_Approved3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Tgl_Approved1() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableGL.Tgl_Approved1Column),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Tgl_Approved1' in table 'GL' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableGL.Tgl_Approved1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Tgl_Approved2() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableGL.Tgl_Approved2Column),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Tgl_Approved2' in table 'GL' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableGL.Tgl_Approved2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Tgl_Approved3() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableGL.Tgl_Approved3Column),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Tgl_Approved3' in table 'GL' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableGL.Tgl_Approved3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsGJIDNull() As Boolean
             Return Me.IsNull(Me.tableGL.GJIDColumn)
         End Function
@@ -42935,6 +43149,78 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetStatusNull()
             Me(Me.tableGL.StatusColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsUser_Approved1Null() As Boolean
+            Return Me.IsNull(Me.tableGL.User_Approved1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetUser_Approved1Null()
+            Me(Me.tableGL.User_Approved1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsUser_Approved2Null() As Boolean
+            Return Me.IsNull(Me.tableGL.User_Approved2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetUser_Approved2Null()
+            Me(Me.tableGL.User_Approved2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsUser_Approved3Null() As Boolean
+            Return Me.IsNull(Me.tableGL.User_Approved3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetUser_Approved3Null()
+            Me(Me.tableGL.User_Approved3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTgl_Approved1Null() As Boolean
+            Return Me.IsNull(Me.tableGL.Tgl_Approved1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTgl_Approved1Null()
+            Me(Me.tableGL.Tgl_Approved1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTgl_Approved2Null() As Boolean
+            Return Me.IsNull(Me.tableGL.Tgl_Approved2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTgl_Approved2Null()
+            Me(Me.tableGL.Tgl_Approved2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTgl_Approved3Null() As Boolean
+            Return Me.IsNull(Me.tableGL.Tgl_Approved3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTgl_Approved3Null()
+            Me(Me.tableGL.Tgl_Approved3Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     

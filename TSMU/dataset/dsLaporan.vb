@@ -1,4 +1,9 @@
 ﻿Partial Class dsLaporan
+    Partial Public Class GLDataTable
+
+
+    End Class
+
     Partial Public Class _CirculationTotalDOCDataTable
     End Class
 

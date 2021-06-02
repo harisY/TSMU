@@ -883,6 +883,7 @@
               <xs:element name="ApproveBy" msprop:Generator_ColumnVarNameInTable="columnApproveBy" msprop:Generator_ColumnPropNameInRow="ApproveBy" msprop:Generator_ColumnPropNameInTable="ApproveByColumn" msprop:Generator_UserColumnName="ApproveBy" type="xs:string" minOccurs="0" />
               <xs:element name="ApproveName" msprop:Generator_ColumnVarNameInTable="columnApproveName" msprop:Generator_ColumnPropNameInRow="ApproveName" msprop:Generator_ColumnPropNameInTable="ApproveNameColumn" msprop:Generator_UserColumnName="ApproveName" type="xs:string" minOccurs="0" />
               <xs:element name="NoUrut" msprop:Generator_ColumnVarNameInTable="columnNoUrut" msprop:Generator_ColumnPropNameInRow="NoUrut" msprop:Generator_ColumnPropNameInTable="NoUrutColumn" msprop:Generator_UserColumnName="NoUrut" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1037,6 +1038,12 @@
               <xs:element name="Credit_Amount" msprop:Generator_ColumnVarNameInTable="columnCredit_Amount" msprop:Generator_ColumnPropNameInRow="Credit_Amount" msprop:Generator_ColumnPropNameInTable="Credit_AmountColumn" msprop:Generator_UserColumnName="Credit_Amount" type="xs:double" minOccurs="0" />
               <xs:element name="ceklist" msprop:Generator_ColumnVarNameInTable="columnceklist" msprop:Generator_ColumnPropNameInRow="ceklist" msprop:Generator_ColumnPropNameInTable="ceklistColumn" msprop:Generator_UserColumnName="ceklist" type="xs:boolean" minOccurs="0" />
               <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="User_Approved1" msprop:Generator_ColumnVarNameInTable="columnUser_Approved1" msprop:Generator_ColumnPropNameInRow="User_Approved1" msprop:Generator_ColumnPropNameInTable="User_Approved1Column" msprop:Generator_UserColumnName="User_Approved1" type="xs:string" minOccurs="0" />
+              <xs:element name="User_Approved2" msprop:Generator_ColumnVarNameInTable="columnUser_Approved2" msprop:Generator_ColumnPropNameInRow="User_Approved2" msprop:Generator_ColumnPropNameInTable="User_Approved2Column" msprop:Generator_UserColumnName="User_Approved2" type="xs:string" minOccurs="0" />
+              <xs:element name="User_Approved3" msprop:Generator_ColumnVarNameInTable="columnUser_Approved3" msprop:Generator_ColumnPropNameInRow="User_Approved3" msprop:Generator_ColumnPropNameInTable="User_Approved3Column" msprop:Generator_UserColumnName="User_Approved3" type="xs:string" minOccurs="0" />
+              <xs:element name="Tgl_Approved1" msprop:Generator_ColumnVarNameInTable="columnTgl_Approved1" msprop:Generator_ColumnPropNameInRow="Tgl_Approved1" msprop:Generator_ColumnPropNameInTable="Tgl_Approved1Column" msprop:Generator_UserColumnName="Tgl_Approved1" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Tgl_Approved2" msprop:Generator_ColumnVarNameInTable="columnTgl_Approved2" msprop:Generator_ColumnPropNameInRow="Tgl_Approved2" msprop:Generator_ColumnPropNameInTable="Tgl_Approved2Column" msprop:Generator_UserColumnName="Tgl_Approved2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Tgl_Approved3" msprop:Generator_ColumnVarNameInTable="columnTgl_Approved3" msprop:Generator_ColumnPropNameInRow="Tgl_Approved3" msprop:Generator_ColumnPropNameInTable="Tgl_Approved3Column" msprop:Generator_UserColumnName="Tgl_Approved3" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
