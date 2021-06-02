@@ -2,6 +2,7 @@
     Public Property No As Integer
     Public Property NoUpload As String
     Public Property Seq As Integer
+    Public Property PartNo As String
     Public Property ItemNumber As String
     Public Property ItemName As String
     Public Property Lokasi As String

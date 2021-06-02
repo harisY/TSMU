@@ -23,6 +23,25 @@ Partial Class FrmPPICConvertMuatDetail
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridDetail = New DevExpress.XtraGrid.GridControl()
         Me.GridViewDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSeq = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColItemNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColItemName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColLokasi = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColUserCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPF = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColOrderNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDeliveryDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColGroupHourly = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDeliveryTime = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColOrderQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepOrderQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.ColJenisPacking = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColStandarQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColKapasitasMuat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColButuhPacking = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColKebutuhanTruk = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColGroupTruk = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.DxValidationProvider1 = New DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(Me.components)
@@ -33,29 +52,12 @@ Partial Class FrmPPICConvertMuatDetail
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColSeq = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColItemName = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColItemNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColLokasi = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColUserCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColPF = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColOrderNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColDeliveryDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColGroupHourly = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColDeliveryTime = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColOrderQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColJenisPacking = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColStandarQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColKapasitasMuat = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColButuhPacking = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColKebutuhanTruk = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColGroupTruk = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepOrderQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.ColPartNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridViewDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepOrderQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +68,6 @@ Partial Class FrmPPICConvertMuatDetail
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepOrderQty, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -98,7 +99,7 @@ Partial Class FrmPPICConvertMuatDetail
         Me.GridViewDetail.ActiveFilterEnabled = False
         Me.GridViewDetail.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GridViewDetail.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColNo, Me.ColSeq, Me.ColItemNumber, Me.ColItemName, Me.ColLokasi, Me.ColUserCode, Me.ColPF, Me.ColOrderNo, Me.ColDeliveryDueDate, Me.ColGroupHourly, Me.ColDeliveryTime, Me.ColOrderQuantity, Me.ColJenisPacking, Me.ColStandarQty, Me.ColKapasitasMuat, Me.ColButuhPacking, Me.ColKebutuhanTruk, Me.ColGroupTruk})
+        Me.GridViewDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColNo, Me.ColSeq, Me.ColPartNo, Me.ColItemNumber, Me.ColItemName, Me.ColLokasi, Me.ColUserCode, Me.ColPF, Me.ColOrderNo, Me.ColDeliveryDueDate, Me.ColGroupHourly, Me.ColDeliveryTime, Me.ColOrderQuantity, Me.ColJenisPacking, Me.ColStandarQty, Me.ColKapasitasMuat, Me.ColButuhPacking, Me.ColKebutuhanTruk, Me.ColGroupTruk})
         Me.GridViewDetail.DetailHeight = 412
         Me.GridViewDetail.GridControl = Me.GridDetail
         Me.GridViewDetail.Name = "GridViewDetail"
@@ -106,6 +107,224 @@ Partial Class FrmPPICConvertMuatDetail
         Me.GridViewDetail.OptionsCustomization.AllowSort = False
         Me.GridViewDetail.OptionsView.ColumnAutoWidth = False
         Me.GridViewDetail.OptionsView.ShowGroupPanel = False
+        '
+        'ColNo
+        '
+        Me.ColNo.AppearanceCell.Options.UseTextOptions = True
+        Me.ColNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ColNo.Caption = "No"
+        Me.ColNo.FieldName = "No"
+        Me.ColNo.MinWidth = 30
+        Me.ColNo.Name = "ColNo"
+        Me.ColNo.OptionsColumn.AllowEdit = False
+        Me.ColNo.Visible = True
+        Me.ColNo.VisibleIndex = 0
+        Me.ColNo.Width = 112
+        '
+        'ColSeq
+        '
+        Me.ColSeq.AppearanceCell.Options.UseTextOptions = True
+        Me.ColSeq.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ColSeq.Caption = "Seq"
+        Me.ColSeq.FieldName = "Seq"
+        Me.ColSeq.MinWidth = 30
+        Me.ColSeq.Name = "ColSeq"
+        Me.ColSeq.OptionsColumn.AllowEdit = False
+        Me.ColSeq.Visible = True
+        Me.ColSeq.VisibleIndex = 1
+        Me.ColSeq.Width = 112
+        '
+        'ColItemNumber
+        '
+        Me.ColItemNumber.Caption = "Item Number"
+        Me.ColItemNumber.FieldName = "ItemNumber"
+        Me.ColItemNumber.MinWidth = 30
+        Me.ColItemNumber.Name = "ColItemNumber"
+        Me.ColItemNumber.OptionsColumn.AllowEdit = False
+        Me.ColItemNumber.Visible = True
+        Me.ColItemNumber.VisibleIndex = 3
+        Me.ColItemNumber.Width = 112
+        '
+        'ColItemName
+        '
+        Me.ColItemName.Caption = "Item Name"
+        Me.ColItemName.FieldName = "ItemName"
+        Me.ColItemName.MinWidth = 30
+        Me.ColItemName.Name = "ColItemName"
+        Me.ColItemName.OptionsColumn.AllowEdit = False
+        Me.ColItemName.Visible = True
+        Me.ColItemName.VisibleIndex = 4
+        Me.ColItemName.Width = 112
+        '
+        'ColLokasi
+        '
+        Me.ColLokasi.Caption = "Lokasi"
+        Me.ColLokasi.FieldName = "Lokasi"
+        Me.ColLokasi.MinWidth = 30
+        Me.ColLokasi.Name = "ColLokasi"
+        Me.ColLokasi.OptionsColumn.AllowEdit = False
+        Me.ColLokasi.Visible = True
+        Me.ColLokasi.VisibleIndex = 5
+        Me.ColLokasi.Width = 112
+        '
+        'ColUserCode
+        '
+        Me.ColUserCode.Caption = "User Code"
+        Me.ColUserCode.FieldName = "UserCode"
+        Me.ColUserCode.MinWidth = 30
+        Me.ColUserCode.Name = "ColUserCode"
+        Me.ColUserCode.OptionsColumn.AllowEdit = False
+        Me.ColUserCode.Visible = True
+        Me.ColUserCode.VisibleIndex = 6
+        Me.ColUserCode.Width = 112
+        '
+        'ColPF
+        '
+        Me.ColPF.Caption = "P/F"
+        Me.ColPF.FieldName = "PF"
+        Me.ColPF.MinWidth = 30
+        Me.ColPF.Name = "ColPF"
+        Me.ColPF.OptionsColumn.AllowEdit = False
+        Me.ColPF.Width = 112
+        '
+        'ColOrderNo
+        '
+        Me.ColOrderNo.Caption = "Order No"
+        Me.ColOrderNo.FieldName = "OrderNo"
+        Me.ColOrderNo.MinWidth = 30
+        Me.ColOrderNo.Name = "ColOrderNo"
+        Me.ColOrderNo.OptionsColumn.AllowEdit = False
+        Me.ColOrderNo.Visible = True
+        Me.ColOrderNo.VisibleIndex = 7
+        Me.ColOrderNo.Width = 112
+        '
+        'ColDeliveryDueDate
+        '
+        Me.ColDeliveryDueDate.Caption = "Delivery Due Date"
+        Me.ColDeliveryDueDate.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.ColDeliveryDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.ColDeliveryDueDate.FieldName = "DeliveryDueDate"
+        Me.ColDeliveryDueDate.MinWidth = 30
+        Me.ColDeliveryDueDate.Name = "ColDeliveryDueDate"
+        Me.ColDeliveryDueDate.OptionsColumn.AllowEdit = False
+        Me.ColDeliveryDueDate.Visible = True
+        Me.ColDeliveryDueDate.VisibleIndex = 8
+        Me.ColDeliveryDueDate.Width = 112
+        '
+        'ColGroupHourly
+        '
+        Me.ColGroupHourly.Caption = "Group Hourly"
+        Me.ColGroupHourly.FieldName = "GroupHourly"
+        Me.ColGroupHourly.MinWidth = 30
+        Me.ColGroupHourly.Name = "ColGroupHourly"
+        Me.ColGroupHourly.OptionsColumn.AllowEdit = False
+        Me.ColGroupHourly.Visible = True
+        Me.ColGroupHourly.VisibleIndex = 9
+        Me.ColGroupHourly.Width = 112
+        '
+        'ColDeliveryTime
+        '
+        Me.ColDeliveryTime.Caption = "Delivery Time (To)"
+        Me.ColDeliveryTime.DisplayFormat.FormatString = "HH:mm"
+        Me.ColDeliveryTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.ColDeliveryTime.FieldName = "DeliveryTime"
+        Me.ColDeliveryTime.MinWidth = 30
+        Me.ColDeliveryTime.Name = "ColDeliveryTime"
+        Me.ColDeliveryTime.OptionsColumn.AllowEdit = False
+        Me.ColDeliveryTime.Visible = True
+        Me.ColDeliveryTime.VisibleIndex = 10
+        Me.ColDeliveryTime.Width = 112
+        '
+        'ColOrderQuantity
+        '
+        Me.ColOrderQuantity.Caption = "Order Qty"
+        Me.ColOrderQuantity.ColumnEdit = Me.RepOrderQty
+        Me.ColOrderQuantity.FieldName = "OrderQuantity"
+        Me.ColOrderQuantity.MinWidth = 30
+        Me.ColOrderQuantity.Name = "ColOrderQuantity"
+        Me.ColOrderQuantity.Visible = True
+        Me.ColOrderQuantity.VisibleIndex = 11
+        Me.ColOrderQuantity.Width = 112
+        '
+        'RepOrderQty
+        '
+        Me.RepOrderQty.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.RepOrderQty.AutoHeight = False
+        Me.RepOrderQty.DisplayFormat.FormatString = "n0"
+        Me.RepOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepOrderQty.EditFormat.FormatString = "n0"
+        Me.RepOrderQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepOrderQty.Mask.EditMask = "n0"
+        Me.RepOrderQty.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepOrderQty.Name = "RepOrderQty"
+        '
+        'ColJenisPacking
+        '
+        Me.ColJenisPacking.Caption = "Jenis Packing"
+        Me.ColJenisPacking.FieldName = "JenisPacking"
+        Me.ColJenisPacking.MinWidth = 30
+        Me.ColJenisPacking.Name = "ColJenisPacking"
+        Me.ColJenisPacking.OptionsColumn.AllowEdit = False
+        Me.ColJenisPacking.Visible = True
+        Me.ColJenisPacking.VisibleIndex = 12
+        Me.ColJenisPacking.Width = 112
+        '
+        'ColStandarQty
+        '
+        Me.ColStandarQty.Caption = "Standar Qty"
+        Me.ColStandarQty.FieldName = "StandarQty"
+        Me.ColStandarQty.MinWidth = 30
+        Me.ColStandarQty.Name = "ColStandarQty"
+        Me.ColStandarQty.OptionsColumn.AllowEdit = False
+        Me.ColStandarQty.Visible = True
+        Me.ColStandarQty.VisibleIndex = 13
+        Me.ColStandarQty.Width = 112
+        '
+        'ColKapasitasMuat
+        '
+        Me.ColKapasitasMuat.Caption = "Kapasitas Muat"
+        Me.ColKapasitasMuat.FieldName = "KapasitasMuat"
+        Me.ColKapasitasMuat.MinWidth = 30
+        Me.ColKapasitasMuat.Name = "ColKapasitasMuat"
+        Me.ColKapasitasMuat.OptionsColumn.AllowEdit = False
+        Me.ColKapasitasMuat.Visible = True
+        Me.ColKapasitasMuat.VisibleIndex = 14
+        Me.ColKapasitasMuat.Width = 112
+        '
+        'ColButuhPacking
+        '
+        Me.ColButuhPacking.Caption = "Butuh Packing"
+        Me.ColButuhPacking.FieldName = "ButuhPacking"
+        Me.ColButuhPacking.MinWidth = 30
+        Me.ColButuhPacking.Name = "ColButuhPacking"
+        Me.ColButuhPacking.OptionsColumn.AllowEdit = False
+        Me.ColButuhPacking.Visible = True
+        Me.ColButuhPacking.VisibleIndex = 15
+        Me.ColButuhPacking.Width = 112
+        '
+        'ColKebutuhanTruk
+        '
+        Me.ColKebutuhanTruk.Caption = "Kebutuhan Truk"
+        Me.ColKebutuhanTruk.FieldName = "KebutuhanTruk"
+        Me.ColKebutuhanTruk.MinWidth = 30
+        Me.ColKebutuhanTruk.Name = "ColKebutuhanTruk"
+        Me.ColKebutuhanTruk.OptionsColumn.AllowEdit = False
+        Me.ColKebutuhanTruk.Visible = True
+        Me.ColKebutuhanTruk.VisibleIndex = 16
+        Me.ColKebutuhanTruk.Width = 112
+        '
+        'ColGroupTruk
+        '
+        Me.ColGroupTruk.AppearanceCell.Options.UseTextOptions = True
+        Me.ColGroupTruk.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.ColGroupTruk.Caption = "Group Truk"
+        Me.ColGroupTruk.FieldName = "GroupTruk"
+        Me.ColGroupTruk.MinWidth = 30
+        Me.ColGroupTruk.Name = "ColGroupTruk"
+        Me.ColGroupTruk.OptionsColumn.AllowEdit = False
+        Me.ColGroupTruk.Visible = True
+        Me.ColGroupTruk.VisibleIndex = 17
+        Me.ColGroupTruk.Width = 112
         '
         'Root
         '
@@ -205,223 +424,16 @@ Partial Class FrmPPICConvertMuatDetail
         Me.LayoutControlItem3.Text = "Total Kebutuhan Truk  "
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(164, 19)
         '
-        'ColNo
+        'ColPartNo
         '
-        Me.ColNo.AppearanceCell.Options.UseTextOptions = True
-        Me.ColNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColNo.Caption = "No"
-        Me.ColNo.FieldName = "No"
-        Me.ColNo.MinWidth = 30
-        Me.ColNo.Name = "ColNo"
-        Me.ColNo.OptionsColumn.AllowEdit = False
-        Me.ColNo.Visible = True
-        Me.ColNo.VisibleIndex = 0
-        Me.ColNo.Width = 112
-        '
-        'ColSeq
-        '
-        Me.ColSeq.AppearanceCell.Options.UseTextOptions = True
-        Me.ColSeq.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColSeq.Caption = "Seq"
-        Me.ColSeq.FieldName = "Seq"
-        Me.ColSeq.MinWidth = 30
-        Me.ColSeq.Name = "ColSeq"
-        Me.ColSeq.OptionsColumn.AllowEdit = False
-        Me.ColSeq.Visible = True
-        Me.ColSeq.VisibleIndex = 1
-        Me.ColSeq.Width = 112
-        '
-        'ColItemName
-        '
-        Me.ColItemName.Caption = "Item Name"
-        Me.ColItemName.FieldName = "ItemName"
-        Me.ColItemName.MinWidth = 30
-        Me.ColItemName.Name = "ColItemName"
-        Me.ColItemName.OptionsColumn.AllowEdit = False
-        Me.ColItemName.Visible = True
-        Me.ColItemName.VisibleIndex = 3
-        Me.ColItemName.Width = 112
-        '
-        'ColItemNumber
-        '
-        Me.ColItemNumber.Caption = "Item Number"
-        Me.ColItemNumber.FieldName = "ItemNumber"
-        Me.ColItemNumber.MinWidth = 30
-        Me.ColItemNumber.Name = "ColItemNumber"
-        Me.ColItemNumber.OptionsColumn.AllowEdit = False
-        Me.ColItemNumber.Visible = True
-        Me.ColItemNumber.VisibleIndex = 2
-        Me.ColItemNumber.Width = 112
-        '
-        'ColLokasi
-        '
-        Me.ColLokasi.Caption = "Lokasi"
-        Me.ColLokasi.FieldName = "Lokasi"
-        Me.ColLokasi.MinWidth = 30
-        Me.ColLokasi.Name = "ColLokasi"
-        Me.ColLokasi.OptionsColumn.AllowEdit = False
-        Me.ColLokasi.Visible = True
-        Me.ColLokasi.VisibleIndex = 4
-        Me.ColLokasi.Width = 112
-        '
-        'ColUserCode
-        '
-        Me.ColUserCode.Caption = "User Code"
-        Me.ColUserCode.FieldName = "UserCode"
-        Me.ColUserCode.MinWidth = 30
-        Me.ColUserCode.Name = "ColUserCode"
-        Me.ColUserCode.OptionsColumn.AllowEdit = False
-        Me.ColUserCode.Visible = True
-        Me.ColUserCode.VisibleIndex = 5
-        Me.ColUserCode.Width = 112
-        '
-        'ColPF
-        '
-        Me.ColPF.Caption = "P/F"
-        Me.ColPF.FieldName = "PF"
-        Me.ColPF.MinWidth = 30
-        Me.ColPF.Name = "ColPF"
-        Me.ColPF.OptionsColumn.AllowEdit = False
-        Me.ColPF.Width = 112
-        '
-        'ColOrderNo
-        '
-        Me.ColOrderNo.Caption = "Order No"
-        Me.ColOrderNo.FieldName = "OrderNo"
-        Me.ColOrderNo.MinWidth = 30
-        Me.ColOrderNo.Name = "ColOrderNo"
-        Me.ColOrderNo.OptionsColumn.AllowEdit = False
-        Me.ColOrderNo.Visible = True
-        Me.ColOrderNo.VisibleIndex = 6
-        Me.ColOrderNo.Width = 112
-        '
-        'ColDeliveryDueDate
-        '
-        Me.ColDeliveryDueDate.Caption = "Delivery Due Date"
-        Me.ColDeliveryDueDate.DisplayFormat.FormatString = "dd-MM-yyyy"
-        Me.ColDeliveryDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.ColDeliveryDueDate.FieldName = "DeliveryDueDate"
-        Me.ColDeliveryDueDate.MinWidth = 30
-        Me.ColDeliveryDueDate.Name = "ColDeliveryDueDate"
-        Me.ColDeliveryDueDate.OptionsColumn.AllowEdit = False
-        Me.ColDeliveryDueDate.Visible = True
-        Me.ColDeliveryDueDate.VisibleIndex = 7
-        Me.ColDeliveryDueDate.Width = 112
-        '
-        'ColGroupHourly
-        '
-        Me.ColGroupHourly.Caption = "Group Hourly"
-        Me.ColGroupHourly.FieldName = "GroupHourly"
-        Me.ColGroupHourly.MinWidth = 30
-        Me.ColGroupHourly.Name = "ColGroupHourly"
-        Me.ColGroupHourly.OptionsColumn.AllowEdit = False
-        Me.ColGroupHourly.Visible = True
-        Me.ColGroupHourly.VisibleIndex = 8
-        Me.ColGroupHourly.Width = 112
-        '
-        'ColDeliveryTime
-        '
-        Me.ColDeliveryTime.Caption = "Delivery Time (To)"
-        Me.ColDeliveryTime.DisplayFormat.FormatString = "HH:mm"
-        Me.ColDeliveryTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.ColDeliveryTime.FieldName = "DeliveryTime"
-        Me.ColDeliveryTime.MinWidth = 30
-        Me.ColDeliveryTime.Name = "ColDeliveryTime"
-        Me.ColDeliveryTime.OptionsColumn.AllowEdit = False
-        Me.ColDeliveryTime.Visible = True
-        Me.ColDeliveryTime.VisibleIndex = 9
-        Me.ColDeliveryTime.Width = 112
-        '
-        'ColOrderQuantity
-        '
-        Me.ColOrderQuantity.Caption = "Order Qty"
-        Me.ColOrderQuantity.ColumnEdit = Me.RepOrderQty
-        Me.ColOrderQuantity.FieldName = "OrderQuantity"
-        Me.ColOrderQuantity.MinWidth = 30
-        Me.ColOrderQuantity.Name = "ColOrderQuantity"
-        Me.ColOrderQuantity.Visible = True
-        Me.ColOrderQuantity.VisibleIndex = 10
-        Me.ColOrderQuantity.Width = 112
-        '
-        'ColJenisPacking
-        '
-        Me.ColJenisPacking.Caption = "Jenis Packing"
-        Me.ColJenisPacking.FieldName = "JenisPacking"
-        Me.ColJenisPacking.MinWidth = 30
-        Me.ColJenisPacking.Name = "ColJenisPacking"
-        Me.ColJenisPacking.OptionsColumn.AllowEdit = False
-        Me.ColJenisPacking.Visible = True
-        Me.ColJenisPacking.VisibleIndex = 11
-        Me.ColJenisPacking.Width = 112
-        '
-        'ColStandarQty
-        '
-        Me.ColStandarQty.Caption = "Standar Qty"
-        Me.ColStandarQty.FieldName = "StandarQty"
-        Me.ColStandarQty.MinWidth = 30
-        Me.ColStandarQty.Name = "ColStandarQty"
-        Me.ColStandarQty.OptionsColumn.AllowEdit = False
-        Me.ColStandarQty.Visible = True
-        Me.ColStandarQty.VisibleIndex = 12
-        Me.ColStandarQty.Width = 112
-        '
-        'ColKapasitasMuat
-        '
-        Me.ColKapasitasMuat.Caption = "Kapasitas Muat"
-        Me.ColKapasitasMuat.FieldName = "KapasitasMuat"
-        Me.ColKapasitasMuat.MinWidth = 30
-        Me.ColKapasitasMuat.Name = "ColKapasitasMuat"
-        Me.ColKapasitasMuat.OptionsColumn.AllowEdit = False
-        Me.ColKapasitasMuat.Visible = True
-        Me.ColKapasitasMuat.VisibleIndex = 13
-        Me.ColKapasitasMuat.Width = 112
-        '
-        'ColButuhPacking
-        '
-        Me.ColButuhPacking.Caption = "Butuh Packing"
-        Me.ColButuhPacking.FieldName = "ButuhPacking"
-        Me.ColButuhPacking.MinWidth = 30
-        Me.ColButuhPacking.Name = "ColButuhPacking"
-        Me.ColButuhPacking.OptionsColumn.AllowEdit = False
-        Me.ColButuhPacking.Visible = True
-        Me.ColButuhPacking.VisibleIndex = 14
-        Me.ColButuhPacking.Width = 112
-        '
-        'ColKebutuhanTruk
-        '
-        Me.ColKebutuhanTruk.Caption = "Kebutuhan Truk"
-        Me.ColKebutuhanTruk.FieldName = "KebutuhanTruk"
-        Me.ColKebutuhanTruk.MinWidth = 30
-        Me.ColKebutuhanTruk.Name = "ColKebutuhanTruk"
-        Me.ColKebutuhanTruk.OptionsColumn.AllowEdit = False
-        Me.ColKebutuhanTruk.Visible = True
-        Me.ColKebutuhanTruk.VisibleIndex = 15
-        Me.ColKebutuhanTruk.Width = 112
-        '
-        'ColGroupTruk
-        '
-        Me.ColGroupTruk.AppearanceCell.Options.UseTextOptions = True
-        Me.ColGroupTruk.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColGroupTruk.Caption = "Group Truk"
-        Me.ColGroupTruk.FieldName = "GroupTruk"
-        Me.ColGroupTruk.MinWidth = 30
-        Me.ColGroupTruk.Name = "ColGroupTruk"
-        Me.ColGroupTruk.OptionsColumn.AllowEdit = False
-        Me.ColGroupTruk.Visible = True
-        Me.ColGroupTruk.VisibleIndex = 16
-        Me.ColGroupTruk.Width = 112
-        '
-        'RepOrderQty
-        '
-        Me.RepOrderQty.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.RepOrderQty.AutoHeight = False
-        Me.RepOrderQty.DisplayFormat.FormatString = "n0"
-        Me.RepOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepOrderQty.EditFormat.FormatString = "n0"
-        Me.RepOrderQty.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepOrderQty.Mask.EditMask = "n0"
-        Me.RepOrderQty.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RepOrderQty.Name = "RepOrderQty"
+        Me.ColPartNo.Caption = "Part No"
+        Me.ColPartNo.FieldName = "PartNo"
+        Me.ColPartNo.MinWidth = 30
+        Me.ColPartNo.Name = "ColPartNo"
+        Me.ColPartNo.OptionsColumn.AllowEdit = False
+        Me.ColPartNo.Visible = True
+        Me.ColPartNo.VisibleIndex = 2
+        Me.ColPartNo.Width = 112
         '
         'FrmPPICConvertMuatDetail
         '
@@ -435,6 +447,7 @@ Partial Class FrmPPICConvertMuatDetail
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.GridDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridViewDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepOrderQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DxValidationProvider1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -445,7 +458,6 @@ Partial Class FrmPPICConvertMuatDetail
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepOrderQty, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -483,4 +495,5 @@ Partial Class FrmPPICConvertMuatDetail
     Friend WithEvents ColKebutuhanTruk As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColGroupTruk As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepOrderQty As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents ColPartNo As DevExpress.XtraGrid.Columns.GridColumn
 End Class
