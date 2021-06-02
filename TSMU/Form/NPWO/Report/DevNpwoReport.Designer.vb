@@ -191,8 +191,8 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell100 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell101 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell102 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrTableCell50 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -485,7 +485,7 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell55
         '
-        Me.XrTableCell55.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([T0]='01-01-1900','' ,[T0] )")})
+        Me.XrTableCell55.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([T0]='01 Jan 00','' ,[T0])")})
         Me.XrTableCell55.Multiline = True
         Me.XrTableCell55.Name = "XrTableCell55"
         Me.XrTableCell55.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -1742,13 +1742,6 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell102.TextFormatString = "{0:#,#}"
         Me.XrTableCell102.Weight = 0.87360425100215378R
         '
-        'XrSubreport1
-        '
-        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(185.4166!, 10.00001!)
-        Me.XrSubreport1.Name = "XrSubreport1"
-        Me.XrSubreport1.ReportSource = New TSMU.DevNpwoReportRev()
-        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(222.8603!, 125.0!)
-        '
         'XrTableCell50
         '
         Me.XrTableCell50.Multiline = True
@@ -1756,6 +1749,13 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell50.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrTableCell50.Text = "s/d"
         Me.XrTableCell50.Weight = 0.32949451573203614R
+        '
+        'XrSubreport1
+        '
+        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(185.4166!, 10.00001!)
+        Me.XrSubreport1.Name = "XrSubreport1"
+        Me.XrSubreport1.ReportSource = New TSMU.DevNpwoReportRev()
+        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(222.8603!, 125.0!)
         '
         'DevNpwoReport
         '
