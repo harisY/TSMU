@@ -8,7 +8,7 @@ Public Class FrmPPICKapOEMDetail
     Dim ls_Error As String = ""
     Dim _Tag = New TagModel
 
-    Dim srvHR As New PPICService
+    Dim srvPPIC As New PPICService
     Dim modelHeader As PPICKapOEMModel
     Dim dtGridDetail As DataTable
     Dim GridDtl As GridControl
@@ -50,7 +50,7 @@ Public Class FrmPPICKapOEMDetail
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                modelHeader = srvHR.GetDataKapOEMByID(fs_Code)
+                modelHeader = srvPPIC.GetDataKapOEMByID(fs_Code)
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -121,13 +121,19 @@ Public Class FrmPPICKapOEMDetail
 
             If txtJenisPacking.EditValue = Nothing Then
                 Err.Raise(ErrNumber, , "Jenis Packing Tidak Boleh Kosong!")
+            ElseIf txtStandarQty.EditValue = 0 Then
+                Err.Raise(ErrNumber, , "Standar Qty Tidak Boleh 0!")
             End If
 
             If lb_Validated Then
                 Dim Now As DateTime = DateTime.Now
                 modelHeader = New PPICKapOEMModel
                 With modelHeader
-                    .ID = fs_Code
+                    If isUpdate = False Then
+                        srvPPIC.CheckDuplicateKapOEM(modelHeader)
+                    Else
+                        .ID = fs_Code
+                    End If
                     .Model = txtModel.EditValue
                     .Location = txtLocation.EditValue
                     .PartNo = txtPartNo.EditValue
@@ -140,9 +146,6 @@ Public Class FrmPPICKapOEMDetail
                     .CreateDate = Now
                     .UpdateBy = gh_Common.Username
                     .UpdateDate = Now
-                    If isUpdate = False Then
-                        srvHR.CheckDuplicateKapOEM(modelHeader)
-                    End If
                 End With
 
             End If
@@ -157,14 +160,14 @@ Public Class FrmPPICKapOEMDetail
     Public Overrides Sub Proc_SaveData()
         Try
             If isUpdate = False Then
-                srvHR.InsertDataKapOEM(modelHeader)
+                srvPPIC.InsertDataKapOEM(modelHeader)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
-                srvHR.UpdateDataKapOEM(modelHeader)
+                srvPPIC.UpdateDataKapOEM(modelHeader)
                 Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
             End If
 
-            GridDtl.DataSource = srvHR.GetDataKapOEM()
+            GridDtl.DataSource = srvPPIC.GetDataKapOEM()
             IsClosed = True
             Me.Hide()
         Catch ex As Exception
@@ -193,7 +196,7 @@ Public Class FrmPPICKapOEMDetail
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-            dtSearch = srvHR.GetDataJenisPacking
+            dtSearch = srvPPIC.GetDataJenisPacking
             ls_OldKode = txtJenisPacking.Text
             ls_Judul = "Buildup"
 
@@ -224,7 +227,7 @@ Public Class FrmPPICKapOEMDetail
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
 
-            dtSearch = srvHR.GetDataPart
+            dtSearch = srvPPIC.GetDataPart
             ls_OldKode = txtJenisPacking.Text
             ls_Judul = "Part No"
 

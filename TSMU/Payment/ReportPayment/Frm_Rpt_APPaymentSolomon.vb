@@ -171,6 +171,22 @@ Public Class Frm_Rpt_APPaymentSolomon
                End Sub)
     End Sub
 
+    Private Sub GetDataGridSuspendBelumSettle()
+        ''Dim perpost2 As String = ""
+        Dim date_SBS1 As DateTime
+        Dim date_SBS2 As DateTime
+        Invoke(Sub()
+                   date_SBS1 = DateSBS1.Text
+                   date_SBS2 = DateSBS2.Text
+               End Sub)
+        Dim dt As New DataTable
+        dt = pay_class.DataGridViewSuspendBelumSettle(date_SBS1, date_SBS2)
+        setDataSource(dt, GridControl11)
+        Invoke(Sub()
+                   ProgBarSBS.Visible = False
+               End Sub)
+    End Sub
+
     Private Sub GetDataGridAPOutstanding()
         ''Dim perpost2 As String = ""
         'Dim Date As DateTime
@@ -399,6 +415,11 @@ Public Class Frm_Rpt_APPaymentSolomon
         End Try
     End Sub
 
+
+
+
+
+
     Private Async Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
         Try
             If ProgBarOut.Visible = True Then
@@ -409,6 +430,21 @@ Public Class Frm_Rpt_APPaymentSolomon
             Await Task.Run(Sub() GetDataGridAPOutstanding())
         Catch ex As Exception
             ProgBarOut.Visible = False
+            MsgBox(ex.Message)
+            WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
+        End Try
+    End Sub
+
+    Private Async Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        Try
+            If ProgBarSBS.Visible = True Then
+                '' Throw New Exception("Process already running, Please wait !")
+            End If
+            ProgBarSBS.Visible = True
+            ProgBarSBS.Style = ProgressBarStyle.Marquee
+            Await Task.Run(Sub() GetDataGridSuspendBelumSettle())
+        Catch ex As Exception
+            ProgBarSBS.Visible = False
             MsgBox(ex.Message)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
         End Try

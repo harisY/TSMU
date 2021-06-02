@@ -883,6 +883,7 @@
               <xs:element name="ApproveBy" msprop:Generator_ColumnVarNameInTable="columnApproveBy" msprop:Generator_ColumnPropNameInRow="ApproveBy" msprop:Generator_ColumnPropNameInTable="ApproveByColumn" msprop:Generator_UserColumnName="ApproveBy" type="xs:string" minOccurs="0" />
               <xs:element name="ApproveName" msprop:Generator_ColumnVarNameInTable="columnApproveName" msprop:Generator_ColumnPropNameInRow="ApproveName" msprop:Generator_ColumnPropNameInTable="ApproveNameColumn" msprop:Generator_UserColumnName="ApproveName" type="xs:string" minOccurs="0" />
               <xs:element name="NoUrut" msprop:Generator_ColumnVarNameInTable="columnNoUrut" msprop:Generator_ColumnPropNameInRow="NoUrut" msprop:Generator_ColumnPropNameInTable="NoUrutColumn" msprop:Generator_UserColumnName="NoUrut" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -216,6 +216,23 @@ Public Class Cls_report
         End Try
     End Function
 
+    Public Function DataGridViewSuspendBelumSettle(ByVal date_SBS1 As String, ByVal date_SBS2 As String) As DataTable
+        Try
+            Dim query As String = "SuspendBelumSettle"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(1) {}
+            pParam(0) = New SqlClient.SqlParameter("@date_SBS1", SqlDbType.VarChar)
+            pParam(0).Value = date_SBS1
+            pParam(1) = New SqlClient.SqlParameter("@date_SBS2", SqlDbType.VarChar)
+            pParam(1).Value = date_SBS2
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_StoreP(query, pParam)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
     Public Function DataGridOutstanding() As DataTable
         Try
             Dim query As String = "AP_OUTSTANDING_INVOICE"

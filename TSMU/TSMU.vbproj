@@ -1195,6 +1195,12 @@
       <DependentUpon>settle1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Direct\report\SettleEntertain1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SettleEntertain.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Direct\report\suspend1.Designer.vb">
       <DependentUpon>suspend1.vb</DependentUpon>
     </Compile>
@@ -1231,6 +1237,24 @@
     <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksi_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Painting\FormPaintingProduksi_Detail_CKR.Designer.vb">
+      <DependentUpon>FormPaintingProduksi_Detail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Painting\FormPaintingProduksi_Detail_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Delivery\FrmDeliveryHeader_CKR.Designer.vb">
+      <DependentUpon>FrmDeliveryHeader_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Delivery\FrmDeliveryHeader_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Delivery\FrmDeliveryDetail_CKR.Designer.vb">
+      <DependentUpon>FrmDeliveryDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Delivery\FrmDeliveryDetail_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.Designer.vb">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
     </Compile>
@@ -1255,6 +1279,24 @@
     <Compile Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Injection\FrmInjection_CKR.Designer.vb">
+      <DependentUpon>FrmInjection_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Injection\FrmInjection_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Enginering\FrmMaintenance_CKR.Designer.vb">
+      <DependentUpon>FrmMaintenance_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Enginering\FrmMaintenance_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Enginering\FrmMaintenanceDetail_CKR.Designer.vb">
+      <DependentUpon>FrmMaintenanceDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Enginering\FrmMaintenanceDetail_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Injection\FrmInjectionShot.Designer.vb">
       <DependentUpon>FrmInjectionShot.vb</DependentUpon>
     </Compile>
@@ -1267,10 +1309,52 @@
     <Compile Include="Form\Asakai\Injection\FrmInjectionShotDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\PPIC\FrmMaterialUsage_CKR.Designer.vb">
+      <DependentUpon>FrmMaterialUsage_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\PPIC\FrmMaterialUsage_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\PPIC\FrmMaterialPaintingHeader_CKR.Designer.vb">
+      <DependentUpon>FrmMaterialPaintingHeader_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\PPIC\FrmMaterialPaintingHeader_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\PPIC\FrmMaterialPainting_CKR.Designer.vb">
+      <DependentUpon>FrmMaterialPainting_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\PPIC\FrmMaterialPainting_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Painting\FrmPaintingProduksi_CKR.Designer.vb">
+      <DependentUpon>FrmPaintingProduksi_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Painting\FrmPaintingProduksi_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\All\FrmAbsen_CKR.Designer.vb">
+      <DependentUpon>FrmAbsen_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\All\FrmAbsen_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\All\FrmAbsenDetail_CKR.Designer.vb">
+      <DependentUpon>FrmAbsenDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\All\FrmAbsenDetail_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\PPIC\FrmMaterialUsage.Designer.vb">
       <DependentUpon>FrmMaterialUsage.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Asakai\PPIC\FrmMaterialUsage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\PPIC\FrmPemakaianMaterial_CKR.Designer.vb">
+      <DependentUpon>FrmPemakaianMaterial_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\PPIC\FrmPemakaianMaterial_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FormRekapClaim.Designer.vb">
@@ -1291,10 +1375,22 @@
     <Compile Include="Form\Asakai\Opening\FrmAbsenDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmClaimCustomer_CKR.Designer.vb">
+      <DependentUpon>FrmClaimCustomer_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmClaimCustomer_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Quality\FrmClaimCustomer.Designer.vb">
       <DependentUpon>FrmClaimCustomer.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FrmClaimCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmClaimCustomerDetail_CKR.Designer.vb">
+      <DependentUpon>FrmClaimCustomerDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmClaimCustomerDetail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FrmClaimCustomerDetail.Designer.vb">
@@ -1315,16 +1411,16 @@
     <Compile Include="Form\Asakai\Delivery\FrmDeliveryHeader.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmDepartemen.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmDepartemen.Designer.vb">
       <DependentUpon>FrmDepartemen.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmDepartemen.vb">
+    <Compile Include="Form\Asakai\All\FrmDepartemen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmDepartemenDetail.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmDepartemenDetail.Designer.vb">
       <DependentUpon>FrmDepartemenDetail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmDepartemenDetail.vb">
+    <Compile Include="Form\Asakai\All\FrmDepartemenDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\PPIC\FrmHancuran.Designer.vb">
@@ -1369,40 +1465,40 @@
     <Compile Include="Form\Asakai\Quality\FrmIPMIDetail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmJenis.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmJenis.Designer.vb">
       <DependentUpon>FrmJenis.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmJenis.vb">
+    <Compile Include="Form\Asakai\All\FrmJenis.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmJenisDetail.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmJenisDetail.Designer.vb">
       <DependentUpon>FrmJenisDetail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmJenisDetail.vb">
+    <Compile Include="Form\Asakai\All\FrmJenisDetail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmKategoriAbsen.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmKategoriAbsen.Designer.vb">
       <DependentUpon>FrmKategoriAbsen.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmKategoriAbsen.vb">
+    <Compile Include="Form\Asakai\All\FrmKategoriAbsen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmKategoriAbsenDetail.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmKategoriAbsenDetail.Designer.vb">
       <DependentUpon>FrmKategoriAbsenDetail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmKategoriAbsenDetail.vb">
+    <Compile Include="Form\Asakai\All\FrmKategoriAbsenDetail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmKebijakaDetail.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmKebijakaDetail.Designer.vb">
       <DependentUpon>FrmKebijakaDetail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmKebijakaDetail.vb">
+    <Compile Include="Form\Asakai\All\FrmKebijakaDetail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmKebijakan.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmKebijakan.Designer.vb">
       <DependentUpon>FrmKebijakan.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmKebijakan.vb">
+    <Compile Include="Form\Asakai\All\FrmKebijakan.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Enginering\FrmMaintenance.Designer.vb">
@@ -1417,46 +1513,46 @@
     <Compile Include="Form\Asakai\Enginering\FrmMaintenanceDetail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterial.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmMaterial.Designer.vb">
       <DependentUpon>FrmMaterial.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterial.vb">
+    <Compile Include="Form\Asakai\All\FrmMaterial.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialDetail.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmMaterialDetail.Designer.vb">
       <DependentUpon>FrmMaterialDetail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialDetail.vb">
+    <Compile Include="Form\Asakai\All\FrmMaterialDetail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialPainting.Designer.vb">
+    <Compile Include="Form\Asakai\PPIC\FrmMaterialPainting.Designer.vb">
       <DependentUpon>FrmMaterialPainting.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialPainting.vb">
+    <Compile Include="Form\Asakai\PPIC\FrmMaterialPainting.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialPaintingHeader.Designer.vb">
+    <Compile Include="Form\Asakai\PPIC\FrmMaterialPaintingHeader.Designer.vb">
       <DependentUpon>FrmMaterialPaintingHeader.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialPaintingHeader.vb">
+    <Compile Include="Form\Asakai\PPIC\FrmMaterialPaintingHeader.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialUsageDetail.Designer.vb">
+    <Compile Include="Form\Asakai\PPIC\FrmMaterialUsageDetail.Designer.vb">
       <DependentUpon>FrmMaterialUsageDetail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmMaterialUsageDetail.vb">
+    <Compile Include="Form\Asakai\PPIC\FrmMaterialUsageDetail.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmNonProduksi.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmNonProduksi.Designer.vb">
       <DependentUpon>FrmNonProduksi.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmNonProduksi.vb">
+    <Compile Include="Form\Asakai\All\FrmNonProduksi.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Asakai\FrmNonProduksiDetail.Designer.vb">
+    <Compile Include="Form\Asakai\All\FrmNonProduksiDetail.Designer.vb">
       <DependentUpon>FrmNonProduksiDetail.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\Asakai\FrmNonProduksiDetail.vb">
+    <Compile Include="Form\Asakai\All\FrmNonProduksiDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Painting\FrmPaintingProduksi.Designer.vb">
@@ -1483,10 +1579,22 @@
     <Compile Include="Form\Asakai\Delivery\FrmProblemDeliveryDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmQualityProblem_CKR.Designer.vb">
+      <DependentUpon>FrmQualityProblem_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmQualityProblem_CKR.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Asakai\Quality\FrmQualityProblem.Designer.vb">
       <DependentUpon>FrmQualityProblem.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FrmQualityProblem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmQualityProblemDetail_CKR.Designer.vb">
+      <DependentUpon>FrmQualityProblemDetail_CKR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Asakai CKR\Quality\FrmQualityProblemDetail_CKR.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Asakai\Quality\FrmQualityProblemDetail.Designer.vb">
@@ -2929,6 +3037,34 @@
     <Compile Include="Models\Asakai\QualityProblemModel.vb" />
     <Compile Include="Models\Asakai\ReportAbsenModel.vb" />
     <Compile Include="Models\Asakai\VendorManagementModel.vb" />
+    <Compile Include="Models\Asakai_CKR\AbsenModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\ClaimCustomerModel__CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\DeliveryModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\DepartemenModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\FileCopy_CKR.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Models\Asakai_CKR\HancuranModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\HancuranStokModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\InjectionModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\InjectionShotModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\IPMIModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\JenisModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\KategoriAbsenModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\KebijakanDetailModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\KebijakanModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\MaintenanceModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\MaintenanPerbaikanModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\MaterialModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\NonProduksiModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\PaintingProduksiModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\PemakaianMaterialModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\PemakaianPaintingModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\ProblemDeliveryModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\QualityProblemModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\ReportAbsenModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\VendorManagementModel_CKR.vb" />
+    <Compile Include="Models\Asakai_CKR\VMModel_CKR.vb" />
     <Compile Include="Models\BudgetModel.vb" />
     <Compile Include="Models\Circulation\level_Model.vb" />
     <Compile Include="Models\Class ar2_detail_models.vb" />
@@ -3791,6 +3927,15 @@
     <EmbeddedResource Include="Form\Asakai CKR\Non Produksi\FrmNonProduksi_CKR.resx">
       <DependentUpon>FrmNonProduksi_CKR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Painting\FormPaintingProduksi_Detail_CKR.resx">
+      <DependentUpon>FormPaintingProduksi_Detail_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Delivery\FrmDeliveryHeader_CKR.resx">
+      <DependentUpon>FrmDeliveryHeader_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Delivery\FrmDeliveryDetail_CKR.resx">
+      <DependentUpon>FrmDeliveryDetail_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmProblemDeliveryUpload.resx">
       <DependentUpon>FrmProblemDeliveryUpload.vb</DependentUpon>
     </EmbeddedResource>
@@ -3803,14 +3948,44 @@
     <EmbeddedResource Include="Form\Asakai CKR\Non Produksi\FrmNonProduksiDetail_CKR.resx">
       <DependentUpon>FrmNonProduksiDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Injection\FrmInjection_CKR.resx">
+      <DependentUpon>FrmInjection_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Enginering\FrmMaintenance_CKR.resx">
+      <DependentUpon>FrmMaintenance_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Enginering\FrmMaintenanceDetail_CKR.resx">
+      <DependentUpon>FrmMaintenanceDetail_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Injection\FrmInjectionShot.resx">
       <DependentUpon>FrmInjectionShot.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Injection\FrmInjectionShotDetail.resx">
       <DependentUpon>FrmInjectionShotDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\PPIC\FrmMaterialUsage_CKR.resx">
+      <DependentUpon>FrmMaterialUsage_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\PPIC\FrmMaterialPaintingHeader_CKR.resx">
+      <DependentUpon>FrmMaterialPaintingHeader_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\PPIC\FrmMaterialPainting_CKR.resx">
+      <DependentUpon>FrmMaterialPainting_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Painting\FrmPaintingProduksi_CKR.resx">
+      <DependentUpon>FrmPaintingProduksi_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\All\FrmAbsen_CKR.resx">
+      <DependentUpon>FrmAbsen_CKR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\All\FrmAbsenDetail_CKR.resx">
+      <DependentUpon>FrmAbsenDetail_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\PPIC\FrmMaterialUsage.resx">
       <DependentUpon>FrmMaterialUsage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\PPIC\FrmPemakaianMaterial_CKR.resx">
+      <DependentUpon>FrmPemakaianMaterial_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FormRekapClaim.resx">
       <DependentUpon>FormRekapClaim.vb</DependentUpon>
@@ -3821,8 +3996,14 @@
     <EmbeddedResource Include="Form\Asakai\Opening\FrmAbsenDetail.resx">
       <DependentUpon>FrmAbsenDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Quality\FrmClaimCustomer_CKR.resx">
+      <DependentUpon>FrmClaimCustomer_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmClaimCustomer.resx">
       <DependentUpon>FrmClaimCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Quality\FrmClaimCustomerDetail_CKR.resx">
+      <DependentUpon>FrmClaimCustomerDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmClaimCustomerDetail.resx">
       <DependentUpon>FrmClaimCustomerDetail.vb</DependentUpon>
@@ -3833,10 +4014,10 @@
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmDeliveryHeader.resx">
       <DependentUpon>FrmDeliveryHeader.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmDepartemen.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmDepartemen.resx">
       <DependentUpon>FrmDepartemen.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmDepartemenDetail.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmDepartemenDetail.resx">
       <DependentUpon>FrmDepartemenDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\PPIC\FrmHancuran.resx">
@@ -3860,22 +4041,22 @@
     <EmbeddedResource Include="Form\Asakai\Quality\FrmIPMIDetail.resx">
       <DependentUpon>FrmIPMIDetail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmJenis.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmJenis.resx">
       <DependentUpon>FrmJenis.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmJenisDetail.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmJenisDetail.resx">
       <DependentUpon>FrmJenisDetail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmKategoriAbsen.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmKategoriAbsen.resx">
       <DependentUpon>FrmKategoriAbsen.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmKategoriAbsenDetail.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmKategoriAbsenDetail.resx">
       <DependentUpon>FrmKategoriAbsenDetail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmKebijakaDetail.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmKebijakaDetail.resx">
       <DependentUpon>FrmKebijakaDetail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmKebijakan.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmKebijakan.resx">
       <DependentUpon>FrmKebijakan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Enginering\FrmMaintenance.resx">
@@ -3884,25 +4065,25 @@
     <EmbeddedResource Include="Form\Asakai\Enginering\FrmMaintenanceDetail.resx">
       <DependentUpon>FrmMaintenanceDetail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmMaterial.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmMaterial.resx">
       <DependentUpon>FrmMaterial.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmMaterialDetail.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmMaterialDetail.resx">
       <DependentUpon>FrmMaterialDetail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmMaterialPainting.resx">
+    <EmbeddedResource Include="Form\Asakai\PPIC\FrmMaterialPainting.resx">
       <DependentUpon>FrmMaterialPainting.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmMaterialPaintingHeader.resx">
+    <EmbeddedResource Include="Form\Asakai\PPIC\FrmMaterialPaintingHeader.resx">
       <DependentUpon>FrmMaterialPaintingHeader.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmMaterialUsageDetail.resx">
+    <EmbeddedResource Include="Form\Asakai\PPIC\FrmMaterialUsageDetail.resx">
       <DependentUpon>FrmMaterialUsageDetail.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmNonProduksi.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmNonProduksi.resx">
       <DependentUpon>FrmNonProduksi.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Asakai\FrmNonProduksiDetail.resx">
+    <EmbeddedResource Include="Form\Asakai\All\FrmNonProduksiDetail.resx">
       <DependentUpon>FrmNonProduksiDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Painting\FrmPaintingProduksi.resx">
@@ -3917,8 +4098,14 @@
     <EmbeddedResource Include="Form\Asakai\Delivery\FrmProblemDeliveryDetail.resx">
       <DependentUpon>FrmProblemDeliveryDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Quality\FrmQualityProblem_CKR.resx">
+      <DependentUpon>FrmQualityProblem_CKR.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblem.resx">
       <DependentUpon>FrmQualityProblem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Asakai CKR\Quality\FrmQualityProblemDetail_CKR.resx">
+      <DependentUpon>FrmQualityProblemDetail_CKR.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Asakai\Quality\FrmQualityProblemDetail.resx">
       <DependentUpon>FrmQualityProblemDetail.vb</DependentUpon>
@@ -4923,7 +5110,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\SettleEntertain.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>SettleEntertain.vb</LastGenOutput>
+      <LastGenOutput>SettleEntertain1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Direct\report\settle1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -5407,6 +5594,7 @@
     </None>
     <None Include="Icon\Untitled.xcf" />
     <None Include="Models\Asakai\kqvs4ql2.tdh~" />
+    <None Include="Models\Asakai_CKR\kqvs4ql2.tdh~" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

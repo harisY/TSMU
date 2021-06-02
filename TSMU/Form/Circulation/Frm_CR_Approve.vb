@@ -397,7 +397,7 @@ Public Class Frm_CR_Approve
             Grid2.DataSource = dt
 
 
-            Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
+            'Call Proc_EnableButtons(False, False, False, True, True, False, False, False)
             Cursor.Current = Cursors.Default
         Catch ex As Exception
             Cursor.Current = Cursors.Default

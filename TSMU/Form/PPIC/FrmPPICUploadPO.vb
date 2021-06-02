@@ -167,22 +167,22 @@ Public Class FrmPPICUploadPO
                         Dim rowBuildup As DataRow()
                         Dim status As String = "Error"
                         Dim message As String = String.Empty
-                        rowBuildup = dtBuildup.Select("PartNo = " & QVal(Replace(rows("Item Number"), "-", "")) & "")
+                        rowBuildup = dtBuildup.Select("ItemNumber = " & QVal(Replace(rows("Item Number"), "-", "")) & "")
                         If rowBuildup.Count = 0 Then
                             'Jika partno tidak ditemukan di KapOEM
                             message = "Item Number Tidak Ditemukan Di Master Standar Packing !"
                             _error += 1
-                            addNewDtResult(rows, "", 0, 0, status, message)
+                            addNewDtResult(rows, "", "", 0, 0, status, message)
                         ElseIf rows("User Code") Is DBNull.Value Then
                             'Jika User Code Kosong
                             message = "User Code Tidak Boleh Kosong !"
                             _error += 1
-                            addNewDtResult(rows, rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
+                            addNewDtResult(rows, rowBuildup(0)("PartNo"), rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
                         ElseIf rows("P/F") Is DBNull.Value Then
                             'Jika P/F Kosong
                             message = "P/F Tidak Boleh Kosong !"
                             _error += 1
-                            addNewDtResult(rows, rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
+                            addNewDtResult(rows, rowBuildup(0)("PartNo"), rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
                         Else
                             Dim dt As New DataTable
                             dt = srvPPIC.CheckInventoryID(CustID)
@@ -194,11 +194,11 @@ Public Class FrmPPICUploadPO
                                 status = "Warning"
                                 message = "Item Number Tidak Ditemukan !"
                                 warning += 1
-                                addNewDtResult(rows, rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
+                                addNewDtResult(rows, rowBuildup(0)("PartNo"), rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
                             Else
                                 status = "Success"
                                 succes += 1
-                                addNewDtResult(rows, rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
+                                addNewDtResult(rows, rowBuildup(0)("PartNo"), rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
                             End If
                         End If
                     End If
@@ -251,10 +251,11 @@ Public Class FrmPPICUploadPO
         Return isNotFound
     End Function
 
-    Private Sub addNewDtResult(Rows As DataRow, JenisPacking As String, StandarQty As String, KapMuat As String, Status As String, Message As String)
+    Private Sub addNewDtResult(Rows As DataRow, PartNo As String, JenisPacking As String, StandarQty As String, KapMuat As String, Status As String, Message As String)
         Dim newRow As DataRow
         newRow = dtResult.NewRow
         newRow("Seq") = Rows("Seq")
+        newRow("PartNo") = PartNo
         newRow("ItemNumber") = Rows("Item Number")
         newRow("ItemName") = Rows("Item Name")
         newRow("UserCode") = Rows("User Code")
@@ -276,7 +277,8 @@ Public Class FrmPPICUploadPO
         CustID = "YIM"
         txtCustomer.Text = "YAMAHA INDONESIA MOTOR"
         dtResult = New DataTable
-        dtResult.Columns.AddRange(New DataColumn(13) {New DataColumn("Seq", GetType(Integer)),
+        dtResult.Columns.AddRange(New DataColumn(14) {New DataColumn("Seq", GetType(Integer)),
+                                                    New DataColumn("PartNo", GetType(String)),
                                                     New DataColumn("ItemNumber", GetType(String)),
                                                     New DataColumn("ItemName", GetType(String)),
                                                     New DataColumn("UserCode", GetType(String)),
