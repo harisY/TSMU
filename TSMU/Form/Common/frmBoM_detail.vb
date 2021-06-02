@@ -216,6 +216,7 @@ Public Class frmBoM_detail
         Try
             dtGrid = fc_Class.getDetailBoM(fs_Code)
             GridDetail.DataSource = dtGrid
+            'GridDetail.Columns(4).Visible = False
         Catch ex As Exception
             Throw
         End Try
@@ -228,14 +229,15 @@ Public Class frmBoM_detail
                                                             New DataColumn("Qty", GetType(String)),
                                                             New DataColumn("Unit", GetType(String))})
             If GridDetail.Rows.Count > 0 Then
-                Dim strInvtId As String
+                Dim strInvtId, BomId As String
                 strInvtId = GridDetail.SelectedRows(0).Cells(0).Value.ToString
+                BomId = fc_Class.GetBomId(strInvtId, _cmbStatus.Text)
                 'Dim dt As New DataTable
                 'dt = fc_Class.getDetailBoM_Part_n(strInvtId)
                 'Grid1.DataSource = dt
                 Dim dt As New DataTable
                 'dt = fc_Class.getDetailBoM_Part_n(InvtId)
-                dt = fc_Class.getRoutingBoM(strInvtId)
+                dt = fc_Class.getRoutingBoM(strInvtId, BomId)
                 Dim str As String = String.Empty
 
                 For rw = 0 To dt.Rows.Count - 1
@@ -261,14 +263,15 @@ Public Class frmBoM_detail
                                                             New DataColumn("Qty", GetType(String)),
                                                             New DataColumn("Unit", GetType(String))})
             If Grid1.Rows.Count > 0 Then
-                Dim strInvtId2 As String
+                Dim strInvtId2, BomId1 As String
                 strInvtId2 = Grid1.SelectedRows(0).Cells(0).Value.ToString
+                BomId1 = fc_Class.GetBomId(strInvtId2, _cmbStatus.Text)
                 'Dim dt As New DataTable
                 'dt = fc_Class.getDetailBoM_Part_n(strInvtId)
                 'Grid1.DataSource = dt
                 Dim dt2 As New DataTable
                 'dt = fc_Class.getDetailBoM_Part_n(InvtId)
-                dt2 = fc_Class.getRoutingBoM(strInvtId2)
+                dt2 = fc_Class.getRoutingBoM(strInvtId2, BomId1)
                 Dim str2 As String = String.Empty
 
                 For rw = 0 To dt2.Rows.Count - 1
@@ -580,14 +583,15 @@ Public Class frmBoM_detail
                                                             New DataColumn("Qty", GetType(String)),
                                                             New DataColumn("Unit", GetType(String))})
             If Grid1.Rows.Count > 0 Then
-                Dim strInvtId2 As String
+                Dim strInvtId2, BomId2 As String
                 strInvtId2 = Grid1.SelectedRows(0).Cells(0).Value.ToString
+                BomId2 = fc_Class.GetBomId(strInvtId2, _cmbStatus.Text)
                 'Dim dt As New DataTable
                 'dt = fc_Class.getDetailBoM_Part_n(strInvtId)
                 'Grid1.DataSource = dt
                 Dim dt2 As New DataTable
                 'dt = fc_Class.getDetailBoM_Part_n(InvtId)
-                dt2 = fc_Class.getRoutingBoM(strInvtId2)
+                dt2 = fc_Class.getRoutingBoM(strInvtId2, BomId2)
                 Dim str2 As String = String.Empty
 
                 For rw = 0 To dt2.Rows.Count - 1
@@ -635,13 +639,15 @@ Public Class frmBoM_detail
                                                             New DataColumn("Qty", GetType(String)),
                                                             New DataColumn("Unit", GetType(String))})
             If Grid2.Rows.Count > 0 Then
+                Dim BomId3 As String = String.Empty
                 strInvtId3 = Grid2.SelectedRows(0).Cells(0).Value.ToString
+                BomId3 = fc_Class.GetBomId(strInvtId3, _cmbStatus.Text)
                 'Dim dt As New DataTable
                 'dt = fc_Class.getDetailBoM_Part_n(strInvtId)
                 'Grid1.DataSource = dt
                 Dim dt3 As New DataTable
                 'dt = fc_Class.getDetailBoM_Part_n(InvtId)
-                dt3 = fc_Class.getRoutingBoM(strInvtId3)
+                dt3 = fc_Class.getRoutingBoM(strInvtId3, BomId3)
                 Dim str2 As String = String.Empty
 
                 For rw = 0 To dt3.Rows.Count - 1

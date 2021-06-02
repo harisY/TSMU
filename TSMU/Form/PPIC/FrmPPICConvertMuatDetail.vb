@@ -193,6 +193,7 @@ Public Class FrmPPICConvertMuatDetail
                         .NoUpload = NoUpload
                         .No = GridViewDetail.GetRowCellValue(i, "No")
                         .Seq = GridViewDetail.GetRowCellValue(i, "Seq")
+                        .PartNo = GridViewDetail.GetRowCellValue(i, "PartNo")
                         .ItemNumber = GridViewDetail.GetRowCellValue(i, "ItemNumber")
                         .ItemName = GridViewDetail.GetRowCellValue(i, "ItemName")
                         .Lokasi = GridViewDetail.GetRowCellValue(i, "Lokasi")
@@ -327,8 +328,9 @@ Public Class FrmPPICConvertMuatDetail
 
     Public Sub CreateTable()
         dtDetail = New DataTable
-        dtDetail.Columns.AddRange(New DataColumn(17) {New DataColumn("No", GetType(Integer)),
+        dtDetail.Columns.AddRange(New DataColumn(18) {New DataColumn("No", GetType(Integer)),
                                                     New DataColumn("Seq", GetType(Integer)),
+                                                    New DataColumn("PartNo", GetType(String)),
                                                     New DataColumn("ItemNumber", GetType(String)),
                                                     New DataColumn("ItemName", GetType(String)),
                                                     New DataColumn("Lokasi", GetType(String)),
@@ -421,6 +423,7 @@ Public Class FrmPPICConvertMuatDetail
             newRow = dtTemp.NewRow
             newRow("No") = rows("No")
             newRow("Seq") = rows("Seq")
+            newRow("PartNo") = rows("PartNo")
             newRow("ItemNumber") = rows("ItemNumber")
             newRow("ItemName") = rows("ItemName")
             newRow("Lokasi") = rows("Lokasi")

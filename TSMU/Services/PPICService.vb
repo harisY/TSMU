@@ -3,7 +3,9 @@
 Public Class PPICService
     Dim _globalService As GlobalService
     Dim strQuery As String = String.Empty
+    Dim strSP As String = String.Empty
 
+#Region "Buildup"
     Public Function GetDataBuildup() As DataTable
         Try
             strQuery = "SELECT  ID ,
@@ -168,6 +170,9 @@ Public Class PPICService
         End Try
     End Sub
 
+#End Region
+
+#Region "KapOEM"
     Public Function GetDataKapOEM() As DataTable
         Try
             strQuery = "SELECT  ID ,
@@ -346,6 +351,7 @@ Public Class PPICService
         End Try
     End Function
 
+#End Region
     Public Function GetDataConvertMuatHeader(dateFrom As Date, dateTo As Date) As DataTable
         Try
             strQuery = "SELECT  NoUpload ,
@@ -404,6 +410,38 @@ Public Class PPICService
         End Try
     End Sub
 
+    Public Sub EditConverMuat(frm As Form, Data As PPICConvertMuatHeaderModel)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
+
+                    Try
+                        UpdateConvertHeader(Data)
+
+                        DeleteConvertDetail(Data.NoUpload)
+
+                        For i As Integer = 0 To Data.ObjConvertDetails.Count - 1
+                            InsertConvertDetail(Data.ObjConvertDetails(i))
+                        Next
+
+                        Trans1.Commit()
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
     Public Sub InsertConvertHeader(Data As PPICConvertMuatHeaderModel)
         Try
             strQuery = "INSERT  INTO dbo.T_PPICConvertMuatHeader
@@ -443,6 +481,7 @@ Public Class PPICService
                                 ( NoUpload ,
                                   No ,
                                   Seq ,
+                                  PartNo ,
                                   ItemNumber ,
                                   ItemName ,
                                   Lokasi ,
@@ -463,6 +502,7 @@ Public Class PPICService
                         VALUES  ( " & QVal(Data.NoUpload) & " , -- NoUpload - varchar(20)
                                   " & Data.No & " , -- No - int
                                   " & Data.Seq & " , -- Seq - int
+                                  " & QVal(Data.PartNo) & " , -- PartNo - varchar(20)
                                   " & QVal(Data.ItemNumber) & " , -- ItemNumber - varchar(20)
                                   " & QVal(Data.ItemName) & " , -- ItemName - varchar(50)
                                   " & QVal(Data.Lokasi) & " , -- Lokasi - varchar(10)
@@ -486,38 +526,6 @@ Public Class PPICService
         End Try
     End Sub
 
-    Public Sub EditConverMuat(frm As Form, Data As PPICConvertMuatHeaderModel)
-        Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
-                Conn1.Open()
-                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
-                    gh_Trans = New InstanceVariables.TransactionHelper
-                    gh_Trans.Command.Connection = Conn1
-                    gh_Trans.Command.Transaction = Trans1
-
-                    Try
-                        UpdateConvertHeader(Data)
-
-                        DeleteConvertDetail(Data.NoUpload)
-
-                        For i As Integer = 0 To Data.ObjConvertDetails.Count - 1
-                            InsertConvertDetail(Data.ObjConvertDetails(i))
-                        Next
-
-                        Trans1.Commit()
-                    Catch ex As Exception
-                        Trans1.Rollback()
-                        Throw
-                    Finally
-                        gh_Trans = Nothing
-                    End Try
-                End Using
-            End Using
-        Catch ex As Exception
-            Throw
-        End Try
-    End Sub
-
     Public Sub UpdateConvertHeader(Data As PPICConvertMuatHeaderModel)
         Try
             strQuery = "UPDATE [New_BOM].[dbo].[T_PPICConvertMuatHeader]
@@ -536,7 +544,8 @@ Public Class PPICService
 
     Public Sub DeleteConvertDetail(NoUpload As String)
         Try
-            strQuery = "DELETE FROM dbo.T_PPICConvertMuatDetail WHERE NoUpload = " & QVal(NoUpload) & ""
+            strQuery = "DELETE  FROM dbo.T_PPICConvertMuatDetail
+                        WHERE   NoUpload = " & QVal(NoUpload) & ""
             MainModul.ExecQuery(strQuery)
         Catch ex As Exception
             Throw
@@ -547,6 +556,7 @@ Public Class PPICService
         Try
             strQuery = "SELECT  [No] ,
                                 Seq ,
+                                PartNo ,
                                 ItemNumber ,
                                 ItemName ,
                                 Lokasi ,
@@ -593,7 +603,8 @@ Public Class PPICService
 
     Public Function CheckBuildup() As DataTable
         Try
-            strQuery = "SELECT  REPLACE(PartNo, '-', '') AS PartNo ,
+            strQuery = "SELECT  REPLACE(PartNo, '-', '') AS ItemNumber ,
+                                PartNo ,
                                 InventoryID ,
                                 CAST(JenisPacking AS VARCHAR(20)) AS JenisPacking ,
                                 StandarQty ,
@@ -642,39 +653,13 @@ Public Class PPICService
 
     Public Function GetDataPPICTemp() As DataTable
         Try
-            strQuery = "SELECT  ROW_NUMBER() OVER ( ORDER BY usr.Lokasi ASC, CASE WHEN ISNULL(DATEPART(HOUR,
-                                                                                      DeliveryTime), 0) <= 14
-                                                                                  THEN 1
-                                                                                  ELSE 2
-                                                                             END ASC, usr.[Group] ASC, usr.SeqUser ASC, bu.Seq ASC ) AS [No] ,
-                                temp.Seq ,
-                                temp.ItemNumber ,
-                                temp.ItemName ,
-                                usr.Lokasi ,
-                                temp.UserCode + '/' + temp.PF AS UserCode ,
-                                temp.PF ,
-                                usr.[Group] ,
-                                usr.SeqUser ,
-                                usr.Seq ,
-                                CASE WHEN ISNULL(DATEPART(HOUR, DeliveryTime), 0) <= 14 THEN 1
-                                     ELSE 2
-                                END AS GroupHourly ,
-                                temp.OrderNo ,
-                                temp.DeliveryDueDate ,
-                                temp.DeliveryTime ,
-                                temp.OrderQuantity ,
-                                temp.JenisPacking ,
-                                temp.StandarQty ,
-                                temp.KapasitasMuat ,
-                                0 AS ButuhPacking ,
-                                CAST(0 AS FLOAT) AS KebutuhanTruk ,
-                                0 AS GroupTruk
-                        FROM    dbo.T_PPICTempPO AS temp
-                                LEFT JOIN dbo.M_PPICUser AS usr ON usr.UserCode = temp.UserCode
-                                                                   AND usr.PF = temp.PF
-                                LEFT JOIN dbo.M_PPICBuildup AS bu ON bu.JenisPacking = temp.JenisPacking"
             Dim dt As New DataTable
-            dt = GetDataTable(strQuery)
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+
+            strSP = "PPIC_GetTempPO"
+
+            dt = GetDataTableByParam(strSP, CommandType.StoredProcedure, Params, GetConnString)
+
             Return dt
         Catch ex As Exception
             Throw ex
@@ -708,36 +693,14 @@ Public Class PPICService
 
     Public Function LoadReportBuktiMuat(NoUpload As String) As DataTable
         Try
-            strQuery = "SELECT  header.NoUpload ,
-                                header.UploadDate ,
-                                ROW_NUMBER() OVER(Partition by detail.GroupTruk ORDER BY detail.GroupTruk) AS [No] ,
-                                detail.Seq ,
-                                detail.ItemNumber ,
-                                detail.ItemName ,
-                                'YIMM ' + detail.Lokasi AS Tujuan,
-                                detail.UserCode + '/' + detail.PF AS UserCode ,
-                                detail.PF ,
-                                detail.OrderNo ,
-                                UPPER(dbo.FormatDateTimeIDN(detail.DeliveryDueDate, 'dddd')) + ', '
-                                + dbo.FormatDateTimeIDN(detail.DeliveryDueDate, 'dd.MM.yyyy') AS TglKirim ,
-                                detail.GroupHourly ,
-                                detail.DeliveryTime AS Hourly,
-                                detail.OrderQuantity ,
-                                detail.JenisPacking ,
-                                CAST(detail.StandarQty AS VARCHAR(10)) + '  X  '
-                                + CAST(detail.ButuhPacking AS VARCHAR(10)) + '  =  '
-                                + CAST(detail.OrderQuantity AS VARCHAR(10)) AS JmlPacking ,
-                                detail.StandarQty ,
-                                detail.KapasitasMuat ,
-                                detail.ButuhPacking ,
-                                detail.KebutuhanTruk ,
-                                detail.GroupTruk ,
-                                'MOBIL ' + CAST(detail.GroupTruk AS VARCHAR(3)) AS NoMobil
-                        FROM    dbo.T_PPICConvertMuatHeader AS header
-                                INNER JOIN dbo.T_PPICConvertMuatDetail AS detail ON detail.NoUpload = header.NoUpload
-                        WHERE   header.NoUpload = " & QVal(NoUpload) & ""
             Dim dt As New DataTable
-            dt = GetDataTable(strQuery)
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+
+            strSP = "PPIC_GetRptBuktiMuatDetail"
+            Params.Add(New SqlParameter() With {.ParameterName = "NoUpload", .Value = NoUpload})
+
+            dt = GetDataTableByParam(strSP, CommandType.StoredProcedure, Params, GetConnString)
+
             Return dt
         Catch ex As Exception
             Throw ex

@@ -8,7 +8,7 @@ Public Class FrmPPICBuildupDetail
     Dim ls_Error As String = ""
     Dim _Tag = New TagModel
 
-    Dim srvHR As New PPICService
+    Dim srvPPIC As New PPICService
     Dim modelHeader As PPICBuildupModel
     Dim dtGridDetail As DataTable
     Dim GridDtl As GridControl
@@ -50,7 +50,7 @@ Public Class FrmPPICBuildupDetail
     Public Overrides Sub InitialSetForm()
         Try
             If fs_Code <> "" Then
-                modelHeader = srvHR.GetDataBuildupByID(fs_Code)
+                modelHeader = srvPPIC.GetDataBuildupByID(fs_Code)
                 If ls_Error <> "" Then
                     Call ShowMessage(ls_Error, MessageTypeEnum.ErrorMessage)
                     isCancel = True
@@ -149,7 +149,7 @@ Public Class FrmPPICBuildupDetail
                     .UpdateBy = gh_Common.Username
                     .UpdateDate = Now
                     If isUpdate = False Then
-                        srvHR.CheckDuplicateBuildup(modelHeader)
+                        srvPPIC.CheckDuplicateBuildup(modelHeader)
                     End If
                 End With
 
@@ -165,14 +165,14 @@ Public Class FrmPPICBuildupDetail
     Public Overrides Sub Proc_SaveData()
         Try
             If isUpdate = False Then
-                srvHR.InsertDataBuildup(modelHeader)
+                srvPPIC.InsertDataBuildup(modelHeader)
                 Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
             Else
-                srvHR.UpdateDataBuildup(modelHeader)
+                srvPPIC.UpdateDataBuildup(modelHeader)
                 Call ShowMessage(GetMessage(MessageEnum.UpdateBerhasil), MessageTypeEnum.NormalMessage)
             End If
 
-            GridDtl.DataSource = srvHR.GetDataBuildup()
+            GridDtl.DataSource = srvPPIC.GetDataBuildup()
             IsClosed = True
             Me.Hide()
         Catch ex As Exception
