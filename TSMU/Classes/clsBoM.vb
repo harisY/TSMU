@@ -130,26 +130,26 @@ Public Class clsBoM
         Try
             Dim ls_SP As String =
                 "SELECT [bomid] [BOM ID]
-                    ,[tgl]  [TGL]
-                    ,Status Jenis
-                    ,[invtid] [Inventory ID]
-                    ,[descr] [Description]
-                    ,[siteid] [Site]
-                    ,[runner] [Runner]
-                    ,[ct] [CT]
-                    ,[mc] [MC/Ton]
-                    ,[cavity] [Cavity]
-                    ,[wc] [WC]
-                    ,[allowance] [Allow]
-                    ,[mp] [MP]
-                    ,Case Active
-                        When 0 then 'Subcon'
+                    ,b.[tgl]  [TGL]
+                    ,b.Status Jenis
+                    ,b.[invtid] [Inventory ID]
+                    ,i.[Descr] [Description]
+                    ,b.[siteid] [Site]
+                    ,b.[runner] [Runner]
+                    ,b.[ct] [CT]
+                    ,b.[mc] [MC/Ton]
+                    ,b.[cavity] [Cavity]
+                    ,b.[wc] [WC]
+                    ,b.[allowance] [Allow]
+                    ,b.[mp] [MP]
+                    ,Case b.Active
+                        When 0 then 'Subcont'
                         When 1 then 'InHouse'
                         Else 'Discontinue'
                     END as [Status]
                     ,[updated_by] [Updated By]
-                    ,[updated_date] [Updated Date]
-                FROM [bomh]"
+                    ,[updated_date] [Updated Date] 
+                FROM [bomh] b Left Join TSC16Application.dbo.Inventory i on b.InvtId = i.InvtId"
             Dim dtTable As New DataTable
             dtTable = MainModul.GetDataTableByCommand(ls_SP)
             Return dtTable
@@ -213,9 +213,9 @@ Public Class clsBoM
         End Try
         Return _rev
     End Function
-    Public Function getRoutingBoM(ByVal invtId As String)
+    Public Function getRoutingBoM(ByVal invtId As String, Optional BomId As String = "")
         Try
-            Dim query As String = "select * from fn_GetMultiLevelBOM('" & invtId & "') " &
+            Dim query As String = "select * from fn_GetMultiLevelBOM('" & invtId & "', " & QVal(BomId) & " ) " &
                 "union " &
                 "select '' as FinishedGood,'' as parentid,b.invtid,'1' as qty, '0' as Extendedqty, b.descr, b.stkunit, a.bomid from bomh a inner join Inventory b on a.invtid=b.InvtID where b.invtid = '" & invtId & "'"
 
@@ -226,13 +226,32 @@ Public Class clsBoM
             Throw
         End Try
     End Function
+
+    Public Function GetBomId(InvtId As String, Status As String) As String
+        Dim Hasil As String = String.Empty
+        Try
+            Dim Query = "Select BomId From Bomh Where InvtId = @InvtId And Status = @Status"
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter) From {
+                 New SqlParameter() With {.ParameterName = "InvtId", .Value = InvtId},
+                 New SqlParameter() With {.ParameterName = "Status", .Value = Status}
+                }
+            Dim dt As New DataTable
+            dt = GetDataTableByParam(Query, CommandType.Text, Params, GetConnString)
+            If dt.Rows.Count > 0 Then
+                Hasil = dt.Rows(0)(0).ToString
+            End If
+            Return Hasil
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function getDetailBoM(ByVal BoMID As String) As DataTable
         Try
             'Dim query As String = "SELECT ltrim(rtrim(bom.invtid)) as [Inventory ID],bom.descr Description,CAST(bom.qty AS decimal(11,4)) as Qty,bom.unit Unit FROM bomh inner join bom on bomh.bomid=bom.bomid where bom.bomid = '" & BoMID & "'"
             'Dim query As String = "SELECT ltrim(rtrim(bom.invtid)) as [Inventory ID],bom.descr Description,bom.qty as Qty,bom.unit Unit FROM bomh inner join bom on bomh.bomid=bom.bomid where bom.bomid = '" & BoMID & "'"
             Dim query As String = "SELECT 
                                         ltrim(rtrim(bom.invtid)) as [Inventory ID],
-                                        i.Descr Description,bom.qty as Qty,bom.unit Unit 
+                                        i.Descr Description,bom.qty as Qty,bom.unit Unit
                                     FROM bomh inner join 
                                         bom on bomh.bomid=bom.bomid inner join 
                                         TSC16Application.dbo.Inventory i on bom.invtid = i.InvtID 

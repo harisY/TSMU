@@ -123,7 +123,7 @@ Public Class FrmClaimCustomerDetail_CKR
             Call LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmClaimCustomer"
+            bs_MainFormName = "FrmClaimCustomer_CKR"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

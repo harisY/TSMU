@@ -33,11 +33,11 @@ Public Class Frm_NPWO_Head
         LoadGrid(Active_Form)
 
         If Active_Form = 1 Or Active_Form = 0 Then
-            Call Proc_EnableButtons(True, False, False, True, False, False, False, False, False, False, False, True)
+            Call Proc_EnableButtons(True, False, True, True, False, False, False, False, False, False, False, True)
         ElseIf Active_Form = 2 Then
-            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+            Call Proc_EnableButtons(False, False, True, True, False, False, False, False, False, False, False, True)
         ElseIf Active_Form = 3 Then
-            Call Proc_EnableButtons(False, False, False, True, False, False, False, False, False, False, False, True)
+            Call Proc_EnableButtons(False, False, True, True, False, False, False, False, False, False, False, True)
         End If
 
 

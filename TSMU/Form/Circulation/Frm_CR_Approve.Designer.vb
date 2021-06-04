@@ -914,7 +914,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 0
-        Me.GridColumn45.Width = 181
+        Me.GridColumn45.Width = 83
         '
         'GridColumn46
         '
@@ -928,7 +928,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn46.Name = "GridColumn46"
         Me.GridColumn46.Visible = True
         Me.GridColumn46.VisibleIndex = 1
-        Me.GridColumn46.Width = 89
+        Me.GridColumn46.Width = 61
         '
         'GridColumn47
         '
@@ -940,7 +940,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn47.Name = "GridColumn47"
         Me.GridColumn47.Visible = True
         Me.GridColumn47.VisibleIndex = 2
-        Me.GridColumn47.Width = 106
+        Me.GridColumn47.Width = 73
         '
         'GridColumn70
         '
@@ -948,7 +948,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn70.Name = "GridColumn70"
         Me.GridColumn70.Visible = True
         Me.GridColumn70.VisibleIndex = 3
-        Me.GridColumn70.Width = 112
+        Me.GridColumn70.Width = 79
         '
         'GridColumn48
         '
@@ -960,7 +960,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn48.Name = "GridColumn48"
         Me.GridColumn48.Visible = True
         Me.GridColumn48.VisibleIndex = 4
-        Me.GridColumn48.Width = 74
+        Me.GridColumn48.Width = 51
         '
         'GridColumn49
         '
@@ -972,7 +972,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn49.Name = "GridColumn49"
         Me.GridColumn49.Visible = True
         Me.GridColumn49.VisibleIndex = 5
-        Me.GridColumn49.Width = 54
+        Me.GridColumn49.Width = 37
         '
         'GridColumn50
         '
@@ -984,7 +984,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn50.Name = "GridColumn50"
         Me.GridColumn50.Visible = True
         Me.GridColumn50.VisibleIndex = 6
-        Me.GridColumn50.Width = 52
+        Me.GridColumn50.Width = 35
         '
         'GridColumn51
         '
@@ -996,7 +996,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn51.Name = "GridColumn51"
         Me.GridColumn51.Visible = True
         Me.GridColumn51.VisibleIndex = 7
-        Me.GridColumn51.Width = 52
+        Me.GridColumn51.Width = 35
         '
         'GridColumn52
         '
@@ -1008,7 +1008,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.Visible = True
         Me.GridColumn52.VisibleIndex = 8
-        Me.GridColumn52.Width = 52
+        Me.GridColumn52.Width = 35
         '
         'GridColumn53
         '
@@ -1020,7 +1020,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.Visible = True
         Me.GridColumn53.VisibleIndex = 9
-        Me.GridColumn53.Width = 52
+        Me.GridColumn53.Width = 35
         '
         'GridColumn54
         '
@@ -1032,7 +1032,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn54.Name = "GridColumn54"
         Me.GridColumn54.Visible = True
         Me.GridColumn54.VisibleIndex = 10
-        Me.GridColumn54.Width = 52
+        Me.GridColumn54.Width = 35
         '
         'GridColumn55
         '
@@ -1044,7 +1044,7 @@ Partial Class Frm_CR_Approve
         Me.GridColumn55.Name = "GridColumn55"
         Me.GridColumn55.Visible = True
         Me.GridColumn55.VisibleIndex = 11
-        Me.GridColumn55.Width = 155
+        Me.GridColumn55.Width = 133
         '
         'Admin
         '

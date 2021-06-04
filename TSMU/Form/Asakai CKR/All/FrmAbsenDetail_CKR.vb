@@ -80,9 +80,10 @@ Public Class FrmAbsenDetail_CKR
 
 
     Private Sub FrmAbsenDetail_CKR_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False)
-        Call InitialSetForm()
 
+        Call Proc_EnableButtons(False, True, False, True, False, False, False, False, False, False, False)
+        Call InitialSetForm()
+        'Pancing
     End Sub
     Private Sub jmlabsen_EditValueChanged(sender As Object, e As EventArgs) Handles jmlabsen.EditValueChanged
         Dim baseEdit = TryCast(sender, BaseEdit)
@@ -113,7 +114,7 @@ Public Class FrmAbsenDetail_CKR
             LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmAbsen"
+            bs_MainFormName = "FrmAbsen_CKR"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

@@ -87,7 +87,7 @@ Public Class FrmMaterialPainting_CKR
             Call LoadGridDetail()
             Call InputBeginState(Me)
             bb_IsUpdate = isUpdate
-            bs_MainFormName = "FrmMaterialPaintingHeader"
+            bs_MainFormName = "FrmMaterialPaintingHeader_CKR"
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)

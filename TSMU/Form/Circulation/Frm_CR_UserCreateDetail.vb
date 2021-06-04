@@ -387,14 +387,14 @@ Public Class Frm_CR_UserCreateDetail
                         End With
 
                         If fc_Class.H_Status = "Other Dept" Then
-                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, True)
                         ElseIf fc_Class.H_Status = "Set Installment" Or fc_Class.H_Status = "Approve BOD" Then
                             'ElseIf fc_Class.H_Status = "BA" Then
-                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, True)
                             BBeritaAcara.Visible = True
                             BBeritaAcara.Text = "No Berita Acara"
                         Else
-                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
                         End If
 
                     ElseIf Active_Form = 6 Then  'Active_Form 6 = Purchase Monitor
@@ -432,7 +432,7 @@ Public Class Frm_CR_UserCreateDetail
                             '.Columns("Check").Visible = True
                             .Columns("Note").Visible = True
                         End With
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True)
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, True)
 
                         'Active_Form 7 = Purchase Termin
                     ElseIf Active_Form = 7 Then
@@ -466,10 +466,10 @@ Public Class Frm_CR_UserCreateDetail
                             .Columns("Note").Visible = True
                         End With
                         If fc_Class.H_Status = "BA" Or fc_Class.H_Status = "Approve BOD" Or fc_Class.H_Status = "Set Installment" Then
-                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, True, False)
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, True, False)
                             BBeritaAcara.Enabled = True
                         Else
-                            Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False, False)
+                            Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False, False)
                         End If
 
 
@@ -502,7 +502,7 @@ Public Class Frm_CR_UserCreateDetail
                             '.Columns("Check").Visible = True
                             .Columns("Note").Visible = True
                         End With
-                        Call Proc_EnableButtons(False, False, False, False, False, False, False, False, False, False, False)
+                        Call Proc_EnableButtons(False, False, False, False, False, False, False, True, False, False, False)
                     End If
                     Call Sub_Dept(fc_Class.H_DeptID)
 
