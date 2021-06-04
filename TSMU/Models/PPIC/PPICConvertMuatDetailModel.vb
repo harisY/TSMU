@@ -8,7 +8,7 @@
     Public Property Lokasi As String
     Public Property UserCode As String
     Public Property PF As String
-    Public Property OrderNo As Integer
+    Public Property OrderNo As String
     Public Property DeliveryDueDate As Date
     Public Property GroupHourly As Integer
     Public Property DeliveryTime As DateTime

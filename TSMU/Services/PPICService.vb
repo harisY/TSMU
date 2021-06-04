@@ -357,6 +357,7 @@ Public Class PPICService
             strQuery = "SELECT  NoUpload ,
                                 UploadDate ,
                                 CustID ,
+                                DeliveryDueDate ,
                                 FileName ,
                                 Revised ,
                                 TotalRecordExcel ,
@@ -448,6 +449,7 @@ Public Class PPICService
                                 ( NoUpload ,
                                   UploadDate ,
                                   CustID ,
+                                  DeliveryDueDate ,
                                   FileName ,
                                   Revised ,
                                   TotalRecordExcel ,
@@ -460,6 +462,7 @@ Public Class PPICService
                         VALUES  ( " & QVal(Data.NoUpload) & " , -- NoUpload - varchar(20)
                                   " & QVal(Data.UploadDate) & " , -- UploadDate - date
                                   " & QVal(Data.CustID) & " , -- CustID - varchar(10)
+                                  " & QVal(Data.DeliveryDueDate) & " , -- DeliveryDueDate - date
                                   " & QVal(Data.FileName) & " , -- FileName - varchar(50)
                                   " & QVal(Data.Revised) & " , -- Revised - varchar(10)
                                   " & Data.TotalRecordExcel & " , -- TotalRecordExcel - int
@@ -508,7 +511,7 @@ Public Class PPICService
                                   " & QVal(Data.Lokasi) & " , -- Lokasi - varchar(10)
                                   " & QVal(Left(Data.UserCode, 4)) & " , -- UserCode - varchar(20)
                                   " & QVal(Data.PF) & " , -- PF - varchar(20)
-                                  " & Data.OrderNo & " , -- OrderNo - int
+                                  " & QVal(Data.OrderNo) & " , -- OrderNo -  varchar(20)
                                   " & QVal(Data.DeliveryDueDate) & " , -- DeliveryDueDate - date
                                   " & Data.GroupHourly & " , -- GroupHourly - int
                                   " & QVal(Data.DeliveryTime) & " , -- DeliveryTime - datetime
@@ -529,7 +532,8 @@ Public Class PPICService
     Public Sub UpdateConvertHeader(Data As PPICConvertMuatHeaderModel)
         Try
             strQuery = "UPDATE [New_BOM].[dbo].[T_PPICConvertMuatHeader]
-                           SET [FileName] = " & QVal(Data.FileName) & "
+                           SET [DeliveryDueDate] = " & QVal(Data.DeliveryDueDate) & "
+                              ,[FileName] = " & QVal(Data.FileName) & "
                               ,[Revised] = " & QVal(Data.Revised) & "
                               ,[TotalRecordExcel] = " & QVal(Data.TotalRecordExcel) & "
                               ,[TotalMobil] = " & QVal(Data.TotalMobil) & "
@@ -618,18 +622,18 @@ Public Class PPICService
         End Try
     End Function
 
-    Public Function CheckDataExist(UploadDate As Date) As String
+    Public Function CheckDataExist(UploadDate As Date) As DataTable
         Try
             strQuery = "SELECT  NoUpload
                         FROM    dbo.T_PPICConvertMuatHeader
                         WHERE   UploadDate = " & QVal(UploadDate) & ""
             Dim dt As New DataTable
             dt = GetDataTable(strQuery)
-            Dim NoUpload As String = String.Empty
-            If dt.Rows.Count > 0 Then
-                NoUpload = dt.Rows(0).Item("NoUpload")
-            End If
-            Return NoUpload
+            'Dim NoUpload As String = String.Empty
+            'If dt.Rows.Count > 0 Then
+            '    NoUpload = dt.Rows(0).Item("NoUpload")
+            'End If
+            Return dt
         Catch ex As Exception
             Throw ex
         End Try

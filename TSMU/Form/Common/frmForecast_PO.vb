@@ -405,7 +405,22 @@ Public Class frmForecast_PO
                             LoadGrid()
                         End With
                     Else
+                        SplashScreenManager.CloseForm()
+                    End If
+                ElseIf strCustomer.ToLower = "yimtes" Then
+                    ''Add by Midi update new template for Yamaha
+                    If table.Rows.Count > 0 Then
+                        Dim tblFilter As New DataTable
+                        tblFilter = table.Select("YEAR([Delivery Date]) = " & strTahun & " AND MONTH([Delivery Date]) = " & BulanAngka & " ").CopyToDataTable
+                        Dim _Service As New AdmService(table, strCustomer, strTahun, Bulan, frmExcel._Site, frmExcel.Flag)
+                        Dim Dt1 As New DataTable
+                        Dt1 = _Service.GetExcelDataYIM()
 
+                        Dim Frm As FrmForecast_PO_TempTable
+                        Frm = New FrmForecast_PO_TempTable(Dt1)
+                        Frm.StartPosition = FormStartPosition.CenterParent
+                        Frm.ShowDialog()
+                    Else
                         SplashScreenManager.CloseForm()
                     End If
                 Else
