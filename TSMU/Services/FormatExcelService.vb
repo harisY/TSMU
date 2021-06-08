@@ -188,6 +188,81 @@ Public Class AdmService
         End Try
     End Function
 
+    ''Add by Midi 04-06-2021 for upload template yamaha
+    Public Function GetExcelDataYIM() As DataTable
+        Try
+            TempTable()
+            Dim dtHasil As New DataTable
+            dtHasil = CheckInventoryID(_Customer)
+            For Each row As DataRow In _Dt.Rows
+                Dim PartNo As String = If(String.IsNullOrEmpty(row("Item No#").ToString), "", row("Item No#"))
+                Dim UniqueNo As String = String.Empty
+                Dim N As Integer = 0
+                Dim N1 As Integer = 0
+                Dim N2 As Integer = 0
+                Dim N3 As Integer = 0
+
+                If Not String.IsNullOrEmpty(PartNo) Then
+                    Dim rowInvtID As DataRow()
+                    rowInvtID = dtHasil.Select("AlternateID = " & QVal(Replace(PartNo, "-", "")) & " ")
+
+                    If rowInvtID.Count > 0 Then
+                        For j As Integer = 0 To rowInvtID.Count - 1
+                            Dim InvtID As String = rowInvtID(j)("InvtID").ToString()
+                            Dim Descript As String = rowInvtID(j)("Descr").ToString()
+                            Dim Custname As String = rowInvtID(j)("Name").ToString()
+                            Dim Model As String = PartNo.Substring(0, 3)
+                            Dim dr As DataRow = DtTemp.NewRow()
+                            dr("Check") = True
+                            dr("Tahun") = _Tahun
+                            dr("CustID") = _Customer
+                            dr("CustName") = Custname
+                            dr("InvtID") = InvtID
+                            dr("Description") = Descript
+                            dr("PartNo") = PartNo
+                            dr("Model") = Model.AsString
+                            dr("Oe") = "OE"
+                            dr("InSub") = ""
+                            dr("Site") = _Site
+                            dr("Flag") = _Flag
+                            dr("N") = N
+                            dr("N1") = N1
+                            dr("N2") = N2
+                            dr("N3") = N3
+                            DtTemp.Rows.Add(dr)
+                        Next
+                    Else
+                        Dim dr As DataRow = DtTemp.NewRow()
+                        dr("Check") = True
+                        dr("Tahun") = _Tahun
+                        dr("CustID") = _Customer
+                        dr("CustName") = "N/A"
+                        dr("InvtID") = "N/A"
+                        dr("Description") = "N/A"
+                        dr("PartNo") = PartNo
+                        dr("Model") = "N/A"
+                        dr("Oe") = "OE"
+                        dr("InSub") = ""
+                        dr("Site") = _Site
+                        dr("Flag") = _Flag
+                        dr("N") = N
+                        dr("N1") = N1
+                        dr("N2") = N2
+                        dr("N3") = N3
+                        DtTemp.Rows.Add(dr)
+                        Add_tForecast_Log(PartNo, UniqueNo, "")
+                    End If
+                    If rowInvtID.Count > 1 Then
+                        Add_tForecast_Log(PartNo, UniqueNo, "Lebih dari 1 Inventory ID")
+                    End If
+                End If
+            Next
+            Return DtTemp
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Enum ModelN
         D
         Feroza
@@ -262,4 +337,26 @@ Public Class AdmService
         DtTemp.Columns.Add("N3", GetType(Integer))
         DtTemp.Clear()
     End Sub
+
+    ''Add by Midi
+    Public Function CheckInventoryID(CustID As String) As DataTable
+        Try
+            Dim strQuery As String = "  SELECT  DISTINCT
+                                                REPLACE(REPLACE(RTRIM(ixr.AlternateID), '-', ''), CHAR(160), '') AS AlternateID ,
+                                                RTRIM(inv.InvtID) AS InvtID ,
+                                                RTRIM(inv.Descr) AS Descr ,
+                                                RTRIM(cus.Name) Name
+                                        FROM    Inventory AS inv
+                                                INNER JOIN ItemXRef AS ixr ON ixr.InvtID = inv.InvtID
+                                                INNER JOIN Customer AS cus ON ixr.EntityID = cus.CustId
+                                        WHERE   ixr.AltIDType = 'C'
+                                                AND inv.TranStatusCode = 'AC'
+                                                AND ixr.EntityID = " & QVal(CustID) & ""
+            Dim dt As New DataTable
+            dt = GetDataTable_Solomon(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class

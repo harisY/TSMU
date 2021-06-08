@@ -29,11 +29,17 @@ Partial Class FrmPPICUploadPO
         Me.btnBrowse = New DevExpress.XtraEditors.SimpleButton()
         Me.txtFileName = New DevExpress.XtraEditors.TextEdit()
         Me.txtCustomer = New DevExpress.XtraEditors.ButtonEdit()
+        Me.txtRevised = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.txtNoUpload = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.dtDeliveryDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridResult = New DevExpress.XtraGrid.GridControl()
         Me.GridViewResult = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -57,11 +63,18 @@ Partial Class FrmPPICUploadPO
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtFileName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtRevised.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNoUpload.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtDeliveryDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtDeliveryDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
         CType(Me.GridResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +116,9 @@ Partial Class FrmPPICUploadPO
         Me.LayoutControl1.Controls.Add(Me.btnBrowse)
         Me.LayoutControl1.Controls.Add(Me.txtFileName)
         Me.LayoutControl1.Controls.Add(Me.txtCustomer)
+        Me.LayoutControl1.Controls.Add(Me.txtRevised)
+        Me.LayoutControl1.Controls.Add(Me.txtNoUpload)
+        Me.LayoutControl1.Controls.Add(Me.dtDeliveryDueDate)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(3, 4)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -138,29 +154,68 @@ Partial Class FrmPPICUploadPO
         '
         'txtFileName
         '
-        Me.txtFileName.Location = New System.Drawing.Point(534, 14)
+        Me.txtFileName.Location = New System.Drawing.Point(1137, 14)
         Me.txtFileName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtFileName.Name = "txtFileName"
-        Me.txtFileName.Size = New System.Drawing.Size(857, 28)
+        Me.txtFileName.Size = New System.Drawing.Size(254, 28)
         Me.txtFileName.StyleController = Me.LayoutControl1
         Me.txtFileName.TabIndex = 5
         '
         'txtCustomer
         '
-        Me.txtCustomer.Location = New System.Drawing.Point(94, 14)
+        Me.txtCustomer.Location = New System.Drawing.Point(96, 14)
         Me.txtCustomer.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtCustomer.Name = "txtCustomer"
         Me.txtCustomer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.txtCustomer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtCustomer.Size = New System.Drawing.Size(346, 28)
+        Me.txtCustomer.Size = New System.Drawing.Size(253, 28)
         Me.txtCustomer.StyleController = Me.LayoutControl1
         Me.txtCustomer.TabIndex = 9
+        '
+        'txtRevised
+        '
+        Me.txtRevised.Location = New System.Drawing.Point(701, 14)
+        Me.txtRevised.Name = "txtRevised"
+        Me.txtRevised.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtRevised.Properties.Items.AddRange(New Object() {"No", "Yes"})
+        Me.txtRevised.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtRevised.Size = New System.Drawing.Size(79, 28)
+        Me.txtRevised.StyleController = Me.LayoutControl1
+        Me.txtRevised.TabIndex = 10
+        '
+        'txtNoUpload
+        '
+        Me.txtNoUpload.Location = New System.Drawing.Point(872, 14)
+        Me.txtNoUpload.Name = "txtNoUpload"
+        Me.txtNoUpload.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txtNoUpload.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtNoUpload.Size = New System.Drawing.Size(178, 28)
+        Me.txtNoUpload.StyleController = Me.LayoutControl1
+        Me.txtNoUpload.TabIndex = 11
+        '
+        'dtDeliveryDueDate
+        '
+        Me.dtDeliveryDueDate.EditValue = Nothing
+        Me.dtDeliveryDueDate.Location = New System.Drawing.Point(494, 14)
+        Me.dtDeliveryDueDate.Name = "dtDeliveryDueDate"
+        Me.dtDeliveryDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtDeliveryDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtDeliveryDueDate.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
+        Me.dtDeliveryDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtDeliveryDueDate.Properties.EditFormat.FormatString = ""
+        Me.dtDeliveryDueDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.dtDeliveryDueDate.Properties.Mask.EditMask = ""
+        Me.dtDeliveryDueDate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None
+        Me.dtDeliveryDueDate.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.dtDeliveryDueDate.Size = New System.Drawing.Size(136, 28)
+        Me.dtDeliveryDueDate.StyleController = Me.LayoutControl1
+        Me.dtDeliveryDueDate.TabIndex = 12
         '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem5})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem8, Me.LayoutControlItem12})
         Me.Root.Name = "Root"
         Me.Root.Padding = New DevExpress.XtraLayout.Utils.Padding(11, 11, 12, 0)
         Me.Root.Size = New System.Drawing.Size(1632, 54)
@@ -169,12 +224,14 @@ Partial Class FrmPPICUploadPO
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.txtFileName
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(440, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(1049, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 11, 2, 2)
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(951, 42)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(342, 42)
         Me.LayoutControlItem3.Text = "File Name"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(78, 19)
+        Me.LayoutControlItem3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(70, 19)
+        Me.LayoutControlItem3.TextToControlDistance = 5
         '
         'LayoutControlItem4
         '
@@ -199,11 +256,61 @@ Partial Class FrmPPICUploadPO
         '
         Me.LayoutControlItem5.Control = Me.txtCustomer
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(350, 32)
+        Me.LayoutControlItem5.MinSize = New System.Drawing.Size(300, 32)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 11, 2, 2)
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(440, 42)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(349, 42)
+        Me.LayoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem5.Text = "Customer  "
+        Me.LayoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(78, 19)
+        Me.LayoutControlItem5.TextToControlDistance = 5
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.txtRevised
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(629, 0)
+        Me.LayoutControlItem2.MaxSize = New System.Drawing.Size(150, 32)
+        Me.LayoutControlItem2.MinSize = New System.Drawing.Size(150, 32)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(150, 42)
+        Me.LayoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem2.Text = "Revised"
+        Me.LayoutControlItem2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(54, 19)
+        Me.LayoutControlItem2.TextToControlDistance = 5
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.txtNoUpload
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(779, 0)
+        Me.LayoutControlItem8.MaxSize = New System.Drawing.Size(270, 32)
+        Me.LayoutControlItem8.MinSize = New System.Drawing.Size(270, 32)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(270, 42)
+        Me.LayoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem8.Text = "No Upload"
+        Me.LayoutControlItem8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(75, 19)
+        Me.LayoutControlItem8.TextToControlDistance = 5
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.dtDeliveryDueDate
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(349, 0)
+        Me.LayoutControlItem12.MaxSize = New System.Drawing.Size(280, 32)
+        Me.LayoutControlItem12.MinSize = New System.Drawing.Size(280, 32)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Padding = New DevExpress.XtraLayout.Utils.Padding(2, 10, 2, 2)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(280, 42)
+        Me.LayoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem12.Text = "Delivery Due Date"
+        Me.LayoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(127, 19)
+        Me.LayoutControlItem12.TextToControlDistance = 5
         '
         'LayoutControl2
         '
@@ -408,11 +515,18 @@ Partial Class FrmPPICUploadPO
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.txtFileName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtRevised.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNoUpload.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtDeliveryDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtDeliveryDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.GridResult, System.ComponentModel.ISupportInitialize).EndInit()
@@ -461,4 +575,10 @@ Partial Class FrmPPICUploadPO
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents txtRevised As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents txtNoUpload As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents dtDeliveryDueDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
 End Class

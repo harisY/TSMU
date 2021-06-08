@@ -36,6 +36,7 @@ Public Class FrmPPICUploadPO
     Public Property NoUpload() As String
     Public Property UploadDate() As Date
     Public Property CustID() As String
+    Public Property DeliveryDueDate() As Date
     Public Property FileName() As String
     Public Property Revised() As String = "No"
 
@@ -66,6 +67,7 @@ Public Class FrmPPICUploadPO
 
             .BestFitColumns()
         End With
+        txtRevised.SelectedIndex = 0
         StatusList()
     End Sub
 
@@ -114,7 +116,11 @@ Public Class FrmPPICUploadPO
             If txtFileName.Text = "" Then
                 txtFileName.Focus()
                 Throw New Exception("File Excel yang akan di upload tidak ada !")
+            ElseIf dtDeliveryDueDate.EditValue = Nothing Then
+                dtDeliveryDueDate.Focus()
+                Throw New Exception("Pilih Delivery Due Date Dulu !")
             End If
+
             Dim connString As String = String.Empty
             Dim extension As String = System.IO.Path.GetExtension(path)
 
@@ -173,6 +179,12 @@ Public Class FrmPPICUploadPO
                             message = "Item Number Tidak Ditemukan Di Master Standar Packing !"
                             _error += 1
                             addNewDtResult(rows, "", "", 0, 0, status, message)
+                        ElseIf rows("Delivery Due Date") <> dtDeliveryDueDate.EditValue Then
+                            'Jika Delivery Due Date Tidak Sama Dengan Detail
+                            status = "Warning"
+                            message = "Delivery Due Date Tidak Sama Dengan Yang Dipilih !"
+                            warning += 1
+                            addNewDtResult(rows, rowBuildup(0)("PartNo"), rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
                         ElseIf rows("User Code") Is DBNull.Value Then
                             'Jika User Code Kosong
                             message = "User Code Tidak Boleh Kosong !"
@@ -181,6 +193,11 @@ Public Class FrmPPICUploadPO
                         ElseIf rows("P/F") Is DBNull.Value Then
                             'Jika P/F Kosong
                             message = "P/F Tidak Boleh Kosong !"
+                            _error += 1
+                            addNewDtResult(rows, rowBuildup(0)("PartNo"), rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
+                        ElseIf rows("Order No#") Is DBNull.Value Then
+                            'Jika Order No Kosong
+                            message = "Order No Tidak Boleh Kosong !"
                             _error += 1
                             addNewDtResult(rows, rowBuildup(0)("PartNo"), rowBuildup(0)("JenisPacking"), rowBuildup(0)("StandarQty"), rowBuildup(0)("KapasitasMuat"), status, message)
                         Else
@@ -326,11 +343,17 @@ Public Class FrmPPICUploadPO
                         GridResult.ExportToXls(save.FileName)
                     End If
                 Else
-                    NoUpload = srvPPIC.CheckDataExist(UploadDate)
+                    If txtRevised.Text = "Yes" AndAlso String.IsNullOrEmpty(txtNoUpload.Text) Then
+                        Err.Raise(ErrNumber, , "Harap Pilih No Upload Jika Revisi!")
+                    End If
+
+                    DeliveryDueDate = dtDeliveryDueDate.EditValue
+                    Revised = txtRevised.Text
+                    NoUpload = txtNoUpload.Text
+
                     If Not String.IsNullOrEmpty(NoUpload) Then
                         If MsgBox("List PO Already Exist, Are You Sure Upload Data", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.Yes Then
                             srvPPIC.CopyDTToDB(dtResult)
-                            Revised = "Yes"
                             isUpload = True
                             Me.Close()
                         End If
@@ -346,13 +369,25 @@ Public Class FrmPPICUploadPO
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
         End Try
-
     End Sub
 
     Private Sub StatusList(Optional __success As Integer = 0, Optional __warning As Integer = 0, Optional __error As Integer = 0, Optional __total As Integer = 0)
         lblSuccess.Text = Convert.ToString(__success) + " Of " + Convert.ToString(__total) + " Success"
         lblWarning.Text = Convert.ToString(__warning) + " Of " + Convert.ToString(__total) + " Warnings"
         lblError.Text = Convert.ToString(__error) + " Of " + Convert.ToString(__total) + " Errors"
+    End Sub
+
+    Private Sub txtRevised_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txtRevised.SelectedIndexChanged
+        If txtRevised.SelectedIndex = 1 Then
+            Dim dtNoUpload As New DataTable
+            dtNoUpload = srvPPIC.CheckDataExist(UploadDate)
+            For Each rows In dtNoUpload.Rows
+                txtNoUpload.Properties.Items.Add(rows("NoUpload"))
+            Next
+        Else
+            txtNoUpload.Text = ""
+            txtNoUpload.Properties.Items.Clear()
+        End If
     End Sub
 
 End Class

@@ -40,6 +40,7 @@ Public Class FrmPPICConvertMuat
                 ff_Detail.NoUpload = .NoUpload
                 ff_Detail.UploadDate = .UploadDate
                 ff_Detail.CustID = .CustID
+                ff_Detail.DeliveryDueDate = .DeliveryDueDate
                 ff_Detail.FileName = .FileName
                 ff_Detail.Revised = .Revised
             End With
@@ -101,6 +102,8 @@ Public Class FrmPPICConvertMuat
             With GridViewConvertMuat
                 .Columns("UploadDate").DisplayFormat.FormatType = FormatType.DateTime
                 .Columns("UploadDate").DisplayFormat.FormatString = "dd-MM-yyyy"
+                .Columns("DeliveryDueDate").DisplayFormat.FormatType = FormatType.DateTime
+                .Columns("DeliveryDueDate").DisplayFormat.FormatString = "dd-MM-yyyy"
                 .Columns("CreateDate").DisplayFormat.FormatType = FormatType.DateTime
                 .Columns("CreateDate").DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss"
                 .Columns("UpdateDate").DisplayFormat.FormatType = FormatType.DateTime
