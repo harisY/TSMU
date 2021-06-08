@@ -38,6 +38,7 @@ Partial Class FrmDetailPR
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.C_Submit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Tanggal = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,24 +87,31 @@ Partial Class FrmDetailPR
         Me.KodeBarang = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BBarang = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.NamaBarang = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoNamaBarang = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.Spesifikasi = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Accountt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoAccount = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.SubAccount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoSubDept = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.Jumlah = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CJumlah = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.Harga = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Charga = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.Total = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoTotal = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.Satuan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoSatuan = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.Digunakan = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.WaktuTempo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DTempo = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.GBudget = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoBudget = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GSudahDipakai = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoPakai = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.Keterangan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoKeterangan = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BSubAccount = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepoUnitCost = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TJumlahProses.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,6 +131,7 @@ Partial Class FrmDetailPR
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Submit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C_Qty, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,13 +152,20 @@ Partial Class FrmDetailPR
         CType(Me.BNo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CPembelianUntuk, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BBarang, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoNamaBarang, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoAccount, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoSubDept, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CJumlah, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Charga, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoTotal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoSatuan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DTempo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DTempo.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoBudget, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoPakai, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepoKeterangan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BSubAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoUnitCost, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -174,7 +190,7 @@ Partial Class FrmDetailPR
         'TJumlahProses
         '
         Me.TJumlahProses.Enabled = False
-        Me.TJumlahProses.Location = New System.Drawing.Point(1077, 5)
+        Me.TJumlahProses.Location = New System.Drawing.Point(1077, 12)
         Me.TJumlahProses.Name = "TJumlahProses"
         Me.TJumlahProses.Properties.DisplayFormat.FormatString = "n0"
         Me.TJumlahProses.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -188,7 +204,7 @@ Partial Class FrmDetailPR
         '
         Me.T_SirkulasiJumlah.EditValue = "0"
         Me.T_SirkulasiJumlah.Enabled = False
-        Me.T_SirkulasiJumlah.Location = New System.Drawing.Point(946, 5)
+        Me.T_SirkulasiJumlah.Location = New System.Drawing.Point(946, 12)
         Me.T_SirkulasiJumlah.Name = "T_SirkulasiJumlah"
         Me.T_SirkulasiJumlah.Properties.DisplayFormat.FormatString = "n"
         Me.T_SirkulasiJumlah.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -202,7 +218,7 @@ Partial Class FrmDetailPR
         '
         'BTambahBaris
         '
-        Me.BTambahBaris.Location = New System.Drawing.Point(1037, 29)
+        Me.BTambahBaris.Location = New System.Drawing.Point(1037, 36)
         Me.BTambahBaris.MaximumSize = New System.Drawing.Size(90, 20)
         Me.BTambahBaris.MinimumSize = New System.Drawing.Size(90, 20)
         Me.BTambahBaris.Name = "BTambahBaris"
@@ -213,7 +229,7 @@ Partial Class FrmDetailPR
         '
         'TRevisi
         '
-        Me.TRevisi.Location = New System.Drawing.Point(339, 5)
+        Me.TRevisi.Location = New System.Drawing.Point(339, 12)
         Me.TRevisi.Name = "TRevisi"
         Me.TRevisi.Size = New System.Drawing.Size(66, 20)
         Me.TRevisi.StyleController = Me.LayoutControl1
@@ -223,7 +239,7 @@ Partial Class FrmDetailPR
         'TNoPR
         '
         Me.TNoPR.Enabled = False
-        Me.TNoPR.Location = New System.Drawing.Point(89, 5)
+        Me.TNoPR.Location = New System.Drawing.Point(89, 12)
         Me.TNoPR.Name = "TNoPR"
         Me.TNoPR.Size = New System.Drawing.Size(169, 20)
         Me.TNoPR.StyleController = Me.LayoutControl1
@@ -232,7 +248,7 @@ Partial Class FrmDetailPR
         'TTanggal
         '
         Me.TTanggal.Enabled = False
-        Me.TTanggal.Location = New System.Drawing.Point(486, 29)
+        Me.TTanggal.Location = New System.Drawing.Point(486, 36)
         Me.TTanggal.Name = "TTanggal"
         Me.TTanggal.Properties.DisplayFormat.FormatString = "dd-MM-yyyy"
         Me.TTanggal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -243,7 +259,7 @@ Partial Class FrmDetailPR
         '
         'TSirkulasi
         '
-        Me.TSirkulasi.Location = New System.Drawing.Point(486, 5)
+        Me.TSirkulasi.Location = New System.Drawing.Point(486, 12)
         Me.TSirkulasi.Name = "TSirkulasi"
         Me.TSirkulasi.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.TSirkulasi.Size = New System.Drawing.Size(379, 20)
@@ -252,7 +268,7 @@ Partial Class FrmDetailPR
         '
         'TBagian
         '
-        Me.TBagian.Location = New System.Drawing.Point(89, 29)
+        Me.TBagian.Location = New System.Drawing.Point(89, 36)
         Me.TBagian.Name = "TBagian"
         Me.TBagian.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TBagian.Properties.NullText = ""
@@ -357,6 +373,14 @@ Partial Class FrmDetailPR
         Me.LayoutControlItem6.Size = New System.Drawing.Size(94, 25)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
+        '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(576, 24)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(449, 25)
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'C_Submit
         '
@@ -757,13 +781,14 @@ Partial Class FrmDetailPR
         Me.GridPR.Location = New System.Drawing.Point(12, 105)
         Me.GridPR.MainView = Me.GridView3
         Me.GridPR.Name = "GridPR"
-        Me.GridPR.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPembelianUntuk, Me.BBarang, Me.CJumlah, Me.Charga, Me.DTempo, Me.BSubAccount, Me.BNo, Me.RepoUnitCost})
+        Me.GridPR.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CPembelianUntuk, Me.BBarang, Me.CJumlah, Me.Charga, Me.DTempo, Me.BSubAccount, Me.BNo, Me.RepoUnitCost, Me.RepoNamaBarang, Me.RepoAccount, Me.RepoSubDept, Me.RepoTotal, Me.RepoSatuan, Me.RepoKeterangan, Me.RepoBudget, Me.RepoPakai})
         Me.GridPR.Size = New System.Drawing.Size(1132, 335)
         Me.GridPR.TabIndex = 2
         Me.GridPR.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
         'GridView3
         '
+        Me.GridView3.ActiveFilterEnabled = False
         Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.XSeq, Me.No, Me.PembelianUntuk, Me.KodeBarang, Me.NamaBarang, Me.Spesifikasi, Me.Accountt, Me.SubAccount, Me.Jumlah, Me.Harga, Me.Total, Me.Satuan, Me.Digunakan, Me.WaktuTempo, Me.GBudget, Me.GSudahDipakai, Me.Keterangan})
         Me.GridView3.GridControl = Me.GridPR
         Me.GridView3.IndicatorWidth = 30
@@ -793,6 +818,7 @@ Partial Class FrmDetailPR
         Me.No.ColumnEdit = Me.BNo
         Me.No.FieldName = "No"
         Me.No.Name = "No"
+        Me.No.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.No.Visible = True
         Me.No.VisibleIndex = 0
         Me.No.Width = 45
@@ -809,6 +835,7 @@ Partial Class FrmDetailPR
         Me.PembelianUntuk.ColumnEdit = Me.CPembelianUntuk
         Me.PembelianUntuk.FieldName = "Pembelian Untuk"
         Me.PembelianUntuk.Name = "PembelianUntuk"
+        Me.PembelianUntuk.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.PembelianUntuk.Visible = True
         Me.PembelianUntuk.VisibleIndex = 1
         Me.PembelianUntuk.Width = 137
@@ -826,6 +853,7 @@ Partial Class FrmDetailPR
         Me.KodeBarang.ColumnEdit = Me.BBarang
         Me.KodeBarang.FieldName = "Kode Barang"
         Me.KodeBarang.Name = "KodeBarang"
+        Me.KodeBarang.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.KodeBarang.Visible = True
         Me.KodeBarang.VisibleIndex = 2
         Me.KodeBarang.Width = 126
@@ -840,12 +868,18 @@ Partial Class FrmDetailPR
         '
         Me.NamaBarang.AppearanceHeader.Options.UseTextOptions = True
         Me.NamaBarang.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.NamaBarang.ColumnEdit = Me.RepoNamaBarang
         Me.NamaBarang.FieldName = "Nama Barang"
         Me.NamaBarang.Name = "NamaBarang"
-        Me.NamaBarang.OptionsColumn.AllowEdit = False
+        Me.NamaBarang.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.NamaBarang.Visible = True
         Me.NamaBarang.VisibleIndex = 3
         Me.NamaBarang.Width = 186
+        '
+        'RepoNamaBarang
+        '
+        Me.RepoNamaBarang.AutoHeight = False
+        Me.RepoNamaBarang.Name = "RepoNamaBarang"
         '
         'Spesifikasi
         '
@@ -853,6 +887,7 @@ Partial Class FrmDetailPR
         Me.Spesifikasi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Spesifikasi.FieldName = "Spesifikasi"
         Me.Spesifikasi.Name = "Spesifikasi"
+        Me.Spesifikasi.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Spesifikasi.Visible = True
         Me.Spesifikasi.VisibleIndex = 4
         Me.Spesifikasi.Width = 196
@@ -863,12 +898,18 @@ Partial Class FrmDetailPR
         Me.Accountt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Accountt.AppearanceHeader.Options.UseTextOptions = True
         Me.Accountt.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Accountt.ColumnEdit = Me.RepoAccount
         Me.Accountt.FieldName = "Account"
         Me.Accountt.Name = "Accountt"
-        Me.Accountt.OptionsColumn.AllowEdit = False
+        Me.Accountt.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Accountt.Visible = True
         Me.Accountt.VisibleIndex = 5
         Me.Accountt.Width = 73
+        '
+        'RepoAccount
+        '
+        Me.RepoAccount.AutoHeight = False
+        Me.RepoAccount.Name = "RepoAccount"
         '
         'SubAccount
         '
@@ -876,12 +917,18 @@ Partial Class FrmDetailPR
         Me.SubAccount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.SubAccount.AppearanceHeader.Options.UseTextOptions = True
         Me.SubAccount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.SubAccount.ColumnEdit = Me.RepoSubDept
         Me.SubAccount.FieldName = "Sub Account"
         Me.SubAccount.Name = "SubAccount"
-        Me.SubAccount.OptionsColumn.AllowEdit = False
+        Me.SubAccount.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.SubAccount.Visible = True
         Me.SubAccount.VisibleIndex = 7
         Me.SubAccount.Width = 80
+        '
+        'RepoSubDept
+        '
+        Me.RepoSubDept.AutoHeight = False
+        Me.RepoSubDept.Name = "RepoSubDept"
         '
         'Jumlah
         '
@@ -893,6 +940,7 @@ Partial Class FrmDetailPR
         Me.Jumlah.ColumnEdit = Me.CJumlah
         Me.Jumlah.FieldName = "Jumlah"
         Me.Jumlah.Name = "Jumlah"
+        Me.Jumlah.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Jumlah.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.Jumlah.Visible = True
         Me.Jumlah.VisibleIndex = 8
@@ -913,6 +961,7 @@ Partial Class FrmDetailPR
         Me.Harga.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.Harga.FieldName = "Harga"
         Me.Harga.Name = "Harga"
+        Me.Harga.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Harga.Visible = True
         Me.Harga.VisibleIndex = 9
         Me.Harga.Width = 170
@@ -925,14 +974,20 @@ Partial Class FrmDetailPR
         '
         'Total
         '
+        Me.Total.ColumnEdit = Me.RepoTotal
         Me.Total.DisplayFormat.FormatString = "{0:N0}"
         Me.Total.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.Total.FieldName = "Total"
         Me.Total.Name = "Total"
-        Me.Total.OptionsColumn.AllowEdit = False
+        Me.Total.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Total.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "SUM={0:N0}")})
         Me.Total.Visible = True
         Me.Total.VisibleIndex = 10
+        '
+        'RepoTotal
+        '
+        Me.RepoTotal.AutoHeight = False
+        Me.RepoTotal.Name = "RepoTotal"
         '
         'Satuan
         '
@@ -940,12 +995,18 @@ Partial Class FrmDetailPR
         Me.Satuan.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Satuan.AppearanceHeader.Options.UseTextOptions = True
         Me.Satuan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.Satuan.ColumnEdit = Me.RepoSatuan
         Me.Satuan.FieldName = "Satuan"
         Me.Satuan.Name = "Satuan"
-        Me.Satuan.OptionsColumn.AllowEdit = False
+        Me.Satuan.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Satuan.Visible = True
         Me.Satuan.VisibleIndex = 11
         Me.Satuan.Width = 81
+        '
+        'RepoSatuan
+        '
+        Me.RepoSatuan.AutoHeight = False
+        Me.RepoSatuan.Name = "RepoSatuan"
         '
         'Digunakan
         '
@@ -953,6 +1014,7 @@ Partial Class FrmDetailPR
         Me.Digunakan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.Digunakan.FieldName = "Digunakan Untuk"
         Me.Digunakan.Name = "Digunakan"
+        Me.Digunakan.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Digunakan.Visible = True
         Me.Digunakan.VisibleIndex = 12
         Me.Digunakan.Width = 158
@@ -966,6 +1028,7 @@ Partial Class FrmDetailPR
         Me.WaktuTempo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.WaktuTempo.FieldName = "Waktu Tempo"
         Me.WaktuTempo.Name = "WaktuTempo"
+        Me.WaktuTempo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.WaktuTempo.Visible = True
         Me.WaktuTempo.VisibleIndex = 6
         Me.WaktuTempo.Width = 98
@@ -981,29 +1044,49 @@ Partial Class FrmDetailPR
         '
         'GBudget
         '
+        Me.GBudget.ColumnEdit = Me.RepoBudget
         Me.GBudget.DisplayFormat.FormatString = "{0:N0}"
         Me.GBudget.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GBudget.FieldName = "Budget"
         Me.GBudget.Name = "GBudget"
+        Me.GBudget.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GBudget.Visible = True
         Me.GBudget.VisibleIndex = 15
         '
+        'RepoBudget
+        '
+        Me.RepoBudget.AutoHeight = False
+        Me.RepoBudget.Name = "RepoBudget"
+        '
         'GSudahDipakai
         '
+        Me.GSudahDipakai.ColumnEdit = Me.RepoPakai
         Me.GSudahDipakai.DisplayFormat.FormatString = "{0:N0}"
         Me.GSudahDipakai.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GSudahDipakai.FieldName = "Sudah Dipakai"
         Me.GSudahDipakai.Name = "GSudahDipakai"
+        Me.GSudahDipakai.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GSudahDipakai.Visible = True
         Me.GSudahDipakai.VisibleIndex = 14
         '
+        'RepoPakai
+        '
+        Me.RepoPakai.AutoHeight = False
+        Me.RepoPakai.Name = "RepoPakai"
+        '
         'Keterangan
         '
+        Me.Keterangan.ColumnEdit = Me.RepoKeterangan
         Me.Keterangan.FieldName = "Keterangan"
         Me.Keterangan.Name = "Keterangan"
-        Me.Keterangan.OptionsColumn.AllowEdit = False
+        Me.Keterangan.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.Keterangan.Visible = True
         Me.Keterangan.VisibleIndex = 13
+        '
+        'RepoKeterangan
+        '
+        Me.RepoKeterangan.AutoHeight = False
+        Me.RepoKeterangan.Name = "RepoKeterangan"
         '
         'BSubAccount
         '
@@ -1015,14 +1098,6 @@ Partial Class FrmDetailPR
         '
         Me.RepoUnitCost.AutoHeight = False
         Me.RepoUnitCost.Name = "RepoUnitCost"
-        '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(576, 24)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(449, 25)
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'FrmDetailPR
         '
@@ -1052,6 +1127,7 @@ Partial Class FrmDetailPR
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C_Submit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.C_Qty, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1072,13 +1148,20 @@ Partial Class FrmDetailPR
         CType(Me.BNo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CPembelianUntuk, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BBarang, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoNamaBarang, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoAccount, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoSubDept, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CJumlah, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Charga, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoTotal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoSatuan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DTempo.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DTempo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoBudget, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoPakai, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepoKeterangan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BSubAccount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoUnitCost, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1169,4 +1252,12 @@ Partial Class FrmDetailPR
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents RepoNamaBarang As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepoAccount As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepoSubDept As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepoTotal As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepoSatuan As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepoKeterangan As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepoBudget As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepoPakai As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

@@ -184,14 +184,14 @@ Partial Public Class DevNpwoReport
         Me.Cal_QtyMold = New DevExpress.XtraReports.UI.CalculatedField()
         Me.GroupHeaderBand1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.Cal_CT = New DevExpress.XtraReports.UI.CalculatedField()
         Me.XrTable9 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow24 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell100 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell101 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell102 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell50 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell102 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.Cal_CT = New DevExpress.XtraReports.UI.CalculatedField()
         Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         CType(Me.ObjectDataSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -520,7 +520,7 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell58
         '
-        Me.XrTableCell58.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([T1]='01-01-1900','' ,[T1] )")})
+        Me.XrTableCell58.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([T1]='01 Jan 00','' ,[T1] )")})
         Me.XrTableCell58.Multiline = True
         Me.XrTableCell58.Name = "XrTableCell58"
         Me.XrTableCell58.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -555,7 +555,7 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell61
         '
-        Me.XrTableCell61.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([T2]='01-01-1900','' ,[T2] )")})
+        Me.XrTableCell61.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([T2]='01 Jan 00','' ,[T2] )")})
         Me.XrTableCell61.Multiline = True
         Me.XrTableCell61.Name = "XrTableCell61"
         Me.XrTableCell61.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -590,7 +590,7 @@ Partial Public Class DevNpwoReport
         '
         'XrTableCell64
         '
-        Me.XrTableCell64.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([MP]='01-01-1900','' ,[MP] )")})
+        Me.XrTableCell64.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif([MP]='01 Jan 00','' ,[MP] )")})
         Me.XrTableCell64.Multiline = True
         Me.XrTableCell64.Name = "XrTableCell64"
         Me.XrTableCell64.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -1684,19 +1684,6 @@ Partial Public Class DevNpwoReport
         Me.ReportHeader.HeightF = 251.0417!
         Me.ReportHeader.Name = "ReportHeader"
         '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0.00001589457!, 0!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(101.8331!, 80.66667!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
-        '
-        'Cal_CT
-        '
-        Me.Cal_CT.Expression = "[GroupID] + '_' + [Cycle_Time]"
-        Me.Cal_CT.Name = "Cal_CT"
-        '
         'XrTable9
         '
         Me.XrTable9.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Bold)
@@ -1732,6 +1719,14 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell101.TextFormatString = "{0:#,#}"
         Me.XrTableCell101.Weight = 0.87570513496205338R
         '
+        'XrTableCell50
+        '
+        Me.XrTableCell50.Multiline = True
+        Me.XrTableCell50.Name = "XrTableCell50"
+        Me.XrTableCell50.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrTableCell50.Text = "s/d"
+        Me.XrTableCell50.Weight = 0.32949451573203614R
+        '
         'XrTableCell102
         '
         Me.XrTableCell102.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Order_Max_Month]")})
@@ -1742,13 +1737,18 @@ Partial Public Class DevNpwoReport
         Me.XrTableCell102.TextFormatString = "{0:#,#}"
         Me.XrTableCell102.Weight = 0.87360425100215378R
         '
-        'XrTableCell50
+        'XrPictureBox1
         '
-        Me.XrTableCell50.Multiline = True
-        Me.XrTableCell50.Name = "XrTableCell50"
-        Me.XrTableCell50.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrTableCell50.Text = "s/d"
-        Me.XrTableCell50.Weight = 0.32949451573203614R
+        Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0.00001589457!, 0!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(101.8331!, 80.66667!)
+        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
+        '
+        'Cal_CT
+        '
+        Me.Cal_CT.Expression = "[GroupID] + '_' + [Cycle_Time]"
+        Me.Cal_CT.Name = "Cal_CT"
         '
         'XrSubreport1
         '

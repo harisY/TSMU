@@ -30,7 +30,7 @@ Public Class FrmDetailPR
     Dim DtGrid As DataTable
     Dim fc_Class As New Cls_PR
     Dim fc_Class_Detail As New Cls_PR_Detail
-    Dim DeptID As String = ""
+    'Dim DeptID As String = ""
     Dim isUpdate As Boolean = False
     Dim SubAccountDept As String = ""
     Dim LastPR As String = ""
@@ -187,9 +187,7 @@ Public Class FrmDetailPR
         Me.TJumlahProses.Properties.Mask.EditMask = "n0"
         Me.TJumlahProses.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TJumlahProses.Properties.Mask.UseMaskAsDisplayFormat = True
-
         Call CreateTable()
-        Call FillComboPembelianUntuk()
         Call InitialSetForm()
 
 
@@ -239,10 +237,10 @@ Public Class FrmDetailPR
         End Try
     End Sub
 
-    Private Sub FillComboPembelianUntuk()
+    Private Sub FillComboPembelianUntuk(Expense As String)
         Try
             Dim dt As New DataTable
-            dt = fc_Class.GetPembelianUntuk
+            dt = fc_Class.GetPembelianUntuk(Expense)
             'CPembelianUntuk.DataSource = dt
 
             CPembelianUntuk.DataSource = Nothing
@@ -257,27 +255,44 @@ Public Class FrmDetailPR
 
     Private Sub BTambahBaris_Click(sender As Object, e As EventArgs) Handles BTambahBaris.Click
 
+        Dim pembelian As String = ""
+
         ' GridView3.MoveFirst()
+        If GridView3.RowCount > 0 Then
+            pembelian = IIf((GridView3.GetRowCellValue(0, "Pembelian Untuk")) Is DBNull.Value, "", GridView3.GetRowCellValue(0, "Pembelian Untuk"))
+            If pembelian = "" Then
+                MessageBox.Show("Pastikan Baris Pertama Sudah Lengkap",
+                               "Warning",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation,
+                               MessageBoxDefaultButton.Button1)
+                Exit Sub
+            End If
+        End If
+
         GridView3.PostEditor()
         GridView3.UpdateCurrentRow()
-
         Dim a As Integer = 1
         a = a + GridView3.RowCount
         Dim b As Integer = GridView3.Columns("XSeq").SummaryItem.SummaryValue
         b = b + 1
         GridView3.AddNewRow()
-
         GridView3.OptionsNavigation.AutoFocusNewRow = True
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, No, a)
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, XSeq, b)
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Jumlah, 0)
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Harga, 0)
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, Total, 0)
+        If GridView3.RowCount > 1 Then
+            If (GridView3.GetRowCellValue(0, "Pembelian Untuk")) = "SE" Then
 
-
-
-
-
+                Call FillComboPembelianUntuk("SE")
+            Else
+                Call FillComboPembelianUntuk("")
+            End If
+        Else
+            Call FillComboPembelianUntuk("ALL")
+        End If
 
         'GridView3.SetRowCellValue(GridView3.FocusedRowHandle, PembelianUntuk, a)
     End Sub
@@ -300,11 +315,11 @@ Public Class FrmDetailPR
     End Sub
 
     Private Sub GridPR_KeyDown(sender As Object, e As KeyEventArgs) Handles GridPR.KeyDown
+
         'If Active_Form = 1 Or Active_Form = 5 Then
         If e.KeyData = Keys.Delete Then
             GridView3.DeleteRow(GridView3.FocusedRowHandle)
             GridView3.RefreshData()
-
         End If
 
         For i As Integer = 0 To GridView3.RowCount - 1
@@ -325,7 +340,7 @@ Public Class FrmDetailPR
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
-            DeptID = gh_Common.GroupID
+            'DeptID = gh_Common.GroupID
             Dim Param As String = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, PembelianUntuk)
 
 
@@ -386,6 +401,19 @@ Public Class FrmDetailPR
             Call Sub_Dept(TBagian.EditValue)
             TBagian.Enabled = False
 
+            If GridView3.RowCount > 1 Then
+                If (GridView3.GetRowCellValue(0, "Pembelian Untuk")) = "SE" Then
+
+                    Call FillComboPembelianUntuk("SE")
+                Else
+                    Call FillComboPembelianUntuk("")
+                End If
+            Else
+                Call FillComboPembelianUntuk("ALL")
+            End If
+
+
+
         Else
             'fc_Class.GetNoPRAuto(gh_Common.GroupID)
             TTanggal.EditValue = Date.Now
@@ -397,10 +425,14 @@ Public Class FrmDetailPR
             Call Sub_Dept(gh_Common.GroupID.ToString())
             TBagian.EditValue = gh_Common.GroupID
 
+            Call FillComboPembelianUntuk("All")
+
         End If
         Me.Text = "PR FORM"
         bb_IsUpdate = isUpdate
         bs_MainFormName = FrmParent.Name.ToString()
+
+
 
 
     End Sub
@@ -652,7 +684,7 @@ Public Class FrmDetailPR
             Dim ls_Judul As String = ""
             Dim dtSearch As New DataTable
             Dim ls_OldKode As String = ""
-            DeptID = gh_Common.GroupID
+            'DeptID = gh_Common.GroupID
             Dim Param As String = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, PembelianUntuk)
 
 
@@ -708,7 +740,7 @@ Public Class FrmDetailPR
             Dim dt As New DataTable
             Dim ls_OldKode As String = ""
             ' DeptID = gh_Common.GroupID
-            DeptID = TBagian.EditValue
+            'DeptID = TBagian.EditValue
 
 
             Dim Th As Date = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, WaktuTempo)
@@ -725,7 +757,7 @@ Public Class FrmDetailPR
                                MessageBoxDefaultButton.Button1)
                 Exit Sub
             Else
-                Call CekBudget(Tahun, SubAccountDept, ACCT, Bulan)
+                Call CekBudget(Tahun, TBagian.EditValue, ACCT, Bulan)
             End If
 
 
@@ -881,7 +913,7 @@ Public Class FrmDetailPR
             Dim dtSearch As New DataTable
             Dim dtSt As New DataTable
             Dim ls_OldKode As String = ""
-            DeptID = gh_Common.GroupID
+            'DeptID = gh_Common.GroupID
             Dim tgl As Date = TTanggal.EditValue
             Dim Value1 As String = ""
 
@@ -889,7 +921,7 @@ Public Class FrmDetailPR
             'Dim Tahun As String = Convert.ToString(Param.ToString("yyyy"))
             'Dim Bulan As String = Convert.ToString(Param.ToString("MM"))
 
-            dtSearch = fc_Class.GetSirkulasi(tgl, DeptID)
+            dtSearch = fc_Class.GetSirkulasi(tgl, TBagian.EditValue)
             ''ls_OldKode = T_Account.Text
             ls_Judul = "Sirkulasi"
 
@@ -965,14 +997,14 @@ Public Class FrmDetailPR
         Dim dt As New DataTable
         Dim ls_OldKode As String = ""
         ' DeptID = gh_Common.GroupID
-        DeptID = TBagian.EditValue
+        'DeptID = TBagian.EditValue
 
 
         Dim Th As Date = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, WaktuTempo)
         Dim Tahun As String = (Th.Year).ToString
         Dim Bulan As String = (Th.Month).ToString
         Dim ACCT As String = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, Accountt).ToString()
-        Call CekBudget(Tahun, SubAccountDept, ACCT, Bulan)
+        Call CekBudget(Tahun, TBagian.EditValue, ACCT, Bulan)
 
         'If Th < TTanggal.EditValue Then
 
@@ -1049,15 +1081,15 @@ Public Class FrmDetailPR
         Dim ls_Judul As String = ""
         Dim dt As New DataTable
         Dim ls_OldKode As String = ""
-        ' DeptID = gh_Common.GroupID
-        DeptID = TBagian.EditValue
+        'DeptID = gh_Common.GroupID
+        'DeptID = TBagian.EditValue
 
 
         Dim Th As Date = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, WaktuTempo)
         Dim Tahun As String = (Th.Year).ToString
         Dim Bulan As String = (Th.Month).ToString
         Dim ACCT As String = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, Accountt).ToString()
-        Call CekBudget(Tahun, SubAccountDept, ACCT, Bulan)
+        Call CekBudget(Tahun, TBagian.EditValue, ACCT, Bulan)
 
 
 
@@ -1222,4 +1254,100 @@ Public Class FrmDetailPR
 
 
     End Sub
+
+    Private Sub BNo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles BNo.KeyPress
+
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+
+    End Sub
+
+    Private Sub BSubAccount_KeyPress(sender As Object, e As KeyPressEventArgs) Handles BSubAccount.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub RepoNamaBarang_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RepoNamaBarang.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub RepoAccount_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RepoAccount.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub RepoSubDept_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RepoSubDept.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub RepoTotal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RepoTotal.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub RepoSatuan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RepoSatuan.KeyPress
+
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+
+    End Sub
+
+    Private Sub RepoKeterangan_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RepoKeterangan.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub RepoBudget_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RepoBudget.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub RepoPakai_KeyPress(sender As Object, e As KeyPressEventArgs) Handles RepoPakai.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
+
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
+
+
 End Class
