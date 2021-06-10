@@ -191,74 +191,15 @@ Public Class AdmService
     ''Add by Midi 04-06-2021 for upload template yamaha
     Public Function GetExcelDataYIM() As DataTable
         Try
-            TempTable()
+            CopyDTToDB(_Dt)
+
             Dim dtHasil As New DataTable
-            dtHasil = CheckInventoryID(_Customer)
-            For Each row As DataRow In _Dt.Rows
-                Dim PartNo As String = If(String.IsNullOrEmpty(row("Item No#").ToString), "", row("Item No#"))
-                Dim UniqueNo As String = String.Empty
-                Dim N As Integer = 0
-                Dim N1 As Integer = 0
-                Dim N2 As Integer = 0
-                Dim N3 As Integer = 0
+            dtHasil = GetDataPOForecastTemp(_Tahun, _Bulan, _Site, _Flag)
 
-                If Not String.IsNullOrEmpty(PartNo) Then
-                    Dim rowInvtID As DataRow()
-                    rowInvtID = dtHasil.Select("AlternateID = " & QVal(Replace(PartNo, "-", "")) & " ")
-
-                    If rowInvtID.Count > 0 Then
-                        For j As Integer = 0 To rowInvtID.Count - 1
-                            Dim InvtID As String = rowInvtID(j)("InvtID").ToString()
-                            Dim Descript As String = rowInvtID(j)("Descr").ToString()
-                            Dim Custname As String = rowInvtID(j)("Name").ToString()
-                            Dim Model As String = PartNo.Substring(0, 3)
-                            Dim dr As DataRow = DtTemp.NewRow()
-                            dr("Check") = True
-                            dr("Tahun") = _Tahun
-                            dr("CustID") = _Customer
-                            dr("CustName") = Custname
-                            dr("InvtID") = InvtID
-                            dr("Description") = Descript
-                            dr("PartNo") = PartNo
-                            dr("Model") = Model.AsString
-                            dr("Oe") = "OE"
-                            dr("InSub") = ""
-                            dr("Site") = _Site
-                            dr("Flag") = _Flag
-                            dr("N") = N
-                            dr("N1") = N1
-                            dr("N2") = N2
-                            dr("N3") = N3
-                            DtTemp.Rows.Add(dr)
-                        Next
-                    Else
-                        Dim dr As DataRow = DtTemp.NewRow()
-                        dr("Check") = True
-                        dr("Tahun") = _Tahun
-                        dr("CustID") = _Customer
-                        dr("CustName") = "N/A"
-                        dr("InvtID") = "N/A"
-                        dr("Description") = "N/A"
-                        dr("PartNo") = PartNo
-                        dr("Model") = "N/A"
-                        dr("Oe") = "OE"
-                        dr("InSub") = ""
-                        dr("Site") = _Site
-                        dr("Flag") = _Flag
-                        dr("N") = N
-                        dr("N1") = N1
-                        dr("N2") = N2
-                        dr("N3") = N3
-                        DtTemp.Rows.Add(dr)
-                        Add_tForecast_Log(PartNo, UniqueNo, "")
-                    End If
-                    If rowInvtID.Count > 1 Then
-                        Add_tForecast_Log(PartNo, UniqueNo, "Lebih dari 1 Inventory ID")
-                    End If
-                End If
-            Next
-            Return DtTemp
+            DeletePOForeCastTemp()
+            Return dtHasil
         Catch ex As Exception
+            DeletePOForeCastTemp()
             Throw ex
         End Try
     End Function
@@ -359,4 +300,51 @@ Public Class AdmService
             Throw ex
         End Try
     End Function
+
+    Public Sub CopyDTToDB(dtUpload As DataTable)
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+                Using sqlBulkCopy As New SqlBulkCopy(Conn1)
+                    sqlBulkCopy.DestinationTableName = "dbo.T_POForecastTemp"
+
+                    sqlBulkCopy.ColumnMappings.Add("PO/Forecast", "POorForecast")
+                    sqlBulkCopy.ColumnMappings.Add("Item No#", "ItemNo")
+                    sqlBulkCopy.ColumnMappings.Add("U code", "UCode")
+                    sqlBulkCopy.ColumnMappings.Add("Item Name", "ItemName")
+                    sqlBulkCopy.ColumnMappings.Add("Delivery Date", "DeliveryDate")
+                    sqlBulkCopy.ColumnMappings.Add("Quantity", "Quantity")
+
+                    Conn1.Open()
+                    sqlBulkCopy.WriteToServer(dtUpload)
+                    Conn1.Close()
+                End Using
+            End Using
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Function GetDataPOForecastTemp(Tahun As String, Bulan As String, Site As String, Flag As String) As DataTable
+        Try
+            Dim Params As List(Of SqlParameter) = New List(Of SqlParameter)
+            Params.Add(New SqlParameter() With {.ParameterName = "Tahun", .Value = Tahun})
+            Params.Add(New SqlParameter() With {.ParameterName = "Bulan", .Value = Bulan})
+            Params.Add(New SqlParameter() With {.ParameterName = "Site", .Value = Site})
+            Params.Add(New SqlParameter() With {.ParameterName = "Flag", .Value = Flag})
+            Dim dt As New DataTable
+            dt = GetDataTableByParam("GetPOForecastTemp", CommandType.StoredProcedure, Params, GetConnString)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub DeletePOForeCastTemp()
+        Try
+            ExecQueryWithValue("DELETE  FROM dbo.T_POForecastTemp", CommandType.Text, Nothing, GetConnString)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 End Class
