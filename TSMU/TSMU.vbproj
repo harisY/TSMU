@@ -139,6 +139,9 @@
     <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraWizard.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EASendMail, Version=7.7.0.9, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
+      <HintPath>..\packages\EASendMail.7.7.0.9\lib\net461\EASendMail.dll</HintPath>
+    </Reference>
     <Reference Include="ExcelDataReader">
       <HintPath>..\..\..\BackUp\TSMU\TSMU\bin\Debug\ExcelDataReader.dll</HintPath>
     </Reference>

@@ -3,6 +3,7 @@ Imports System.Data.SqlClient
 Imports System.Globalization
 Imports System.Net
 Imports System.Net.Mail
+Imports EASendMail
 Public Class ClsCR_CreateUser
 
     Dim _Query As String
@@ -953,49 +954,130 @@ Public Class ClsCR_CreateUser
 
 #Region "send Email"
 
-                        Dim MyMailMessage As New MailMessage
-                        Dim A As ArrayList = New ArrayList
-                        Dim dtEmail As New DataTable
+                        'Dim MyMailMessage As New MailMessage
+                        'Dim A As ArrayList = New ArrayList
+                        'Dim dtEmail As New DataTable
 
-                        If Active_Form = 2 Then
-                            dtEmail = Get_Email_Division(NoSirkulasi)
-                            MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Approval Division Head"
-                        ElseIf Active_Form = 3 Then
-                            dtEmail = Get_Email_Dept(NoSirkulasi)
-                            MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Opini Departemen"
-                        End If
+                        'If Active_Form = 2 Then
+                        '    dtEmail = Get_Email_Division(NoSirkulasi)
+                        '    MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Approval Division Head"
+                        'ElseIf Active_Form = 3 Then
+                        '    dtEmail = Get_Email_Dept(NoSirkulasi)
+                        '    MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Opini Departemen"
+                        'End If
 
 
-                        MyMailMessage.From = New MailAddress("circulation@tsmu.co.id", "CIRCULATION")
+                        'MyMailMessage.From = New MailAddress("circulation@tsmu.co.id", "CIRCULATION")
 
-                        For i As Integer = 0 To dtEmail.Rows.Count - 1
-                            If dtEmail.Rows.Count > 0 Then
-                                Dim cekEmail As String = ""
-                                cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
+                        'For i As Integer = 0 To dtEmail.Rows.Count - 1
+                        '    If dtEmail.Rows.Count > 0 Then
+                        '        Dim cekEmail As String = ""
+                        '        cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
 
-                                If cekEmail = "" Then
-                                    MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
-                                Else
-                                    MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
-                                End If
+                        '        If cekEmail = "" Then
+                        '            MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                        '        Else
+                        '            MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
+                        '        End If
 
-                            Else
-                                MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                        '    Else
+                        '        MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                        '    End If
+
+                        'Next
+
+                        'MyMailMessage.CC.Add("log@tsmu.co.id")
+                        'MyMailMessage.CC.Add("miftah-mis@tsmu.co.id")
+                        'MyMailMessage.Subject = "SIRKULASI BARU No ' " + NoSirkulasi + "'"
+
+                        'Dim SMTP As New SmtpClient("mail.tsmu.co.id")
+                        ''SMTP.Port = 587
+                        ''SMTP.EnableSsl = False
+                        'SMTP.Port = 465
+                        'SMTP.EnableSsl = False
+                        'SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
+                        '' SMTP.Send(MyMailMessage)
+
+
+
+                        Try
+
+                            Dim oMail As New SmtpMail("TryIt")
+                            ' Set sender email address, please change it to yours
+                            oMail.From = "circulation@tsmu.co.id"
+                            ' Set recipient email address, please change it to yours
+                            'oMail.To = "miftah-mis@tsmu.co.id"
+
+
+                            Dim A As ArrayList = New ArrayList
+                            Dim dtEmail As New DataTable
+
+                            If Active_Form = 2 Then
+                                dtEmail = Get_Email_Division(NoSirkulasi)
+                                oMail.TextBody = "SIRKULASI NO  '" + NoSirkulasi + "'   Milik Departemen  '" + H_DeptID + "' Membutuhkan Approval Division Head"
+                                'MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Approval Division Head"
+                            ElseIf Active_Form = 3 Then
+                                dtEmail = Get_Email_Dept(NoSirkulasi)
+                                oMail.TextBody = "SIRKULASI NO  '" + NoSirkulasi + "'   Milik Departemen  '" + H_DeptID + "' Membutuhkan Opini Departemen"
+                                'MyMailMessage.Body = "SIRKULASI NO  ' " + NoSirkulasi + "'  Milik Departemen  " + H_DeptID + "  Membutuhkan Opini Departemen"
                             End If
 
-                        Next
 
-                        MyMailMessage.CC.Add("log@tsmu.co.id")
-                        MyMailMessage.CC.Add("miftah-mis@tsmu.co.id")
-                        MyMailMessage.Subject = "SIRKULASI BARU No ' " + NoSirkulasi + "'"
+                            For i As Integer = 0 To dtEmail.Rows.Count - 1
+                                If dtEmail.Rows.Count > 0 Then
+                                    Dim cekEmail As String = ""
+                                    cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
 
-                        Dim SMTP As New SmtpClient("mail.tsmu.co.id")
-                        'SMTP.Port = 587
-                        'SMTP.EnableSsl = False
-                        SMTP.Port = 465
-                        SMTP.EnableSsl = False
-                        SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
-                        ' SMTP.Send(MyMailMessage)
+                                    If cekEmail = "" Then
+                                        oMail.To.Add("miftah-mis@tsmu.co.id")
+                                        ' MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                                    Else
+                                        'MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
+                                        oMail.To.Add(dtEmail.Rows(i).Item(0))
+                                    End If
+
+                                Else
+                                    'MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                                    oMail.To.Add("miftah-mis@tsmu.co.id")
+                                End If
+
+                            Next
+
+                            oMail.Cc = "log@tsmu.co.id"
+
+
+                            ' Set email subject
+                            oMail.Subject = "SIRKULASI BARU No ' " + NoSirkulasi + "'"
+                            ' Set email body
+
+
+                            ' Your SMTP server address
+                            Dim oServer As New SmtpServer("mail.tsmu.co.id")
+
+                            ' User and password for ESMTP authentication
+                            oServer.User = "circulation@tsmu.co.id"
+                            oServer.Password = "MREK2*Pv5{WV"
+
+                            ' Set SSL 465 port
+                            oServer.Port = 465
+
+                            ' Set direct SSL connection, you can also use ConnectSSLAuto
+                            oServer.ConnectType = SmtpConnectType.ConnectDirectSSL
+
+                            Console.WriteLine("start to send email ...")
+
+                            Dim oSmtp As New EASendMail.SmtpClient()
+                            oSmtp.SendMail(oServer, oMail)
+
+                            Console.WriteLine("email was sent successfully!")
+                        Catch ep As Exception
+                            Console.WriteLine("failed to send email with the following error:")
+                            Console.WriteLine(ep.Message)
+                        End Try
+
+
+
+
 
 #End Region
 
@@ -1852,43 +1934,104 @@ Public Class ClsCR_CreateUser
 
 #Region "send Email"
 
-                        Dim MyMailMessage As New MailMessage
+                        'Dim MyMailMessage As New MailMessage
                         Dim A As ArrayList = New ArrayList
                         Dim dtEmail As New DataTable
                         dtEmail = Get_Email_DeptDeptHead()
 
-                        MyMailMessage.From = New MailAddress("circulation@tsmu.co.id", "CIRCULATION")
+                        'MyMailMessage.From = New MailAddress("circulation@tsmu.co.id", "CIRCULATION")
 
-                        For i As Integer = 0 To dtEmail.Rows.Count - 1
-                            If dtEmail.Rows.Count > 0 Then
-                                Dim cekEmail As String = ""
-                                cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
+                        'For i As Integer = 0 To dtEmail.Rows.Count - 1
+                        '    If dtEmail.Rows.Count > 0 Then
+                        '        Dim cekEmail As String = ""
+                        '        cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
 
-                                If cekEmail = "" Then
-                                    MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
-                                Else
-                                    MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
-                                End If
+                        '        If cekEmail = "" Then
+                        '            MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                        '        Else
+                        '            MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
+                        '        End If
 
-                            Else
-                                MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
-                            End If
+                        '    Else
+                        '        MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                        '    End If
 
-                        Next
+                        'Next
 
-                        MyMailMessage.CC.Add("log@tsmu.co.id")
-                        MyMailMessage.Subject = "SIRKULASI BARU No ' " + _FsCode + "'"
-                        MyMailMessage.Body = "SIRKULASI NO  '" + _FsCode + "'   Milik Departemen  '" + H_DeptID + "' Membutuhkan Approval Depthead"
+                        'MyMailMessage.CC.Add("log@tsmu.co.id")
+                        'MyMailMessage.Subject = "SIRKULASI BARU No ' " + _FsCode + "'"
+                        'MyMailMessage.Body = "SIRKULASI NO  '" + _FsCode + "'   Milik Departemen  '" + H_DeptID + "' Membutuhkan Approval Depthead"
 
-                        Dim SMTP As New SmtpClient("mail.tsmu.co.id")
-                        'SMTP.Port = 587
-                        SMTP.Port = 465
-                        SMTP.EnableSsl = False
-                        SMTP.DeliveryMethod = SmtpDeliveryMethod.Network
-                        SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
+                        'Dim SMTP As New SmtpClient("mail.tsmu.co.id")
+                        ''SMTP.Port = 587
+                        'SMTP.Port = 465
+                        'SMTP.EnableSsl = False
+                        'SMTP.DeliveryMethod = SmtpDeliveryMethod.Network
+                        'SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
 
 
                         'SMTP.Send(MyMailMessage)
+
+                        Try
+
+                            Dim oMail As New SmtpMail("TryIt")
+                            ' Set sender email address, please change it to yours
+                            oMail.From = "circulation@tsmu.co.id"
+                            ' Set recipient email address, please change it to yours
+                            'oMail.To = "miftah-mis@tsmu.co.id"
+
+                            For i As Integer = 0 To dtEmail.Rows.Count - 1
+                                If dtEmail.Rows.Count > 0 Then
+                                    Dim cekEmail As String = ""
+                                    cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
+
+                                    If cekEmail = "" Then
+                                        oMail.To.Add("miftah-mis@tsmu.co.id")
+                                        ' MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                                    Else
+                                        'MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
+                                        oMail.To.Add(dtEmail.Rows(i).Item(0))
+                                    End If
+
+                                Else
+                                    'MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
+                                    oMail.To.Add("miftah-mis@tsmu.co.id")
+                                End If
+
+                            Next
+
+                            oMail.Cc = "log@tsmu.co.id"
+
+
+                            ' Set email subject
+                            oMail.Subject = "SIRKULASI BARU No ' " + _FsCode + "'"
+                            ' Set email body
+                            oMail.TextBody = "SIRKULASI NO  '" + _FsCode + "'   Milik Departemen  '" + H_DeptID + "' Membutuhkan Approval Depthead"
+
+                            ' Your SMTP server address
+                            Dim oServer As New SmtpServer("mail.tsmu.co.id")
+
+                            ' User and password for ESMTP authentication
+                            oServer.User = "circulation@tsmu.co.id"
+                            oServer.Password = "MREK2*Pv5{WV"
+
+                            ' Set SSL 465 port
+                            oServer.Port = 465
+
+                            ' Set direct SSL connection, you can also use ConnectSSLAuto
+                            oServer.ConnectType = SmtpConnectType.ConnectDirectSSL
+
+                            Console.WriteLine("start to send email ...")
+
+                            Dim oSmtp As New EASendMail.SmtpClient()
+                            oSmtp.SendMail(oServer, oMail)
+
+                            Console.WriteLine("email was sent successfully!")
+                        Catch ep As Exception
+                            Console.WriteLine("failed to send email with the following error:")
+                            Console.WriteLine(ep.Message)
+                        End Try
+
 
 #End Region
 
