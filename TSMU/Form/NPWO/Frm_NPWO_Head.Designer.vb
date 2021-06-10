@@ -70,6 +70,7 @@ Partial Class Frm_NPWO_Head
         '
         'GridColumn2
         '
+        Me.GridColumn2.DisplayFormat.FormatString = "dd-MMMM-yyyy"
         Me.GridColumn2.FieldName = "Issue Date"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True

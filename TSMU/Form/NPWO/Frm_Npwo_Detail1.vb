@@ -258,6 +258,7 @@ Public Class Frm_Npwo_Detail1
                     CBCkr.Checked = .H_Factory_Tsc_CKR
                     TCategory.EditValue = .H_Category_Class
                     TNoNpp.Enabled = False
+                    CreateDate.EditValue = .H_Issue_Date
 
                     Dim Mp As Date = "1900-01-01"
                     Dim HMP As Date = .H_MP
@@ -291,6 +292,7 @@ Public Class Frm_Npwo_Detail1
                 ' TRevisiInformasi.EditValue = ""
             Else
                 TRevisi.EditValue = "0"
+                CreateDate.EditValue = Date.Now
             End If
         Catch ex As Exception
             Throw
@@ -542,6 +544,7 @@ Public Class Frm_Npwo_Detail1
                     .H_A3 = dtApprove.Rows(0).Item("A3")
                     .H_A4 = dtApprove.Rows(0).Item("A4")
                     .H_Status = "Create"
+                    .H_Issue_Date = CreateDate.EditValue
 
                 End With
                 'Colletion Detail
@@ -674,6 +677,7 @@ Public Class Frm_Npwo_Detail1
                     .H_Factory_Tsc_CKR = CBCkr.CheckState
                     .H_Rev = 0
                     .H_Rev_Info = TRevInfo.EditValue
+                    .H_Issue_Date = CreateDate.EditValue
 
                 End With
                 'Colletion Detail
@@ -1199,6 +1203,12 @@ Public Class Frm_Npwo_Detail1
 
     End Function
 
+    Private Sub CreateDate_KeyPress(sender As Object, e As KeyPressEventArgs) Handles CreateDate.KeyPress
+        Dim tombol As Integer
+        tombol = Asc(e.KeyChar)
 
-
+        If Not ((tombol = 0)) Then
+            e.Handled = True
+        End If
+    End Sub
 End Class

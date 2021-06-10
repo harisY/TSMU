@@ -145,67 +145,66 @@ Public Class Cls_PR
         Try
             Dim query As String
 
-            'query = "SELECT Rtrim(LTrim(rekap_budget_dept.AcctID)) as AcctID ,
-            '         Rtrim(LTrim(rekap_budget_dept.AcctName)) as AcctName,
-            '         Rtrim(LTrim(rekap_budget_dept.DeptID)) as DeptID,
-            '         Rtrim(LTrim(SiteID)),Rtrim(LTrim(Tahun)) As Tahun,
-            '         sum(jan_qty*jan_harga) as jan,
-            '         sum(feb_qty*feb_harga) as feb,
-            '         sum(mar_qty*mar_harga) as mar,
-            '         sum(apr_qty*apr_harga) as apr,
-            '         sum(mei_qty*mei_harga) as mei,
-            '         sum(jun_qty*jun_harga) as jun,
-            '         sum(jul_qty*jul_harga) as jul,
-            '         sum(agt_qty*agt_harga) as agu,
-            '         sum(sep_qty*sep_harga) as sep,
-            '         sum(okt_qty*okt_harga) as okt,
-            '         sum(nov_qty*nov_harga) as nov,
-            '         sum(des_qty*des_harga) as des
-            '         FROM rekap_budget_dept INNER JOIN tipeacct on tipeacct.acctid=rekap_budget_dept.acctid
-            '         WHERE tipeacct.tipe='D' 
-            '         and rekap_budget_dept.Tahun = '" & Tahun & "'
-            '         and rekap_budget_dept.DeptID = '" & Dept & "'
-            '         and rekap_budget_dept.AcctID = '" & AcctID & "'
-            '         GROUP BY rekap_budget_dept.DeptID,
-            '         rekap_budget_dept.AcctID,
-            '         rekap_budget_dept.AcctName,
-            '         SiteID,
-            '         Tahun"
+            query = "SELECT Rtrim(LTrim(rekap_budget_dept.AcctID)) as AcctID ,
+                     Rtrim(LTrim(rekap_budget_dept.AcctName)) as AcctName,
+                     Rtrim(LTrim(rekap_budget_dept.DeptID)) as DeptID,
+                     Rtrim(LTrim(Tahun)),Rtrim(LTrim(Tahun)) As Tahun,
+                     sum(jan_qty*jan_harga) as jan,
+                     sum(feb_qty*feb_harga) as feb,
+                     sum(mar_qty*mar_harga) as mar,
+                     sum(apr_qty*apr_harga) as apr,
+                     sum(mei_qty*mei_harga) as mei,
+                     sum(jun_qty*jun_harga) as jun,
+                     sum(jul_qty*jul_harga) as jul,
+                     sum(agt_qty*agt_harga) as agu,
+                     sum(sep_qty*sep_harga) as sep,
+                     sum(okt_qty*okt_harga) as okt,
+                     sum(nov_qty*nov_harga) as nov,
+                     sum(des_qty*des_harga) as des
+                     FROM rekap_budget_dept INNER JOIN tipeacct on tipeacct.acctid=rekap_budget_dept.acctid
+                     WHERE tipeacct.tipe = 'D' 
+                     and rekap_budget_dept.Tahun = '" & Tahun & "'
+                     and rekap_budget_dept.DeptID = '" & Dept & "'
+                     and rekap_budget_dept.AcctID = '" & AcctID & "'
+                     GROUP BY rekap_budget_dept.DeptID,
+                     rekap_budget_dept.AcctID,
+                     rekap_budget_dept.AcctName,
+                     Tahun"
 
-            query = "SELECT Rtrim(LTrim(Acct)) as AcctID ,
-	                    --Rtrim(LTrim(rekap_budget_dept.AcctName)) as AcctName,
-	                    Rtrim(LTrim(Sub)) as DeptID,
-	                    --Rtrim(LTrim(SiteID)),
-	                    Rtrim(LTrim(FiscYr)) As Tahun,
-	                    sum(PtdBal00) as jan,
-	                    sum(PtdBal01) as feb,
-	                    sum(PtdBal02) as mar,
-	                    sum(PtdBal03) as apr,
-	                    sum(PtdBal04) as mei,
-	                    sum(PtdBal05) as jun,
-	                    sum(PtdBal06) as jul,
-	                    sum(PtdBal07) as agu,
-	                    sum(PtdBal08) as sep,
-	                    sum(PtdBal09) as okt,
-	                    sum(PtdBal10) as nov,
-	                    sum(PtdBal11) as [des]
-	                    FROM AcctHist 
-	                    --INNER JOIN tipeacct on tipeacct.acctid=rekap_budget_dept.acctid
-	                    WHERE 
-	                    --tipeacct.tipe='D' 
-	                    FiscYr = '" & Tahun & "'
-	                    and Sub = '" & Dept & "'
-	                    and Acct = '" & AcctID & "'
-	                    GROUP BY 
-	                    Acct,
-	                    Sub,
-	                    FiscYr"
+            'query = "SELECT Rtrim(LTrim(Acct)) as AcctID ,
+            '         --Rtrim(LTrim(rekap_budget_dept.AcctName)) as AcctName,
+            '         Rtrim(LTrim(Sub)) as DeptID,
+            '         --Rtrim(LTrim(SiteID)),
+            '         Rtrim(LTrim(FiscYr)) As Tahun,
+            '         sum(PtdBal00) as jan,
+            '         sum(PtdBal01) as feb,
+            '         sum(PtdBal02) as mar,
+            '         sum(PtdBal03) as apr,
+            '         sum(PtdBal04) as mei,
+            '         sum(PtdBal05) as jun,
+            '         sum(PtdBal06) as jul,
+            '         sum(PtdBal07) as agu,
+            '         sum(PtdBal08) as sep,
+            '         sum(PtdBal09) as okt,
+            '         sum(PtdBal10) as nov,
+            '         sum(PtdBal11) as [des]
+            '         FROM AcctHist 
+            '         --INNER JOIN tipeacct on tipeacct.acctid=rekap_budget_dept.acctid
+            '         WHERE 
+            '         --tipeacct.tipe='D' 
+            '         FiscYr = '" & Tahun & "'
+            '         and Sub = '" & Dept & "'
+            '         and Acct = '" & AcctID & "'
+            '         GROUP BY 
+            '         Acct,
+            '         Sub,
+            '         FiscYr"
 
 
 
             Dim dt As New DataTable
             'dt = GetDataTableByCommand(query)
-            dt = GetDataTableByCommand_sol(query)
+            dt = GetDataTableByCommand(query)
             Return dt
         Catch ex As Exception
             Throw
@@ -369,10 +368,18 @@ Public Class Cls_PR
         End Try
     End Function
 
-    Public Function GetPembelianUntuk() As DataTable
+    Public Function GetPembelianUntuk(Expense As String) As DataTable
         Try
-            Dim query As String = "SELECT Type as Name ,Alias AS Value From PR_PurchaseType"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            Dim query As String = ""
+
+            If Expense = "All" Then
+                query = "SELECT Type as Name ,Alias AS Value From PR_PurchaseType"
+            ElseIf Expense = "SE" Then
+                query = "SELECT Type as Name ,Alias AS Value From PR_PurchaseType Where Alias = 'SE'"
+            Else
+                query = "SELECT Type as Name ,Alias AS Value From PR_PurchaseType Where Alias <> 'SE'"
+            End If
+
             Dim dt As New DataTable
             dt = GetDataTableByCommand(query)
             Return dt
@@ -413,7 +420,7 @@ Public Class Cls_PR
                         AutoNumber = Dept_ & Bulan & Tahun & "00" & AutoNumber & ""
                     ElseIf Len(AutoNumber) = 3 Then
                         AutoNumber = Dept_ & Bulan & Tahun & "0" & AutoNumber & ""
-
+                    Else
                         AutoNumber = Dept_ & Bulan & Tahun & AutoNumber & ""
                     End If
                 End If
@@ -756,6 +763,36 @@ Public Class Cls_PR
         End Try
     End Sub
 
+
+    Public Function Get_HeaderOutstanding() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query = "Select  ROW_NUMBER() OVER(ORDER BY XPRHdr.PRNo ASC) AS No,
+				XPRHdr.ApprovalPIC as [ApprovalPIC],
+				XPRHdr.ApprovalRemark as [Approval Remark],
+				XPRHdr.LocId as [Loc ID],
+				XPRHdr.LUpd_Prog as [LUpd Prog],
+				XPRHdr.LUpd_User as [LUpd User],
+				XPRHdr.PRNo as [PR No],
+				XPRHdr.PRDate as [PR Date],
+				XPRHdr.Remark as [Remark],
+				XPRHdr.SecId as [Sec ID],
+				XPRHdr.SeqRev as [Seq Rev],	
+				XPRHdr.StatusFlag as  [Status Flag] from XPRHdr
+                Left join approval1
+                on XPRHdr.PRNo = approval1.PRNo
+                Where kol1 ='0'
+                or kol2 ='0'
+                or kol3 ='0'"
+
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_sol(query)
+
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 
 
 End Class

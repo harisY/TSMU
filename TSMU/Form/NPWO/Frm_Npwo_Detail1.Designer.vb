@@ -61,6 +61,8 @@ Partial Class Frm_Npwo_Detail1
         Me.TNpwo_No = New DevExpress.XtraEditors.TextEdit()
         Me.TCustomer = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.CreateDate = New DevExpress.XtraEditors.DateEdit()
         Me.TRevInfo = New DevExpress.XtraEditors.TextEdit()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -96,6 +98,8 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TNpwo_No.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.CreateDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CreateDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRevInfo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -524,6 +528,8 @@ Partial Class Frm_Npwo_Detail1
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Label13)
+        Me.GroupBox2.Controls.Add(Me.CreateDate)
         Me.GroupBox2.Controls.Add(Me.TRevInfo)
         Me.GroupBox2.Controls.Add(Me.Label11)
         Me.GroupBox2.Controls.Add(Me.Label5)
@@ -541,6 +547,29 @@ Partial Class Frm_Npwo_Detail1
         Me.GroupBox2.TabIndex = 34
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Technical Info (Available)"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(14, 104)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(64, 13)
+        Me.Label13.TabIndex = 50
+        Me.Label13.Text = "Create Date"
+        '
+        'CreateDate
+        '
+        Me.CreateDate.EditValue = Nothing
+        Me.CreateDate.Location = New System.Drawing.Point(97, 101)
+        Me.CreateDate.Name = "CreateDate"
+        Me.CreateDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CreateDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CreateDate.Properties.DisplayFormat.FormatString = "dd-MMM-yyyy"
+        Me.CreateDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CreateDate.Properties.EditFormat.FormatString = "dd-MMM-yyyy"
+        Me.CreateDate.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.CreateDate.Size = New System.Drawing.Size(229, 20)
+        Me.CreateDate.TabIndex = 49
         '
         'TRevInfo
         '
@@ -808,6 +837,8 @@ Partial Class Frm_Npwo_Detail1
         CType(Me.TCustomer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.CreateDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CreateDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRevInfo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
@@ -887,4 +918,6 @@ Partial Class Frm_Npwo_Detail1
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents B_Reject As Button
     Friend WithEvents TCustomer As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Label13 As Label
+    Friend WithEvents CreateDate As DevExpress.XtraEditors.DateEdit
 End Class

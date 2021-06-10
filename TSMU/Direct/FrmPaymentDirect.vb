@@ -1733,7 +1733,6 @@ Public Class FrmPaymentDirect
     Private Sub GetTot()
         Dim TotAmount As Double = 0
 
-        Dim cek As Boolean
         Try
             For i As Integer = 0 To GridView2.RowCount - 1
                 If GridView2.GetRowCellValue(i, "Proses") = True Then

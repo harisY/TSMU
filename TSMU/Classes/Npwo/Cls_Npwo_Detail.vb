@@ -381,7 +381,7 @@ Public Class Cls_Npwo_Detail
                         InsertRevisi(NPWO_)
                         Insert_NPWOHeader(H_No_Npwo,
                                             H_No_NPP,
-                                            Date.Now,
+                                            H_Issue_Date,
                                             H_Model_Name,
                                             H_Model_Desc,
                                             H_Customer_Name,
@@ -607,7 +607,8 @@ Public Class Cls_Npwo_Detail
                                             H_Factory_Tsc_CKR,
                                             gh_Common.Username,
                                             Date.Now,
-                                            H_Rev)
+                                            H_Rev,
+                                            H_Issue_Date)
 
 
                         Dim AutoIncrement As Integer
@@ -698,7 +699,8 @@ Public Class Cls_Npwo_Detail
                                             H_Factory_Tsc_CKR,
                                             gh_Common.Username,
                                             Date.Now,
-                                            H_Rev)
+                                            H_Rev,
+                                            H_Issue_Date)
 
 
 
@@ -770,7 +772,9 @@ Public Class Cls_Npwo_Detail
                                         _H_Factory_Tsc_CKR As Boolean,
                                         _H_UpdateBy As String,
                                         _H_UpdateDate As Date,
-                                        _H_Rev As Integer)
+                                        _H_Rev As Integer,
+                                       _H_IssueDate As Date)
+
         Dim result As Integer = 0
 
 
@@ -778,7 +782,7 @@ Public Class Cls_Npwo_Detail
 
 
             Dim query As String = "[NPWO_Update_Npwo_Head]"
-            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(16) {}
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(17) {}
             pParam(0) = New SqlClient.SqlParameter("@No_Npwo", SqlDbType.VarChar)
             pParam(1) = New SqlClient.SqlParameter("@Order_Month", SqlDbType.Int)
             pParam(2) = New SqlClient.SqlParameter("@Order_Max_Month ", SqlDbType.Int)
@@ -796,7 +800,7 @@ Public Class Cls_Npwo_Detail
             pParam(14) = New SqlClient.SqlParameter("@UpdatedBy", SqlDbType.VarChar)
             pParam(15) = New SqlClient.SqlParameter("@UpdateDate", SqlDbType.Date)
             pParam(16) = New SqlClient.SqlParameter("@Revisi", SqlDbType.Int)
-
+            pParam(17) = New SqlClient.SqlParameter("@IssueDate", SqlDbType.Date)
 
             pParam(0).Value = _H_No_Npwo
             pParam(1).Value = _H_Order_Month
@@ -815,6 +819,7 @@ Public Class Cls_Npwo_Detail
             pParam(14).Value = _H_UpdateBy
             pParam(15).Value = _H_UpdateDate
             pParam(16).Value = _H_Rev
+            pParam(17).Value = _H_IssueDate
 
 
             MainModul.ExecQueryByCommand_SP(query, pParam)
