@@ -990,7 +990,9 @@ Public Class ClsCR_CreateUser
                         MyMailMessage.Subject = "SIRKULASI BARU No ' " + NoSirkulasi + "'"
 
                         Dim SMTP As New SmtpClient("mail.tsmu.co.id")
-                        SMTP.Port = 587
+                        'SMTP.Port = 587
+                        'SMTP.EnableSsl = False
+                        SMTP.Port = 465
                         SMTP.EnableSsl = False
                         SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
                         SMTP.Send(MyMailMessage)
@@ -1879,7 +1881,8 @@ Public Class ClsCR_CreateUser
                         MyMailMessage.Body = "SIRKULASI NO  '" + _FsCode + "'   Milik Departemen  '" + H_DeptID + "' Membutuhkan Approval Depthead"
 
                         Dim SMTP As New SmtpClient("mail.tsmu.co.id")
-                        SMTP.Port = 587
+                        'SMTP.Port = 587
+                        SMTP.Port = 465
                         SMTP.EnableSsl = False
                         SMTP.DeliveryMethod = SmtpDeliveryMethod.Network
                         SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")

@@ -764,6 +764,36 @@ Public Class Cls_PR
     End Sub
 
 
+    Public Function Get_HeaderOutstanding() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query = "Select  ROW_NUMBER() OVER(ORDER BY XPRHdr.PRNo ASC) AS No,
+				XPRHdr.ApprovalPIC as [ApprovalPIC],
+				XPRHdr.ApprovalRemark as [Approval Remark],
+				XPRHdr.LocId as [Loc ID],
+				XPRHdr.LUpd_Prog as [LUpd Prog],
+				XPRHdr.LUpd_User as [LUpd User],
+				XPRHdr.PRNo as [PR No],
+				XPRHdr.PRDate as [PR Date],
+				XPRHdr.Remark as [Remark],
+				XPRHdr.SecId as [Sec ID],
+				XPRHdr.SeqRev as [Seq Rev],	
+				XPRHdr.StatusFlag as  [Status Flag] from XPRHdr
+                Left join approval1
+                on XPRHdr.PRNo = approval1.PRNo
+                Where kol1 ='0'
+                or kol2 ='0'
+                or kol3 ='0'"
+
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_sol(query)
+
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
 
 End Class
 
