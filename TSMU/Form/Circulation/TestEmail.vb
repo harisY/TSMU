@@ -24,34 +24,34 @@ Public Class TestEmail
                 oMail.Cc = "log@tsmu.co.id"
                 oMail.Cc = "miftah-mis@tsmu.co.id"
 
-                'For i As Integer = 0 To dtEmail.Rows.Count - 1
-                '    If dtEmail.Rows.Count > 0 Then
-                '        Dim cekEmail As String = ""
-                '        cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
+                ' Set email subject
+                oMail.Subject = "Email Test"
+                ' Set email body
+                oMail.TextBody = "Test Email Cikarang Tangerang"
 
-                '        If cekEmail = "" Then
-                '            MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
-                '        Else
-                '            MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
-                '        End If
+                ' Your SMTP server address
+                Dim oServer As New SmtpServer("mail.tsmu.co.id")
 
-                '    Else
-                '        MyMailMessage.To.Add("agung-mis@tsmu.co.id")
-                '    End If
+                ' User and password for ESMTP authentication
+                oServer.User = "circulation@tsmu.co.id"
+                oServer.Password = "MREK2*Pv5{WV"
 
-                'Next
-                MyMailMessage.To.Add("agung-mis@tsmu.co.id")
-                MyMailMessage.CC.Add("log@tsmu.co.id")
-                MyMailMessage.CC.Add("miftah-mis@tsmu.co.id")
-                MyMailMessage.Subject = "Test Email"
+                ' Set SSL 465 port
+                oServer.Port = 465
 
-                Dim SMTP As New SmtpClient("mail.tsmu.co.id")
-                'SMTP.Port = 587
-                SMTP.Port = 465
-                SMTP.EnableSsl = False
-                SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
-                ' SMTP.Timeout = 5000
-                SMTP.Send(MyMailMessage)
+                ' Set direct SSL connection, you can also use ConnectSSLAuto
+                oServer.ConnectType = SmtpConnectType.ConnectDirectSSL
+
+                Console.WriteLine("start to send email ...")
+
+                Dim oSmtp As New EASendMail.SmtpClient()
+                oSmtp.SendMail(oServer, oMail)
+
+                Console.WriteLine("email was sent successfully!")
+            Catch ep As Exception
+                Console.WriteLine("failed to send email with the following error:")
+                Console.WriteLine(ep.Message)
+            End Try
         End If
 #End Region
     End Sub
