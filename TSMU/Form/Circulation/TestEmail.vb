@@ -10,8 +10,6 @@ Public Class TestEmail
         Dim MyMailMessage As New MailMessage
         Dim A As ArrayList = New ArrayList
         Dim dtEmail As New DataTable
-
-
         Dim pesan As DialogResult = MessageBox.Show("Apakah Mau Coba Kirim Email", "Test", MessageBoxButtons.YesNo)
 
         If pesan = DialogResult.Yes Then
@@ -20,22 +18,6 @@ Public Class TestEmail
 
             MyMailMessage.From = New MailAddress("circulation@tsmu.co.id", "CIRCULATION")
 
-            'For i As Integer = 0 To dtEmail.Rows.Count - 1
-            '    If dtEmail.Rows.Count > 0 Then
-            '        Dim cekEmail As String = ""
-            '        cekEmail = IIf(dtEmail.Rows(i).Item(0) Is DBNull.Value, "", dtEmail.Rows(i).Item(0))
-
-            '        If cekEmail = "" Then
-            '            MyMailMessage.To.Add("miftah-mis@tsmu.co.id")
-            '        Else
-            '            MyMailMessage.To.Add(dtEmail.Rows(i).Item(0))
-            '        End If
-
-            '    Else
-            '        MyMailMessage.To.Add("agung-mis@tsmu.co.id")
-            '    End If
-
-            'Next
             MyMailMessage.To.Add("agung-mis@tsmu.co.id")
             MyMailMessage.CC.Add("log@tsmu.co.id")
             MyMailMessage.CC.Add("miftah-mis@tsmu.co.id")
@@ -46,8 +28,13 @@ Public Class TestEmail
             SMTP.Port = 465
             SMTP.EnableSsl = False
             SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
-            ' SMTP.Timeout = 5000
-            SMTP.Send(MyMailMessage)
+            'SMTP.Timeout = 10000
+            'SMTP.Send(MyMailMessage)
+            MessageBox.Show("Sukses",
+                               "Warning",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Information,
+                               MessageBoxDefaultButton.Button1)
         End If
 #End Region
     End Sub
