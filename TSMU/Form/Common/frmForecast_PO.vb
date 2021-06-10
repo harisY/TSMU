@@ -407,19 +407,119 @@ Public Class frmForecast_PO
                     Else
                         SplashScreenManager.CloseForm()
                     End If
-                ElseIf strCustomer.ToLower = "yimtes" Then
+                ElseIf strCustomer.ToLower = "yim" Then
                     ''Add by Midi update new template for Yamaha
                     If table.Rows.Count > 0 Then
-                        Dim tblFilter As New DataTable
-                        tblFilter = table.Select("YEAR([Delivery Date]) = " & strTahun & " AND MONTH([Delivery Date]) = " & BulanAngka & " ").CopyToDataTable
-                        Dim _Service As New AdmService(table, strCustomer, strTahun, Bulan, frmExcel._Site, frmExcel.Flag)
+                        Dim _Service As New AdmService(table, strCustomer, strTahun, BulanAngka, frmExcel._Site, frmExcel.Flag)
                         Dim Dt1 As New DataTable
                         Dt1 = _Service.GetExcelDataYIM()
 
-                        Dim Frm As FrmForecast_PO_TempTable
-                        Frm = New FrmForecast_PO_TempTable(Dt1)
+                        Dim Frm As FrmForecast_PO_TempTableYIM
+                        Frm = New FrmForecast_PO_TempTableYIM(Dt1)
                         Frm.StartPosition = FormStartPosition.CenterParent
                         Frm.ShowDialog()
+                        If Frm.NewDt IsNot Nothing Then
+                            ObjHeader.ObjForecastCollection.Clear()
+                            For Each row As DataRow In Frm.NewDt.Rows
+                                ObjForecast = New forecast_po_model_detail
+                                With ObjForecast
+                                    .Tahun = If(row("Tahun") Is DBNull.Value, "", row("Tahun"))
+                                    .CustID = If(row("CustID") Is DBNull.Value, "", row("CustID"))
+                                    .Customer = If(row("CustName") Is DBNull.Value, "", row("CustName"))
+                                    .InvtID = If(row("InvtID") Is DBNull.Value, "", row("InvtID"))
+                                    .Description = If(row("Description") Is DBNull.Value, "", row("Description"))
+                                    .PartNo = If(row("PartNo") Is DBNull.Value, "", row("PartNo"))
+                                    .Model = If(row("Model") Is DBNull.Value, "", row("Model"))
+                                    .OePe = If(row("Oe") Is DBNull.Value, "", row("Oe"))
+                                    .INSub = If(row("InSub") Is DBNull.Value, "", row("InSub"))
+                                    .Site = If(row("Site") Is DBNull.Value, "", row("Site"))
+                                    .Flag = If(row("Flag") Is DBNull.Value, "N/A", row("Flag").ToString())
+                                    .N = If(row("N") Is DBNull.Value, 0, Convert.ToInt32(row("N")))
+                                    .N1 = If(row("N1") Is DBNull.Value, 0, Convert.ToInt32(row("N1")))
+                                    .N2 = If(row("N2") Is DBNull.Value, 0, Convert.ToInt32(row("N2")))
+                                    .N3 = If(row("N3") Is DBNull.Value, 0, Convert.ToInt32(row("N3")))
+                                    Select Case BulanAngka
+                                        Case "01"
+                                            .BulanPO = "Jan"
+                                            .BulanFC1 = "Feb"
+                                            .BulanFC2 = "Mar"
+                                            .BulanFC3 = "Apr"
+                                        Case "02"
+                                            .BulanPO = "Feb"
+                                            .BulanFC1 = "Mar"
+                                            .BulanFC2 = "Apr"
+                                            .BulanFC3 = "Mei"
+                                        Case "03"
+                                            .BulanPO = "Mar"
+                                            .BulanFC1 = "Apr"
+                                            .BulanFC2 = "Mei"
+                                            .BulanFC3 = "Jun"
+                                        Case "04"
+                                            .BulanPO = "Apr"
+                                            .BulanFC1 = "Mei"
+                                            .BulanFC2 = "Jun"
+                                            .BulanFC3 = "Jul"
+                                        Case "05"
+                                            .BulanPO = "Mei"
+                                            .BulanFC1 = "Jun"
+                                            .BulanFC2 = "Jul"
+                                            .BulanFC3 = "Agt"
+                                        Case "06"
+                                            .BulanPO = "Jun"
+                                            .BulanFC1 = "Jul"
+                                            .BulanFC2 = "Agt"
+                                            .BulanFC3 = "Sep"
+                                        Case "07"
+                                            .BulanPO = "Jul"
+                                            .BulanFC1 = "Agt"
+                                            .BulanFC2 = "Sep"
+                                            .BulanFC3 = "Okt"
+                                        Case "08"
+                                            .BulanPO = "Agt"
+                                            .BulanFC1 = "Sep"
+                                            .BulanFC2 = "Okt"
+                                            .BulanFC3 = "Nov"
+                                        Case "09"
+                                            .BulanPO = "Sep"
+                                            .BulanFC1 = "Okt"
+                                            .BulanFC2 = "Nov"
+                                            .BulanFC3 = "Des"
+                                        Case "10"
+                                            .BulanPO = "Okt"
+                                            .BulanFC1 = "Nov"
+                                            .BulanFC2 = "Des"
+                                            .BulanFC3 = "Jan"
+                                        Case "11"
+                                            .BulanPO = "Nov"
+                                            .BulanFC1 = "Des"
+                                            .BulanFC2 = "Jan"
+                                            .BulanFC3 = "Feb"
+                                        Case "12"
+                                            .BulanPO = "Des"
+                                            .BulanFC1 = "Jan"
+                                            .BulanFC2 = "Feb"
+                                            .BulanFC3 = "Mar"
+                                    End Select
+                                    .created_date = Date.Today
+                                    .created_by = gh_Common.Username
+                                End With
+                                ObjHeader.ObjForecastCollection.Add(ObjForecast)
+                            Next
+                            'Return
+                            With ObjHeader
+                                .Tahun = strTahun
+                                .CustID = strCustomer
+                                .Bulan = Bulan
+                                .BulanAngka = BulanAngka
+                                .PO = frmExcel.PO
+                                .InsertDataAdm()
+                                SplashScreenManager.CloseForm()
+                                Call ShowMessage(GetMessage(MessageEnum.SimpanBerhasil), MessageTypeEnum.NormalMessage)
+                                LoadGrid()
+                            End With
+                        Else
+                            SplashScreenManager.CloseForm()
+                        End If
                     Else
                         SplashScreenManager.CloseForm()
                     End If
@@ -558,7 +658,6 @@ Public Class frmForecast_PO
                     SplashScreenManager.CloseForm()
                 End If
             Catch ex As Exception
-                SplashScreenManager.CloseForm()
                 Call ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
                 WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
             End Try

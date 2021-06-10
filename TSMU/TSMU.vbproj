@@ -1847,6 +1847,12 @@
     <Compile Include="Form\Common\frmForecastDaily.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Common\FrmForecast_PO_TempTableYIM.designer.vb">
+      <DependentUpon>FrmForecast_PO_TempTableYIM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Common\FrmForecast_PO_TempTableYIM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Common\frmProblem.Designer.vb">
       <DependentUpon>frmProblem.vb</DependentUpon>
     </Compile>
@@ -4228,6 +4234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmForecastDaily.resx">
       <DependentUpon>frmForecastDaily.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Common\FrmForecast_PO_TempTableYIM.resx">
+      <DependentUpon>FrmForecast_PO_TempTableYIM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Common\frmProblem.resx">
       <DependentUpon>frmProblem.vb</DependentUpon>

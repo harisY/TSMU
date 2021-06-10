@@ -5,6 +5,8 @@ Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraReports.UI
 Imports DevExpress.XtraReports.Parameters
 Imports Excel = Microsoft.Office.Interop.Excel
+Imports System.Reflection
+Imports System.Runtime.InteropServices
 
 Public Class FrmPPICConvertMuatDetail
     Public IsClosed As Boolean = False
@@ -134,27 +136,11 @@ Public Class FrmPPICConvertMuatDetail
             If GridViewDetail.RowCount > 0 Then
                 Dim save As New SaveFileDialog With {
                     .Filter = "Excel File|*.xls",
-                    .Title = "Save an Excel File"
+                    .Title = "Save an Excel File",
+                    .FileName = FileName
                 }
                 If save.ShowDialog = DialogResult.OK Then
-                    GridDetail.ExportToXls(save.FileName)
-                    'Dim xlapp As Excel.Application
-                    'Dim xlworkbook As Excel.Workbook
-                    'Dim xlworksheet As Excel.Worksheet
-                    'Dim misvalue As Object = Reflection.Missing.Value
-
-                    'xlapp = New Excel.Application
-                    'xlworkbook = xlapp.Workbooks.Add(misvalue)
-                    'xlworksheet = xlworkbook.Sheets("Sheet1")
-
-                    'For i = 0 To dtConvertMuat.Rows.Count - 1
-                    '    For j = 0 To dtConvertMuat.Columns.Count - 1
-                    '        xlworksheet.Cells(i + 1, j + 1) = dtConvertMuat.Rows(i).Item(j)
-                    '    Next
-                    'Next
-                    'xlworksheet.SaveAs(save.FileName)
-                    'xlworkbook.Close()
-                    'xlapp.Quit()
+                    ExportToExcel(save)
                 End If
             Else
                 Throw New Exception("Data Is Not Found !")
@@ -476,107 +462,7 @@ Public Class FrmPPICConvertMuatDetail
         btnKonversi.Enabled = True
     End Sub
 
-    'Public Function ExportToExcel(ByVal a_sFilename As String, ByVal a_sData As DataSet, ByVal a_sFileTitle As String, ByRef a_sErrorMessage As String) As Boolean
-    '    a_sErrorMessage = String.Empty
-    '    Dim bRetVal As Boolean = False
-    '    Dim dsDataSet As DataSet = Nothing
-    '    Try
-    '        dsDataSet = a_sData
-
-    '        Dim xlObject As Excel.Application = Nothing
-    '        Dim xlWB As Excel.Workbook = Nothing
-    '        Dim xlSh As Excel.Worksheet = Nothing
-    '        Dim rg As Excel.Range = Nothing
-    '        Try
-    '            xlObject = New Excel.Application()
-    '            xlObject.AlertBeforeOverwriting = False
-    '            xlObject.DisplayAlerts = False
-
-    '            ''This Adds a new woorkbook, you could open the workbook from file also
-    '            xlWB = xlObject.Workbooks.Add(Type.Missing)
-    '            xlWB.SaveAs(a_sFilename, 56, Missing.Value, Missing.Value, Missing.Value, Missing.Value,
-    '            Excel.XlSaveAsAccessMode.xlNoChange, Missing.Value, Missing.Value, Missing.Value, Missing.Value)
-
-    '            xlSh = DirectCast(xlObject.ActiveWorkbook.ActiveSheet, Excel.Worksheet)
-
-    '            'Dim sUpperRange As String = "A1"
-    '            'Dim sLastCol As String = "AQ"
-    '            'Dim sLowerRange As String = sLastCol + (dsDataSet.Tables(0).Rows.Count + 1).ToString()
-
-    '            For j = 0 To dsDataSet.Tables(0).Columns.Count - 1
-    '                xlSh.Cells(1, j + 1) =
-    '                    dsDataSet.Tables(0).Columns(j).ToString()
-    '                xlSh.Cells(1, j + 1).Font.Bold = True
-    '            Next
-
-    '            For i = 1 To dsDataSet.Tables(0).Rows.Count
-    '                For j = 0 To dsDataSet.Tables(0).Columns.Count - 1
-    '                    xlSh.Cells(i + 1, j + 1) =
-    '                        dsDataSet.Tables(0).Rows(i - 1)(j).ToString()
-    '                Next
-    '            Next
-    '            xlSh.Columns.AutoFit()
-    '            'rg = xlSh.Range(sUpperRange, sLowerRange)
-    '            'rg.Value2 = GetData(dsDataSet.Tables(0))
-
-    '            'xlSh.Range("A1", sLastCol & "1").Font.Bold = True
-    '            'xlSh.Range("A1", sLastCol & "1").HorizontalAlignment = XlHAlign.xlHAlignCenter
-    '            'xlSh.Range(sUpperRange, sLowerRange).EntireColumn.AutoFit()
-
-    '            If String.IsNullOrEmpty(a_sFileTitle) Then
-    '                xlObject.Caption = "untitled"
-    '            Else
-    '                xlObject.Caption = a_sFileTitle
-    '            End If
-
-    '            xlWB.Save()
-    '            bRetVal = True
-    '        Catch ex As System.Runtime.InteropServices.COMException
-    '            If ex.ErrorCode = -2147221164 Then
-    '                a_sErrorMessage = "Error in export: Please install Microsoft Office (Excel) to use the Export to Excel feature."
-    '            ElseIf ex.ErrorCode = -2146827284 Then
-    '                a_sErrorMessage = "Error in export: Excel allows only 65,536 maximum rows in a sheet."
-    '            Else
-    '                a_sErrorMessage = (("Error in export: " & ex.Message) + Environment.NewLine & " Error: ") + ex.ErrorCode
-    '            End If
-    '        Catch ex As Exception
-    '            a_sErrorMessage = "Error in export: " & ex.Message
-    '        Finally
-    '            Try
-    '                If xlWB IsNot Nothing Then
-    '                    xlWB.Close(Nothing, Nothing, Nothing)
-    '                End If
-    '                xlObject.Workbooks.Close()
-    '                xlObject.Quit()
-    '                If rg IsNot Nothing Then
-    '                    Marshal.ReleaseComObject(rg)
-    '                End If
-    '                If xlSh IsNot Nothing Then
-    '                    Marshal.ReleaseComObject(xlSh)
-    '                End If
-    '                If xlWB IsNot Nothing Then
-    '                    Marshal.ReleaseComObject(xlWB)
-    '                End If
-    '                If xlObject IsNot Nothing Then
-    '                    Marshal.ReleaseComObject(xlObject)
-    '                End If
-
-    '            Catch
-    '            End Try
-    '            xlSh = Nothing
-    '            xlWB = Nothing
-    '            xlObject = Nothing
-    '            ' force final cleanup!
-    '            GC.Collect()
-    '            GC.WaitForPendingFinalizers()
-    '        End Try
-    '    Catch ex As Exception
-    '        a_sErrorMessage = "Error in export: " & ex.Message
-    '    End Try
-
-    '    Return bRetVal
-    'End Function
-    Private Sub Export()
+    Private Sub ExportToExcel(SaveDialog As SaveFileDialog)
         Dim xlapp As Excel.Application
         Dim xlworkbook As Excel.Workbook
         Dim xlworksheet As Excel.Worksheet
@@ -586,12 +472,17 @@ Public Class FrmPPICConvertMuatDetail
         xlworkbook = xlapp.Workbooks.Add(misvalue)
         xlworksheet = xlworkbook.Sheets("Sheet1")
 
-        For i = 0 To dtConvertMuat.Rows.Count - 1
+        For j = 0 To dtConvertMuat.Columns.Count - 1
+            xlworksheet.Cells(1, j + 1) = dtConvertMuat.Columns(j).ToString()
+            xlworksheet.Cells(1, j + 1).Font.Bold = True
+        Next
+
+        For i = 1 To dtConvertMuat.Rows.Count - 1
             For j = 0 To dtConvertMuat.Columns.Count - 1
                 xlworksheet.Cells(i + 1, j + 1) = dtConvertMuat.Rows(i).Item(j)
             Next
         Next
-        xlworksheet.SaveAs("")
+        xlworksheet.SaveAs(SaveDialog.FileName)
         xlworkbook.Close()
         xlapp.Quit()
     End Sub
