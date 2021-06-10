@@ -995,7 +995,7 @@ Public Class ClsCR_CreateUser
                         SMTP.Port = 465
                         SMTP.EnableSsl = False
                         SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
-                        SMTP.Send(MyMailMessage)
+                        ' SMTP.Send(MyMailMessage)
 
 #End Region
 
@@ -1888,7 +1888,7 @@ Public Class ClsCR_CreateUser
                         SMTP.Credentials = New System.Net.NetworkCredential("circulation@tsmu.co.id", "MREK2*Pv5{WV")
 
 
-                        SMTP.Send(MyMailMessage)
+                        'SMTP.Send(MyMailMessage)
 
 #End Region
 

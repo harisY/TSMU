@@ -3622,8 +3622,6 @@ Public Class Frm_CR_UserCreateDetail
 
 
 
-
-
                         fc_Class.Update_Approve_BOD(fs_Code, fc_Model_ApproveHistoryModel)
                         bs_Filter = gh_Common.Username()
                         GridDtl.DataSource = fc_Class_Accounting.Get_Approve_Accounting()
