@@ -178,7 +178,7 @@ Public Class FrmPPICConvertMuatDetail
                     .DeliveryDueDate = DeliveryDueDate
                     .FileName = FileName
                     .Revised = Revised
-                    .TotalRecordExcel = GridViewDetail.RowCount
+                    .TotalRecordExcel = GridViewDetail.RowCount - txtTotalMobil.Text
                     .TotalMobil = txtTotalMobil.Text
                 End With
             End If

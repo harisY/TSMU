@@ -102,6 +102,7 @@ Public Class FrmPPICConvertMuat
             With GridViewConvertMuat
                 .Columns("UploadDate").DisplayFormat.FormatType = FormatType.DateTime
                 .Columns("UploadDate").DisplayFormat.FormatString = "dd-MM-yyyy"
+                .Columns("TotalRecordExcel").Caption = "Total Record"
                 .Columns("DeliveryDueDate").DisplayFormat.FormatType = FormatType.DateTime
                 .Columns("DeliveryDueDate").DisplayFormat.FormatString = "dd-MM-yyyy"
                 .Columns("CreateDate").DisplayFormat.FormatType = FormatType.DateTime

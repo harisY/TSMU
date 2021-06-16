@@ -1,12 +1,9 @@
-﻿Imports DevExpress.Data
-Imports DevExpress.XtraEditors
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid
-Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports System.Data.OleDb
-Imports System.Data.SqlClient
 Imports System.Configuration
 Imports System.IO
 Imports DevExpress.XtraPrinting

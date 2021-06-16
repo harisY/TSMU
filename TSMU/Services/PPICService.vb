@@ -352,6 +352,45 @@ Public Class PPICService
     End Function
 
 #End Region
+
+#Region "Layout Gedung"
+    Public Function GetDataLayoutGedung() As DataTable
+        Try
+            strQuery = "SELECT  ID ,
+                                UserCode ,
+                                Seq ,
+                                [Group] ,
+                                SeqUser ,
+                                PF ,
+                                Gedung ,
+                                Lokasi ,
+                                CreateBy ,
+                                CreateDate ,
+                                UpdateBy ,
+                                UpdateDate
+                        FROM    dbo.M_PPICUser
+                        ORDER BY Lokasi ,
+                                [Group] ,
+                                SeqUser"
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Return dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub DeleteDataLayoutGedung(ByVal ID As Integer)
+        Try
+            strQuery = "DELETE FROM dbo.M_PPICUser WHERE ID = " & ID & ""
+            MainModul.ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+#End Region
+
     Public Function GetDataConvertMuatHeader(dateFrom As Date, dateTo As Date) As DataTable
         Try
             strQuery = "SELECT  NoUpload ,
