@@ -163,6 +163,7 @@ Public Class FrmPPICUploadPO
                 succes = 0
                 warning = 0
                 _error = 0
+                total = 0
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
 
