@@ -389,6 +389,114 @@ Public Class PPICService
         End Try
     End Sub
 
+    Public Function GetDataLayoutGedungByID(ByVal ID As Integer) As PPICLayoutGedungModel
+        Try
+            strQuery = "SELECT  ID ,
+                                UserCode ,
+                                Seq ,
+                                [Group] ,
+                                SeqUser ,
+                                PF ,
+                                Gedung ,
+                                Lokasi ,
+                                CreateBy ,
+                                CreateDate ,
+                                UpdateBy ,
+                                UpdateDate
+                        FROM    dbo.M_PPICUser
+                        WHERE   ID = " & ID & ""
+            Dim dt As New DataTable
+            dt = GetDataTable(strQuery)
+            Dim modelHeader As New PPICLayoutGedungModel
+            If dt.Rows.Count > 0 Then
+                With modelHeader
+                    .ID = If(IsDBNull(dt.Rows(0).Item("ID")), 0, dt.Rows(0).Item("ID"))
+                    .UserCode = If(IsDBNull(dt.Rows(0).Item("UserCode")), "", dt.Rows(0).Item("UserCode").ToString())
+                    .Seq = If(IsDBNull(dt.Rows(0).Item("Seq")), 0, dt.Rows(0).Item("Seq"))
+                    .Group = If(IsDBNull(dt.Rows(0).Item("Group")), 0, dt.Rows(0).Item("Group"))
+                    .SeqUser = If(IsDBNull(dt.Rows(0).Item("SeqUser")), 0, dt.Rows(0).Item("SeqUser"))
+                    .PF = If(IsDBNull(dt.Rows(0).Item("PF")), "", dt.Rows(0).Item("PF").ToString())
+                    .Gedung = If(IsDBNull(dt.Rows(0).Item("Gedung")), 0, dt.Rows(0).Item("Gedung"))
+                    .Lokasi = If(IsDBNull(dt.Rows(0).Item("Lokasi")), "", dt.Rows(0).Item("Lokasi").ToString())
+                    .CreateBy = If(IsDBNull(dt.Rows(0).Item("CreateBy")), "", dt.Rows(0).Item("CreateBy").ToString())
+                    .CreateDate = If(IsDBNull(dt.Rows(0).Item("CreateDate")), DateTime.Now, dt.Rows(0).Item("CreateDate"))
+                    .UpdateBy = If(IsDBNull(dt.Rows(0).Item("UpdateBy")), "", dt.Rows(0).Item("UpdateBy").ToString())
+                    .UpdateDate = If(IsDBNull(dt.Rows(0).Item("UpdateDate")), DateTime.Now, dt.Rows(0).Item("UpdateDate"))
+                End With
+            End If
+            Return modelHeader
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub CheckDuplicateLayoutGedung(Data As PPICLayoutGedungModel)
+        Try
+            strQuery = "SELECT  *
+                        FROM    dbo.M_PPICUser
+                        WHERE   UserCode = " & QVal(Data.UserCode) & "
+                                AND Seq = " & Data.Seq & ""
+            Dim dtTable As New DataTable
+            dtTable = GetDataTable(strQuery)
+            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+                Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
+                "[" & Data.UserCode & "] & [" & Data.Seq & "]")
+            End If
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub InsertDataLayoutGedung(Data As PPICLayoutGedungModel)
+        Try
+            strQuery = "INSERT  INTO dbo.M_PPICUser
+                                ( UserCode ,
+                                  Seq ,
+                                  [Group] ,
+                                  SeqUser ,
+                                  PF ,
+                                  Gedung ,
+                                  Lokasi ,
+                                  CreateBy ,
+                                  CreateDate ,
+                                  UpdateBy ,
+                                  UpdateDate
+                                )
+                        VALUES  ( " & QVal(Data.UserCode) & " , -- UserCode - varchar(20)
+                                  " & Data.Seq & " , -- Seq - int
+                                  " & Data.Group & " , -- Group - int
+                                  " & Data.SeqUser & " , -- SeqUser - int
+                                  " & QVal(Data.PF) & " , -- PF - varchar(20)
+                                  " & Data.Gedung & " , -- Gedung - int
+                                  " & QVal(Data.Lokasi) & " , -- Lokasi - varchar(20)
+                                  " & QVal(Data.CreateBy) & " , -- CreateBy - varchar(20)
+                                  " & QVal(Data.CreateDate) & " , -- CreateDate - datetime
+                                  " & QVal(Data.UpdateBy) & " , -- UpdateBy - varchar(20)
+                                  " & QVal(Data.UpdateDate) & "  -- UpdateDate - datetime
+                                )"
+            MainModul.ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub UpdateDataLayoutGedung(Data As PPICLayoutGedungModel)
+        Try
+            strQuery = "UPDATE [New_BOM].[dbo].[M_PPICUser]
+                           SET [Group] = " & Data.Seq & "
+                              ,[SeqUser] = " & Data.SeqUser & "
+                              ,[PF] = " & QVal(Data.PF) & "
+                              ,[Gedung] = " & Data.Gedung & "
+                              ,[Lokasi] = " & QVal(Data.Lokasi) & "
+                              ,[UpdateBy] = " & QVal(Data.UpdateBy) & "
+                              ,[UpdateDate] = " & QVal(Data.UpdateDate) & "
+                         WHERE ID = " & Data.ID & ""
+            MainModul.ExecQuery(strQuery)
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
 #End Region
 
     Public Function GetDataConvertMuatHeader(dateFrom As Date, dateTo As Date) As DataTable

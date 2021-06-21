@@ -2606,6 +2606,12 @@
     <Compile Include="Form\PPIC\FrmPPICLayoutGedung.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\PPIC\FrmPPICLayoutGedungDetail.designer.vb">
+      <DependentUpon>FrmPPICLayoutGedungDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\PPIC\FrmPPICLayoutGedungDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\PPIC\FrmPPICUploadPO.Designer.vb">
       <DependentUpon>FrmPPICUploadPO.vb</DependentUpon>
     </Compile>
@@ -3141,6 +3147,7 @@
     <Compile Include="Models\PPIC\PPICConvertMuatDetailModel.vb" />
     <Compile Include="Models\PPIC\PPICConvertMuatHeaderModel.vb" />
     <Compile Include="Models\PPIC\PPICKapOEMModel.vb" />
+    <Compile Include="Models\PPIC\PPICLayoutGedungModel.vb" />
     <Compile Include="Models\ProblemModel.vb" />
     <Compile Include="Models\QcOutgoingModel.vb" />
     <Compile Include="Models\ReportAdmModels.vb" />
@@ -4476,6 +4483,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PPIC\FrmPPICLayoutGedung.resx">
       <DependentUpon>FrmPPICLayoutGedung.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\PPIC\FrmPPICLayoutGedungDetail.resx">
+      <DependentUpon>FrmPPICLayoutGedungDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\PPIC\FrmPPICUploadPO.resx">
       <DependentUpon>FrmPPICUploadPO.vb</DependentUpon>

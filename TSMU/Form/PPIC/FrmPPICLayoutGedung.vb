@@ -7,7 +7,7 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class FrmPPICLayoutGedung
     Dim srvPPIC As New PPICService()
     Dim dtGridUser As DataTable
-    'Dim frmDetail As FrmPPICLayoutGedungDetail
+    Dim frmDetail As FrmPPICLayoutGedungDetail
 
     Private Sub GridBuildup_Load(sender As Object, e As EventArgs) Handles GridLayoutGedung.Load
         bb_SetDisplayChangeConfirmation = False
@@ -68,16 +68,16 @@ Public Class FrmPPICLayoutGedung
     End Sub
 
     Private Sub CallFrmDetail(Optional ByVal ls_Code As String = "", Optional ByVal ls_Code2 As String = "", Optional ByVal li_Row As Integer = 0)
-        'If frmDetail IsNot Nothing AndAlso frmDetail.Visible Then
-        '    If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
-        '        Exit Sub
-        '    End If
-        '    frmDetail.Close()
-        'End If
-        'frmDetail = New FrmPPICLayoutGedungDetail(ls_Code, ls_Code2, Me, li_Row, GridBuildup)
-        'frmDetail.MdiParent = FrmMain
-        'frmDetail.StartPosition = FormStartPosition.CenterScreen
-        'frmDetail.Show()
+        If frmDetail IsNot Nothing AndAlso frmDetail.Visible Then
+            If MsgBox(gs_ConfirmDetailOpen, MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then
+                Exit Sub
+            End If
+            frmDetail.Close()
+        End If
+        frmDetail = New FrmPPICLayoutGedungDetail(ls_Code, ls_Code2, Me, li_Row, GridLayoutGedung)
+        frmDetail.MdiParent = FrmMain
+        frmDetail.StartPosition = FormStartPosition.CenterScreen
+        frmDetail.Show()
     End Sub
 
     Private Sub GridLayoutGedung_DoubleClick(sender As Object, e As EventArgs) Handles GridLayoutGedung.DoubleClick
