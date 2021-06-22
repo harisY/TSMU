@@ -246,7 +246,7 @@ Public Class FrmMktExcelPrice
                         'Jika partno / alternateid tidak ditemukan di Master
                         message = "Part No Not Found !"
                         _error += 1
-                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "",rows(clmDescExcel)), 0, 0, 0, startDate, status, message)
                     ElseIf rowInvtID.Count = 1 Then
                         'Jika 1 partno memiliki 1 inventoryid
                         newPriceR = 0
@@ -259,7 +259,7 @@ Public Class FrmMktExcelPrice
                             status = "Error"
                             message = "Price Not Found !"
                             _error += 1
-                            addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                            addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), 0, 0, 0, startDate, status, message)
                         Else
                             If clmPriceExcelS Is Nothing OrElse clmPartNoExcelS IsNot Nothing Then
                                 newPriceR = IIf(rows(clmPriceExcelP) Is DBNull.Value, rowInvtID(0)("DiscPrice"), rows(clmPriceExcelP))
@@ -274,11 +274,11 @@ Public Class FrmMktExcelPrice
                                 status = "Warning"
                                 message = "Part No More Than 1 !"
                                 warning += 1
-                                addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                             Else
                                 status = "Success"
                                 succes += 1
-                                addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                             End If
                         End If
                     ElseIf rowInvtID.Count > 1 Then
@@ -297,19 +297,19 @@ Public Class FrmMktExcelPrice
                                     status = "Error"
                                     message = "Price Not Found !"
                                     _error += 1
-                                    addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                                    addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), 0, 0, 0, startDate, status, message)
                                 Else
                                     newPriceR = IIf(rows(clmPriceExcelP) Is DBNull.Value, rowInvtID(j)("DiscPrice"), rows(clmPriceExcelP))
                                     If CheckDuplicateInvtID(rows(clmPartNoExcel), invtID) Then
                                         status = "Warning"
                                         message = "Part No More Than 1 !"
                                         warning += 1
-                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                                     Else
                                         status = "Info"
                                         message = "Invt ID More Than 1 !"
                                         info += 1
-                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                                     End If
                                 End If
                             ElseIf rowInvtID(j)("PartType") = "P" OrElse rowInvtID(j)("PartType") = "N" Then
@@ -317,19 +317,19 @@ Public Class FrmMktExcelPrice
                                     status = "Error"
                                     message = "Price Not Found !"
                                     _error += 1
-                                    addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                                    addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), 0, 0, 0, startDate, status, message)
                                 Else
                                     newPriceR = IIf(rows(clmPriceExcelP) Is DBNull.Value, rowInvtID(j)("DiscPrice"), rows(clmPriceExcelP))
                                     If CheckDuplicateInvtID(rows(clmPartNoExcel), invtID) Then
                                         status = "Warning"
                                         message = "Part No More Than 1 !"
                                         warning += 1
-                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                                     Else
                                         status = "Info"
                                         message = "Invt ID More Than 1 !"
                                         info += 1
-                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                                     End If
                                 End If
                             ElseIf rowInvtID(j)("PartType") = "S" Then
@@ -337,19 +337,19 @@ Public Class FrmMktExcelPrice
                                     status = "Error"
                                     message = "Price Not Found !"
                                     _error += 1
-                                    addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                                    addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), 0, 0, 0, startDate, status, message)
                                 Else
                                     newPriceS = IIf(rows(clmPriceExcelS) Is DBNull.Value, rows(clmPriceExcelP), rows(clmPriceExcelS))
                                     If CheckDuplicateInvtID(rows(clmPartNoExcel), invtID) Then
                                         status = "Warning"
                                         message = "Part No More Than 1 !"
                                         warning += 1
-                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                                     Else
                                         status = "Info"
                                         message = "Invt ID More Than 1 !"
                                         info += 1
-                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                        addNewDtResult(NoExcel, rows(clmPartNoExcel), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                                     End If
                                 End If
                             End If
@@ -374,7 +374,7 @@ Public Class FrmMktExcelPrice
                         'Jika partno / alternateid tidak ditemukan di Master
                         message = "Part No Not Found !"
                         _error += 1
-                        addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                        addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), 0, 0, 0, startDate, status, message)
                     ElseIf rowInvtID.Count = 1 Then
                         'Jika 1 partno memiliki 1 inventoryid
                         newPriceR = 0
@@ -387,18 +387,18 @@ Public Class FrmMktExcelPrice
                             status = "Error"
                             message = "Price Not Found !"
                             _error += 1
-                            addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                            addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), 0, 0, 0, startDate, status, message)
                         Else
                             newPriceS = IIf(rows(clmPriceExcelS) Is DBNull.Value, rowInvtID(0)("DiscPrice"), rows(clmPriceExcelS))
                             If CheckDuplicateInvtID(rows(clmPartNoExcelS), invtID) Then
                                 status = "Warning"
                                 message = "Part No More Than 1 !"
                                 warning += 1
-                                addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                             Else
                                 status = "Success"
                                 succes += 1
-                                addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(0)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                             End If
                         End If
                     ElseIf rowInvtID.Count > 1 Then
@@ -416,19 +416,19 @@ Public Class FrmMktExcelPrice
                                 status = "Error"
                                 message = "Price Not Found !"
                                 _error += 1
-                                addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), 0, 0, 0, startDate, status, message)
+                                addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), 0, 0, 0, startDate, status, message)
                             Else
                                 newPriceS = IIf(rows(clmPriceExcelS) Is DBNull.Value, rowInvtID(j)("DiscPrice"), rows(clmPriceExcelS))
                                 If CheckDuplicateInvtID(rows(clmPartNoExcelS), invtID) Then
                                     status = "Warning"
                                     message = "Part No More Than 1 !"
                                     warning += 1
-                                    addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                    addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                                 Else
                                     status = "Info"
                                     message = "Invt ID More Than 1 !"
                                     info += 1
-                                    addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, rows(clmDescExcel), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
+                                    addNewDtResult(NoExcel, rows(clmPartNoExcelS), invtID, IIf(rows(clmDescExcel) Is DBNull.Value, "", rows(clmDescExcel)), rowInvtID(j)("DiscPrice"), newPriceR, newPriceS, startDate, status, message)
                                 End If
                             End If
                         Next

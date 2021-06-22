@@ -165,7 +165,7 @@ Public Class FrmMktUploadPriceDetail
                     .CustID = custID
                     .PartNo = GridViewDetail.GetRowCellValue(i, "PartNo")
                     .InvtID = GridViewDetail.GetRowCellValue(i, "InvtID")
-                    .Desc = GridViewDetail.GetRowCellValue(i, "PartName")
+                    .Desc = IIf(GridViewDetail.GetRowCellValue(i, "PartName") Is DBNull.Value, "", GridViewDetail.GetRowCellValue(i, "PartName"))
                     .OldPrice = GridViewDetail.GetRowCellValue(i, "OldPrice")
                     .NewPriceR = GridViewDetail.GetRowCellValue(i, "NewPriceR")
                     .NewPriceS = GridViewDetail.GetRowCellValue(i, "NewPriceS")
