@@ -816,6 +816,7 @@ Partial Class Frm_Npwo_Detail1
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.Grid)
         Me.Name = "Frm_Npwo_Detail1"
+        Me.Text = "NPWO Details"
         Me.Controls.SetChildIndex(Me.Grid, 0)
         Me.Controls.SetChildIndex(Me.GroupBox3, 0)
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
