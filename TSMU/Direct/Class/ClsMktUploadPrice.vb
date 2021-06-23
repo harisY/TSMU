@@ -19,8 +19,10 @@ Public Class ClsMktUploadPrice
         Try
             Dim sql As String
             sql = " SELECT  *
-                    FROM    dbo.S_MktTemplateUploadPrice 
-                    Where   CustID = " & QVal(custID) & ""
+                    FROM    dbo.S_MktTemplateUploadPrice
+                    WHERE   CustID = " & QVal(custID) & "
+                            OR CustID = 'ALL'
+                    ORDER BY TemplateID ASC; "
             Dim dt As New DataTable
             dt = GetDataTable(sql)
             Return dt
@@ -33,8 +35,9 @@ Public Class ClsMktUploadPrice
         Try
             Dim sql As String
             sql = " SELECT  pvt.TemplateID ,
-                            pvt.invtid AS PartNoR ,
-                            pvt.invtidS AS PartNoS ,
+                            pvt.invtid AS InvtID ,
+                            pvt.partnoR AS PartNoR ,
+                            pvt.partnoS AS PartNoS ,
                             pvt.[desc] AS [Desc] ,
                             pvt.discpriceP AS PriceP ,
                             pvt.discpriceS AS PriceS ,
@@ -45,7 +48,8 @@ Public Class ClsMktUploadPrice
                               FROM      dbo.S_MktMappingUploadPrice
                               WHERE     TemplateID = " & QVal(templateID) & "
                             ) AS tbl PIVOT ( MAX(ColumnInExcel) FOR ColumnInTable IN ( [invtid],
-                                                                                  [invtidS],
+                                                                                  [partnoR],
+                                                                                  [partnoS],
                                                                                   [desc],
                                                                                   [discpriceP],
                                                                                   [discpriceS],
