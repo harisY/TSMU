@@ -166,6 +166,7 @@ Public Class FrmPemakaianMaterial_CKR
     Public Sub LoadGridDetail()
         Try
             If fs_Code <> "" Then
+
                 Dim dtGridMaterial As New DataTable
                 dtGridMaterial = fc_Class.GetDataDetailMaterial(fs_Code)
                 GridMaterial.DataSource = dtGridMaterial
@@ -449,6 +450,7 @@ Public Class FrmPemakaianMaterial_CKR
                             dtHeader.Load(cmdHeader.ExecuteReader)
 
                             cn.Close()
+
                             GridMaterial.DataSource = dt
 
                             cnKomponen.Close()

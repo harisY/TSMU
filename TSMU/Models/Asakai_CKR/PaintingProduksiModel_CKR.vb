@@ -67,7 +67,8 @@ Public Class PaintingProduksiModel_CKR
     Public Function GetAllDataTable(ByVal ls_Filter As String) As DataTable
         Try
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            'dtTable = MainModul.GetDataTableByCommand(Me._Query)
+            dtTable = GetDataTableByParam(Me._Query, CommandType.Text, Nothing, GetConnStringDbCKR)
             Return dtTable
         Catch ex As Exception
             Throw
@@ -77,36 +78,68 @@ Public Class PaintingProduksiModel_CKR
     Public Sub GetIDTransAuto()
         Dim fc_ClassDetail As New InjectionDetailModel
         Try
-            Dim Tahun As String
-            Tahun = Format(Now, "yy")
 
-            Dim ls_SP As String = "SELECT [IdTransaksi]                   
-                                    FROM [AsakaiPaintingStraightPass] order by IdTransaksi desc" 'where IDTrans= " & QVal(IDTrans) & " or TanggalSampai = '" & TanggalDari & "' "
+            Dim Tahun, Bulan As String
+            Tahun = Format(Now, "yy")
+            Bulan = Format(Now, "MM")
+
+            Dim ls_SP As String = "SELECT top 1 [IdTransaksi]                   
+                                    FROM [AsakaiPaintingStraightPass]
+                                    where substring([IdTransaksi], 3, 2) = '" & Tahun & "'
+                                    and substring([IdTransaksi], 5, 2) = '" & Bulan & "'
+                                    and Dept = '" & gh_Common.GroupID & "'
+                                    order by substring([IdTransaksi], 7, 4) desc"
             Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            Dim Ulang As String = Tahun
-            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
-                IDTrans = "STR" & Tahun & "0001"
-            Else
-                IDTrans = dtTable.Rows(0).Item("IdTransaksi")
-                IDTrans = Microsoft.VisualBasic.Mid(IDTrans, 4, 2)
-                If IDTrans <> Ulang Then
-                    IDTrans = "STR" & Tahun & "0001"
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
+            'dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            Dim Ulang As String = Tahun & Bulan
+
+            If gh_Common.GroupID = "32PP" Then
+                If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
+                    IDTrans = "PA" & Tahun & Bulan & "0001"
                 Else
                     IDTrans = dtTable.Rows(0).Item("IdTransaksi")
-                    IDTrans = Val(Microsoft.VisualBasic.Mid(IDTrans, 6, 4)) + 1
-                    If Len(IDTrans) = 1 Then
-                        IDTrans = "STR" & Tahun & "000" & IDTrans & ""
-                    ElseIf Len(IDTrans) = 2 Then
-                        IDTrans = "STR" & Tahun & "00" & IDTrans & ""
-                    ElseIf Len(IDTrans) = 3 Then
-                        IDTrans = "STR" & Tahun & "0" & IDTrans & ""
+                    IDTrans = Microsoft.VisualBasic.Mid(IDTrans, 3, 4)
+                    If IDTrans <> Ulang Then
+                        IDTrans = "PA" & Tahun & Bulan & "0001"
                     Else
-                        IDTrans = "STR" & Tahun & IDTrans & ""
+                        IDTrans = dtTable.Rows(0).Item("IdTransaksi")
+                        IDTrans = Val(Microsoft.VisualBasic.Mid(IDTrans, 7, 4)) + 1
+                        If Len(IDTrans) = 1 Then
+                            IDTrans = "PA" & Tahun & Bulan & "000" & IDTrans & ""
+                        ElseIf Len(IDTrans) = 2 Then
+                            IDTrans = "PA" & Tahun & Bulan & "00" & IDTrans & ""
+                        ElseIf Len(IDTrans) = 3 Then
+                            IDTrans = "PA" & Tahun & Bulan & "0" & IDTrans & ""
+                        Else
+                            IDTrans = "PA" & Tahun & Bulan & IDTrans & ""
+                        End If
                     End If
 
                 End If
+            Else
+                If dtTable IsNot Nothing AndAlso dtTable.Rows.Count <= 0 Then
+                    IDTrans = "PB" & Tahun & Bulan & "0001"
+                Else
+                    IDTrans = dtTable.Rows(0).Item("IdTransaksi")
+                    IDTrans = Microsoft.VisualBasic.Mid(IDTrans, 3, 4)
+                    If IDTrans <> Ulang Then
+                        IDTrans = "PB" & Tahun & Bulan & "0001"
+                    Else
+                        IDTrans = dtTable.Rows(0).Item("IdTransaksi")
+                        IDTrans = Val(Microsoft.VisualBasic.Mid(IDTrans, 7, 4)) + 1
+                        If Len(IDTrans) = 1 Then
+                            IDTrans = "PB" & Tahun & Bulan & "000" & IDTrans & ""
+                        ElseIf Len(IDTrans) = 2 Then
+                            IDTrans = "PB" & Tahun & Bulan & "00" & IDTrans & ""
+                        ElseIf Len(IDTrans) = 3 Then
+                            IDTrans = "PB" & Tahun & Bulan & "0" & IDTrans & ""
+                        Else
+                            IDTrans = "PB" & Tahun & Bulan & IDTrans & ""
+                        End If
+                    End If
 
+                End If
             End If
 
             fc_ClassDetail.D_IdTransaksi = IDTrans
@@ -116,9 +149,61 @@ Public Class PaintingProduksiModel_CKR
         End Try
     End Sub
 
-    Public Sub InsertInjection()
+    Public Sub getDataByID(ByVal ID As String)
         Try
-            Using Conn1 As New SqlClient.SqlConnection(GetConnString)
+            Dim query As String = "SELECT AsakaiPemakaianMaterialKomponen.IDTrans    
+                                    ,AsakaiPemakaianMaterialKomponen.TanggalDari
+                                    ,AsakaiPemakaianMaterialKomponen.TanggalSampai
+                                    ,AsakaiPemakaianMaterialKomponen.Keterangan
+                                    ,AsakaiPemakaianMaterial.[1.AktualRP]
+                                    ,AsakaiPemakaianMaterial.[2.Sales]
+                                    ,AsakaiPemakaianMaterial.[3.% Sales]
+                                    ,AsakaiPemakaianMaterial.[4.AktualProduksi]
+                                    ,AsakaiPemakaianMaterial.[5. % Inj ]
+                                    ,AsakaiPemakaianMaterial.[6.Target]
+                                    ,AsakaiPemakaianKomponen.[1.AktualRP]
+                                    ,AsakaiPemakaianKomponen.[2.Sales]
+                                    ,AsakaiPemakaianKomponen.[3.% Sales]
+                                    ,AsakaiPemakaianKomponen.[4.AktualProduksi]
+                                    ,AsakaiPemakaianKomponen.[5. % Inj ]
+                                    ,AsakaiPemakaianKomponen.[6.Target]
+                                    ,AsakaiPemakaianMaterialKomponen.KolomQty
+                                    ,AsakaiPemakaianMaterialKomponen.KolomHarga
+                                    FROM AsakaiPemakaianMaterialKomponen inner join AsakaiPemakaianMaterial on AsakaiPemakaianMaterialKomponen.IDTrans = AsakaiPemakaianMaterial.IDTrans
+                                    inner join AsakaiPemakaianKomponen on AsakaiPemakaianMaterialKomponen.IDTrans = AsakaiPemakaianKomponen.IDTrans WHERE AsakaiPemakaianMaterialKomponen.IDTrans = " & QVal(ID) & ""
+            Dim dtTable As New DataTable
+            'dtTable = MainModul.GetDataTableByCommand(query)
+            dtTable = GetDataTableByParam(query, CommandType.Text, Nothing, GetConnStringDbCKR)
+            If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
+                With dtTable.Rows(0)
+                    'Me.IDTrans = Trim(.Item(0) & "")
+                    'Me.TanggalDari = Trim(.Item(1) & "")
+                    'Me.TanggalSampai = Trim(.Item(2) & "")
+                    'Me.Keterangan = Trim(.Item(3) & "")
+                    'Me.MaterialAktualRP = Trim(.Item(4) & "")
+                    'Me.Sales = Trim(.Item(5) & "")
+                    'Me.MaterialPercent1 = Trim(.Item(6) & "")
+                    'Me.AktualProduksi = Trim(.Item(7) & "")
+                    'Me.MaterialPercent2 = Trim(.Item(8) & "")
+                    'Me.MaterialTarget = Trim(.Item(9) & "")
+                    'Me.KomponenAktualRP = Trim(.Item(10) & "")
+                    'Me.KomponenPercent1 = Trim(.Item(12) & "")
+                    'Me.KomponenPercent2 = Trim(.Item(14) & "")
+                    'Me.KomponenTarget = Trim(.Item(15) & "")
+                    'Me.KolomQty = Trim(.Item(16) & "")
+                    'Me.KolomHarga = Trim(.Item(17) & "")
+                End With
+            Else
+
+            End If
+        Catch ex As Exception
+            Throw
+        End Try
+    End Sub
+
+    Public Sub Insert()
+        Try
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
                 Conn1.Open()
                 Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
                     gh_Trans = New InstanceVariables.TransactionHelper
@@ -165,8 +250,6 @@ Public Class PaintingProduksiModel_CKR
     Public Sub InsertStraightPass()
         Dim result As Integer = 0
         Try
-
-
             Dim ls_SP As String = "INSERT INTO [AsakaiPaintingStraightPass]
                                            ([IdTransaksi]
                                            ,[Tanggal]
@@ -206,7 +289,8 @@ Public Class PaintingProduksiModel_CKR
                                            ,[B Ok Total]
                                            ,[B OK Part %]
                                            ,[CreatedBy]
-                                           ,[CreatedDate])
+                                           ,[CreatedDate]
+                                           ,[Dept])
                                      VALUES 
                                             (" & QVal(IDTrans) & " 
                                             ," & QVal(Me.Tanggal) & "
@@ -218,7 +302,7 @@ Public Class PaintingProduksiModel_CKR
                                             ," & QVal(Me.F_NG) & "
                                             ," & QVal(Me.G_TARGET_STRAIGHT_PASS) & "
                                             ," & QVal(Me.H_STRAIGT_PASS) & "
-                                              ," & QVal(Me.Dummy) & "
+                                             ," & QVal(Me.Dummy) & "
                                           ," & QVal(Me.J_OK_PART_LINE_OK_POLESH) & "
                                             ," & QVal(Me.K_OK_PART_Persen) & "
                                             ," & QVal(Me.Dummy) & "
@@ -246,10 +330,10 @@ Public Class PaintingProduksiModel_CKR
                                             ," & QVal(Me.Dummy) & "
                                             ," & QVal(Me.Dummy) & "
                                             ," & QVal(gh_Common.Username) & "
-                                            ,GETDATE())"
+                                            ,GETDATE()
+                                            ," & QVal(gh_Common.GroupID) & ")"
 
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw
         End Try
@@ -257,8 +341,6 @@ Public Class PaintingProduksiModel_CKR
     Public Sub InsertScrap()
         Dim result As Integer = 0
         Try
-
-
             Dim ls_SP As String = "INSERT INTO [AsakaiPaintingScrap]
                                            ([IdTransaksi]
                                            ,[Tanggal]
@@ -277,34 +359,84 @@ Public Class PaintingProduksiModel_CKR
                                             ," & QVal(Me.Scrap_TARGET) & "
                                             ," & QVal(gh_Common.Username) & "
                                             ,GETDATE())"
-
-            Dim dtTable As New DataTable
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            ExecQueryWithValue(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
         Catch ex As Exception
             Throw
         End Try
     End Sub
 
+    'Public Sub Delete(ByVal ID As String)
+    '    Try
+    '        'Delete Header
+    '        Dim ls_DeleteHeader As String = "DELETE FROM AsakaiPaintingStraightPass WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+    '        'MainModul.ExecQuery(ls_DeleteHeader)
+    '        ExecQueryWithValue(ls_DeleteHeader, CommandType.Text, Nothing, GetConnStringDbCKR)
+
+    '        Dim ls_DeleteScrap As String = "DELETE FROM AsakaiPaintingScrap WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+    '        'MainModul.ExecQuery(ls_DeleteScrap)
+    '        ExecQueryWithValue(ls_DeleteScrap, CommandType.Text, Nothing, GetConnStringDbCKR)
+
+    '        Dim ls_DeleteScrapDetail As String = "DELETE FROM AsakaiPaintingDetailPartScrap WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+    '        'MainModul.ExecQuery(ls_DeleteScrapDetail)
+    '        ExecQueryWithValue(ls_DeleteScrap + ls_DeleteScrapDetail, CommandType.Text, Nothing, GetConnStringDbCKR)
+
+    '        Dim ls_DeleteProblemQty As String = "DELETE FROM AsakaiPaintingProblemQty WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+    '        'MainModul.ExecQuery(ls_DeleteProblemQty)
+    '        ExecQueryWithValue(ls_DeleteProblemQty, CommandType.Text, Nothing, GetConnStringDbCKR)
+
+    '        Dim ls_DeleteProblemAnalisa As String = "DELETE FROM AsakaiPaintingProblemAnalisa WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+    '        'MainModul.ExecQuery(ls_DeleteProblemAnalisa)
+    '        ExecQueryWithValue(ls_DeleteProblemAnalisa, CommandType.Text, Nothing, GetConnStringDbCKR)
+
+
+    '        'DeleteDetail
+    '    Catch ex As Exception
+    '        Throw
+    '    End Try
+    'End Sub
+
     Public Sub Delete(ByVal ID As String)
         Try
-            'Delete Header
-            Dim ls_DeleteHeader As String = "DELETE FROM AsakaiPaintingStraightPass WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteHeader)
+            Using Conn1 As New SqlClient.SqlConnection(GetConnStringDbCKR)
+                Conn1.Open()
+                Using Trans1 As SqlClient.SqlTransaction = Conn1.BeginTransaction
+                    gh_Trans = New InstanceVariables.TransactionHelper
+                    gh_Trans.Command.Connection = Conn1
+                    gh_Trans.Command.Transaction = Trans1
 
-            Dim ls_DeleteScrap As String = "DELETE FROM AsakaiPaintingScrap WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteScrap)
+                    Try
 
-            Dim ls_DeleteScrapDetail As String = "DELETE FROM AsakaiPaintingDetailPartScrap WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteScrapDetail)
+                        Dim ls_DeleteHeader As String = "DELETE FROM AsakaiPaintingStraightPass WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        'MainModul.ExecQuery(ls_DeleteHeader)
+                        ExecQueryWithValue(ls_DeleteHeader, CommandType.Text, Nothing, GetConnStringDbCKR)
 
-            Dim ls_DeleteProblemQty As String = "DELETE FROM AsakaiPaintingProblemQty WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteProblemQty)
+                        Dim ls_DeleteScrap As String = "DELETE FROM AsakaiPaintingScrap WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        'MainModul.ExecQuery(ls_DeleteScrap)
+                        ExecQueryWithValue(ls_DeleteScrap, CommandType.Text, Nothing, GetConnStringDbCKR)
 
-            Dim ls_DeleteProblemAnalisa As String = "DELETE FROM AsakaiPaintingProblemAnalisa WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
-            MainModul.ExecQuery(ls_DeleteProblemAnalisa)
+                        Dim ls_DeleteScrapDetail As String = "DELETE FROM AsakaiPaintingDetailPartScrap WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        'MainModul.ExecQuery(ls_DeleteScrapDetail)
+                        ExecQueryWithValue(ls_DeleteScrap + ls_DeleteScrapDetail, CommandType.Text, Nothing, GetConnStringDbCKR)
+
+                        Dim ls_DeleteProblemQty As String = "DELETE FROM AsakaiPaintingProblemQty WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        'MainModul.ExecQuery(ls_DeleteProblemQty)
+                        ExecQueryWithValue(ls_DeleteProblemQty, CommandType.Text, Nothing, GetConnStringDbCKR)
+
+                        Dim ls_DeleteProblemAnalisa As String = "DELETE FROM AsakaiPaintingProblemAnalisa WHERE rtrim(IdTransaksi)=" & QVal(ID) & ""
+                        'MainModul.ExecQuery(ls_DeleteProblemAnalisa)
+                        ExecQueryWithValue(ls_DeleteProblemAnalisa, CommandType.Text, Nothing, GetConnStringDbCKR)
 
 
-            'DeleteDetail
+                        Trans1.Commit()
+
+                    Catch ex As Exception
+                        Trans1.Rollback()
+                        Throw
+                    Finally
+                        gh_Trans = Nothing
+                    End Try
+                End Using
+            End Using
         Catch ex As Exception
             Throw
         End Try
@@ -313,10 +445,13 @@ Public Class PaintingProduksiModel_CKR
     Public Sub ValidateInsert()
         Try
             Dim ls_SP As String = "SELECT TOP 1 [IdTransaksi],Tanggal                   
-                                    FROM [AsakaiPaintingStraightPass] where Tanggal = '" & Tanggal & "' "
+                                    FROM [AsakaiPaintingStraightPass] 
+                                    where Tanggal = '" & Tanggal & "'
+                                    and Dept = '" & gh_Common.GroupID & "'"
             Dim dtTable As New DataTable
             'dtTable = MainModul.GetDataTableByCommand(ls_SP)
-            dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            'dtTable = MainModul.GetDataTableByCommand(ls_SP)
+            dtTable = GetDataTableByParam(ls_SP, CommandType.Text, Nothing, GetConnStringDbCKR)
             If dtTable IsNot Nothing AndAlso dtTable.Rows.Count > 0 Then
                 Err.Raise(ErrNumber, , GetMessage(MessageEnum.InsertGagal) &
                 "[" & Me.Tanggal & " ")
