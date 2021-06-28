@@ -245,7 +245,7 @@ Partial Public Class DRCCSettlement
         '
         'XrTableCell11
         '
-        Me.XrTableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "ToDouble([CCNumberMaster])")})
+        Me.XrTableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[CCNumberMaster]")})
         Me.XrTableCell11.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.XrTableCell11.Multiline = True
         Me.XrTableCell11.Name = "XrTableCell11"
