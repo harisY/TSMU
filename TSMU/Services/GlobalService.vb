@@ -269,4 +269,19 @@
         End Try
     End Function
 
+    Public Function GetGeneralParam(Param As String) As DataTable
+        Try
+            Dim Dt As New DataTable
+            Dim Sql As String = String.Empty
+            Sql = " SELECT  Value1 ,
+                            Value2
+                    FROM    dbo.S_GeneralParam
+                    WHERE   [Param] = " & QVal(Param) & " "
+            Dt = GetDataTableByParam(Sql, CommandType.Text, Nothing, GetConnString)
+            Return Dt
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 End Class

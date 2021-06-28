@@ -255,7 +255,7 @@ Public Class FrmMktExcelPrice
                             newPriceS = 0
                             invtID = rowInvtID(0)("InvtID").ToString
                             If clmDateExcel IsNot Nothing Then
-                                startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, rowInvtID(0)("StartDate"), rows(clmDateExcel)))
+                                startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, startDate, rows(clmDateExcel)))
                             End If
                             If String.IsNullOrEmpty(IIf(rowInvtID(0)("DiscPrice") Is DBNull.Value, "", rowInvtID(0)("DiscPrice").ToString)) Then
                                 status = "Error"
@@ -311,7 +311,7 @@ Public Class FrmMktExcelPrice
                             newPriceS = 0
                             invtID = rowInvtID(0)("InvtID").ToString
                             If clmDateExcel IsNot Nothing Then
-                                startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, rowInvtID(0)("StartDate"), rows(clmDateExcel)))
+                                startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, startDate, rows(clmDateExcel)))
                             End If
                             If String.IsNullOrEmpty(IIf(rowInvtID(0)("DiscPrice") Is DBNull.Value, "", rowInvtID(0)("DiscPrice").ToString)) Then
                                 status = "Error"
@@ -348,7 +348,7 @@ Public Class FrmMktExcelPrice
                                 maxTotTrans = 0
                                 invtID = rowInvtID(j)("InvtID").ToString
                                 If clmDateExcel IsNot Nothing Then
-                                    startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, rowInvtID(j)("StartDate"), rows(clmDateExcel)))
+                                    startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, startDate, rows(clmDateExcel)))
                                 End If
                                 If clmPriceExcelS Is Nothing OrElse clmPartNoExcelS IsNot Nothing Then
                                     If String.IsNullOrEmpty(IIf(rowInvtID(j)("DiscPrice") Is DBNull.Value, "", rowInvtID(j)("DiscPrice").ToString)) Then
@@ -439,7 +439,7 @@ Public Class FrmMktExcelPrice
                             newPriceS = 0
                             invtID = rowInvtID(0)("InvtID").ToString
                             If clmDateExcel IsNot Nothing Then
-                                startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, rowInvtID(0)("StartDate"), rows(clmDateExcel)))
+                                startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, startDate, rows(clmDateExcel)))
                             End If
                             If String.IsNullOrEmpty(IIf(rowInvtID(0)("DiscPrice") Is DBNull.Value, "", rowInvtID(0)("DiscPrice").ToString)) Then
                                 status = "Error"
@@ -468,7 +468,7 @@ Public Class FrmMktExcelPrice
                                 maxTotTrans = 0
                                 invtID = rowInvtID(j)("InvtID").ToString
                                 If clmDateExcel IsNot Nothing Then
-                                    startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, rowInvtID(j)("StartDate"), rows(clmDateExcel)))
+                                    startDate = Convert.ToDateTime(IIf(rows(clmDateExcel) Is DBNull.Value, startDate, rows(clmDateExcel)))
                                 End If
                                 If String.IsNullOrEmpty(IIf(rowInvtID(j)("DiscPrice") Is DBNull.Value, "", rowInvtID(j)("DiscPrice").ToString)) Then
                                     status = "Error"
