@@ -21614,6 +21614,8 @@ Partial Public Class dsLaporan
         
         Private columnJmlPacking As Global.System.Data.DataColumn
         
+        Private columnKebutuhanTruk As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -21802,6 +21804,14 @@ Partial Public Class dsLaporan
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property KebutuhanTrukColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKebutuhanTruk
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -21857,9 +21867,10 @@ Partial Public Class dsLaporan
                     ByVal ButuhPacking As String,  _
                     ByVal GroupTruk As String,  _
                     ByVal Barcode As String,  _
-                    ByVal JmlPacking As String) As PPICBuktiMuatRow
+                    ByVal JmlPacking As String,  _
+                    ByVal KebutuhanTruk As Decimal) As PPICBuktiMuatRow
             Dim rowPPICBuktiMuatRow As PPICBuktiMuatRow = CType(Me.NewRow,PPICBuktiMuatRow)
-            Dim columnValuesArray() As Object = New Object() {NoUpload, No, NoMobil, TglKirim, Tujuan, ItemNumber, ItemName, UserCode, PL, Hourly, OrderNo, JenisPacking, OrderQuantity, StandarQty, KapasitasMuat, ButuhPacking, GroupTruk, Barcode, JmlPacking}
+            Dim columnValuesArray() As Object = New Object() {NoUpload, No, NoMobil, TglKirim, Tujuan, ItemNumber, ItemName, UserCode, PL, Hourly, OrderNo, JenisPacking, OrderQuantity, StandarQty, KapasitasMuat, ButuhPacking, GroupTruk, Barcode, JmlPacking, KebutuhanTruk}
             rowPPICBuktiMuatRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowPPICBuktiMuatRow)
             Return rowPPICBuktiMuatRow
@@ -21901,6 +21912,7 @@ Partial Public Class dsLaporan
             Me.columnGroupTruk = MyBase.Columns("GroupTruk")
             Me.columnBarcode = MyBase.Columns("Barcode")
             Me.columnJmlPacking = MyBase.Columns("JmlPacking")
+            Me.columnKebutuhanTruk = MyBase.Columns("KebutuhanTruk")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -21944,6 +21956,8 @@ Partial Public Class dsLaporan
             MyBase.Columns.Add(Me.columnBarcode)
             Me.columnJmlPacking = New Global.System.Data.DataColumn("JmlPacking", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnJmlPacking)
+            Me.columnKebutuhanTruk = New Global.System.Data.DataColumn("KebutuhanTruk", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKebutuhanTruk)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -43839,6 +43853,21 @@ Partial Public Class dsLaporan
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property KebutuhanTruk() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablePPICBuktiMuat.KebutuhanTrukColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'KebutuhanTruk' in table 'PPICBuktiMuat' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePPICBuktiMuat.KebutuhanTrukColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNoUploadNull() As Boolean
             Return Me.IsNull(Me.tablePPICBuktiMuat.NoUploadColumn)
         End Function
@@ -44063,6 +44092,18 @@ Partial Public Class dsLaporan
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetJmlPackingNull()
             Me(Me.tablePPICBuktiMuat.JmlPackingColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsKebutuhanTrukNull() As Boolean
+            Return Me.IsNull(Me.tablePPICBuktiMuat.KebutuhanTrukColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetKebutuhanTrukNull()
+            Me(Me.tablePPICBuktiMuat.KebutuhanTrukColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

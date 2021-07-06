@@ -19,6 +19,7 @@ Public Class FrmPPICUploadPO
     Dim succes As Integer
     Dim warning As Integer
     Dim _error As Integer
+    Dim total As Integer
 
     Public Sub New()
         ' This call is required by the designer.
@@ -162,6 +163,7 @@ Public Class FrmPPICUploadPO
                 succes = 0
                 warning = 0
                 _error = 0
+                total = 0
                 SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
                 SplashScreenManager.Default.SetWaitFormCaption("Please wait...")
 
@@ -170,6 +172,7 @@ Public Class FrmPPICUploadPO
                 For Each rows As DataRow In dtExcel.Rows
 
                     If Not String.IsNullOrEmpty(IIf(rows("Item Number") Is DBNull.Value, "", rows("Item Number"))) Then
+                        total += 1
                         Dim rowBuildup As DataRow()
                         Dim status As String = "Error"
                         Dim message As String = String.Empty
@@ -223,7 +226,7 @@ Public Class FrmPPICUploadPO
                 SplashScreenManager.CloseForm()
                 GridViewResult.BestFitColumns()
 
-                StatusList(succes, warning, _error, dtExcel.Rows.Count)
+                StatusList(succes, warning, _error, total)
                 If _error = 0 Then
                     btnExport.Text = "Upload"
                 Else

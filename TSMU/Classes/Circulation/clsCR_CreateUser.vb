@@ -1973,10 +1973,23 @@ Public Class ClsCR_CreateUser
                         'SMTP.Send(MyMailMessage)
 
                         Try
+                            '' Add by Midi for get send mail from database
+                            Dim gService As New GlobalService
+                            Dim dtGenParam As New DataTable
+                            dtGenParam = gService.GetGeneralParam("SendMailCirculation")
+
+                            Dim mailSender As String = String.Empty
+                            Dim mailPassword As String = String.Empty
+
+                            If dtGenParam.Rows.Count > 0 Then
+                                mailSender = dtGenParam.Rows(0).Item("Value1").ToString()
+                                mailPassword = dtGenParam.Rows(0).Item("Value2").ToString()
+                            End If
+                            ''
 
                             Dim oMail As New SmtpMail("TryIt")
                             ' Set sender email address, please change it to yours
-                            oMail.From = "circulation@tsmu.co.id"
+                            oMail.From = mailSender
                             ' Set recipient email address, please change it to yours
                             'oMail.To = "miftah-mis@tsmu.co.id"
 
@@ -2012,8 +2025,8 @@ Public Class ClsCR_CreateUser
                             Dim oServer As New SmtpServer("mail.tsmu.co.id")
 
                             ' User and password for ESMTP authentication
-                            oServer.User = "circulation@tsmu.co.id"
-                            oServer.Password = "MREK2*Pv5{WV"
+                            oServer.User = mailSender
+                            oServer.Password = mailPassword
 
                             ' Set SSL 465 port
                             oServer.Port = 465

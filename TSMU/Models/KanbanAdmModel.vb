@@ -521,7 +521,7 @@ Public Class KanbanAdmModel
         Dim hasil As String = String.Empty
         Try
             Dim sql1 As String = "SELECT TOP 1 CONVERT(varchar,[OrderDate],101) Tanggal FROM [KanbanADM]
-                               WHERE OrderNo = '" & orderNo & "' AND (Remark is null OR Remark='3B')"
+                               WHERE OrderNo = '" & orderNo & "' AND (Remark is null OR Remark='3B' OR Remark='')"
             Dim dt As New DataTable
             dt = GetDataTableCKR(sql1)
             If dt.Rows.Count > 0 Then
@@ -537,7 +537,7 @@ Public Class KanbanAdmModel
         Dim hasil As String = String.Empty
         Try
             Dim sql1 As String = "SELECT TOP OrderDate FROM [KanbanADM]
-                               WHERE OrderNo = '" & orderNo & "' AND (Remark is null OR Remark='3B')"
+                               WHERE OrderNo = '" & orderNo & "' AND (Remark is null OR Remark='3B' OR Remark='')"
             Dim dt As New DataTable
             dt = GetDataTableCKR(sql1)
             If dt.Rows.Count > 0 Then
@@ -552,7 +552,7 @@ Public Class KanbanAdmModel
         Dim hasil As String = 0
         Try
             Dim sql1 As String = "SELECT TOP 1 DelCycle Cycle FROM [KanbanADM] 
-                               WHERE OrderNo = '" & orderNo & "' AND (Remark is null OR Remark='3B')"
+                               WHERE OrderNo = '" & orderNo & "' AND (Remark is null OR Remark='3B' OR Remark='')"
             Dim dt As New DataTable
             dt = GetDataTableCKR(sql1)
             If dt.Rows.Count > 0 Then
