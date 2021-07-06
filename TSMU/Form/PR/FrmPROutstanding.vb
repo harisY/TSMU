@@ -25,6 +25,22 @@ Public Class FrmPROutstanding
             dtHeader = New DataTable
             dtHeader = fc_Class.Get_HeaderOutstanding()
             GridHeader.DataSource = dtHeader
+
+            dtDetail = New DataTable
+            dtDetail = fc_Class.Get_DetailOutstanding()
+            GridDetail.DataSource = dtDetail
+
+            dtApprove = New DataTable
+            dtApprove = fc_Class.Get_ApproveOutstanding()
+            GridApproval.DataSource = dtApprove
+
+            dtApprove1 = New DataTable
+            dtApprove1 = fc_Class.Get_Approve1Outstanding()
+            GridApproval1.DataSource = dtApprove1
+
+
+
+
             Cursor.Current = Cursors.Default
         Catch ex As Exception
             Cursor.Current = Cursors.Default

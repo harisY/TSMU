@@ -232,7 +232,6 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.T_Curr_Description = New DevExpress.XtraEditors.TextEdit()
         Me.T_Curr_ID = New DevExpress.XtraEditors.ButtonEdit()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.T_Note = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -409,7 +408,6 @@ Partial Class Frm_Detail_PurchaseOrder
         CType(Me.T_Curr_Description.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_Curr_ID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage6.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.T_Note.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -1964,7 +1962,7 @@ Partial Class Frm_Detail_PurchaseOrder
         '
         Me.T_Other_Buyer.Location = New System.Drawing.Point(146, 180)
         Me.T_Other_Buyer.Name = "T_Other_Buyer"
-        Me.T_Other_Buyer.Size = New System.Drawing.Size(186, 20)
+        Me.T_Other_Buyer.Size = New System.Drawing.Size(182, 20)
         Me.T_Other_Buyer.StyleController = Me.LayoutControl4
         Me.T_Other_Buyer.TabIndex = 8
         '
@@ -1972,7 +1970,7 @@ Partial Class Frm_Detail_PurchaseOrder
         '
         Me.T_Other_PeriodClosed.Location = New System.Drawing.Point(146, 108)
         Me.T_Other_PeriodClosed.Name = "T_Other_PeriodClosed"
-        Me.T_Other_PeriodClosed.Size = New System.Drawing.Size(186, 20)
+        Me.T_Other_PeriodClosed.Size = New System.Drawing.Size(182, 20)
         Me.T_Other_PeriodClosed.StyleController = Me.LayoutControl4
         Me.T_Other_PeriodClosed.TabIndex = 5
         '
@@ -1980,7 +1978,7 @@ Partial Class Frm_Detail_PurchaseOrder
         '
         Me.T_Other_LastReceived.Location = New System.Drawing.Point(146, 84)
         Me.T_Other_LastReceived.Name = "T_Other_LastReceived"
-        Me.T_Other_LastReceived.Size = New System.Drawing.Size(186, 20)
+        Me.T_Other_LastReceived.Size = New System.Drawing.Size(182, 20)
         Me.T_Other_LastReceived.StyleController = Me.LayoutControl4
         Me.T_Other_LastReceived.TabIndex = 4
         '
@@ -1988,7 +1986,7 @@ Partial Class Frm_Detail_PurchaseOrder
         '
         Me.T_Other_Blanked.Location = New System.Drawing.Point(146, 36)
         Me.T_Other_Blanked.Name = "T_Other_Blanked"
-        Me.T_Other_Blanked.Size = New System.Drawing.Size(186, 20)
+        Me.T_Other_Blanked.Size = New System.Drawing.Size(182, 20)
         Me.T_Other_Blanked.StyleController = Me.LayoutControl4
         Me.T_Other_Blanked.TabIndex = 2
         '
@@ -1996,7 +1994,7 @@ Partial Class Frm_Detail_PurchaseOrder
         '
         Me.T_Other_PoDate.Location = New System.Drawing.Point(146, 12)
         Me.T_Other_PoDate.Name = "T_Other_PoDate"
-        Me.T_Other_PoDate.Size = New System.Drawing.Size(186, 20)
+        Me.T_Other_PoDate.Size = New System.Drawing.Size(182, 20)
         Me.T_Other_PoDate.StyleController = Me.LayoutControl4
         Me.T_Other_PoDate.TabIndex = 0
         '
@@ -2006,15 +2004,16 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.T_Other_ReceiptStatus.Name = "T_Other_ReceiptStatus"
         Me.T_Other_ReceiptStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.T_Other_ReceiptStatus.Properties.NullText = ""
-        Me.T_Other_ReceiptStatus.Size = New System.Drawing.Size(186, 20)
+        Me.T_Other_ReceiptStatus.Size = New System.Drawing.Size(182, 20)
         Me.T_Other_ReceiptStatus.StyleController = Me.LayoutControl4
         Me.T_Other_ReceiptStatus.TabIndex = 3
         '
         'T_Other_Term
         '
+        Me.T_Other_Term.EditValue = "30"
         Me.T_Other_Term.Location = New System.Drawing.Point(146, 156)
         Me.T_Other_Term.Name = "T_Other_Term"
-        Me.T_Other_Term.Size = New System.Drawing.Size(186, 20)
+        Me.T_Other_Term.Size = New System.Drawing.Size(182, 20)
         Me.T_Other_Term.StyleController = Me.LayoutControl4
         Me.T_Other_Term.TabIndex = 7
         '
@@ -2024,7 +2023,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.T_Other_Certificated.Name = "T_Other_Certificated"
         Me.T_Other_Certificated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.T_Other_Certificated.Properties.NullText = ""
-        Me.T_Other_Certificated.Size = New System.Drawing.Size(186, 20)
+        Me.T_Other_Certificated.Size = New System.Drawing.Size(182, 20)
         Me.T_Other_Certificated.StyleController = Me.LayoutControl4
         Me.T_Other_Certificated.TabIndex = 6
         '
@@ -2034,7 +2033,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlGroup3.GroupBordersVisible = False
         Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem46, Me.EmptySpaceItem7, Me.LayoutControlItem47, Me.LayoutControlItem48, Me.LayoutControlItem49, Me.LayoutControlItem50, Me.LayoutControlItem51, Me.LayoutControlItem52, Me.LayoutControlItem53, Me.EmptySpaceItem8})
         Me.LayoutControlGroup3.Name = "Root"
-        Me.LayoutControlGroup3.Size = New System.Drawing.Size(1250, 222)
+        Me.LayoutControlGroup3.Size = New System.Drawing.Size(1233, 222)
         Me.LayoutControlGroup3.TextVisible = False
         '
         'LayoutControlItem46
@@ -2042,7 +2041,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem46.Control = Me.T_Other_PoDate
         Me.LayoutControlItem46.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem46.Name = "LayoutControlItem46"
-        Me.LayoutControlItem46.Size = New System.Drawing.Size(324, 24)
+        Me.LayoutControlItem46.Size = New System.Drawing.Size(320, 24)
         Me.LayoutControlItem46.Text = "PO Date"
         Me.LayoutControlItem46.TextSize = New System.Drawing.Size(131, 13)
         '
@@ -2051,7 +2050,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.EmptySpaceItem7.AllowHotTrack = False
         Me.EmptySpaceItem7.Location = New System.Drawing.Point(0, 192)
         Me.EmptySpaceItem7.Name = "EmptySpaceItem7"
-        Me.EmptySpaceItem7.Size = New System.Drawing.Size(324, 10)
+        Me.EmptySpaceItem7.Size = New System.Drawing.Size(320, 10)
         Me.EmptySpaceItem7.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem47
@@ -2059,7 +2058,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem47.Control = Me.T_Other_Blanked
         Me.LayoutControlItem47.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem47.Name = "LayoutControlItem47"
-        Me.LayoutControlItem47.Size = New System.Drawing.Size(324, 24)
+        Me.LayoutControlItem47.Size = New System.Drawing.Size(320, 24)
         Me.LayoutControlItem47.Text = "Blanked PO Expiration Date"
         Me.LayoutControlItem47.TextSize = New System.Drawing.Size(131, 13)
         '
@@ -2068,7 +2067,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem48.Control = Me.T_Other_ReceiptStatus
         Me.LayoutControlItem48.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem48.Name = "LayoutControlItem48"
-        Me.LayoutControlItem48.Size = New System.Drawing.Size(324, 24)
+        Me.LayoutControlItem48.Size = New System.Drawing.Size(320, 24)
         Me.LayoutControlItem48.Text = "Receipt Status"
         Me.LayoutControlItem48.TextSize = New System.Drawing.Size(131, 13)
         '
@@ -2077,7 +2076,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem49.Control = Me.T_Other_LastReceived
         Me.LayoutControlItem49.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem49.Name = "LayoutControlItem49"
-        Me.LayoutControlItem49.Size = New System.Drawing.Size(324, 24)
+        Me.LayoutControlItem49.Size = New System.Drawing.Size(320, 24)
         Me.LayoutControlItem49.Text = "Last Received"
         Me.LayoutControlItem49.TextSize = New System.Drawing.Size(131, 13)
         '
@@ -2086,7 +2085,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem50.Control = Me.T_Other_PeriodClosed
         Me.LayoutControlItem50.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem50.Name = "LayoutControlItem50"
-        Me.LayoutControlItem50.Size = New System.Drawing.Size(324, 24)
+        Me.LayoutControlItem50.Size = New System.Drawing.Size(320, 24)
         Me.LayoutControlItem50.Text = "Period Closed"
         Me.LayoutControlItem50.TextSize = New System.Drawing.Size(131, 13)
         '
@@ -2095,7 +2094,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem51.Control = Me.T_Other_Certificated
         Me.LayoutControlItem51.Location = New System.Drawing.Point(0, 120)
         Me.LayoutControlItem51.Name = "LayoutControlItem51"
-        Me.LayoutControlItem51.Size = New System.Drawing.Size(324, 24)
+        Me.LayoutControlItem51.Size = New System.Drawing.Size(320, 24)
         Me.LayoutControlItem51.Text = "Certificated Of Compliance"
         Me.LayoutControlItem51.TextSize = New System.Drawing.Size(131, 13)
         '
@@ -2104,7 +2103,7 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem52.Control = Me.T_Other_Term
         Me.LayoutControlItem52.Location = New System.Drawing.Point(0, 144)
         Me.LayoutControlItem52.Name = "LayoutControlItem52"
-        Me.LayoutControlItem52.Size = New System.Drawing.Size(324, 24)
+        Me.LayoutControlItem52.Size = New System.Drawing.Size(320, 24)
         Me.LayoutControlItem52.Text = "Term"
         Me.LayoutControlItem52.TextSize = New System.Drawing.Size(131, 13)
         '
@@ -2113,16 +2112,16 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.LayoutControlItem53.Control = Me.T_Other_Buyer
         Me.LayoutControlItem53.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem53.Name = "LayoutControlItem53"
-        Me.LayoutControlItem53.Size = New System.Drawing.Size(324, 24)
+        Me.LayoutControlItem53.Size = New System.Drawing.Size(320, 24)
         Me.LayoutControlItem53.Text = "Buyer"
         Me.LayoutControlItem53.TextSize = New System.Drawing.Size(131, 13)
         '
         'EmptySpaceItem8
         '
         Me.EmptySpaceItem8.AllowHotTrack = False
-        Me.EmptySpaceItem8.Location = New System.Drawing.Point(324, 0)
+        Me.EmptySpaceItem8.Location = New System.Drawing.Point(320, 0)
         Me.EmptySpaceItem8.Name = "EmptySpaceItem8"
-        Me.EmptySpaceItem8.Size = New System.Drawing.Size(906, 202)
+        Me.EmptySpaceItem8.Size = New System.Drawing.Size(893, 202)
         Me.EmptySpaceItem8.TextSize = New System.Drawing.Size(0, 0)
         '
         'TabPage5
@@ -2429,7 +2428,6 @@ Partial Class Frm_Detail_PurchaseOrder
         '
         'TabPage6
         '
-        Me.TabPage6.Controls.Add(Me.TextEdit1)
         Me.TabPage6.Controls.Add(Me.T_Note)
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
@@ -2439,18 +2437,11 @@ Partial Class Frm_Detail_PurchaseOrder
         Me.TabPage6.Text = "Note"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
-        'TextEdit1
-        '
-        Me.TextEdit1.Location = New System.Drawing.Point(478, 18)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(188, 20)
-        Me.TextEdit1.TabIndex = 1
-        '
         'T_Note
         '
         Me.T_Note.Location = New System.Drawing.Point(17, 19)
         Me.T_Note.Name = "T_Note"
-        Me.T_Note.Size = New System.Drawing.Size(444, 203)
+        Me.T_Note.Size = New System.Drawing.Size(441, 173)
         Me.T_Note.TabIndex = 0
         '
         'Frm_Detail_PurchaseOrder
@@ -2641,7 +2632,6 @@ Partial Class Frm_Detail_PurchaseOrder
         CType(Me.T_Curr_Description.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_Curr_ID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.T_Note.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -2849,8 +2839,6 @@ Partial Class Frm_Detail_PurchaseOrder
     Friend WithEvents T_Other_Term As DevExpress.XtraEditors.TextEdit
     Friend WithEvents T_Other_Certificated As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents TabPage6 As TabPage
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents T_Note As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents T_Rate_Multiply As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents RepoAction As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents RepoCAction As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
@@ -2863,4 +2851,5 @@ Partial Class Frm_Detail_PurchaseOrder
     Friend WithEvents PRQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents T_DiscountAmount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents RepoIncl As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents T_Note As DevExpress.XtraEditors.MemoEdit
 End Class

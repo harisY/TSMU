@@ -767,7 +767,7 @@ Public Class Cls_PR
     Public Function Get_HeaderOutstanding() As DataTable
         Try
             'Dim query As String = "[Generate_Report_Matome]"
-            Dim query = "Select  ROW_NUMBER() OVER(ORDER BY XPRHdr.PRNo ASC) AS No,
+            Dim query = "Select Distinct
 				XPRHdr.ApprovalPIC as [ApprovalPIC],
 				XPRHdr.ApprovalRemark as [Approval Remark],
 				XPRHdr.LocId as [Loc ID],
@@ -794,7 +794,98 @@ Public Class Cls_PR
         End Try
     End Function
 
+    Public Function Get_DetailOutstanding() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query = "Select  ROW_NUMBER() OVER(ORDER BY XPRHdr.PRNo ASC) AS No,
+				  XPRDtl.[Acct]
+				  ,XPRDtl.[CurrCode]
+				  ,XPRDtl.[DelDate]
+				  ,XPRDtl.[InvtDescr]
+				  ,XPRDtl.[InvtId]
+				  ,XPRDtl.[InvtSpec]
+				  ,XPRDtl.[LastPRDate]
+				  ,XPRDtl.[LastPRNo]
+				  ,XPRDtl.[LUpd_Datetime]
+				  ,XPRDtl.[LUpd_Prog]
+				  ,XPRDtl.[LUpd_User]
+				  ,XPRDtl.[OverFlag]
+				  ,XPRDtl.[PRNo]
+				  ,XPRDtl.[PurchaseType]
+				  ,XPRDtl.[Qty]
+				  ,XPRDtl.[QtyPO]
+				  ,XPRDtl.[QtyRcv]
+				  ,XPRDtl.[Remark]
+				  ,XPRDtl.[SeqNo]
+				  ,XPRDtl.[StatusDate]
+				  ,XPRDtl.[StatusFlag]
+				  ,XPRDtl.[StatusPIC]
+				  ,XPRDtl.[StatusRemark]
+				  ,XPRDtl.[StkItem]
+				  ,XPRDtl.[Sub]
+				  ,XPRDtl.[UnitPrice]
+				  ,XPRDtl.[UnitQty]
+				  ,XPRDtl.[XQty]
+				  ,XPRDtl.[XSeqNo]
+				from XPRHdr inner join XPRDtl
+				on XPRHdr.PRNo = XPRDtl.PRNo
+                Left join approval1
+                on XPRHdr.PRNo = approval1.PRNo
+                Where kol1 ='0'
+                or kol2 ='0'
+                or kol3 ='0'"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_sol(query)
 
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+    Public Function Get_ApproveOutstanding() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query = "Select  distinct 
+                approval.user_id as [User],
+				approval.tanggal as Tanggal,
+				approval.PRNo as PRNo,
+				approval.status as [Status],
+				approval.lepelx as Level
+				from approval
+				inner Join approval1
+				on approval.PRNo = approval1.PRNo
+                Where kol1 ='0'
+                or kol2 ='0'
+                or kol3 ='0'"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_sol(query)
+
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
+    Public Function Get_Approve1Outstanding() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query = "Select Distinct approval1.*
+				from approval1
+				 inner Join approval
+				 on approval.PRNo = approval1.PRNo
+                Where kol1 ='0'
+                or kol2 ='0'
+                or kol3 ='0'"
+            Dim dt As New DataTable
+            dt = MainModul.GetDataTableByCommand_sol(query)
+
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
 End Class
 
 

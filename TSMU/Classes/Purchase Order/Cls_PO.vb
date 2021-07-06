@@ -133,6 +133,7 @@ Public Class Cls_PO
     Public Property H_VendState As String
     Public Property H_VendZip As String
     Public Property H_VouchStage As String
+    Public Property H_Note As String
 
     Public Property Collection_Detail() As New Collection(Of Cls_PO_Detail)
 
@@ -250,6 +251,51 @@ Public Class Cls_PO
             Dim dt As New DataTable
             'dt = GetDataTableByCommand_SP(query, pParam)
             dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+    Public Function Get_POHeaderCompare() As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[PO_D_GetPOHeader_Compare]"
+            'Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(2) {}
+            'pParam(0) = New SqlClient.SqlParameter("@deptID", SqlDbType.VarChar)
+            'pParam(1) = New SqlClient.SqlParameter("@pDate1", SqlDbType.DateTime)
+            'pParam(2) = New SqlClient.SqlParameter("@pDate2", SqlDbType.DateTime)
+
+
+            'pParam(0).Value = Dept
+            'pParam(1).Value = pDate1
+            'pParam(2).Value = pDate2
+            Dim dt As New DataTable
+            'dt = GetDataTableByCommand_SP(query, pParam)
+            dt = GetDataTableByCommand_SP(query)
+            Return dt
+        Catch ex As Exception
+            Throw
+        End Try
+
+    End Function
+
+    Public Function Get_PODetailCompare(PONumber As String) As DataTable
+        Try
+            'Dim query As String = "[Generate_Report_Matome]"
+            Dim query As String = "[PO_D_GetPODetail_Compare]"
+            Dim pParam() As SqlClient.SqlParameter = New SqlClient.SqlParameter(0) {}
+            pParam(0) = New SqlClient.SqlParameter("@PONo", SqlDbType.VarChar)
+            'pParam(1) = New SqlClient.SqlParameter("@pDate1", SqlDbType.DateTime)
+            'pParam(2) = New SqlClient.SqlParameter("@pDate2", SqlDbType.DateTime)
+
+
+            pParam(0).Value = PONumber
+            'pParam(1).Value = pDate1
+            'pParam(2).Value = pDate2
+            Dim dt As New DataTable
+            'dt = GetDataTableByCommand_SP(query, pParam)
+            dt = GetDataTableByCommand_SP(query, pParam)
             Return dt
         Catch ex As Exception
             Throw
@@ -601,7 +647,8 @@ Public Class Cls_PO
                                         H_User3,
                                         H_User4,
                                         H_POAmt,
-                                        H_CuryPOAmt)
+                                        H_CuryPOAmt,
+                                        H_Note)
 
 
                         For i As Integer = 0 To Collection_Detail.Count - 1
@@ -699,7 +746,8 @@ Public Class Cls_PO
                                         H_User3,
                                         H_User4,
                                         H_POAmt,
-                                        H_CuryPOAmt)
+                                        H_CuryPOAmt,
+                                        H_Note)
 
                         Delete_Detail(PONumber)
 
@@ -788,7 +836,8 @@ Public Class Cls_PO
                                User3 As Double,
                                User4 As Double,
                                POAmt As Double,
-                               CurPOAmt As Double)
+                               CurPOAmt As Double,
+                               Note As String)
 
 
         Dim ls_TA As String = "INSERT INTO [PurchOrd]
@@ -851,7 +900,8 @@ Public Class Cls_PO
                                             PODate,
                                             User3,
                                             User4,
-                                            POAmt)
+                                            POAmt,
+                                            Note)
                                          VALUES
                                                ('" & PONbr & "'
                                                ,'" & CpnyID & "'
@@ -912,7 +962,8 @@ Public Class Cls_PO
                                                ,'" & PODate & "'
                                                ,'" & User3 & "'
                                                ,'" & User4 & "'
-                                               ,'" & POAmt & "')"
+                                               ,'" & POAmt & "'
+                                                ,'" & Note & "')"
         MainModul.ExecQuery(ls_TA)
 
 
@@ -979,7 +1030,8 @@ Public Class Cls_PO
                                User3 As Double,
                                User4 As Double,
                                POAmt As Double,
-                               CurPOAmt As Double)
+                               CurPOAmt As Double,
+                               Note As String)
 
         'Dim result As Integer = 0
         Try
@@ -1061,6 +1113,7 @@ Public Class Cls_PO
                                             ,[User3] = '" & User3 & "'	
                                             ,[User4] = '" & User4 & "'	
                                             ,[POAmt] = '" & POAmt & "'	
+                                           ,[Note] = '" & Note & "'	
                                      WHERE [PONbr ] = '" & H_PONbr & "'"
 
 

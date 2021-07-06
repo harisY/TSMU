@@ -2642,6 +2642,18 @@
     <Compile Include="Form\Purchase Order\Frm_Head_PurchaseOrder.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Purchase Order\Frm_POCompare_Detail.Designer.vb">
+      <DependentUpon>Frm_POCompare_Detail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Purchase Order\Frm_POCompare_Detail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Purchase Order\Frm_POCompare_Header.Designer.vb">
+      <DependentUpon>Frm_POCompare_Header.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Purchase Order\Frm_POCompare_Header.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\Report\frmMonitoringDelivery.Designer.vb">
       <DependentUpon>frmMonitoringDelivery.vb</DependentUpon>
     </Compile>
@@ -4488,6 +4500,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Purchase Order\Frm_Head_PurchaseOrder.resx">
       <DependentUpon>Frm_Head_PurchaseOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Purchase Order\Frm_POCompare_Detail.resx">
+      <DependentUpon>Frm_POCompare_Detail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Purchase Order\Frm_POCompare_Header.resx">
+      <DependentUpon>Frm_POCompare_Header.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Report\frmMonitoringDelivery.resx">
       <DependentUpon>frmMonitoringDelivery.vb</DependentUpon>

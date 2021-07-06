@@ -524,7 +524,7 @@ Public Class Frm_Detail_PurchaseOrder
                     Dim a As String = Trim(dtTExt.Rows(0).Item("CuryID"))
                     T_Curr_ID.EditValue = a
                     T_Rate_Multiply.EditValue = Trim(dtTExt.Rows(0).Item("CuryMultDiv"))
-
+                    T_Note.EditValue = Trim(dtTExt.Rows(0).Item("Note"))
 
                 End If
                 'Call TotalSumary()
@@ -1618,7 +1618,6 @@ Public Class Frm_Detail_PurchaseOrder
 
             If ShippingID = "" Then
                 fc_Class.H_ShipAddrID = "TSC1"
-
             Else
                 fc_Class.H_ShipAddrID = ShippingID.Substring(0, 3)
             End If
@@ -1653,7 +1652,8 @@ Public Class Frm_Detail_PurchaseOrder
             fc_Class.H_PODate = T_Other_PoDate.EditValue
             fc_Class.H_User4 = IIf(T_DiscountAmount.EditValue Is Nothing, 0, T_DiscountAmount.EditValue)
             fc_Class.H_User3 = IIf(T_DiscPersen.EditValue Is Nothing, 0, T_DiscPersen.EditValue)
-            fc_Class.H_User2 = "Circulation"
+            fc_Class.H_User2 = ""
+            fc_Class.H_Note = T_Note.EditValue
 
         End With
 
