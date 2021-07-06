@@ -48,7 +48,7 @@ Public Class frmBoM
     Public Overrides Sub Proc_Excel()
         Try
             'ImportBoMHeader()
-            'ImportBoMDetails()
+            ImportBoMDetails()
         Catch ex As Exception
             ShowMessage(ex.Message, MessageTypeEnum.ErrorMessage)
             WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
@@ -155,7 +155,7 @@ Public Class frmBoM
         Dial.Filter = "Excel Files|*.xls;*.xlsx"
         Dim result As DialogResult = Dial.ShowDialog()
         If result = System.Windows.Forms.DialogResult.OK Then
-            _TableDetail = ExcelToDatatable(Dial.FileName, "BOM DETAIL")
+            _TableDetail = ExcelToDatatable(Dial.FileName, "BOM DETAIL new")
         End If
 
         SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
@@ -186,10 +186,10 @@ Public Class frmBoM
                     Else
                         .Descr_detail = _TableDetail.Rows(i)("Description").ToString
                     End If
-                    If _TableDetail.Rows(i)("Qty") Is DBNull.Value OrElse _TableDetail.Rows(i)("Qty").ToString = "" Then
+                    If _TableDetail.Rows(i)(" Qty ") Is DBNull.Value OrElse _TableDetail.Rows(i)(" Qty ").ToString = "" Then
                         .Qty = 0
                     Else
-                        .Qty = Replace(_TableDetail.Rows(i)("Qty"), ",", ".")
+                        .Qty = Replace(_TableDetail.Rows(i)(" Qty "), ",", ".")
                     End If
                     If _TableDetail.Rows(i)("Unit") Is DBNull.Value OrElse _TableDetail.Rows(i)("Unit").ToString = "" Then
                         .Unit = ""
@@ -201,7 +201,7 @@ Public Class frmBoM
             Catch ex As Exception
                 SplashScreenManager.CloseForm()
                 WriteToErrorLog(ex.Message, gh_Common.Username, ex.StackTrace)
-                WriteSalesToErrorLog("BoM", "Log", _TableDetail, i, "Invt ID Material", gh_Common.Username)
+                WriteSalesToErrorLog("BoM", "Log", _TableDetail, i, "Inventory ID", gh_Common.Username)
                 Throw ex
                 'Continue For
             End Try
@@ -222,7 +222,7 @@ Public Class frmBoM
         Dial.Filter = "Excel Files|*.xls;*.xlsx"
         Dim result As DialogResult = Dial.ShowDialog()
         If result = System.Windows.Forms.DialogResult.OK Then
-            _Table = ExcelToDatatable(Dial.FileName, "BOM HEADER")
+            _Table = ExcelToDatatable(Dial.FileName, "BOM HEADER new")
         End If
 
         SplashScreenManager.ShowForm(Me, GetType(FrmWait), True, True, False)
